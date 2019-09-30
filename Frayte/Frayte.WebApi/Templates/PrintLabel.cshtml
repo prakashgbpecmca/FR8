@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<link rel="stylesheet" href="@Model.PageStyleSheet"/>
+</head>
+<body id="same">
+    
+	<div>
+	@foreach(var item in Model.PackageLabel)
+	{
+	   <div class="justify">
+          <img src='@item.LabelPath' id="image" style="margin:0 auto !important;">
+	   </div>  
+	}
+	</div>
+	
+</body>
+</html>

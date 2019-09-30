@@ -1,0 +1,107 @@
+﻿
+<section>
+    <section class="ecommerce">
+        <div class="col-sm-12 paddingboth">
+            <div class="col-sm-6 paddingboth"><h4 class="padding-tb-5">{{'Shipment_PkgDetail' | translate}}</h4></div>
+            <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19" class="col-sm-6 paddingboth">
+                <p class="text-right red" style="margin:15px 0px 0px !important;">{{'PrintLabel_Message' | translate}} </p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="piecesDetailTable">
+            <div class="panel panel-default margin-bottom-none">
+                <div class="panel-heading flex">
+                    <div class="colHeader width6 height76"><span>{{'Carton_Value' | translate}}</span></div>
+                    <div class="colHeader width6 height76"><span>{{'Length' | translate}}<br /><small>({{CMInchs}})</small></span></div>
+                    <div class="colHeader width6 height76"><span>{{'Width' | translate}}<br /><small>({{CMInchs}})</small></span></div>
+                    <div class="colHeader width6 height76 border-right-2"><span>{{'Height' | translate}}<br /><small>({{CMInchs}})</small></span></div>
+                    <div class="colHeader width6 height76 border-right-2"><span>{{'Weight' | translate}}<br /><small>({{KgLb}})</small></span></div>
+                    <div class="colHeader col-1 "><span>{{'Declared_Value' | translate}}<br /><small>({{eCommerceBookingDetail.Currency.CurrencyCode}})</small></span></div>
+                    <div class="colHeader width23-67 height76 border-right-ddd" ng-class="{'width53-673': eCommerceBookingDetail.ShipmentStatusId === 19}"><span>{{'Shipment_Content' | translate}}<br /><small></small></span></div>
+                    <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19" class="colHeader width9 height76"><span>{{'Print_Frayte_AWB_Label' | translate}}<br /><span style="font-size:10px;">{{'Click_Link_Below' | translate}}</span></span></div>
+                    <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19" class="colHeader width230 height76"><span>{{'Tracking_No' | translate}} <br /><span style="font-size:10px;">{{'Click_Link_Below' | translate}}</span></span></div>
+                    <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19" class="colHeader width6 height76"><span> <br /><span></span></span></div>
+                    <div class="clearfix"></div>
+                </div>
+                <ul class="panel-body list-unstyled margin-bottom-none grid-hover">
+                    <li ng-repeat="Pakage in eCommerceBookingDetail.Packages" class="alternate">
+                        <div ng-click="alerMethod(Pakage)">
+                            <div>
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label>{{Pakage.CartoonValue}}</label></div>
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label>{{Pakage.Length}}</label></div>
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label>{{Pakage.Width}}</label></div>
+                                <div class="colHeader width6 height43 border-right-2" ng-class="{'demoClass':Pakage.IsSelected}"><label>{{Pakage.Height}}</label></div>
+                                <div class="colHeader width6 height43 border-right-2" ng-class="{'demoClass':Pakage.IsSelected}"><label>{{Pakage.Weight}}</label></div>
+                                <div class="colHeader col-1 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label>{{Pakage.Value}}</label></div>
+                                <div class="colHeader width23-67 height43 border-right-ddd" ng-class="{'width53-673': eCommerceBookingDetail.ShipmentStatusId === 19, 'demoClass':Pakage.IsSelected}"><label>{{Pakage.Content}}</label></div>
+                                <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19"class="colHeader width9 height43" ng-class="{'demoClass':Pakage.IsSelected}" style="padding: 4px 0px !important;">
+                                    <span ng-class="{'disabledanchor':Pakage.FrayteLabelName ===null || Pakage.FrayteLabelName ===''}">
+                                        <label>
+                                            <a href="{{Pakage.FrayteLabelName}}" a-disabled="Pakage.FrayteLabelName ===null || Pakage.FrayteLabelName ===''" download="{{Pakage.FrayteLabel}}">
+                                                <img ng-show="Pakage.FrayteLabelName !==null && Pakage.FrayteLabelName !==''" ng-src="{{photoUrl}}" ng-click="setPrintLabel(Pakage , 'Frayte Label')" class="img-responsive" style="width:31px; height:32px;margin-left:10px;" />
+                                                <span ng-show="Pakage.FrayteLabelName !==null && Pakage.FrayteLabelName !==''" ng-class="{'overlayRed':IsPrinted(Pakage ,'Frayte Label'),'overlayGrey':!IsPrinted(Pakage,'Frayte Label') }" style="margin: -36px -28px 24px !important;"></span>
+                                            </a>
+                                        </label>
+                                    </span>
+                                </div>  
+                                <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19" class="colHeader width230 height43" ng-class="{'demoClass':Pakage.IsSelected}">
+                                    <a target="_blank" ui-sref="home.tracking-hub({carrierType:TrackingType,trackingId:eCommerceBookingDetail.Packages[0].TrackingNo})" class="color-333">{{Pakage.TrackingNo}}</a>
+                                </div>
+                                <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19" class="width6 height43" ng-class="{'demoClass':Pakage.IsSelected}">
+                                    <div>
+                                        <a id="drop1" ng-click="setPrintLabel(Pakage , 'Frayte Label')"  role="button" class="pull-right print-label btn-simple btn-success"  href="{{Pakage.FrayteLabelName}}" download="{{Pakage.FrayteLabel}}">
+                                            <!--<label class="pointer">--><i class="fa fa-print pointer" aria-hidden="true"></i> {{'Print' | translate}}<!--&nbsp;&nbsp;</label>-->
+                                        </a>
+                                        <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="left: -265px;">
+                                            <li><a href="{{Pakage.FrayteLabelName}}" download="{{Pakage.FrayteLabel}}" ng-disabled="Printlabel.LabelName===null ||Printlabel.LabelName==='' || !Printlabel.IsSelected" class="pointer fontsize12"><i class="fa fa-print" aria-hidden="true"></i> {{'Frayte_AWB_Thermo_Label_Print' | translate}}</a></li>
+                                        </ul>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>                 
+                </ul>
+                <div class="clearfix"></div>
+                <div class="panel-footer">
+                    <div class="colFoot" style="padding: 18px 10px !important;">
+                        <div class="bottom10">{{'Total' | translate}}:  </div>
+                    </div>
+                    <div class="colHeader colFoot5-86 word-wrap" style="border:none;min-width:5.85%;"><span>{{getTotalPieces()}} <br /><small>({{'Cartons' | translate}})</small></span></div>
+                    <div class="colHeader colFoot6 padding8x0x12 word-wrap bordered-left" style="min-width: 6.13%;"><span>{{getTotalKgs()}} <br /><small>({{KgLb}})</small></span></div>
+                    <div class="colHeader colFoot8-4 padding8x0x12 word-wrap" style="min-width: 8.3%;"><span>{{getTotalValue()}} <br /><small>({{eCommerceBookingDetail.Currency.CurrencyCode}})</small></span></div>
+                    <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19">
+                        <div class="pull-right" style="position: relative;margin: 10px 10px 0px;">
+                            <a a-disabled="FrayteLabel.FilePath===null ||FrayteLabel.FilePath===''" href="{{FrayteLabel.FilePath}}" download="{{FrayteLabel.FileName}}" class="btn-simple btn-success fontsize12"><i class="fa fa-print" aria-hidden="true"></i> {{'Print_All_Frayte_Label' | translate}}</a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-footer" style="border-top: 2px solid #333 !important;">
+                    <div class="col-sm-5 direct-booking-detail-background bold padding11x10">
+                        <div class="pull-left">{{'Estimated_Chargeable_Weight' | translate}} <span class="red">{{'Hash' | translate}}</span>:  </div>
+                        <div class="pull-right width30 padding-none" style="border-right:none !important;"><span class="pull-right">{{getChargeableWeight(eCommerceBookingDetail.Packages, 'Weight')}}  <small>({{KgLb}})</small></span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <p><span class="red">{{'Hash' | translate}}: </span>{{'EstimatedWeightNote' | translate}}</p>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19" class="col-sm-12 paddingboth">
+        <div>
+            <form name="SendMail" ng-submit="sendLabelMail(ToMail,SendMail.$valid)" novalidate>
+                <div class="col-sm-4 paddingboth" ng-class="{'textRed': SendMail.toMail.$invalid &&
+                     (SendMail.toMail.$dirty || sendMail)}">
+                    <input name="toMail" type="email" ng-model="ToMail" class="form-control fontsize12" placeholder="{{'Placeholder_EmailAddress' | translate}}" ng-required="sendMail" style="outline:none !important;border-color:#CCC !important;" />
+                </div>
+                <div class="col-sm-2">
+                    <button ng-click="sendMail=true" type="submit" class="btn-simple btn-success fontsize12"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Send_Label' | translate}}</button>
+                </div>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>

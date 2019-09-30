@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+         <div style="height: 70px; background: #fff !important; box-shadow: 0px 1px 4px -2px; padding: 0 19px; text-align: left;">
+            <img src="cid:@ViewBag.ImageHeader" />
+        </div>
+    </header>
+   <br/>
+			<table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Dear <b>@Model.ShipTo.FirstName @Model.ShipTo.LastName,</b></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">FRAYTE GLOBAL (UK) CO. LTD. Is pleased to inform we have <b>@Model.ReferenceDetail.Reference1</b> coming as the following shipment for you coming from <span> <b>@Model.ShipFrom.FirstName</b> </span> <span> <b>@Model.ShipFrom.LastName</b></span>.</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">A payment for importation charges is due for <b>@ViewBag.InvoiceAmount</b> <b>@ViewBag.InvoiceCurrency </b>. An invoice has been sent to <a href="">@Model.ShipTo.Email</a>. Payment should be made online at <a href="@ViewBag.PaymentUrl">@ViewBag.SiteAddress/payment</a>. For an explanation of the charges see receivers guide to Tax and Duty on   <a href="@ViewBag.IMPGuideUrl">@ViewBag.SiteAddress/IMPguide</a></td></tr> 
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;"><b>Domestic Carrier:</b> @ViewBag.ShipmentMethod</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;"><b>Tracking Number:</b> <a href="@ViewBag.TrackingURL">@ViewBag.TrackingNo</a></td></tr>
+			</table>
+			<br/>
+			    <table style="border: 1px solid #ddd;width:100%;border-spacing: 0px;">
+                <tr style="border-bottom: 1px solid #ddd; background: #f7f7f7;">
+                    <td style="padding: 10px;border-bottom: 1px solid #ddd;font-family: calibri, sans-serif;">
+                        <b>Shipper</b><br>
+                    </td>
+                </tr>
+					<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipFrom.FirstName @Model.ShipFrom.LastName</td></tr>					
+                    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipFrom.Address</td></tr>
+                    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipFrom.Address2</td></tr>                   
+                    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipFrom.City</td></tr>
+                    <tr><td style="padding: 3px 10px; font-family: calibri, sans-serif;">@Model.ShipFrom.State</td></tr>
+                    <tr><td style="padding: 3px 10px; font-family: calibri, sans-serif;">@Model.ShipFrom.PostCode</td></tr>
+					<tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipFrom.Country.Name</td></tr>                   
+					<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+            </table>
+            <br /><br />
+            <table style="border: 1px solid #ddd;width:100%;border-spacing: 0px;">
+                <tr style="border-bottom: 1px solid #ddd; background: #f7f7f7;">
+                    <td style="padding: 10px;border-bottom: 1px solid #ddd;font-family: calibri, sans-serif;">
+                        <b>Consignee</b><br>
+                    </td>
+                </tr>
+					<tr><td>&nbsp;</td></tr>
+                    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipTo.FirstName @Model.ShipTo.LastName</td></tr>			
+					<tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipTo.Address</td></tr>
+                    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipTo.Address2</td></tr>
+                    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipTo.City</td></tr>
+                    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipTo.State</td></tr>
+                    <tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipTo.PostCode</td></tr>
+					<tr><td style="padding: 3px 10px;font-family: calibri, sans-serif;">@Model.ShipTo.Country.Name</td></tr>                 
+					<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+            </table>
+			<br/>
+			<table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Find out more about FRAYTE GLOBAL (UK) CO. LTD. Please feel free to log online or call our dedicated Customer Service Team based in the <b>@ViewBag.OperationCountry</b></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">You can track the parcel using <a href="@ViewBag.TrackingURL">@ViewBag.SiteAddress/@ViewBag.TrackingNo</a></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">Pay your tax and duty  <a href="@ViewBag.PaymentTaxAndDutyUrl">Click here</a></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;"><b>Tel</b>: @ViewBag.TrackingPhone</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;"><b>Email</b>: @ViewBag.TrackingEmail</td></tr>
+			</table>		
+            <br/>
+			<table style="border-spacing: 0px;">
+					<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">@ViewBag.UserName</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">@ViewBag.UserPosition</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;"><b>FRAYTE GLOBAL (UK) CO. LTD.</b></td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">@ViewBag.StaffAddress1,</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">@ViewBag.StaffCity, @ViewBag.StaffState</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">@ViewBag.StaffPostCode,</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">@ViewBag.StaffCountry,</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;"><b>Tel</b>: @ViewBag.TrackingPhone</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;"><a href="@ViewBag.SiteAddress">@ViewBag.SiteAddress</a></td></tr>
+            </table>
+   <br/>
+	<footer>
+		<table style="border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;font-size: 12px;">FRAYTE GLOBAL (UK) CO. LTD. All rights reserved.</td></tr>
+        </table>
+	</footer>
+</body>
+</html>
+

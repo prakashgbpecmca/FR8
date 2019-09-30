@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.courierAccount', ['ui.router', 'ngApp.common', 'ui.grid']);

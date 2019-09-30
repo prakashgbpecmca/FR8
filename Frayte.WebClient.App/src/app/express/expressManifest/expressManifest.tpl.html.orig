@@ -1,0 +1,300 @@
+﻿
+
+<section class="row ng-scope">
+    <div class="row paddingboth" style="margin-right: 15px; margin-left: 15px;">
+        <div id="metaltop-teal" style="padding: 0px 0px 0px; overflow: hidden;">
+            <ul>
+                <li class="first ng-scope">
+                    <button class="btn btn-lg borderradius active" ng-class="{'active': activeRate(tab)}" ng-click="changeState(tab)">
+                        {{'Menifest' | translate}}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-sm-12">
+        <div style="border:1px solid #DBE2EC; padding:15px;" data-ui-view="">
+            <section class="ng-scope">
+                <section>
+                    <div class="panel panel-default fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+                        <div class="panel-heading">{{'AdvanceFilter' | translate}}</div>
+                        <div class="panel-body">
+                            <div class="col-sm-12 paddingboth">
+                                <!--Customer Name-->
+                                <div ng-if="RoleId === 6 || RoleId === 1 || RoleId === 20" class="col-sm-12">
+                                    <label for="customers" class="width20 top5">{{'Customer' | translate}}</label>
+                                    <div class="width80" style="padding: 0px 0px 0px 15px;">
+                                        <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                                ng-model="CustomerDetail" ng-change="getCustomerDetail(CustomerDetail)"
+                                                ng-options="Customer as Customer.CompanyName for Customer in ManifestCustomers | filter : FilterCountry track by Customer.CustomerId"
+                                                class="form-control fontsize12" ng-required="paymentAccount">
+                                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 paddingboth"><hr style="margin:10px 0px;" /></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <!--<div class="col-sm-6 paddingboth">
+                                    <label for="customers" class="col-sm-5 top5">{{'Shipment_Types' | translate}}</label>
+                                    <div class="col-sm-7 form-group">
+                                        <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                                ng-model="TrackManifest.ModuleType" ng-change="getDetails()" ng-disabled="IsDisable"
+                                                ng-options="shipment.BookingType as shipment.BookingTypeDisplay for shipment in fryateShipmentTypes"
+                                                class="form-control fontsize12">
+                                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'shipment_ShipmentDetailsShipmentType' | translate}}</option>
+                                        </select>
+                                    </div>
+                                </div>-->
+                                <div class="col-sm-6 paddingboth">
+                                    <label for="customers" class="col-sm-5 top5">{{'Manifest' | translate}} {{'Number' | translate}}</label>
+                                    <div class="col-sm-7 form-group">
+                                        <input type="text" placeholder="{{'Manifest' | translate}} {{'Number' | translate}}" name="manifestName" ng-model="TrackManifest.ManifestName" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 paddingboth" ng-show="TrackManifest.ModuleType === 'eCommerce'">
+                                    <label for="customers" class="col-sm-5 top5">{{'eCommerce_Shipment_Type' | translate}}</label>
+                                    <div class="col-sm-7 form-group">
+                                        <select id="eCommerceShipmentType" name="eCommerceShipmentType"
+                                                ng-model="TrackManifest.subModuleType" ng-change="seachManifest()"
+                                                ng-options="shipment.value as shipment.display for shipment in eCommerceShipmentTypes"
+                                                class="form-control fontsize12"></select>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6 paddingboth">
+                                    <div>
+                                        <label for="fromdate" class="col-sm-5 top5">{{'From_Date' | translate}}</label>
+                                        <div class="col-sm-6 paddingright form-group">
+                                            <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                                   uib-datepicker-popup="dd/MM/yyyy" ng-model="TrackManifest.FromDate" is-open="status.opened"
+                                                   datepicker-options="dateOptions"
+                                                   close-text="Close" ng-click="openCalender($event)" readonly
+                                                   ng-change="ChangeFromdate(TrackManifest.FromDate)" placeholder="{{'From_Date' | translate}}" style="padding-left: 7px !important;" />
+                                        </div>
+                                        <div class="col-sm-1 paddingboth dated-fix3">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 paddingboth">
+                                    <div>
+                                        <label for="todate" class="col-sm-5 top5">{{'To_Date' | translate}}</label>
+                                        <div class="col-sm-6 form-group">
+                                            <input type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                   ng-model="TrackManifest.ToDate" is-open="status1.opened" readonly
+                                                   datepicker-options="dateOptions1"
+                                                   close-text="Close" ng-click="openCalender1($event)" ng-change="ChangeTodate(TrackManifest.ToDate)"
+                                                   placeholder="{{'To_Date' | translate}}" />
+                                        </div>
+                                        <div class="col-sm-1 paddingboth dated-fix3">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group pull-left">
+                                        <!--<div><button ng-click="CustomerCreateManifest ()" class="btn-simple btn-success fontsize12" style="padding:6px 6px !important;"><i class="fa fa-list-ol" aria-hidden="true"></i> {{'Create_Manifest' | translate}}</button></div>-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 paddingboth">
+                                    <div class="pull-right form-group">
+                                        <button class="btn-simple btn-primary fontsize12 right-19" ng-click="GetManifest('Search')"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </section>
+                <br>
+                <div>
+                    <!--custom grid code here-->
+                    <section>
+                        <div class="panel-body">
+                            <section class="row">
+                                <div>
+                                    <!--breakbulk shipment custom grid-->
+                                    <div class="panel panel-default" ng-show="RoleId === 6 || RoleId === 1 || RoleId === 20">
+                                        <div class="width100 flex grid-background">
+                                            <div class="width986 flex">
+                                                <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Manifest_Number' | translate}}</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'MAWB_' | translate}}</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Customer' | translate}}</span></div>
+                                                <div class="width25 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Package_Gross_Weight' | translate}} ({{'Kgs' | translate}}) / {{'No_Of_Bags' | translate}}</span></div>
+                                                <div class="width150 bold quotation-table-padding text-center"><span class="quotation-table-body padding-10-5">{{'Manifest_Date' | translate}}</span> </div>
+                                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                            <div class="panel-body padding0">
+                                                <ul class="list-unstyled change margin-bottom-none">
+                                                    <!-- ngIf: DirectShipmentList.length > 0 -->
+                                                    <li>
+                                                        <div class="width100 pointer" ng-repeat="MD in ManifestData">
+                                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                                <div class="width20 quotation-table-body padding-5">{{MD.ManifestName}}</div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{MD.MAWB}}</span></div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{MD.Customer}}</span></div>
+                                                                <div class="width25 quotation-table-body word-wrap padding-5"><span class="pointer">{{MD.TotalWeight}} / {{MD.NoOfBags}}</span></div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span class="pointer">{{MD.CreatedOn}}</span></div>
+                                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">{{'Action' | translate}} <span class="caret"></span></a>
+                                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                            <li>
+<<<<<<< working copy
+                                                                                <a href="" ng-click="breakbulkViewManifest(MD.TradelaneShipmentId)">
+=======
+                                                                                <!--breakbulkViewManifest(MD.ManifestId)-->
+                                                                                <a href="" ng-click="shipmentDetail(MD.TradelaneShipmentId)">
+>>>>>>> destination
+                                                                                    <span class="padEdit i-o-d"><i class="fa fa-eye i-o-d" aria-hidden="true"></i></span>
+                                                                                    <span>{{'View' | translate}}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="expressUpdateMAWB(MD.TradelaneShipmentId)">
+                                                                                    <span class="padEdit i-o-d"><i class="fa fa-save i-o-d" aria-hidden="true"></i></span>
+                                                                                    <span>{{'Update_MAWB_Detail' | translate}}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="DownLoadExportManifestPDF(MD)">
+                                                                                    <span class="padEdit"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+                                                                                    <span>{{'Download_OriginManifest' | translate}}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="DownLoadDriverManifestPDF(MD)">
+                                                                                    <span class="padEdit"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+                                                                                    <span>{{'Download_DestinationManifest' | translate}}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li ng-if="ManifestData.length === 0">
+                                                        <div class="col-sm-12 paddingboth imp-white">
+                                                            <div class="no-address-exist"><h4 class="redColor ng-binding">{{'ManifestNot_Available' | translate}}</h4></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end code-->
+                                    <div class="panel panel-default" ng-show="RoleId === 3">
+                                        <div class="width100 flex grid-background">
+                                            <div class="width986 flex">
+                                                <div class="width25 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Manifest_Number' | translate}}</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'MAWB_' | translate}}</span></div>
+                                                <div class="width30 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Package_Gross_Weight' | translate}} ({{'Kgs' | translate}}) / {{'No_Of_Bags' | translate}}</span></div>
+                                                <div class="width20 bold quotation-table-padding text-center"><span class="quotation-table-body padding-10-5">{{'Manifest_Date' | translate}}</span> </div>
+                                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                            <div class="panel-body padding0">
+                                                <ul class="list-unstyled change margin-bottom-none">
+                                                    <li>
+                                                        <div class="width100 pointer change" ng-repeat="MD in ManifestData">
+                                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                                <div class="width25 quotation-table-body padding-5">{{MD.ManifestName}}</div>
+                                                                <div class="width150 quotation-body-padding word-wrap padding-5">{{MD.MAWB}}</div>
+                                                                <div class="width30 quotation-table-body word-wrap padding-5"><span class="pointer">{{MD.TotalWeight}} / {{MD.NoOfBags}}</span></div>
+                                                                <div class="width20 quotation-table-body word-wrap padding-5"><span class="pointer">{{MD.CreatedOn}}</span></div>
+                                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">{{'Action' | translate}} <span class="caret"></span></a>
+                                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                            <li>
+                                                                                <!--breakbulkViewManifest(MD.ManifestId)-->
+                                                                                <a href="" ng-click="shipmentDetail(MD.TradelaneShipmentId)">
+                                                                                    <span class="padEdit i-o-d"><i class="fa fa-eye i-o-d" aria-hidden="true"></i></span>
+                                                                                    <span>{{'View' | translate}}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="expressUpdateMAWB(MD.TradelaneShipmentId)">
+                                                                                    <span class="padEdit i-o-d"><i class="fa fa-save i-o-d" aria-hidden="true"></i></span>
+                                                                                    <span>{{'Update_MAWB_Detail' | translate}}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="DownLoadExportManifestPDF(MD)">
+                                                                                    <span class="padEdit"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+                                                                                    <span>{{'Download_OriginManifest' | translate}}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="DownLoadDriverManifestPDF(MD)">
+                                                                                    <span class="padEdit"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+                                                                                    <span>{{'Download_DestinationManifest' | translate}}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li ng-if="ManifestData.length === 0">
+                                                        <div class="col-sm-12 paddingboth imp-white">
+                                                            <div class="no-address-exist"><h4 class="redColor ng-binding">{{'ManifestNot_Available' | translate}}</h4></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 paddingboth">
+                                    <div style="margin-left:-15px;top:-8px;position:relative;" class="pull-left">
+                                        <ul uib-pagination="" boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm ng-pristine ng-untouched ng-valid ng-isolate-scope pagination ng-not-empty" previous-text="‹" next-text="›" first-text="«" last-text="»">
+                                            <!-- ngIf: ::boundaryLinks -->
+                                            <li class="pagination-first ng-scope disabled"><a href="" ng-click="selectPage(1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" disabled="disabled" tabindex="-1">«</a></li><!-- end ngIf: ::boundaryLinks -->
+                                            <!-- ngIf: ::directionLinks -->
+                                            <li class="pagination-prev ng-scope disabled"><a href="" ng-click="selectPage(page - 1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" disabled="disabled" tabindex="-1">‹</a></li><!-- end ngIf: ::directionLinks -->
+                                            <!-- ngRepeat: page in pages track by $index -->
+                                            <li class="pagination-page ng-scope active"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="">1</a></li><!-- end ngRepeat: page in pages track by $index -->
+                                            <li class="pagination-page ng-scope"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="">2</a></li><!-- end ngRepeat: page in pages track by $index -->
+                                            <!-- ngIf: ::directionLinks -->
+                                            <li class="pagination-next ng-scope"><a href="" ng-click="selectPage(page + 1, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="">›</a></li><!-- end ngIf: ::directionLinks -->
+                                            <!-- ngIf: ::boundaryLinks -->
+                                            <li class="pagination-last ng-scope"><a href="" ng-click="selectPage(totalPages, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="">»</a></li><!-- end ngIf: ::boundaryLinks -->
+                                        </ul>
+                                    </div>
+                                    <!--<div class="pull-right">
+                                        <label for="customers" class="col-sm-6 top5">Paging</label>
+                                        <div class="col-sm-4">
+                                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount" class="form-control fontsize12 ng-pristine ng-untouched ng-valid ng-not-empty" style="width:77px"><option label="20" value="number:20">20</option><option label="50" value="number:50" selected="selected">50</option><option label="100" value="number:100">100</option><option label="200" value="number:200">200</option></select>
+                                        </div>
+                                    </div>-->
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </section>
+                        </div>
+                    </section>
+                    <!--end-->
+                    <div class="clearfix"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</section>

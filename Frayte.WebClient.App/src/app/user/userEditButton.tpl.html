@@ -1,0 +1,27 @@
+﻿<div class="ui-grid-cell-contents fontsize12" id="dropdown-scrollable-container padding-5">
+    <div class="btn-group action-fixed-grid-center" uib-dropdown dropdown-append-to-body>
+        &nbsp;<a id="btn-append-to-to-body" href="" uib-dropdown-toggle>
+            <div class="fix-center-action pointer"><span class="action-font-family">{{'Actions' | translate}}</span> <i class="fa fa-caret-down pointer" aria-hidden="true"></i>&nbsp;</div>
+        </a>
+        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+            <li ng-click="grid.appScope.AddEditUser(row)">
+                <a href="">
+                    <span class="padEdit"><i class="fa fa-eye"></i></span>
+                    <span>{{'View' | translate}}</span>
+                </a>
+            </li>
+            <li ng-click="grid.appScope.MobileConfiguration(row)" ng-show="row.entity.RoleId === 19">
+                <a href="">
+                    <span class="padEdit"><i class="fa fa-cogs"></i></span>
+                    <span>{{'Mobile_Configuration' | translate}}</span>
+                </a>
+            </li>
+            <li ng-click="grid.appScope.RemoveUser(row)">
+                <a href="">
+                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                    <span>{{'Delete' | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

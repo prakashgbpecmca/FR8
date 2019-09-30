@@ -1,0 +1,141 @@
+﻿
+<section>
+    <div class="panel-body">
+        <!--<div class="col-sm-12 center"><h3>Third Party Rate Matrix</h3></div>-->
+        <div class="col-sm-12 form-group">
+            <div class="col-sm-4">
+                <div class="col-sm-5 paddingboth col-xs-6 lineheight30 fontsize12">{{'BusinessUnit_Zone' | translate}}</div>
+                <div class="col-sm-7 col-xs-6 paddingboth">
+                    <select class="form-control fontsize12" ng-change="ThirdPartyMatrixByZone()" ng-model="OperationZone" ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId">
+                        <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'BusinessUnit_Zone' | translate}}</option>
+                    </select>
+                </div>
+            </div>
+            <!--<div class="col-sm-6">
+            <div class="col-sm-5 paddingboth col-xs-6 lineheight30 fontsize12">{{'Logistic_Type' | translate}}</div>
+            <div class="col-sm-7 col-xs-6 paddingboth ">
+                <select class="form-control fontsize12" ng-change="setCourierCompanyAndRateTypeDropDown()()" ng-options="LogisticType as LogisticType.Display for LogisticType  in LogisticTypes" ng-model="LogisticType">
+                    <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'Logistic_Type' | translate}}</option>
+                </select>
+            </div>
+        </div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 form-group">-->
+            <div class="col-sm-4">
+                <div class="col-sm-5 paddingboth col-xs-6 lineheight30 fontsize12">{{'CourierCompany' | translate}}</div>
+                <div class="col-sm-7 col-xs-6 paddingboth">
+                    <select class="form-control fontsize12" ng-options="CourierCompany as CourierCompany.Display for CourierCompany in CourierCompanies" ng-model="CourierCompany">
+                        <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'CourierCompany' | translate}}</option>
+                    </select>
+                </div>
+            </div>
+            <div ng-show="CourierCompany.Value === 'DHL'" class="col-sm-4">
+                <div class="col-sm-5 paddingboth col-xs-6 lineheight30 fontsize12">{{"Rate" | translate}} {{"Type" | translate}}</div>
+                <div class="col-sm-7 col-xs-6 paddingboth">
+                    <select ng-options="RateType as RateType.Display for RateType in RateTypes"
+                            class="form-control fontsize12" ng-model="RateType">
+                        <option value="" selected disabled class="display-none">{{"Select" | translate}} {{"Rate" | translate}} {{"Type" | translate}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+        <!--start search button code-->
+        <div class="form-group">
+            <div class="text-right" style="position: relative;right: 30px;">
+                <button class="btn-simple btn-primary fontsize12" ng-click="SearchThirdPartyMatrix()"><i class="fa fa-search" aria-hidden="true"></i> {{'Search'| translate}}</button>
+            </div>
+        </div>
+        <!--end search button code-->
+        <div class="clearfix"></div>
+        <!--Original table Start here-->
+        <div ng-show="ThirdPartyMatrixData.length" class="panel-body fontsize12">
+            <div class="col-sm-12 flex">
+                <div class="col-sm-1 borderbottom-white background-f59000 padding8x0x9"><label class="visibility">{{"Zone" | translate}}</label></div>
+                <div class="col-sm-1 borderbottom-white background-f59000 borderleft-white padding8x0x9"><label class="visibility">{{"Zone" | translate}}</label></div>
+                <div class="col-sm-10 text-center borderbottom-white background-f59000"><label class="third-party-destination-zone">{{'Destination_Zone' | translate}}</label></div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-2 paddingboth flex">
+                    <div class="col-sm-6 paddingboth origin-background">
+                        <div class="col-sm-12 paddingboth borderbottom-white background-f59000 padding5x0x0"><label class="visibility">{{"Zone" | translate}}</label></div>
+                        <div class="clearfix"></div>
+                        <label class="text-center origin-zone bold">{{'Origin_Zone' | translate}}</label>
+                    </div>
+                    <div class="col-sm-6 paddingboth borderleft-white">
+                        <div class="borderbottom-white background-f59000 padding5x0x0"><label class="visibility">{{"Zone" | translate}}</label></div>
+                        <div style="background:#94A4BD;">
+                            <div ng-repeat="ThirdPartyMatrix in ThirdPartyMatrixData">
+                                <div class="text-center padding7x0x7">{{ThirdPartyMatrix.FromZone}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10 paddingboth background-f59000 third-party" style="background:#fff !important;">
+                    <div>
+                        <div ng-class="{'baseratcard-overflow':ThirdPartyZones}" style="height:auto !important;overflow:hidden !important;" class="baseratcard-overflow">
+                            <div ng-style="ThirdPartyZones.length < 10 ? { 'width':'100%' } : { 'width': 10*ThirdPartyZones.length + '%' }">
+                                <div ng-repeat="Zone in ThirdPartyZones">
+                                    <div class="text-center borderbottom-white background-f59000 padding5x0x5" ng-style="{ 'width' :  100/ThirdPartyZones.length + '%' }" style="float:left;">
+                                        {{Zone.ZoneDisplayName}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>
+                        <!--one time-->
+                        <div ng-repeat="ThirdPartyMatrix in ThirdPartyMatrixData">
+                            <div ng-class="{'baseratcard-overflow':ThirdPartyMatrix.Row}" style="height:auto !important;overflow:hidden !important;" class="baseratcard-overflow">
+                                <div ng-style="ThirdPartyMatrix.Row.length < 10 ? { 'width':'100%' } : { 'width': 10*ThirdPartyMatrix.Row.length + '%' }">
+                                    <div ng-repeat="ThirdParty in ThirdPartyMatrix.Row | orderBy : ThirdParty.ToZone.ZoneId">
+                                        <div ng-style="{ 'width' :  100/ThirdPartyMatrix.Row.length + '%' }" style="float:left;">
+                                            <div>
+                                                <select ng-change="SetApplyZoneForThirdParty(ThirdParty)"
+                                                        ng-options="ThirdParty as ThirdParty.ZoneDisplayName for ThirdParty in ThirdPartyZones |orderBy : ZoneId track by ThirdParty.ZoneId"
+                                                        ng-model="ThirdParty.ApplyZone" class="form-control fontsize12 pointer" style="width:100%;"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="bottom20">
+                            <div ng-class="{'baseratcard-overflow':ThirdPartyZones}" style="height:auto !important;overflow-x:scroll !important;" class="baseratcard-overflow" my-scroller>
+                                <div ng-style="ThirdPartyZones.length < 10 ? { 'width':'100%' } : { 'width': 10*ThirdPartyZones.length + '%' }">
+                                    <div ng-repeat="Zone in ThirdPartyZones">
+                                        <div ng-style="{ 'width' :  100/ThirdPartyZones.length + '%' }" style="float:left;">
+                                            <span class="visibility">{{Zone.ZoneDisplayName}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--start error message code-->
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+                <div class="col-sm-12 border paddingTB182" ng-if="IsChanged">
+                    <div class="text-center">
+                        <h4 class="redColor">{{'Ratecard_Getoption' | translate}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12" ng-show="ThirdPartyMatrixData.length === 0 && !IsChanged">
+                <div class="col-sm-12 text-center border paddingTB182">
+                    <h4 class="redColor">{{'No_Matrix_Available' | translate}}</h4>
+                </div>
+            </div>
+        </div>
+        <!--end error message-->
+        <div class="clearfix"></div>
+    </div>
+</section>

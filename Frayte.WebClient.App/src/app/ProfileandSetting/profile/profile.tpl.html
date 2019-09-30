@@ -1,0 +1,112 @@
+﻿
+
+<section>
+<div class="panel panel-default">
+<div class="panel-heading">{{'MyProfile' | translate}}</div>
+<div class="panel-body">
+    <div>
+        <!--<div class="profile-imageBlock">-->
+        <div class="width25 profile-imageBlock paddingboth" style="width:25% !important;height:auto;">
+            <img ng-src="{{userInfo.PhotoUrl}}" class="profile-image image-compressor" />
+            <div class="profile-image-change-text" ng-model="profileImage" name="profileImageFile"
+                 ngf-pattern="'image/*'"
+                 accept="image/*" ngf-max-size="20MB"
+                 ngf-select="chooseImage($files, $file, $event)">{{'Change' | translate}}</div>
+        </div>
+        <!--<div class="profile-editBlock">-->
+        <div class="col-sm-9 paddingright">
+            <div>
+                <!--<h4>{{userInfo.UserName}}</h4>-->
+                <h2 ng-if="CustomerData.ContactName">{{CustomerData.ContactName}}</h2>
+                <P ng-if="CustomerData.CompanyName">{{CustomerData.CompanyName}}</P>
+                <P ng-if="CustomerData.AccountNumber"><label>{{'AccountNumber' | translate}}: &nbsp;</label>{{CustomerData.AccountNumber}}</P>
+                <p>{{CustomerData.UserAddress.Address}}</p>
+                <P>{{CustomerData.UserAddress.Address2}}</P>
+                <p>{{CustomerData.UserAddress.City}} <span ng-if="CustomerData.UserAddress.Suburb !== undefined && CustomerData.UserAddress.Suburb !== null && CustomerData.UserAddress.Suburb !== ''">- {{CustomerData.UserAddress.Suburb}}</span> <span ng-if="CustomerData.UserAddress.Zip !== undefined && CustomerData.UserAddress.Zip !== null &&CustomerData.UserAddress.Zip !== ''">- {{CustomerData.UserAddress.Zip}}</span></p>
+                <p>{{CustomerData.UserAddress.Country.Name}}</p>
+                <p ng-show="userInfo.RoleId === 3 || userInfo.RoleId === 17" class="mail-color"><span>{{'Email' | translate}}: &nbsp;</span>{{ CustomerData.UserEmail }}</p>
+                <p ng-show="userInfo.RoleId !== 3 && userInfo.RoleId !== 17" class="mail-color"><span>{{'Email' | translate}}: &nbsp;</span>{{ CustomerData.Email }}</p>
+                <p class="mail-color"><span>{{'TelephoneNo' | translate}}: &nbsp;</span>{{code}}  {{CustomerData.TelephoneNo}}</p>
+            </div>
+            <hr class="margin-bottom-none" />
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                <h3><span class="border-bottom-black2">{{'Change_Password' | translate}}</span></h3>
+                </div>
+                <div>
+                    <form name="ProfileForm" ng-submit="ChangePassword(ProfileForm.$valid && !error)" novalidate>
+                        <div class="form-group" ng-class="{ 'has-error': (ProfileForm.currPassword.$invalid ) &&
+                                                         (ProfileForm.currPassword.$dirty || submitted) }">
+                            <div class="col-sm-5">
+                                <label class="control-label top7" for="currPassword">{{'Current' | translate}} {{'LoginPassword' | translate}} <span class="redColor">*</span></label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="password" id="currPassword" name="currPassword" ng-model="user.CurrentPassword"
+                                       class="form-control" placeholder="{{'Enter' | translate}} {{'Current' | translate}} {{'LoginPassword' | translate}}" required />
+                                <div>
+                                    <span class="help-block has-error" ng-show="ProfileForm.currPassword.$invalid &&
+                                          (ProfileForm.currPassword.$dirty || submitted)">
+                                        {{'Current' | translate}} {{'LoginPasswordValidError' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': (ProfileForm.newPassword.$invalid || error) &&
+                                                         (ProfileForm.newPassword.$dirty || submitted) }">
+                            <div class="col-sm-5">
+                                <label class="control-label top7" for="newPassword">{{'New' | translate}} {{'LoginPassword' | translate}} <span class="redColor">*</span></label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="password" id="newPassword" name="newPassword" ng-model="user.NewPassword" ng-change="checkPasswordValidation(user.NewPassword)"
+                                       class="form-control" placeholder="{{'Enter' | translate}} {{'New' | translate}} {{'LoginPassword' | translate}}" required />
+                                <span class="help-block has-error"
+                                      ng-show="ProfileForm.newPassword.$error.required &&
+                           (ProfileForm.newPassword.$dirty || submitted)">
+                                    {{'New' | translate}} {{'LoginPasswordValidError' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="error &&
+                           (ProfileForm.newPassword.$dirty || submitted)">
+                                    {{message}}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': ProfileForm.confPassword.$invalid &&
+                                                         (ProfileForm.confPassword.$dirty || submitted) }">
+                            <div class="col-sm-5">
+                                <label class="control-label top7" for="confPassword">{{'Confirm' | translate}} {{'LoginPassword' | translate}} <span class="redColor">*</span></label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div>
+                                <input type="password" id="confPassword" name="confPassword" ng-model="user.ConfirmPassword" compare-to="user.NewPassword"
+                                       class="form-control" placeholder="{{'Enter' | translate}} {{'Confirm' | translate}} {{'LoginPassword' | translate}}" required />
+                                <span class="help-block has-error"
+                                      ng-show="ProfileForm.confPassword.$error.required &&
+                           (ProfileForm.confPassword.$dirty || submitted)">
+                                    {{'Confirm' | translate}} {{'LoginPasswordValidError' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="ProfileForm.confPassword.$error.compareTo  && !ProfileForm.confPassword.$error.required &&
+                           (ProfileForm.confPassword.$dirty || submitted)">
+                                    {{'Correct_Required_Password' | translate}}
+                                </span>
+                                </div>
+                                <div><small><button type="reset" class="btn-link pointer pull-right">{{'Reset' | translate}}</button></small></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-sm-12">
+                            <button type="submit" ng-click="submitted=true" class="btn-BigPrimary fontsize12 pull-right"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+                        </div>
+                        <br /><br />
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+</div>
+</section>

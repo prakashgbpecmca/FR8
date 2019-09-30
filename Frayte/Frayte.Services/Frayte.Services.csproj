@@ -1,0 +1,1228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Frayte.Services</RootNamespace>
+    <AssemblyName>Frayte.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aftership-API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aftership.5.0.1\lib\net45\Aftership-API.exe</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Docs.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Docs.Excel">
+      <HintPath>..\Frayte.WebApi\DLL\Docs.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyPost, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyPost-Official.2.0.2.1\lib\net45\EasyPost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Parcelhub.API.InterfaceNet2">
+      <HintPath>..\Frayte.WebApi\DLL\Parcelhub.API.InterfaceNet2.dll</HintPath>
+    </Reference>
+    <Reference Include="Parcelhub.API.InterfaceNet2.Client">
+      <HintPath>..\Frayte.WebApi\DLL\Parcelhub.API.InterfaceNet2.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.7.3\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyPost-Official.2.0.2.1\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spire.Barcode">
+      <HintPath>..\Frayte.WebApi\DLL\Spire.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\FrayteUploadShipmentSchedular\FrayteUploadShipmentSchedular\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\FrayteUploadShipmentSchedular\FrayteUploadShipmentSchedular\packages\Microsoft.AspNet.WebApi.Client.4.0.20505.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\..\FrayteUploadShipmentSchedular\FrayteUploadShipmentSchedular\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="XStreamline.Log">
+      <HintPath>DLL\XStreamline.Log.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\AdminChargesRepository.cs" />
+    <Compile Include="Business\AftershipTrackingRepository.cs" />
+    <Compile Include="Business\AgentRepository.cs" />
+    <Compile Include="Business\ApiErrorCodeRepository.cs" />
+    <Compile Include="Business\AURepository.cs" />
+    <Compile Include="Business\BaseRateCardRepository.cs" />
+    <Compile Include="Business\BaseRateCardUpdateRepository.cs" />
+    <Compile Include="Business\BreakBulkRepository.cs" />
+    <Compile Include="Business\BringRepository.cs" />
+    <Compile Include="Business\CountrySMSRepository.cs" />
+    <Compile Include="Business\CourierAccountRepository.cs" />
+    <Compile Include="Business\CustomerStaffRepository.cs" />
+    <Compile Include="Business\DashBoardRepository.cs" />
+    <Compile Include="Business\DHLRepository.cs" />
+    <Compile Include="Business\DirectBookingUploadShipmentRepository.cs" />
+    <Compile Include="Business\DirectShipmentRepository.cs" />
+    <Compile Include="Business\DPDRepository.cs" />
+    <Compile Include="Business\DPDSwitzerlandRepository.cs" />
+    <Compile Include="Business\EAMGlobalRepository.cs" />
+    <Compile Include="Business\EasyPostRepository.cs" />
+    <Compile Include="Business\eCommerceAppRepository.cs" />
+    <Compile Include="Business\eCommerceControlDeptRepository.cs" />
+    <Compile Include="Business\eCommerceCustomManifestRepository.cs" />
+    <Compile Include="Business\eCommerceSettingRepository.cs" />
+    <Compile Include="Business\eCommerceShipmentRepository.cs" />
+    <Compile Include="Business\eCommerceUploadShipmentRepository.cs" />
+    <Compile Include="Business\ETowerRepository.cs" />
+    <Compile Include="Business\ExchangeRateRepository.cs" />
+    <Compile Include="Business\ExpressEmailRepository.cs" />
+    <Compile Include="Business\ExpresShipmentRepository.cs" />
+    <Compile Include="Business\ExpressManifestRepository.cs" />
+    <Compile Include="Business\ExpressReportRepository.cs" />
+    <Compile Include="Business\ExpressRepository.cs" />
+    <Compile Include="Business\ExpressScannedAWBRepository.cs" />
+    <Compile Include="Business\FRAYTEAWBRepository.cs" />
+    <Compile Include="Business\FuelSurChargeRepository.cs" />
+    <Compile Include="Business\HsCodeJobRepository.cs" />
+    <Compile Include="Business\HSCodeRepository.cs" />
+    <Compile Include="Business\USPSRepository.cs" />
+    <Compile Include="Business\LogisticItemRepository.cs" />
+    <Compile Include="Business\ManifestRepository.cs" />
+    <Compile Include="Business\ManifestTrackingRepository.cs" />
+    <Compile Include="Business\MawbAllocationRepository.cs" />
+    <Compile Include="Business\ModuleLevelRepository.cs" />
+    <Compile Include="Business\MoveRecordFromLiveToTestRepository.cs" />
+    <Compile Include="Business\OperationZoneRepository.cs" />
+    <Compile Include="Business\ParcelHubKeyRepository.cs" />
+    <Compile Include="Business\ParcelHubRepository.cs" />
+    <Compile Include="Business\PaymentRepository.cs" />
+    <Compile Include="Business\QuotationRepository.cs" />
+    <Compile Include="Business\ReportSettingRepository.cs" />
+    <Compile Include="Business\ShipmentExprysRepositery.cs" />
+    <Compile Include="Business\ShipmentEmailRepository.cs" />
+    <Compile Include="Business\ReceiverRepository.cs" />
+    <Compile Include="Business\SkyPostalRepository.cs" />
+    <Compile Include="Business\SystemAlertRepository.cs" />
+    <Compile Include="Business\TermAndConditionRepository.cs" />
+    <Compile Include="Business\ThirdPartyMarixRepository.cs" />
+    <Compile Include="Business\TNTRepository.cs" />
+    <Compile Include="Business\TracingRepository.cs" />
+    <Compile Include="Business\TrackingMileStoneRepository.cs" />
+    <Compile Include="Business\TrackingRepository.cs" />
+    <Compile Include="Business\TradelaneBookingRepository.cs" />
+    <Compile Include="Business\TradelaneEmailRepository.cs" />
+    <Compile Include="Business\TradelaneReportsRepository.cs" />
+    <Compile Include="Business\TradelaneShipmentRepository.cs" />
+    <Compile Include="Business\TradelaneStaffDashBoardRepository.cs" />
+    <Compile Include="Business\TradelaneTrackingConfigurationRepository.cs" />
+    <Compile Include="Business\UpdateTradelaneTrackingRepository.cs" />
+    <Compile Include="Business\UploadShipmentBatchRepository.cs" />
+    <Compile Include="Business\UPSRepository.cs" />
+    <Compile Include="Business\ViewBaseRateCardRepository.cs" />
+    <Compile Include="Business\WeekDaysRepository.cs" />
+    <Compile Include="Business\ZoneCountryPostCodeRepository.cs" />
+    <Compile Include="Business\ZoneCountryRepository.cs" />
+    <Compile Include="Business\ZonePostCodeRepository.cs" />
+    <Compile Include="Business\ZoneRepository.cs" />
+    <Compile Include="DataAccess\AddressBook.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\AddressType.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\AdminCharge.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\AgentAssociatedUser.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Airline.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Airport.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ApiErrorCode.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\APIKeyDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\BagManifestTracking.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Bank.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\BBKShipment.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\BBkShipmentAddress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\BBKShipmentDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Carrier.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CartonSpecification.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ConsignmentBag.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Country.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CountryDocument.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CountryLogistic.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CountryPublicHoliday.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CountryShipmentPort.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CountrySM.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CountryState.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CountryUK.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Courier.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CurrencyType.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerAdvanceMarginCost.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerCompanyDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerCustomField.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerHubCarrierService.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerLogistic.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerMarginCost.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerMarginOption.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerSetting.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerSettingDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerStaff.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CustomerTradeLane.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectBulkUploadSession.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectShipment.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectShipmentAddress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectShipmentAddressDraft.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectShipmentDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectShipmentDetailDraft.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectShipmentDraft.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectShipmentOptionalService.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DirectShipmentTracking.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DocumentType.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceBag.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceBagManifest.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceCommunication.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceCustomManifest.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceEmailCommuniation.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceInvoice.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceInvoiceTransaction.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommercePackageTrackingDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceShipment.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceShipmentAddress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceShipmentCustomDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceShipmentDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceShipmentEasyPost.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceTracking.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceUploadShipmentBatchProcess.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\eCommerceUserCreditNote.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Express.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressAddress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressAWB.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressBag.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressCustomDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressDetailPackageLabel.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressDriverManifest.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressManifest.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressScanAWB.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExpressSchedulerEmail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\FrayteDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrayteDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\FrayteDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\FrayteDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrayteDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\FuelSurCharge.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Get_ThirdPartyMatrix_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Get_ZoneWiseCountry_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HSCode.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Hub.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HubAirline.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HubAirlineAddress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HubCarrier.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HubCarrierService.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HubCarrierServiceCountry.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HubCarrierServiceCountryPostCode.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HubCarrierServiceCountryState.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\HubUser.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Incoterm.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Location.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticIntegration.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticOptionalService.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticService.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceAddOn.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceBaseRateCard.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceBaseRateCardHistory.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceCourierAccount.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceShipmentType.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceThirdPartyMatrix.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceWeight.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceWeightLimit.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceZone.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceZoneCountry.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticServiceZonePostCode.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\LogisticZoneCountryPostCode.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Manifest.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\MasterTracking.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\MasterTrackingConfiguration.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\MasterTrackingDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\MAWBCustomized.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\MobileUserConfiguration.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ModuleLevel.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ModuleLevelDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\NotificationSM.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\OperationZone.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\OperationZoneExchangeRate.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\OperationZoneExchangeRateHistory.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PackageTrackingDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PackagingType.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalog.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalogDetailCAN.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalogDetailEAM.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalogDetailJapan.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalogDetailNorway.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalogDetailSingapore.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalogDetailSWISS.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalogDetailUK.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ProductCatalogDetailUSA.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PurchaseOrder.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PurchaseOrderDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\QuotationShipment.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\QuotationShipmentDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\QuotationShipmentOptionalService.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ReceiverShipper.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ReportSetting.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ReportSettingEmailDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Role.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RoleModule.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Shipment.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentAgentRejection.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentBag.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentBagDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentCustomDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentCustomDetailDraft.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentEasyPost.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentEasyPostRate.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentEmailService.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentHandlerMethod.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentProgress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentStatu.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentTerm.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentTracing.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShipmentType.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SpecialDelivery.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_BKKJobViewPurchaseOrder_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_BKKPoViewPurchaseOrder_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_CustomerBaseRateCard_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_CustomManifestSearch_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_DirectBookingManifestDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ExpressManifests_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ExpressTrackAndTraceDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ExpressTrackManifest_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_GetExpressBags_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_GetExpressManifestedShipments_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_GetManifestedShipments_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_GetNonManifestedShipments_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_GetSystemAlerts_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_LogisticServiceCode_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_LogisticWeightLimit_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ManifestDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_NewShipmentReportDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_PostCodeAddress_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentAddress_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE101_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE10_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE11_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE12_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE131_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE13_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE14_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE15_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE16_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE1_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE2_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE31_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE3_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE4_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE51_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE5_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE61_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE62_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE64_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE65_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE67_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE6_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE71_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE7_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE81_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE8_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE91_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentDetailE9_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentEmailServices_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentReportDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentShipperReceiverDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ShipmentTracingDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_TrackAndTraceDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_TrackAssignedJob_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_TrackDirectBookingDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_TrackManifest_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_TrackNonHSCodeShipments_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_TrackUserDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_TradelaneTrackAndTraceDetail_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_UploadShipmentDirectBookingServices_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\spGet_ZonePostcode_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SystemAlert.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TermAndCondition.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Timezone.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TracingComment.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TrackingDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TrackingMileStone.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TrackingNumberRoute.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TrackPackages_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TrackUnAssignedJob_Result.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Tradelane.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneFlightDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneLogging.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneShipment.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneShipmentAddress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneShipmentAllocation.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneShipmentDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneShipmentDocument.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneShipmentHawb.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneShipmentTracking.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneShipperCustomer.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneUserTrackingConfiguration.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TradelaneUserTrackingConfigurationDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TransportToWarehouse.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\User.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserAdditional.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserAddress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserClaim.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserCountryAddress.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserCustomer.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserLogin.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserProductCatalog.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserProductCatalogDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserRole.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserShipmentType.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserTrackingConfiguration.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Vw_GetUnmanifestedShipmentsCount.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Vw_GetUnMapperHscodeCount.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Warehouse.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\WorkingWeekDay.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\WorkingWeekDayDetail.cs">
+      <DependentUpon>FrayteDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminChargesModel.cs" />
+    <Compile Include="Models\Aftership\AftershipTrackingModel.cs" />
+    <Compile Include="Models\ApiModal\FrayteApiError.cs" />
+    <Compile Include="Models\ApiModal\FrayteRateResponse.cs" />
+    <Compile Include="Models\ApiModal\FrayteSecurity.cs" />
+    <Compile Include="Models\AU\AURequestModel.cs" />
+    <Compile Include="Models\AU\AUTrackingModel.cs" />
+    <Compile Include="Models\BaseRateCardModel.cs" />
+    <Compile Include="Models\BaseRateCardUpdateModel.cs" />
+    <Compile Include="Models\BreakBulk\BreakBulkModel.cs" />
+    <Compile Include="Models\BreakBulk\BreakBulkShipmentDetail.cs" />
+    <Compile Include="Models\Bring\BringModel.cs" />
+    <Compile Include="Models\Bring\BringRequestModel.cs" />
+    <Compile Include="Models\CountrySMSModel.cs" />
+    <Compile Include="Models\CourierAccountModels.cs" />
+    <Compile Include="Models\CustomerStaff.cs" />
+    <Compile Include="Models\DashBoardModel.cs" />
+    <Compile Include="Models\DHL\DHLResponseDto.cs" />
+    <Compile Include="Models\DHL\DHLShipmentRequestDto.cs" />
+    <Compile Include="Models\DirectBookingModal.cs" />
+    <Compile Include="Models\DPD-CH\DPDChRequestModel.cs" />
+    <Compile Include="Models\DPD-CH\DPDChResponseModel.cs" />
+    <Compile Include="Models\DPD\DPDRequestModel.cs" />
+    <Compile Include="Models\EAM\EAMRequestModel.cs" />
+    <Compile Include="Models\EasyPostModel.cs" />
+    <Compile Include="Models\eCommerceAppEnum.cs" />
+    <Compile Include="Models\eCommerceAppModel.cs" />
+    <Compile Include="Models\eCommerceEnumModels.cs" />
+    <Compile Include="Models\eCommerceInvoiceAccounting.cs" />
+    <Compile Include="Models\eCommerceModel.cs" />
+    <Compile Include="Models\eCommerceSettingModel.cs" />
+    <Compile Include="Models\eCommerceTrackingModel.cs" />
+    <Compile Include="Models\ETower\ETowerRequestModel.cs" />
+    <Compile Include="Models\ETower\EtowerResponseModel.cs" />
+    <Compile Include="Models\ExchangeRateModel.cs" />
+    <Compile Include="Models\Express\CustomManifest.cs" />
+    <Compile Include="Models\Express\ExpressEmailModel.cs" />
+    <Compile Include="Models\Express\ExpressGetDefaultScreen.cs" />
+    <Compile Include="Models\Express\ExpressGetShipmentModel.cs" />
+    <Compile Include="Models\Express\ExpressManifestModel.cs" />
+    <Compile Include="Models\Express\ExpressReport.cs" />
+    <Compile Include="Models\Express\ExpressScannedAwbModel.cs" />
+    <Compile Include="Models\Express\ExpressShipmentModel.cs" />
+    <Compile Include="Models\Express\ExpressTradelaneModel.cs" />
+    <Compile Include="Models\FrayteMAWB\FrayteMAWB.cs" />
+    <Compile Include="Models\ManifestShipmentModel.cs" />
+    <Compile Include="Models\FrayteUserException.cs" />
+    <Compile Include="Models\FrayteError.cs" />
+    <Compile Include="Models\FrayteShipmentPackageLabel.cs" />
+    <Compile Include="Models\FrayteShipmentRateCard.cs" />
+    <Compile Include="Models\FrayteTrackAndTraceModel.cs" />
+    <Compile Include="Models\FrayteZoneModel.cs" />
+    <Compile Include="Models\FrayteZonePostCodeModel.cs" />
+    <Compile Include="Models\FrayteUploadshipment.cs" />
+    <Compile Include="Models\FuelSurChargeModel.cs" />
+    <Compile Include="Models\HsCodeJobModel.cs" />
+    <Compile Include="Models\HSCodeModel.cs" />
+    <Compile Include="Models\LogisticItemList.cs" />
+    <Compile Include="Models\ManifestModel.cs" />
+    <Compile Include="Models\ManifestTrackingModel.cs" />
+    <Compile Include="Models\ManifestTrackingReceiver.cs" />
+    <Compile Include="Models\ParcelHub\ParcelHubRequestUrl.cs" />
+    <Compile Include="Models\SKYPOSTAL\SkyPostalRequestModel.cs" />
+    <Compile Include="Models\SKYPOSTAL\SkyPostalResponseModel.cs" />
+    <Compile Include="Models\SKYPOSTAL\SkyPostalTrackingModel.cs" />
+    <Compile Include="Models\TrackingModel.cs" />
+    <Compile Include="Models\Tradelane\AgentConsolidateMailModel.cs" />
+    <Compile Include="Models\Tradelane\MawbAllocationModel.cs" />
+    <Compile Include="Models\ModuleLevelModel.cs" />
+    <Compile Include="Models\OperationZoneModel.cs" />
+    <Compile Include="Models\ParcelHubModel.cs" />
+    <Compile Include="Models\ParcelHub\ParcelHubApplyService.cs" />
+    <Compile Include="Models\ParcelHub\ParcelHubRequest.cs" />
+    <Compile Include="Models\ParcelHub\ParcelHubResponse.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
+    <Compile Include="Models\Payvisionitemmodel.cs" />
+    <Compile Include="Models\payvisionrecievedata.cs" />
+    <Compile Include="Models\payvisionsecondpost.cs" />
+    <Compile Include="Models\PayvisionSuccess.cs" />
+    <Compile Include="Models\PayVisonerror.cs" />
+    <Compile Include="Models\QuotaionModel.cs" />
+    <Compile Include="Models\ReportSettingModel.cs" />
+    <Compile Include="Models\ShipmentExprysModel.cs" />
+    <Compile Include="Models\FrayteAgentModels.cs" />
+    <Compile Include="Models\ShipmentHandlerModel.cs" />
+    <Compile Include="Models\TNT\TNTResponseDto.cs" />
+    <Compile Include="Models\TrackingMileStoneModel.cs" />
+    <Compile Include="Models\TradelaneGetShipmentModel.cs" />
+    <Compile Include="Models\TradelaneTrackingConfigurationModel.cs" />
+    <Compile Include="Models\Tradelane\TradelaneBooking.cs" />
+    <Compile Include="Models\Tradelane\TradelaneClaimShipmentModel.cs" />
+    <Compile Include="Models\Tradelane\TradelaneEmailModel.cs" />
+    <Compile Include="Models\Tradelane\TradelaneEnum.cs" />
+    <Compile Include="Models\Tradelane\TradelanePreAlert.cs" />
+    <Compile Include="Models\Tradelane\TradelaneReportModel.cs" />
+    <Compile Include="Models\Tradelane\TradelaneShipmentDetailModel.cs" />
+    <Compile Include="Models\Tradelane\TradelaneStaffDashBoardModel.cs" />
+    <Compile Include="Models\Tradelane\TradelaneUpdateTrackingModel.cs" />
+    <Compile Include="Models\UPS\UPSErrorDto.cs" />
+    <Compile Include="Models\UPS\UPSPickupDto.cs" />
+    <Compile Include="Models\UPS\UPSShipmentResponseTempDto.cs" />
+    <Compile Include="Models\UPS\UPSShipmentRequestDto.cs" />
+    <Compile Include="Models\UPS\UPSShipmentResponseDto.cs" />
+    <Compile Include="Models\ShipmentTrackingModel.cs" />
+    <Compile Include="Models\Stripeitemmodel.cs" />
+    <Compile Include="Models\SystemAlertModel.cs" />
+    <Compile Include="Models\ThirdPartyMatrixModel.cs" />
+    <Compile Include="Models\TracingDetail.cs" />
+    <Compile Include="Models\UPS\UPSTrackRequestDto.cs" />
+    <Compile Include="Models\UPS\UPSTrackResponseDto.cs" />
+    <Compile Include="Models\UPS\VoidShipment.cs" />
+    <Compile Include="Models\UPS\VoidShipmentResponse.cs" />
+    <Compile Include="Models\USPS\USPSRequest.cs" />
+    <Compile Include="Models\USPS\USPSResponse.cs" />
+    <Compile Include="Models\UtilityModel.cs" />
+    <Compile Include="Models\WeekDaysModels.cs" />
+    <Compile Include="Models\ZoneCountryPostCode.cs" />
+    <Compile Include="Utility\AppSetting.cs" />
+    <Compile Include="Utility\CommonConversion.cs" />
+    <Compile Include="Business\CourierRepository.cs" />
+    <Compile Include="Business\CustomerRepository.cs" />
+    <Compile Include="Business\FrayteUserRepository.cs" />
+    <Compile Include="Business\MasterDataRepository.cs" />
+    <Compile Include="Business\ShipmentRepository.cs" />
+    <Compile Include="Business\ShipperRepository.cs" />
+    <Compile Include="Business\TimeZoneRepository.cs" />
+    <Compile Include="Business\CarrierRepository.cs" />
+    <Compile Include="Business\CountryRepository.cs" />
+    <Compile Include="Business\LoginRepository.cs" />
+    <Compile Include="Business\TradelaneRepository.cs" />
+    <Compile Include="Business\UtilityRepository.cs" />
+    <Compile Include="Business\WarehouseRepository.cs" />
+    <Compile Include="Models\CarrierModels.cs" />
+    <Compile Include="Models\CountryModels.cs" />
+    <Compile Include="Models\CourierModels.cs" />
+    <Compile Include="Models\EnumModels.cs" />
+    <Compile Include="Models\FrayteResult.cs" />
+    <Compile Include="Models\FrayteSession.cs" />
+    <Compile Include="Models\LoginModels.cs" />
+    <Compile Include="Models\ShipmentModels.cs" />
+    <Compile Include="Models\TimeZoneModels.cs" />
+    <Compile Include="Models\TradelaneModels.cs" />
+    <Compile Include="Models\UserModels.cs" />
+    <Compile Include="Models\WarehouseModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\FrayteEmail.cs" />
+    <Compile Include="Utility\FrayteSurchargeRule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DataAccess\FrayteDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FrayteDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="bin\Debug\Desktop - Shortcut.lnk" />
+    <None Include="bin\Debug\XStreamline.Log.zip" />
+    <None Include="DataAccess\FrayteDB.edmx.diagram">
+      <DependentUpon>FrayteDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Templates\E1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Antlr3.Runtime.dll" />
+    <Content Include="Content\FrayteLogo.png" />
+    <Content Include="DataAccess\FrayteDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FrayteDB.edmx</DependentUpon>
+      <LastGenOutput>FrayteDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccess\FrayteDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FrayteDB.edmx</DependentUpon>
+      <LastGenOutput>FrayteDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="DLL\Elmah.dll" />
+    <Content Include="DLL\XStreamline.Log.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>RD /S /Q "$(TargetDir)de\"
+RD /S /Q "$(TargetDir)es\"
+RD /S /Q "$(TargetDir)ja\"
+RD /S /Q "$(TargetDir)ru\"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

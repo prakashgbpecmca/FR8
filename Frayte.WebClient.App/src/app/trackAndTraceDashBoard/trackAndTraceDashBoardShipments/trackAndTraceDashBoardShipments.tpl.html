@@ -1,0 +1,87 @@
+﻿
+
+<section>
+    <div class="modal-content fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+        <!--header start-->
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">
+
+                <span ng-show="trackAfterShipTracking.StatusId === statusIds.Pending">
+                    {{statusMessages.PendingDisplay}} - {{'Shipments' | translate}}
+                </span>
+                <span ng-show="trackAfterShipTracking.StatusId === statusIds.InfoReceived">
+                    {{statusMessages.InfoReceivedDisplay}} - {{'Shipments' | translate}}
+                </span>
+                <span ng-show="trackAfterShipTracking.StatusId === statusIds.InTransit">
+                    {{statusMessages.InTransitDisplay}} - {{'Shipments' | translate}}
+                </span>
+                <span ng-show="trackAfterShipTracking.StatusId === statusIds.OutForDelivery">
+                    {{statusMessages.OutForDeliveryDisplay}} - {{'Shipments' | translate}}
+                </span>
+                <span ng-show="trackAfterShipTracking.StatusId === statusIds.AttemptFail">
+                    {{statusMessages.AttemptFailDisplay}} - {{'Shipments' | translate}}
+                </span>
+                <span ng-show="trackAfterShipTracking.StatusId === statusIds.Delivered">
+                    {{statusMessages.DeliveredDisplay}} - {{'Shipments' | translate}}
+                </span>
+                <span ng-show="trackAfterShipTracking.StatusId === statusIds.Exception">
+                    {{statusMessages.ExceptionDislay}} - {{'Shipments' | translate}}
+                </span>
+                <span ng-show="trackAfterShipTracking.StatusId === statusIds.Expired">
+                    {{statusMessages.ExpiredDisplay}} - {{'Shipments' | translate}}
+                </span> 
+            </h4>
+        </div>
+        <!--end-->
+        <div class="modal-body"> 
+            <div class="col-sm-12">
+                <!--start header code-->
+                <div class="widht100 jobinprogress-header flex">
+                    <div class="width986 flex">
+                        <div class="width6 padding-5 padding10 quotation-table-body bold">{{'Status' | translate}}</div>
+                        <div class="width28 padding-5 padding10 quotation-table-body bold">{{'Tracking_No' | translate}}</div>
+                        <div class="width6 padding-5 padding10 quotation-table-body bold">{{'Courier' | translate}}</div>
+                        <div class="width6 padding-5 padding10 quotation-table-body bold">{{'Origin' | translate}}</div>
+                        <div class="width10 padding-5 padding10 quotation-table-body bold">{{'Destination' | translate}}</div>
+                        <div class="width38 padding-5 padding10 quotation-table-body bold">{{'Last_Check_Point' | translate}}</div>
+                        <div class="width6 padding-5 padding10 quotation-table-body bold">{{'days' | translate}}</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end header-->
+                <div class="clearfix"></div>
+                <div class="modal-body quotation-overflow padding0 border-LB grid-hover">
+                    <ul class="list-unstyled margin-bottom-none">
+                        <li ng-repeat="item in trackings" class="alternate">
+                            <!--start header body code-->
+                            <div class="width100 flex">
+                                <div class="width6 padding-5 padding10 quotation-table-body"><span><img ng-src="{{ImagePath + item.Image}}" class="top5" style="width:30px;"></span></div>
+                                <div class="width28 padding-5 padding10 quotation-table-body"><!--<div>{{item.Title}}</div>--><div>{{item.TrackingNumber}}</div></div>
+                                <div class="width6 padding-5 padding10 quotation-table-body">{{item.Carrier}}</div>
+                                <div class="width6 padding-5 padding10 quotation-table-body">{{item.OriginCountry}}</div>
+                                <div class="width10 padding-5 padding10 quotation-table-body">{{item.DestinationCountry}}</div>
+                                <div class="width38 padding-5 padding10 quotation-table-body"><div ng-show="item.TrackingDetails.length" class="track-and-detail-popup"><div>{{item.TrackingDetails[0].Activity}} - {{item.TrackingDetails[0].Location}}.</div> <div class="color-change">{{GetCorrectFormattedDate(item.TrackingDetails[0].Date)}} - {{item.TrackingDetails[0].Time}}</div></div> <div ng-show="!item.TrackingDetails.length">N/A</div></div>
+                                <div class="width6 padding-5 padding10 quotation-table-body">{{item.InTransitDays}}</div>
+                                <div class="clearfix"></div>
+                            </div>
+                               <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <!--footer code-->
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+    </div>
+</section>

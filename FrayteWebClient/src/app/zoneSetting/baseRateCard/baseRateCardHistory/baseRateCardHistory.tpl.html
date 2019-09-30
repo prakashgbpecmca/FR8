@@ -1,0 +1,33 @@
+﻿<div>{{title}}</div>
+<div>
+    <div class="modal-content fontsize12" style="margin-bottom: 0px; border-color: #DBE2EC !important;">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'BaseRateCard_History' | translate}}</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="col-sm-12 paddingboth form-group">
+                <label for="year" class="fontsize12 top5 paddingboth width10">{{'Select' | translate}} {{'Year' | translate}}:</label>
+                <div class="col-sm-2">
+                <select ng-change="YearChange()"
+                        ng-options="yr for yr in Years"
+                        class="form-control fontsize12" ng-model="Year">
+                    <option value="" disabled class="display-none"></option>
+                </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div data-ui-grid="gridOptions" ui-grid-selection class="myGridFull fontsize12" style="min-height: {{gridheight}}px;"></div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12 paddingboth">
+                <div class="pull-left"><button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button></div>
+            </div>
+        </div>
+    </div>
+</div>

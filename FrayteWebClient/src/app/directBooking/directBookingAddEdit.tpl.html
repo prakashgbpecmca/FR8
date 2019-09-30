@@ -1,0 +1,45 @@
+﻿
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Address_Book' | translate}}</h4>
+</div>
+<div class="modal-body">
+   
+    <div class="col-sm-12 form-group paddingboth">
+        <div class="form-group">
+            <label for="operationZone" class="fontsize12 col-sm-2 paddingboth lineheight024">{{'Address_Type' | translate}}:</label>
+            <div class="col-sm-4">
+                <select ng-change="AddressBookByAddressType(AddressBookAddressType)"
+                        ng-options="type as type.AddressTypeDisplay for type in AddressTypes track by type.Id"
+                        class="form-control fontsize12" ng-model="AddressBookAddressType">
+                    <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'BusinessUnit_Zone' | translate}}</option>
+                </select>
+            </div>
+            <div class="col-sm-5 col-sm-offset-1 paddingboth">
+                <div class="col-sm-6">
+                    <button ng-hide="AddressBookAddressType.AddressType === 'All'" ng-disabled="AddressBookAddressType.AddressType === 'All'" class="btn-simple btn-save" ng-click="addEditAddressBook()" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{'New_Address' | translate}}</button>
+                </div>
+                <div class="col-sm-6 paddingboth text-right">
+                    <button class="btn btn-simple btn-danger" ng-click="eraseAddressBook()" type="button"><span class="padDelete"><i class="fa fa-eraser"></i></span> {{'Earse_All_Address' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div data-ui-grid="gridDirectBooking" ui-grid-selection class="grid" ></div>
+</div>
+<div class="clearfix"></div>
+<div style="margin-left:15px;">
+    <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(TrackSearchText)" ng-model="TrackSearchText.CurrentPage" items-per-page="TrackSearchText.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+</div>
+<div class="clearfix"></div>
+<div class="modal-footer">
+    <div class="col-sm-12 paddingboth">
+        <div class="pull-left">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+        </div>
+        <div class="pull-right">
+            <button type="button" ng-click="submit()" class="btn-simple btn-save fontsize12"><i class="fa fa-check" aria-hidden="true"></i> {{'OK' | translate}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+﻿
+<section class="grid-hover">
+    <ul class="list-unstyled change margin-bottom-none">
+        <li>
+            <div ng-repeat="courierService in courierServices">
+                <div ng-if="IsRateShow" ng-dblclick="setCustomerRateCard(courierService);" ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100  flex pointer" popover-placement="auto" uib-popover='Double click to select the service.' popover-trigger="'mouseenter'">
+                    <div class="width120 quotation-table-body text-center"><span><img class="img100x30 top20" ng-src="{{courierService.ImageURL}}" /></span></div>
+
+                    <!--new code-->
+                    <div class="width78 bordered-left bordered-right">
+                        <div style="text-align: left;padding: 10px;border-bottom: 1px solid #ddd;">{{courierService.CourierDescription}}</div>
+                        <div class="flex">
+                            <div class="width25-5 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.Weight}} Kgs</span></div>
+                            <div class="width13 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.TransitTime}}</span></div>
+                            <div class="width16-7 quotation-table-body bordered-right">
+                                <span ng-if="courierService.RateValue > 0.00"><span class="quotation-table-body padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.Rate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></span></span>
+                                <span ng-if="courierService.RateValue === 0.00" class="quotation-table-body padding-10 margin6x0x6">N/A</span>
+                            </div>
+                            <div class="width22 quotation-table-body bordered-right">
+                                <span ng-if="courierService.FuelSurchargeValue > 0.00">
+                                    <span class="quotation-table-body padding-10 margin6x0x6">{{courierService.FuelSurcharge}} % ({{courierService.FuelMonth}})</span>
+                                </span>
+                                <span ng-if="courierService.FuelSurchargeValue === 0.00" class="quotation-table-body padding-10 margin6x0x6">N/A</span>
+                            </div>
+                            <div class="width22-5 quotation-table-body">
+                                <span ng-if="courierService.TotalEstimatedChargeValue > 0.00"><span class="quotation-table-body padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.TotalEstimatedCharge}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></span></span>
+                                <span ng-if="courierService.TotalEstimatedChargeValue === 0.00" class="quotation-table-body padding-10 margin6x0x6">N/A</span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--end-->
+
+                    <div class="width10 line-height-3rem quotation-table-body padding0 text-center top20">
+                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                            <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-10 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                <li ng-click="setCustomerRateCard(courierService)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                <li ng-click="DownloadGetServiceSupplymentryCharges(courierService)"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Quote_Add_On_Rate' | translate}} {{'PDF' | translate}}</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div ng-if="!IsRateShow" ng-dblclick="setCustomerRateCard(courierService); " ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100  flex pointer" popover-placement="auto" uib-popover='Double click to select the service.' popover-trigger="'mouseenter'">
+                    <div class="width120 quotation-table-body text-center padding-5"><span><img class="img100x30 top20" ng-src="{{courierService.ImageURL}}" /></span></div>
+
+                    <!--new code-->
+                    <div class="width78 bordered-left bordered-right">
+                        <div style="text-align: left;padding: 10px;border-bottom: 1px solid #ddd;">{{courierService.CourierDescription}}</div>
+                        <div class="flex">
+                            <div class="width87 quotation-table-body bordered-right"><span class="quotation-table-body margin6x0x6 padding-10">{{courierService.Weight}} Kgs</span></div>
+                            <div class="width13 quotation-table-body"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.TransitTime}}</span></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--end-->
+
+                    <div class="width10 line-height-3rem  quotation-table-body padding0 text-center top20">
+                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                            <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-10 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                <li ng-click="setCustomerRateCard(courierService)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                <li ng-click="DownloadGetServiceSupplymentryCharges(courierService)"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Quote_Add_On_Rate' | translate}} {{'PDF' | translate}}</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div>
+                    <div ng-if="IsRateShow">
+                        <div ng-if="courierService.OptionalServices.length > 0">
+                            <div ng-repeat="optionservices in courierService.OptionalServices">
+                                <div ng-if="optionservices.LogisticCompany == 'DHL'" class="padding-10-5 col-sm-12 NDS" style="font-size: 14px;">
+                                    <div class="checkbox"><b>Add on Services: </b> <label><input type="checkbox" ng-model="optionservices.IsEnable"> {{optionservices.ServiceCode}} -  {{optionservices.ServiceDescription}}</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="!IsRateShow">
+                        <div ng-if="courierService.OptionalServices.length > 0">
+                            <div ng-repeat="optionservices in courierService.OptionalServices">
+                                <div ng-if="optionservices.LogisticCompany == 'DHL'" class="padding-10-5 col-sm-12 NDS" style="font-size: 14px;">
+                                    <div class="checkbox"><b>Add on Services: </b> <label><input type="checkbox" ng-model="optionservices.IsEnable"> {{optionservices.ServiceCode}} -  {{optionservices.ServiceDescription}}</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; background: #fff; font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+         <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@Model.ImageHeader" />
+        </div>
+    </header>
+		<br/>
+		<table style="border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;">Dear <b>@Model.CustomerName,</b></td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+            <tr><td  style="font-family: calibri, sans-serif;">We are pleased to inform you that the following shipment has been created. See consignment summary below.</td></tr>  
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			@if(@Model.TrackingWebsite != "")
+			{
+				<tr><td style="font-family: calibri, sans-serif;"><b>Consignment No#:</b> <a style="cursor:pointer;" href="@Model.TrackingWebsite">@Model.ShipmentDetail.AWBNumber</a></td></tr>
+			}
+			else
+			{
+				<tr><td style="font-family: calibri, sans-serif;"><b>Consignment No#:</b> <a style="cursor:pointer;" href="@Model.TrackingWebsite">@Model.ShipmentDetail.AWBNumber</a></td></tr>
+			}			
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Shipping Service:</b> @Model.ShipmentDetail.Service.HubCarrier (@Model.ShipmentDetail.Service.RateTypeDisplay)</tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		    <tr><td style="font-family: calibri, sans-serif;"><b>Shipment Reference:</b> @Model.ShipmentDetail.ShipmentReference</td></tr>
+<!-- 		    <tr><td style="font-family: calibri, sans-serif;"><b>Tracking No#:</b> <a href="@Model.TrackingURL">@Model.ShipmentDetail.TrackingNumber</a></td></tr> -->
+		    		    <tr><td style="font-family: calibri, sans-serif;"><b>Tracking No#:</b> <a style="cursor:pointer;" href="@Model.TrackingURL">@Model.ShipmentDetail.TrackingNumber</a></td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			</table>
+			<br />
+            <table style="border-spacing: 0px;">
+					<tr><td style="font-family: calibri, sans-serif;"><b>Collection Address (Shipper) Details</b></td></tr>
+				    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.FirstName @Model.ShipmentDetail.ShipFrom.LastName</td></tr>					
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.Address</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.Address2</td></tr>                   
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.City</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.State</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.PostCode</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.Country.Name</td></tr>                   
+            </table>
+            <br />
+            <table style="border-spacing: 0px;">
+                <tr><td style="font-family: calibri, sans-serif;"><b>Delivery Address (Consignee) Details</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.FirstName @Model.ShipmentDetail.ShipTo.LastName</td></tr>					
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.Address</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.Address2</td></tr>                   
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.City</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.State</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.PostCode</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.Country.Name</td></tr> 
+            </table>
+            <br />
+			<table style="border-spacing: 0px;">
+			  <tr><td style="font-family: calibri, sans-serif;"><b>Total Cartons:</b> @Model.TotalCarton</td></tr>
+			  <tr><td style="font-family: calibri, sans-serif;"><b>Estimated Weight*:</b> @Model.TotalWeight <span>Kgs</span></td></tr>
+			  <tr><td style="font-family: calibri, sans-serif;"><b>Created On:</b> @Model.CreatedOn </td></tr>
+			  <tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			  <tr><td style="font-family: calibri, sans-serif;"><b>Note*:</b> Actual weight may differ to the estimated weight, therefor total estimated charges may vary depending on actual billable weight.</td></tr>
+			</table>
+			<br />
+			<table style="font-size:12px;border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Should you have any questions or concerns, please feel free to contact us.</td></tr>
+			</table>
+			<br/>
+			 <table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.StaffUserName</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;"><b>@Model.UserPosition</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>@Model.CompanyName</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>Email:</b>&nbsp;@Model.StaffUserEmail</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>Phone:</b>&nbsp;@Model.UserPhone</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><a href="@Model.SiteAddress">@Model.SiteAddress</a></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;font-size: 10px;">
+				<b>Disclaimer:</b> This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error please notify us. 
+				Any views or opinions presented in this email are solely those of the author and do not necessarily represent those of @Model.CompanyName 
+				Warning: Although @Model.CompanyName has taken reasonable precautions to ensure no viruses are present in this email, the company cannot accept responsibility for any loss or damage arising from the use of this email or attachments.
+				</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			</table>
+	<br/>
+    <footer>
+        <table style="font-size: 12px;border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;">@Model.CompanyName All rights reserved.</td></tr>
+			</table>
+    </footer>
+	
+</body>
+</html>

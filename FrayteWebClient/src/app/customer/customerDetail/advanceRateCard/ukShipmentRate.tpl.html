@@ -1,0 +1,144 @@
+﻿
+ <!--UK Shipment-->
+<div ng-if="!IsChanged && finalArrayList.length" class="col-sm-12">
+    <div ng-if="UkShipmentParcel">
+        <br />
+        <!--Table start here-->
+        <div style="border:1px solid #ddd;">
+            <div class="panel-body paddingboth fontsize12" style="padding:0px !important;padding-bottom:0px;">
+                <div class="headertable">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="col-4" style="text-align:right;">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                            <div ng-repeat="UKZone in UKShipmentZones">
+                                <div class="col-2 text-center">{{UKZone.ZoneDisplayName}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+            <div class="panel-body paddingboth fontsize12" style="padding:0px !important;padding-bottom:0px;">
+                <div class="grey">
+                    <div ng-repeat="BaseRateUK in finalArrayList | orderBy:BaseRateUK.Weight">
+                        <div>
+                            <div class="col-4  marginTop20"><span class="padding010" style="padding-left:10px;">{{BaseRateUK.DocType}}  </span><span style="float:right;left:-4%;position:relative;">{{BaseRateUK.WeightFrom}}-{{BaseRateUK.WeightTo}}</span></div>
+                            <div ng-repeat="Rate in BaseRateUK.Rows | orderBy : Rate.zone.ZoneId">
+                                <div ng-class="{'cellHide': !Rate.IsCellShow, 'has-error': Rate.isValue}" class="col-2">
+                                    <!--<button ng-click="SetCourierAccountAndCurrency(Rate)" style="width: 100%;" ng-style="{'background-color':Rate.courierAccount.ColorCode}" class=" btn btn-sm btn-default fontsize12 height84">
+                                        <div ng-hide="Rate.Rate===0"> {{Rate.Rate}} {{Rate.CurrencyCode}}</div>
+                                        <div ng-show="Rate.Rate===0">N/A</div>
+                                        <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                            <div class="baseratecard-border"></div>
+                                            <span>{{Rate.BusinessRate}} {{Rate.BusinessCurrency}}</span>
+                                        </div>
+                                    </button>-->
+                                    <input id="margin" two-digit-numeric class="form-control text-center height84" ng-change="AdvanceRatechangeSave(Rate)" name="margin" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="panel-body fontsize12" style="padding:0px !important;">
+            <div class="panel-body paddingboth" style="padding:0px !important;padding-bottom:0px;">
+                <div class="headertable">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="col-4" style="text-align:right;">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                            <div ng-repeat="UKZone in UKShipmentZones">
+                                <div class="col-2 text-center">{{UKZone.ZoneDisplayName}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="panel-body paddingboth" style="padding:0px !important;border:1px solid #ddd;">
+                <div class="grey">
+                    <div ng-repeat="BaseRateUK in finalUkShipmentListWithOutCA | orderBy:BaseRateUK.Weight">
+                        <div>
+                            <div class="col-4  marginTop20"><span style="padding-left:10px;">{{BaseRateUK.DocType}}</span>   <span style="float:right;left:-4%;position:relative;"> Over  {{BaseRateUK.WeightFrom}} {{BaseRateUK.WeightUnit}} </span></div>
+                            <div ng-repeat="Rate in BaseRateUK.Rows | orderBy : Rate.zone.ZoneId">
+                                <div class="col-2" ng-class="{'has-error': Rate.isValue}">
+                                    <!--<button ng-click="baseRateCardWithoutAccount(Rate)" style="width: 100%;" class="btn-sm btn-default fontsize12 height84">
+                                        <div ng-hide="Rate.Rate===0">
+                                            {{Rate.Rate}} {{Rate.CurrencyCode}}
+                                            <sapn ng-show="Rate.LogisticWeight.UnitOfMeasurement !== null && Rate.LogisticWeight.UnitOfMeasurement !== ''">
+                                                / Kg
+                                            </sapn>
+                                        </div>
+                                        <div ng-show="Rate.Rate===0">N/A</div>
+                                        <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                            <div class="baseratecard-border"></div>
+                                            <span>{{Rate.BusinessRate}} {{Rate.BusinessCurrency}}</span>
+
+                                            <sapn ng-show="Rate.LogisticWeight.UnitOfMeasurement !== null && Rate.LogisticWeight.UnitOfMeasurement !== ''">
+                                                / Kg
+                                            </sapn>
+                                        </div>
+                                    </button>-->
+                                    <input id="margin1" two-digit-numeric class="form-control text-center height84" ng-change="AdvanceRatechangeSave(Rate)" name="margin1" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="UkShipmentBagit && finalArrayList.length">
+        <br />
+        <div class="panel-body fontsize12" style="padding:0px !important;">
+            <div class="panel-body paddingboth" style="padding:0px !important;padding-bottom:0px;">
+                <div class="headertable" style="border:1px solid #f5f5f5;">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="col-4" style="text-align:right;">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                            <div ng-repeat="UKZone in UKShipmentZones">
+                                <div class="col-2" style="text-align:center;">{{UKZone.ZoneDisplayName}}</div>
+                            </div>
+
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="panel-body paddingboth" style="padding:0px !important;padding-bottom:0px;border:1px solid #ddd;">
+                <div class="grey">
+                    <div ng-repeat="BaseRateUK in finalArrayList | orderBy:BaseRateUK.Weight">
+                        <div ng-if="BaseRateUK.IsRowShow">
+                            <div class="col-4  marginTop20"><span class="padding010" style="padding-left:10px;">{{BaseRateUK.DocType}}  </span><span style="float:right;left:-4%;position:relative;"><span ng-if="BaseRateUK.WeightTo === 999">Over</span> {{BaseRateUK.WeightFrom}}<span ng-if="BaseRateUK.WeightTo !== 999">-{{BaseRateUK.WeightTo}}</span></span></div>
+                            <div ng-repeat="Rate in BaseRateUK.Rows | orderBy : Rate.zone.ZoneId">
+                                <div ng-class="{'cellHide': !Rate.IsCellShow, 'has-error': Rate.isValue}" class="col-2">
+                                    <!--<button ng-click="SetCourierAccountAndCurrency(Rate)" style="width: 100%;" ng-style="{'background-color':Rate.courierAccount.ColorCode}" class=" btn-sm btn-default fontsize12 height84">
+                                        <div ng-hide="Rate.Rate===0">{{Rate.Rate}} {{Rate.CurrencyCode}}</div>
+                                        <div ng-show="Rate.Rate===0">N/A</div>
+                                        <div>
+                                            <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                <div class="baseratecard-border"></div>
+                                                <span>{{Rate.BusinessRate}} {{Rate.BusinessCurrency}}</span>
+                                            </div>
+                                        </div>
+                                    </button>-->
+                                    <input id="margin3" two-digit-numeric class="form-control text-center height84" ng-change="AdvanceRatechangeSave(Rate)" name="margin3" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    <div class="col-sm-12 paddingboth">
+        <!--<input type="submit" id="AdvanceRateCard" name="AdvanceRateCard" ng-click="SaveAdvanceRateCard()">-->
+        <button type="submit" ng-click="SaveAdvanceRateCard()" id="AdvanceRateCard" class="btn-BigPrimary pull-right fontsize12 ng-binding"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Save &nbsp;</button>
+
+    </div>
+</div>

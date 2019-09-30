@@ -1,0 +1,91 @@
+﻿
+<br />
+<div class="form-group"></div>
+<div style="border-radius: 3px; background: rgb(255, 255, 255); bottom: 3.15rem; position: relative; height: auto !important;">
+
+    <div class="panel panel-default ng-scope">
+        <div class="panel-body">
+            <section>
+                <!--Add scutomer staff buttoncode here-->
+                <div class="col-sm-12 form-group">
+                    <div class="pull-right"><button type="button" class="btn-simple btn-save fontsize12 left-1" ng-click="addCustomerStaff()"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add' | translate}} {{'Customer_Staff' | translate}}</button></div>
+                </div>
+                <div class="clearfix"></div>
+                <!--end-->
+            </section>
+            <!--Start grid with pagination code here-->
+            <section>
+                <div class="panel panel-default">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex">
+                            <div class="width22-5 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Name' | translate}}</span></div>
+                            <div class="width22-5 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Email' | translate}}</span></div>
+                            <div class="width22-5 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Phone_No' | translate}}</span></div>
+                            <div class="width22-5 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Country' | translate}}</span></div>
+                            <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <ul class="list-unstyled change margin-bottom-none">
+                                <li>
+                                    <div class="width100 pointer change" ng-if="customerstaffrecord.length > 0" ng-repeat="customer in customerstaffrecord">
+                                        <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                            <div class="width22-5 quotation-table-body padding-5">{{customer.ContactName}}</div>
+                                            <div class="width22-5 quotation-table-body word-wrap padding-5"><span class="">{{customer.Email}}</span></div>
+                                            <div class="width22-5 quotation-table-body word-wrap padding-5"><span class="pointer">(+{{customer.Country.CountryPhoneCode}}) {{customer.PhoneNo}}</span></div>
+                                            <div class="width22-5 quotation-table-body word-wrap padding-5"><span class="pointer">{{customer.Country.Name}}</span></div>
+                                            <div class="width10 quotation-table-body padding0 text-center">
+                                                <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none  dropdown-toggle" aria-haspopup="true" aria-expanded="false">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                    <ul class="fix-dropdown-overlay dropdown-menu" uib-dropdown-menu="" role="menu" aria-labelledby="btn-append-to-to-body">
+                                                        <li ng-click="addCustomerStaff(customer.UserId)">
+                                                            <a href="">
+                                                                <span class="padEdit"><i class="fa fa-eye"></i></span>
+                                                                <span class="">{{'View' | translate}}</span>
+                                                            </a>
+                                                        </li>
+                                                        <li ng-click="removeCustomerStaff(customer.UserId)">
+                                                            <a href="">
+                                                                <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                                <span class="">{{'Delete' | translate}}</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="customerstaffrecord.length === 0">
+                                        <div class="width100 redColor fontsize18 ptb-138 text-center">
+                                            {{'No_Record_Found' | translate}}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--pagination code here-->
+                <div style="margin-left:-15px;" class="width80">
+                    <ul uib-pagination="" boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(CustomerStaffTrack)" ng-model="CustomerStaffTrack.CurrentPage" items-per-page="CustomerStaffTrack.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm ng-pristine ng-untouched ng-valid ng-isolate-scope pagination ng-not-empty" previous-text="‹" next-text="›" first-text="«" last-text="»"></ul>
+                </div>
+                <div class="pull-right">
+                    <label for="customers" class="col-sm-6 top5">{{'Paging_' | translate}}</label>
+                    <div class="col-sm-6">
+                        <select id="shipmentPaymentAccount" name="shipmentPaymentAccount" class="form-control"
+                                ng-options="pageChanged.pageChangedValue as pageChanged.pageChangedValueDisplay for pageChanged in pageChangedObj"
+                                ng-model="CustomerStaffTrack.TakeRows"
+                                ng-change="pageChanged(CustomerStaffTrack)" style="width:77px"></select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+            </section>
+            <!--end-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

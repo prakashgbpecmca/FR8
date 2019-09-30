@@ -1,0 +1,36 @@
+﻿
+@import "variables";
+
+//header less code
+html, body {
+    margin: @zero;
+    padding: @zero;
+    /*min-height: @full-width-height;*/
+    width: @full-width-height;
+    position: @absolute;
+    background: @body-background;
+    color: @color-4d5663;
+    font-family: @font-family-roboto;
+}
+
+#wrapper {
+    /*min-height: @full-width-height;*/
+    .min-height (90rem);
+    width: @full-width-height;
+    position: @relative;
+    color: @wrapper-color;
+    background: @body-background;
+    .fontsize(14px);
+    font-family: @font-family-roboto;
+}
+
+header {
+    background: @white;
+    .box-shadow(0px 1px 4px -2px);
+
+    .logo {
+        .padding (10px 0);
+        width: @logo-width;
+    }
+}
+//end

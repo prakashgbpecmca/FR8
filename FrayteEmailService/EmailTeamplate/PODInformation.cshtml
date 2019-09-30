@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<style>
+		#customers {
+			font-family: calibri, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		#customers td, #customers th {
+			border: 1px solid black;
+			padding: 5px;			
+		}
+
+		#customers th {
+			padding-top: 5px;
+			padding-bottom: 5px;
+			text-align: left;
+			color: black;
+		}
+	</style>
+</head>
+<body style="margin: 0; padding: 0; background: #fff; font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+         <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@ViewBag.ImageHeader" />
+        </div>
+    </header>
+	<br/>
+	<table style="border-spacing: 0px;">
+		<tr><td style="font-family: calibri, sans-serif;">Dear <b>@ViewBag.CompanyName,</b></td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td  style="font-family: calibri, sans-serif;">We pleased to inform you that following shipments has been delivered. Below are details.</td></tr>  
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr>
+			<td style="font-family: calibri, sans-serif;">
+				<table id="customers">
+					<tr>
+						<th>Carrier</th>
+						<th>Tracking No</th>
+						<th>Delivery Date</th>
+						<th>Delivery Time</th>
+						<th>Signed By</th>
+					</tr>
+					@if(@Model.PodDetail != null)
+					{
+						foreach (var item in Model.PodDetail)
+						{
+							<tr>
+								<td>@item.Carrier</td>
+								<td><a href=#>@item.TrackingNo</a></td>
+								@if(@item.DeliveryDate == null)
+								{
+									<td>&nbsp;</td>
+								}
+								else
+								{
+									<td>@item.DeliveryDate</td>
+								}
+								@if(@item.DeliveryTime == null)
+								{
+									<td>&nbsp;</td>
+								}
+								else
+								{
+									<td>@item.DeliveryTime</td>
+								}
+								@if(@item.SignedBy == null)
+								{
+									<td>&nbsp;</td>
+								}
+								else
+								{
+									<td>@item.SignedBy</td>
+								}
+							</tr>							
+						}
+					}
+				</table>
+			</td>
+		</tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">Thank you for giving FRAYTE the opportunity to serve you.</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">For further information, please don't hesitate to contact us.</td></tr>
+	</table>
+	<br/>
+	<table style="border-spacing: 0px;">
+		<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">@ViewBag.StaffName</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>FRAYTE GLOBAL</b></td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Phone:</b>&nbsp;@ViewBag.UserPhone</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Email:</b>&nbsp;@ViewBag.StaffEmail</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><a href="@ViewBag.SiteAddress">@ViewBag.SiteAddress</a></td></tr>
+	</table>
+	<br/>
+	<br/>
+    <footer>
+        <table style="font-size: 12px;border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;">FRAYTE GLOBAL All rights reserved.</td></tr>
+		</table>
+    </footer>	
+</body>
+</html>

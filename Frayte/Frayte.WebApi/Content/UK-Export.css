@@ -1,0 +1,35 @@
+﻿body {
+	font-family:'Blue Highway';
+}
+.width100 {  
+    width: 100%;
+ /*    margin: 0 auto;
+    float: none; */
+}
+
+table {border-collapse:collapse;
+}
+table, td, th {border:1px solid #000;text-align:center;
+}
+ul.none {list-style:none;text-decoration:none;text-align:right;
+}
+.width66 {float:left;width:100%;
+font-size:14px;
+}
+.width33 {float:right;width:33.34%;
+font-size:10px;
+}
+.width13 {float:left;width:13.33%;
+font-size:13px;
+}
+.width31 {float:left;width:31.31%;
+font-size:10px;
+}
+
+thead tr :nth-child(odd) {background-color:#989191;
+}
+thead tr :nth-child(even) {background-color:#989191;
+}
+.pull-right{text-align:right;
+font-size:12px;
+}

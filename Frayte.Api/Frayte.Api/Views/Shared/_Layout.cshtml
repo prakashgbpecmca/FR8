@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--meta tag here-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="initial-scale=1,user-scalable=yes">
+    <!--end-->
+    <!--favicon icon code here-->
+    <link rel="favicon" href="~/Images/favicon_icon/favicon.ico" />
+    <link rel="apple-touch-icon" href="~/Images/favicon_icon/favicon.ico">
+    <link rel="shortcut icon" href="~/Images/favicon_icon/favicon.ico">
+    <link rel="license" href="~/Images/favicon_icon/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Images/favicon_icon/favicon.ico">
+    <link rel="icon" href="~/Images/favicon_icon/favicon.ico" />
+    <!--end-->
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body  data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+    <!--navbar code here-->
+    <!--fixed navbar code here-->
+    <div class="navbar navbar-default navbar-fixed-top margin-bottom-none">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <img src="~/Images/icon/FrayteLogo.png" class="img-responsive frayte-logo" />
+            </div>
+            <div class="navbar-collapse collapse">
+                @*<ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    </ul>*@
+                <ul class="nav navbar-nav navbar-right border-frayte-blue top-5 ">
+                    @*<li><a href="#">CUSTOMER</a></li>
+                        <li><a href="#" class="active">SIGN UP</a></li>*@
+                    <li class="popup">
+                        <a href="#">LOG IN</a>
+                        <div class="popup-open">Login to app.frayte.com</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+    <!--relatively navbar code here-->
+    <div class="navbar navbar-default frayte-blue">
+        <div class="container" style="height: 57px;">
+            <div class="navbar-header color-white">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("API Docs", "Index", "Home", new { area = "" }, new { @class = "navbar-brand color-white line-height-27" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav color-white navbar-right">
+                    <li><a href="/" class="line-height-27">Home</a></li>
+                    <li><a href="/Help" class="line-height-27">API</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+    <!--end-->
+    <div>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+        <br /><br />
+        @*<hr />*@
+        <div class="body-content footer-background">
+            <footer class="container">
+                <div class="row paddingTB-30">
+                    <div class="text-center">
+                        <div class="pull-left top-10">
+                       <span><img src="~/Images/favicon_icon/favicon.ico" class="bottom-2"/>
+                       <span>&copy; FRAYTE Logistics LTD. All right reserved.</span>
+                        </span>
+                        </div>
+                        <div class="pull-right paddingTB-10">
+                            <a title="facebook" target="_blank" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510"><img src="~/Images/social_icon/facebook.png" /></a>
+                            <a title="twitter" target="_blank" href="https://twitter.com/Frayte1"><img src="~/Images/social_icon/twitter.png"/></a>
+                            <a title="instagram" target="_blank" href="https://www.instagram.com/?hl=en"><img src="~/Images/social_icon/instagram.png" /></a>
+                            <a title="linkedin" target="_blank" href="https://www.linkedin.com/company/frayte-logistics-ltd-"><img src="~/Images/social_icon/linkedin.png" /></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

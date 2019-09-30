@@ -1,0 +1,7 @@
+@media print{
+	
+    .justify {width:auto;margin:0 auto !important;text-align:center;
+    }
+  
+	/* img#image{width:50% !important;height:40%; } */
+}

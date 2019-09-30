@@ -1,0 +1,85 @@
+<div id="wrapper" class="publicPagesBottom">
+    <header>
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 paddingboth" ng-show="SITECOMPANY === 'FRAYTE'">
+                <a ng-click="RedirectToPublic()">
+                    <span ng-if="IsSiteCountry==='COM'"><img ng-src="{{ImagePath + 'FrayteHK.png'}}" class="logo" /></span>
+                    <span ng-if="IsSiteCountry==='CO.UK'"><img ng-src="{{ImagePath + 'FrayteUK.png'}}" class="logo" /></span>
+                </a>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 paddingboth" ng-show="SITECOMPANY === 'MAXLOGISTIC'">
+                <a><img ng-src="{{ImagePath + 'MexLogo.png'}}" class="logo" /></a>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+            </div>
+            <div class="clearfix"></div>
+            </div>
+        </div>
+    </header>
+    <section class="container">
+        <div class="row">
+            <div data-ui-view></div>
+        </div>
+    </section>
+    <toaster-container></toaster-container>   
+</div>
+<footer class="pre-footer-top-border" ng-show="SITECOMPANY === 'FRAYTE'">
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="pull-left lineheight24 xs-footerCenter top7 left-40rem">
+                    <div>
+                        <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+                        <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}} </button>
+                        <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'hkong.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TD' | translate}} </button>
+                        <button ng-click="changeLanguage('th')" class="btn btn-link fontsize12" ng-disabled="isDisabled4" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'th.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TH' | translate}} </button>
+                    </div>
+                </div>
+                <div>
+                    <ul class="text-right">
+                        <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                        <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                        <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                        <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="pull-left xs-footerCenter top2">
+                    <div class="copyText"><span class="mobile-left"><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /> <span class="word-break">&copy; {{'2018' | translate}} <span ng-if="IsSiteCountry==='COM'">{{'FRAYTE_HK' | translate}}</span><span ng-if="IsSiteCountry==='CO.UK'">{{'FRAYTE_UK' | translate}}</span>. {{'AllRightsReserved' | translate}}.</span></span></div>
+                </div>
+                <div class="pull-right textAlignR xs-footercenter top2 text-right">
+                    <a ng-click="setScroll('top')" ui-sref='helpSupport' target="_blank" class="fontsize12">{{'Help_Support' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.privacyPolicy' target="_blank" class="fontsize12">{{'Privacy_Policy' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.term-and-condition' target="_blank" class="fontsize12">{{'TermsAndCondition' | translate}}</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<footer class="pre-footer-top-border" ng-show="SITECOMPANY === 'MAXLOGISTIC'">
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="pull-left lineheight24 xs-footerCenter top7 left-40rem"></div>
+                <div>
+                    <ul class="text-right">
+                             <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/mex-logistic-limited/" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="pull-left xs-footerCenter top2">
+                    <div class="copyText"><span class="mobile-left"><img ng-src="{{ImagePath + 'favicon-maxlogistic.png'}}" class="frayte-footer-icon" /> <span class="word-break">&copy; {{'2018' | translate}} {{'Max' | translate}} {{'LogisticLTD' | translate}}. {{'AllRightsReserved' | translate}}.</span></span></div>
+                </div>
+                <div class="pull-right textAlignR xs-footercenter top2 text-right">
+                    <a ng-click="setScroll('top')" ui-sref='helpSupport' target="_blank" class="fontsize12">{{'Help_Support' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.privacyPolicy' target="_blank" class="fontsize12">{{'Privacy_Policy' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.term-and-condition' target="_blank" class="fontsize12">{{'TermsAndCondition' | translate}}</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</footer>

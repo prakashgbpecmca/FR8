@@ -1,0 +1,167 @@
+﻿<div class="content padding-15">
+        <div class="col-sm-12">
+            <div class="text-center padding-tb-15"><h4>{{'POD' | translate}}</h4></div>
+            <form name="AgentUploadPodForm" ng-submit="AgentPodDocs(AgentUploadPodForm.$valid, AgentUploadPodFile)" novalidate>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel panel-default text-left" style="height:280px;">
+                            <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                            <div class="panel-body">
+                                <div style="padding:5px 0;">
+                                    <div>{{ShipperInfo.ContactName}}</div>
+                                    <div>{{ShipperInfo.CompanyName}}</div>
+                                    <div>{{ShipperAddressInfo.Address}}</div>
+                                </div>
+                                <div style="padding:5px 0;">
+                                    <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                    <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div>T: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                    <div>E: <span> {{ShipperInfo.Email}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default text-left" style="height:280px;">
+                            <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                            <div class="panel-body">
+                                <div style="padding:5px 0;">
+                                    <div>{{ReceiverInfo.ContactName}}</div>
+                                    <div>{{ReceiverInfo.CompanyName}}</div>
+                                    <div>{{ReceiverAddressInfo.Address}}</div>
+                                </div>
+                                <div style="padding:5px 0;">
+                                    <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                    <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div>T: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                    <div>E: <span> {{ReceiverInfo.Email}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <br />
+                <div class="padding-tb-15" style="border:1px solid #dbe2ec;background:#fff;">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                            <div>
+                                <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': AgentUploadPodForm.signature.$invalid &&
+                                                         (AgentUploadPodForm.signature.$dirty || submitted) }">
+                            <div>
+                                <label class="control-label" for="signature">{{'Signature' | translate}}:</label>
+                            </div>
+                            <div>
+                                <textarea id="signature" name="signature" class="form-control" ng-model="agentPodUploadDocs.Signature" style="height:100px;" required></textarea>
+                                <span class="help-block has-error"
+                                      ng-show="AgentUploadPodForm.signature.$error.required &&
+                           (AgentUploadPodForm.signature.$dirty || submitted)">
+                                    {{'SignatureValidError' | translate}}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="col-sm-8">
+                            <div class="form-group" ng-class="{ 'has-error': AgentUploadPodForm.deliveryDate.$invalid &&
+                                                         (AgentUploadPodForm.deliveryDate.$dirty || submitted) }">
+                                <label class="control-label" for="deliveryDate">{{'Delivery' | translate}} {{'Date' | translate}}:</label>
+                                <div class="">
+                                    <p class="input-group">
+                                        <input type="text" id="deliveryDate" name="deliveryDate" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy"
+                                               ng-model="agentPodUploadDocs.PODDeliveryDate" is-open="status.opened"
+                                               ng-required="true" close-text="Close" ng-click="openCalender($event)" placeholder="{{'DatePlaceholder' | translate}}" required />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </p>
+                                    <span class="help-block has-error"
+                                          ng-show="AgentUploadPodForm.deliveryDate.$error.required &&
+                                                (AgentUploadPodForm.deliveryDate.$dirty || submitted)">
+                                        {{'Delivery' | translate}} {{'DateValidError' | translate}}
+                                    </span>
+                                    <span class="help-block has-error"
+                                          ng-show="AgentUploadPodForm.deliveryDate.$invalid && !AgentUploadPodForm.deliveryDate.$error.required &&
+                                                (AgentUploadPodForm.deliveryDate.$dirty || submitted)">
+                                        {{'Invalid' | translate}} {{'Date' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group" ng-class="{ 'has-error': (AgentUploadPodForm.selectTime.$invalid || AgentUploadPodForm.selectTime.$error.pattern) &&
+                                                     (AgentUploadPodForm.selectTime.$dirty || submitted) }">
+                                <label class="control-label" for="selectTime">{{'Time' | translate}} <b> {{'Hours24' | translate}}</b></label>
+                                <input type="text"
+                                       class="form-control input-sm"
+                                       placeholder="{{'TimePlaceholder' | translate}}"
+                                       name="selectTime"
+                                       ng-model="agentPodUploadDocs.PODDeliveryTime"
+                                       ui-mask="99:99"
+                                       ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                <span class="help-block has-error"
+                                      ng-show="AgentUploadPodForm.selectTime.$invalid && !AgentUploadPodForm.selectTime.$error.pattern && (AgentUploadPodForm.selectTime.$dirty || submitted)">
+                                    {{'TimeValidationError' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="AgentUploadPodForm.workingStartTime.$error.pattern &&
+                                                (AgentUploadPodForm.workingStartTime.$dirty || submitted)">
+                                    {{'TimeNotValid' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-sm-12">
+                            <div>
+                                <label class="control-label" for="frayteshippingOrder">{{'Image' | translate}}:</label>
+                            </div>
+                            <div class="inputText">
+                                <input type="text" id="frayteshippingOrder" name="frayteshippingOrder"
+                                       ng-model="agentPodUploadDocs.SignatureImage" class="form-control" />
+                            </div>
+                            <div class="button attachBtn" ng-model="AgentUploadPodFile" name="customDocFile" ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                 accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                 ngf-select="whileAddingDoc($files, $file, $event, 1)">
+                                <button type="button" class="btn btn-blue">{{'Attach' | translate}}</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="padding:0px;">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div>
+                                    <label class="control-label" for="exceptionNote">{{'Exception' | translate}} {{'Note' | translate}}:</label>
+                                </div>
+                                <div>
+                                    <textarea id="exceptionNote" name="exceptionNote" class="form-control" ng-model="agentPodUploadDocs.ExceptionNote" style="height:100px;"></textarea>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6"></div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                        <div class="floatRight form-group">
+                            <div class="padding-tb-15" style="padding-right:15px;"><button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Submit' | translate}}</button></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                </div>
+                <br />
+            </form>
+        </div>
+        <div class="clearfix"></div>
+</div>

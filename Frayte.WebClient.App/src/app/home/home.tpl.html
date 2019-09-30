@@ -1,0 +1,148 @@
+﻿<div  class="background-white" ng-show="Site_Company === 'FRAYTE'">
+    <div class="large-menu">
+        <div class="top-header">
+            <div class="container">
+                <div class="col-sm-9 paddingboth">
+                    <a data-ui-sref="home.login">
+                        <span ng-if="IsSiteCountry==='COM'"><img ng-src="{{ImagePath + 'FrayteHK.png'}}" style="top: 1.5rem;position: relative;width: 214px;" /></span>
+                        <span ng-if="IsSiteCountry==='CO.UK'"><img ng-src="{{ImagePath + 'FrayteUK.png'}}" style="top: 1.5rem;position: relative;width: 214px;" /></span>
+                    </a>
+                </div> 
+                <div class="col-sm-6 pull-right" style="position: relative;bottom: 3.5rem;">
+                    <ul>
+                         <li>
+                            <select ng-model="Data.selectOption" style="border: none; background: none !important; color: #EB8633;outline:0;" ng-change="changeLanguage(Data.selectOption)">
+                                <option value="en" style="padding:2px 4px;">{{'BUTTON_LANG_EN' | translate}}</option>
+                                <option value="chSim" style="padding:2px 4px;">{{'BUTTON_LANG_CH' | translate}} </option>
+                                <option value="chTrad" style="padding:2px 4px;">{{'BUTTON_LANG_TD' | translate}} </option>
+                                <option value="th" style="padding:2px 4px;">{{'BUTTON_LANG_TH' | translate}} </option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div> 
+    </div>
+    <div class="clearfix"></div> 
+    <div id="wrapper" class="contentPaddingTop">
+        <div ui-view></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<footer class="pre-footer-top-border" ng-show="Site_Company === 'FRAYTE'">
+    <div class="container">
+            <div class="col-sm-4 col-xs-12 xs-footerCenter top3 paddingright padding-tb-10">
+                <div class="copyText col-xs-12 width100 flex paddingboth">
+                    <p class="mobile-left"><a href=""><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /></a> <span class="word-break">&copy; {{'2018' | translate}} <span ng-if="IsSiteCountry==='COM'">{{'FRAYTE_HK' | translate}}</span><span ng-if="IsSiteCountry==='CO.UK'">{{'FRAYTE_UK' | translate}}</span>. {{'AllRightsReserved' | translate}}.</span></p>
+                <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-sm-5 col-xs-12  xs-footerCenter padding-tb-10 mobile-left">
+                <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+                <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}} </button>
+                <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'hkong.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TD' | translate}} </button>
+                <button ng-click="changeLanguage('th')" class="btn btn-link fontsize12" ng-disabled="isDisabled4" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'th.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TH' | translate}}</button>
+            </div>
+            <!--hide in mobile browser-->
+            <div class="col-sm-3 col-xs-12 textAlignR xs-footercenter text-center mobile-handset">
+                <ul class="pull-right margin-bottom-none">
+                    <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                    <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                    <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                    <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+                </ul>
+            </div>
+            <!--end code-->
+            <div class="clearfix"></div>
+        </div>
+    <div class="container">
+        <div class="col-sm-4 col-xs-12 xs-footerCenter top3 paddingright padding-tb-10">
+            <div class="copyText col-xs-12 width100 flex paddingboth">
+                <p class="mobile-left"><a href=""><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /></a> <span class="word-break">&copy; {{'2018' | translate}} <span ng-if="IsSiteCountry==='COM'">{{'FRAYTE_HK' | translate}}</span><span ng-if="IsSiteCountry==='CO.UK'">{{'FRAYTE_UK' | translate}}</span>. {{'AllRightsReserved' | translate}}.</span></p>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-5 col-xs-12  xs-footerCenter padding-tb-10 mobile-left">
+            <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+            <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}} </button>
+            <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'hkong.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TD' | translate}} </button>
+            <button ng-click="changeLanguage('th')" class="btn btn-link fontsize12" ng-disabled="isDisabled4" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'th.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TH' | translate}}</button>
+        </div>
+        <!--hide in mobile browser-->
+        <div class="col-sm-3 col-xs-12 textAlignR xs-footercenter text-center mobile-handset">
+            <ul class="pull-right margin-bottom-none">
+                <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+            </ul>
+        </div>
+        <!--end code-->
+        <div class="clearfix"></div>
+    </div>
+
+</footer>
+
+
+<div class="background-white" ng-show="Site_Company === 'MAXLOGISTIC'">
+    <div class="large-menu">
+        <div class="top-header">
+            <div class="container">
+                <div class="col-sm-9 paddingboth">
+                    <a data-ui-sref="home.login"><img ng-src="{{ImagePath + 'MexLogo.png'}}" style="top: 1.5rem;position: relative;width: 214px;" /></a>
+                </div>
+                
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="wrapper" class="contentPaddingTop">
+        <div ui-view></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<footer class="pre-footer-top-border" ng-show="Site_Company === 'MAXLOGISTIC'">
+    <div class="container">
+        <div class="col-sm-4 col-xs-12 xs-footerCenter top3 paddingright padding-tb-10">
+            <div class="copyText col-xs-12 width100 flex paddingboth">
+                <p class="mobile-left"><a href=""><img ng-src="{{ImagePath + 'favicon-maxlogistic.png'}}" class="frayte-footer-icon" /></a> <span class="word-break">&copy; {{'2018' | translate}} {{'Max' | translate}} {{'LogisticLTD' | translate}}. {{'AllRightsReserved' | translate}}.</span></p>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+       
+        <!--hide in mobile browser-->
+        <div class="col-sm-3 col-xs-12 textAlignR xs-footercenter text-center mobile-handset">
+            <ul class="pull-right margin-bottom-none">
+                <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+            </ul>
+        </div>
+        <!--end code-->
+        <div class="clearfix"></div>
+    </div>
+    <div class="container">
+        <div class="col-sm-4 col-xs-12 xs-footerCenter top3 paddingright padding-tb-10">
+            <div class="copyText col-xs-12 width100 flex paddingboth">
+                <p class="mobile-left"><a href=""><img ng-src="{{ImagePath + 'favicon-maxlogistic.png'}}" class="frayte-footer-icon" /></a> <span class="word-break">&copy; {{'2018' | translate}} {{'Frayte' | translate}} {{'LogisticLTD' | translate}}. {{'AllRightsReserved' | translate}}.</span></p>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+     
+        <!--hide in mobile browser-->
+        <div class="col-sm-3 col-xs-12 textAlignR xs-footercenter text-center mobile-handset">
+            <ul class="pull-right margin-bottom-none">
+                <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+            </ul>
+        </div>
+        <!--end code-->
+        <div class="clearfix"></div>
+    </div>
+
+</footer>

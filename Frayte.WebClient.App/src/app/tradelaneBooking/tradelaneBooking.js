@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.tradelaneBooking', ['ui.router', 'ngApp.common', 'ui.grid']);

@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report.Generator", "Report.Generator\Report.Generator.csproj", "{005FA870-DF73-4739-B337-AE73D68EE70A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frayte.Services", "Frayte.Services\Frayte.Services.csproj", "{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frayte.WebApi", "Frayte.WebApi\Frayte.WebApi.csproj", "{B6DD181E-068F-4C88-AC93-C89294CD5B18}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1} = {4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frayte.Security", "Frayte.Security\Frayte.Security.csproj", "{75DECB37-8B5C-4694-87C6-387BD577BCED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{005FA870-DF73-4739-B337-AE73D68EE70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{005FA870-DF73-4739-B337-AE73D68EE70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{005FA870-DF73-4739-B337-AE73D68EE70A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{005FA870-DF73-4739-B337-AE73D68EE70A}.Debug|x86.Build.0 = Debug|Any CPU
+		{005FA870-DF73-4739-B337-AE73D68EE70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{005FA870-DF73-4739-B337-AE73D68EE70A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{005FA870-DF73-4739-B337-AE73D68EE70A}.Release|x86.ActiveCfg = Release|Any CPU
+		{005FA870-DF73-4739-B337-AE73D68EE70A}.Release|x86.Build.0 = Release|Any CPU
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}.Debug|x86.Build.0 = Debug|Any CPU
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}.Release|x86.ActiveCfg = Release|Any CPU
+		{4BA4BAC4-11A2-48F1-B85B-715D46F5C3E1}.Release|x86.Build.0 = Release|Any CPU
+		{B6DD181E-068F-4C88-AC93-C89294CD5B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6DD181E-068F-4C88-AC93-C89294CD5B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6DD181E-068F-4C88-AC93-C89294CD5B18}.Debug|x86.ActiveCfg = Debug|x86
+		{B6DD181E-068F-4C88-AC93-C89294CD5B18}.Debug|x86.Build.0 = Debug|x86
+		{B6DD181E-068F-4C88-AC93-C89294CD5B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6DD181E-068F-4C88-AC93-C89294CD5B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6DD181E-068F-4C88-AC93-C89294CD5B18}.Release|x86.ActiveCfg = Release|x86
+		{B6DD181E-068F-4C88-AC93-C89294CD5B18}.Release|x86.Build.0 = Release|x86
+		{75DECB37-8B5C-4694-87C6-387BD577BCED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75DECB37-8B5C-4694-87C6-387BD577BCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75DECB37-8B5C-4694-87C6-387BD577BCED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{75DECB37-8B5C-4694-87C6-387BD577BCED}.Debug|x86.Build.0 = Debug|Any CPU
+		{75DECB37-8B5C-4694-87C6-387BD577BCED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75DECB37-8B5C-4694-87C6-387BD577BCED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75DECB37-8B5C-4694-87C6-387BD577BCED}.Release|x86.ActiveCfg = Release|Any CPU
+		{75DECB37-8B5C-4694-87C6-387BD577BCED}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

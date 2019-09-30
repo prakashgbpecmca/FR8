@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; background: #fff; font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+         <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@Model.ImageHeader" />
+        </div>
+    </header>
+		<br/>
+		<table style="border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;">Dear <b>@Model.CustomerName</b>,</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+            <tr><td  style="font-family: calibri, sans-serif;">We would like to inform you that the following shipment has been the misplaced or lost. Please see the shipment information below and take care for that:</td></tr>  
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			</table>
+			<br />
+            <table style="border-spacing: 0px;">
+					<tr><td style="font-family: calibri, sans-serif;"><b>Total Discrepancies:</b> <span>@Model.TotalAwbs</span></td></tr>
+				    <tr><td style="font-family: calibri, sans-serif;"><b>Total Gross Weight:</b> <span>@Model.TotalWeight Kgs</span></td></tr>
+            </table>
+            <br />
+			
+            <table border="1" width="100%" style="border-spacing: 0px;">
+                <tr>
+				<td style="font-family: calibri, sans-serif;"><b>Bag No#.</b></td>
+				<td style="font-family: calibri, sans-serif;"><b>Consignment No#.</b></td>
+				<td style="font-family: calibri, sans-serif;"><b>From Shipper</b></td>
+				<td style="font-family: calibri, sans-serif;"><b>To Consignee</b></td>
+				<td style="font-family: calibri, sans-serif;"><b>Created On</b></td>
+				<td style="font-family: calibri, sans-serif;"><b>Weight</b></td>
+				</tr>
+				 @foreach(var awb in Model.MissingAwbs)
+				         { 
+				     <tr>
+				<td style="font-family: calibri, sans-serif;">@awb.BagNumber</td>
+				<td style="font-family: calibri, sans-serif;">@awb.AWBNumber</td>
+				<td style="font-family: calibri, sans-serif;">@awb.ShipFromCompany</td>
+				<td style="font-family: calibri, sans-serif;">@awb.ShipToCompany</td>
+				<td style="font-family: calibri, sans-serif;">@awb.CreatedOnTime</td>
+				<td style="font-family: calibri, sans-serif;">@awb.TotalWeight</td>
+				</tr>
+				}
+				<tr>
+				<td colspan="4" style="font-family: calibri, sans-serif;">&nbsp;</td>
+				<td align="center" style="font-family: calibri, sans-serif;"><b>Total</b></td>
+				<td style="font-family: calibri, sans-serif;">@Model.TotalWeight</td>
+				</tr>
+            </table>
+			<br />
+			<table style="font-size:12px;border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Should you have any questions or concerns, please feel free to contact us.</td></tr>
+			</table>
+			<br/>
+			 	 <table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.UserName</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;"><b>@Model.UserPosition</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>FRAYTE GLOBAL</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>Email:</b>&nbsp;@Model.UserEmail</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>Phone:</b>&nbsp;@Model.UserPhone</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><a href="@Model.SiteAddress">@Model.SiteAddress</a></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			</table>
+	<br/>
+    <footer>
+        <table style="font-size: 12px;border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;">FRAYTE GLOBAL All rights reserved.</td></tr>
+			</table>
+    </footer>
+	
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿
+
+
+
+<section>
+    <div class="panel panel-body box-shadow-none">
+        <div class="paddingTB60">
+            <div id="largebutton" class="text-center">
+                <div class="form-group center-width45-inline">
+                    <div id="directbooking" class="directbooking">
+                        <a class="btn box-shadow-none" ng-click="NoHSCodeJobs()">
+                            <img ng-src="{{ImagePath + 'total-no-hs-code.png'}}" class="img-responsive " />
+                            <h3 class="uppercase pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'NO_HSCode_Jobs' | translate}} <br /><span class="text-right">{{JobDetail.ToltalUnAssignedJobs}}</span><br /></h3>
+                        </a>
+                        <span  ng-click="NoHSCodeJobs()" class="directbooking-hover flex"><span class="margin-auto-fix">{{'Displays_Overview_AllJobs_MissingHSCodes' | translate}}</span></span>
+                    </div>
+                </div>
+                <div class="form-group center-width45-inline">
+                    <div id="tradelane" class="directbooking">
+                        <a class="btn box-shadow-none" ng-click="HSCodeOperators()">
+                            <span><img ng-src="{{ImagePath + 'total_operator.png'}}" class="img-responsive " /></span>
+                            <h3 class="uppercase pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'HSCode_Operators' | translate}} <br /><span class="text-right">{{JobDetail.ToltalOperators}}</span><br /></h3>
+                        </a>
+                        <span class="tradeLane-hover flex" ng-click="HSCodeOperators()"><span class="margin-auto-fix">{{'Overview_List_All_HSCodeOperators' | translate}}</span></span>
+                    </div>
+                </div>
+                <div class="form-group center-width45-inline">
+                    <div id="breakbulk" class="directbooking">
+                        <a class="btn box-shadow-none">
+                            <span><img ng-src="{{ImagePath + 'total-hs-code.png'}}" class="img-responsive " /></span>
+                            <h3 class="uppercase pointer pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'Jobs_Per_Hour' | translate}} <br /><span class="text-right">{{JobDetail.AvgJobsPerHour}}</span><br /></h3>
+                        </a>
+                        <span class="breakBulk-hover flex"><span class="margin-auto-fix">{{'See_Total_HSCodes_Output_Operator_perHour' | translate}}</span></span>
+                    </div>
+                </div>
+                <div class="form-group center-width45-inline">
+                    <div id="ecommerce" class="directbooking">
+                        <a class="btn box-shadow-none"  ng-click="JobsInProgress()">
+                            <span><img ng-src="{{ImagePath + 'total-jobs-in-progress.png'}}" class="img-responsive " /></span>
+                            <h3 class="pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'Jobs_In_Progress' | translate}} <br /> <span class="text-right">{{JobDetail.JobsInProgress}} / {{JobDetail.ToltalJobs}}</span><br /></h3>
+                        </a>
+                        <span ng-click="JobsInProgress()" class="eCommerce-hover flex"><span class="margin-auto-fix">{{'Displays_ListJobs_Currently_handled' | translate}}</span></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
+
+
+<!--<section>
+<div class="panel box-shadow-none">
+    <div class="panel-body">
+        <div id="largebutton" class="col-sm-12 jobs">
+            <div class="col-sm-6 form-group text-center">
+                <div class="pointer form-group image-hover" ng-click="NoHSCodeJobs()">
+                   <div class="form-group"><img ng-src="{{ImagePath + 'total-no-hs-code.png'}}" class="img-responsive fixed-image-size" /></div>
+                    <h4 class="uppercase pointer marginTop-zero frayte-blue bold word-wrap">{{'NO_HSCode_Jobs' | translate}}</h4>
+                    <h4 class="text-center frayte-blue bold word-wrap">{{JobDetail.ToltalUnAssignedJobs}}</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 form-group text-center">
+                <div class="pointer form-group image-hover" ng-click="HSCodeOperators()">
+                    <div class="form-group"><img ng-src="{{ImagePath + 'total_operator.png'}}" class="img-responsive fixed-image-size" /></div>
+                    <h4 class="uppercase pointer marginTop-zero frayte-blue bold word-wrap">{{'HSCode_Operators' | translate}}</h4>
+                    <h4 class="text-center frayte-blue bold word-wrap">{{JobDetail.ToltalOperators}}</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 form-group text-center">
+                <div class="form-group image-hover">
+                    <div class="form-group"><img ng-src="{{ImagePath + 'total-hs-code.png'}}" class="img-responsive fixed-image-size" /></div>
+                    <h4 class="uppercase marginTop-zero frayte-blue bold word-wrap">{{'Jobs_Per_Hour' | translate}}</h4>
+                    <h4 class="text-center frayte-blue bold word-wrap">{{JobDetail.AvgJobsPerHour}}</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 form-group text-center">
+                <div class="pointer form-group image-hover" ng-click="JobsInProgress()">
+                    <div class="form-group"><img ng-src="{{ImagePath + 'total-jobs-in-progress.png'}}" class="img-responsive fixed-image-size" /></div>
+                    <h4 class="uppercase pointer marginTop-zero frayte-blue bold word-wrap">{{'Jobs_In_Progress' | translate}}</h4>
+                    <h4 class="text-center frayte-blue bold word-wrap">{{JobDetail.JobsInProgress}} / {{JobDetail.ToltalJobs}}</h4>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+</section>-->

@@ -1,0 +1,19 @@
+﻿<div class="ui-grid-cell-contents">
+    <div class="dropdown">
+        &nbsp;&nbsp;&nbsp;<a id="drop1" href="" role="button" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-option-horizontal" style="font-size:16px;color:#4D5663;"></span></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li ng-click="grid.appScope.AddEditWarehouse(row)">
+                <a href="">
+                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                    <span>{{'Edit' | translate}}</span>
+                </a>
+            </li>
+            <li ng-click="grid.appScope.RemoveWarehouse(row)">
+                <a href="">
+                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                    <span>{{'Delete' | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

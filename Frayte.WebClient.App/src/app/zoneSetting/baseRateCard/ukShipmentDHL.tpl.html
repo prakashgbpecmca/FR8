@@ -1,0 +1,244 @@
+﻿<div ng-if="!IsChanged && finalArrayList.length">
+    <div class="panel-body paddingboth fontsize12 padding0 padding-bottom-none" id="auto-scrolling">
+        <div class="headertable">
+            <ul class="list-unstyled">
+                <li>
+                    <div class="width208 text-right">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                    <!--12 table column header start-->
+                    <div ng-class="{'baseratcard-overflow':Zones}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                        <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }">
+                            <div ng-repeat="Zone in Zones">
+                                <!--12 table header start-->
+                                <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center">{{Zone.ZoneDisplayName}}</div>
+                                <!--Change Css For ThirdParty-->
+                                <div ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center">{{Zone.ZoneDisplayName}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="panel-body fontsize12" style="padding: 0px !important;">
+        <div class="panel-body" style="border: 1px solid #ddd; padding: 0px !important;">
+            <div>
+                <!--Doc Type BaseRate Card-->
+                <div ng-repeat="BaseRate in finalArrayListDoc | orderBy:BaseRate.Weight">
+                    <div ng-if="showRateExportImport">
+                        <div ng-if="BaseRate.IsRowShow">
+                            <div class="width208  lineheight48 margin18x0x18">
+                                <span style="padding-left:10px;">{{BaseRate.DocType}}</span>
+                                <span style="float:right; left:-4%;position:relative;">
+                                    <span ng-if="BaseRate.WeightTo === 999">Over</span> {{BaseRate.WeightFrom}}
+                                    <span ng-if="BaseRate.WeightTo !== 999">- {{BaseRate.WeightTo}}</span>
+                                </span>
+                            </div>
+                            <!--repeat overflow code start-->
+                            <div ng-class="{'baseratcard-overflow':BaseRate.Rows }" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="BaseRate.Rows.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.Rows.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRate.Rows | orderBy : Rate.zone.ZoneId">
+                                        <!--12 table button code-->
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow}" ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rows.length + '%' }" style="float:left;">
+                                            <button class="pointer text-center btn btn-sm btn-default height84 " ng-click="SetCourierAccountAndCurrency(Rate)" style="width: 100%;" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                                <div>
+                                                    <span ng-hide="Rate.Rate===0">{{Rate.Rate}}<br />{{Rate.CurrencyCode}}</span>
+                                                    <span ng-show="Rate.Rate===0">N/A</span>
+                                                </div>
+                                                <div>
+                                                    <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                        <div class="baseratecard-border"></div>
+                                                        <span>{{Rate.BusinessRate}}<br />{{Rate.BusinessCurrency}}</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                        <!--Change Css For ThirdParty-->
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow}" ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rows.length + '%' }" style="float:left;">
+                                            <button class="pointer text-center btn btn-sm btn-default fontsize12 height84 " ng-click="SetCourierAccountAndCurrency(Rate)" style="width: 100%;" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                                <div>
+                                                    <span ng-hide="Rate.Rate===0">{{Rate.Rate}}<br />{{Rate.CurrencyCode}}</span>
+                                                    <span ng-show="Rate.Rate===0">N/A</span>
+                                                </div>
+                                                <div>
+                                                    <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                        <div class="baseratecard-border"></div>
+                                                        <span>{{Rate.BusinessRate}}<br />{{Rate.BusinessCurrency}}</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+
+                <!--Nondoc Type BaseRate Card -->
+                <div ng-repeat="BaseRate in finalArrayListNonDoc | orderBy:BaseRate.Weight">
+                    <div ng-if="showRateExportImport">
+                        <div ng-if="BaseRate.IsRowShow">
+                            <div class="width208  lineheight48 margin18x0x18">
+                                <span style="padding-left:10px;">{{BaseRate.DocType}}</span>
+                                <span style="float:right; left:-4%;position:relative;"><span ng-if="BaseRate.WeightTo===999">Over</span> {{BaseRate.WeightFrom}} <span ng-if="BaseRate.WeightTo !==999">- {{BaseRate.WeightTo}}</span></span>
+                            </div>
+                            <div ng-class="{'baseratcard-overflow':BaseRate.Rows}" style="height:auto !important;overflow:hidden !important;" class="baseratcard-overflow">
+                                <div ng-style="BaseRate.Rows.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.Rows.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRate.Rows | orderBy : Rate.zone.ZoneId">
+                                        <!--12 table button code-->
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow}" ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rows.length + '%' }" style="float:left;">
+                                            <button class="pointer text-center btn btn-sm btn-default height84" style="width: 100%;" ng-click="SetCourierAccountAndCurrency(Rate)" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                                <div>
+                                                    <span ng-hide="Rate.Rate===0">{{Rate.Rate}}<br />{{Rate.CurrencyCode}}</span>
+                                                    <span ng-show="Rate.Rate===0">N/A</span>
+                                                </div>
+                                                <div>
+                                                    <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                        <div class="baseratecard-border"></div>
+                                                        <span>{{Rate.BusinessRate}}<br />{{Rate.BusinessCurrency}}</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow}" ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rows.length + '%' }" style="float:left;">
+                                            <button class="pointer text-center btn btn-sm btn-default fontsize12 height84 " ng-click="SetCourierAccountAndCurrency(Rate)" style="width: 100%;" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                                <div>
+                                                    <span ng-hide="Rate.Rate===0">{{Rate.Rate}}<br />{{Rate.CurrencyCode}}</span>
+                                                    <span ng-show="Rate.Rate===0">N/A</span>
+                                                </div>
+                                                <div>
+                                                    <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                        <div class="baseratecard-border"></div>
+                                                        <span>{{Rate.BusinessRate}}<br />{{Rate.BusinessCurrency}}</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doc&NonDoc Type BaseRate Card-->
+                <div ng-repeat="BaseRate in finalArrayListDocNonDoc | orderBy:BaseRate.Weight">
+                    <div ng-if="showRateExportImport">
+                        <div ng-if="BaseRate.IsRowShow">
+                            <div class="width208  marginTop20"><span style="padding-left:10px;">{{BaseRate.DocType}}</span>  <span style="float:right; left:-4%;position:relative;"><span ng-if="BaseRate.WeightTo===999">Over</span> {{BaseRate.WeightFrom}} <span ng-if="BaseRate.WeightTo !==999">- {{BaseRate.WeightTo}}</span></span></div>
+                            <div ng-class="{'baseratcard-overflow':BaseRate.Rows}" style="height:auto !important;overflow:hidden !important;" class="baseratcard-overflow">
+                                <div ng-style="BaseRate.Rows.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.Rows.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRate.Rows | orderBy : Rate.zone.ZoneId">
+                                        <!--12 table button code-->
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow}" ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rows.length + '%' }" style="float:left;">
+                                            <button class="pointer text-center btn btn-sm btn-default height84" style="width:100%;" ng-click="SetCourierAccountAndCurrency(Rate)" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                                <div>
+                                                    <span ng-hide="Rate.Rate===0">{{Rate.Rate}}<br />{{Rate.CurrencyCode}}</span>
+                                                    <span ng-show="Rate.Rate===0">N/A</span>
+
+                                                </div>
+                                                <div>
+                                                    <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                        <div class="baseratecard-border"></div>
+                                                        <span>{{Rate.BusinessRate}}<br />{{Rate.BusinessCurrency}}</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow}" ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rows.length + '%' }" style="float:left;">
+                                            <button class="pointer text-center btn btn-sm btn-default fontsize12 height84 " ng-click="SetCourierAccountAndCurrency(Rate)" style="width: 100%;" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                                <div>
+                                                    <span ng-hide="Rate.Rate===0">{{Rate.Rate}}<br />{{Rate.CurrencyCode}}</span>
+                                                    <span ng-show="Rate.Rate===0">N/A</span>
+                                                </div>
+                                                <div>
+                                                    <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                        <div class="baseratecard-border"></div>
+                                                        <span>{{Rate.BusinessRate}}<br />{{Rate.BusinessCurrency}}</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--HeavyWeight Type BaseRate Card-->
+                <div ng-repeat="BaseRate in finalArrayListHeavyWeight | orderBy:BaseRate.Weight">
+                    <div ng-if="showRateExportImport">
+                        <div ng-if="BaseRate.IsRowShow">
+                            <div class="width208  marginTop20">
+                                <span style="padding-left:10px;">{{BaseRate.DocType}}</span>
+                                <span style="float:right; left:-4%;position:relative;">
+                                    <span ng-if="BaseRate.WeightTo===999">{{'Over' | translate}}</span> {{BaseRate.WeightFrom}}
+                                    <span ng-if="BaseRate.WeightTo !==999">- {{BaseRate.WeightTo}}</span>
+                                </span>
+                            </div>
+                            <div ng-class="{'baseratcard-overflow':BaseRate.Rows}" style="height:auto !important;overflow:hidden !important;" class="baseratcard-overflow">
+                                <div ng-style="BaseRate.Rows.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.Rows.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRate.Rows | orderBy : Rate.zone.ZoneId">
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow}" ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rows.length + '%' }" style="float:left;">
+                                            <button class="pointer text-center btn btn-sm btn-default fontsize12 height84" style="width: 100%;" ng-click="SetCourierAccountAndCurrency(Rate)" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                                <div>
+                                                    <span ng-hide="Rate.Rate===0">{{Rate.Rate}}<br />{{Rate.CurrencyCode}}</span>
+                                                    <span ng-hide="Rate.Rate===0">/ Kg</span>
+                                                    <span ng-show="Rate.Rate===0">N/A</span>
+                                                </div>
+                                                <div>
+                                                    <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                        <div class="baseratecard-border"></div>
+                                                        <span>{{Rate.BusinessRate}}<br />{{Rate.BusinessCurrency}}</span>
+                                                        <span>/ Kg</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow}" ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rows.length + '%' }" style="float:left;">
+                                            <button class="pointer text-center btn btn-sm btn-default fontsize12 height84 " ng-click="SetCourierAccountAndCurrency(Rate)" style="width: 100%;" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                                <div>
+                                                    <span ng-hide="Rate.Rate===0">{{Rate.Rate}}<br />{{Rate.CurrencyCode}}</span>
+                                                    <span ng-hide="Rate.Rate===0">/ Kg</span>
+                                                    <span ng-show="Rate.Rate===0">N/A</span>
+                                                </div>
+                                                <div>
+                                                    <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                                        <div class="baseratecard-border"></div>
+                                                        <span>{{Rate.BusinessRate}}<br />{{Rate.BusinessCurrency}}</span>
+                                                        <span>/ Kg</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--12 table hide scoller code-->
+            <div class="col-sm-12 paddingboth bottom20">
+                <div class="width208">
+                    <span class="visibility">Hidden</span>
+                </div>
+                <div ng-class="{'baseratcard-overflow':Zones}" class="baseratcard-overflow" my-scroller>
+                    <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }" style="overflow:auto;">
+                        <div ng-repeat="Zone in Zones">
+                            <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center"><span class="visibility">{{Zone.ZoneDisplayName}}</span></div>
+                            <div ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center"><span class="visibility">{{Zone.ZoneDisplayName}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+        </div>
+    </div>
+</div>

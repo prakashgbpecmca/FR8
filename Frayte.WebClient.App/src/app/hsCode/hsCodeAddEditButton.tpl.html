@@ -1,0 +1,15 @@
+﻿<div class="ui-grid-cell-contents fontsize12" id="dropdown-scrollable-container padding-5">
+    <div class="btn-group action-fixed-grid-center" uib-dropdown dropdown-append-to-body>
+        &nbsp;<a id="btn-append-to-to-body" href="" uib-dropdown-toggle>
+            <div class="fix-center-action pointer"><span class="action-font-family">{{'Actions' | translate}}</span> <i class="fa fa-caret-down pointer" aria-hidden="true"></i>&nbsp;</div>
+        </a>
+        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+            <li>
+                <a href="" ng-click="grid.appScope.ShipmentDetail(row)">
+                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                    <span>{{'Detail' | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

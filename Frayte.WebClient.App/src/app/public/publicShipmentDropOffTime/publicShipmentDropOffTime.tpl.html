@@ -1,0 +1,118 @@
+﻿<div ng-if="isLogin" class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'DropOff' | translate}} {{'DateAndTime' | translate}}</h4>
+</div>
+<div class="content padding-15">
+    <div class="modal-body">
+        <div class="text-center padding-tb-15"><h4>{{'DropOff' | translate}} {{'DateAndTime' | translate}}</h4></div>
+        <form name="shipmentDropOffForm" ng-submit="UpdateDrofOffDetail(shipmentDropOffForm.$valid)" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperInfo.ContactName}}</div>
+                                <div>{{ShipperInfo.CompanyName}}</div>
+                                <div>{{ShipperAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ShipperInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverInfo.ContactName}}</div>
+                                <div>{{ReceiverInfo.CompanyName}}</div>
+                                <div>{{ReceiverAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ReceiverInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-sm-12" style="padding:0px;">
+                <div class="form-group col-sm-6" style="padding-left:0px;">
+                    <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                    <div>
+                        <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                    </div>
+                </div>
+                    <div class="col-sm-4 form-group" ng-class="{ 'has-error': shipmentDropOffForm.dropOffTime.$invalid &&
+                                                         (shipmentDropOffForm.dropOffTime.$dirty || submitted) }">
+                        <label class="control-label" for="dropOffTime">{{'DropOff' | translate}} {{'Date' | translate}}</label>
+                        <div>
+                            <p class="input-group">
+                                <input type="text" id="dropOffTime" name="dropOffTime" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy"
+                                       ng-model="shipmentDropOffTime.DropOffDate" is-open="status.opened"
+                                       ng-required="true" close-text="Close" ng-click="openCalender($event)" placeholder="{{'DatePlaceholder' | translate}}" required />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                        <span class="help-block has-error"
+                              ng-show="shipmentDropOffForm.dropOffTime.$error.required &&
+                                                (shipmentDropOffForm.dropOffTime.$dirty || submitted)">
+                            {{'DateValidError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="shipmentDropOffForm.dropOffTime.$invalid && !shipmentDropOffForm.dropOffTime.$error.required  &&
+                              (shipmentdropoffform.dropofftime.$dirty || submitted)">
+                            {{'Invalid' | translate}} {{'Date' | translate}}
+                        </span>
+                    </div>
+                    <div class="col-sm-2 row form-group" ng-class="{ 'has-error': (shipmentDropOffForm.selectTime.$invalid || shipmentDropOffForm.selectTime.$error.pattern) &&
+                                                     (shipmentDropOffForm.selectTime.$dirty || submitted) }">
+                        <label class="control-label" for="selectTime">{{'Time' | translate}} <b> {{'Hours24' | translate}}</b></label>
+
+                        <input type="text"
+                               class="form-control input-sm"
+                               placeholder="{{'TimePlaceholder' | translate}}"
+                               name="selectTime"
+                               ng-model="shipmentDropOffTime.DropOffTime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                        <span class="help-block has-error"
+                              ng-show="shipmentDropOffForm.selectTime.$invalid && !shipmentDropOffForm.selectTime.$error.pattern && (shipmentDropOffForm.selectTime.$dirty || submitted)">
+                            {{'TimeValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="shipmentDropOffForm.workingStartTime.$error.pattern &&
+                                                (shipmentDropOffForm.workingStartTime.$dirty || submitted)">
+                            {{'TimeNotValid' | translate}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                <div class="form-group">
+                    <div class="floatRight">
+                        <div class="padding-tb-15">
+                            <button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Confirm' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </form>
+        <div class="clearfix"></div>
+    </div>
+</div>
+

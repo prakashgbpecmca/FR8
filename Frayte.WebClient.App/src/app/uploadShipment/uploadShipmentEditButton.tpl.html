@@ -1,0 +1,28 @@
+﻿
+<div class="ui-grid-cell-contents fontsize12" id="upload-shipment">
+    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+        &nbsp;<a id="btn-append-to-to-body" href=""  uib-dropdown-toggle>
+            <label class="pointer"><i class="fa fa-caret-down pointer" aria-hidden="true" style="position:relative; top:4px; float:right;"></i> <span class="action-font-family">{{'Actions' | translate}}</span>&nbsp;</label>
+        </a>
+        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+            <li ng-show="grid.appScope.ServiceType == 'ECOMMERCE_WS'">
+                <a href="" ng-click="grid.appScope.ErrorShow(row)">
+                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                    <span>{{'View_Error' | translate}}</span>
+                </a>
+            </li>
+            <li ng-show="grid.appScope.ServiceType == 'ECOMMERCE_SS'">
+                <a href="" ng-click="grid.appScope.ErrorShowWithService(row)">
+                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                    <span>{{'View_Error' | translate}}</span>
+                </a>
+            </li>
+            <li ng-show="grid.appScope.ServiceType == 'ECOMMERCE_WS'">
+                <a href="" ng-click="grid.appScope.SaveUploadShipmentWithOutService(row)">
+                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                    <span>{{'UploadShipment' | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

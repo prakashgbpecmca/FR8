@@ -1,0 +1,13 @@
+﻿<div class="newModalDialog">
+    <div class="modal-header" style="height:50px;">
+        <button type="button" class="close" ng-click="$dismiss('reason')" style="margin-top:-10px;"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <div class="modal-title" style="font-size:16px;">{{'TermAndConditionDetail' | translate}}</div>
+    </div>
+    <div class="modal-body" style="font-size:12px;padding:15px;height: 400px;overflow: auto;" ng-bind-html="termAndConditions.Detail">        
+    </div>
+    <div class="modal-footer" style="font-size:16px;">
+        <div class="text-left">
+            <button type="button" ng-click="$dismiss('reason')" class="other-btn fontsize12" style="padding:0px 12px;height:40px;">{{'Ok' | translate}}</button> &nbsp;&nbsp;
+        </div>
+    </div>
+</div>

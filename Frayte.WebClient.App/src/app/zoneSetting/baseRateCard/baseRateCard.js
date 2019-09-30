@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.baseRateCard',['ui.router','ngApp.common','ui.grid']);

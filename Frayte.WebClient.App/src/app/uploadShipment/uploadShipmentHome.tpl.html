@@ -1,0 +1,46 @@
+﻿
+<section>
+    <div class="panel panel-body box-shadow-none">
+        <div ng-class="{'paddingTB60': CustomerDetail.IsWithoutService, 'paddingTB60': CustomerDetail.IsServiceSelected, 'paddingTB60': CustomerDetail.IsServiceSelected && CustomerDetail.IsWithoutService }" ng-if="ServiceType === 'Empty'">
+            <div id="largebutton" class="text-center">
+                <div class="form-group border" ng-class="{'center-width45-inline': FourIcon()}" ng-show="CustomerDetail.IsWithoutService === false && CustomerDetail.IsServiceSelected === false">
+                   <div class="paddingTB182">
+                     <h4 class="redColor">{{'NoService_SelectedFor_ThisCustomer' | translate}}</h4>
+                    </div>
+                 </div>
+                    <div class="form-group center-width33-inline" ng-class="{'center-width45-inline': FourIcon()}" ng-show="CustomerDetail.IsWithoutService === true">
+                        <div id="directbooking" class="directbooking">
+                            <a class="btn box-shadow-none" ng-click="SetServiceType('ECOMMERCE_WS'); WithOutServiceShipments()">
+                                <img ng-src="{{ImagePath + 'without-service.png'}}" class="img-responsive " />
+                                <h3 class="uppercase pointer text-center marginTop-zero frayte-blue bold">{{'WithOutService_' | translate}}<br /><br /></h3>
+                            </a>
+                            <span ng-click="SetServiceType('ECOMMERCE_WS'); WithOutServiceShipments()" class="directbooking-hover text-left">
+                                <span><strong>1-</strong> {{'TrackingWithOutService' | translate}}</span><br />
+                                <span><strong>2-</strong> {{'CourierWithoutService' | translate}}</span><br />
+                                <span><strong>3-</strong> {{'CourierWithoutService2' | translate}}</span><br />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group center-width33-inline" ng-class="{'center-width45-inline': FourIcon()}" ng-show="CustomerDetail.IsServiceSelected === true">
+                        <div id="tradelane" class="directbooking">
+                            <a class="btn box-shadow-none" ng-click="SetServiceType('ECOMMERCE_SS'); WithServiceShipments()">
+                                <span><img ng-src="{{ImagePath + 'with-service.png'}}" class="img-responsive " /></span>
+                                <h3 class="uppercase pointer text-center marginTop-zero frayte-blue bold">{{'Service_Selected' | translate}}<br /><br /></h3>
+                            </a>
+                            <span class="tradeLane-hover text-left" ng-click="SetServiceType('ECOMMERCE_SS'); WithServiceShipments()">
+                                <span><strong>1-</strong> {{'TrackingWithService' | translate}}</span><br />
+                                <span><strong>2-</strong> {{'CourierWithService' | translate}}</span><br />
+                                <span><strong>3-</strong> {{'CourierWithService2' | translate}}</span><br />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            <div class="clearfix"></div>
+        </div>
+        <br />
+    </div>
+</section>
+
+
+

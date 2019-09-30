@@ -1,0 +1,48 @@
+﻿
+<section>
+<div class="modal-content fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+    <!--header code-->
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Jobs_Operator_Hour' | translate}} </h4>
+    </div>
+    <!--end-->
+    <!--body code-->
+    <div class="modal-body padding0">
+        <div class="col-sm-12">
+            <div class="fontsize24 padding-tb-10 ">{{'Operators' | translate}} ({{OperatorsAvgJobs.length}})</div>
+            <div class="panel panel-default">
+                <div>
+                    <div class="col-sm-12 paddingboth border-bottom-ddd flex" style="background:#f5f5f5;">
+                        <div class="width986 flex">
+                        <div class="col-sm-6 bold bordered-right padding-5">{{'Operator' | translate}}</div>
+                        <div class="col-sm-6 bold padding-5">{{'Avg_Jobs_Completed_Per_Hour' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body padding0">
+                    <div class="col-sm-12 paddingboth jobs-overflow">
+                        <div ng-repeat="OpeartorJob in OperatorsAvgJobs">
+                            <div class="col-sm-6 bordered-right padding-5"><span>{{OpeartorJob.Name}}</span></div>
+                            <div class="col-sm-6 padding-5"><span>{{OpeartorJob.AvgJobs}}</span></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <div class="clearfix"></div>
+    <!--end-->
+    <!--footer code-->
+    <div class="modal-footer">
+        <div class="col-sm-12 paddingboth">
+            <div class="pull-left">
+                <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+</div>
+</section>

@@ -1,0 +1,260 @@
+﻿<div class="modal-body">
+    <section>
+        <div ng-if="eCommerceBookingDetail.ShipmentStatusId !== 19" class="form-group">
+            <h3 ng-show="RoleId=== 1 || RoleId === 6">{{'Manage_Manual_Tracking' | translate}}</h3>
+            <!--<div class="panel panel-default">
+                <div class="panel-heading">Tracking Update</div>
+                <div>
+                    <div class="border col-sm-12 padding10">
+                        <div class="col-sm-4"><i class="fa fa-plus-square-o fa-2x top3" aria-hidden="true"></i> <span class="fontsize18">Date/Time</span></div>
+                        <div class="col-sm-8"><span class="fontsize18"> Activity</span></div>
+                    </div>
+                        <div class="panel-body padding0">
+                            <div class="col-sm-12 paddingboth" style="height: 200px;overflow-y: scroll;">
+                            <div>
+                                <div class="col-sm-12 padding10" style="background:#f5f5f5 !important;">
+                                    <div class="col-sm-4"><i class="fa fa-plus-square-o fa-14 top2" aria-hidden="true" ng-click="isOpen = !isOpen"></i> 18-May-2017 -Thrusday</div>
+                                    <div class="col-sm-8"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-12 padding10" uib-collapse="isOpen">
+                                    <div class="col-sm-12 paddingboth" ng-repeat="tracking in trackingDetails">
+                                    <div class="col-sm-4">11:29</div>
+                                    <div class="col-sm-5">Track {{$index+1}}</div>
+                                        <div class="col-sm-3"><button type="button" class="btn-simple btn-primary" ng-if="tracking.eCommerceTrackingId ===0" ng-click="UpdateManualBooking(tracking)">Update Tracking</button></div>
+                                    <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="clearfix"></div>
+                            </div>
+                    </div>
+                </div>
+            </div>-->
+            <!--update manual tracking button code-->
+            <div class="panel panel-default">
+                <div class="col-sm-12" style="border-bottom: 1px solid #ddd;padding: 10px 10px;background: #c0c0c0;">
+                    <div class="col-sm-6 paddingboth top5 fontsize18">{{'Tracking_Update' | translate}}</div>
+                    <div class="col-sm-6" ng-show="RoleId=== 1 || RoleId === 6">
+                        <button ng-disabled="IsDisable" ng-class="{'disabled': IsDisable }" type="button" class="btn-simple btn-save pull-right" ng-click="SaveManualTracking()">
+                            <i class="fa fa-plus" aria-hidden="true">
+                            </i>
+                            {{'Add_Manual_Tracking' | translate}}
+                        </button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel-body padding0">
+                    <div class="form-inline padding-15" ng-if="trackingDetails.length && showEmail">
+                        <div class="col-sm-12">
+                            <input type="checkbox" class="top2" ng-model="SentEmailToReceiver" name="sentEmailToReceiver" placeholder="{{'Tracking_Description' | translate}} ({{'Required' | translate}})" />
+                            {{'Send_Email_To_Receiver' | translate}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="padding-15 ecommerce-overflow" ng-if="trackingDetails.length">                    
+                        <div  ng-repeat="tracking in trackingDetails">
+                            <div class="col-sm-12 form-group" ng-class="{ 'has-error': !tracking.TrackingDescription &&tracking.eCommerceTrackingId ===0 }">
+                                <div class="col-sm-4 paddingboth top5">{{'Track' | translate}} {{$index+1}}</div>
+                                <div class="col-sm-5">
+                                    <input type="text" ng-readonly="tracking.eCommerceTrackingId >0" name="description" placeholder="{{'Tracking_Description' | translate}} ({{'Required' | translate}})"
+                                           ng-model="tracking.TrackingDescription" ng-required="tracking.eCommerceTrackingId ===0" class="form-control" />
+
+                                    <span class="help-block has-error" ng-show="!tracking.TrackingDescription &&tracking.eCommerceTrackingId ===0">
+                                        {{'Tracking_Description_Is_Required' | translate}}
+                                    </span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="submit" class="btn-simple btn-primary" ng-click="UpdateManualBooking(tracking,SentEmailToReceiver)" ng-if="tracking.eCommerceTrackingId ===0">
+                                        {{'Update_Tracking' | translate}}
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div ng-if="trackingDetails.length===0" class="redColor fontsize18 paddingTB60 text-center">
+                        {{'Currently_No_Tracking_Available_Error' | translate}}
+                    </div>
+                </div>
+            </div>
+            <!--end code-->
+        </div>
+    </section>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>{{'COLLECTION_ADDRESS' | translate}}:</strong></div>
+                <div class="panel-body">
+                    <div style="padding:5px 0;">
+                        <div>{{eCommerceBookingDetail.ShipFrom.FirstName}} {{eCommerceBookingDetail.ShipFrom.LastName}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipFrom.CompanyName}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipFrom.Address}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipFrom.Address2}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipFrom.City}} <span ng-show="eCommerceBookingDetail.ShipFrom.Country.Code !== 'HKG'">-</span> {{eCommerceBookingDetail.ShipFrom.PostCode }}, {{eCommerceBookingDetail.ShipFrom.Area}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipFrom.Country.Name}} <br /></div>
+                    </div>
+                    <div style="padding:5px 0;color:#94a4bd;">
+                        <div>{{'Email'| translate}}: <span id="link" ng-show="eCommerceBookingDetail.ShipFrom.Email !=='' &&eCommerceBookingDetail.ShipFrom.Email !==null">{{eCommerceBookingDetail.ShipFrom.Email}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>{{'DELIVERY_ADDRESS' | translate}}:</strong></div>
+                <div class="panel-body">
+                    <div style="padding:5px 0;">
+                        <div>{{eCommerceBookingDetail.ShipTo.FirstName}} {{eCommerceBookingDetail.ShipTo.LastName}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipTo.CompanyName}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipTo.Address}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipTo.Address2}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipTo.City}} <span ng-show="eCommerceBookingDetail.ShipTo.Country.Code !== 'HKG'">-</span> {{eCommerceBookingDetail.ShipTo.PostCode}}, {{eCommerceBookingDetail.ShipTo.Area}}<br /></div>
+                        <div>{{eCommerceBookingDetail.ShipTo.Country.Name}}<br /></div>
+                    </div>
+                    <div style="padding:5px 0;color:#94a4bd;">
+                        <div>{{'Email'| translate}}: <span id="link" ng-show="eCommerceBookingDetail.ShipTo.Email !=='' && eCommerceBookingDetail.ShipTo.Email !==null">{{eCommerceBookingDetail.ShipTo.Email}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!--shipment reference details-->
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>{{'confirmShp_ShipmentDetail' | translate}}</strong></div>
+                <div class="panel-body">
+                    <div>
+                        <div class="col-sm-12 paddingboth" style="padding: 7px 0px 5px;">
+                            <div class="col-sm-5 paddingboth"><b>{{'Frayte_ShipmentNo' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">
+                                <span ng-show="eCommerceBookingDetail.Packages[0].TrackingNo !== null && eCommerceBookingDetail.Packages[0].TrackingNo !==''">
+                                    <span ng-show="BookingApp !== eCommerceShipemntType.eCommerceWS">
+                                        <a target="_blank" ui-sref="home.tracking-hub({carrierType:TrackingType,trackingId:eCommerceBookingDetail.Packages[0].TrackingNo})" class="color-333">{{eCommerceBookingDetail.Packages[0].TrackingNo}}</a>
+                                    </span>
+                                    <span ng-show="BookingApp === eCommerceShipemntType.eCommerceWS">
+                                        {{eCommerceBookingDetail.Packages[0].TrackingNo}}
+                                    </span>
+                                </span> - {{eCommerceBookingDetail.FrayteNumber}}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 paddingboth" style="padding: 7px 0px 5px;">
+                            <div class="col-sm-5 paddingboth"><b>{{'Parcel_Type' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.ParcelType.ParcelType}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12 paddingboth" style="padding: 7px 0px 5px;">
+                            <div class="col-sm-5 paddingboth"><b>{{'Declared_Currency' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.Currency.CurrencyCode}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12 paddingboth" style="padding: 7px 0px 5px;">
+                            <div class="col-sm-5 paddingboth"><b>{{'PaymentParty_TaxandDuties' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.PayTaxAndDuties}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12 paddingboth" style="padding: 7px 0px 5px;" ng-show="eCommerceBookingDetail.PayTaxAndDuties === 'Shipper'">
+                            <div class="col-sm-5 paddingboth" style="font-weight:bold;"><b>{{'DDP_Charges_Accepted_By' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.TaxAndDutiesAcceptedBy}}</div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <section ng-show="eCommerceBookingDetail.CustomInfo !== null && eCommerceBookingDetail.CustomInfo.ContentsType !== null && eCommerceBookingDetail.CustomInfo.ContentsType !==''">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>{{'Custom_Declaration' | translate}}</strong></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div>
+                                    <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                                        <div class="col-sm-5 paddingboth"><b>{{"Content_Type" | translate}}:</b></div>
+                                        <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.CustomInfo.ContentsType}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                                        <div class="col-sm-5 paddingboth"><b>{{'Restriction_Type' | translate}}:</b></div>
+                                        <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.CustomInfo.RestrictionType}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                                        <div class="col-sm-5 paddingboth"><b>{{'Content_Explanation' | translate}}:</b></div>
+                                        <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.CustomInfo.ContentsExplanation}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                                        <div class="col-sm-5 paddingboth"><b>{{'Restriction_Explanation' | translate}}:</b></div>
+                                        <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.CustomInfo.RestrictionComments}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                                        <div class="col-sm-5 paddingboth"><b>{{'nonDeliveryOption' | translate}}:</b></div>
+                                        <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.CustomInfo.NonDeliveryOption}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                                        <div class="col-sm-5 paddingboth"><b>{{'customsSigner' | translate}} :</b></div>
+                                        <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.CustomInfo.CustomsSigner}}</div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>{{'Shipment_RefDetail' | translate}}</strong></div>
+                <div class="panel-body">
+                    <div>
+                        <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                            <div class="col-sm-5 paddingboth"><b>{{'Shipment_Reference' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.ReferenceDetail.Reference1}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                            <div class="col-sm-5 paddingboth"><b>{{'Content_Description' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.ReferenceDetail.ContentDescription}}</div>
+                        </div>
+                        <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                            <div class="col-sm-5 paddingboth"><b>{{'CreatedOn' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">{{GetCorrectFormattedDatePanel(eCommerceBookingDetail.CreatedOn)}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="col-sm-12" style="padding: 7px 0px 5px;">
+                            <div class="col-sm-5 paddingboth"><b>{{'CreatedBy' | translate}}:</b></div>
+                            <div class="col-sm-7 paddingboth">{{eCommerceBookingDetail.CreatedBy}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <section>
+        <div ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19 && BookingApp !== eCommerceShipemntType.eCommerceWS" class="col-sm-12">
+            <p class="text-center underline uppercase" style="color:green;">
+                <b ng-show="eCommerceBookingDetail.OpearionZoneId === 2">{{'Please_GOTO' | translate}} <a target="_blank" ui-sref="home.tracking-hub({carrierType:TrackingType,trackingId:eCommerceBookingDetail.Packages[0].TrackingNo})"> {{'Frayte_co_uk' | translate}}</a> {{'TrackingPageToTtrackthe_Detail' | translate}}</b>
+                <b ng-show="eCommerceBookingDetail.OpearionZoneId === 1">{{'Please_GOTO' | translate}} <a target="_blank" ui-sref="home.tracking-hub({carrierType:TrackingType,trackingId:eCommerceBookingDetail.Packages[0].TrackingNo})"> {{'Frayte_com' | translate}}</a> {{'TrackingPageToTtrackthe_Detail' | translate}}</b>
+            </p>
+        </div>
+    </section>
+    <div ng-if="BookingApp === eCommerceShipemntType.eCommerceWS" ng-include="'eCommerceBooking/eCommerceBookingDetail/eCommerceBookingDetailWS.tpl.html'"></div>
+    <div ng-if="BookingApp === eCommerceShipemntType.eCommerceONL || BookingApp ===eCommerceShipemntType.eCommerceSS" ng-include="'eCommerceBooking/eCommerceBookingDetail/eCommerceBookingDetailONL.tpl.html'"></div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,50 @@
+﻿
+
+<section>
+    <div class="panel panel-body box-shadow-none">
+        <div class="paddingTB60">
+            <div id="largebutton" class="text-center">
+                <div class="form-group center-width45-inline">
+                    <div id="directbooking" class="directbooking">
+                        <a class="btn box-shadow-none col-sm-12 paddingboth " ng-click="UnallocatedShipmentChange()">
+                            <div  class="form-group"><img ng-src="{{ImagePath + 'unallocated.png'}}" class="img-responsive margin-auto-fix" /></div>
+                            <h3 class="uppercase pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'Unallocated_Shipments' | translate}}<br /><span>({{UnallocatedShipmentCount}})</span></h3>
+                        </a>
+                        <!--<span class="directbooking-hover flex"><span class="margin-auto-fix">{{'Displays_Overview_AllJobs_MissingHSCodes' | translate}}</span></span>-->
+                    </div>
+                </div>
+                <div class="form-group center-width45-inline">
+                    <div id="tradelane" class="directbooking">
+                        <a class="btn box-shadow-none col-sm-12 paddingboth" ng-click="PreAlertStateChange()">
+                            <div class="form-group"><img ng-src="{{ImagePath + 'prealert.png'}}" class="img-responsive margin-auto-fix" /></div>
+                            <h3 class="uppercase pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'Ready_Prealert_Mail' | translate}}<br /><span>({{PreAlertCount}})</span></h3>
+                        </a>
+                        <!--<span class="tradeLane-hover flex"><span class="margin-auto-fix">{{'Overview_List_All_HSCodeOperators' | translate}}</span></span>-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
+
+
+<!--<div>
+<div class="col-lg-6">
+    <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="UnallocatedShipmentChange()"><i class="glyphicon"></i> {{'Unallocated_Shipments' | translate}}</button>    
+        </span>
+        {{UnallocatedShipmentCount}}
+    </div>
+</div>
+<div class="col-lg-6">
+    <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="PreAlertStateChange()"><i class="glyphicon"></i> {{'Pre_Alert_Count' | translate}}</button>
+        </span>
+        {{PreAlertCount}}
+    </div>
+</div>
+</div>-->

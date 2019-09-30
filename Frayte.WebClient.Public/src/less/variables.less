@@ -1,0 +1,286 @@
+/**
+ * These are the variables used throughout the application. This is where 
+ * overwrites that are not specific to components should be maintained.
+ */
+
+/**
+ * Typography-related.
+ */
+
+@sansFontFamily: 'Roboto', sans-serif;
+//less code start here
+@body-background: #eaf0f5;
+@ellipsis: ellipse;
+@auto: auto;
+@zero: 0px;
+@full-width-height: 100%;
+@absolute: absolute;
+@relative: relative;
+@fixed: fixed;
+@frayte-blue: #0B3D5A;
+@frayte-orange: #EB8633;
+@font-family-roboto: roboto-medium;
+@font-family-roboto-bold: Roboto-Bold;
+@font-family-roboto-regular: Roboto-Regular;
+@font-family-title-bar: 'Roboto-Bold', sans-serif;
+@font-family-splash-message: "Segoe UI", Arial, Helvetica, sans-serif;
+@uppercase: uppercase;
+@lowercase: lowercase;
+@capitalize: capitalize;
+@block: block;
+@none: none;
+@inline: inline;
+@visibility-hidden: hidden;
+@white: #fff;
+@center: center;
+@left: left;
+@right: right;
+@default: default;
+@transparent: transparent;
+@solid: solid;
+@dashed: dashed;
+@pointer: pointer;
+@no-drop: no-drop;
+@underline: underline;
+@bold: bold;
+@flex: flex;
+@hidden: hidden;
+@bolder: bolder;
+@cover: cover;
+@no-repeat: no-repeat;
+@top: top;
+@bottom: bottom;
+@sub: sub;
+@inherit: inherit;
+@middle: middle;
+@color-343434: #343434;
+@color-0B3D5A: #0B3D5A;
+@color-777: #777;
+@color-eb8633: #eb8633;
+@color-f0f0f0: #f0f0f0;
+@color-bef1b4: #bef1b4;
+@color-d6e1eb: #d6e1eb;
+@color-66afe9: #66afe9;
+@color-666: #666;
+@color-DCE5EC: #DCE5EC;
+@color-f59000: #f59000;
+@color-d7d7d7: #d7d7d7;
+@color-darkgrey: darkgrey;
+@color-000: #000;
+@color-e9863e: #e9863e;
+@color-e5e5e5: #e5e5e5;
+@color-e68545: #e68545;
+@color-94a4bd: #94a4bd;
+@color-e0e0e0: #e0e0e0;
+@color-607894: #607894;
+@color-EC8A39: #EC8A39;
+@color-f9fafb: #f9fafb;
+@color-dbe2ec: #dbe2ec;
+@color-f7f7f7: #f7f7f7;
+@color-8E939B: #8E939B;
+@color-eee: #eee;
+@color-ddd: #ddd;
+@color-c0c0c0: #c0c0c0;
+@color-4d5663: #4d5663;
+@color-ecedf1: #ecedf1;
+@color-222222: #222222;
+@color-f5f5f5: #f5f5f5;
+@color-333: #333;
+@color-ccc: #cccccc;
+@color-023C5B: #023C5B;
+@color-aliceblue: aliceblue;
+@color-whitesmoke: whitesmoke;
+@color-gray: gray;
+@color-yellow: yellow;
+@trackingnew-caps-color: rgb(235, 134, 51);
+@color-df-tab-menu-dropdown: rgba(0, 0, 0, 0.15);
+@color-transparent-bg-secondary: rgba(255, 255, 255, 1);
+@spinner-color: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+@page-splash-color: linear-gradient( rgba(0,0,0,.8), rgba(0,0,0,.8));
+@footer-background: rgb(220, 229, 236);
+@logo-width: 214px;
+@wrapper-color: #4d5663;
+@letter-spacing-0-5: 0.5px;
+@one: 1px;
+@two: 2px;
+@three: 3px;
+@four: 4px;
+@five: 5px;
+@six: 6px;
+@seven: 7px;
+@eight: 8px;
+@ten: 10px;
+@eleven: 11px;
+@twelve: 12px;
+@fifteen: 15px;
+@copy-text: #999999;
+@inline-block: inline-block;
+@call-footer-font-family: 'PT Sans Narrow', sans-serif;
+@table-row: table-row;
+@nowrap: nowrap;
+@normal: normal;
+@both: both;
+@border-box: border-box;
+@padding-box: padding-box;
+@break-word: break-word;
+@webkit-baseline-middle: -webkit-baseline-middle;
+
+.box-shadow(@box-shadow: 0px) {
+    -webkit-box-shadow: @box-shadow;
+    -moz-box-shadow: @box-shadow;
+    box-shadow: @box-shadow;
+}
+
+.border-radius(@border-radius: 0px) {
+    -webkit-border-radius: @border-radius;
+    -moz-border-radius: @border-radius;
+    -khtml-border-radius: @border-radius;
+    border-radius: @border-radius;
+}
+
+.user-select(@user-select: 0) {
+    -webkit-user-select: @user-select;
+    -moz-user-select: @user-select;
+    -ms-user-select: @user-select;
+    user-select: @user-select;
+}
+
+.touch-action(@touch-action: 0) {
+    -ms-touch-action: @touch-action;
+    touch-action: @touch-action;
+}
+
+.transition(@transition: 0px) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+.animation(@animation: 0px) {
+    -webkit-animation: @animation;
+    -moz-animation: @animation;
+    -o-animation: @animation;
+    animation: @animation;
+}
+
+.backface-visibility(@backface-visibility: 0px) {
+    -webkit-backface-visibility: @backface-visibility;
+    -moz-backface-visibility: @backface-visibility;
+    -o-backface-visibility: @backface-visibility;
+    -ms-backface-visibility: @backface-visibility;
+    backface-visibility: @backface-visibility;
+}
+
+.padding(@padding: 0px) {
+    padding: @padding;
+}
+
+.fontsize(@fontsize: 0px) {
+    font-size: @fontsize;
+}
+
+.margin(@margin: 0px) {
+    margin: @margin;
+}
+
+.margin-left(@margin-left: 0px) {
+    margin-left: @margin-left;
+}
+
+.width(@width: 0px) {
+    width: @width;
+}
+
+.height(@height: 0px) {
+    height: @height;
+}
+
+.font-weight(@font-weight: 0) {
+    font-weight: @font-weight;
+}
+
+.opacity(@opacity: 0) {
+    opacity: @opacity;
+}
+
+.z-index(@z-index: 0) {
+    z-index: @z-index;
+}
+
+.line-height(@line-height: 0px) {
+    line-height: @line-height;
+}
+
+.top(@top: 0px) {
+    top: @top;
+}
+
+.bottom(@bottom: 0px) {
+    bottom: @bottom;
+}
+
+.left(@left: 0px) {
+    left: @left;
+}
+
+.right(@right: 0px) {
+    right: @right;
+}
+
+.min-width(@min-width: 0px) {
+    min-width: @min-width;
+}
+
+.max-width(@max-width: 0px) {
+    max-width: @max-width;
+}
+
+.min-height(@min-height: 0px) {
+    min-height: @min-height;
+}
+
+.max-height(@max-height: 0px) {
+    max-height: @max-height;
+}
+
+.margin-top(@margin-top: 0px) {
+    margin-top: @margin-top;
+}
+
+.margin-bottom(@margin-bottom: 0px) {
+    margin-bottom: @margin-bottom;
+}
+
+.margin-left(@margin-left: 0px) {
+    margin-left: @margin-left;
+}
+
+.padding-top(@padding-top: 0px) {
+    padding-top: @padding-top;
+}
+
+.padding-bottom(@padding-bottom: 0px) {
+    padding-bottom: @padding-bottom;
+}
+
+.background-size(@background-size: 0px) {
+    background-size: @background-size;
+}
+
+.text-indent(@text-indent: 0px) {
+    text-indent: @text-indent;
+}
+
+.display-flex(@display: flex) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.display-inline-flex(@display:inline-flex){
+display:-webkit-inline-box;
+display:-ms-inline-flexbox;
+display:inline-flex;
+}
+
+//end code

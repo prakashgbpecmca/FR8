@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.breakBulk', ['ui.router', 'ngApp.common', 'ui.grid', 'ui.bootstrap']);

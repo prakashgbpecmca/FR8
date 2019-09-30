@@ -1,0 +1,351 @@
+﻿
+
+<section>
+    <div id="UploadShipment">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+                <h4 class="modal-title">{{'Bulk_Upload_Guideline' | translate}}</h4>
+            </div>
+            <div class="modal-body padding0 padding-bottom-none">
+                <div class="panel-body" uib-collapse="isCollapsed1" ng-init="isCollapsed1 = false">
+                    <!--country instruction-->
+                    <section>
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div>
+                                        <div class="pointer">
+                                            <i ng-class="{'fa fa-minus-square-o' : !isCollapsed2, 'fa fa-plus-square-o' : isCollapsed2}" ng-click="isCollapsed2 = !isCollapsed2" style="font-size: 20px; padding: 1px 10px 0px 0px;float:left;"></i>
+                                        </div>
+                                        <span>{{'Country_Instructions' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body uploadshipment-scroll-height" uib-collapse="isCollapsed2" ng-init="isCollapsed2 = true">
+                                    <div class="col-sm-12">
+                                        <p>{{'Country_Instructions_Message1' | translate}}</p>
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-2 paddingboth bold">{{'examples' | translate}}</div>
+                                            <div class="col-sm-10"></div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-sm-11 col-sm-offset-1">
+                                                <ul class="list-unstyled margin-bottom-none">
+                                                    <li><p>1. {{'CountryName_Uk_Or_India' | translate}}</p></li>
+                                                    <li><p>2. {{'CountryName_GBR_Or_India' | translate}}</p></li>
+                                                    <li><p>3. {{'CountryName_GB_Or_India' | translate}}</p></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-12 paddingboth">
+                                            <div class="col-sm-8 paddingboth top7">{{'Following_CountryName_Code_Code2' | translate}}</div>
+                                            <div class="col-sm-4 paddingboth right-inner-addon">
+                                                <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding:10px 13px;"></i>
+                                                <input type="text" ng-model="search" class="form-control" placeholder="{{'Search' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <ul class="list-unstyled margin-bottom-none">
+                                        <li>
+                                            <div class="col-sm-12 paddingboth">
+                                                <div>
+                                                    <div class="width100">
+                                                        <div class="width48" style="background:#c0c0c0;margin:0px 10px;">
+                                                            <div class="col-sm-12" style="padding: 8px 6px;">
+                                                                <div class="col-sm-8 paddingboth">{{'CountryName' | translate}}</div>
+                                                                <div class="col-sm-2 paddingboth">{{'Code' | translate}}</div>
+                                                                <div class="col-sm-2 paddingboth">{{'Code2' | translate}}</div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="width48" style="background:#c0c0c0;margin:0px 10px;">
+                                                            <div class="col-sm-12" style="padding: 8px 6px;">
+                                                                <div class="col-sm-8 paddingboth">{{'CountryName' | translate}}</div>
+                                                                <div class="col-sm-2 paddingboth">{{'Code' | translate}}</div>
+                                                                <div class="col-sm-2 paddingboth">{{'Code2' | translate}}</div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="width100">
+                                                        <div class="col-sm-12 paddingboth">
+                                                            <div class="width48 padding-5 border-LRB" style="margin:0px 10px;" ng-repeat="res in CountriesRepo | filter: search">
+                                                                <div class="col-sm-12 paddingboth">
+                                                                    <span class="col-md-8 paddingboth word-wrap">{{res.Name}}</span>
+                                                                    <span class="col-md-2 paddingboth word-wrap">{{res.Code}}</span>
+                                                                    <span class="col-md-2 paddingboth word-wrap">{{res.Code2}}</span>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--end-->
+                    <!--package calculation type instructions -->
+                    <section>
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div>
+                                        <div class="pointer">
+                                            <i ng-class="{'fa fa-minus-square-o' : !isCollapsed3, 'fa fa-plus-square-o' : isCollapsed3}" ng-click="isCollapsed3 = !isCollapsed3" style="font-size: 20px; padding: 1px 10px 0px 0px;float:left;"></i>
+                                        </div>
+                                        <span>{{'PackageCalculationType_Instructions' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body" uib-collapse="isCollapsed3" ng-init="isCollapsed3 = true">
+                                    <div class="col-sm-12">
+                                        <p>{{'PackageCalculationType_Instructions_Message' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--end-->
+                    <!--parcel type instructions-->
+                    <section>
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div>
+                                        <div class="pointer">
+                                            <i ng-class="{'fa fa-minus-square-o' : !isCollapsed4, 'fa fa-plus-square-o' : isCollapsed4}" ng-click="isCollapsed4 = !isCollapsed4" style="font-size: 20px; padding: 1px 10px 0px 0px;float:left;"></i>
+                                        </div>
+                                        <span>{{'ParcelType_Instructions' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body " uib-collapse="isCollapsed4" ng-init="isCollapsed4 = true">
+                                    <div class="col-sm-12">
+                                        <p>{{'ParcelType_Instructions_Message' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--end-->
+                    <!--service code instruction in directbooking-->
+                    <section>
+                        <div ng-show="ModuleType ==='DirectBooking'" class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div>
+                                        <div class="pointer">
+                                            <i ng-class="{'fa fa-minus-square-o' : !isCollapsed5, 'fa fa-plus-square-o' : isCollapsed5}" ng-click="isCollapsed5 = !isCollapsed5" style="font-size: 20px; padding: 1px 10px 0px 0px;float:left;"></i>
+                                        </div>
+                                        <span>{{'ServiceCode_Instructions' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body uploadshipment-scroll-height" uib-collapse="isCollapsed5" ng-init="isCollapsed5 = true">
+                                    <div class="col-sm-12 form-group">
+                                        <p>{{'Customer_Fill_Service_Code_According_Shipment_Origin' | translate}}</p>
+                                        <p><b>{{'Example' | translate}}</b> {{'For_Uk_To_Uk_Shipment_Fill_Represent_Ukmail' | translate}}</p>
+                                        <p>{{'Following_Service_Code' | translate}}</p>
+                                    </div>
+                                    <ul class="list-unstyled margin-bottom-none">
+                                        <li>
+                                            <div class="col-sm-12 paddingboth">
+                                                <div class="width100">
+                                                    <div class="col-sm-12 paddingboth" style="background:#c0c0c0;margin:0px 10px;">
+                                                        <div class="col-sm-12" style="padding: 8px 6px;">
+                                                            <div class="col-sm-2 paddingboth">{{'Logistic_Company' | translate}}</div>
+                                                            <div class="col-sm-6 paddingboth">{{'Service_Name' | translate}}</div>
+                                                            <div class="col-sm-2 paddingboth">{{'Service_Code' | translate}}</div>
+                                                            <div class="col-sm-2 paddingboth">{{'Weight_Limit' | translate}} ({{'kGS' | translate}})</div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="width100">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-12 paddingboth border-LRB" style="margin:0px 10px;padding:5px 6px;" ng-repeat="res in ServcieCodeDetail">
+                                                            <div class="col-sm-12 paddingboth">
+                                                                <span class="col-md-2 paddingboth word-wrap">{{res.LogisticCompany}}</span>
+                                                                <span class="col-md-6 paddingboth word-wrap">{{res.LogisticDescription}}</span>
+                                                                <span class="col-md-2 paddingboth word-wrap">{{res.ServiceCode}}</span>
+                                                                <span class="col-md-2 paddingboth word-wrap">( {{res.WeightFrom}}  To  {{res.WeightTo}} )</span>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--end-->
+                    <!--currency instructions-->
+                    <section>
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div>
+                                        <div class="pointer">
+                                            <i ng-class="{'fa fa-minus-square-o' : !isCollapsed6, 'fa fa-plus-square-o' : isCollapsed6}" ng-click="isCollapsed6 = !isCollapsed6" style="font-size: 20px; padding: 1px 10px 0px 0px;float:left;"></i>
+                                        </div>
+                                        <span>{{'CurrencyCode_Instructions' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body uploadshipment-scroll-height" uib-collapse="isCollapsed6" ng-init="isCollapsed6 = true">
+                                    <div class="col-sm-12 form-group">
+                                        <p>{{'Customer_Fill_Currency_Code' | translate}}</p>
+                                        <p><b>{{'Example' | translate}}</b> {{'For_UK_Currency_Code_GBP' | translate}}</p>
+                                        <p>{{'Following_Currency_Code_With_Country' | translate}}</p>
+                                    </div>
+                                    <ul class="list-unstyled margin-bottom-none">
+                                        <li>
+                                            <div class="col-sm-12 paddingboth">
+                                                <div class="width100">
+                                                    <div class="width48" style="background:#c0c0c0;margin:0px 10px;">
+                                                        <div class="col-sm-12" style="padding: 8px 6px;">
+                                                            <div class="col-sm-8 paddingboth">
+                                                                {{'UK_Currency' | translate}}
+                                                            </div>
+                                                            <div class="col-sm-4 paddingboth">
+                                                                {{'Code' | translate}}
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="width48" style="background:#c0c0c0;margin:0px 10px;">
+                                                        <div class="col-sm-12" style="padding: 8px 6px;">
+                                                            <div class="col-sm-8 paddingboth">
+                                                                {{'UK_Currency' | translate}}
+                                                            </div>
+                                                            <div class="col-sm-4 paddingboth">
+                                                                {{'Code' | translate}}
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="width100">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="width48 border-LRB" style="margin:0px 10px;padding:5px 6px;" ng-repeat="res in CurrencyTypes">
+                                                            <div class="col-sm-12 paddingboth">
+                                                                <span class="col-md-8 paddingboth word-wrap">{{res.CurrencyDescription}}</span>
+                                                                <span class="col-md-4 paddingboth word-wrap">{{res.CurrencyCode}}</span>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--end-->
+                    <!--fill excel instruction in ecommerce-->
+                    <section>
+                        <div ng-show="ModuleType ==='Ecommerce'" class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div>
+                                        <div class="pointer">
+                                            <i ng-class="{'fa fa-minus-square-o' : !isCollapsed7, 'fa fa-plus-square-o' : isCollapsed7}" ng-click="isCollapsed7 = !isCollapsed7" style="font-size: 20px; padding: 1px 10px 0px 0px;float:left;"></i>
+                                        </div>
+                                        <span>{{'Fill_Excel_Instructions' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body uploadshipment-scroll-height" uib-collapse="isCollapsed7">
+                                    <p class="col-sm-12 form-group">{{'Fill_Excel_Instructions_Message' | translate}}</p>
+                                    <ul class="list-unstyled margin-bottom-none">
+                                        <li>
+                                            <div class="col-sm-12 paddingboth">
+                                                <div class="width100">
+                                                    <div class="width48" style="background:#c0c0c0;margin:0px 10px;">
+                                                        <div class="col-sm-12" style="padding: 8px 6px;">{{'Fill_Excel_Name' | translate}}</div>
+                                                    </div>
+                                                    <div class="width48" style="background:#c0c0c0;margin:0px 10px;">
+                                                        <div class="col-sm-12" style="padding: 8px 6px;">{{'Fill_Excel_Name' | translate}}</div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="width100">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="width48 padding-5 border-LRB" style="margin:0px 10px;" ng-repeat="GuideLineFill in GuideLineFillExcel">{{GuideLineFill.name}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--end-->
+                    <!--fill excel instruction in directbooking-->
+                    <section>
+                        <div ng-show="ModuleType ==='DirectBooking'" class="col-sm-12">
+                            <div class="panel panel-default margin-bottom-none">
+                                <div class="panel-heading">
+                                    <div>
+                                        <div class="pointer">
+                                            <i ng-class="{'fa fa-minus-square-o' : !isCollapsed7, 'fa fa-plus-square-o' : isCollapsed7}" ng-click="isCollapsed7 = !isCollapsed7" style="font-size: 20px; padding: 1px 10px 0px 0px;float:left;"></i>
+                                        </div>
+                                        <span>{{'Fill_Excel_Instructions' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body uploadshipment-scroll-height" uib-collapse="isCollapsed7">
+                                    <p class="col-sm-12 form-group">{{'Fill_Excel_Instructions_Message' | translate}}</p>
+                                    <p class="col-sm-12 form-group">{{'See_Below_Table' | translate}}</p>
+                                    <ul class="list-unstyled margin-bottom-none">
+                                        <li>
+                                            <div class="col-sm-12 paddingboth">
+                                                <div class="width100">
+                                                    <div class="width48" style="background:#c0c0c0;margin:0px 10px;">
+                                                        <div class="col-sm-12" style="padding: 8px 6px;">{{'Fill_Excel_Name' | translate}}</div>
+                                                    </div>
+                                                    <div class="width48" style="background:#c0c0c0;margin:0px 10px;">
+                                                        <div class="col-sm-12" style="padding: 8px 6px;">{{'Fill_Excel_Name' | translate}}</div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="width100">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="width48 padding-5 border-LRB" style="margin:0px 10px;" ng-repeat="GuideLineFill in GuideLineFillExcel">{{GuideLineFill.name}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--end-->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div class="col-sm-12">
+                    <button type="button" class="btn-simple btn-cancel pull-left" ng-click="$dismiss('cancel')"><i class="fa fa-close" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                    <button type="button" class="btn-simple btn-save pull-right" ng-click="$dismiss('cancel')"><i class="fa fa-check" aria-hidden="true"></i> {{'OK' | translate}}</button>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

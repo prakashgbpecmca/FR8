@@ -1,0 +1,141 @@
+﻿<section class="P-LR">
+    <section>
+    <div class="panel panel-default" ng-show="documents.length">
+        <div class="panel-heading">{{'Essential_Documents' | translate}}</div>
+        <div class="panel-body padding-bottom-none">
+            <div ng-repeat="document in documents | orderBy : 'OrderNumber'">
+                <div ng-show="document.DocumentType !=='OtherDocument'">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="height: 50px">
+                            <!--upper code here-->
+                            <div class="col-sm-12 paddingboth">
+                                <div class="col-sm-9 paddingboth word-wrap top5">
+                                    <span ng-show="((document.Documents.length > 1 || document.DocumentType === 'HAWB' ) &&  document.DocumentType !== 'Manifest' && document.DocumentType !== 'ShipmentDetail' && document.DocumentType !== 'CoLoadForm')" class="pull-left">
+                                        <span class="pointer" ng-click="document.open=!document.open">
+                                            <i ng-class="{'fa fa-plus-square-o' : !document.open, 'fa fa-minus-square-o' : document.open}" class="fa-14" aria-hidden="true">
+                                            </i>
+                                        </span>
+                                    </span> &nbsp; {{document.DocumentTypeDisplay}}
+                                </div>
+                                <div class="col-sm-3 text-right" id="tradelane-document">
+                                    <div class="btn-toolbar">
+                                        <span ng-show="document.DocumentType === 'MAWB'">
+                                            <span ng-click="dowonLoadDoc(document.DocumentType , '')"><i class="fa fa-file-pdf-o fa-14 excel" aria-hidden="true"></i></span>
+                                        </span>
+                                    <span ng-show="document.DocumentType !== 'MAWB' && document.DocumentType !== 'HAWB' && document.DocumentType !== 'BatteryForm'"> 
+                                        <span ng-click="dowonLoadDoc(document.DocumentType , '')"><i class="fa fa-download fa-14 download" aria-hidden="true"></i></span>
+                                    </span>
+                                    <span  ng-show="document.DocumentType === 'MAWB' && document.Documents.length">
+                                        <a href="{{document.Documents[0].FilePath}}" download="{{document.Documents[0].FileName }}">
+                                            <span><i class="fa fa-download fa-14 download" aria-hidden="true"></i></span>
+                                        </a>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--end-->
+                        </div>
+                    <!--sub title code here-->
+                    <div ng-show="(( document.Documents.length > 1 || document.DocumentType === 'HAWB') &&  document.DocumentType !== 'Manifest' &&
+                         document.DocumentType !== 'ShipmentDetail' && document.DocumentType !== 'CoLoadForm')
+                          && document.open">
+                        <div class="panel-body padding-bottom-none">
+                            <div ng-hide="document.DocumentType ==='MAWB' && userInfo.RoleId  === 3 " class="row">
+                                <div ng-repeat="doc in document.Documents track by $index" class="col-sm-6">
+                                    <div ng-show="document.DocumentType !=='MAWB'" class="col-sm-12 form-group border padding-10">
+                                        <div class="col-sm-10 paddingboth top1 word-wrap" >
+                                          <span class="link" ng-click="showHAWBDetail(document.DocumentType , doc)" ng-class="{'pointer' : document.DocumentType === 'HAWB'}">
+                                              {{doc.Document}} 
+                                           </span> 
+                                        </div>
+                                        <div class="col-sm-2 text-right" id="tradelane-document">
+                                            <span ng-click="dowonLoadDoc(document.DocumentType , doc.FileName)"><i class="fa fa-download fa-14 download" aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div ng-show="document.DocumentType ==='MAWB'" class="col-sm-12 form-group border padding-10">
+                                        <div class="col-sm-10 paddingboth top1 word-wrap">
+                                            <span class="link">
+                                                {{doc.Document}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-2 text-right" id="tradelane-document">
+                                            <a href="{{doc.FilePath}}" download="{{doc.FileName}}">
+                                                <span><i class="fa fa-download fa-14 download" aria-hidden="true"></i></span>
+                                            </a> &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--end-->
+                    </div>
+                        <!--end-->
+                   </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!--end-->
+    <div class="clearfix"></div>
+    <!--other document sectio code here-->
+   
+    <!--repeated other document code here-->
+    <div class="col-sm-12 paddingboth">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div>
+            <div ng-show="attachments.length" class="pull-left lineheight34"><span class="pointer" ng-click="open = !open;otherDocumentToggle()"><i ng-class="{'fa fa-plus-square-o' : !open, 'fa fa-minus-square-o' : open}" class="fa-14 top3" aria-hidden="true"></i></span> &nbsp; {{'Other_Documents' | translate}}</div>
+            <div class="pull-right">
+                <div class="tradelane-document">
+                    <div class="button"
+                         ng-model="piecesExcel"
+                         name="shipmentPiecesDetails"
+                         ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                         accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                         ngf-select="WhileAddingExcel($files, $file, $event)">
+                        <button type="button" class="btn btn-blue background-white fontsize12">
+                            {{'Upload_Other_Documents' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            </div>
+            </div> 
+        <div class="panel-body padding-bottom-none" ng-if="open">
+        <div ng-show="attachments.length" ng-repeat="document in documents">
+            <div ng-show="document.DocumentType ==='OtherDocument'" class="row">
+                    <div ng-repeat="doc in document.Documents track by $index" class="col-sm-6">
+                        <div class="col-sm-12 form-group border padding-10">
+                                <div class="col-sm-10 paddingboth top1 word-wrap">
+                                   {{doc.Document}}
+                                </div>
+                                <div class="col-sm-2 text-right" id="tradelane-document">
+                                <a href="{{doc.FilePath}}" download="{{doc.FileName }}" target="_blank">
+                                    <!--<span><img ng-src="{{buildURL + 'tick-icon.png' }}" style="width:25px;height:25px"></span>-->
+                                    <span><i class="fa fa-download fa-14 download" aria-hidden="true"></i></span>
+                                </a> &nbsp;
+                                    <a class="pointer" ng-click="removeDoc(doc ,document)" >
+                                        <span><i class="fa fa-trash-o fa-14 download" aria-hidden="true"></i></span>
+                                    </a>
+
+                                    <!--<span>
+                                        <button type="button" ng-click="removeDoc(doc ,document)" class="btn btn-default">Delete Document</button>
+                                    </span>-->
+                                </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div> 
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!--end-->
+</section>

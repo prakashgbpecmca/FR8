@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <div class="col-sm-12 paddingboth">
+        <div class="col-sm-6 paddingboth">
+            <div class="col-sm-4" style="line-height:30px;"><label for="operationZone">{{'BusinessUnit_Zone' | translate}}</label></div>
+            <div class="col-sm-6">
+                <select ng-change="termAndConditionByOperationZone()"
+                        ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId"
+                        class="form-control fontsize12 form-group" ng-model="OperationZone">
+                    <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'BusinessUnit_Zone' | translate}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-ui-grid="gridOptions" ui-grid-selection class="myGrid" style="max-height: 285px ;min-height:{{gridheight}}px;"></div>

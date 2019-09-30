@@ -1,0 +1,30 @@
+﻿
+<section>
+    <div class="panel panel-body box-shadow-none">
+        <div class="paddingTB60">
+            <div id="largebutton" class="text-center">
+                <div class="form-group center-width45-inline">
+                    <div id="directbooking" class="directbooking">
+                        <a class="btn box-shadow-none" ng-click="NoHSCodeJobs()">
+                            <img ng-src="{{ImagePath + 'total-no-hs-code.png'}}" class="img-responsive " />
+                            <h3 class="uppercase pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'Total' | translate}} <span>{{IntialDashBoardData.UnmappedHsCodeCount}}</span> <span>{{'Unmanifest' | translate}}</span></h3>
+                        </a>
+                        <span class="directbooking-hover flex"><span class="margin-auto-fix">{{'Displays_Overview_AllJobs_MissingHSCodes' | translate}}</span></span>
+                     </div>
+                </div>
+                <div class="form-group center-width45-inline">
+                    <div id="tradelane" class="directbooking">
+                        <a class="btn box-shadow-none" ng-click="HSCodeOperators()">
+                            <span><img ng-src="{{ImagePath + 'total_operator.png'}}" class="img-responsive " /></span>
+                            <h3 class="uppercase pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'Total' | translate}} <span>{{IntialDashBoardData.UnmanifestedShipmentCount}}</span> <span>{{'Unmapped' | translate}}</span></h3>
+                        </a>
+                        <span class="tradeLane-hover flex"><span class="margin-auto-fix">{{'Overview_List_All_HSCodeOperators' | translate}}</span></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
+

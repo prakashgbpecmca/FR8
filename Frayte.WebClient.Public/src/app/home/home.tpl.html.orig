@@ -1,0 +1,980 @@
+<<<<<<< working copy
+﻿<div id="content wrapper" class="contentPaddingTop">
+    <div ui-view></div>
+</div> =======
+﻿<div style="background:#fff !important;">
+    <!--navbar code here-->
+    <section>
+        <div class="small-menu">
+            <div>
+                <div class="container">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 paddingboth">
+                        <div class="col-sm-9 paddingboth">
+                            <a data-ui-sref="home.start"><img bn-lazy-src="{{ImagePath + 'FrayteLogo1.png'}}" style="width: 10em; padding: 3px 0;" /></a>
+                        </div>
+                        <div class="col-sm-3 text-right paddingboth">
+                            <a href="" class="menu-button"><i class="fa fa-bars fa-2x" style="padding: 10px 0;"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12 mobile-handset">
+                        <div class="width10"><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" /></div>
+                        <div ng-if="FrayteWebSite==='COM'" class="width42 top-phone-number phone-color">(+852) 2148 4880</div>
+                        <div ng-if="FrayteWebSite==='CO.UK'" class="width42 top-phone-number phone-color">(+44) 01792 277295</div>
+                        <div ng-if="FrayteWebSite==='CO.TH'" class="width42 top-phone-number phone-color">(+66) 053 230366</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="large-menu">
+            <div class="top-header">
+                <div class="container">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12 mobile-handset">
+                        <!--com code-->
+                        <div ng-if="FrayteWebSite==='COM'">
+                            <div class="width10"><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" /></div>
+                            <div class="width42 top-phone-number phone-color">
+                                (+852) 2148 4880
+                                <p class="margin-bottom-none">09:00 - 18:00 ({{'Monday' | translate}} - {{'Friday' | translate}})</p>
+                                <p class="margin-bottom-none">09:00 - 12:00 ({{'Saturday' | translate}})</p>
+                            </div>
+                        </div>
+                        <!--end-->
+                        <!--co.uk code-->
+                        <div ng-if="FrayteWebSite==='CO.UK'">
+                            <div class="width10"><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" style="top:4.3rem !important;" /></div>
+                            <div class="width42 top-phone-number phone-color" style="top:5.2rem !important;">
+                                (+44) 01792 277295
+                                <p class="margin-bottom-none">09:00 - 17:00 ({{'Monday' | translate}} - {{'Friday' | translate}})</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end-->
+                        <!--co.th code-->
+                        <div ng-if="FrayteWebSite==='CO.TH'">
+                            <div class="width10"><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" style="top:4.3rem !important;" /></div>
+                            <div class="width42 top-phone-number phone-color" style="top:5.2rem !important;">
+                                (+66) 053 230366
+                                <p class="margin-bottom-none">8:30 - 17:30 ({{'Monday' | translate}} - {{'Friday' | translate}})</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end-->
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12 paddingboth">
+                        <ul class="list-unstyled">
+                            <li><a href="{{url}}">{{'Login' | translate}}</a></li>
+                            <li><a href="{{paymentlink}}">{{'Payment' | translate}}</a></li>
+                            <li>
+                                <select ng-model="Data.selectOption" style="border: none; background: none !important; color: #EB8633;outline:0;" ng-change="changeLanguage(Data.selectOption)">
+                                    <option value="en" style="padding:2px 4px;">{{'BUTTON_LANG_EN' | translate}}</option>
+                                    <option value="chSim" style="padding:2px 4px;">{{'BUTTON_LANG_CH' | translate}} </option>
+                                    <option value="chTrad" style="padding:2px 4px;">{{'BUTTON_LANG_TD' | translate}} </option>
+                                    <option value="th" style="padding:2px 4px;">{{'BUTTON_LANG_TH' | translate}} </option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div id="nb">
+                <nav class="navbar navbar-default pd-10">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#frayteMenu">
+                                <span class="sr-only">MENU</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a data-ui-sref="home.start" class="navbar-brand"><img bn-lazy-src="{{ImagePath + 'FrayteLogo1.png'}}" class="responsiveLogo bottom23" /></a>
+                        </div>
+                        <div class="collapse navbar-collapse fontsize12" id="frayteMenu">
+                            <ul class="nav navbar-nav navbar-right">
+                                <!--<li ng-class="{active: isCurrentPath('home.e-commerce')}"><a ng-click="setScroll('top')" data-ui-sref="home.e-commerce">{{'E_Commerce' | translate}}</a></li>-->
+                                <li ng-class="{active: isCurrentPath('home.about-us')}"><a ng-click="setScroll('top')" data-ui-sref="home.about-us">{{'About_us' | translate}}</a></li>
+                                <li ng-class="{active: isCurrentPath('home.frayteForwording')}" id="service-open" class="pointer">
+                                    <a>
+                                        <span>{{'Services' | translate}}</span>
+                                    </a>
+                                    <div id="service-below" class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                                        <div class="container text-center">
+                                            <ul class="list-unstyled service-dropdown">
+                                                <li><a ng-click="setScroll('top')" data-ui-sref="home.direct-booking-detail"><div class="text-center"><i class="fa-3x" aria-hidden="true"></i><img ng-src="{{ImagePath + 'directBooking60.png'}}" alt="directBooking" class="img-responsive padding-5 margin-auto" /></div><span>{{'Direct_Bookingg' | translate}}</span></a></li>
+                                                <li><a ng-click="setScroll('top')" data-ui-sref="home.tradelane-detail"><div class="text-center"><i class="fa-3x" aria-hidden="true"></i><img ng-src="{{ImagePath + 'tradelane60.png'}}" alt="tradelane" class="img-responsive padding-5 margin-auto" /></div><span>{{'Tradelane' | translate}}</span></a></li>
+                                                <li><a ng-click="setScroll('top')" data-ui-sref="home.break-bulk"><div class="text-center"><i class="fa-3x" aria-hidden="true"></i><img ng-src="{{ImagePath + 'breakBulk60.png'}}" alt="breakBulk" class="img-responsive padding-5 margin-auto" /></div><span>{{'Breakbulk' | translate}}</span></a></li>
+                                                <li><a ng-click="setScroll('top')" data-ui-sref="home.ecommerce"><div class="text-center"><i class="fa-3x" aria-hidden="true"></i><img ng-src="{{ImagePath + 'ecommerce60.png'}}" alt="eCommerce" class="img-responsive padding-5 margin-auto" /></div><span>{{'Ecommerce' | translate}}</span></a></li>
+                                                <li><a ng-click="setScroll('top')" data-ui-sref="home.warehouse-transport"><div class="text-center"><i class="fa-3x" aria-hidden="true"></i><img ng-src="{{ImagePath + 'warehousing60.png'}}" alt="warehousing" class="img-responsive padding-5 margin-auto" /></div><span>{{'Warehouse_Supprt' | translate}}</span></a></li>
+                                                <li><a ng-click="setScroll('top')" data-ui-sref="home.express-solutions"><div class="text-center"><i class="fa-3x" aria-hidden="true"></i><img ng-src="{{ImagePath + 'expressair60.png'}}" alt="expressair" class="img-responsive padding-5 margin-auto" /> </div><span>{{'Express_Solutions' | translate}}</span></a></li>
+                                                <li><a ng-click="setScroll('top')" data-ui-sref="home.thai-imp-exp"><div class="text-center"><i class="fa-3x" aria-hidden="true"></i><img ng-src="{{ImagePath + 'expressair60.png'}}" alt="expressair" class="img-responsive padding-5 margin-auto" /> </div><div><div>{{'Thailand' | translate}}</div><div>{{'Imp_Exp' | translate}}</div></div></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--<li ng-class="{active: isCurrentPath('home.frayteForwording')}"><a ng-click="setScroll('top')" data-ui-sref="home.frayteForwording">{{'Services' | translate}}</a></li>-->
+                                <!--<li ng-class="{active: isCurrentPath('home.courier')}"><a ng-click="setScroll('top')" data-ui-sref="home.courier">{{'Courier' | translate}}</a></li>-->
+                                <li ng-class="{active: isCurrentPath('home.contact')}"><a ng-click="setScroll('top')" data-ui-sref="home.contact">{{'ContactMenu' | translate}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <!--end-->
+    <div class="clearfix"></div>
+    <!--cathey pacific collapse start here-->
+    <div id="mobile">
+        <div ng-if="reslength === false" class="panel-group margin-bottom-none mobile-show" id="home-collapse">
+            <div class="panel panel-default fontsize12 margin-bottom-none" style="padding:0px !important;">
+                <div class="cathey-collapse">
+                    <a class="panel-title pointer show-opacity">
+                        <div ng-click="val = !val" style="border-bottom: 1px solid #ddd;height:37px;">
+                            <div>
+                                <span ng-hide="!Count">
+                                    <span class="error-icon-yellow"><i ng-hide="val === true" class="fa fa-exclamation error-icon full-opacity" style="opacity:0.8;" aria-hidden="true"></i></span>
+                                    <span class="fontsize12 middle mob-fontsize12">{{Count}} {{SystemAlertMessage() | translate}}</span>
+                                </span>
+                                <span ng-hide="val === true" class="system-error-down fontsize12 middle mob-fontsize12" id="date-collapse">
+                                    {{PublicPageDate}} <span class="hide-for-mobile">({{GMT}}) </span>
+                                </span>
+                                <span>
+                                    <i ng-show="val === false" class="fa fa-chevron-down pull-right full-opacity top9" aria-hidden="true" style="opacity:0.8;"></i>
+                                    <i ng-show="val === true" class="fa fa-chevron-up pull-right full-opacity top9" aria-hidden="true" style="opacity:0.8;"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <div ng-show="val === true" ng-repeat="result in result" class="panel-heading padding3x0 cathey-collapse" style="background:transparent !important;border-bottom:1px solid #ddd;height:37px;">
+                        <div style="width:100%;">
+                            <div class="width70 show-opacity mob-fontsize12">
+                                <!--<a href="http://localhost:63124/build/public/systemAlertDetail/{{result.Heading}}" target="_blank" class="panel-title">-->
+                                <a href="{{sURL}}{{result.Heading}}" target="_blank" class="panel-title">
+                                    <span>
+                                        <span class="error-icon-yellow"><i class="fa fa-exclamation error-icon full-opacity fontsize12" aria-hidden="true" style="opacity:0.8; top: 0px !important;"></i></span> <span class="fontsize12 middle-sub mob-fontsize12">{{result.Heading}}</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="pull-right">
+                                <span class="middle fontsize12 mob-fontsize12 pos-top-25">
+                                    {{result.Date}}<span class="hide-for-mobile"> ({{result.TimeZoneDetail.OffsetShort}})</span>&nbsp;&nbsp;
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+    <div class="clearfix"></div>
+    <!--routing links-->
+    <div id="content wrapper" class="contentPaddingTop">
+        <div ui-view></div>
+    </div>
+    <!--end-->
+    <!--track your shipment code-->
+    <div class="container" style="margin-bottom: 30px;" ng-show="publicAndTrackPages()">
+        <toaster-container></toaster-container>
+        <div>
+            <!--public tracking code-->
+            <!--<section class="track-shipment col-sm-12">
+                <form name="TrackingForm" ng-submit="trackingDetail(TrackingForm.$valid,easyPostDetail)" novalidate>
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <div class="col-md-12 form-group mobile-handset-padding-left text-center"><h2> {{'Track' | translate}} {{'Your' | translate}} {{'Shipment' | translate}} </h2></div>
+                        <div class="col-sm-12 paddingboth">
+                            <div class="col-md-6 mobile-handset-padding-left">
+                                <div class="form-group" ng-class="{ 'has-error': TrackingForm.shippingMethod.$invalid &&
+                                                 (TrackingForm.shippingMethod.$dirty || submitted) }">
+                                    <select id="shippingMethod" name="shippingMethod"
+                                            ng-model="easyPostDetail.CarrierName"
+                                            ng-options="DeliveredBy.Name as DeliveredBy.Name for DeliveredBy in carriers track by DeliveredBy.CourierId" class="form-control fontsize12" required>
+                                        <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Courier' | translate}}</option>
+                                    </select>
+                                    <span class="help-block has-error" ng-show="TrackingForm.shippingMethod.$invalid &&
+                                    (TrackingForm.shippingMethod.$dirty || submitted)">
+                                        {{'Courier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error': TrackingForm.tracking.$invalid &&
+                                                 (TrackingForm.tracking.$dirty || submitted) }">
+                                    <input type="text" id="tracking" name="tracking" class="form-control fontsize12" ng-model="easyPostDetail.TrackingNumber" placeholder="{{'TrackingNumber' | translate}}" required />
+                                    <span class="help-block has-error track-shipment-padding" ng-show="TrackingForm.tracking.$invalid &&
+                                    (TrackingForm.tracking.$dirty || submitted)">
+                                        {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <center>
+                                <ul class="list-unstyled">
+                                    <li><button type="submit" ng-click="submitted=true" class="btnTrack"><i class="fa fa-space-shuttle fa-1x" aria-hidden="true"></i> {{'Track' | translate}} {{'Now' | translate}}</button></li>
+                                    <li><button type="submit" ng-click="goToBulkTracking()" class="btnTrack"><i class="fa fa-cubes fa-1x" aria-hidden="true"></i> {{'Bulk' | translate}} {{'Tracking' | translate}}</button></li>
+                                    <li><a class="btn-lg btn-link" ng-click="setScroll('top')" ui-sref="public.trackingFAQ" target="_blank">{{'Need_Help' | translate}}</a></li>
+                                    <li><a class="btn-lg btn-link" ng-click="setScroll('top')" ui-sref="home.public-tracking" target="_self">Public Tracking</a></li>
+                                </ul>
+                            </center>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </section>-->
+            <!--end-->
+            <!--<section class="track-shipment col-sm-12 col-md-12 col-lg-12 col-xs-12 clearfix">
+                <form name="TrackingForm" ng-submit="trackingDetailNew(TrackingForm.$valid,easyPostDetail)" novalidate>
+                    <div ng-class="{'col-sm-12':BookingTypeName.Id, 'col-sm-offset-2 col-sm-8 col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2':!BookingTypeName.Id}">
+                        <div class="col-md-12 form-group mobile-handset-padding-left text-center"><h2> {{'Track' | translate}} {{'Your' | translate}} {{'Shipment' | translate}} </h2></div>
+                        <div class="col-md-12">
+                            <div class="mobile-handset-padding-left" ng-class="{'col-sm-4':BookingTypeName.Id, 'col-sm-6':!BookingTypeName.Id}">
+                                <div class="form-group" ng-class="{ 'has-error': TrackingForm.bookingTypeName.$invalid &&
+                                                 (TrackingForm.bookingTypeName.$dirty || submitted) }">
+                                    <select id="bookingTypeName" name="bookingTypeName"
+                                            ng-model="BookingTypeName"
+                                            ng-options="ModuleShipment as ModuleShipment.DisplyName for ModuleShipment in ModuleShipmentList track by ModuleShipment.Id" class="form-control fontsize12" required>
+                                        <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Courier' | translate}}</option>
+                                    </select>
+                                    <span class="help-block has-error" ng-show="TrackingForm.bookingTypeName.$invalid &&
+                                    (TrackingForm.bookingTypeName.$dirty || submitted)">
+                                        {{'Courier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div ng-if="BookingTypeName.Id === 1" class="mobile-handset-padding-left" ng-class="{'col-sm-4':BookingTypeName.Id, 'col-sm-6':!BookingTypeName.Id}">
+                                <div class="form-group" ng-class="{ 'has-error': TrackingForm.shippingMethod.$invalid &&
+                                                 (TrackingForm.shippingMethod.$dirty || submitted) }">
+                                    <select id="shippingMethod" name="shippingMethod"
+                                            ng-model="easyPostDetail.CarrierName"
+                                            ng-options="ModuleShipment.Name as ModuleShipment.DisplyName for ModuleShipment in ModuleDirectBookingList track by ModuleShipment.Id" class="form-control fontsize12" required>
+                                        <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Courier' | translate}}</option>
+                                    </select>
+                                    <span class="help-block has-error" ng-show="TrackingForm.shippingMethod.$invalid &&
+                                    (TrackingForm.shippingMethod.$dirty || submitted)">
+                                        {{'Courier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div ng-if="BookingTypeName.Id === 2" class="mobile-handset-padding-left" ng-class="{'col-sm-4':BookingTypeName.Id, 'col-sm-6':!BookingTypeName.Id}">
+                                <div class="form-group" ng-class="{ 'has-error': TrackingForm.shippingMethod.$invalid &&
+                                                 (TrackingForm.shippingMethod.$dirty || submitted) }">
+                                    <select id="shippingMethod" name="shippingMethod"
+                                            ng-model="easyPostDetail.CarrierName"
+                                            ng-options="ModuleShipment.Name as ModuleShipment.DisplyName for ModuleShipment in ModuleEcommShipmentList track by ModuleShipment.Id" class="form-control fontsize12" required>
+                                        <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Courier' | translate}}</option>
+                                    </select>
+                                    <span class="help-block has-error" ng-show="TrackingForm.shippingMethod.$invalid &&
+                                    (TrackingForm.shippingMethod.$dirty || submitted)">
+                                        {{'Courier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div ng-if="BookingTypeName.Id === 3" class="mobile-handset-padding-left" ng-class="{'col-sm-4':BookingTypeName.Id, 'col-sm-6':!BookingTypeName.Id}">
+                                <div class="form-group" ng-class="{ 'has-error': TrackingForm.shippingMethod.$invalid &&
+                                                 (TrackingForm.shippingMethod.$dirty || submitted) }">
+                                    <select id="shippingMethod" name="shippingMethod"
+                                            ng-model="easyPostDetail.CarrierName"
+                                            ng-options="ModuleShipment.Name as ModuleShipment.DisplyName for ModuleShipment in ModuleTradelaneShipmentList track by ModuleShipment.Id" class="form-control fontsize12" required>
+                                        <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Courier' | translate}}</option>
+                                    </select>
+                                    <span class="help-block has-error" ng-show="TrackingForm.shippingMethod.$invalid &&
+                                    (TrackingForm.shippingMethod.$dirty || submitted)">
+                                        {{'Courier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div ng-class="{'col-sm-4':BookingTypeName.Id, 'col-sm-6':!BookingTypeName.Id}">
+                                <div class="form-group" ng-class="{ 'has-error': TrackingForm.tracking.$invalid &&
+                                                 (TrackingForm.tracking.$dirty || submitted) }">
+                                    <input type="text" id="tracking" name="tracking" class="form-control fontsize12" ng-model="easyPostDetail.TrackingNumber" ng-change="CheckMawb(easyPostDetail.TrackingNumber, easyPostDetail.CarrierName)" maxlength="13" placeholder="{{'TrackingNumber' | translate}}" required />
+                                    <span class="help-block has-error track-shipment-padding" ng-show="TrackingForm.tracking.$invalid &&
+                                    (TrackingForm.tracking.$dirty || submitted)">
+                                        {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-sm-12 text-center form-group">
+                            <ul class="list-unstyled">
+                                <li><button type="submit" ng-click="submitted=true" class="btnTrack"><i class="fa fa-space-shuttle fa-1x" aria-hidden="true"></i> {{'Track' | translate}} {{'Now' | translate}}</button></li>
+                                <li><button type="submit" ng-click="goToBulkTracking()" class="btnTrack"><i class="fa fa-cubes fa-1x" aria-hidden="true"></i> {{'Bulk' | translate}} {{'Tracking' | translate}}</button></li>
+                                <li><a class="btn-lg btn-link" ng-click="setScroll('top')" ui-sref="public.trackingFAQ" target="_blank">Need Help ?</a></li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+
+            </section>-->
+            <section class="track-shipment col-sm-12 col-md-12 col-lg-12 col-xs-12 clearfix">
+                <form name="TrackingForm" ng-submit="trackingDetailNew(TrackingForm.$valid,easyPostDetail)" novalidate>
+                    <div ng-class="{'col-sm-12':BookingTypeName.Id, 'col-sm-offset-2 col-sm-8 col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2':!BookingTypeName.Id}">
+                        <div class="col-md-12 form-group mobile-handset-padding-left text-center"><h2> {{'Track' | translate}} {{'Your' | translate}} {{'Shipment' | translate}} </h2></div>
+                        <div class="col-md-12">
+                            <div class="form-group" ng-class="{ 'has-error': TrackingForm.tracking.$invalid &&
+                                                 (TrackingForm.tracking.$dirty || submitted) }">
+                                <input type="text" id="tracking" name="tracking" class="form-control fontsize12" ng-model="easyPostDetail.TrackingNumber" placeholder="{{'TrackingNumber' | translate}}" required />
+                                <span class="help-block has-error track-shipment-padding" ng-show="TrackingForm.tracking.$invalid &&
+                                    (TrackingForm.tracking.$dirty || submitted)">
+                                    {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-sm-12 text-center form-group">
+                            <ul class="list-unstyled">
+                                <li><button type="submit" ng-click="submitted=true" class="btnTrack"><i class="fa fa-space-shuttle fa-1x" aria-hidden="true"></i> {{'Track' | translate}} {{'Now' | translate}}</button></li>
+                                <li><button type="submit" ng-click="goToBulkTracking()" class="btnTrack"><i class="fa fa-cubes fa-1x" aria-hidden="true"></i> {{'Bulk' | translate}} {{'Tracking' | translate}}</button></li>
+                                <li><a class="btn-lg btn-link" ng-click="setScroll('top')" ui-sref="public.trackingFAQ" target="_blank">{{'Need_Help' | translate}}</a></li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+
+            </section>
+        </div>
+    </div>
+    <!--end-->
+    <!--pre-footer code here-->
+    <div class="pre-footer" ng-if="publicContentPages()">
+        <div class="container">
+            <div ng-if="IsSiteCountry==='COM'" class="row">
+                <!-- ABOUT & Address -->
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 BlockMarginBottom">
+                    <!--headOffice address code-->
+                    <div class="about-foot">
+                        <h6>{{'Head' | translate}} {{'Office' | translate}} {{'Address' | translate}}</h6>
+                        <ul>
+                            <li><p><i class="fa fa-map-marker"></i>&nbsp; FRAYTE Logistics Ltd.</p></li>
+                            <li><p>Unit 501 Kwong Loong Tai Building,</p></li>
+                            <li><p>1016-1018 Tai Nan West Street,</p></li>
+                            <li><p>Cheung Sha Wan,</p></li>
+                            <li><p>Kowloon, Hong Kong</p></li>
+                            <li><p>香港九龍長沙灣大南西街1016-1018號廣隆泰大廈501室</p></li>
+                        </ul>
+                    </div>
+                    <!--end-->
+                    <br />
+                    <!--warehouse address code-->
+                    <!--<div class="about-foot">
+                        <h6>{{'Warehouse' | translate}} {{'Address' | translate}}</h6>
+                        <ul>
+                            <li><p><i class="fa fa-map-marker"></i>&nbsp; FRAYTE Logistics Ltd.</p></li>
+                            <li><p>Unit 601, 602 / 6th floor , North Tower,</p></li>
+                            <li><p>Kwai Shun Industrial Centre,</p></li>
+                            <li><p>51-63 Container Port Road,</p></li>
+                            <li><p>Kwai Chung, New Territories, Hong Kong.</p></li>
+                            <li><p>葵涌貨櫃碼頭路51-63號葵順工業中心北座1樓k室</p></li>
+                        </ul>
+                    </div>-->
+                    <!--end-->
+                </div>
+                <!-- Address Chinese -->
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 BlockMarginBottom">
+                    <div>
+                        <h6>{{'OperatingTimes' | translate}}</h6>
+                        <ul class="openingTime">
+                            <li>09:00 - 18:00 ({{'Monday' | translate}} - {{'Friday' | translate}})</li>
+                            <li>09:00 - 12:00 ({{'Saturday' | translate}})</li>
+                        </ul>
+                    </div>
+                    <div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'ContactUs' | translate}}</h6>
+                        <ul>
+                            <li class="mobile-width100">
+                                <p><span class="phone"><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150" /></span> <span class="mobile-right5">(+852) 2148 4880</span></p>
+                            </li>
+                            <li class="mobile-width100">
+                                <p><span class="phone"><img bn-lazy-src="{{ImagePath + 'fax.png'}}" alt="fax" class="img-responsive width13" /></span> <span class="margin-left7">(+852) 2505 2466</span></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--<div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'OperatingTimes' | translate}}</h6>
+                        <ul class="openingTime">
+                            <li>09:30 - 18:30 ({{'Monday' | translate}} - {{'Friday' | translate}})</li>
+                            <li>09:30 - 13:30 ({{'Saturday' | translate}})</li>
+                        </ul>
+                    </div>
+                    <div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'SalesInquires' | translate}}</h6>
+                        <ul>
+                            <li>
+                                <h4><span class="phone"><img bn-lazy-src="{{ImagePath + 'Email.png'}}" alt="email" class="img-responsive width150 bottom3 padding-5" /></span>  <span class="mobile-sales-font-size mobile-right5">{{'Sales_frayte_Dot_Com' | translate}}</span></h4>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+                <!-- Warehouse Map-->
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                    <h6>{{'Head' | translate}} {{'Office' | translate}}  {{'Address' | translate}}</h6>
+                    <div>
+                        <div style="width: 100%; overflow: hidden; height: 320px;">
+                            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.4101631430995!2d114.14486290121461!3d22.338136497091554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404075453057db3%3A0xbae9d59e0255ad90!2sTrendy+Centre%2C+682+Castle+Peak+Rd%2C+Cheung+Sha+Wan%2C+Hong+Kong!5e0!3m2!1sen!2sin!4v1528178736035" style="width: 100%; height: 440px; margin-top: -150px;" id="bordernone" allowfullscreen></iframe>-->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.3741679971185!2d114.14671651552469!3d22.33949648530327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340407541a651e85%3A0x20967e525cc82b86!2sKwong+Loong+Tai+Building%2C+1016-1018+Tai+Nan+W+St%2C+Cheung+Sha+Wan%2C+Hong+Kong!5e0!3m2!1sen!2sin!4v1530782476858" style="width: 100%; height: 440px; margin-top: -150px;" id="bordernone" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-if="IsSiteCountry==='COM'" class="bottom-line" style="width:100% !important;margin-top:-10px;"></div>
+            <div class="row">
+                <!--Address United Kingdom-->
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 BlockMarginBottom">
+                    <div class="about-foot">
+                        <h6>{{'United' | translate}} {{'Kingdom' | translate}} {{'Address' | translate}}</h6>
+                         <ul ng-if="IsSiteCountry==='COM' || FrayteWebSite==='CO.TH'">
+                            <li><p><i class="fa fa-map-marker"></i>&nbsp;  FRAYTE Logistics Ltd,</p></li>
+                            <li><p>Unit 11, SA1 Industrial Park,</p></li>
+                            <li><p>Langdon Road,</p></li>
+                            <li><p>Swansea SA1 8QY,</p></li>
+                            <li><p>United Kingdom</p></li>
+                        </ul>
+                        <ul ng-if="FrayteWebSite==='CO.UK'">
+                            <li><p><i class="fa fa-map-marker"></i>&nbsp;  FRAYTE GLOBAL (GB) Ltd,</p></li>
+                            <li><p>Unit 2</p></li>
+                            <li><p>Wyndham Court</p></li>
+                            <li><p>Clarion Close</p></li>
+                            <li><p>Swansea</p></li>
+                            <li><p>SA6 8RB</p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 BlockMarginBottom">
+                    <div>
+                        <h6>{{'OperatingTimes' | translate}}</h6>
+                        <ul class="openingTime">
+                            <li>09:00 - 17:00 ({{'Monday' | translate}} - {{'Friday' | translate}})</li>
+                        </ul>
+                    </div>
+                    <div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'ContactUs' | translate}}</h6>
+                        <ul>
+                            <li><p><span class="phone"><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150" /></span> <span class="mobile-right5">(+44) 01792 277295</span></p></li>
+                        </ul>
+                    </div>
+                    <div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'SalesInquires' | translate}}</h6>
+                        <ul>
+                            <li><h4><span class="phone"><img bn-lazy-src="{{ImagePath + 'Email.png'}}" alt="email" class="img-responsive width150 bottom3 padding-5" /></span> <span class="mobile-right5">{{'Sales_frayte_Dot_Uk' | translate}}</span></h4></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                    <div style="width: 100%; overflow: hidden; height: 320px;">
+                       <!--.com or co.th map code-->
+                        <span ng-if="IsSiteCountry==='COM' || FrayteWebSite==='CO.TH'">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1238.56799084038!2d-3.9080017793536266!3d51.620718168899195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5ffd1852ded5%3A0x73c91d541da0d196!2sFrayte+Logistics+Ltd!5e0!3m2!1sen!2sin!4v1521786092192" style="width: 100%; height: 440px; margin-top: -115px; border:0" id="bordernone" frameborder="0" allowfullscreen></iframe>
+                        </span>
+                        <!--end-->
+                        <!--co.uk map code-->
+                        <span ng-if="FrayteWebSite==='CO.UK'">
+                                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.263157646073!2d-3.9535309840252455!3d51.61838841040273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486ef533157e52e7%3A0xfde69a3d2283d2e5!2s2+Wyndham+St%2C+Swansea+SA1+3HZ%2C+UK!5e0!3m2!1sen!2sin!4v1558593220122!5m2!1sen!2sin" style="width: 100%; height: 440px; margin-top: -115px; border:0" id="bordernone" frameborder="0" allowfullscreen></iframe>
+                                     </span>
+                    </div>
+                </div>
+                <!--End-->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!--end-->
+    <div class="clearfix"></div>
+</div>
+<!--footer code here-->
+<footer class="pre-footer-top-border">
+    <div class="container">
+        <div class="row prefer-footer transparent-fontsize">
+            <div class="call-footer width100">
+                <!--frayte .com-->
+                <div ng-if="FrayteWebSite==='COM'" class="margin-auto flex">
+                    <div class="col-sm-4 col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group">
+                            <span class="mobile-middle">
+                                <label><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive bottom3" /> <span class="frayte-orange">{{'Call' | translate}}:</span> <span class="frayte-blue">(+852) 2148 4880</span></label>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="mobile-middle">
+                                <label><img bn-lazy-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" /> <span class="frayte-orange">{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Com' | translate}}</span></label>
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-8 col-sm-8 col-lg-8 col-xs-12" id="mobile">
+                        <div class="mobile-show">
+                            <div class="mobile-width100 form-group">
+                                <div class="mobile-middle">
+                                    <div>
+                                        <div class="col-sm-2 col-md-2 col-lg-2 col-xs-4"><img bn-lazy-src="{{ImagePath + 'support.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" /></div>
+                                        <div class="frayte-blue col-sm-10  col-md-10 col-lg-10 col-xs-8">
+                                            <span class="">{{'IT_Support' | translate}}</span>
+                                            <div class="text-muted">{{'Click_This' | translate}} <a href="mailto:support@frayte.co.uk" class="pointer">{{'Support_Link' | translate}}</a> {{'IT_Support_Message' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mobile-width100 form-group">
+                                <div class="mobile-middle">
+                                    <div>
+                                        <div class="col-sm-2  col-md-2 col-lg-2 col-xs-4"><img bn-lazy-src="{{ImagePath + 'chat.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" style="width:65px !important;" /></div>
+                                        <div class="frayte-blue col-sm-10  col-md-10 col-lg-10 col-xs-8">
+                                            <span class="">{{'Functional_Support' | translate}}</span>
+                                            <div class="text-muted">{{'Functional_Support_Message' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <!--frayte co.uk code-->
+                <div ng-if="FrayteWebSite==='CO.UK'" class="margin-auto" style="padding-top: 15px;">
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                        <div class="form-group">
+                            <span class="mobile-middle">
+                                <label><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive bottom3" /> <span class="frayte-orange">{{'Call' | translate}}:</span> <span class="frayte-blue">(+44) 01792 277295</span></label>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="mobile-middle">
+                                <label><img bn-lazy-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" />  <span class="frayte-orange">{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Uk' | translate}}</span></label>
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12" id="mobile">
+                        <div class="mobile-show">
+                            <div class="mobile-width100 form-group">
+                                <div class="mobile-middle">
+                                    <div>
+                                        <div class="col-sm-2  col-md-2 col-lg-2 col-xs-4"><img bn-lazy-src="{{ImagePath + 'support.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" /></div>
+                                        <div class="frayte-blue col-sm-10  col-md-10 col-lg-10 col-xs-8">
+                                            <span class="">{{'IT_Support' | translate}}</span>
+                                            <div class="text-muted">{{'Click_This' | translate}} <a href="mailto:support@frayte.co.uk" class="pointer">{{'Support_Link' | translate}}</a> {{'IT_Support_Message' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mobile-width100 form-group">
+                                <div class="mobile-middle">
+                                    <div>
+                                        <div class="col-sm-2  col-md-2 col-lg-2 col-xs-4"><img bn-lazy-src="{{ImagePath + 'chat.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" style="width:65px !important;" /></div>
+                                        <div class="frayte-blue col-sm-10  col-md-10 col-lg-10 col-xs-8">
+                                            <span class="">{{'Functional_Support' | translate}}</span>
+                                            <div class="text-muted">{{'Functional_Support_Message' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <!--frayte co.th code-->
+                <div ng-if="FrayteWebSite==='CO.TH'" class="margin-auto flex">
+                    <div class="col-sm-4 col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group">
+                            <span class="mobile-middle">
+                                <label><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive bottom3" /> <span class="frayte-orange">{{'Call' | translate}}:</span> <span class="frayte-blue">(+66) 053 230366</span></label>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="mobile-middle">
+                                <label><img bn-lazy-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" /> <span class="frayte-orange">{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Co_Th' | translate}}</span></label>
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-8 col-sm-8 col-lg-8 col-xs-12" id="mobile">
+                        <div class="mobile-show">
+                            <div class="mobile-width100 form-group">
+                                <div class="mobile-middle">
+                                    <div>
+                                        <div class="col-sm-2 col-md-2 col-lg-2 col-xs-4"><img bn-lazy-src="{{ImagePath + 'support.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" /></div>
+                                        <div class="frayte-blue col-sm-10  col-md-10 col-lg-10 col-xs-8">
+                                            <span class="">{{'IT_Support' | translate}}</span>
+                                            <div class="text-muted">{{'Click_This' | translate}} <a href="mailto:support@frayte.co.uk" class="pointer">{{'Support_Link' | translate}}</a> {{'IT_Support_Message' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mobile-width100 form-group">
+                                <div class="mobile-middle">
+                                    <div>
+                                        <div class="col-sm-2  col-md-2 col-lg-2 col-xs-4"><img bn-lazy-src="{{ImagePath + 'chat.png'}}" alt="Email us" class="img-responsive padding-5 bottom3" style="width:65px !important;" /></div>
+                                        <div class="frayte-blue col-sm-10  col-md-10 col-lg-10 col-xs-8">
+                                            <span class="">{{'Functional_Support' | translate}}</span>
+                                            <div class="text-muted">{{'Functional_Support_Message' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+            </div>
+            <div class="col-sm-12 ">
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'About_FRAYTE' | translate}}</h6>
+                        <ul class="list-unstyled fontsize12">
+                            <li><p><a ng-click="setScroll('top'); changeState()" class="pointer">{{'Home' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.about-us">{{'About_us' | translate}}</a></p></li>
+                            <!--<li><p><a ng-click="setScroll('top')" data-ui-sref="home.fuelSurcharge">{{'FuelSurcharge' | translate}}</a></p></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Send_Consignment' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.packaging">{{'Packaging' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.paperwork">{{'Paperwork' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.download">{{'Download_Forms' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.transitTime">{{'Transit_Times' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.learnMore">{{'Restricted_ItemsAndProhibited_Items' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.lithiumBatteries">{{'Shipping_Lithium_Batteries' | translate}}</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Using_FRAYTE' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.bookingConsignment">{{'Booking_Consignment' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.trackYourConsignment">{{'Tracking_Your_Consignment' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.proofofdelivery">{{'POD' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" ui-sref="public.trackingFAQ" target="_blank">{{'Tracking' | translate}} {{'FAQ_s' | translate}}</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Useful_Tools' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.aircraftPayload">{{'Aircraft_Payload' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.airlineULDSpecifications">{{'Airline_ULD_Specifications' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.cargoFreighterSpecification">{{'Cargo_Freighter_Specifications' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.shippingContainerSpecifications">{{'Shipping_Container_Specifications' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.airCraftConfiguration">{{'Air_Craft_Configuration' | translate}}</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Termsof_Use' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a ng-click="setScroll('top')" ui-sref='public.term-and-condition'>{{'TermsAndCondition' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" ui-sref='home.privacyPolicy'>{{'Privacy_Policy' | translate}}</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--<div class="width16-66" id="mobile">
+                    <div class="BlockMarginBottom mobile-width100 mobile-show">
+                    <div class="about-foot">
+                        <h6 class="text-center">{{'Customers' | translate}}</h6>
+                        <div id="carousel-hide">
+                            <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                                <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                                    <img ng-src="{{slide.image}}" class="img-responsive customer-image">
+                                    <div class="carousel-caption">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    </div>
+                </div>-->
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--<div class="clearfix"></div>
+        <div class="col-sm-12 paddingboth form-group" style="border-top:2px solid #333;border-bottom:2px solid #333;">
+            <div>
+                <span ng-if="FrayteWebSite==='COM'"><a class="btn btn-link" target="_blank" href="http://menu.frayte.com">{{'Staff'| translate}}: {{'Log_In' | translate}}</a></span>
+                <span ng-if="FrayteWebSite==='CO.UK'"><a class="btn btn-link" target="_blank" href="http://menu.frayte.co.uk">{{'Staff'| translate}}: {{'Log_In' | translate}}</a></span>
+            </div>
+        </div>-->
+        <div class="clearfix"></div>
+        <div class="row form-group" id="mobile">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 mobile-show">
+                <div class="clearfix"></div>
+                <!--frayte.com code-->
+                <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 xs-footerCenter paddingboth">
+                    <div ng-if="FrayteWebSite==='CO.UK'" class="copyText"><img bn-lazy-src="{{ImagePath + 'RHA_Logo.png'}}" class="rha-image" /></div>
+                </div>
+                <!--end-->
+                <!--frayte.co.uk code-->
+                <div class="col-sm-5 col-md-5 col-lg-5 col-xs-12  xs-footerCenter">
+                    <div ng-if="FrayteWebSite==='CO.UK'">
+                        <ul class="list-unstyled top12">
+                            <li class="copyText" style="margin-right:5px;"><span class="frayte-orange bold">{{'Company_no' | translate}}.:</span> 11057581</li>
+                            <li class="copyText" style="margin-right:5px;"><span class="frayte-orange bold">{{'Vat_No' | translate}}.:</span> GB316179502</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end-->
+                <!--frayte.co.th code-->
+                <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 xs-footerCenter paddingboth" ng-if="FrayteWebSite==='CO.TH'">
+                    <div class="copyText"><img bn-lazy-src="{{ImagePath + 'RHA_Logo.png'}}" class="rha-image" /></div>
+                </div>
+                <!--end-->
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 paddingboth textAlignR xs-footercenter text-center">
+                    <div class="text-right">
+                        <div class="col-sm-12 paddingboth col-xs-12">
+                            <ul class="list-unstyled fix-image-card margin-bottom-none  mobile-left">
+                                <li><span class="fontsize12 we-accept"> {{'We_Accept' | translate}} &nbsp;</span></li>
+                                <li class="visacard">
+                                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47 47">
+                                        <defs>
+                                            <style>
+                                                .visacardcls-1, .visacardcls-3 {
+                                                    fill: #2d2f72;
+                                                }
+
+                                                .visacardcls-2 {
+                                                    fill: #fff;
+                                                }
+
+                                                .visacardcls-2, .visacardcls-3, .visacardcls-4 {
+                                                    fill-rule: evenodd;
+                                                }
+
+                                                .visacardcls-4 {
+                                                    fill: #fbaa28;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <title>visa card</title>
+                                        <polygon class="visacardcls-1" points="46.2 39.32 0.8 39.32 0 39.32 0 38.52 0 8.48 0 7.68 0.8 7.68 46.2 7.68 47 7.68 47 8.48 47 38.52 47 39.32 46.2 39.32 46.2 39.32" />
+                                        <polygon class="visacardcls-2" points="46.2 38.52 0.8 38.52 0.8 8.48 46.2 8.48 46.2 38.52 46.2 38.52" />
+                                        <polygon class="visacardcls-3" points="17.21 28.38 20.16 18.66 22.79 18.66 19.84 28.38 17.21 28.38 17.21 28.38" />
+                                        <path class="visacardcls-3" d="M16,18.66l-2.36,4.12a9.83,9.83,0,0,0-1.13,2.31h0c0-.87-.08-1.93-.09-2.53l-.27-3.9H7.73l-.05.26a1.84,1.84,0,0,1,2,1.74l.86,7.72h2.73l5.51-9.72Z" />
+                                        <path class="visacardcls-3" d="M36.49,28.38l-.07-1.45H33.13l-.67,1.45H29.61l5.18-9.71h3.5l.88,9.71Zm-.3-5.74a21.64,21.64,0,0,1,0-2.28h0C36,20.84,35.3,22.29,35,23l-1,2.14h2.3l-.13-2.5Z" />
+                                        <path class="visacardcls-3" d="M25.55,28.65a7.31,7.31,0,0,1-4-1.11l1.25-1.91a4.87,4.87,0,0,0,2.84.95A1.21,1.21,0,0,0,26.82,26c.37-.63-.08-1-1.11-1.55l-.51-.33c-1.52-1-2.18-2-1.46-3.76.46-1.1,1.67-1.94,3.66-1.94a5.89,5.89,0,0,1,3.42,1.18l-1.44,1.69a3.2,3.2,0,0,0-2-.89,1.23,1.23,0,0,0-1.12.5c-.27.54.09.91.89,1.41l.6.38c1.85,1.17,2.3,2.39,1.83,3.54-.8,2-2.36,2.4-4,2.4Z" />
+                                        <path class="visacardcls-3" d="M40,20h-.11v-.69h.26c.17,0,.25.06.25.2a.17.17,0,0,1-.18.19l.2.3h-.13l-.18-.29H40V20Zm.13-.39c.08,0,.16,0,.16-.11s-.08-.09-.15-.09H40v.2Zm0,.66a.63.63,0,0,1,0-1.25.63.63,0,0,1,0,1.25Zm0-1.14a.52.52,0,0,0,0,1,.52.52,0,0,0,0-1Z" />
+                                        <polygon class="visacardcls-4" points="45.08 31.4 2 31.4 2 37.16 45.08 37.16 45.08 31.4 45.08 31.4" />
+                                        <polygon class="visacardcls-3" points="45 9.92 1.92 9.92 1.92 15.68 45 15.68 45 9.92 45 9.92" />
+                                        <path class="visacardcls-3" d="M44,36.75h-.11v-.69h.26c.17,0,.25.06.25.2a.18.18,0,0,1-.18.19l.19.3h-.12l-.18-.29H44v.29Zm.13-.39c.08,0,.16,0,.16-.11s-.08-.09-.15-.09H44v.2Zm0,.66a.63.63,0,0,1,0-1.25.63.63,0,0,1,0,1.25Zm0-1.14a.52.52,0,1,0,.48.51.48.48,0,0,0-.48-.51Z" />
+                                    </svg>
+                                </li>
+                                <li class="americancard">
+                                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47 47">
+                                        <defs>
+                                            <style>
+                                                .americancardcls-1 {
+                                                    fill: url(#radial-gradient);
+                                                }
+
+                                                .americancardcls-2 {
+                                                    fill: #fff;
+                                                }
+                                            </style>
+                                            <radialGradient id="radial-gradient" cx="9.12" cy="15.15" r="45.45" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#69c2ec" /><stop offset="1" stop-color="#0c72ba" /></radialGradient>
+                                        </defs>
+                                        <title>american express</title>
+                                        <path class="americancardcls-1" d="M47,38.49H0v-30s1.43,0,3.19,0H43.81c1.76,0,3.19,0,3.19,0Z" />
+                                        <g id="_Group_" data-name="&lt;Group&gt;">
+                                            <polygon class="americancardcls-2" points="34.15 17.64 35.05 19.93 33.26 19.93 34.15 17.64" />
+                                            <path class="americancardcls-2" d="M27.21,29V27.72h1.62a1.23,1.23,0,0,1,.63.11.56.56,0,0,1,.26.51.62.62,0,0,1-.26.54,1.2,1.2,0,0,1-.65.12Z" />
+                                            <path class="americancardcls-2" d="M23.07,27.72c.47,0,.8.21.8.7s-.32.74-.82.74H21.36V27.72Z" />
+                                            <path class="americancardcls-2" d="M21.46,19.13V17.86h1.62a1.31,1.31,0,0,1,.62.1.56.56,0,0,1,.27.52.59.59,0,0,1-.27.54,1.21,1.21,0,0,1-.65.11Z" />
+                                            <polygon class="americancardcls-2" points="18.03 29.41 20.04 27.15 20.04 31.75 18.03 29.41" />
+                                            <polygon class="americancardcls-2" points="16.34 29.39 14.84 31.07 11.6 31.07 11.6 29.94 14.48 29.94 14.48 28.76 11.6 28.76 11.6 27.72 14.89 27.72 16.34 29.39" />
+                                            <path class="americancardcls-2" d="M43.94,26.53a1.66,1.66,0,0,0-1.87,1.71c0,1.82,1.53,1.74,2.77,1.78a.67.67,0,0,1,.45.12.53.53,0,0,1,0,.76.77.77,0,0,1-.53.13H42.24v1.24h2.53c1.34,0,2.07-.59,2.07-1.81a1.64,1.64,0,0,0-.4-1.22A2,2,0,0,0,45,28.78l-.71,0a1.46,1.46,0,0,1-.51-.07.42.42,0,0,1-.28-.42.47.47,0,0,1,.19-.42,1,1,0,0,1,.53-.1h2.4V26.53ZM37.08,31v1.24h2.56c1.34,0,2.07-.59,2.07-1.81a1.64,1.64,0,0,0-.4-1.22,2,2,0,0,0-1.5-.46l-.7,0a1.46,1.46,0,0,1-.51-.07.42.42,0,0,1-.28-.42.49.49,0,0,1,.18-.42,1,1,0,0,1,.53-.1h2.42V26.53H38.81a1.67,1.67,0,0,0-1.88,1.71c0,1.82,1.54,1.74,2.76,1.78a.67.67,0,0,1,.46.12.48.48,0,0,1,.17.39.51.51,0,0,1-.16.37.77.77,0,0,1-.53.13Zm-5.17-4.5v5.74H36.3v-1.2H33.22V29.94h3V28.76h-3v-1H36.3v-1.2Zm-4.7,5.74V30.18h1.41c.48,0,.77,0,.95.25a1.71,1.71,0,0,1,.23,1.11v.73h1.32V31.13a1.72,1.72,0,0,0-.21-1,1.57,1.57,0,0,0-.65-.49,1.59,1.59,0,0,0,.93-1.52,1.36,1.36,0,0,0-.67-1.28,3,3,0,0,0-1.58-.27h-3v5.74ZM15.58,26.53H10.29v5.74H15.5l1.68-1.89,1.62,1.89h2.56V30.35H23c1.14,0,2.28-.33,2.28-1.93s-1.16-1.89-2.2-1.89h-4.2l-1.68,1.88Zm.49,6.86h-7v-8h7.07l1,1.23,1.09-1.23H23a3,3,0,0,1,1.86.47v-.47h4.23a3.54,3.54,0,0,1,1.78.47v-.47h6.4v.47a2.47,2.47,0,0,1,1.57-.47h3.59v.47a2.74,2.74,0,0,1,1.65-.47H47v7.23a1.75,1.75,0,0,1-.63.48,4.49,4.49,0,0,1-1.73.29h-3.4v-.5a3.16,3.16,0,0,1-1.82.5H28.71V31.53c0-.21,0-.23-.24-.23H28.3v2.09H24.76V31.23a4.49,4.49,0,0,1-1.83.28h-.42v1.88H18.24l-1.07-1.23Z" />
+                                            <polygon class="americancardcls-2" points="3.04 17.64 3.95 19.93 2.15 19.93 3.04 17.64" />
+                                            <path class="americancardcls-2" d="M30.86,16.66a2.58,2.58,0,0,0-2,.68,3.15,3.15,0,0,0-.71,2.24,3,3,0,0,0,.7,2.19,2.69,2.69,0,0,0,1.9.63h1.52l.51-1.27h2.73L36,22.4h2.67V18.11l2.48,4.29H43V16.66H41.68v4l-2.3-4h-2v5.43l-2.22-5.43H33.21l-1.84,4.51h-.6a1.22,1.22,0,0,1-.91-.29,2,2,0,0,1-.37-1.35,2,2,0,0,1,.38-1.3,1.24,1.24,0,0,1,1-.33h1.23V16.66Zm-5.43,1.56a1.36,1.36,0,0,0-.68-1.28,2.9,2.9,0,0,0-1.57-.28h-3V22.4h1.31V20.31h1.41c.48,0,.77.05.95.26s.21.77.21,1.11v.72h1.33V21.26a1.68,1.68,0,0,0-.23-1,1.45,1.45,0,0,0-.64-.48A1.62,1.62,0,0,0,25.43,18.22Zm2.09-1.56H26.18V22.4h1.34ZM14.87,22.4h4.38V21.21H16.18V20.07h3V18.89h-3v-1h3.07v-1.2H14.87ZM11.7,16.66l-1.57,3.9-1.71-3.9H6.27v5.43L4.06,16.66h-2L0,21.79V18.7l1.32-3.17H4.74l.44.94v-.94h4l.88,2.06.86-2.06H23.65a2.16,2.16,0,0,1,1.48.47v-.47h3.48V16a4.27,4.27,0,0,1,2.19-.47h5l.47.94v-.94h3.74l.51.94v-.94H44.2v8H40.52l-.71-1.23v1.23H35.24l-.51-1.29H33.59l-.49,1.29H30.71a4.24,4.24,0,0,1-2.1-.51v.51H22.94V21.71c0-.25,0-.26-.18-.26h-.21v2.09h-11v-1l-.39,1H8.93l-.41-1v1H4.12l-.51-1.29H2.5L2,23.54H0V22.4H1.19l.49-1.27H4.42l.5,1.27H7.58V17.9l1.91,4.5h1.15l1.9-4.49V22.4h1.35V16.66Z" />
+                                        </g>
+                                    </svg>
+                                </li>
+                                <li class="mastercard">
+                                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47 47">
+                                        <defs>
+                                            <style>
+                                                .mastercardcls-1 {
+                                                    fill: #fff;
+                                                }
+
+                                                .mastercardcls-2 {
+                                                    fill: #fcb130;
+                                                }
+
+                                                .mastercardcls-3 {
+                                                    fill: #eb2030;
+                                                }
+
+                                                .mastercardcls-4 {
+                                                    fill: none;
+                                                    stroke: #fff;
+                                                    stroke-width: 0.01px;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <title>master card</title>
+                                        <polygon class="mastercardcls-1" points="46.2 39.32 0.8 39.32 0 39.32 0 38.52 0 8.48 0 7.68 0.8 7.68 46.2 7.68 47 7.68 47 8.48 47 38.52 47 39.32 46.2 39.32 46.2 39.32" />
+                                        <polygon class="mastercardcls-2" points="31.03 34.75 31.61 34.74 32.18 34.7 32.74 34.62 33.3 34.52 33.84 34.4 34.38 34.25 34.9 34.07 35.41 33.87 35.92 33.64 36.4 33.39 36.87 33.12 37.33 32.83 37.77 32.51 38.2 32.18 38.61 31.83 39 31.45 39.37 31.06 39.73 30.65 40.06 30.22 40.38 29.78 40.67 29.32 40.94 28.85 41.19 28.37 41.42 27.87 41.62 27.36 41.8 26.83 41.95 26.3 42.07 25.75 42.17 25.2 42.24 24.63 42.28 24.06 42.3 23.48 42.28 22.9 42.24 22.33 42.17 21.77 42.07 21.22 41.95 20.68 41.8 20.15 41.62 19.62 41.42 19.11 41.19 18.62 40.94 18.13 40.67 17.66 40.38 17.2 40.06 16.77 39.73 16.34 39.37 15.93 39 15.54 38.61 15.17 38.2 14.82 37.77 14.48 37.33 14.17 36.87 13.88 36.4 13.61 35.92 13.36 35.41 13.13 34.9 12.93 34.38 12.75 33.84 12.6 33.3 12.47 32.74 12.38 32.18 12.3 31.61 12.26 31.03 12.25 30.45 12.26 29.88 12.3 29.32 12.38 28.76 12.47 28.22 12.6 27.68 12.75 27.16 12.93 26.65 13.13 26.15 13.36 25.67 13.61 25.2 13.88 24.75 14.17 24.3 14.48 23.88 14.82 23.47 15.17 23.08 15.54 22.71 15.93 22.36 16.34 22.02 16.77 21.71 17.2 21.42 17.66 21.15 18.13 20.9 18.62 20.68 19.11 20.48 19.62 20.3 20.15 20.15 20.68 20.02 21.22 19.92 21.77 19.85 22.33 19.81 22.9 19.8 23.48 19.81 24.06 19.85 24.63 19.92 25.2 20.02 25.75 20.15 26.3 20.3 26.83 20.48 27.36 20.68 27.87 20.9 28.37 21.15 28.85 21.42 29.32 21.71 29.78 22.02 30.22 22.36 30.65 22.71 31.06 23.08 31.45 23.47 31.83 23.88 32.18 24.3 32.51 24.75 32.83 25.2 33.12 25.67 33.39 26.15 33.64 26.65 33.87 27.16 34.07 27.68 34.25 28.22 34.4 28.76 34.52 29.32 34.62 29.88 34.7 30.45 34.74 31.03 34.75" />
+                                        <polygon class="mastercardcls-3" points="15.97 34.75 16.55 34.74 17.12 34.7 17.68 34.62 18.24 34.52 18.78 34.4 19.32 34.25 19.84 34.07 20.35 33.87 20.85 33.64 21.33 33.39 21.8 33.12 22.25 32.83 22.7 32.51 23.12 32.18 23.53 31.83 23.92 31.45 24.29 31.06 24.64 30.65 24.98 30.22 25.29 29.78 25.58 29.32 25.85 28.85 26.1 28.37 26.32 27.87 26.52 27.36 26.7 26.83 26.85 26.3 26.98 25.75 27.08 25.2 27.15 24.63 27.19 24.06 27.2 23.48 27.19 22.9 27.15 22.33 27.08 21.77 26.98 21.22 26.85 20.68 26.7 20.15 26.52 19.62 26.32 19.11 26.1 18.62 25.85 18.13 25.58 17.66 25.29 17.2 24.98 16.77 24.64 16.34 24.29 15.93 23.92 15.54 23.53 15.17 23.12 14.82 22.7 14.48 22.25 14.17 21.8 13.88 21.33 13.61 20.85 13.36 20.35 13.13 19.84 12.93 19.32 12.75 18.78 12.6 18.24 12.47 17.68 12.38 17.12 12.3 16.55 12.26 15.97 12.25 15.39 12.26 14.82 12.3 14.26 12.38 13.7 12.47 13.16 12.6 12.62 12.75 12.1 12.93 11.59 13.13 11.08 13.36 10.6 13.61 10.13 13.88 9.67 14.17 9.23 14.48 8.8 14.82 8.39 15.17 8 15.54 7.63 15.93 7.27 16.34 6.94 16.77 6.62 17.2 6.33 17.66 6.06 18.13 5.81 18.62 5.58 19.11 5.38 19.62 5.21 20.15 5.05 20.68 4.93 21.22 4.83 21.77 4.76 22.33 4.71 22.9 4.7 23.48 4.71 24.06 4.76 24.63 4.83 25.2 4.93 25.75 5.05 26.3 5.21 26.83 5.38 27.36 5.58 27.87 5.81 28.37 6.06 28.85 6.33 29.32 6.62 29.78 6.94 30.22 7.27 30.65 7.63 31.06 8 31.45 8.39 31.83 8.8 32.18 9.23 32.51 9.67 32.83 10.13 33.12 10.6 33.39 11.08 33.64 11.59 33.87 12.1 34.07 12.62 34.25 13.16 34.4 13.7 34.52 14.26 34.62 14.82 34.7 15.39 34.74 15.97 34.75" />
+                                        <polygon class="mastercardcls-2" points="22.18 16.56 28.16 16.56 28.16 15.95 22.7 15.95 22.18 16.56" />
+                                        <polygon class="mastercardcls-2" points="21.29 17.92 28.16 17.92 28.16 17.31 21.65 17.31 21.29 17.92" />
+                                        <polygon class="mastercardcls-2" points="20.62 19.28 28.16 19.28 28.16 18.67 20.89 18.67 20.62 19.28" />
+                                        <polygon class="mastercardcls-2" points="20.16 20.64 28.16 20.64 28.16 20.02 20.35 20.02 20.16 20.64" />
+                                        <polygon class="mastercardcls-2" points="20.43 27.2 28.18 27.2 28.18 26.59 20.24 26.59 20.43 27.2" />
+                                        <polygon class="mastercardcls-2" points="21 28.56 28.18 28.56 28.18 27.95 20.71 27.95 21 28.56" />
+                                        <polygon class="mastercardcls-2" points="21.8 29.92 28.18 29.92 28.18 29.31 21.42 29.31 21.8 29.92" />
+                                        <polygon class="mastercardcls-2" points="22.91 31.28 28.18 31.28 28.18 30.66 22.38 30.66 22.91 31.28" />
+                                        <polygon class="mastercardcls-2" points="19.89 21.99 28.16 21.99 28.16 21.38 20.01 21.38 19.89 21.99" />
+                                        <polygon class="mastercardcls-2" points="24.93 25.85 28.09 25.85 28.09 25.24 25.05 25.24 24.93 25.85" />
+                                        <polygon class="mastercardcls-2" points="25.18 24.49 28.09 24.49 28.09 23.88 25.3 23.88 25.18 24.49" />
+                                        <polygon class="mastercardcls-2" points="19.68 23.88 20.5 23.88 20.5 24.49 19.72 24.49 19.68 23.88" />
+                                        <polygon class="mastercardcls-1" points="18.15 23.14 18.1 23.13 18.05 23.13 18 23.12 17.95 23.11 17.9 23.1 17.85 23.1 17.8 23.09 17.75 23.08 17.7 23.07 17.64 23.07 17.57 23.07 17.5 23.06 17.41 23.06 17.33 23.07 17.23 23.07 17.12 23.08 17.04 23.09 16.97 23.1 16.91 23.13 16.85 23.15 16.8 23.18 16.75 23.21 16.71 23.24 16.68 23.28 16.65 23.32 16.63 23.36 16.63 23.41 16.63 23.45 16.64 23.5 16.65 23.55 16.68 23.6 16.72 23.65 16.8 23.72 16.89 23.78 16.99 23.83 17.11 23.87 17.23 23.91 17.36 23.95 17.48 24 17.6 24.05 17.71 24.11 17.82 24.19 17.92 24.28 18 24.4 18.06 24.55 18.09 24.72 18.11 24.92 18.09 25.16 18.07 25.34 18.02 25.5 17.96 25.64 17.89 25.76 17.8 25.87 17.7 25.97 17.59 26.05 17.48 26.13 17.36 26.18 17.23 26.23 17.1 26.27 16.97 26.3 16.84 26.32 16.71 26.33 16.59 26.34 16.47 26.34 16.31 26.34 16.16 26.34 16.02 26.34 15.9 26.34 15.78 26.33 15.68 26.33 15.59 26.32 15.5 26.31 15.42 26.3 15.35 26.28 15.28 26.27 15.21 26.25 15.15 26.24 15.09 26.22 15.03 26.19 14.96 26.17 15.13 25.33 15.17 25.34 15.21 25.35 15.26 25.37 15.33 25.38 15.4 25.4 15.47 25.41 15.56 25.43 15.65 25.45 15.74 25.46 15.84 25.48 15.94 25.49 16.05 25.5 16.16 25.5 16.27 25.51 16.38 25.51 16.49 25.5 16.6 25.48 16.69 25.45 16.75 25.41 16.81 25.35 16.85 25.3 16.88 25.24 16.89 25.18 16.91 25.12 16.92 25.01 16.88 24.92 16.82 24.84 16.73 24.78 16.61 24.72 16.48 24.66 16.33 24.61 16.18 24.55 16.03 24.48 15.89 24.4 15.75 24.3 15.63 24.18 15.54 24.04 15.47 23.87 15.43 23.66 15.44 23.42 15.46 23.27 15.48 23.13 15.52 23 15.57 22.88 15.63 22.77 15.7 22.67 15.78 22.58 15.87 22.49 15.98 22.42 16.1 22.36 16.24 22.3 16.39 22.26 16.56 22.23 16.75 22.2 16.95 22.18 17.18 22.18 17.32 22.18 17.45 22.18 17.56 22.19 17.67 22.19 17.77 22.2 17.85 22.21 17.93 22.21 18 22.22 18.06 22.23 18.11 22.24 18.16 22.25 18.21 22.26 18.25 22.27 18.28 22.27 18.32 22.28 18.34 22.28 18.15 23.14" />
+                                        <polyline class="mastercardcls-4" points="18.15 23.14 18.15 23.14 18.1 23.13 18.05 23.13 18 23.12 17.95 23.11 17.9 23.1 17.85 23.1 17.8 23.09 17.75 23.08 17.7 23.07 17.64 23.07 17.57 23.07 17.5 23.06 17.41 23.06 17.33 23.07 17.23 23.07 17.12 23.08 17.12 23.08 17.04 23.09 16.97 23.1 16.91 23.13 16.85 23.15 16.8 23.18 16.75 23.21 16.71 23.24 16.68 23.28 16.65 23.32 16.63 23.36 16.63 23.41 16.63 23.45 16.64 23.5 16.65 23.55 16.68 23.6 16.72 23.65 16.72 23.65 16.8 23.72 16.89 23.78 16.99 23.83 17.11 23.87 17.23 23.91 17.36 23.95 17.48 24 17.6 24.05 17.71 24.11 17.82 24.19 17.92 24.28 18 24.4 18.06 24.55 18.09 24.72 18.11 24.92 18.09 25.16 18.09 25.16 18.07 25.34 18.02 25.5 17.96 25.64 17.89 25.76 17.8 25.87 17.7 25.97 17.59 26.05 17.48 26.13 17.36 26.18 17.23 26.23 17.1 26.27 16.97 26.3 16.84 26.32 16.71 26.33 16.59 26.34 16.47 26.34 16.47 26.34 16.31 26.34 16.16 26.34 16.02 26.34 15.9 26.34 15.78 26.33 15.68 26.33 15.59 26.32 15.5 26.31 15.42 26.3 15.35 26.28 15.28 26.27 15.21 26.25 15.15 26.24 15.09 26.22 15.03 26.19 14.96 26.17 15.13 25.33 15.13 25.33 15.17 25.34 15.21 25.35 15.26 25.37 15.33 25.38 15.4 25.4 15.47 25.41 15.56 25.43 15.65 25.45 15.74 25.46 15.84 25.48 15.94 25.49 16.05 25.5 16.16 25.5 16.27 25.51 16.38 25.51 16.49 25.5 16.49 25.5 16.6 25.48 16.69 25.45 16.75 25.41 16.81 25.35 16.85 25.3 16.88 25.24 16.89 25.18 16.91 25.12 16.91 25.12 16.92 25.01 16.88 24.92 16.82 24.84 16.73 24.78 16.61 24.72 16.48 24.66 16.33 24.61 16.18 24.55 16.03 24.48 15.89 24.4 15.75 24.3 15.63 24.18 15.54 24.04 15.47 23.87 15.43 23.66 15.44 23.42 15.44 23.42 15.46 23.27 15.48 23.13 15.52 23 15.57 22.88 15.63 22.77 15.7 22.67 15.78 22.58 15.87 22.49 15.98 22.42 16.1 22.36 16.24 22.3 16.39 22.26 16.56 22.23 16.75 22.2 16.95 22.18 17.18 22.18 17.18 22.18 17.32 22.18 17.45 22.18 17.56 22.19 17.67 22.19 17.77 22.2 17.85 22.21 17.93 22.21 18 22.22 18.06 22.23 18.11 22.24 18.16 22.25 18.21 22.26 18.25 22.27 18.28 22.27 18.32 22.28 18.34 22.28 18.15 23.14" />
+                                        <polygon class="mastercardcls-1" points="19.05 21.34 20.1 21.34 19.95 22.26 20.58 22.26 20.44 23.12 19.78 23.1 19.41 25.22 19.41 25.29 19.43 25.36 19.46 25.41 19.52 25.45 19.58 25.48 19.66 25.5 19.74 25.51 19.83 25.52 19.92 25.52 19.99 25.51 20.06 25.5 20.12 25.48 20.17 25.47 20.2 25.46 20.23 25.45 20.24 25.45 20.1 26.15 20.08 26.17 20.05 26.18 20.02 26.2 20 26.22 19.97 26.23 19.94 26.24 19.91 26.25 19.87 26.26 19.83 26.27 19.8 26.28 19.75 26.29 19.7 26.3 19.66 26.3 19.6 26.31 19.54 26.32 19.47 26.33 19.18 26.33 19.03 26.32 18.9 26.3 18.78 26.28 18.68 26.25 18.59 26.22 18.52 26.18 18.45 26.13 18.4 26.08 18.36 26.03 18.34 25.96 18.32 25.9 18.31 25.83 18.3 25.75 18.3 25.66 18.32 25.58 18.33 25.48 19.05 21.34" />
+                                        <polyline class="mastercardcls-4" points="19.05 21.34 20.1 21.34 19.95 22.26 20.58 22.26 20.44 23.12 19.78 23.1 19.41 25.22 19.41 25.22 19.41 25.29 19.43 25.36 19.46 25.41 19.52 25.45 19.58 25.48 19.66 25.5 19.74 25.51 19.83 25.52 19.83 25.52 19.92 25.52 19.99 25.51 20.06 25.5 20.12 25.48 20.17 25.47 20.2 25.46 20.23 25.45 20.24 25.45 20.1 26.15 20.1 26.15 20.08 26.17 20.05 26.18 20.02 26.2 20 26.22 19.97 26.23 19.94 26.24 19.91 26.25 19.87 26.26 19.83 26.27 19.8 26.28 19.75 26.29 19.7 26.3 19.66 26.3 19.6 26.31 19.54 26.32 19.47 26.33 19.18 26.33 19.18 26.33 19.03 26.32 18.9 26.3 18.78 26.28 18.68 26.25 18.59 26.22 18.52 26.18 18.45 26.13 18.4 26.08 18.36 26.03 18.34 25.96 18.32 25.9 18.31 25.83 18.3 25.75 18.3 25.66 18.32 25.58 18.33 25.48 19.05 21.34" />
+                                        <polygon class="mastercardcls-1" points="21.42 24.55 21.41 24.61 21.41 24.68 21.41 24.75 21.43 24.83 21.45 24.9 21.48 24.97 21.53 25.04 21.57 25.1 21.63 25.17 21.68 25.23 21.74 25.28 21.81 25.33 21.88 25.37 21.95 25.4 22.03 25.43 22.11 25.45 22.21 25.46 22.3 25.47 22.4 25.48 22.5 25.49 22.6 25.5 22.7 25.5 22.8 25.49 22.9 25.48 23 25.47 23.11 25.45 23.21 25.43 23.31 25.39 23.42 25.35 23.53 25.3 23.64 25.24 23.75 25.18 23.59 26.11 23.53 26.14 23.47 26.17 23.41 26.2 23.36 26.22 23.3 26.24 23.24 26.26 23.18 26.27 23.11 26.28 23.04 26.3 22.97 26.3 22.89 26.31 22.8 26.32 22.7 26.32 22.6 26.32 22.48 26.33 22.36 26.33 22.17 26.32 21.98 26.3 21.79 26.28 21.6 26.23 21.42 26.17 21.24 26.1 21.07 26.01 20.91 25.9 20.76 25.77 20.63 25.61 20.52 25.44 20.43 25.24 20.36 25.01 20.32 24.76 20.31 24.48 20.33 24.17 20.35 24.05 20.37 23.9 20.4 23.76 20.44 23.6 20.5 23.43 20.57 23.27 20.65 23.1 20.76 22.94 20.88 22.79 21.03 22.65 21.2 22.52 21.39 22.41 21.61 22.31 21.85 22.24 22.13 22.2 22.43 22.18 22.58 22.18 22.74 22.2 22.89 22.23 23.05 22.27 23.2 22.32 23.35 22.39 23.48 22.48 23.61 22.59 23.72 22.72 23.82 22.87 23.89 23.04 23.95 23.24 23.98 23.47 23.98 23.73 23.95 24.02 23.9 24.34 23.88 24.57 21.11 24.57 21.29 23.82 22.95 23.82 22.96 23.73 22.95 23.64 22.95 23.55 22.93 23.48 22.9 23.4 22.88 23.34 22.84 23.28 22.8 23.23 22.76 23.18 22.71 23.14 22.65 23.11 22.59 23.08 22.53 23.06 22.47 23.04 22.41 23.03 22.34 23.02 22.27 23.03 22.2 23.04 22.13 23.05 22.07 23.08 22 23.11 21.95 23.14 21.89 23.18 21.84 23.23 21.79 23.28 21.75 23.34 21.7 23.4 21.67 23.46 21.64 23.53 21.61 23.61 21.59 23.68 21.57 23.76 21.42 24.55" />
+                                        <polyline class="mastercardcls-4" points="21.42 24.55 21.42 24.55 21.41 24.61 21.41 24.68 21.41 24.75 21.43 24.83 21.45 24.9 21.48 24.97 21.53 25.04 21.57 25.1 21.63 25.17 21.68 25.23 21.74 25.28 21.81 25.33 21.88 25.37 21.95 25.4 22.03 25.43 22.11 25.45 22.11 25.45 22.21 25.46 22.3 25.47 22.4 25.48 22.5 25.49 22.6 25.5 22.7 25.5 22.8 25.49 22.9 25.48 23 25.47 23.11 25.45 23.21 25.43 23.31 25.39 23.42 25.35 23.53 25.3 23.64 25.24 23.75 25.18 23.59 26.11 23.59 26.11 23.53 26.14 23.47 26.17 23.41 26.2 23.36 26.22 23.3 26.24 23.24 26.26 23.18 26.27 23.11 26.28 23.04 26.3 22.97 26.3 22.89 26.31 22.8 26.32 22.7 26.32 22.6 26.32 22.48 26.33 22.36 26.33 22.36 26.33 22.17 26.32 21.98 26.3 21.79 26.28 21.6 26.23 21.42 26.17 21.24 26.1 21.07 26.01 20.91 25.9 20.76 25.77 20.63 25.61 20.52 25.44 20.43 25.24 20.36 25.01 20.32 24.76 20.31 24.48 20.33 24.17 20.33 24.17 20.35 24.05 20.37 23.9 20.4 23.76 20.44 23.6 20.5 23.43 20.57 23.27 20.65 23.1 20.76 22.94 20.88 22.79 21.03 22.65 21.2 22.52 21.39 22.41 21.61 22.31 21.85 22.24 22.13 22.2 22.43 22.18 22.43 22.18 22.58 22.18 22.74 22.2 22.89 22.23 23.05 22.27 23.2 22.32 23.35 22.39 23.48 22.48 23.61 22.59 23.72 22.72 23.82 22.87 23.89 23.04 23.95 23.24 23.98 23.47 23.98 23.73 23.95 24.02 23.9 24.34 23.88 24.57 21.11 24.57 21.29 23.82 22.95 23.82 22.95 23.82 22.96 23.73 22.95 23.64 22.95 23.55 22.93 23.48 22.9 23.4 22.88 23.34 22.84 23.28 22.8 23.23 22.76 23.18 22.71 23.14 22.65 23.11 22.59 23.08 22.53 23.06 22.47 23.04 22.41 23.03 22.34 23.02 22.34 23.02 22.27 23.03 22.2 23.04 22.13 23.05 22.07 23.08 22 23.11 21.95 23.14 21.89 23.18 21.84 23.23 21.79 23.28 21.75 23.34 21.7 23.4 21.67 23.46 21.64 23.53 21.61 23.61 21.59 23.68 21.57 23.76 21.42 24.55" />
+                                        <polygon class="mastercardcls-1" points="30.47 22.49 30.42 22.46 30.37 22.44 30.32 22.41 30.26 22.39 30.21 22.36 30.14 22.34 30.08 22.32 30.01 22.3 29.94 22.28 29.86 22.26 29.79 22.25 29.71 22.23 29.62 22.23 29.53 22.22 29.44 22.22 29.34 22.22 29.25 22.22 29.15 22.23 29.05 22.24 28.94 22.26 28.84 22.29 28.73 22.33 28.62 22.38 28.52 22.45 28.41 22.53 28.32 22.63 28.22 22.75 28.13 22.89 28.05 23.06 27.97 23.25 27.89 23.46 27.84 23.71 27.81 23.84 27.8 23.98 27.79 24.11 27.79 24.24 27.8 24.37 27.83 24.49 27.86 24.6 27.91 24.72 27.96 24.82 28.03 24.92 28.11 25 28.2 25.09 28.3 25.15 28.42 25.21 28.55 25.26 28.7 25.29 28.75 25.3 28.8 25.32 28.87 25.32 28.95 25.33 29.03 25.34 29.12 25.34 29.21 25.34 29.31 25.33 29.41 25.32 29.5 25.3 29.6 25.27 29.7 25.24 29.79 25.2 29.88 25.15 29.96 25.09 30.03 25.02 29.86 26.04 29.84 26.06 29.82 26.08 29.79 26.11 29.75 26.13 29.71 26.16 29.66 26.18 29.6 26.21 29.53 26.23 29.44 26.26 29.34 26.28 29.23 26.3 29.09 26.31 28.95 26.32 28.78 26.32 28.58 26.32 28.37 26.31 28.2 26.29 28.02 26.25 27.85 26.19 27.67 26.12 27.5 26.03 27.34 25.91 27.19 25.78 27.05 25.63 26.93 25.46 26.82 25.27 26.73 25.05 26.66 24.82 26.62 24.57 26.6 24.3 26.61 24 26.65 23.69 26.68 23.53 26.71 23.38 26.75 23.23 26.79 23.09 26.83 22.96 26.88 22.83 26.93 22.7 26.98 22.58 27.04 22.47 27.1 22.36 27.16 22.25 27.23 22.15 27.3 22.06 27.38 21.96 27.45 21.88 27.53 21.8 27.62 21.73 27.71 21.65 27.8 21.59 27.89 21.53 27.99 21.47 28.1 21.42 28.2 21.38 28.31 21.34 28.43 21.3 28.55 21.27 28.67 21.24 28.8 21.22 28.93 21.2 29.06 21.18 29.2 21.18 29.34 21.17 29.47 21.18 29.58 21.18 29.7 21.19 29.81 21.21 29.92 21.23 30.02 21.25 30.12 21.27 30.21 21.29 30.3 21.31 30.37 21.34 30.45 21.36 30.51 21.38 30.56 21.4 30.61 21.41 30.64 21.43 30.66 21.44 30.47 22.49" />
+                                        <polyline class="mastercardcls-4" points="30.47 22.49 30.47 22.49 30.42 22.46 30.37 22.44 30.32 22.41 30.26 22.39 30.21 22.36 30.14 22.34 30.08 22.32 30.01 22.3 29.94 22.28 29.86 22.26 29.79 22.25 29.71 22.23 29.62 22.23 29.53 22.22 29.44 22.22 29.34 22.22 29.34 22.22 29.25 22.22 29.15 22.23 29.05 22.24 28.94 22.26 28.84 22.29 28.73 22.33 28.62 22.38 28.52 22.45 28.41 22.53 28.32 22.63 28.22 22.75 28.13 22.89 28.05 23.06 27.97 23.25 27.89 23.46 27.84 23.71 27.84 23.71 27.81 23.84 27.8 23.98 27.79 24.11 27.79 24.24 27.8 24.37 27.83 24.49 27.86 24.6 27.91 24.72 27.96 24.82 28.03 24.92 28.11 25 28.2 25.09 28.3 25.15 28.42 25.21 28.55 25.26 28.7 25.29 28.7 25.29 28.75 25.3 28.8 25.32 28.87 25.32 28.95 25.33 29.03 25.34 29.12 25.34 29.21 25.34 29.31 25.33 29.41 25.32 29.5 25.3 29.6 25.27 29.7 25.24 29.79 25.2 29.88 25.15 29.96 25.09 30.03 25.02 29.86 26.04 29.86 26.04 29.84 26.06 29.82 26.08 29.79 26.11 29.75 26.13 29.71 26.16 29.66 26.18 29.6 26.21 29.53 26.23 29.44 26.26 29.34 26.28 29.23 26.3 29.09 26.31 28.95 26.32 28.78 26.32 28.58 26.32 28.37 26.31 28.37 26.31 28.2 26.29 28.02 26.25 27.85 26.19 27.67 26.12 27.5 26.03 27.34 25.91 27.19 25.78 27.05 25.63 26.93 25.46 26.82 25.27 26.73 25.05 26.66 24.82 26.62 24.57 26.6 24.3 26.61 24 26.65 23.69 26.65 23.69 26.68 23.53 26.71 23.38 26.75 23.23 26.79 23.09 26.83 22.96 26.88 22.83 26.93 22.7 26.98 22.58 27.04 22.47 27.1 22.36 27.16 22.25 27.23 22.15 27.3 22.06 27.38 21.96 27.45 21.88 27.53 21.8 27.62 21.73 27.71 21.65 27.8 21.59 27.89 21.53 27.99 21.47 28.1 21.42 28.2 21.38 28.31 21.34 28.43 21.3 28.55 21.27 28.67 21.24 28.8 21.22 28.93 21.2 29.06 21.18 29.2 21.18 29.34 21.17 29.34 21.17 29.47 21.18 29.58 21.18 29.7 21.19 29.81 21.21 29.92 21.23 30.02 21.25 30.12 21.27 30.21 21.29 30.3 21.31 30.37 21.34 30.45 21.36 30.51 21.38 30.56 21.4 30.61 21.41 30.64 21.43 30.66 21.44 30.47 22.49" />
+                                        <polygon class="mastercardcls-1" points="39.82 26.33 38.77 26.33 38.84 25.91 38.84 25.87 38.78 25.94 38.72 26.01 38.65 26.07 38.58 26.13 38.52 26.17 38.45 26.22 38.38 26.25 38.31 26.28 38.23 26.31 38.16 26.33 38.09 26.35 38.02 26.36 37.94 26.37 37.87 26.38 37.79 26.38 37.72 26.38 37.52 26.37 37.34 26.33 37.17 26.26 37.02 26.17 36.88 26.06 36.76 25.93 36.65 25.8 36.56 25.64 36.48 25.46 36.42 25.29 36.38 25.1 36.35 24.91 36.34 24.71 36.34 24.52 36.36 24.32 36.4 24.13 36.45 23.9 36.52 23.69 36.6 23.5 36.7 23.32 36.8 23.14 36.91 22.99 37.03 22.86 37.15 22.73 37.29 22.62 37.43 22.53 37.57 22.44 37.72 22.38 37.87 22.32 38.02 22.29 38.17 22.27 38.33 22.26 38.44 22.27 38.54 22.28 38.64 22.3 38.73 22.32 38.82 22.35 38.9 22.39 38.97 22.43 39.04 22.47 39.1 22.52 39.16 22.56 39.21 22.61 39.25 22.66 39.29 22.71 39.32 22.76 39.35 22.81 39.38 22.85 39.38 22.85 39.64 21.36 40.67 21.36 39.82 26.33" />
+                                        <polyline class="mastercardcls-4" points="39.82 26.33 38.77 26.33 38.84 25.91 38.84 25.87 38.84 25.87 38.78 25.94 38.72 26.01 38.65 26.07 38.58 26.13 38.52 26.17 38.45 26.22 38.38 26.25 38.31 26.28 38.23 26.31 38.16 26.33 38.09 26.35 38.02 26.36 37.94 26.37 37.87 26.38 37.79 26.38 37.72 26.38 37.72 26.38 37.52 26.37 37.34 26.33 37.17 26.26 37.02 26.17 36.88 26.06 36.76 25.93 36.65 25.8 36.56 25.64 36.48 25.46 36.42 25.29 36.38 25.1 36.35 24.91 36.34 24.71 36.34 24.52 36.36 24.32 36.4 24.13 36.4 24.13 36.45 23.9 36.52 23.69 36.6 23.5 36.7 23.32 36.8 23.14 36.91 22.99 37.03 22.86 37.15 22.73 37.29 22.62 37.43 22.53 37.57 22.44 37.72 22.38 37.87 22.32 38.02 22.29 38.17 22.27 38.33 22.26 38.33 22.26 38.44 22.27 38.54 22.28 38.64 22.3 38.73 22.32 38.82 22.35 38.9 22.39 38.97 22.43 39.04 22.47 39.1 22.52 39.16 22.56 39.21 22.61 39.25 22.66 39.29 22.71 39.32 22.76 39.35 22.81 39.38 22.85 39.38 22.85 39.64 21.36 40.67 21.36 39.82 26.33" />
+                                        <polygon class="mastercardcls-2" points="38.1 25.41 38.2 25.4 38.3 25.38 38.39 25.35 38.48 25.31 38.56 25.26 38.64 25.21 38.71 25.14 38.77 25.07 38.83 25 38.88 24.91 38.93 24.83 38.98 24.74 39.01 24.64 39.04 24.54 39.07 24.44 39.09 24.34 39.11 24.23 39.12 24.12 39.12 24.02 39.12 23.91 39.1 23.81 39.09 23.72 39.06 23.63 39.03 23.54 38.99 23.46 38.95 23.39 38.9 23.33 38.84 23.28 38.78 23.23 38.71 23.2 38.64 23.18 38.56 23.18 38.45 23.18 38.36 23.2 38.27 23.23 38.19 23.27 38.11 23.32 38.03 23.38 37.97 23.44 37.91 23.51 37.85 23.6 37.8 23.68 37.74 23.77 37.7 23.87 37.66 23.98 37.63 24.08 37.6 24.19 37.58 24.3 37.56 24.47 37.57 24.65 37.6 24.83 37.65 25.01 37.72 25.17 37.82 25.29 37.95 25.38 38.1 25.41" />
+                                        <polygon class="mastercardcls-1" points="14.79 25.48 14.64 26.33 13.68 26.33 13.71 26.17 13.73 26.03 13.74 25.92 13.76 25.87 13.7 25.93 13.64 25.99 13.57 26.05 13.49 26.1 13.4 26.15 13.3 26.2 13.21 26.24 13.1 26.28 12.99 26.32 12.88 26.34 12.77 26.36 12.66 26.38 12.55 26.39 12.44 26.39 12.33 26.38 12.23 26.36 12.1 26.33 11.98 26.29 11.87 26.24 11.78 26.18 11.69 26.13 11.62 26.06 11.55 25.98 11.5 25.91 11.46 25.83 11.42 25.75 11.39 25.66 11.37 25.58 11.35 25.49 11.34 25.4 11.33 25.32 11.33 25.24 11.34 25.09 11.37 24.95 11.4 24.82 11.45 24.69 11.51 24.57 11.58 24.45 11.66 24.35 11.75 24.25 11.85 24.17 11.95 24.09 12.06 24.01 12.18 23.95 12.3 23.9 12.42 23.86 12.55 23.82 12.69 23.8 12.69 23.8 12.71 23.8 12.74 23.79 12.78 23.79 12.83 23.78 12.88 23.78 12.94 23.77 13 23.76 13.07 23.76 13.13 23.75 13.2 23.75 13.26 23.74 13.32 23.73 13.38 23.73 13.43 23.73 13.47 23.73 13.56 23.73 13.65 23.73 13.73 23.73 13.82 23.73 13.89 23.74 13.94 23.74 13.98 23.75 13.99 23.75 14 23.72 14.02 23.65 14.04 23.57 14.04 23.5 14.03 23.41 14 23.34 13.95 23.27 13.89 23.21 13.82 23.16 13.74 23.13 13.65 23.11 13.55 23.1 13.44 23.1 13.33 23.09 13.21 23.09 13.09 23.1 12.96 23.1 12.84 23.11 12.72 23.13 12.6 23.14 12.49 23.16 12.38 23.18 12.28 23.2 12.19 23.21 12.11 23.24 12.04 23.26 11.98 23.29 11.94 23.31 12.21 22.39 12.29 22.36 12.38 22.33 12.47 22.3 12.56 22.28 12.65 22.27 12.75 22.25 12.85 22.23 12.95 22.23 13.06 22.22 13.17 22.21 13.28 22.21 13.4 22.21 13.52 22.21 13.65 22.21 13.78 22.21 13.91 22.22 14.02 22.23 14.13 22.25 14.25 22.27 14.37 22.31 14.49 22.35 14.6 22.41 14.72 22.47 14.82 22.54 14.92 22.63 15 22.72 15.08 22.82 15.13 22.93 15.17 23.05 15.2 23.18 15.2 23.33 15.17 23.48 14.79 25.48" />
+                                        <polyline class="mastercardcls-4" points="14.79 25.48 14.64 26.33 13.68 26.33 13.68 26.33 13.71 26.17 13.73 26.03 13.74 25.92 13.76 25.87 13.76 25.87 13.7 25.93 13.64 25.99 13.57 26.05 13.49 26.1 13.4 26.15 13.3 26.2 13.21 26.24 13.1 26.28 12.99 26.32 12.88 26.34 12.77 26.36 12.66 26.38 12.55 26.39 12.44 26.39 12.33 26.38 12.23 26.36 12.23 26.36 12.1 26.33 11.98 26.29 11.87 26.24 11.78 26.18 11.69 26.13 11.62 26.06 11.55 25.98 11.5 25.91 11.46 25.83 11.42 25.75 11.39 25.66 11.37 25.58 11.35 25.49 11.34 25.4 11.33 25.32 11.33 25.24 11.33 25.24 11.34 25.09 11.37 24.95 11.4 24.82 11.45 24.69 11.51 24.57 11.58 24.45 11.66 24.35 11.75 24.25 11.85 24.17 11.95 24.09 12.06 24.01 12.18 23.95 12.3 23.9 12.42 23.86 12.55 23.82 12.69 23.8 12.69 23.8 12.69 23.8 12.71 23.8 12.74 23.79 12.78 23.79 12.83 23.78 12.88 23.78 12.94 23.77 13 23.76 13.07 23.76 13.13 23.75 13.2 23.75 13.26 23.74 13.32 23.73 13.38 23.73 13.43 23.73 13.47 23.73 13.47 23.73 13.56 23.73 13.65 23.73 13.73 23.73 13.82 23.73 13.89 23.74 13.94 23.74 13.98 23.75 13.99 23.75 13.99 23.75 14 23.72 14.02 23.65 14.04 23.57 14.04 23.5 14.04 23.5 14.03 23.41 14 23.34 13.95 23.27 13.89 23.21 13.82 23.16 13.74 23.13 13.65 23.11 13.55 23.1 13.55 23.1 13.44 23.1 13.33 23.09 13.21 23.09 13.09 23.1 12.96 23.1 12.84 23.11 12.72 23.13 12.6 23.14 12.49 23.16 12.38 23.18 12.28 23.2 12.19 23.21 12.11 23.24 12.04 23.26 11.98 23.29 11.94 23.31 12.21 22.39 12.21 22.39 12.29 22.36 12.38 22.33 12.47 22.3 12.56 22.28 12.65 22.27 12.75 22.25 12.85 22.23 12.95 22.23 13.06 22.22 13.17 22.21 13.28 22.21 13.4 22.21 13.52 22.21 13.65 22.21 13.78 22.21 13.91 22.22 13.91 22.22 14.02 22.23 14.13 22.25 14.25 22.27 14.37 22.31 14.49 22.35 14.6 22.41 14.72 22.47 14.82 22.54 14.92 22.63 15 22.72 15.08 22.82 15.13 22.93 15.17 23.05 15.2 23.18 15.2 23.33 15.17 23.48 14.79 25.48" />
+                                        <polygon class="mastercardcls-3" points="13.87 24.49 13.87 24.47 13.86 24.45 13.83 24.44 13.79 24.44 13.75 24.43 13.7 24.42 13.65 24.42 13.59 24.42 13.53 24.43 13.46 24.44 13.4 24.44 13.34 24.45 13.29 24.46 13.23 24.47 13.19 24.48 13.14 24.49 13.12 24.5 13.09 24.51 13.05 24.53 13.01 24.55 12.96 24.57 12.91 24.59 12.85 24.62 12.8 24.65 12.75 24.69 12.7 24.73 12.66 24.77 12.61 24.82 12.58 24.87 12.55 24.92 12.53 24.98 12.52 25.04 12.51 25.17 12.53 25.27 12.57 25.35 12.62 25.41 12.68 25.45 12.74 25.47 12.8 25.48 12.86 25.48 12.97 25.48 13.08 25.47 13.18 25.45 13.26 25.43 13.34 25.4 13.41 25.37 13.48 25.34 13.53 25.29 13.58 25.26 13.63 25.21 13.66 25.17 13.7 25.12 13.72 25.08 13.74 25.03 13.76 24.99 13.78 24.95 13.81 24.84 13.83 24.71 13.86 24.59 13.87 24.49" />
+                                        <polygon class="mastercardcls-1" points="6.8 26.33 5.77 26.33 6.63 21.34 8.43 21.34 8.6 24.3 9.84 21.34 11.71 21.34 10.83 26.33 9.8 26.33 10.45 22.6 10.41 22.6 8.87 26.33 7.7 26.33 7.7 26.17 7.67 25.76 7.63 25.17 7.6 24.49 7.56 23.81 7.52 23.22 7.5 22.79 7.49 22.6 7.48 22.6 7.46 22.6 7.43 22.6 7.43 22.6 6.8 26.33" />
+                                        <polyline class="mastercardcls-4" points="6.8 26.33 5.77 26.33 6.63 21.34 8.43 21.34 8.6 24.3 9.84 21.34 11.71 21.34 10.83 26.33 9.8 26.33 10.45 22.6 10.41 22.6 8.87 26.33 7.7 26.33 7.7 26.33 7.7 26.17 7.67 25.76 7.63 25.17 7.6 24.49 7.56 23.81 7.52 23.22 7.5 22.79 7.49 22.6 7.49 22.6 7.48 22.6 7.46 22.6 7.43 22.6 7.43 22.6 6.8 26.33" />
+                                        <polygon class="mastercardcls-1" points="33.63 25.48 33.47 26.33 32.52 26.33 32.53 26.17 32.53 26.03 32.53 25.93 32.54 25.89 32.49 25.94 32.43 26 32.36 26.05 32.29 26.11 32.21 26.16 32.12 26.2 32.02 26.25 31.93 26.28 31.82 26.32 31.72 26.34 31.61 26.36 31.5 26.38 31.39 26.39 31.29 26.39 31.19 26.38 31.08 26.36 30.95 26.33 30.83 26.29 30.72 26.24 30.62 26.18 30.54 26.13 30.46 26.06 30.4 25.98 30.35 25.91 30.31 25.83 30.27 25.75 30.24 25.66 30.22 25.58 30.21 25.49 30.2 25.4 30.19 25.32 30.19 25.24 30.2 25.09 30.22 24.95 30.25 24.82 30.3 24.69 30.36 24.57 30.43 24.45 30.51 24.35 30.6 24.25 30.7 24.17 30.8 24.09 30.91 24.01 31.03 23.95 31.14 23.9 31.27 23.86 31.39 23.82 31.52 23.8 31.53 23.8 31.55 23.8 31.58 23.79 31.61 23.79 31.66 23.78 31.72 23.78 31.77 23.77 31.84 23.76 31.9 23.76 31.97 23.75 32.03 23.75 32.1 23.74 32.16 23.73 32.21 23.73 32.26 23.73 32.31 23.73 32.4 23.73 32.49 23.73 32.58 23.73 32.66 23.73 32.73 23.74 32.79 23.74 32.83 23.75 32.84 23.75 32.85 23.72 32.86 23.65 32.87 23.57 32.88 23.5 32.86 23.41 32.83 23.34 32.78 23.27 32.73 23.21 32.66 23.16 32.58 23.13 32.5 23.11 32.41 23.1 32.3 23.1 32.19 23.09 32.07 23.09 31.95 23.1 31.82 23.1 31.7 23.11 31.58 23.13 31.46 23.14 31.35 23.16 31.24 23.18 31.14 23.2 31.05 23.21 30.96 23.24 30.89 23.26 30.84 23.29 30.8 23.31 31.07 22.39 31.15 22.36 31.24 22.33 31.32 22.3 31.41 22.28 31.51 22.27 31.6 22.25 31.7 22.23 31.8 22.23 31.91 22.22 32.02 22.21 32.13 22.21 32.25 22.21 32.37 22.21 32.49 22.21 32.62 22.21 32.75 22.22 32.85 22.23 32.97 22.25 33.08 22.27 33.21 22.31 33.32 22.35 33.44 22.41 33.55 22.47 33.66 22.54 33.76 22.63 33.84 22.72 33.92 22.82 33.98 22.93 34.02 23.05 34.04 23.18 34.04 23.33 34.02 23.48 33.63 25.48" />
+                                        <polygon class="mastercardcls-1" points="33.47 26.35 33.49 26.33 33.65 25.49 33.6 25.48 33.45 26.32 33.47 26.3 33.47 26.35 33.49 26.35 33.49 26.33 33.47 26.35" />
+                                        <polygon class="mastercardcls-1" points="32.5 26.33 32.52 26.35 33.47 26.35 33.47 26.3 32.52 26.3 32.54 26.33 32.5 26.33 32.49 26.35 32.52 26.35 32.5 26.33" />
+                                        <polygon class="mastercardcls-1" points="32.56 25.9 32.52 25.87 32.51 25.93 32.5 26.03 32.5 26.17 32.5 26.33 32.54 26.33 32.55 26.17 32.56 26.03 32.55 25.93 32.55 25.9 32.52 25.87 32.56 25.9" />
+                                        <polygon class="mastercardcls-1" points="31.08 26.39 31.08 26.39 31.19 26.4 31.29 26.41 31.39 26.41 31.5 26.4 31.61 26.39 31.72 26.37 31.83 26.34 31.93 26.31 32.03 26.27 32.13 26.22 32.22 26.18 32.3 26.13 32.38 26.07 32.45 26.02 32.51 25.96 32.56 25.9 32.52 25.87 32.47 25.93 32.42 25.98 32.35 26.03 32.28 26.09 32.2 26.13 32.1 26.18 32.01 26.22 31.92 26.26 31.82 26.29 31.71 26.32 31.61 26.34 31.5 26.36 31.39 26.36 31.29 26.37 31.19 26.36 31.09 26.34 31.09 26.34 31.08 26.39" />
+                                        <polygon class="mastercardcls-1" points="30.16 25.24 30.16 25.24 30.16 25.32 30.17 25.4 30.18 25.5 30.2 25.58 30.22 25.66 30.25 25.75 30.28 25.84 30.33 25.92 30.39 26 30.45 26.07 30.52 26.14 30.61 26.2 30.71 26.27 30.82 26.32 30.94 26.35 31.08 26.39 31.09 26.34 30.95 26.31 30.83 26.27 30.73 26.22 30.63 26.17 30.55 26.11 30.48 26.04 30.42 25.97 30.37 25.9 30.33 25.82 30.29 25.74 30.26 25.66 30.25 25.57 30.23 25.49 30.22 25.4 30.21 25.32 30.21 25.24 30.21 25.24 30.16 25.24" />
+                                        <polygon class="mastercardcls-1" points="31.52 23.78 31.52 23.78 31.39 23.8 31.26 23.84 31.14 23.88 31.02 23.93 30.9 23.99 30.78 24.07 30.68 24.15 30.58 24.24 30.49 24.33 30.41 24.44 30.34 24.55 30.28 24.68 30.23 24.81 30.2 24.94 30.17 25.09 30.16 25.24 30.21 25.24 30.22 25.09 30.24 24.95 30.27 24.82 30.32 24.69 30.38 24.58 30.45 24.47 30.53 24.36 30.61 24.27 30.71 24.18 30.81 24.11 30.92 24.04 31.04 23.98 31.15 23.92 31.28 23.88 31.4 23.85 31.52 23.82 31.52 23.82 31.52 23.78" />
+                                        <polygon class="mastercardcls-1" points="32.31 23.7 32.31 23.7 32.26 23.7 32.21 23.71 32.16 23.71 32.1 23.71 32.03 23.72 31.97 23.73 31.9 23.73 31.84 23.74 31.77 23.75 31.72 23.76 31.66 23.76 31.61 23.77 31.58 23.77 31.55 23.77 31.53 23.78 31.52 23.78 31.52 23.82 31.53 23.82 31.55 23.82 31.58 23.82 31.61 23.81 31.66 23.81 31.72 23.8 31.77 23.79 31.84 23.79 31.9 23.78 31.97 23.77 32.03 23.77 32.1 23.76 32.16 23.76 32.21 23.75 32.26 23.75 32.31 23.75 32.31 23.75 32.31 23.7" />
+                                        <polygon class="mastercardcls-1" points="32.82 23.74 32.84 23.72 32.83 23.72 32.79 23.72 32.73 23.71 32.66 23.71 32.58 23.71 32.49 23.71 32.4 23.7 32.31 23.7 32.31 23.75 32.4 23.75 32.49 23.75 32.58 23.76 32.66 23.76 32.73 23.76 32.79 23.76 32.83 23.77 32.84 23.77 32.86 23.75 32.84 23.77 32.86 23.77 32.86 23.75 32.82 23.74" />
+                                        <polygon class="mastercardcls-1" points="32.86 23.5 32.85 23.5 32.85 23.57 32.84 23.65 32.83 23.71 32.82 23.74 32.86 23.75 32.87 23.72 32.88 23.65 32.89 23.57 32.91 23.5 32.9 23.5 32.86 23.5" />
+                                        <polygon class="mastercardcls-1" points="32.41 23.12 32.41 23.13 32.49 23.13 32.57 23.15 32.65 23.19 32.71 23.23 32.77 23.29 32.81 23.35 32.84 23.42 32.86 23.5 32.9 23.5 32.89 23.41 32.86 23.33 32.8 23.25 32.74 23.2 32.67 23.14 32.59 23.11 32.5 23.08 32.41 23.07 32.41 23.08 32.41 23.12" />
+                                        <polygon class="mastercardcls-1" points="30.78 23.3 30.81 23.33 30.85 23.31 30.9 23.28 30.97 23.26 31.05 23.24 31.14 23.22 31.24 23.2 31.35 23.18 31.46 23.16 31.58 23.15 31.7 23.14 31.82 23.13 31.95 23.12 32.07 23.12 32.19 23.12 32.3 23.12 32.41 23.12 32.41 23.08 32.3 23.07 32.19 23.07 32.07 23.07 31.95 23.07 31.82 23.08 31.7 23.09 31.58 23.1 31.46 23.12 31.34 23.13 31.23 23.15 31.13 23.17 31.04 23.19 30.96 23.21 30.89 23.24 30.83 23.26 30.78 23.29 30.82 23.31 30.78 23.3" />
+                                        <polygon class="mastercardcls-1" points="31.06 22.37 31.04 22.39 30.78 23.3 30.82 23.31 31.09 22.4 31.07 22.42 31.06 22.37 31.05 22.38 31.04 22.39 31.06 22.37" />
+                                        <polygon class="mastercardcls-1" points="32.75 22.2 32.75 22.2 32.62 22.19 32.49 22.18 32.37 22.18 32.25 22.18 32.13 22.18 32.02 22.19 31.91 22.2 31.8 22.2 31.7 22.21 31.6 22.23 31.5 22.24 31.41 22.26 31.32 22.28 31.23 22.31 31.14 22.34 31.06 22.37 31.07 22.42 31.16 22.38 31.24 22.35 31.33 22.32 31.42 22.31 31.51 22.29 31.61 22.27 31.7 22.26 31.8 22.25 31.91 22.24 32.02 22.24 32.13 22.24 32.25 22.24 32.37 22.24 32.49 22.24 32.62 22.24 32.75 22.24 32.75 22.24 32.75 22.2" />
+                                        <polygon class="mastercardcls-1" points="34.05 23.48 34.05 23.48 34.07 23.33 34.07 23.18 34.04 23.05 34 22.93 33.94 22.81 33.86 22.7 33.77 22.61 33.68 22.52 33.57 22.45 33.45 22.38 33.33 22.33 33.21 22.28 33.09 22.25 32.97 22.22 32.85 22.2 32.75 22.2 32.75 22.24 32.85 22.25 32.96 22.27 33.08 22.3 33.2 22.33 33.32 22.38 33.43 22.43 33.54 22.49 33.65 22.56 33.74 22.64 33.82 22.73 33.9 22.83 33.95 22.94 33.99 23.06 34.02 23.18 34.02 23.33 34 23.48 34 23.48 34.05 23.48" />
+                                        <polygon class="mastercardcls-1" points="33.65 25.49 33.65 25.49 34.05 23.48 34 23.48 33.6 25.48 33.6 25.48 33.65 25.49" />
+                                        <polygon class="mastercardcls-2" points="32.71 24.49 32.7 24.47 32.69 24.45 32.66 24.44 32.62 24.43 32.58 24.42 32.53 24.42 32.47 24.42 32.42 24.42 32.35 24.43 32.3 24.44 32.23 24.45 32.18 24.45 32.12 24.47 32.07 24.47 32.02 24.48 31.98 24.49 31.96 24.5 31.93 24.51 31.89 24.52 31.85 24.53 31.8 24.56 31.75 24.58 31.7 24.61 31.65 24.64 31.6 24.68 31.55 24.72 31.51 24.76 31.47 24.81 31.43 24.86 31.41 24.92 31.38 24.98 31.37 25.04 31.37 25.17 31.39 25.27 31.42 25.35 31.46 25.41 31.52 25.45 31.59 25.47 31.65 25.48 31.71 25.48 31.83 25.48 31.93 25.47 32.03 25.45 32.12 25.42 32.2 25.39 32.28 25.36 32.34 25.32 32.41 25.27 32.46 25.23 32.5 25.18 32.55 25.14 32.58 25.09 32.61 25.04 32.63 25 32.64 24.95 32.65 24.91 32.67 24.8 32.69 24.69 32.7 24.59 32.71 24.49" />
+                                        <polygon class="mastercardcls-1" points="40.53 25.81 40.53 25.72 40.56 25.62 40.62 25.52 40.68 25.45 40.76 25.38 40.85 25.34 40.95 25.3 41.06 25.29 41.16 25.3 41.26 25.34 41.35 25.38 41.44 25.45 41.5 25.52 41.55 25.62 41.58 25.72 41.59 25.81 41.48 25.81 41.47 25.74 41.45 25.65 41.41 25.58 41.36 25.51 41.3 25.46 41.23 25.42 41.15 25.4 41.06 25.39 40.97 25.4 40.89 25.42 40.82 25.46 40.76 25.51 40.71 25.58 40.67 25.65 40.65 25.74 40.64 25.81 40.53 25.81" />
+                                        <polygon class="mastercardcls-1" points="40.87 25.81 40.87 25.58 41.08 25.58 41.12 25.58 41.16 25.59 41.2 25.6 41.22 25.62 41.24 25.64 41.26 25.66 41.26 25.69 41.27 25.71 41.26 25.75 41.26 25.78 41.24 25.8 41.24 25.81 41.08 25.81 41.09 25.8 41.12 25.8 41.14 25.79 41.16 25.78 41.18 25.77 41.18 25.76 41.19 25.74 41.19 25.71 41.19 25.7 41.18 25.68 41.17 25.67 41.16 25.66 41.14 25.66 41.12 25.66 41.1 25.66 41.08 25.66 40.96 25.66 40.96 25.81 40.87 25.81" />
+                                        <polygon class="mastercardcls-1" points="40.53 25.81 40.52 25.83 40.53 25.94 40.56 26.04 40.62 26.13 40.68 26.21 40.76 26.27 40.85 26.32 40.95 26.35 41.06 26.36 41.16 26.35 41.26 26.32 41.35 26.27 41.44 26.21 41.5 26.13 41.55 26.04 41.58 25.94 41.59 25.83 41.59 25.81 41.48 25.81 41.48 25.83 41.47 25.92 41.45 26 41.41 26.07 41.36 26.14 41.3 26.19 41.23 26.23 41.15 26.26 41.06 26.27 40.97 26.26 40.89 26.23 40.82 26.19 40.76 26.14 40.71 26.07 40.67 26 40.65 25.92 40.64 25.83 40.64 25.81 40.53 25.81" />
+                                        <polygon class="mastercardcls-1" points="40.87 25.81 40.87 26.04 40.96 26.04 40.96 25.85 41.06 25.85 41.17 26.04 41.25 26.04 41.13 25.85 41.16 25.85 41.19 25.84 41.21 25.83 41.23 25.82 41.24 25.81 41.08 25.81 41.06 25.81 40.96 25.81 40.96 25.81 40.87 25.81" />
+                                        <polyline class="mastercardcls-4" points="40.52 25.83 40.52 25.83 40.53 25.72 40.56 25.62 40.62 25.52 40.68 25.45 40.76 25.38 40.85 25.34 40.95 25.3 41.06 25.29 41.06 25.29 41.16 25.3 41.26 25.34 41.35 25.38 41.44 25.45 41.5 25.52 41.55 25.62 41.58 25.72 41.59 25.83 41.59 25.83 41.58 25.94 41.55 26.04 41.5 26.13 41.44 26.21 41.35 26.27 41.26 26.32 41.16 26.35 41.06 26.36 41.06 26.36 40.95 26.35 40.85 26.32 40.76 26.27 40.68 26.21 40.62 26.13 40.56 26.04 40.53 25.94 40.52 25.83" />
+                                        <polyline class="mastercardcls-4" points="40.96 26.04 40.87 26.04 40.87 25.58 41.08 25.58 41.08 25.58 41.12 25.58 41.16 25.59 41.2 25.6 41.22 25.62 41.24 25.64 41.26 25.66 41.26 25.69 41.27 25.71 41.27 25.71 41.26 25.75 41.26 25.78 41.24 25.8 41.23 25.82 41.21 25.83 41.19 25.84 41.16 25.85 41.13 25.85 41.25 26.04 41.17 26.04 41.06 25.85 40.96 25.85 40.96 26.04" />
+                                        <polyline class="mastercardcls-4" points="41.06 25.81 41.06 25.81 41.09 25.8 41.12 25.8 41.14 25.79 41.16 25.78 41.18 25.77 41.18 25.76 41.19 25.74 41.19 25.71 41.19 25.71 41.19 25.7 41.18 25.68 41.17 25.67 41.16 25.66 41.14 25.66 41.12 25.66 41.1 25.66 41.08 25.66 40.96 25.66 40.96 25.81 41.06 25.81" />
+                                        <polyline class="mastercardcls-4" points="41.06 26.27 41.06 26.27 41.15 26.26 41.23 26.23 41.3 26.19 41.36 26.14 41.41 26.07 41.45 26 41.47 25.92 41.48 25.83 41.48 25.83 41.47 25.74 41.45 25.65 41.41 25.58 41.36 25.51 41.3 25.46 41.23 25.42 41.15 25.4 41.06 25.39 41.06 25.39 40.97 25.4 40.89 25.42 40.82 25.46 40.76 25.51 40.71 25.58 40.67 25.65 40.65 25.74 40.64 25.83 40.64 25.83 40.65 25.92 40.67 26 40.71 26.07 40.76 26.14 40.82 26.19 40.89 26.23 40.97 26.26 41.06 26.27" />
+                                        <polygon class="mastercardcls-1" points="33.91 26.33 34.98 26.33 34.98 26.33 35.37 24.17 35.38 24.08 35.4 24 35.43 23.92 35.46 23.83 35.49 23.75 35.54 23.67 35.59 23.59 35.65 23.52 35.72 23.46 35.79 23.4 35.88 23.34 35.98 23.29 36.09 23.25 36.21 23.23 36.34 23.2 36.49 23.2 36.55 23.2 36.58 23.2 36.59 23.2 36.59 23.2 36.76 22.22 36.65 22.23 36.55 22.24 36.45 22.26 36.36 22.28 36.28 22.31 36.2 22.35 36.12 22.39 36.05 22.44 35.98 22.49 35.92 22.55 35.86 22.61 35.8 22.67 35.74 22.73 35.68 22.8 35.63 22.87 35.57 22.95 35.69 22.26 34.62 22.26 33.91 26.33 33.91 26.33" />
+                                        <polyline class="mastercardcls-4" points="33.91 26.33 34.98 26.33 34.98 26.33 35.37 24.17 35.37 24.17 35.38 24.08 35.4 24 35.43 23.92 35.46 23.83 35.49 23.75 35.54 23.67 35.59 23.59 35.65 23.52 35.72 23.46 35.79 23.4 35.88 23.34 35.98 23.29 36.09 23.25 36.21 23.23 36.34 23.2 36.49 23.2 36.49 23.2 36.55 23.2 36.58 23.2 36.59 23.2 36.59 23.2 36.76 22.22 36.76 22.22 36.65 22.23 36.55 22.24 36.45 22.26 36.36 22.28 36.28 22.31 36.2 22.35 36.12 22.39 36.05 22.44 35.98 22.49 35.92 22.55 35.86 22.61 35.8 22.67 35.74 22.73 35.68 22.8 35.63 22.87 35.57 22.95 35.69 22.26 34.62 22.26 33.91 26.33 33.91 26.33" />
+                                        <polygon class="mastercardcls-1" points="23.86 26.33 24.93 26.33 24.95 26.33 25.31 24.17 25.33 24.08 25.35 24 25.37 23.92 25.39 23.85 25.42 23.77 25.46 23.7 25.51 23.63 25.56 23.57 25.62 23.51 25.69 23.45 25.77 23.41 25.86 23.36 25.97 23.33 26.09 23.3 26.22 23.28 26.37 23.27 26.38 23.27 26.39 23.27 26.41 23.28 26.43 23.28 26.45 23.28 26.46 23.29 26.48 23.29 26.48 23.29 26.48 23.27 26.5 23.23 26.51 23.16 26.53 23.08 26.55 22.98 26.58 22.87 26.62 22.77 26.65 22.66 26.68 22.59 26.72 22.52 26.76 22.44 26.8 22.38 26.83 22.32 26.86 22.28 26.87 22.25 26.88 22.24 26.88 22.24 26.86 22.23 26.84 22.23 26.82 22.23 26.79 22.23 26.76 22.22 26.73 22.22 26.71 22.22 26.59 22.23 26.48 22.24 26.39 22.26 26.29 22.28 26.21 22.31 26.13 22.35 26.05 22.39 25.99 22.43 25.92 22.48 25.86 22.54 25.8 22.59 25.75 22.66 25.69 22.72 25.64 22.8 25.58 22.87 25.52 22.95 25.66 22.26 24.57 22.26 23.86 26.33 23.86 26.33" />
+                                        <polyline class="mastercardcls-4" points="23.86 26.33 24.93 26.33 24.95 26.33 25.31 24.17 25.31 24.17 25.33 24.08 25.35 24 25.37 23.92 25.39 23.85 25.42 23.77 25.46 23.7 25.51 23.63 25.56 23.57 25.62 23.51 25.69 23.45 25.77 23.41 25.86 23.36 25.97 23.33 26.09 23.3 26.22 23.28 26.37 23.27 26.37 23.27 26.38 23.27 26.39 23.27 26.41 23.28 26.43 23.28 26.45 23.28 26.46 23.29 26.48 23.29 26.48 23.29 26.48 23.29 26.48 23.27 26.5 23.23 26.51 23.16 26.53 23.08 26.55 22.98 26.58 22.87 26.62 22.77 26.65 22.66 26.65 22.66 26.68 22.59 26.72 22.52 26.76 22.44 26.8 22.38 26.83 22.32 26.86 22.28 26.87 22.25 26.88 22.24 26.88 22.24 26.88 22.24 26.86 22.23 26.84 22.23 26.82 22.23 26.79 22.23 26.76 22.22 26.73 22.22 26.71 22.22 26.71 22.22 26.59 22.23 26.48 22.24 26.39 22.26 26.29 22.28 26.21 22.31 26.13 22.35 26.05 22.39 25.99 22.43 25.92 22.48 25.86 22.54 25.8 22.59 25.75 22.66 25.69 22.72 25.64 22.8 25.58 22.87 25.52 22.95 25.66 22.26 24.57 22.26 23.86 26.33 23.86 26.33" />
+                                        <polygon class="mastercardcls-2" points="40.53 30.32 40.53 30.3 40.56 30.2 40.62 30.12 40.68 30.04 40.76 29.98 40.85 29.94 40.95 29.91 41.06 29.9 41.16 29.91 41.26 29.94 41.35 29.98 41.44 30.04 41.5 30.12 41.55 30.2 41.58 30.3 41.58 30.32 41.47 30.32 41.45 30.24 41.41 30.17 41.36 30.1 41.3 30.05 41.23 30.01 41.15 29.98 41.06 29.97 40.97 29.98 40.89 30.01 40.82 30.05 40.76 30.1 40.71 30.17 40.67 30.24 40.65 30.32 40.53 30.32" />
+                                        <polygon class="mastercardcls-2" points="40.87 30.32 40.87 30.19 41.08 30.19 41.12 30.19 41.16 30.19 41.2 30.2 41.22 30.22 41.24 30.23 41.26 30.26 41.26 30.29 41.27 30.32 41.19 30.32 41.19 30.3 41.19 30.28 41.18 30.27 41.17 30.26 41.16 30.25 41.14 30.25 41.12 30.24 41.1 30.24 41.08 30.24 40.96 30.24 40.96 30.32 40.87 30.32" />
+                                        <polygon class="mastercardcls-2" points="40.52 30.4 40.53 30.32 40.65 30.32 40.65 30.32 40.64 30.4 40.52 30.4" />
+                                        <polygon class="mastercardcls-2" points="40.87 30.4 40.87 30.32 40.96 30.32 40.96 30.39 41.06 30.39 41.09 30.39 41.12 30.38 41.14 30.38 41.16 30.37 41.18 30.36 41.18 30.35 41.19 30.33 41.19 30.32 41.27 30.32 41.27 30.32 41.26 30.35 41.26 30.37 41.24 30.39 41.23 30.4 40.87 30.4" />
+                                        <polygon class="mastercardcls-2" points="41.48 30.4 41.47 30.32 41.47 30.32 41.58 30.32 41.59 30.4 41.48 30.4" />
+                                        <polygon class="mastercardcls-2" points="40.52 30.4 40.52 30.41 40.53 30.52 40.56 30.63 40.62 30.72 40.68 30.8 40.76 30.86 40.85 30.91 40.95 30.94 41.06 30.95 41.16 30.94 41.26 30.91 41.35 30.86 41.44 30.8 41.5 30.72 41.55 30.63 41.58 30.52 41.59 30.41 41.59 30.4 41.48 30.4 41.48 30.41 41.47 30.5 41.45 30.59 41.41 30.66 41.36 30.73 41.3 30.78 41.23 30.82 41.15 30.85 41.06 30.85 40.97 30.85 40.89 30.82 40.82 30.78 40.76 30.73 40.71 30.66 40.67 30.59 40.65 30.5 40.64 30.41 40.64 30.4 40.52 30.4" />
+                                        <polygon class="mastercardcls-2" points="40.87 30.4 40.87 30.62 40.96 30.62 40.96 30.43 41.06 30.43 41.17 30.62 41.25 30.62 41.13 30.43 41.16 30.43 41.19 30.43 41.21 30.42 41.23 30.4 41.23 30.4 40.87 30.4" />
+                                    </svg>
+                                </li>
+                                <li class="paypal">
+                                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47 47">
+                                        <defs>
+                                            <style>
+                                                .paypalcls-1 {
+                                                    fill: #fff;
+                                                }
+
+                                                .paypalcls-2, .paypalcls-4 {
+                                                    fill: #0d4a7c;
+                                                }
+
+                                                .paypalcls-3, .paypalcls-5 {
+                                                    fill: #1079bf;
+                                                }
+
+                                                .paypalcls-3, .paypalcls-4 {
+                                                    fill-rule: evenodd;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <title>paypal</title>
+                                        <polygon class="paypalcls-1" points="45.89 39.1 1.11 39.1 0.32 39.1 0.32 38.32 0.32 8.68 0.32 7.9 1.11 7.9 45.89 7.9 46.68 7.9 46.68 8.68 46.68 38.32 46.68 39.1 45.89 39.1 45.89 39.1" />
+                                        <path class="paypalcls-2" d="M47,39.42H0V7.58H47ZM.64,38.78H46.36V8.22H.64Z" />
+                                        <path class="paypalcls-3" d="M33.77,20a10.21,10.21,0,0,0-2.31.37l-.18,1.46a6.45,6.45,0,0,1,2-.42c.76,0,1.21.14,1.06.79-2.26,0-3.79.47-4.1,1.93-.45,2.51,2.31,2.44,3.4,1.35l-.13.6h2l.87-4C36.72,20.37,35.18,20,33.77,20Zm.13,4.08a1,1,0,0,1-1,.79c-.45,0-.85-.37-.56-.83a1.45,1.45,0,0,1,1.23-.49H34C34,23.72,34,23.88,33.9,24.06Z" />
+                                        <polygon class="paypalcls-3" points="38.09 18.4 36.42 26.06 38.47 26.06 40.15 18.4 38.09 18.4 38.09 18.4 38.09 18.4" />
+                                        <path class="paypalcls-3" d="M28.69,18.42H24.94l-1.66,7.64h2.18L26,23.53h1.55A3.06,3.06,0,0,0,30.68,21,2,2,0,0,0,28.69,18.42ZM28.62,21a1.4,1.4,0,0,1-1.28,1.05h-1L26.78,20h1.08A.78.78,0,0,1,28.62,21Z" />
+                                        <path class="paypalcls-4" d="M14.15,20a9.35,9.35,0,0,0-2.25.37l-.18,1.46a5.93,5.93,0,0,1,1.92-.42c.75,0,1.2.14,1.06.79-2.23,0-3.73.47-4,1.93-.44,2.51,2.27,2.44,3.34,1.35l-.14.6h2l.86-4C17.09,20.37,15.54,20,14.15,20Zm.16,4.08a1,1,0,0,1-1.07.79.53.53,0,0,1-.53-.83c.22-.4.84-.49,1.2-.49h.51A3.58,3.58,0,0,0,14.31,24.06Z" />
+                                        <polygon class="paypalcls-4" points="17.61 20.09 19.63 20.09 19.95 23.64 21.92 20.09 24 20.09 19.21 28.6 16.96 28.6 18.44 26.1 17.61 20.09 17.61 20.09 17.61 20.09" />
+                                        <path class="paypalcls-4" d="M9.15,18.42H5.39L3.73,26.06h2.2l.54-2.53H8A3.08,3.08,0,0,0,11.15,21,2,2,0,0,0,9.15,18.42ZM9.08,21a1.39,1.39,0,0,1-1.26,1.05h-1L7.26,20H8.34A.77.77,0,0,1,9.08,21Z" />
+                                        <path class="paypalcls-5" d="M41.07,18.52v.33h.31V19h-.31v.62c0,.15,0,.23.16.23l.13,0V20a.5.5,0,0,1-.19,0A.29.29,0,0,1,41,20a.42.42,0,0,1-.08-.3V19h-.18v-.17h.18v-.27Z" />
+                                        <path class="paypalcls-5" d="M41.61,19.17c0-.12,0-.22,0-.32h.19V19h0a.39.39,0,0,1,.36-.21.34.34,0,0,1,.33.23h0a1,1,0,0,1,.13-.15.42.42,0,0,1,.26-.08c.16,0,.38.1.38.5V20h-.2v-.66c0-.22-.08-.36-.26-.36a.28.28,0,0,0-.25.19s0,.07,0,.11V20h-.21v-.7c0-.18-.08-.32-.24-.32a.29.29,0,0,0-.26.21.2.2,0,0,0,0,.11V20h-.21Z" />
+                                    </svg>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12 xs-footerCenter top3 paddingright padding-tb-10 width35">
+                <div class="copyText col-xs-12 width100 flex">
+                    <p class="mobile-left"><img bn-lazy-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /> <span class="word-break">&copy; {{'2018' | translate}} <span ng-if="FrayteWebSite==='COM' || FrayteWebSite==='CO.TH'">{{'Frayte' | translate}} {{'LogisticLTD' | translate}}</span><span ng-if="FrayteWebSite==='CO.UK'">{{'FRAYTE_GLOBAL' | translate}}</span>. {{'AllRightsReserved' | translate}}.</span></p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-sm-5 col-md-5 col-lg-5 col-xs-12  xs-footerCenter padding-tb-10 mobile-left mobile-mb-15 width40">
+                <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12 padding-2-4" ng-disabled="isDisabled1"><img ng-src="{{ImagePath + 'en.png'}}" class="margin-right-5" />{{'BUTTON_LANG_EN' | translate}} </button>
+                <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12 padding-2-4" ng-disabled="isDisabled2"><img ng-src="{{ImagePath + 'ch.png'}}" class="margin-right-5" />{{'BUTTON_LANG_CH' | translate}} </button>
+                <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12 padding-2-4" ng-disabled="isDisabled3"><img ng-src="{{ImagePath + 'hkong.png'}}" class="margin-right-5" />{{'BUTTON_LANG_TD' | translate}} </button>
+                <button ng-click="changeLanguage('th')" class="btn btn-link fontsize12 padding-2-4" ng-disabled="isDisabled4"><img ng-src="{{ImagePath + 'th.png'}}" class="margin-right-5" />{{'BUTTON_LANG_TH' | translate}}</button>
+            </div>
+            <!--hide in mobile browser-->
+            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 textAlignR xs-footercenter text-center mobile-handset">
+                <ul class="pull-right margin-bottom-none">
+                    <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img bn-lazy-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                    <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img bn-lazy-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                    <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img bn-lazy-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                    <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img bn-lazy-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+                </ul>
+            </div>
+            <!--end code-->
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+</footer>
+<!--end-->
+>>>>>>> destination

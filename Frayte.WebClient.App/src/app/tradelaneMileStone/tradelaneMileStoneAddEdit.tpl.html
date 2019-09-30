@@ -1,0 +1,67 @@
+﻿
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$close('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title"> {{Mode}} {{'TrackingMileStone' | translate}}</h4>
+</div>
+<form ng-submit="SaveMileStone(TrackingMileStoneAddEdit.$valid, TrackingMileStone)" class="" name="TrackingMileStoneAddEdit" novalidate>
+    <div class="modal-body">
+        <div class="col-sm-12 paddingboth">
+            <div class="form-group col-sm-12 paddingboth" style="margin-right:0px;" ng-class="{ 'has-error': TrackingMileStoneAddEdit.key.$invalid &&
+                                            (TrackingMileStoneAddEdit.key.$dirty || submitted) || flag || TrackingMileStone.MileStoneKey.length === 2 || TrackingMileStone.MileStoneKey.length === 1}">
+                <label class="col-sm-4 control-label" id="key" name="key" for="key">{{'MileStoneKey' | translate}} <span class="redColor">*</span></label>
+                <div class="col-sm-8">
+                    <input type="text" uppercased only-alphabets ng-change="CheckTrackingMileStoneKey()" ng-readonly="Mode === 'Edit'" maxlength="3" ng-model="TrackingMileStone.MileStoneKey" id="key" class="form-control fontsize12" name="key" placeholder="{{'Enter' | translate}} {{'MileStoneKey' | translate}}" required>
+                    <span class="help-block has-error" ng-show="TrackingMileStoneAddEdit.key.$invalid &&
+                                            (TrackingMileStoneAddEdit.key.$dirty || submitted)">
+                        {{'MileStoneKey' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                    </span>
+                    <span class="help-block has-error" ng-show="flag">
+                        {{'MileStoneKey' | translate}} {{'Already_Exist' | translate}}
+                    </span>
+                    <span class="help-block has-error" ng-show="TrackingMileStone.MileStoneKey.length === 2 || TrackingMileStone.MileStoneKey.length === 1">
+                        {{"Please Enter 3 Characters" | translate}} 
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group col-sm-12 paddingboth" style="margin-right:0px;" ng-class="{ 'has-error': TrackingMileStoneAddEdit.description.$invalid &&
+                                            (TrackingMileStoneAddEdit.description.$dirty || submitted) }">
+                <label class="col-sm-4 top5 control-label" id="description" name="description" for="apikey">{{'MileStoneKeyDescription' | translate}} <span class="redColor">*</span></label>
+                <div class="col-sm-8">
+                    <input type="text" alpha-numeric capitalize-first maxlength="40" ng-model="TrackingMileStone.Description" class="form-control fontsize12" id="description" name="description" placeholder="{{'Enter' | translate}} {{'MileStoneKeyDescription' | translate}}" required>
+                    <span class="help-block has-error" ng-show="TrackingMileStoneAddEdit.description.$invalid &&
+                                            (TrackingMileStoneAddEdit.description.$dirty || submitted)">
+                        {{'MileStoneKeyDescription' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group col-sm-12 paddingboth" style="margin-right:0px;" ng-class="{ 'has-error': TrackingMileStoneAddEdit.orderno.$invalid &&
+                                            (TrackingMileStoneAddEdit.orderno.$dirty || submitted) || flag1 }">
+                <label class="col-sm-4 top5 control-label" id="orderno" name="orderno" for="apikey">{{'MileStoneOrderNo' | translate}} <span class="redColor">*</span></label>
+                <div class="col-sm-8">
+                    <input type="text" only-numeric ng-change="CheckOrderNo(TrackingMileStone)" ng-model="TrackingMileStone.OrderNumber" class="form-control fontsize12" id="orderno" name="orderno" placeholder="{{'Enter' | translate}} {{'MileStoneOrderNo' | translate}}" required>
+                    <span class="help-block has-error" ng-show="TrackingMileStoneAddEdit.orderno.$invalid &&
+                                            (TrackingMileStoneAddEdit.orderno.$dirty || submitted)">
+                        {{'MileStoneOrderNo' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                    </span>
+                    <span class="help-block has-error" ng-show="flag1">
+                        {{'You can enter only the next number after last order number or below.' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <button type="button" ng-click="$close()" class="btn btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+            <div class="pull-right">
+                <button ng-click="submitted= true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+        </div>
+    </div>
+</form>

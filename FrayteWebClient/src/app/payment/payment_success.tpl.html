@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Payment Frayte</title>
+    <!--Css-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/bootstrap.min.css" />
+    <!--script-->
+    <script type="text/javascript" src="vendor/angular-bootstrap/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="vendor/angular-bootstrap/bootstrap.min.js"></script>
+    <style>
+        .freeAlert {
+            display: inline-block;
+            padding: 5px 10px;
+            border: #FC9 solid 1px;
+            font-size: 11px;
+            font-weight: 400;
+            margin: 5px 0;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div class="container">
+                <div class="pull-left">
+                    <a ui-sref="home.welcome"><img ng-src="{{ImagePath + 'FrayteLogo1.png'}}" style="width:240px;padding:15px 0;" class="img-responsive" /></a>
+                </div>
+                <div class="pull-right">
+                    <a ><img ng-src="{{ImagePath + 'paymentImage.jpg'}}" class="img-responsive" style="padding:20px 0px 0px; max-width:350px;" /></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </header>
+   <div class="container">
+       <div class="col-sm-12">
+           <h3>
+               Payment is Successfull.
+           </h3>
+       </div>
+       <div class="col-sm-12" style="margin-top:60px;">
+           <a ui-sref="home.welcome">Go To Home Page</a>
+       </div>
+   </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 xs-footerCenter" style="margin-top:14px;">
+                    <div class="copyText">&copy; 2013 Frayte Logistics LTD. All rights reserved.</div>
+                </div>
+                <div class="col-sm-6 text-right xs-footerCenter" style="margin-top:15px;">
+                    <a href="">Privacy Policy</a>&nbsp;&nbsp;
+                    <a href="">Terms and Conditions</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

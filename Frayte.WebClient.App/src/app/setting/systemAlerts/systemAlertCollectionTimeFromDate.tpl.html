@@ -1,0 +1,28 @@
+﻿<div>
+    <div class="col-sm-12 paddingboth">
+        <select class="form-control fontsize12" style="width:100px; float:left;" name="collectiontime1"
+                ng-model="timeHrs" ng-change="setCollectionHours()"
+                ng-options="hr as hr.hour  for hr in hours track by hr.Id" required>
+            <option value="" selected disabled class="display-none">HH</option>
+        </select>
+
+        <select class="form-control fontsize12" style="width:100px;float:left;margin-left:25px;" name="collectioTimeMinutes1"
+                ng-model="timeMins" ng-change="setCollectionMinutes()"
+                ng-options="mn as mn.minute  for mn in minutes track by mn.Id" required>
+            <option value="" selected disabled class="display-none">MM</option>
+        </select>
+        <div class="clearfix"></div>
+        <div>
+            <span class="help-block has-error" ng-show="(SystemAlertForm.collectiontime1.$invalid ||  SystemAlertForm.collectioTimeMinutes1.$invalid )&&
+                                                         (SystemAlertForm.collectiontime1.$dirty ||SystemAlertForm.collectioTimeMinutes1.$dirty|| submitted)">
+                {{'Time_From_Is_Required' | translate}}
+            </span>
+
+            <span class="help-block has-error"
+                  ng-show="checkTime(SystemAlertForm)">
+                {{'Time_Validation' | translate}}
+            </span>
+        </div>
+    </div>
+
+</div>

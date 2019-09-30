@@ -1,0 +1,414 @@
+﻿<form name="PreAlertForm" novalidate ng-submit="sendEmail(PreAlertForm.$valid)">
+    <div class="modal-header">
+        <div ng-show="tradelaneBookingDetail.ShipmentStatusId !== 27">
+            <button type="button" class="close" ng-click="closePage()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title underline"><span>{{'PreAlert_Email' | translate}} </span>
+                <span ng-show="tradelaneBookingDetail.MAWB">- {{tradelaneBookingDetail.DepartureAirport.AirportCode}} to {{tradelaneBookingDetail.DestinationAirport.AirportCode}} ({{tradelaneBookingDetail.AirlinePreference.CarrierCode2}} {{tradelaneBookingDetail.AirlinePreference.AilineCode}} - {{tradelaneBookingDetail.MAWB}})</span>
+                <span ng-show="!tradelaneBookingDetail.MAWB">- {{tradelaneBookingDetail.DepartureAirport.AirportCode}} to {{tradelaneBookingDetail.DestinationAirport.AirportCode}}</span>
+            </h4>
+        </div>
+        <div ng-show="tradelaneBookingDetail.ShipmentStatusId === 27">
+            <button type="button" class="close" ng-click="closePage()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title underline">{{'Draft_Shipment_Detail' | translate}}</h4>
+        </div>
+    </div>
+    <div class="modal-body">
+        <!--email code section here-->
+        <div>
+            <div class="col-sm-12 paddingboth">
+                <!--demo code here-->
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12 paddingboth bordered-left bordered-right bordered-top">
+                                <div class="flex">
+                                    <div class="lineheight34 col-sm-6 clearfix bordered-right border-bottom" ng-show="tradelaneBookingDetail.FrayteNumber !== undefined && tradelaneBookingDetail.FrayteNumber !== null && tradelaneBookingDetail.FrayteNumber !== ''"><div class="col-sm-6 bold">{{'Frayte_ShipmentNo' | translate}}:</div><div class="col-sm-6 bordered-left">{{tradelaneBookingDetail.FrayteNumber}}</div></div>
+                                    <div class="lineheight34 col-sm-6 clearfix border-bottom"><div ng-show="tradelaneBookingDetail.MAWB !== undefined && tradelaneBookingDetail.MAWB !== null && tradelaneBookingDetail.MAWB !== ''"><div class="col-sm-6 bold">{{'MAWB_' | translate}}#:</div><div class="col-sm-6 bordered-left">{{tradelaneBookingDetail.AirlinePreference.AilineCode}} {{tradelaneBookingDetail.MAWB.substring(0, 4)}} {{tradelaneBookingDetail.MAWB.substring(4, 8)}}</div></div></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="flex">
+                                    <div class="lineheight34 col-sm-6 clearfix bordered-right border-bottom" ng-show="tradelaneBookingDetail.DepartureAirport !== null && tradelaneBookingDetail.DepartureAirport.AirportName !== undefined && tradelaneBookingDetail.DepartureAirport.AirportName !== null && tradelaneBookingDetail.DepartureAirport.AirportName !== ''"><div class="col-sm-6 bold">{{'Departure_Airport' | translate}}:</div><div class="col-sm-6 bordered-left">{{tradelaneBookingDetail.DepartureAirport.AirportCode}} - {{tradelaneBookingDetail.DepartureAirport.AirportName}}</div></div>
+                                    <div class="lineheight34 col-sm-6 clearfix border-bottom" ng-show="tradelaneBookingDetail.DestinationAirport !== null && tradelaneBookingDetail.DestinationAirport.AirportName !== undefined && tradelaneBookingDetail.DestinationAirport.AirportName !== null && tradelaneBookingDetail.DestinationAirport.AirportName !== ''"><div class="col-sm-6 bold">{{'Destination_Airport' | translate}}:</div><div class="col-sm-6 bordered-left">{{tradelaneBookingDetail.DestinationAirport.AirportCode}} - {{tradelaneBookingDetail.DestinationAirport.AirportName}}</div></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-12 paddingboth">
+                                <ul class="panel-body padding0 tradelaneBooking-textarea margin-bottom-none list-unstyled">
+                                    <li>
+                                        <div class="clearfix"></div>
+                                        <div class="panel-body padding0">
+                                            <div class="panel panel-default margin-bottom-none">
+                                                <div class="panel-heading padding0">
+                                                    <div class="col-sm-12 paddingboth grid-background">
+                                                        <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'HAWB' | translate}}</b></div></div>
+                                                        <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Total_Volume' | translate}}</b><small> ({{'CBM' | translate}})</small></div></div>
+                                                        <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'No_Of_Cartons' | translate}}</b><small> ({{'QTY' | translate}})</small></div></div>
+                                                        <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10"><b>{{'Gross_Weight' | translate}}</b><small> ({{'kGS' | translate}})</small></div></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="panel-body padding0">
+                                                    <div class="clearfix">
+                                                        <div class="change">
+                                                            <div class="col-sm-12 paddingboth flex text-center change" ng-repeat="hAWB in tradelaneBookingDetail.HAWBPackages">
+                                                                <div class="col-sm-3 paddingboth borderRight border-bottom" id="tradelane-document">
+                                                                    <div>
+                                                                        <div class="padding-5">{{hAWB.HAWB}}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                                    <div class="padding-5">{{hAWB.TotalVolume}}</div>
+                                                                </div>
+                                                                <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                                    <div class="padding-5" name="cartton">{{hAWB.TotalCartons}}</div>
+                                                                </div>
+                                                                <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                                    <div class="padding-5" name="weight">{{hAWB.TotalWeight}}</div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 paddingboth grid-background">
+                                                        <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Total' | translate}}</b></div></div>
+                                                        <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{totalVolume}} <small>({{'CBM' | translate}})</small></b></div></div>
+                                                        <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{totalCartons}} <small>({{'QTY' | translate}})</small></b></div></div>
+                                                        <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10"><b>{{totalweight}} ({{Lb_Kg}})</b></div></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 paddingboth">
+                    <hr />
+                    </div>
+                </div>
+                <!--end-->
+                <!--email code section here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{'Email' | translate}}</div>
+                    <div class="panel-body">
+                        <!--mail section code here-->
+                        <div class="col-sm-4">
+                            <div class="col-sm-12"><h4>{{'To_' | translate}}</h4></div>
+                            <div class="col-sm-12" ng-repeat="preTo in preAlertDetail.PreAlerEmailTo" ng-init="packageform='tag'+$index">
+                                <div class="col-sm-10 paddingboth">
+                                    <ng-form name="{{packageform}}">
+                                        <div class="col-sm-12 paddingboth" ng-class="{ 'has-error':PreAlertForm[packageform].prealertemail.$invalid &&
+                                                         (PreAlertForm[packageform].prealertemail.$dirty || submitted) }">
+                                            <!--<label for="prealertemail" name="prealertemailLabel" class="col-sm-4 lineheight34">{{'EmailTo' | translate}}:{{$index}}</label>-->
+                                            <input type="text" ng-pattern="emailFormat" class="form-control form-group" ng-model="preTo.Email" name="prealertemail" id="prealertemail" required>
+                                        </div>
+
+                                    </ng-form>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="text-center">
+                                        <div class="shipmentContent">
+                                            <a href="" ng-click="removeMail(preTo, PreAlertForm[packageform].prealertemail.$valid)">
+                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="" ng-click="addEmail(preTo, 'PreAlertTo')" ng-show="!$index || $index === preAlertDetail.PreAlerEmailTo.length-1">
+                                                <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-12"><h4>{{'ToCc_' | translate}}</h4></div>
+                            <div class="col-sm-12">
+                                <div ng-repeat="preCC in preAlertDetail.PreAlerEmailCC" ng-init="formCC='tagsa'+$index">
+                                    <div class="col-sm-10 paddingboth">
+                                        <ng-form name="{{formCC}}">
+                                            <div class="col-sm-12 paddingboth" ng-class="{ 'has-error':PreAlertForm[formCC].prealertemailCC.$invalid &&
+                                                         (PreAlertForm[formCC].prealertemailCC.$dirty || submitted) }">
+                                                <!--<label for="prealertemailCC" name="prealertemailCCLabel" class="col-sm-4 lineheight34">{{'EmailCC' | translate}}:{{$index}}</label>-->
+                                                <input type="text" ng-pattern="emailFormat" class="form-control form-group" ng-model="preCC.Email" name="prealertemailCC" id="prealertemailCC">
+                                            </div>
+                                        </ng-form>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="text-center">
+                                            <div class="shipmentContent">
+                                                <a href="" ng-click="removeMailCC(preCC, PreAlertForm[formCC].prealertemailCC.$valid)">
+                                                    <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="" ng-click="addEmailCC()" ng-show="!$index || $index === preAlertDetail.PreAlerEmailCC.length-1">
+                                                    <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-12"><h4>{{'ToBCc_' | translate}}</h4></div>
+                            <div class="col-sm-12">
+                                <div ng-repeat="preBCC in preAlertDetail.PreAlerEmailBCC" ng-init="formBCC='tagss'+$index">
+                                    <div class="col-sm-10 paddingboth">
+                                        <ng-form name="{{formBCC}}">
+                                            <div class="col-sm-12 paddingboth" ng-class="{ 'has-error':PreAlertForm[formBCC].prealertemailBCC.$invalid &&
+                                                         (PreAlertForm[formBCC].prealertemailBCC.$dirty || submitted) }">
+                                                <!--<label for="prealertemailBCC" name="prealertemailBCCLabel" class="col-sm-4 lineheight34">{{'EmailBCC' | translate}}:{{$index}}</label>-->
+                                                <input type="text" ng-pattern="emailFormat" class="form-control form-group" ng-model="preBCC.Email" name="prealertemailBCC" id="prealertemailBCC">
+                                            </div>
+                                        </ng-form>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="text-center">
+                                            <div class="shipmentContent">
+                                                <a href="" ng-click="removeMailBCC(preBCC, PreAlertForm[formBCC].prealertemailBCC.$valid)">
+                                                    <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="" ng-click="addEmailBCC()" ng-show="!$index || $index === preAlertDetail.PreAlerEmailBCC.length-1">
+                                                    <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--end-->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--end-->
+        <!--shipment email code section here-->
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="pointer" ng-click="shipmentOpen()"><i ng-class="{'fa fa-plus-square-o' : !shipmentOpened, 'fa fa-minus-square-o' : shipmentOpened}" class="fa-14 top3" aria-hidden="true"></i></span> &nbsp; {{'Shipment_Emails' | translate}}</div>
+            <div class="panel-body" ng-if="shipmentOpened">
+                <div>
+                    <div class="col-sm-6" ng-show="preAlertDetail.ShipmentEmail.CustomerEmail">
+                        <label for="prealertemail" name="customerEmailCheckLabel">{{'Customer_Email' | translate}}</label>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class="col-sm-12 paddingright">
+                                    <input class="top7" type="checkbox" name="customerEmailCheck" ng-model="preAlertDetail.ShipmentEmail.IsCustomerSentEmail" />
+                                    <input readonly type="text" class="form-control form-group" ng-model="preAlertDetail.ShipmentEmail.CustomerEmail" name="customerEmail" id="customerEmail" required>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-show="preAlertDetail.ShipmentEmail.ShipperEmail">
+                        <label for="prealertemail" name="shipperEmailCheckLabel">{{'Shipper_Email' | translate}}</label>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class="col-sm-12 paddingright">
+                                    <input class="top7" type="checkbox" name="shipperEmailCheck" ng-model="preAlertDetail.ShipmentEmail.IsShipperSentEmail" />
+                                    <input readonly type="text" class="form-control form-group" ng-model="preAlertDetail.ShipmentEmail.ShipperEmail" name="shipperEmail" id="shipperEmail">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-show="preAlertDetail.ShipmentEmail.ReceiverEmail">
+                        <label for="prealertemail" name="receiverEmailLabel">{{'Receiver_Email' | translate}}</label>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class="col-sm-12 paddingright">
+                                    <input class="top7" type="checkbox" name="receiverEmailCheck" ng-model="preAlertDetail.ShipmentEmail.IsReceiverSentEmail" />
+                                    <input readonly type="text" class="form-control form-group" ng-model="preAlertDetail.ShipmentEmail.ReceiverEmail" name="receiverEmail" id="receiverEmail">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-show="preAlertDetail.ShipmentEmail.NotifyPartyEmail">
+                        <label for="prealertemail" name="prealertemailLabel">{{'Notify_Party_Email' | translate}}</label>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class="col-sm-12 paddingright">
+                                    <input class="top7" type="checkbox" name="notifyPartyEmailCheck" ng-model="preAlertDetail.ShipmentEmail.IsNotifyPartySentEmail" />
+                                    <input readonly type="text" class="form-control form-group" ng-model="preAlertDetail.ShipmentEmail.NotifyPartyEmail" name="notifyPartyEmail" id="prealertemail">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-show="preAlertDetail.ShipmentEmail.AgentEmail">
+                        <label for="prealertemail" name="prealertemailLabel">{{'Agent_Email' | translate}}</label>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class="col-sm-12 paddingright">
+                                    <input class="top7" type="checkbox" name="notifyPartyEmailCheck" ng-model="preAlertDetail.ShipmentEmail.IsAgentSentEmail" />
+                                    <input readonly type="text" class="form-control form-group" ng-model="preAlertDetail.ShipmentEmail.AgentEmail" name="agentEmail" id="agentEmail">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        <!--email body and message code-->
+        <div>
+            <div class="col-sm-12 paddingboth">
+                <div class="form-group" ng-class="{ 'has-error':PreAlertForm.emailSubject.$invalid &&
+                                                         (PreAlertForm.emailSubject.$dirty || submitted) }">
+                    <label for="emailSubject" class="control-label" name="emailSubjectLabel">{{'Email_Subject' | translate}}:</label>
+                    <div>
+                        <input type="text" class="form-control" maxlength="200" ng-model="preAlertDetail.EmailSubject" name="emailSubject" id="emailSubject" required>
+                        <span class="help-block" ng-show="PreAlertForm.emailSubject.$invalid &&
+                                                         (PreAlertForm.emailSubject.$dirty || submitted)">
+                            {{'Email_Subject_Required' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error':PreAlertForm.emailBody.$invalid &&
+                                                         (PreAlertForm.emailBody.$dirty || submitted) }">
+                    <!--<label for="emailBody" class="control-label" name="emailBodyLabel">{{'Email_Body' | translate}}:</label>-->
+                    <div>
+                        <textarea rows="10" cols="10" class="form-control" maxlength="2000"
+                                  ng-model="preAlertDetail.EmailBody" placeholder="{{'Please_Enter_Some_Message_PreAlert' | translate}}" name="emailBody" id="emailBody" required></textarea>
+                        <span class="help-block" ng-show="PreAlertForm.emailBody.$invalid &&
+                                             (PreAlertForm.emailBody.$dirty || submitted)">
+                            {{'Email_Body_Required' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <textarea rows="3" cols="3" class="form-control" maxlength="200"
+                                  ng-model="preAlertDetail.AdditionalInfo" placeholder="{{'AdditionalInfo' | translate}}" name="additionalInfo" id="additionalInfo" required></textarea>
+                        <!--<span class="help-block" ng-show="PreAlertForm.additionalInfo.$invalid &&
+                                             (PreAlertForm.additionalInfo.$dirty || submitted)">
+                            {{'AdditionalInfo' | translate}}
+                        </span>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 paddingboth form-group">
+                <table style="border-spacing: 0px;">
+                    <tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">{{preAlertDetail.StaffUserName}}</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">{{preAlertDetail.StaffUserPosition}}</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;"><b>{{preAlertDetail.SiteCompany}}</b></td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;"><b>Email: </b><span>{{preAlertDetail.StaffUserEmail}}</span></td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;"><b>Phone: </b><span>{{preAlertDetail.StaffUserPhone}}</span></td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;"><a target="_blank" href="{{SiteAddress}}" title="{{preAlertDetail.SiteAddress}}">{{preAlertDetail.SiteAddress}}</a></td></tr>
+                </table> 
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--end-->
+        <!--form code section here-->
+        <div class="panel panel-default" ng-show="attachments.length">
+            <div class="panel-heading">{{'Attachment' | translate}}</div>
+            <div class="panel-body">
+                <div ng-repeat="document in preAlertDetail.PreAlertDocumnets">
+                    <div ng-show="document.DocumentType !=='OtherDocument'">
+                        {{document.DocumentTypeDisplay}}
+                        <div ng-show="document.Documents">
+                            <div ng-repeat="doc in document.Documents track by $index" class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="doc.IsSelected" name="documentName" />
+                                        {{doc.Document}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        <!--other document sectio code here-->
+        <div class="col-sm-12 paddingboth">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div ng-show="otherDocuments.length && otherDocuments[0].Documents.length" class="pull-left lineheight34"><span class="pointer" ng-click="otherDocumentToggle()"><i ng-class="{'fa fa-plus-square-o' : !open, 'fa fa-minus-square-o' : open}" class="fa-14 top3" aria-hidden="true"></i></span> &nbsp; {{'Other_Documents' | translate}}</div>
+                    <div class="pull-right">
+                        <div class="tradelane-document">
+                            <div class="button"
+                                 ng-model="piecesExcel"
+                                 name="shipmentPiecesDetails"
+                                 ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                 accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                 ngf-select="WhileAddingExcel($files, $file, $event)">
+                                <button type="button" class="btn btn-blue background-white fontsize12">
+                                    {{'Upload_Other_Documents' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--repeated other document code here-->
+                <div ng-if="open" class="panel-body padding-bottom-none">
+                    <div ng-show="otherDocuments.length && otherDocuments[0].Documents.length" ng-repeat="document in preAlertDetail.PreAlertDocumnets">
+                        <div ng-show="document.DocumentType ==='OtherDocument'" class="row">                       
+                                <div ng-repeat="doc in document.Documents track by $index" class="col-sm-6">
+                                    <div class="col-sm-12 form-group border padding-10">
+                                        <div class="col-sm-10 paddingboth top1 word-wrap">
+                                            <div>
+                                                <label>
+                                                    <input type="checkbox" class="top2" ng-model="doc.IsSelected" name="otherDoc" />
+                                                    {{doc.Document}}
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 text-right" id="tradelane-document">
+                                            <a class="pointer" ng-click="removeOtherDoc(doc ,document)">
+                                                <span><i class="fa fa-trash-o fa-14 download top2" aria-hidden="true"></i></span>
+                                            </a>
+                                            <!--<button type="button" class="btn btn-default" ng-click="removeOtherDoc(doc ,document)">remove</button>-->
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--end-->
+
+            </div>
+        </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div class="col-sm-12 paddingboth">
+                    <button class="btn btn-simple btn-cancel fontsize12 pull-left" type="button" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                    <button class="btn btn-simple btn-primary fontsize12 pull-right" type="submit" ng-click="submitted=true;" name="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Send' | translate}} {{'Email' | translate}}</button>
+                </div>
+            </div>
+</form>

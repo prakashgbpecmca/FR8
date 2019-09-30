@@ -1,0 +1,134 @@
+﻿
+
+<form name="MAWBCustomizedForm" ng-submit="UpdateMAWBCustomizedpdf(mawbCustomizefield, MAWBCustomizedForm.$valid)" novalidate>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">MAWB Customized Field</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="panel-body">
+            <section class="row">
+                <div class="clearfix form-group row">
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Vat.$invalid) &amp;&amp; (MAWBCustomizedForm.Vat.$dirty || submitted) }">
+                        <label for="Vat" class="col-sm-5 top5 control-label">Issuing Carrier's Agent Name and City</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="Vat" name="Vat" ng-model="mawbCustomizefield.IssuingCarriersAgentNameandCity" placeholder="Issuing Carrier's Agent Name and City (Required)" class="form-control fontsize12 ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" required="" style="">
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Pce.$invalid) &amp;&amp; (MAWBCustomizedForm.Pce.$dirty || submitted) }">
+                        <label for="Pce" class="col-sm-5 top5 control-label">Declared Value for Carriage</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Pce" id="Pce" maxlength="50" ng-model="mawbCustomizefield.DeclaredValueForCarriage" placeholder="Declared Value for Carriage (Required)" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-group row">
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Number.$invalid) &amp;&amp; (MAWBCustomizedForm.Number.$dirty || submitted) }">
+                        <label for="Number" class="col-sm-5 top5 control-label">Declared Value for Customs</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Number" id="Number" maxlength="50" ng-model="mawbCustomizefield.DeclaredValueForCustoms" placeholder="Declared Value for Customs (Required)" required="">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 -error" ng-class="{'has-error': (MAWBCustomizedForm.TCode.$invalid) &amp;&amp; (MAWBCustomizedForm.TCode.$dirty || submitted) }">
+                        <label for="TCode" class="col-sm-5 top5 control-label">Valuation Charge</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="TCode" id="TCode" maxlength="50" ng-model="mawbCustomizefield.ValuationCharge" placeholder="Valuation Charge (Required)" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-group row">
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Currency.$invalid) &amp;&amp; (MAWBCustomizedForm.Currency.$dirty || submitted) }">
+                        <label for="Currency" class="col-sm-5 top5 control-label">Tax</label>
+                        <div class="col-sm-7" id="Xe">
+                            <input type="text" class="form-control" name="TCode" id="TCode" maxlength="50" ng-model="mawbCustomizefield.Tax" placeholder="Tax (Required)" required="">
+                            <span class="help-block has-error ng-hide" ng-show="(MAWBCustomizedForm.Currency.$invalid) &amp;&amp; (MAWBCustomizedForm.Currency.$dirty || submitted)">
+                                Currency is Required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Value.$invalid) &amp;&amp; (MAWBCustomizedForm.Value.$dirty || submitted) }">
+                        <label for="Value" class="col-sm-5 top5 control-label">Total Other Charges Due Agent</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Value" id="Value" maxlength="50" ng-model="mawbCustomizefield.TotalOtherChargesDueAgent" placeholder="Total Other Charges Due Agent (Required)" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-group row">
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.TotalOtherChargeSDueCarrier.$invalid) &amp;&amp; (MAWBCustomizedForm.TotalOtherChargeSDueCarrier.$dirty || submitted) }">
+                        <label for="Currency" class="col-sm-5 top5 control-label">Total Other Charges Due Carrier</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="TotalOtherChargeSDueCarrier" id="TotalOtherChargeSDueCarrier" maxlength="50" ng-model="mawbCustomizefield.TotalOtherChargesDueCarrier" placeholder="Total Other Charges Due Carrier (Required)" required="">
+                            <span class="help-block has-error ng-hide" ng-show="(MAWBCustomizedForm.TotalOtherChargeSDueCarrier.$invalid) &amp;&amp; (MAWBCustomizedForm.TotalOtherChargeSDueCarrier.$dirty || submitted)">
+                                Total Other Charges Due Carrier is Required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.otherCharges.$invalid) &amp;&amp; (MAWBCustomizedForm.otherCharges.$dirty || submitted) }">
+                        <label for="otherCharges" class="col-sm-5 top5 control-label">Other Charges</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="otherCharges" id="otherCharges" ng-model="mawbCustomizefield.OtherCharges" placeholder="otherCharges (Required)" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-group row">
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Weblink.$invalid) &amp;&amp; (MAWBCustomizedForm.Weblink.$dirty || submitted) }">
+                        <label for="Weblink" class="col-sm-5 top5 control-label">Charges at Destination</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="mawbCustomizefield.ChargesAtDestination" placeholder="Charges at Destination (Required)" required="">
+                        </div>
+                    </div><div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Weblink.$invalid) &amp;&amp; (MAWBCustomizedForm.Weblink.$dirty || submitted) }">
+                        <label for="Weblink" class="col-sm-5 top5 control-label">Total Collect Charges </label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="mawbCustomizefield.TotalCollectCharges" placeholder="Total Collect Charges (Required)" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-group row">
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Weblink.$invalid) &amp;&amp; (MAWBCustomizedForm.Weblink.$dirty || submitted) }">
+                        <label for="Weblink" class="col-sm-5 top5 control-label">Currency Conversion Rates</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="mawbCustomizefield.CurrencyConversionRates" placeholder="Currency Conversion Rates (Required)" required="">
+                        </div>
+                    </div><div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Weblink.$invalid) &amp;&amp; (MAWBCustomizedForm.Weblink.$dirty || submitted) }">
+                        <label for="Weblink" class="col-sm-5 top5 control-label">Total Prepaid</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="mawbCustomizefield.TotalPrepaid" placeholder="Total Prepaid (Required)" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-group row">
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Weblink.$invalid) &amp;&amp; (MAWBCustomizedForm.Weblink.$dirty || submitted) }">
+                        <label for="Weblink" class="col-sm-5 top5 control-label">Total Collect</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="mawbCustomizefield.TotalCollect" placeholder="Total Collect (Required)" required="">
+                        </div>
+                    </div><div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Weblink.$invalid) &amp;&amp; (MAWBCustomizedForm.Weblink.$dirty || submitted) }">
+                        <label for="Weblink" class="col-sm-5 top5 control-label">Handling Information</label>
+                        <div class="col-sm-7">
+                            <textarea cols="3" rows="3" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="mawbCustomizefield.HandlingInformation" placeholder="Handling Information (Required)" required=""></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-group row">
+                    <div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Weblink.$invalid) &amp;&amp; (MAWBCustomizedForm.Weblink.$dirty || submitted) }">
+                        <label for="Weblink" class="col-sm-5 top5 control-label">Agent's IATA Code</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="mawbCustomizefield.AgentsIATACode" placeholder="Agent's IATA Code (Required)" required="">
+                        </div>
+                    </div><div class="col-sm-6" ng-class="{'has-error': (MAWBCustomizedForm.Weblink.$invalid) &amp;&amp; (MAWBCustomizedForm.Weblink.$dirty || submitted) }">
+                        <label for="Weblink" class="col-sm-5 top5 control-label">Account No.</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="mawbCustomizefield.AccountNo" placeholder="Account No. (Required)" required="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times"></i> Cancel</button>
+            <button type="submit" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-plus"></i> Add</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,276 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight:500;
+}
+
+header {
+}
+
+    header .logo {
+        float: left;
+        width: 25%;
+        height: 70px;
+        background: #fff;
+        padding: 5px 25px;
+    }
+
+    header .headerRight {
+        float: right;
+        width: 75%;
+        height: 70px;
+        background: #0B3D5A;
+        color: #fff;
+        text-align: center;
+        padding: 0px;
+    }
+
+
+.wrapper {
+    width: 88%;
+    margin: 0 auto;
+}
+
+.marginTop2 {
+    margin-top: 2px;
+}
+
+.marginTop3 {
+    margin-top: 3px;
+}
+
+.padding1 {
+    padding: 1px;
+}
+
+.padding2 {
+    padding: 2px;
+}
+
+.padding3 {
+    padding: 3px;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+.width50 {
+    width: 50%;
+    padding: 1px;
+}
+
+.width57 {
+    width: 57%;
+    padding: 1px;
+}
+
+.width49 {
+    width: 49.7%;
+    padding: 0px;
+}
+
+.width30 {
+    width: 30%;
+    padding: 1px;
+}
+
+.width70 {
+    width: 70%;
+    padding: 1px;
+}
+
+.width60 {
+    width: 60%;
+    padding: 1px;
+}
+
+.width65 {
+    width: 65%;
+    padding: 1px;
+}
+
+.width35 {
+    width: 35%;
+    padding: 1px;
+}
+
+.width100 {
+    width: 100%;
+    padding: 0px;
+}
+
+.mainHeading {
+    height: 45px;
+    border: 1px solid #333;
+}
+
+.subHeadLeft {
+    float: left;
+    width: 80%;
+    font-size: 29px;
+    color: #fff;
+    padding-left: 5px;
+    background: #0B3D5A;
+    border: 1px solid #333;
+}
+
+.pageNo {
+    float: right;
+    width: 20%;
+    background: #808080;
+    border: 1px solid #333;
+    color: #fff;
+    text-align: right;
+    padding: 8px 5px;
+    font-size: 18px;
+}
+
+.shipmentNoBlock {
+    width: 530px;
+    margin-top: 10px;
+}
+
+    .shipmentNoBlock .shipmentInfo {
+        float: left;
+        border: 1px solid #333;
+        background: #0B3D5A;
+        color: #fff;
+        width: 265px;
+        text-align: right;
+        padding: 1px 5px;
+    }
+
+    .shipmentNoBlock .shipmentNo {
+        float: right;
+        border: 1px solid #333;
+        background: #fff;
+        width: 265px;
+        text-align: left;
+        padding: 1px 5px;
+    }
+
+.deliveryDateBlock {
+    width: 530px;
+    margin-top: 2px;
+}
+
+    .deliveryDateBlock .deliveryInfo {
+        float: left;
+        border: 1px solid #333;
+        background: #0B3D5A;
+        color: #fff;
+        width: 265px;
+        text-align: right;
+        padding: 1px 5px;
+    }
+
+    .deliveryDateBlock .deliveryDate {
+        float: right;
+        border: 1px solid #333;
+        background: #fff;
+        width: 265px;
+        text-align: left;
+        padding: 1px 5px;
+    }
+
+.interimReceipt, interimReceiptDate {
+}
+
+    .interimReceipt .interimReceiptLeft, .interimReceiptDate .interimReceiptLeft {
+        float: left;
+        width: 40%;
+        height: 20px;
+        color: #fff;
+        padding: 2px;
+        background: #0B3D5A;
+        border: 1px solid #333;
+    }
+
+    .interimReceipt .interimReceiptRight, .interimReceiptDate .interimReceiptRight {
+        float: right;
+        width: 60%;
+        height: 20px;
+        color: inherit;
+        padding: 2px;
+        background: #fff;
+        border: 1px solid #333;
+    }
+
+.border1 {
+    border: 1px solid #333;
+}
+
+.upperCase {
+    text-transform: uppercase;
+}
+
+.fillFullPart {
+    float: none;
+    width: 100%;
+    height: 20px;
+    color: #fff;
+    padding: 2px;
+    background: #0B3D5A;
+}
+
+.fillLeftPart {
+    float: left;
+    width: 40%;
+    height: 20px;
+    color: #fff;
+    padding: 2px;
+    background: #0B3D5A;
+    border: 1px solid #333;
+}
+
+.fillRightPart {
+    float: right;
+    width: 60%;
+    height: 20px;
+    color: inherit;
+    padding: 2px;
+    background: #fff;
+    border: 1px solid #333;
+}
+
+.signDate {
+    font-size: 11px;
+    padding: 2px;
+}
+
+footer {
+    height: 60px;
+    background: #0B3D5A;
+    color: #fff;
+    text-align: center;
+    padding: 12px 0px;
+}
+
+    footer .footerLogo {
+        color: #EB8633;
+        padding: 0 15px;
+        font-size: 9px;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        display: inline-block;
+        font-weight: 700;
+        transform: scale(1,3);
+        -webkit-transform: scale(1,3);
+        -moz-transform: scale(1,3);
+        -ms-transform: scale(1,3);
+        -o-transform: scale(1,3);
+    }
+
+    footer .footerText {
+        font-size: 25px;
+        color: #EB8633;
+    }

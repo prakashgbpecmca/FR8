@@ -1,0 +1,168 @@
+﻿
+
+<form name="CustomerDetailForm" ng-submit="saveCustomerRateCardDetail(CustomerDetailForm.$valid, customerDetail)" novalidate>
+    <!--Customer Registered Services-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="floatLeft" style="cursor: pointer;">
+                <span>{{'Registered_Logistic_Services' | translate}}</span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <!--<div class="col-sm-12 paddingboth">
+                <div class="col-sm-6 paddingboth">
+                    <div class="col-sm-4 lineheight30"><label for="operationZone">{{'BusinessUnit_Zone' | translate}}</label></div>
+                    <div class="col-sm-6">
+                        <select ng-change="ChangeOperationZone()"
+                                ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId"
+                                class="form-control fontsize12 form-group" ng-model="OperationZone">
+                        </select>
+                    </div>
+                </div>
+            </div>-->
+            <!--Registered Logistics Services Code-->
+            <div ng-repeat="serviceDetail in LogisticServiceDetail track by $index">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div>{{serviceDetail.LogisticCompanyDisplay}}</div>
+                    </div>
+                    <div class="panel-body padding0">
+                        <div ng-repeat="service in serviceDetail.CourierDetail">
+                            <div class="col-sm-12 border-bottom">
+                                <div class="checkbox col-sm-12">
+                                    <label>
+                                        <input type="checkbox" ng-model="service.IsSelected" ng-change="setCustomerService(service)" /> <span> {{service.LogisticCompanyDisplay}} {{service.LogisticDisplayType}} {{service.RateTypeDisplay}}</span>
+                                    </label>
+                                </div>
+                                <div ng-class="{'display-block':service.LogisticType === 'Yodel', 'display-none':service.LogisticType !== 'Yodel'}" ng-show="serviceDetail.LogisticCompanyDisplay === 'UK Domestic' && IsYodel === true" class="col-sm-12 paddingboth border-ddd padding-5 form-group">
+                                    <div class="col-sm-3"><div class="radio"><label><input type="radio" id="dIH" name="dIH" value="DIH" ng-model="service.LogisticServiceType" ng-change="ChangeYodelService(service.LogisticServiceType)"><span>{{'DIH' | translate}}</span></label></div></div>
+                                    <div class="col-sm-3"><div class="radio"><label><input type="radio" id="dIH" name="dIH" value="PODDISVC" ng-model="service.LogisticServiceType" ng-change="ChangeYodelService(service.LogisticServiceType)"><span>{{'POD_DISVC' | translate}}</span></label></div></div>
+                                    <div class="col-sm-3"><div class="radio"><label><input type="radio" id="dIH" name="dIH" value="SVCPOD" ng-model="service.LogisticServiceType" ng-change="ChangeYodelService(service.LogisticServiceType)"><span>{{'SVC_POD' | translate}}</span></label></div></div>
+                                    <div class="col-sm-3"><div class="radio"><label><input type="radio" id="dIH" name="dIH" value="TRPOD" ng-model="service.LogisticServiceType" ng-change="ChangeYodelService(service.LogisticServiceType)"><span>{{'TR_POD' | translate}}</span></label></div></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+    <!--Customer rate Card  Setting-->
+    <div class="panel panel-default" ng-if="RoleId === 1 || RoleId === 6">
+        <div class="panel-heading">
+            <div ng-click="RateSettingPanel = !RateSettingPanel" class="floatLeft" style="margin-top: 9px;margin-bottom: 9px; cursor: pointer;">
+                <span><i ng-class="{'fa fa-plus-square-o' : !RateSettingPanel, 'fa fa-minus-square-o' : RateSettingPanel}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;"></i></span>
+                <span>{{'Customer_RateCard' | translate}} {{'Schedule' | translate}}</span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div ng-show="RateSettingPanel" class="panel-body">
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-12">
+                    <div class="col-sm-12  radio" style="padding-bottom:10px;">
+                        <div class="col-sm-2 paddingboth control-label">{{'Schedule'  | translate }}</div>
+                        <div ng-repeat="ScheduleType in ScheduleTypes" class="col-sm-1 paddingboth">
+                            <label><input ng-disabled="!RateSettingVisibility" ng-change="changeRateSheduleDaySetting(customerDetail.CustomerRateSetting.ScheduleType)" type="radio" ng-model="customerDetail.CustomerRateSetting.ScheduleType" name="ratescheduletype" ng-value="ScheduleType.Name" /> {{ScheduleType.Name}}</label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 form-group">
+                        <div ng-if="ShowCustomerSettingDetail">
+                            <div class="col-sm-2 paddingboth lineheight40" for="rateCardFormat">{{'Rate_Card_Format' | translate}}</div>
+                            <div class="col-sm-2 paddingboth"><div class="checkbox"><label><input type="checkbox" ng-model="customerDetail.CustomerRateSetting.IsExcel" />  {{'Excel' | translate}}</label></div></div>
+                            <div class="col-sm-2 paddingboth"><div class="checkbox"><label><input type="checkbox" ng-model="customerDetail.CustomerRateSetting.IsPdf" />  {{'PDF' | translate}}</label></div></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12" ng-class="{ 'has-error': CustomerDetailForm.ratescheduledate.$invalid &&
+                                            (CustomerDetailForm.ratescheduledate.$dirty || submitted) }">
+                        <label class="col-sm-2 lineheight24 paddingboth control-label">{{'Date' | translate}}</label>
+                        <div class="col-sm-4 form-group paddingboth">
+                            <div class="input-group">
+                                <input ng-disabled="!RateSettingVisibility" type="text" id="ratescheduledate" name="ratescheduledate" class="form-control fontsize12" ng-model="customerDetail.CustomerRateSetting.ScheduleDate" is-open="status1.opened"
+                                       uib-datepicker-popup="dd/MM/yyyy" ng-required="RateSettingVisibility" close-text="Close" ng-click="openCalender1($event)" placeholder="{{'DatePlaceholder' | translate}}" readonly />
+                                <div class="input-group-btn">
+                                    <button ng-disabled="!RateSettingVisibility" type="button" class="btn btn-default" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </div>
+                            </div>
+                            <span class="help-block has-error"
+                                  ng-show="CustomerDetailForm.ratescheduledate.$error.required &&
+                                                (CustomerDetailForm.ratescheduledate.$dirty || submitted)">
+                                {{'ScheduleDay_required' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="CustomerDetailForm.ratescheduledate.$invalid && !CustomerDetailForm.ratescheduledate.$error.required &&
+                                                (CustomerDetailForm.ratescheduledate.$dirty || submitted)">
+                                {{'ScheduleDate_Invalid' | translate}}.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12" ng-class="{ 'has-error': CustomerDetailForm.ratescheduletime.$invalid &&
+                                            (CustomerDetailForm.ratescheduletime.$dirty || submitted) }">
+                        <label class="col-sm-2 lineheight24 paddingboth control-label">{{'Time' | translate}}</label>
+                        <div class="col-sm-6 paddingboth form-group">
+                            <div>
+                                <div class="col-sm-2 paddingboth">
+                                    <input type="text" ng-disabled="!RateSettingVisibility"
+                                           class="form-control input-sm fontsize12"
+                                           placeholder="{{'TimePlaceholder' | translate}}"
+                                           name="ratescheduletime"
+                                           ng-model="customerDetail.CustomerRateSetting.ScheduleTime"
+                                           ui-mask="99:99"
+                                           ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" ng-required="RateSettingVisibility" style="width: 70px;" />
+                                </div>
+                                <b class="col-sm-8 paddingboth top7 control-label">{{'Hours24' | translate}}</b>
+                                <div class="clearfix"></div>
+                            </div>
+                            <span class="help-block has-error"
+                                  ng-show="CustomerDetailForm.ratescheduletime.$invalid && !CustomerDetailForm.ratescheduletime.$error.pattern && (CustomerDetailForm.ratescheduletime.$dirty || submitted)">
+                                {{'TimeValidationError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="CustomerDetailForm.ratescheduletime.$error.pattern &&
+                                                (CustomerDetailForm.ratescheduletime.$dirty || submitted)">
+                                {{'TimeNotValid' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div ng-if="RateWeekDayVisibility" class="col-sm-12" ng-class="{ 'has-error': CustomerDetailForm.rateweeklyday.$invalid &&
+                                            (CustomerDetailForm.rateweeklyday.$dirty || submitted) }">
+                        <label class="col-sm-2 paddingboth lineheight24 control-label">{{'Weekly_Day' | translate}}</label>
+                        <div class="col-sm-4 form-group paddingboth">
+                            <select name="rateweeklyday" ng-disabled="!RateSettingVisibility" ng-options="WeekDay.Name as WeekDay.Name for WeekDay  in weekDaysList" ng-model="customerDetail.CustomerRateSetting.ScheduleDay" class="form-control fontsize12" ng-required="RateSettingVisibility">
+                                <option value="" selected disabled class="display-none">{{'Select_Week_Day' | translate}}</option>
+
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="CustomerDetailForm.rateweeklyday.$invalid && (CustomerDetailForm.rateweeklyday.$dirty || submitted)">
+                                {{'ScheduleDay_required' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-2 lineheight24 paddingboth control-label">{{'Additional_MailTo' | translate}}</label>
+                        <div class="col-sm-4 form-group paddingboth">
+                            <input type="email" class="form-control fontsize12" ng-model="customerDetail.CustomerRateSetting.AdditionalMails" placeholder="{{'Email' | translate}}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body paddingTB5 padding0">
+        <div class="pull-right">
+            <button ng-click="submitted= true" class="btn-BigPrimary fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save' | translate}} {{'DEtail' | translate}}</button>
+        </div>
+    </div>
+</form>

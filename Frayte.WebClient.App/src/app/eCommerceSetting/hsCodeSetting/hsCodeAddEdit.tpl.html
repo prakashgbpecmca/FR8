@@ -1,0 +1,117 @@
+﻿
+
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{mode | translate}} {{'HSCode' | translate}}</h4>
+</div>
+<form name="AddressBookForm" ng-submit="HSCodeAddEdit(AddressBookForm.$valid, HSCodeData)" novalidate>
+    <div class="modal-body">
+        <div class="col-sm-12 paddingboth paddingboth">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': AddressBookForm.country.$invalid &&
+                                                         (DirectBookingForm.country.$dirty || submitted) }">
+                        <label for="country" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Country' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth" id="Xe">
+                            <select id="country" name="country" ng-change="HSCodeList()"
+                                    ng-model="HsCodeDetail.CountryId"
+                                    ng-options="Country.CountryId as Country.CountryName for Country in CountryList"
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.country.$invalid &&
+                                            (AddressBookForm.country.$dirty || submitted)">
+                                {{'CountryValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.hsCode.$invalid &&
+                                                         (AddressBookForm.hsCode.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="hsCode">{{'HSCode' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input type="text" id="hsCode" name="hsCode" ng-model="HsCodeDetail.HSCode1" class="form-control fontsize12"
+                                   placeholder="{{'HSCode' | translate}} ({{'Required' | translate}})" required/>
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.hsCode.$invalid &&
+                                            (AddressBookForm.hsCode.$dirty || submitted)">
+                               {{'HSCode' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.description.$invalid &&
+                                                         (AddressBookForm.description.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="description">{{'Description' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input type="text" id="description" name="description" ng-model="HsCodeDetail.Description" class="form-control fontsize12"
+                                   placeholder="{{'Description' | translate}} ({{'Required' | translate}})" required />
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.description.$invalid &&
+                                            (AddressBookForm.description.$dirty || submitted)">
+                                {{'Description' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.duty.$invalid &&
+                                                         (AddressBookForm.duty.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="lastName">{{'Duty' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input type="text" two-digit-numeric-decimal id="duty" name="duty" ng-model="HsCodeDetail.Duty" class="form-control fontsize12"
+                                   placeholder="{{'Duty' | translate}} ({{'Required' | translate}})" required />
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.duty.$invalid &&
+                                            (AddressBookForm.duty.$dirty || submitted)">
+                                {{'Duty' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.vat.$invalid &&
+                                                         (AddressBookForm.vat.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="vat">{{'Vat' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input type="text" two-digit-numeric-decimal id="vat" name="vat" ng-model="HsCodeDetail.Vat" class="form-control fontsize12"
+                                   placeholder="{{'Vat' | translate}} ({{'Required' | translate}})" required />
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.vat.$invalid &&
+                                            (AddressBookForm.vat.$dirty || submitted)">
+                                {{'Vat' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="clearfix"></div>
+            
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+            <div class="pull-right">
+                <button type="submit" ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+        </div>
+    </div>
+</form>

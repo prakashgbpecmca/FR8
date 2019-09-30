@@ -1,0 +1,128 @@
+﻿<section class="ourCompany fullwidthNoBackground bottom8">
+    <div class="container">
+        <div class="pos-rel">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                    <li data-target="#myCarousel" data-slide-to="5"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img ng-src="{{ImagePath + 'slider1.jpg'}}" alt="logistics"  class="img-responsive" />
+                    </div>
+
+                    <!--<div class="item">
+                        <img ng-src="{{ImagePath + 'slider2.jpg'}}" alt="logistics" style="width: 100%; height: 580px;" class="img-responsive" />
+                    </div>-->
+
+                    <div class="item">
+                        <img ng-src="{{ImagePath + 'slider3.jpg'}}" alt="logistics"  class="img-responsive" />
+                    </div>
+                    <div class="item">
+                        <img ng-src="{{ImagePath + 'slider4.jpg'}}" alt="logistics" class="img-responsive" />
+                    </div>
+                    <div class="item">
+                        <img ng-src="{{ImagePath + 'slider5.jpg'}}" alt="logistics"  class="img-responsive" />
+                    </div>
+                    <div class="item">
+                        <img ng-src="{{ImagePath + 'slider6.jpg'}}" alt="logistics" class="img-responsive" />
+                    </div>
+                    <div class="item">
+                        <img ng-src="{{ImagePath + 'slider7.jpg'}}" alt="logistics" class="img-responsive" />
+                    </div>
+                </div>
+              
+
+             
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">{{'Previous' | translate}}</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">{{'Next' | translate}}</span>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <br/>
+    <div class="container padding0">
+        <div class="container">
+            <section class="track-shipment" style="padding-left:15px; padding-right:15px;">
+
+                <form name="TrackingForm" ng-submit="trackingDetail(TrackingForm.$valid,easyPostDetail)" novalidate>
+                    <div class="row">
+                        <div class="col-md-3 paddingleft4"><h2> {{'Track' | translate}} {{'Your' | translate}} {{'Shipment' | translate}} </h2></div>
+                        <div class="col-md-2 paddingleft4">
+                            <div class="form-group" ng-class="{ 'has-error': TrackingForm.shippingMethod.$invalid &&
+                                                         (TrackingForm.shippingMethod.$dirty || submitted) }">
+                                <select id="shippingMethod" name="shippingMethod"
+                                        ng-model="easyPostDetail.CarrierName"
+                                        ng-options="DeliveredBy.Name as DeliveredBy.Name for DeliveredBy in carriers track by DeliveredBy.CourierId" class="form-control fontsize12" required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Carrier' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error" ng-show="TrackingForm.shippingMethod.$invalid &&
+                                            (TrackingForm.shippingMethod.$dirty || submitted)">
+                                    {{'Carrier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 paddingleft4">
+                            <div class="form-group" ng-class="{ 'has-error': TrackingForm.tracking.$invalid &&
+                                                         (TrackingForm.tracking.$dirty || submitted) }">
+                                <input type="text" id="tracking" name="tracking" class="form-control fontsize12" ng-model="easyPostDetail.TrackingNumber" placeholder="{{'TrackingNumber' | translate}}" required />
+                                <span class="help-block has-error track-shipment-padding" ng-show="TrackingForm.tracking.$invalid &&
+                                            (TrackingForm.tracking.$dirty || submitted)">
+                                    {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2 lineheight47">
+                                <button type="submit" ng-click="submitted=true" class="btnTrack width100 form-group">{{'Track' | translate}} {{'Now' | translate}}</button>
+                        </div>
+                        <div class="col-md-2 lineheight47 paddingleft4">
+                            <button type="submit" ng-click="goToBulkTracking()" class="btnTrack width100 form-group">{{'Bulk' | translate}} {{'Tracking' | translate}}</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+
+            </section>
+        </div>
+    </div>
+    <div class="fullwidthNoBackground">
+        <br /><br /><br /><br />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 form-group">
+                    <article class="services-1">
+                        <span class="icon" style="color: #0B3D5A;"><span class="glyphicon glyphicon-home"></span></span>
+                        <div class="inner">
+                            <p class="h">{{'HeadquarterHongKong' | translate}}</p>
+                        </div>
+                        <div class="color-bg" style="height: 1.4%; overflow: hidden;"></div>
+                    </article>
+                </div>
+                <div class="col-md-7 form-group">
+                    <article class="services-1">
+                        <span class="icon" style="color: #0B3D5A;"><span class="glyphicon glyphicon-th-list"></span></span>
+                        <div class="inner">
+                            <p class="h">{{'OurAim' | translate}}</p>
+                        </div>
+                        <div class="color-bg" style="height: 1.4%; overflow: hidden;"></div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+    </div>
+</section>

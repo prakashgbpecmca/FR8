@@ -1,0 +1,58 @@
+﻿<section class="container">
+    <div class="col-sm-12">
+        <div class="content padding-15">
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="text-center padding-tb-15"><h4>Please upload your shipment documents</h4></div>
+                <form name="ShipmentDocForm" ng-submit="upload(ShipmentDocForm.$valid,commercialInvoiceFile,packingListFile,customDocFile)" novalidate>
+                    <div class="form-group">
+                        <div class="col-xs-12"><label for="commercialInvoice">Commercial Invoice:</label></div>
+                        <div class="col-xs-12">
+                            <div class="inputText"><input type="text" id="commercialInvoice" name="commercialInvoice" ng-model="uploadDocument.CommercialInvoice" class="form-control" placeholder="" /> </div>
+                            <div class="button attachBtn" ng-model="commercialInvoiceFile" name="commercialInvoiceFile" ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                 accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                 ngf-select="whileAddingDoc($files, $file, $event, 1)">
+                                <button type="button" class="btn btn-blue">Attach</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label class="control-label" for="commercialInvoice">Packing List:</label>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="inputText">
+                                <input type="text" id="packingList" name="packingList" ng-model="uploadDocument.PackingList" class="form-control" />
+                            </div>
+                            <div class="button attachBtn" ng-model="packingListFile" name="packingListFile" ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                 accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                 ngf-select="whileAddingDoc($files, $file, $event, 2)">
+                                <button type="button" class="btn btn-blue">Attach</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12"><label for="commercialInvoice">Customs Documents:</label></div>
+                        <div class="col-sm-12">
+                            <div class="inputText"><input type="text" id="customDoc" name="customDoc" ng-model="uploadDocument.CustomDoc" class="form-control" placeholder="" /></div>
+                            <div class="button attachBtn" ng-model="customDocFile" name="customDocFile" ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                 accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                 ngf-select="whileAddingDoc($files, $file, $event, 3)">
+                                <button type="button" class="btn btn-blue">Attach</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="text-center padding-tb-15"><button type="submit" class="btn btn-save" ng-click="submitted=true">Upload</button></div>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>

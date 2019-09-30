@@ -1,0 +1,102 @@
+﻿<div class="content padding-15">
+    <div class="col-sm-12">
+        <div class="text-center padding-tb-15"><h4>{{AWBHeading}}</h4></div>
+        <form name="AgentUploadAWBForm" ng-submit="AgentUploadAWBDocs(AgentUploadAWBForm.$valid, AWBUploadFileName, OtherDocsUploadFileName)" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperInfo.ContactName}}</div>
+                                <div>{{ShipperInfo.CompanyName}}</div>
+                                <div>{{ShipperAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ShipperInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverInfo.ContactName}}</div>
+                                <div>{{ReceiverInfo.CompanyName}}</div>
+                                <div>{{ReceiverAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ReceiverInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="form-group col-sm-6" style="padding:0px;">
+                    <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                    <div>
+                        <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group" ng-class="{ 'has-error': AgentUploadAWBForm.InAWB.$invalid &&
+                                            (AgentUploadAWBForm.InAWB.$dirty || submitted) }">
+                    <div>
+                        <label class="control-label" for="InAWB">{{InAWB}}:</label>
+                    </div>
+                    <div class="inputText">
+                        <input type="text" id="InAWB" name="InAWB" ng-model="publicAwbDocument.AWB" class="form-control" required />
+                        <span class="help-block has-error ng-hide" ng-show="AgentUploadAWBForm.InAWB.$invalid &&
+                                            (AgentUploadAWBForm.InAWB.$dirty || submitted)">
+                            {{InAWB}} {{'RequiredOnly' | translate}}
+                        </span>
+                    </div>
+                    <div class="button attachBtn" ng-model="AWBUploadFileName" name="InAWBFile" ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                         accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                         ngf-select="whileAddingDoc($files, $file, $event, 1)">
+                        <button type="button" class="btn btn-blue">{{'Attach' | translate}}</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label class="control-label" for="otherDocs">{{'OtherDocs' | translate}}:</label>
+                    </div>
+                    <div>
+                        <div class="inputText">
+                            <input type="text" id="otherDocs" name="otherDocs" ng-model="publicAwbDocument.OtherDocs" class="form-control" />
+                        </div>
+                        <div class="button attachBtn" ng-model="OtherDocsUploadFileName" name="OtherDocsFile" ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                             accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                             ngf-select="whileAddingDoc($files, $file, $event, 2)">
+                            <button type="button" class="btn btn-blue">{{'Attach' | translate}}</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="floatRight form-group">
+                        <div class="padding-tb-15"><button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Upload' | translate}}</button></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

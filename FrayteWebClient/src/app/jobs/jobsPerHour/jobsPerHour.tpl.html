@@ -1,0 +1,49 @@
+﻿
+<div class="modal-content fontsize12" style="margin-bottom: 0px; border-color: #DBE2EC !important;">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Jobs_Operator_Hour' | translate}} </h4>
+    </div>
+
+    <div class="modal-body padding0">
+        <div class="col-sm-12">
+            <div class="fontsize24 padding-tb-10 ">{{'Operators' | translate}} ({{OperatorsAvgJobs.length}})</div>
+            <div class="panel panel-default">
+                <div>
+                    <div class="col-sm-12 paddingboth border-bottom-ddd" style="background:#f5f5f5;">
+                        <div class="width97">
+                        <div class="col-sm-6 bold bordered-right" style="padding:5px;">{{'Operator' | translate}}</div>
+                        <div class="col-sm-6 bold" style="padding:5px;">{{'Avg_Jobs_Completed_Per_Hour' | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body padding0">
+                    <div class="col-sm-12 paddingboth jobs-overflow">
+                        <div ng-repeat="OpeartorJob in OperatorsAvgJobs">
+                            <div class="col-sm-6 bordered-right" style="padding:5px;"><span>{{OpeartorJob.Name}}</span></div>
+                            <div class="col-sm-6" style="padding:5px;"><span>{{OpeartorJob.AvgJobs}}</span></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+                <!--<div ng-repeat="OpeartorJob in OperatorsAvgJobs">
+                    <div>
+                        <b>{{OpeartorJob.Name}}</b>
+                    </div>
+                    <div>
+                        {{OpeartorJob.AvgJobs}}
+                    </div>
+                </div>-->
+            </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12 paddingboth">
+            <div class="pull-right">
+                <button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Close_Window' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

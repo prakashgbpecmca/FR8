@@ -1,0 +1,179 @@
+﻿<section class="title-bar img-blog transparent-bg-secondary bottom8">
+    <div class="transparent-bg-secondary-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>{{'Fuel_Surcharge' | translate}}</h1>
+                </div>
+            </div>
+        </div>
+    </div><div class="transparent-bg-secondary-layer"></div>
+</section>
+<div class="clearfix"></div>
+<div class="fullwidthNoBackground">
+    <br /><br />
+    <div class="container fuelSurcharge">
+        <div>
+            <p style="margin:0 0 20px !important;">
+                {{'Increased_Overall_Costs' | translate}}
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <!--<div class="panel">-->
+                    <!--start first panel code-->
+                        <!--start DHL code-->
+                        <!--<div ng-if="false">
+                            <div class="panel top9">
+                                <div class="panel-heading">
+                                    <div>
+                                    <div class="width50">{{'Last_3_Month' | translate}}</div>
+                                    <div class="width50">{{'EXPRYES' | translate}}</div>
+                                    <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                        <div class="first-row-color">
+                                        <div class="width50">Mar 2018</div>
+                                        <div class="width50">22.25 %</div>
+                                        <div class="clearfix"></div>
+                                        </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        <br/>
+                    <div class="panel">
+                        <div class="panel-heading">Courier Fuel Surcharge</div>
+                        <div class="panel-body">
+                            <div class="panel top9">
+                                <div class="panel-heading">
+                                    <div class="first-row-colored flex">
+                                        <div class="width50"></div>
+                                        <div class="width16-66">Mar 2018</div>
+                                        <div class="width16-66">Feb 2018</div>
+                                        <div class="width16-66">Jan 2018</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="first-row-colored flex">
+                                        <div class="width50">DHL Express</div>
+                                        <div class="width16-66">22.25 %</div>
+                                        <div class="width16-66">20.75 %</div>
+                                        <div class="width16-66">20.75 %</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>-->
+                        <!--end code-->
+                <!--start TNT code-->
+                        <!--<div ng-if="true">                        
+                            <div class="panel top9">
+                                <div class="panel-heading">
+                                    <div  class="flex">
+                                        <div class="width33-33">{{'Last_3_Month' | translate}}</div>
+                                        <div class="width33-33">{{'EXPRYES' | translate}}</div>
+                                        <div class="width33-33">UK Domestic</div>
+                                        <div class="width33-33">Europe Economy</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="first-row-color flex">
+                                        <div class="width33-33">Mar 2018</div>
+                                        <div class="width33-33">22.25 %</div>
+                                        <div class="width33-33">8.75 %</div>
+                                        <div class="width33-33">9.25 %</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <br />
+                            <div class="panel">
+                                <div class="panel-heading">Courier Fuel Surcharge</div>
+                                <div class="panel-body">
+                                    <div class="panel top9">
+                                        <div class="panel-heading">
+                                            <div class="first-row-colored flex">
+                                                <div class="width50"></div>
+                                                <div class="width16-66">Mar 2018</div>
+                                                <div class="width16-66">Feb 2018</div>
+                                                <div class="width16-66">Jan 2018</div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="first-row-colored flex">
+                                                <div class="width50">DHL Express</div>
+                                                <div class="width16-66">22.25 %</div>
+                                                <div class="width16-66">20.75 %</div>
+                                                <div class="width16-66">20.75 %</div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>-->
+                <!--end TNT code-->
+                    <!--real code here-->
+                    <div ng-if="OperationZone.OperationZoneId ===1" ng-repeat="fuel in FuelSurCharges" class="panel">
+                        <div class="panel-heading">{{fuel.LogisticCompany}}</div>
+                        <div class="panel-body">
+                        <div class="panel top9">
+                        <div class="panel-heading">
+                            <div class="width33-33">{{'Last_3_Month' | translate}}</div>
+                            <div class="width33-33">{{'COURIER' | translate}}</div>
+                            <div class="width33-33">{{'EXPRYES' | translate}}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body" ng-hide="val">
+                            <div ng-repeat="fuelCharge in fuel.FuelSurCharge" class="first-row-color">
+                                <div class="width33-33">{{getFuelMonthYear(fuelCharge.FuelMonthYear)}} </div>
+                                <div class="width33-33">{{fuelCharge.FrayteFuelPercent}} %</div>
+                                <div class="width33-33">{{fuelCharge.ExpryeFuelPercent}} %</div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div ng-if="OperationZone.OperationZoneId ===2" ng-repeat="fuel in FuelSurCharges" class="panel">
+                        <div class="panel-heading">{{fuel.LogisticCompany}}</div>
+                        <div class="panel-body">
+                        <div class="panel top9">
+                        <div class="panel-heading">
+                            <div class="width20">{{'Last_3_Month' | translate}}</div>
+                            <div class="width20">{{'COURIER' | translate}}</div>
+                            <div class="width20">{{'EXPRYES' | translate}}</div>
+                            <div class="width20">{{'UK_DOMESTIC' | translate}}</div>
+                            <div class="width20">{{'Europe_Economy' | translate}}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body" ng-hide="val">
+                            <div ng-repeat="fuelCharge in fuel.FuelSurCharge" class="first-row-color">
+                                <div class="width20">{{getFuelMonthYear(fuelCharge.FuelMonthYear)}} </div>
+                                <div class="width20">{{fuelCharge.FrayteFuelPercent}} %</div>
+                                <div class="width20">{{fuelCharge.ExpryeFuelPercent}} %</div>
+                                <div class="width20">{{fuelCharge.DomesticFuelPercent}} %</div>
+                                <div class="width20">{{fuelCharge.RoadFuelPercent}} %</div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                  </div>
+                    <!--end-->
+                </div>
+            <div class="clearfix"></div>
+        </div>
+        <p>{{'Continuingrise_fuelprices' | translate}}</p>
+    </div>
+    <br /><br />
+</div>

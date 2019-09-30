@@ -1,0 +1,61 @@
+﻿
+
+
+<form name="createCartonSizeForm">
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">Create Carton Size</h4>
+        </div>
+        <div class="modal-body">
+            <div class="clearfix" ng-class="{'has-error': (createCartonSizeForm.named.$invalid) && (createCartonSizeForm.named.$dirty || submitted) }">
+                <label for="named" class="control-label col-sm-4 top5">{{'Name' | translate}}:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="named" id="named" ng-modal="named" placeholder="{{'Name' | translate}} ({{'Required' | translate}})" required />
+                    <span class="help-block has-error" ng-show="(createCartonSizeForm.named.$invalid) && (createCartonSizeForm.named.$dirty || submitted)">
+                        {{'Name' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div class="clearfix">
+                <hr />
+            </div>
+            <div class="form-group clearfix" ng-class="{'has-error': (createCartonSizeForm.length.$invalid) && (createCartonSizeForm.length.$dirty || submitted) }">
+                <label for="length" class="control-label col-sm-4 top5">{{'Length' | translate}} (cm):</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="length" id="length" ng-model="length" placeholder="{{'Length' | translate}} ({{'Required' | translate}})" required />
+                    <span class="help-block has-error" ng-show="(createCartonSizeForm.length.$invalid) && (createCartonSizeForm.length.$dirty || submitted)">
+                        {{'Length' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div class="form-group clearfix" ng-class="{'has-error': (createCartonSizeForm.width.$invalid) && (createCartonSizeForm.width.$dirty || submitted) }">
+                <label for="width" class="control-label col-sm-4 top5">{{'Width' | translate}} (cm):</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="width" ng-model="width" id="width" placeholder="{{'Width' | translate}} ({{'Required' | translate}})" required />
+                    <span class="help-block has-error" ng-show="(createCartonSizeForm.width.$invalid) && (createCartonSizeForm.width.$dirty || submitted)">
+                        {{'Width' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div class="form-group clearfix" ng-class="{'has-error': (createCartonSizeForm.height.$invalid) && (createCartonSizeForm.height.$dirty || submitted) }">
+                <label for="height" class="control-label col-sm-4 top5">{{'Height' | translate}} (cm):</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="height" id="height" ng-model="height" placeholder="{{'Height' | translate}} ({{'Required' | translate}})" required />
+                    <span class="help-block has-error" ng-show="(createCartonSizeForm.height.$invalid) && (createCartonSizeForm.height.$dirty || submitted)">
+                        {{'Height' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                <button type="button" ng-click="$dismiss()" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-save" aria-hidden="true"></i> {{'Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</section>
+</form>

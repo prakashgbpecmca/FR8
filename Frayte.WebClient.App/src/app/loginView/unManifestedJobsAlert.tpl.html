@@ -1,0 +1,142 @@
+﻿<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Logout' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <!--default original code here-->
+            <div>{{'Logout_Close_Before' | translate}} <strong>{{unmanifestedCount}}</strong> {{'Logout_Close' | translate}} <button type="button" class="btn-link" name="createManifest" id="createManifest" ng-click="CreateManifestHome()">{{'click_here' | translate}} </button> {{'Unmanifest_Shipment_Screen' | translate}}</div>
+            <!--end-->
+             <!--logout second demo code-->
+             <!--<div>
+        <div class="paddingTB-8 border-bottom-ddd pointer">
+            <div ng-class="{'pointer' : dashBoardDetail.Delivered.TotalShipment}" class="pointer" ng-click="tradelanePopup()">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'Delivered.png'}}" class="img-responsive" style="max-width: 70%;"/>
+                </div>
+                <div class="col-sm-7">
+                    <div>Allocated Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>50 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+                <div class="paddingTB-8 border-bottom-ddd pointer">
+                    <div class="pointer" ng-click="tradelanePopup()"
+                         ng-class="{'pointer' : dashBoardDetail.Exception.TotalShipment}">
+                        <div class="col-sm-2">
+                            <img ng-src="{{ImagePath + 'Exception.png'}}" class="img-responsive" style="max-width: 70%;" />
+                        </div>
+                        <div class="col-sm-7">
+                            <div>Claim Shipments</div>
+                            <p>Shipments</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>0 %</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+        <div class="clearfix"></div>
+    </div>
+             <div>
+        <div class="paddingTB-8 border-bottom-ddd pointer">
+            <div class="pointer" ng-click="tradelanePopup()"
+                 ng-class="{'pointer' : dashBoardDetail.OutForDelivery.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'OutforDelivery.png'}}" class="img-responsive" style="max-width: 70%;" />
+                </div>
+                <div class="col-sm-7">
+                    <div>MAWB Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>27 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="paddingTB-8 border-bottom-ddd pointer">
+            <div class="pointer" ng-click="tradelanePopup()" ng-class="{'pointer' : dashBoardDetail.Pending.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'Pending.png'}}" class="img-responsive" style="max-width: 70%;" />
+                </div>
+                <div class="col-sm-7">
+                    <div>MAWB Pending Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>10 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+             <div>
+        <div class="paddingTB-8 border-bottom-ddd pointer">
+            <div class="pointer" ng-click="tradelanePopup()" ng-class="{'pointer' : dashBoardDetail.InTransit.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'InTransit.png'}}" class="img-responsive" style="max-width: 70%;" />
+                </div>
+                <div class="col-sm-7">
+                    <div>Milestone Not Completed</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>8 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="paddingTB-8 border-bottom-ddd pointer">
+            <div class="pointer" ng-click="tradelanePopup()"
+                 ng-class="{'pointer' : dashBoardDetail.Expired.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'Expired.png'}}" class="img-responsive" style="max-width: 70%;" />
+                </div>
+                <div class="col-sm-7">
+                    <div>Ready for Pre Alert</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>0 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+             <div>
+        <div class="paddingTB-8 border-bottom-ddd pointer">
+            <div class="pointer" ng-click="tradelanePopup()" ng-class="{'pointer' : dashBoardDetail.InfoReceived.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'InfoReceived.png'}}" class="img-responsive" style="max-width: 70%;" />
+                </div>
+                <div class="col-sm-7">
+                    <div>Unallocated Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>5 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+            <div style="padding:8px 0px;">
+                There are some pending tasks, please check the notifications above. Are you sure you want to logout now?
+            </div>-->
+            <!--end-->
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-simple btn-save pull-left" type="button" ng-click="$close()"><i class="fa fa-check" aria-hidden="true"></i> {{'Yes' | translate}}</button>
+            <button class="btn btn-simple btn-cancel pull-right" type="button" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'No' | translate}}</button>
+        </div>
+    </div>
+</section>

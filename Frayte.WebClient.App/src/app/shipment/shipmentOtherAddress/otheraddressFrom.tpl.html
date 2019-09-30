@@ -1,0 +1,47 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'ChooseOther' | translate}} {{'Address' | translate}}</h4>
+</div>
+<div class="modal-body">    
+    <div class="addressHeader">
+        <div class="cell cellHead1"><b>{{'Address' | translate}}</b></div>
+        <div class="cell cell2"><b>{{'City' | translate}}</b></div>
+        <div class="cell cell3"><b>{{'State' | translate}}</b></div>
+        <div class="cell cell4"><b>{{'Zip' | translate}}</b></div>
+        <div class="cell cell5"><b>{{'Country' | translate}}</b></div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="addressBody" ng-repeat="address in addresses">
+        <div class="cellData1">
+            <input type="radio" name="selectAddress" ng-model="selectAddress.Address" ng-value="address" />
+        </div>
+        <div class="cellData2">
+            <div>{{address.Address}}</div>
+            <div ng-if="!shipment.ShipperAddress.Address2">
+                {{address.Address2}}
+            </div>
+            <div ing-if="!shipment.ShipperAddress.Address3">
+                {{address.Address3}}
+            </div>
+        </div>
+        <div class="cellData3">
+            <div> {{address.City}} </div>
+        </div>
+        <div class="cellData4">
+            <div> {{address.State}} </div>
+        </div>
+        <div class="cellData5">
+            <div> {{address.Zip}} </div>
+        </div>
+        <div class="cellData6">
+            <div> {{address.Country.Name}} </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="text-left">
+        <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel">{{'Cancel' | translate}}</button>  &nbsp;&nbsp;
+        <button type="submit" ng-click="SelectAddress(selectAddress.Address)" class="btn-simple btn-save">{{'Ok' | translate}}</button>
+    </div>
+</div>

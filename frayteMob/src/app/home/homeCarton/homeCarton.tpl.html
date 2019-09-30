@@ -1,0 +1,218 @@
+﻿
+
+<div class="col-xs-12 paddingboth">
+    <div>
+        <div class="form-group bb">
+            <div class="pull-left icon-set"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></div>
+            <div class="text-center"><h3>
+                <span ng-if="isActive">Scan AWB</span>
+                <span ng-if="firstActive">Scan AWB</span>
+                <span ng-if="isCreateBag">Create Bag</span>
+                <span ng-if="isOpenBag">Open Bag</span>
+                <span ng-if="isCloseBag">Bag Close</span>
+                <span ng-if="isTntBag">Open Bag</span>
+                </h3></div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-xs-12">
+            <!-- !isactive-->
+            <div ng-if="firstActive" class="text-center">
+               
+            </div>
+            <!--end--> 
+            <!-- isactive-->
+            <div class="col-sm-12 text-center" ng-if="isActive">
+              <h2>
+                  <span>LHR</span><br/><hr/><span>DHL/1</span>
+              </h2>
+            </div>
+            <!--end-->
+            <!--isCreateBag-->
+            <div ng-if="isCreateBag">
+                <div class="text-center">
+                <h2>Scan AWB</h2>
+                </div>
+                <div class="clearfix lineheight28 fontsize18 bold form-group">
+                    <span ng-click="createBagCollapse()" class="pointer"><i class="fa" ng-class="{'fa-plus-square-o':!createBagCollapseActive ,'fa-minus-square-o':createBagCollapseActive}"></i></span> LHR (3)
+                </div>
+                <div class="panel panel-default" ng-if="createBagCollapseActive">
+                    <div class="panel-heading clearfix">
+                        <div class="clearfix">
+                            <div class="col-sm-5">Carrier</div>
+                            <div class="col-sm-3">No. of Pieces</div>
+                            <div class="col-sm-4">Status</div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="clearfix form-group">
+                            <div class="col-sm-5 lineheight28">DHL/1</div>
+                            <div class="col-sm-3 lineheight28">(3)</div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-danger" ng-click="closeBag()">Bag Close</button></div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <div class="col-sm-5 lineheight28">DHL/2</div>
+                            <div class="col-sm-3 lineheight28">(4)</div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-danger" ng-click="openBag()">Open Bag</button></div>
+                        </div>
+                        <div class="clearfix form-group">
+                            <div class="col-sm-5 lineheight28">TNT/1</div>
+                            <div class="col-sm-3 lineheight28">(2)</div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-danger" ng-click="tntBag()">Open Bag</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+            <!--isOpenBag-->
+            <div ng-if="isOpenBag">
+                <div class="text-center">
+                    <h2>BAG- 123456</h2>
+                </div>
+                <div class="clearfix lineheight28 fontsize18 bold">
+                    <span ng-click="createBagCollapse()" class="pointer"><i class="fa" ng-class="{'fa-plus-square-o':!createBagCollapseActive ,'fa-minus-square-o':createBagCollapseActive}"></i></span> DHL/2 
+                    <span class="pull-right">(4)</span>
+                </div>
+                <div class="panel-default" ng-if="createBagCollapseActive">
+                    <div class="panel-body">
+                        <div class="clearfix form-group">
+                            <ul class="list-unstyled">
+                                <li>AWB-224466889-123456</li>
+                                <li>AWB-224466889-123457</li>
+                                <li>AWB-224466889-123458</li>
+                                <li>AWB-224466889-123459</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+            <!--isClosBag-->
+            <div ng-if="isCloseBag">
+                <div class="text-center">
+                    <h2>BAG- 123457</h2>
+                </div>
+                <div class="clearfix lineheight28 fontsize18 bold">
+                    <span ng-click="createBagCollapse()" class="pointer"><i class="fa" ng-class="{'fa-plus-square-o':!createBagCollapseActive ,'fa-minus-square-o':createBagCollapseActive}"></i></span> DHL/1 
+                    <span class="pull-right">(3)</span>
+                </div>
+                <div class="panel-default" ng-if="createBagCollapseActive">
+                    <div class="panel-body">
+                        <div class="clearfix form-group">
+                            <ul class="list-unstyled">
+                                <li>AWB-224466889-123460</li>
+                                <li>AWB-224466889-123461</li>
+                                <li>AWB-224466889-123462</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+            <!--isTntBag-->
+            <div ng-if="isTntBag">
+            <div class="text-center">
+                <h2>BAG- 123458</h2>
+            </div>
+            <div class="clearfix lineheight28 fontsize18 bold">
+                <span ng-click="createBagCollapse()" class="pointer"><i class="fa" ng-class="{'fa-plus-square-o':!createBagCollapseActive ,'fa-minus-square-o':createBagCollapseActive}"></i></span> TNT/1
+                <span class="pull-right">(2)</span>
+            </div>
+            <div class="panel-default" ng-if="createBagCollapseActive">
+                <div class="panel-body">
+                    <div class="clearfix form-group">
+                        <ul class="list-unstyled">
+                            <li>AWB-224466889-123463</li>
+                            <li>AWB-224466889-123464</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--end-->
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done" ng-if="isActive">
+    <div class="b5rem">
+    <div class="form-group">
+        <button type="submit" class="form-control btn-simple btn-warning" ng-click="createBag()">Back</button>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="createBag()">Bag Close (10)</button>
+    </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done" ng-if="isOpenBag">
+    <div class="b5rem">
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-warning" ng-click="createBag()">Back</button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-primary" ng-click="closePopup()">Bag Close (10)</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done" ng-if="isTntBag">
+    <div class="b5rem">
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-warning" ng-click="createBag()">Back</button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-primary" ng-click="closePopup()">Bag Close (10)</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done" ng-if="isCloseBag">
+    <div class="form-group">
+        <button type="submit" class="form-control btn-simple btn-warning" ng-click="createBag()">Back</button>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done-button">
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="noRecords()">No Records</button>
+         <a href="" class="fix-help" popover-placement="auto" uib-popover="When there is no record in create bag then 'Scan AWB' screen open where screen hints for scanning AWB." popover-trigger="'outsideClick'">
+    <i class="fa fa-question-circle help" aria-hidden="true"></i>
+</a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="afterScanAWB()">After Scan of AWB (API)</button> 
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="After scan of AWB this screen displays with the information of scanned AWB." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="sendPrint()">Loading Bar while Printing</button> 
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Loading Bar run at the time of printing. Printing will happen when new bag created or bag closed." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="createBag()">Create Bag</button> 
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Open when there is single or multiple records." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="openBag()">Open Bag (API)</button> 
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="When user will click on the open bag buttton than this screen display the detail of that bag." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="closeBag()">Bag Close (API)</button> 
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="It display the information of closed bag. There is only one option 'Back' which redirects the user to the 'Create Bag' screen." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="closePopup()">Close Bag Popup</button> 
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="This button used for close the bag. Before closing of that bag our screen will display the message 'Are you sure, you want to close?'" popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

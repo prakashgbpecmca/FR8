@@ -1,0 +1,223 @@
+﻿
+<section>
+    <!--start header section here-->
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <!--<h4 class="modal-title">{{'Claim_Resolved' | translate}}: <span>ATRN - ABZ to BDQ (M3 549 - 25252525)</span></h4>-->
+        <h4 class="modal-title underline">
+            {{'Mawb_Correction' | translate}}
+            <span ng-show="tradelaneBookingDetail.MAWB">
+                <!--{{tradelaneBookingDetail.ShipmentHandlerMethod.ShipmentHandlerMethodCode}}--> - {{tradelaneBookingDetail.DepartureAirport.AirportCode}} to {{tradelaneBookingDetail.DestinationAirport.AirportCode}} <!--({{tradelaneBookingDetail.AirlinePreference.CarrierCode2}} {{tradelaneBookingDetail.AirlinePreference.AilineCode}} - {{tradelaneBookingDetail.MAWB}})-->
+            </span>
+            <span ng-show="!tradelaneBookingDetail.MAWB">
+                <!--{{tradelaneBookingDetail.ShipmentHandlerMethod.ShipmentHandlerMethodCode}}--> - {{tradelaneBookingDetail.DepartureAirport.AirportCode}} to {{tradelaneBookingDetail.DestinationAirport.AirportCode}}
+            </span>
+        </h4>
+    </div>
+    <!--end-->
+    <form name="tradelaneClaimResolved" ng-submit="SendClaimResolvedMailToAgent(tradelaneClaimResolved.$valid, ShipmentClaim)" novalidate>
+        <!--start body section here-->
+        <section>
+            <div class="modal-body" id="prealert-mail">
+                <div class="col-sm-12 paddingboth">
+                    <!--demo code here-->
+                    <div>
+                        <div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 paddingboth bordered-left bordered-right bordered-top">
+                                    <div class="flex">
+                                        <div class="lineheight34 col-sm-6 clearfix bordered-right border-bottom" ng-show="tradelaneBookingDetail.FrayteNumber !== undefined && tradelaneBookingDetail.FrayteNumber !== null && tradelaneBookingDetail.FrayteNumber !== ''"><div class="col-sm-6 bold">{{'Frayte_ShipmentNo' | translate}}:</div><div class="col-sm-6 bordered-left">{{tradelaneBookingDetail.FrayteNumber}}</div></div>
+                                        <div class="lineheight34 col-sm-6 clearfix border-bottom"><div ng-show="tradelaneBookingDetail.MAWB !== undefined && tradelaneBookingDetail.MAWB !== null && tradelaneBookingDetail.MAWB !== ''"><div class="col-sm-6 bold">{{'MAWB_' | translate}}#:</div><div class="col-sm-6 bordered-left">{{tradelaneBookingDetail.AirlinePreference.AilineCode}} {{tradelaneBookingDetail.MAWB.substring(0, 4)}} {{tradelaneBookingDetail.MAWB.substring(4, 8)}}</div></div></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="flex">
+                                        <div class="lineheight34 col-sm-6 clearfix bordered-right border-bottom" ng-show="tradelaneBookingDetail.DepartureAirport !== null && tradelaneBookingDetail.DepartureAirport.AirportName !== undefined && tradelaneBookingDetail.DepartureAirport.AirportName !== null && tradelaneBookingDetail.DepartureAirport.AirportName !== ''"><div class="col-sm-6 bold">{{'Departure_Airport' | translate}}:</div><div class="col-sm-6 bordered-left">{{tradelaneBookingDetail.DepartureAirport.AirportCode}} - {{tradelaneBookingDetail.DepartureAirport.AirportName}}</div></div>
+                                        <div class="lineheight34 col-sm-6 clearfix border-bottom" ng-show="tradelaneBookingDetail.DestinationAirport !== null && tradelaneBookingDetail.DestinationAirport.AirportName !== undefined && tradelaneBookingDetail.DestinationAirport.AirportName !== null && tradelaneBookingDetail.DestinationAirport.AirportName !== ''"><div class="col-sm-6 bold">{{'Destination_Airport' | translate}}:</div><div class="col-sm-6 bordered-left">{{tradelaneBookingDetail.DestinationAirport.AirportCode}} - {{tradelaneBookingDetail.DestinationAirport.AirportName}}</div></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 paddingboth">
+                                    <ul class="panel-body padding0 tradelaneBooking-textarea margin-bottom-none list-unstyled">
+                                        <li>
+                                            <div class="clearfix"></div>
+                                            <div class="panel-body padding0">
+                                                <div class="panel panel-default margin-bottom-none">
+                                                    <div class="panel-heading padding0">
+                                                        <div class="col-sm-12 paddingboth grid-background">
+                                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'HAWB' | translate}}</b></div></div>
+                                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Total_Volume' | translate}}</b><small> ({{'CBM' | translate}})</small></div></div>
+                                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'No_Of_Cartons' | translate}}</b><small> ({{'QTY' | translate}})</small></div></div>
+                                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10"><b>{{'Gross_Weight' | translate}}</b><small> ({{'kGS' | translate}})</small></div></div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="panel-body padding0">
+                                                        <div class="clearfix">
+                                                            <div class="change">
+                                                                <div class="col-sm-12 paddingboth flex text-center change" ng-repeat="hAWB in tradelaneBookingDetail.HAWBPackages">
+                                                                    <div class="col-sm-3 paddingboth borderRight border-bottom" id="tradelane-document">
+                                                                        <div>
+                                                                            <div class="padding-5">{{hAWB.HAWB}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                                        <div class="padding-5">{{hAWB.TotalVolume}}</div>
+                                                                    </div>
+                                                                    <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                                        <div class="padding-5" name="cartton">{{hAWB.TotalCartons}}</div>
+                                                                    </div>
+                                                                    <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                                        <div class="padding-5" name="weight">{{hAWB.TotalWeight}}</div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 paddingboth grid-background">
+                                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Total' | translate}}</b></div></div>
+                                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{totalVolume}} <small>({{'CBM' | translate}})</small></b></div></div>
+                                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{totalCartons}} <small>({{'QTY' | translate}})</small></b></div></div>
+                                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10"><b>{{totalweight}} ({{Lb_Kg}})</b></div></div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                    </div>
+                    <!--end-->
+                    <!--start to code here-->
+                    <div class="form-group clearfix" ng-class="{ 'has-error': tradelaneClaimResolved.to.$invalid &&
+                                                         (tradelaneClaimResolved.to.$dirty || submitted) || valid}">
+                        <label class="col-sm-1 control-label lineheight32" name="to" id="to">{{'To_' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-11">
+                            <div class="col-sm-12 paddingright">
+                                <input type="text" name="to" id="to" ng-model="ShipmentClaim.ToEmail" class="form-control" placeholder="{{'To_' | translate}} ({{'Required' | translate}})" ng-change="validateEmailList(ShipmentClaim.ToEmail)" readonly ng-required="valid || submitted" />
+                                <span class="help-block has-error pull-left"
+                                      ng-show="tradelaneClaimResolved.to.$invalid &&
+                                            (tradelaneClaimResolved.to.$dirty || submitted)">
+                                    {{'To_Mail_Required' | translate}}
+                                </span>
+                                <!--<span class="pull-right text-muted">{{'Multiple_Email_With_Comma' | translate}}</span>-->
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <!--start cc and bcc code here-->
+                    <div>
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': tradelaneClaimResolved.cc.$invalid &&
+                                                         (tradelaneClaimResolved.cc.$dirty) || valid1}">
+                            <label class="col-sm-2 control-label paddingboth lineheight32" name="cc" id="cc">{{'ToCc_' | translate}}</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="cc" id="cc" ng-model="ShipmentClaim.CC" ng-change="validateCCEmailList(ShipmentClaim.CC)" ng-required="valid1" class="form-control left5" placeholder="{{'ToCc_' | translate}}" />
+                                <span class="help-block has-error left5"
+                                      ng-show="valid1 &&
+                                            tradelaneClaimResolved.cc.$dirty">
+                                    {{'EmailNotValid' | translate}}
+                                </span>
+                                <span class="text-muted left5">{{'Multiple_Email_With_Comma' | translate}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': tradelaneClaimResolved.bcc.$invalid &&
+                                                         (tradelaneClaimResolved.bcc.$dirty) || valid2}">
+                            <label class="col-sm-2 control-label lineheight32" name="bcc" id="bcc">{{'ToBCc_' | translate}}</label>
+                            <div class="col-sm-10 paddingright">
+                                <input type="text" name="bcc" id="bcc" ng-model="ShipmentClaim.BCC" class="form-control" ng-change="validateBCCEmailList(ShipmentClaim.BCC)" ng-required="valid2" placeholder="{{'ToBCc_' | translate}}" />
+                                <span class="help-block has-error"
+                                      ng-show="valid2 &&
+                                            (tradelaneClaimResolved.bcc.$dirty || submitted)">
+                                    {{'EmailNotValid' | translate}}
+                                </span>
+                                <span class="text-muted">{{'Multiple_Email_With_Comma' | translate}}</span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--end-->
+                    <!--start to subject code here-->
+                    <div class="form-group clearfix" ng-class="{ 'has-error': tradelaneClaimResolved.subject.$invalid &&
+                                                         (tradelaneClaimResolved.subject.$dirty) }">
+                        <label class="col-sm-1 paddingright control-label lineheight32" name="to" id="to">{{'Subject_' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-11">
+                            <div class="col-sm-12 paddingright">
+                                <input type="text" name="subject" id="subject" ng-model="ShipmentClaim.Subject" class="form-control" placeholder="{{'Subject_' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error"
+                                      ng-show="tradelaneClaimResolved.subject.$invalid &&
+                                            (tradelaneClaimResolved.subject.$dirty || submitted)">
+                                    {{'Subject_Required' | translate}}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <!--start textbox code here-->
+                    <div class="form-group col-sm-12" ng-class="{ 'has-error': tradelaneClaimResolved.claimTextarea.$invalid &&
+                                                         (tradelaneClaimResolved.claimTextarea.$dirty || submitted) }">
+                        <div class="col-sm-12 paddingboth">
+                            <textarea rows="10" cols="10" class="form-control" ng-model="ShipmentClaim.Description" placeholder="Please enter the list of details which has to be revised..." name="claimTextarea" id="claimTextarea" required></textarea>
+                            <span class="help-block has-error ng-hide" ng-show="tradelaneClaimResolved.claimTextarea.$invalid &amp;&amp;
+                                            (tradelaneClaimResolved.claimTextarea.$dirty || submitted)">
+                                {{'Textbox_Message_Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--end-->
+                    <!--start shipment detail text code here-->
+                    <!--<div class="col-sm-12 form-group">
+                        <hr />
+                        <h3>{{'Here_Are_Shipment_Details' | translate}}:</h3>
+                        <hr />
+                    </div>-->
+                    <!--end-->
+                    <!--start shipment detail code here-->
+                    <!--<div class="row form-group">
+                        <div class="lineheight34 col-sm-6 clearfix" ng-show="tradelaneBookingDetail.FrayteNumber !== undefined && tradelaneBookingDetail.FrayteNumber !== null && tradelaneBookingDetail.FrayteNumber !== ''"><div class="col-sm-6 bold">{{'Frayte_ShipmentNo' | translate}}:</div><div class="col-sm-6">{{tradelaneBookingDetail.FrayteNumber}}</div></div>
+                        <div class="lineheight34 col-sm-6 clearfix" ng-show="tradelaneBookingDetail.MAWB !== undefined && tradelaneBookingDetail.MAWB !== null && tradelaneBookingDetail.MAWB !== ''"><div class="col-sm-6 bold">{{'MAWB_' | translate}}#:</div><div class="col-sm-6">{{tradelaneBookingDetail.AirlinePreference.CarrierCode3}} - {{tradelaneBookingDetail.MAWB}}</div></div>
+                        <div class="lineheight34 col-sm-6 clearfix" ng-show="tradelaneBookingDetail.DepartureAirport !== null && tradelaneBookingDetail.DepartureAirport.AirportName !== undefined && tradelaneBookingDetail.DepartureAirport.AirportName !== null && tradelaneBookingDetail.DepartureAirport.AirportName !== ''"><div class="col-sm-6 bold">{{'Departure_Airport' | translate}}:</div><div class="col-sm-6">{{tradelaneBookingDetail.DepartureAirport.AirportName}}</div></div>
+                        <div class="lineheight34 col-sm-6 clearfix" ng-show="tradelaneBookingDetail.DestinationAirport !== null && tradelaneBookingDetail.DestinationAirport.AirportName !== undefined && tradelaneBookingDetail.DestinationAirport.AirportName !== null && tradelaneBookingDetail.DestinationAirport.AirportName !== ''"><div class="col-sm-6 bold">{{'Destination_Airport' | translate}}:</div><div class="col-sm-6">{{tradelaneBookingDetail.DestinationAirport.AirportName}}</div></div>
+                        <div class="lineheight34 col-sm-6 clearfix" ng-show="totalweight !== undefined && totalweight !== null && totalweight !== ''"><div class="col-sm-6 bold">{{'Total_Estimated_Weight' | translate}}:</div> <div class="col-sm-6">{{totalweight}} {{'Kgs' | translate}}</div></div>
+                    </div>-->
+                    <!--end-->
+                    <div class="form-group col-sm-12">
+                        <br />
+                        <p class="fontsize16">{{'Kindly_Regards' | translate}},</p>
+                        <br />
+                        <ul class="list-unstyled">
+                            <li>{{customerDetail.ContactName}}</li>
+                            <!--<li>{{'OperationStaff' | translate}}</li>-->
+                            <li>{{Position}}</li>
+                            <li><b>{{'FRAYTE_Logistics_Ltd' | translate}}</b></li>
+                            <li><span>{{customerDetail.Email}}</span></li>
+                            <li><span>{{Phone}}</span></li>
+                            <li><a target="_blank" href="{{Websitefrayte}}">{{Website}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </section>
+        <!--end-->
+        <!--start footer section here-->
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel pull-left"><i class="fa fa-save"></i> {{'Cancel'| translate}}</button>
+                <button type="submit" class="btn-simple btn-primary pull-right" ng-click="submitted=true"><i class="fa fa-envelope-o"></i> {{'Send_Email'| translate}}</button>
+            </div>
+        </div>
+        <!--end-->
+    </form>
+</section>

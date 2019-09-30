@@ -1,0 +1,232 @@
+﻿<section id="tradelane-detail">
+  <div class="container">
+
+    <uib-tabset>
+      <uib-tab index="1" active="active" class="airway">
+        <!--airway code here-->
+        <uib-tab-heading class="fix">{{'Air' | translate}}</uib-tab-heading>
+        <uib-tabset>
+          <uib-tab index="1">
+            <uib-tab-heading>
+              {{'Import' | translate}}
+            </uib-tab-heading>
+            <div>
+              <!--import to airway bases-->
+              <div id="air-import">
+                <div class="col-sm-12 paddingboth form-group" id="import">
+                  <div class="flex form-group">
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-import1.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Shipping_Instruction_FRAYTE' | translate}}</h3>
+                      <p>{{'Oversea_Agent_Send_Shipping_Instruction' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-import2.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Cargo_Arrival_At_Airport' | translate}}</h3>
+                      <p>{{'Cargo_Is_Unloaded_From_Aircraft' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-import3.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Customs_Clearance' | translate}}</h3>
+                      <p>{{'Import_Declaration_Is_Submitted' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-import4.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Delivery' | translate}}</h3>
+                      <p>{{'Cargo_Granted_Import_Approval_At_Airline' | translate}}</p>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <!--end-->
+            </div>
+          </uib-tab>
+          <uib-tab index="2">
+            <uib-tab-heading>
+              {{'Export' | translate}}
+            </uib-tab-heading>
+            <div>
+              <!--export to airway bases-->
+              <div id="air-export">
+                <div class="col-sm-12 paddingboth form-group" id="export">
+                  <div class="col-sm-3 form-group">
+                    <img ng-src="{{ImagePath + 'Air-export1.png'}}" class="img-responsive" />
+                    <h3 class="text-center">{{'Shipping_Instruction_FRAYTE' | translate}}</h3>
+                    <p>{{'Shipper_Send_Shipping_Instruction_Advance' | translate}}</p>
+                  </div>
+                  <div class="col-sm-3 form-group">
+                    <img ng-src="{{ImagePath + 'Air-transit2.png'}}" class="img-responsive"  />
+                    <h3 class="text-center">{{'Cargo_Space_Reservation' | translate}}</h3>
+                    <p>{{'Space_Reservation_With_Carrier' | translate}}</p>
+                  </div>
+                  <div class="col-sm-3 form-group">
+                    <img ng-src="{{ImagePath + 'Air-export3.png'}}" class="img-responsive" />
+                    <h3 class="text-center">{{'Pickup_Of_Cargo' | translate}}</h3>
+                    <p>{{'Arrange_Truck_To_Pickup_Cargo_Or_Shipper_Deliver' | translate}}</p>
+                  </div>
+                    <div class="col-sm-3 form-group">
+                        <img ng-src="{{ImagePath + 'Air-transit4.png'}}" class="img-responsive" />
+                        <h3 class="text-center">{{'Customs_Clearance' | translate}}</h3>
+                        <p>{{'Export_Declaration_Submitted' | translate}}</p>
+                    </div>
+                  <div class="clearfix"></div>
+                  <div class="flex pb-15">
+                    <div class="flex">
+                      <div class="col-sm-3 form-group">
+                        <img ng-src="{{ImagePath + 'Air-export5.png'}}" class="img-responsive" />
+                        <h3 class="text-center">{{'Loading_Flight_Departure' | translate}}</h3>
+                        <p>{{'Cargo_Granted_Export_Approval_At_Airline' | translate}}</p>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <!--end-->
+            </div>
+          </uib-tab>
+          <uib-tab index="3">
+            <uib-tab-heading>
+              {{'Transit' | translate}}
+            </uib-tab-heading>
+            <div>
+              <!--transit to airway bases-->
+              <div id="air-transit">
+                <!--<h2>Airfeight - Transit Shipment Flow Chart</h2>-->
+                <div class="col-sm-12 paddingboth form-group" id="import">
+                  <div class="flex form-group">
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-transit1.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Shipping_Instruction_FRAYTE' | translate}}</h3>
+                      <p>{{'Oversea_Agent_Send_Shipping_Instruction_First_Leg' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-transit2.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Cargo_Space_Reservation' | translate}}</h3>
+                      <p>{{'Space_Reservation_For_Second_Leg' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-transit3.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Cargo_Arrival_At_Transit_Airport' | translate}}</h3>
+                      <p>{{'Cargo_Is_Unlonded_From_Aircraft' | translate}}</p>
+                    </div>
+                      <div class="col-sm-3">
+                          <img ng-src="{{ImagePath + 'Air-transit4.png'}}" class="img-responsive" />
+                          <h3 class="text-center">{{'Customs_Clearance' | translate}}</h3>
+                          <p>{{'Goods_Declaration_For_Transit_Shipment' | translate}}</p>
+                      </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="flex form-group">
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-transit5.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Cargo_Transferring' | translate}}</h3>
+                      <p>{{'Collect_Cargo_From_Airline_Terminal_Operation' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-transit6.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Loading_Flight_Departure' | translate}}</h3>
+                      <p>{{'Cargo_Granted_Export_Approval_At_Airline' | translate}}</p>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <!--end-->
+            </div>
+          </uib-tab>
+        </uib-tabset>
+        <!--end-->
+      </uib-tab>
+      <uib-tab class="seaway">
+        <!--seaway code here-->
+        <uib-tab-heading class="fix">{{'Sea' | translate}}</uib-tab-heading>
+        <uib-tabset>
+          <uib-tab>
+            <uib-tab-heading>
+              {{'Import' | translate}}
+            </uib-tab-heading>
+            <div>
+              <!--import to airway bases-->
+              <div id="air-import">
+                <div class="col-sm-12 paddingboth form-group" id="import">
+                  <div class="flex form-group">
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-import1.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Shipping_Instruction_FRAYTE' | translate}}</h3>
+                      <p>{{'Oversea_Agent_Send_Shipping_Instruction' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Sea-import2.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Cargo_Arrival_At_Sea' | translate}}</h3>
+                      <p>{{'Cargo_Unloaded_From_Sea' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-import3.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Customs_Clearance' | translate}}</h3>
+                      <p>{{'Import_Declaration_Is_Submitted' | translate}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <img ng-src="{{ImagePath + 'Air-import4.png'}}" class="img-responsive" />
+                      <h3 class="text-center">{{'Delivery' | translate}}</h3>
+                      <p>{{'Cargo_Granted_Import_Approval' | translate}}</p>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <!--end-->
+            </div>
+          </uib-tab>
+          <uib-tab>
+            <uib-tab-heading>
+              {{'Export' | translate}}
+            </uib-tab-heading>
+            <div>
+              <!--export to airway bases-->
+              <div id="air-export">
+                <!--<h2>Airfreight Export Flow Chart</h2>-->
+                <div class="col-sm-12 paddingboth form-group" id="export">
+                  <div class="col-sm-3 form-group">
+                    <img ng-src="{{ImagePath + 'Air-export1.png'}}" class="img-responsive" />
+                    <h3 class="text-center">{{'Shipping_Instruction_FRAYTE' | translate}}</h3>
+                    <p>{{'Shipper_Send_Shipping_Instruction_Advance' | translate}}</p>
+                  </div>
+                  <div class="col-sm-3 form-group">
+                    <img ng-src="{{ImagePath + 'Air-transit2.png'}}" class="img-responsive" />
+                    <h3 class="text-center">{{'Cargo_Space_Reservation' | translate}}</h3>
+                    <p>{{'Space_Reservation_With_Carrier' | translate}}</p>
+                  </div>
+                  <div class="col-sm-3 form-group">
+                    <img ng-src="{{ImagePath + 'Air-export3.png'}}" class="img-responsive" />
+                    <h3 class="text-center">{{'Pickup_Of_Cargo' | translate}}</h3>
+                    <p>{{'We_Arrange_Truck_Pickup_Cargo_Shipper' | translate}}</p>
+                  </div>
+                    <div class="col-sm-3 form-group">
+                        <img ng-src="{{ImagePath + 'Air-transit4.png'}}" class="img-responsive" />
+                        <h3 class="text-center">{{'Customs_Clearance' | translate}}</h3>
+                        <p>{{'Export_Declaration_Submitted' | translate}}</p>
+                    </div>
+                  <div class="clearfix"></div>
+                  <div class="col-sm-3 form-group">
+                    <img ng-src="{{ImagePath + 'Sea-export5.png'}}" class="img-responsive" />
+                    <h3 class="text-center">{{'Loading_Sea_Departure' | translate}}</h3>
+                    <p>{{'Cargo_Granted_Export_Approval' | translate}}</p>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <!--end-->
+            </div>
+          </uib-tab>
+        </uib-tabset>
+        <!--end-->
+      </uib-tab>
+    </uib-tabset>
+
+
+  </div>
+</section>
+<br/><br/>

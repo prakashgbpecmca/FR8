@@ -1,0 +1,96 @@
+﻿
+<section>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Service_Available' | translate}} <span class="redColor">*</span> - {{'From_' | translate}} <span class="frayte-orange">{{expObj.ShipFrom.Country.Name}} <span class="text-uppercase">({{expObj.ShipFrom.PostCode}})</span></span> to <span class="frayte-orange">{{expObj.ShipTo.Country.Name}} <span class="text-uppercase">({{expObj.ShipTo.PostCode}})</span></span></h4>
+    </div>
+    <div class="modal-body" id="arrow-right-fixed">
+        <div id="getservice" ng-if="services.length > 0">
+            <!--filter table-->
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-7 paddingboth redColor">
+                    <span class="lineheight34">* {{'Availability_Services_Dependent_PostCodes' | translate}}</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end-->
+            <!--start get service header code here-->
+            <div>
+                <div class="clearfix"></div>
+                <!-- When Customer Do not Support Ratecard-->
+                <div class="width100 quotation-header-overflow flex grid-background">
+                    <div class="width100 flex">
+                        <div class="bold width120 quotation-table-body padding-5"><span class="quotation-table-body padding-10">{{'Courier' | translate}}</span> </div>
+                        <div class="width78 bordered-left bordered-right">
+                            <div class="flex">
+                                <div class="col-sm-4 quotation-table-body bordered-right bold padding-5"><span class="quotation-table-body padding-10">{{'Chargeable_Weight' | translate}}</span> <span class="redColor chargeable-weight">**</span></div>
+                                <div class="col-sm-4 quotation-table-body bordered-right bold padding-5"><span class="quotation-table-body padding-10">{{'Transit_Time_' | translate}}</span> <span class="redColor top5">*</span></div>
+                                <div class="col-sm-4 quotation-table-body bold padding-5"><span class="quotation-table-body padding-10">{{'Service_Type' | translate}}</span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="bold width10 quotation-table-body padding-5" style="border-right:transparent !important;"></div>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end get service header code-->
+            <!--start get service body code here-->
+            <div class="get-service-scrolled border-LB">
+                <div class="panel-body padding0">
+                    <!-- HK Shipmemnt Rate Start Default-->
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div ng-repeat="courierService in services" class="border-bottom-ddd">
+                                <div ng-dblclick="setCustomerRateCard(courierService);" ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100 flex pointer" popover-placement="auto" uib-popover='Double click to select the service.' popover-trigger="'mouseenter'">
+                                    <div class="width120 quotation-table-body text-center padding-5"><span><img class="img100x30" ng-src="{{courierService.ImageURL}}" /></span></div>
+                                    <div class="width78 bordered-left bordered-right">
+                                        <div class="flex">
+                                            <div class="col-sm-4 quotation-table-body bordered-right padding-5"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.BillingWeight.toFixed(2)}} {{'Kgs' | translate}}</span></div>
+                                            <div class="col-sm-4 quotation-table-body bordered-right padding-5"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.TransitTime}}</span></div>
+                                            <div class="col-sm-4 quotation-table-body padding-5"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.HubCarrier}} {{courierService.RateType}}</span></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width10 line-height-3rem quotation-table-body padding0 text-center">
+                                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                            <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-10 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                <li ng-click="setCustomerRateCard(courierService)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--end-->
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--end get service body code-->
+        </div>
+        <div>
+            <!--start get servie error message code here-->
+            <div ng-if="!services.length">
+                <div class="panel-body">
+                    <div class="paddingTB182 text-center fontsize18 redColor"><b> {{'NoService_Available' | translate}}. 
+                        <!--<div></div>{{'Please_Contact' | translate}} <a herf="sales@frayte.com">{{'Sales_' | translate}}{{FrayteWeb}}</a></div>-->
+                            </b></div>
+                </div>
+            </div>
+            <!--end get service error message code-->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div ng-if="services.length > 0" class="modal-footer text-left">
+        <p class="text-left"><i class="fa fa-copyright" aria-hidden="true"></i> <span class="copyright">{{'Courier_Company_Copyright_Trademarks' | translate}}</span></p>
+        <p ng-show="SITECOMPANY === 'FRAYTE'" class="col-sm-12 paddingboth redColor text-left"><strong>{{'Hash' | translate}}: </strong> {{'TotalEstimate_BillingWeightGetServices' | translate}} <a href="" ng-click="setScroll('top')" ui-sref='public.term-and-condition' target="_blank">{{'Terms_And_Conditions' | translate}}.</a></p>
+        <p ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="col-sm-12 paddingboth redColor text-left"><strong>{{'Hash' | translate}}: </strong> {{'TotalEstimate_BillingWeightGetServices_MEX' | translate}}</p>
+        <p class="text-left"><span class="redColor">* {{'Transit_Time_Approximates' | translate}}</span></p>
+        <p class="text-left"><span class="redColor">** {{'WeightPerCourierCompany' | translate}}</span></p>
+    </div>
+</section>

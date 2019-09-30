@@ -1,0 +1,195 @@
+﻿ <!--start package detail code here-->
+<section>
+    <div class="modal-content fontsize12">
+        <!--header code-->
+        <div class="modal-header" ng-show="screenType === 'ShipmentDetail'">
+            <button type="button" class="close" ng-click="closePopUp()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 ng-show="!track.HAWB" class="modal-title">{{'Assign_HAWB' | translate}}</h4>
+            <h4 ng-show="track.HAWB" class="modal-title">{{'Preview_HAWB' | translate}}</h4>
+        </div>
+        <div class="modal-header" ng-show="screenType === 'PreviewHAWB'">
+            <button type="button" class="close" ng-click="closePopUp()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 ng-show="!track.HAWB" class="modal-title">{{'Assign_HAWB' | translate}}</h4>
+            <h4 ng-show="track.HAWB" class="modal-title">{{'Preview_HAWB' | translate}}</h4>
+        </div>
+        <!--end-->
+        <!--body code-->
+        <div class="modal-body">
+            <div class="col-sm-12" ng-show="screenType === 'PreviewHAWB'">
+                <div class="row form-group">
+                    <div class="col-sm-2 lineheight32">
+                        {{'Select_HAWB' | translate}}
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" ng-model="track.HAWB" ng-change="hawbChanged()"
+                                ng-options="hawb as hawb for hawb in hawbs"> 
+                        </select>
+                    </div>
+                    <div lass="col-sm-2">
+                        <button class="btn-simple btn-success" ng-click="dowonLoadDoc('HAWB', track.HAWB)"><i class="fa fa-download" aria-hidden="true"></i> {{'Download' | translate}}</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--tradelane address code-->
+            <div ng-if="track.HAWB">
+                <div class="row">
+                    <div class="col-sm-12 flex">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><strong>{{'COLLECTION_ADDRESS' | translate}}:</strong></div>
+                                <div class="panel-body">
+                                    <div style="padding:5px 0;">
+                                        <div sytle="height:20px;vertical-align:middle;">{{ShipFrom.FirstName}} {{ShipFrom.LastName}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{ShipFrom.CompanyName}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{ShipFrom.Address}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{ShipFrom.Address2}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{ShipFrom.City}}
+                                            <span ng-if="ShipFrom.Area">, {{ShipFrom.Area}}</span>
+                                            <span ng-if="ShipFrom.Country.Code !== 'HKG'">-</span> {{ShipFrom.PostCode }}<br />
+                                        </div>
+                                        <div ng-if="ShipFrom.State">{{ShipFrom.State}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{ShipFrom.Country.Name}} <br /></div>
+                                    </div>
+                                    <!--<div style="padding:5px 0;color:#94a4bd;">
+                                        <div><span ng-show="DepartureAirport.AirportName">{{'Departure_Airport' | translate}}: <span>{{DepartureAirport.AirportName}} - {{DepartureAirport.AirportCode}}</span></span><br /></div>
+                                    </div>-->
+                                    <div style="padding:5px 0;color:#94a4bd;">
+                                        <div><span ng-show="ShipFrom.Email !=='' && ShipFrom.Email !==null">{{'Email'| translate}}: <span id="link">{{ShipFrom.Email}}</span></span><br /></div>
+                                    </div>
+                                    <div style="padding:5px 0;color:#94a4bd;">
+                                        <div><span ng-show="ShipFrom.Phone">{{'Phone_No'| translate}}: <span id="link">(+{{ShipFrom.Country.CountryPhoneCode}}) {{ShipFrom.Phone}}</span></span><br /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><strong>{{'DELIVERY_ADDRESS' | translate}}:</strong></div>
+                                <div class="panel-body">
+                                    <div style="padding:5px 0;">
+                                        <div>{{ShipTo.FirstName}} {{ShipTo.LastName}}<br /></div>
+                                        <div>{{ShipTo.CompanyName}}<br /></div>
+                                        <div>{{ShipTo.Address}}<br /></div>
+                                        <div>{{ShipTo.Address2}}<br /></div>
+                                        <div>{{ShipTo.City}}<span ng-if="ShipTo.Area">, {{ShipTo.Area}}</span> <span ng-if="ShipTo.Country.Code !== 'HKG'">-</span> {{ShipTo.PostCode}}<br /></div>
+                                        <div ng-if="ShipTo.State">{{ShipTo.State}}<br /></div>
+                                        <div>{{ShipTo.Country.Name}}<br /></div>
+                                    </div>
+                                    <!--<div style="padding:5px 0;color:#94a4bd;">
+                                        <div><span ng-show="DestinationAirport.AirportName">{{'Destination_Airport' | translate}}: <span>{{DestinationAirport.AirportName}} - {{DestinationAirport.AirportCode}}</span></span><br /></div>
+                                    </div>-->
+                                    <div style="padding:5px 0;color:#94a4bd;">
+                                        <div><span ng-show="ShipTo.Email !=='' && ShipTo.Email !== null">{{'Email'| translate}}: <span id="link">{{ShipTo.Email}}</span></span><br /></div>
+                                    </div>
+                                    <div style="padding:5px 0;color:#94a4bd;">
+                                        <div><span ng-show="ShipTo.Phone">{{'Phone_No'| translate}}: <span id="link">(+{{ShipTo.Country.CountryPhoneCode}}) {{ShipTo.Phone}}</span></span><br /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 flex">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><strong>{{'Notify_Party' | translate}}</strong></div>
+                                <div class="panel-body" ng-show="IsNotifyPartySameAsReceiver">
+                                    <div class="uppercase bold" style="padding:5px 0;">
+                                        {{'Same_as_Consignee' | translate}}
+                                    </div>
+                                </div>
+                                <div class="panel-body" ng-if="!IsNotifyPartySameAsReceiver">
+                                    <div style="padding:5px 0;">
+                                        <div sytle="height:20px;vertical-align:middle;">{{NotifyParty.FirstName}} {{NotifyParty.LastName}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{NotifyParty.CompanyName}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{NotifyParty.Address}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{NotifyParty.Address2}}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{NotifyParty.City}}<span ng-if="NotifyParty.Area">, {{NotifyParty.Area}}</span> <span ng-if="NotifyParty.Country.Code !== 'HKG'">-</span> {{NotifyParty.PostCode }}<br /></div>
+                                        <div sytle="height:20px;vertical-align:middle;">{{NotifyParty.Country.Name}} <br /></div>
+                                    </div>
+                                    <div style="padding:5px 0;color:#94a4bd;">
+                                        <div><span ng-show="NotifyParty.Email !=='' && NotifyParty.Email !== null">{{'Email'| translate}}: <span id="link">{{NotifyParty.Email}}</span></span><br /></div>
+                                    </div>
+                                    <div style="padding:5px 0;color:#94a4bd;">
+                                        <div><span ng-show="NotifyParty.Phone">{{'Phone_No'| translate}}: <span id="link">(+{{NotifyParty.Country.CountryPhoneCode}}) {{NotifyParty.Phone}}</span></span><br /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--end-->
+
+            <div class="col-sm-12">
+                <section ng-show="packages.length" class="border-LRB">
+                    <div>
+                        <!--start header code-->
+                        <div class="widht100 jobinprogress-header flex" style="padding:0px;">
+                            <div class="width986 flex">
+                                <div class="width20 border-right-ddd padding10 quotation-table-body bold">{{'HAWB' | translate}}</div>
+                                <div class="width20 border-right-ddd padding10 quotation-table-body bold">{{'Box_Number' | translate}}</div>
+                                <div class="width120 border-right-ddd padding10 quotation-table-body bold">{{'shipment_PieceDetailsCartonQty' | translate}}</div>
+                                <div class="width120 border-right-ddd padding10 quotation-table-body bold">{{'Weight' | translate}} <span>({{PackageCalculatonType === 'kgToCms' ? 'Kg' : 'Lb' }})</span></div>
+                                <div class="width120 border-right-ddd padding10 quotation-table-body bold">{{'Length' | translate}} <span>({{PackageCalculatonType === 'kgToCms' ? 'Cm' : 'In' }})</span></div>
+                                <div class="width120 border-right-ddd padding10 quotation-table-body bold">{{'Width' | translate}} <span>({{PackageCalculatonType === 'kgToCms' ? 'Cm' : 'In' }})</span></div>
+                                <div class="width120 padding10 quotation-table-body bold">{{'Height' | translate}} <span>({{PackageCalculatonType === 'kgToCms' ? 'Cm' : 'In' }})</span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end header-->
+                        <div class="clearfix"></div>
+                        <div class="modal-body quotation-overflow padding0">
+                            <ul class="list-unstyled margin-bottom-none">
+                                <li ng-repeat="item in packages | orderBy:'OrderNumber'" class="alternate">
+                                    <!--start header body code-->
+                                    <div class="width100">
+                                        <div class="width20 padding-5 padding10 quotation-table-body">{{item.HAWB ? item.HAWB : "N/A"}}</div>
+                                        <div class="width20 padding-5 padding10 quotation-table-body">{{item.CartonNumber}}</div>
+                                        <div class="width120 padding-5 padding10 quotation-table-body">{{item.CartonValue}}</div>
+                                        <div class="width120 padding-5 padding10 quotation-table-body">{{item.Weight}} </div>
+                                        <div class="width120 padding-5 padding10 quotation-table-body">{{item.Length}}</div>
+                                        <div class="width120 padding-5 padding10 quotation-table-body">{{item.Width}}</div>
+                                        <div class="width120 padding-5 padding10 quotation-table-body">{{item.Height}}</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!--end header body-->
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--pagination code start-->
+                    <section>
+                        <div class="col-sm-12 paddingboth">
+                            <div class="col-sm-5 paddingboth"><ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" style="padding:0px !important;"></ul></div>
+                            <div class="col-sm-5 col-sm-offset-2 top9 paddingboth">
+                                <label class="col-sm-8 top9 text-right"><label>{{'No_Of_Packages_Per_Page' | translate}}</label></label>
+                                <div class="col-sm-4 paddingboth">
+                                    <select ng-model="track.TakeRows" class="form-control" ng-options="num as num for num in numbers" ng-change="changePagination()"></select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--pagination code end-->
+                </section>
+            </div>
+            <div class="clearfix"></div>
+            <!--end-->
+        </div>
+        <div class="clearfix"></div>
+        <!--footer code-->
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <button type="button" ng-click="closePopUp()" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                <button type="button" ng-disabled="true" ng-click="closePopUp()" class="btn-simple btn-save fontsize12 no-drop pull-right"><i class="fa fa-save" aria-hidden="true"></i> {{'Save' | translate}}</button>
+            </div>
+        </div>
+        <!--end-->
+    </div>
+</section>
+<!--end-->

@@ -1,0 +1,299 @@
+﻿
+<div class="fontsize12" id="upload-shipment">
+    <!--Download buttton code-->
+    <div ng-if="ServiceType !== 'Empty'" class="col-sm-12 paddingboth">
+        <div class="pull-left">
+            <span ng-if="ServiceType === 'ECOMMERCE_WS'" class="pointer"><a class="btn-simple btn-success height44 fontsize12" style="padding:8px 12px !important;" href="downloadForm/Shipment Without Courier Service Upload.csv" download="Shipment Without Courier Service Upload.csv"> {{'DownloadshipmentExcel' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></a></span>
+            <span ng-if="ServiceType === 'ECOMMERCE_SS'" class="pointer"><a class="btn-simple btn-success height44 fontsize12" style="padding:8px 12px !important;" href="downloadForm/Shipment With Courier Service Upload.csv" download="Shipment With Courier Service Upload.csv"> {{'DownloadshipmentExcel' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></a></span>&nbsp;&nbsp;
+            <span class="button"
+                  ng-model="piecesExcel"
+                  name="shipmentPiecesDetails"
+                  ngf-pattern="'application/vnd.ms-excel,.csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                  accept="application/vnd.ms-excel,.csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                  ngf-select="WhileAddingReceiverExcel($files, $file, $event)">
+                <button type="button" class="btn-simple btn-success height44 fontsize12" style="padding:8px 12px !important;"> {{'Upload_Shipment_Template' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></button>
+            </span>
+        </div>
+        <div>
+            <span ng-if="ServiceType === 'ECOMMERCE_WS'" class="pull-right">
+                    <span>
+                        <button type="button" class="btn-simple btn-link" name="guideLine" id="guideLine" ng-click="GuideLinePopup()" style="padding: 9px 15px;"> <i class="fa fa-glide-g" aria-hidden="true"></i> {{'Guide_Lines' | translate}} </button>
+                    </span>&nbsp;&nbsp;
+                <small>
+                    <a href="" popover-placement="auto" uib-popover="How to fill out?" popover-trigger="'outsideClick'">
+                        <i class="fa fa-question-circle help top5" aria-hidden="true"></i>
+                    </a><!--{{'How_To_Fill_Out' | translate}}-->
+                </small> &nbsp;&nbsp;<a class="btn-simple btn-save height44 fontsize12" style="padding:8px 12px !important;" href="downloadForm/Shipment Without Courier Service Sample.csv" download="Shipment Without Courier Service Sample.csv"> {{'DownloadSampleExcel' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></a>
+            </span>&nbsp;&nbsp;
+            <span ng-if="ServiceType === 'ECOMMERCE_SS'" class="pull-right">
+                    <span>
+                        <button type="button" class="btn-simple btn-link" name="guideLine" id="guideLine" ng-click="GuideLinePopup()" style="padding: 9px 15px;"> <i class="fa fa-glide-g" aria-hidden="true"></i> {{'Guide_Lines' | translate}} </button>
+                    </span>&nbsp;&nbsp;
+                <small>
+                    <a href="" popover-placement="auto" uib-popover="How to fill out?" popover-trigger="'outsideClick'">
+                        <i class="fa fa-question-circle help top5" aria-hidden="true"></i>
+                    </a><!--{{'How_To_Fill_Out' | translate}}-->
+                </small> &nbsp;&nbsp;<a class="btn-simple btn-save height44 fontsize12" style="padding:8px 12px !important;" href="downloadForm/Shipment With Courier Service Sample.csv" download="Shipment With Courier Service Sample.csv"> {{'DownloadSampleExcel' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></a>
+            </span>&nbsp;&nbsp;
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <!--end-->
+    <br />
+    <div ng-include="'uploadShipment/uploadShipmentHome.tpl.html'"></div>
+    <!--Ecommerce without service code -->
+    <div ng-if="ServiceType === 'ECOMMERCE_WS'">
+        <div class="col-sm-12 paddingboth form-group">
+            <div class="pull-left">
+                <div class="fontsize24">{{'Unsuccessfull_Shipment' | translate}} ({{UnsuccessfulWithoutShipmentList.length}})</div>
+            </div>
+            <div class="pull-right">
+                <span class="col-sm-6 bulk-upload-popup" ng-hide="UnsuccessfulWithoutShipmentList.length === 0">
+                    <button ng-click="DownLoadUnsuccessfulshipmentswithoutservice()" ng-class="{'btn-save': ShipmentsWithoutService.length > 0, 'btn-cancel': ShipmentsWithoutService.length === 0}" class="btn-simple btn-lg pull-left"> {{'Download_Unsuccessfull_Shipment' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></button>
+                    <span ng-if="ShipmentsWithoutService.length === 0" ng-class="{'click': ShipmentsWithoutService.length === 0}">{{'Please_Select_Shipment_To_Download_In_CSV_Format' | translate}}</span>
+                </span>
+                <span ng-hide="UnsuccessfulWithoutShipmentList.length === 0">&nbsp; <button id="removeShipment" name="removeShipment" ng-click="RemoveShipmentWithoutServiceUnsuccessfullShipment()" ng-class="{'btn-danger': RemoveShipmentCount > 0, 'btn-cancel': RemoveShipmentCount === 0}" class="height38 btn-simple btn-danger btn-md pull-right"><i class="fa fa-times" aria-hidden="true"></i> {{'Remove_Shipment' | translate}}</button></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <!--Unsuccessfulwithout service shipment custom grid-->
+            <div class="panel panel-default">
+                <div class="width100 flex grid-background">
+                    <div class="width986 flex">
+                        <div class="width4 bold quotation-table-padding"><span class="quotation-table-body padding-10-5"><input type="checkbox" class="checkbox-center" ng-model="IsSelected" ng-disabled="UnsuccessfulWithoutShipmentList.length === 0" ng-click="allrowSelectionCustomGrid(IsSelected, UnsuccessfulWithoutShipmentList)" ng-checked="RemoveShipmentCount >= UnsuccessfulWithoutShipmentList.length && UnsuccessfulWithoutShipmentList.length !== 0" value="true" name="directBooking4" id="directBooking4" /></span></div>
+                        <div class="width29-33 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Status' | translate}}</span></div>
+                        <!--<div class="width25 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Frayte_ShipmentNo#' | translate}} <span class="redColor">#</span></span></div>-->
+                        <div class="width29-33 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'From_Shipper' | translate}}</span></div>
+                        <div class="width29-33 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'To_Consignee' | translate}}</sapn></div>
+                        <div class="width8 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                    <div class="panel-body padding0">
+                        <ul class="list-unstyled margin-bottom-none">
+                            <li>
+                                <div ng-repeat="gridDirectBooking in UnsuccessfulWithoutShipmentList" class="width100 change pointer">
+                                    <div class="flex height30" ng-dblclick="ErrorShow(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}" popover-placement="auto" uib-popover='Double click to view error(s).' popover-trigger="'mouseenter'">
+                                        <div class="width4 quotation-table-body word-wrap padding-5"><span><input type="checkbox" class="checkbox-center" ng-model="gridDirectBooking.IsSelected" ng-click="rowSelectionCustomGrid(gridDirectBooking)" value="true" name="directBooking2" /></span></div>
+                                        <div class="width29-33 quotation-table-body word-wrap padding-5"><span class="color-danger">{{gridDirectBooking.DisplayStatus}}</span></div>
+                                        <!--<div class="width25 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.FrayteNumber}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/Kg</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>-->
+                                        <div class="width29-33 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.ShippedFromCompany}}</span></div>
+                                        <div class="width29-33 quotation-table-body padding-5 word-wrap"><span>{{gridDirectBooking.ShippedToCompany}} </span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                        <div class="width8 quotation-table-body padding0 text-center">
+                                            <!--<a ng-click="findActionMenuCoordinate($event,'actionMenu'+ $index,'','')" id="single-button" ng-class="{'disabled':RemoveShipmentCount > 1 && gridDirectBooking.IsSelected}" class="dropbtn text-center color-danger pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                            <div id="actionMenu{{$index}}" style="position:fixed; left:{{x}}px; top:{{y}}px;z-index:99;" class="hideAction opened">
+                                            <ul class="list-unstyled margin-bottom-none text-left" ng-class="{'disabled':RemoveShipmentCount > 1 && gridDirectBooking.IsSelected}">-->
+                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-class="{'disabled':RemoveShipmentCount > 1 && gridDirectBooking.IsSelected}" class="text-center color-danger pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body" ng-class="{'disabled':RemoveShipmentCount > 1 && gridDirectBooking.IsSelected}">
+                                                    <li ng-click="ErrorShow(gridDirectBooking)">
+                                                        <a href="" class="color-danger">
+                                                            <span class="padEdit"><i class="fa fa-times-circle"></i></span>
+                                                            <span>{{'View_Error' | translate}}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li ng-click="SaveUploadShipmentWithOutService(gridDirectBooking)">
+                                                        <a href="" class="color-danger">
+                                                            <span class="padEdit"><i class="fa fa-upload"></i></span>
+                                                            <span>{{'Upload_Shipment' | translate}}</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="UnsuccessfulWithoutShipmentList.length === 0" class="eCommerce-ss"> {{'No_Shipment_To_Upload_Data' | translate}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--end code-->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!--end-->
+    <!--Ecommerce with service code-->
+    <div ng-if="ServiceType === 'ECOMMERCE_SS'">
+        <div class="col-sm-12 paddingboth form-group">
+            <div class="pull-left">
+                <div ng-show="gridOptionsSuccessfuldata.length > 0" class="fontsize24">{{'Successfull_Shipment' | translate}} ({{gridOptionsSuccessfuldata.length}})</div>
+                <div ng-if="ShowInterval === true">
+                    <i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw top5"></i>
+                    <span class="sr-only">Loading...</span> {{'Processed' | translate}}: {{BatchProcessedShipments}} {{'Unprocessed_Processessing' | translate}}: {{BatchUnprocessedShipments}} {{'Total' | translate}}: {{BatchProcess}}
+                </div>
+            </div>
+            <div class="pull-right">
+                <span ng-show="gridOptionsSuccessfuldata.length > 0">
+                    <button id="saveShipment" name="saveShipment" ng-click="SaveShipmentWithService()" class="btn-simple btn-save btn-md pull-left"><i class="fa fa-plus" aria-hidden="true"></i> {{'PlaceBooking' | translate}}</button>
+                </span>
+                <span ng-show="gridOptionsSuccessfuldata.length > 0">
+                    &nbsp; <button id="removeShipment" name="removeShipment" ng-click="RemoveShipmentWithService()" ng-class="{'btn-danger': RemoveShipmentCount1 > 0, 'btn-cancel': RemoveShipmentCount1 === 0}" class="btn-simple btn-danger btn-md pull-right"><i class="fa fa-times" aria-hidden="true"></i> {{'Remove_Shipment' | translate}}</button>
+                </span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <!--<div data-ui-grid="gridOptionsSuccessful" ui-grid-edit ui-grid-selection ui-grid-cellnav class="myGridFull fontsize12" style="min-height: {{gridheight}}px;"></div>-->
+            <div class="form-group">
+                <!--Unsuccessfulwithout service shipment custom grid-->
+                <div class="panel panel-default">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex">
+                            <div class="width4 bold quotation-table-padding"><span class="quotation-table-body padding-10-5"><input type="checkbox" class="checkbox-center" ng-model="IsSelected1" ng-disabled="gridOptionsSuccessfuldata.length === 0" ng-click="allrowSelectionSelectServiceCustomGrid(IsSelected1, gridOptionsSuccessfuldata)" value="false" ng-checked="RemoveShipmentCount1 >= gridOptionsSuccessfuldata.length && gridOptionsSuccessfuldata.length !== 0" name="directBooking3" /></span></div>
+                            <div class="width28 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Status' | translate}}</span></div>
+                            <!--<div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10">{{'ShipmentMethod' | translate}}</span></div>-->
+                            <!--<div class="width25 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Frayte_ShipmentNo#' | translate}} <span class="redColor">#</span></span></div>-->
+                            <div class="width28 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'From_Shipper' | translate}}</span></div>
+                            <div class="width28 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'To_Consignee' | translate}}</sapn></div>
+                            <div class="width120 quotation-table-padding padding-tb-10 uploadShipment border-right-none" style="border-right:transparent !important;">
+                                <span class="quotation-table-body">
+                                    <select id="shipmentPayment1" name="shipmentPayment1"
+                                            ng-model="gridDirectBooking.Service"
+                                            ng-change="SetServcieDetail(gridDirectBooking.Service)"
+                                            ng-options="Serv as Serv.LogisticServiceDisplay for Serv in ServcieDetail"
+                                            ng-disabled="RemoveShipmentCount1 <=1"
+                                            class="form-control fontsize12">
+                                        <option value="" disabled selected>{{'Select' | translate}} {{'Service' | translate}}</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <ul class="list-unstyled margin-bottom-none">
+                                <li>
+                                    <div ng-repeat="gridDirectBooking in gridOptionsSuccessfuldata" class="width100 change pointer">
+                                        <div ng-if="gridOptionsSuccessfuldata.length > 0" class="flex height30" ng-dblclick="ErrorShowWithServiceSuccessfulShipment(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected, 'upload-shipment-active-color': gridDirectBooking.IsEasyPostError}" popover-placement="auto" uib-popover='{{gridDirectBooking.ShowText}}' popover-trigger="GetMouseEnter(gridDirectBooking)">
+                                            <div class="width4 quotation-table-body word-wrap padding-5"><span><input type="checkbox" class="checkbox-center" ng-disabled="gridDirectBooking.IsSelectServiceStatus === true" ng-model="gridDirectBooking.IsSelected" ng-click="rowSelectionSelectServiceCustomGrid(gridDirectBooking)" value="true" name="directBooking1" /></span></div>
+                                            <div class="width28 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.DisplayStatus}}</span></div>
+                                            <!--<div class="width25 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.FrayteNumber}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/Kg</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>-->
+                                            <div class="width28 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.ShippedFromCompany}}</span></div>
+                                            <div class="width28 quotation-table-body padding-5 word-wrap"><span>{{gridDirectBooking.ShippedToCompany}} </span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                            <div class="width120 dropdown quotation-dropdown quotation-table-body padding0 uploadShipment">
+                                                <select id="shipmentPayment" name="shipmentPayment"
+                                                        ng-model="gridDirectBooking.Service"
+                                                        ng-change="SetServcieDetail(gridDirectBooking.Service)"
+                                                        ng-options="Serv as Serv.LogisticServiceDisplay for Serv in ServcieDetail"
+                                                        ng-disabled="(gridDirectBooking.ServiceValue === undefined || gridDirectBooking.ServiceValue === null || gridDirectBooking.ServiceValue === false || RemoveShipmentCount1 > 1)"
+                                                        class="form-control fontsize12">
+                                                    <option value="" disabled selected>{{'Select' | translate}} {{'Service' | translate}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="gridOptionsSuccessfuldata.length === 0" class="eCommerce-ss"> {{'No_Shipment_To_Upload_Data' | translate}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end code-->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <!--unshipment code-->
+        <div class="panel panel-default" ng-show="gridOptionsUnsuccessfuldata.length > 0">
+            <div class="panel-heading">
+                <div>
+                    <div class="col-sm-5 paddingboth pull-left" ng-int="isOpen=false" ng-click="isOpen= !isOpen">
+                        <i class="pull-left fa top9 fontsize20 pointer" ng-class="{'fa-minus-square-o': isOpen, 'fa-plus-square-o': !isOpen}"></i>
+                        <div class="top9 pointer">{{'Unsuccessfull_Shipment' | translate}} ({{gridOptionsUnsuccessfuldata.length}})</div>
+                    </div>
+                    <div class="pull-right">
+                        <span class="col-sm-6 bulk-upload-popup">
+                            <button ng-click="DownLoadUnsuccessfulshipmentswithservice()" ng-class="{'btn-save': ShipmentsWithServiceUnsuccessful.length > 0, 'btn-cancel': ShipmentsWithServiceUnsuccessful.length === 0}" class="btn-simple btn-lg pull-left"> {{'Download_Unsuccessfull_Shipment' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></button>
+                            <span ng-if="ShipmentsWithServiceUnsuccessful.length === 0" ng-class="{'click': ShipmentsWithServiceUnsuccessful.length === 0}">{{'Please_Select_Shipment_To_Download_In_CSV_Format' | translate}}</span>
+                        </span>
+                        <span>
+                            &nbsp; <button id="removeShipment" name="removeShipment" ng-click="RemoveShipmentWithServiceUnsuccessfullShipment()" ng-class="{'btn-danger': RemoveShipmentCount2 > 0, 'btn-cancel': RemoveShipmentCount2 === 0}" class="btn-simple btn-md pull-right height38"><i class="fa fa-times" aria-hidden="true"></i> {{'Remove_Shipment' | translate}}</button>
+                        </span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" ng-show="isOpen">
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <!--Unsuccessful shipment with service custom grid-->
+                    <div class="panel panel-default">
+                        <div class="width100 flex grid-background">
+                            <div class="width986 flex">
+                                <div class="width4 bold quotation-table-padding"><span class="quotation-table-body padding-10-5"><input type="checkbox" class="checkbox-center" ng-model="IsSelected2" ng-click="allrowSelectionUnsuccessfullCustomGrid(IsSelected2, gridOptionsUnsuccessfuldata)" ng-disabled="gridOptionsUnsuccessfuldata.length === 0" ng-checked="RemoveShipmentCount2 >= gridOptionsUnsuccessfuldata.length && gridOptionsUnsuccessfuldata.length !== 0" value="false" name="unsuccessfulWithoutServiceallrow" /></span></div>
+                                <div class="width29-33 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Status' | translate}}</span></div>
+                                <!--<div class="width25 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Frayte_ShipmentNo#' | translate}} <span class="redColor">#</span></span></div>-->
+                                <div class="width29-33 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'From_Shipper' | translate}}</span></div>
+                                <div class="width29-33 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'To_Consignee' | translate}}</sapn></div>
+                                <div class="width8 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                            <div class="panel-body padding0">
+                                <ul class="list-unstyled margin-bottom-none">
+                                    <li>
+                                        <div ng-repeat="gridDirectBooking in gridOptionsUnsuccessfuldata" class="width100 change pointer">
+                                            <div class="flex height30" ng-dblclick="ErrorShowWithService(gridDirectBooking)" ng-class={'demoClass':gridDirectBooking.IsSelected} popover-placement="auto" uib-popover='Double click to view error(s).' popover-trigger="'mouseenter'">
+                                                <div class="width4 bold quotation-table-body padding-5"><span><input type="checkbox" class="checkbox-center" ng-model="gridDirectBooking.IsSelected" ng-click="rowSelectionUnsuccessfulCustomGrid(gridDirectBooking)" value="true" name="unsuccessfulWithoutService" /></span></div>
+                                                <div class="width29-33 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.DisplayStatus}}</span></div>
+                                                <!--<div class="width25 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.FrayteNumber}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/Kg</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>-->
+                                                <div class="width29-33 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.ShippedFromCompany}}</span></div>
+                                                <div class="width29-33 quotation-table-body padding-5 word-wrap"><span>{{gridDirectBooking.ShippedToCompany}} </span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                                <div class="width8 quotation-table-body padding0 text-center">
+                                                    <!--<a ng-click="findActionMenuCoordinate($event,'actionMenu'+ $index,'','')" id="single-button" ng-class="{'disabled':RemoveShipmentCount2 > 1 && gridDirectBooking.IsSelected}" class="dropbtn text-center color-danger pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                    <div id="actionMenu{{$index}}" style="position:fixed; left:{{x}}px; top:{{y}}px;z-index:99;" class="hideAction opened">
+                                                    <ul class="list-unstyled margin-bottom-none text-left">-->
+                                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-class="{'disabled':RemoveShipmentCount2 > 1 && gridDirectBooking.IsSelected}" class="dropbtn text-center color-danger pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                            <li ng-click="ErrorShowWithService(gridDirectBooking)">
+                                                                <a href="" class="color-danger">
+                                                                    <span class="padEdit"><i class="fa fa-times-circle"></i></span>
+                                                                    <span>{{'View_Error' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-click="SaveUploadShipmentWithService(gridDirectBooking)">
+                                                                <a href="" class="color-danger">
+                                                                    <span class="padEdit"><i class="fa fa-upload"></i></span>
+                                                                    <span>{{'Upload_Shipment' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="gridOptionsUnsuccessfuldata.length === 0" class="eCommerce-ss"> {{'No_Shipment_To_Upload_Data' | translate}}</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end code-->
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--end-->
+        <div class="clearfix"></div>
+    </div>
+    <!--end-->
+</div>

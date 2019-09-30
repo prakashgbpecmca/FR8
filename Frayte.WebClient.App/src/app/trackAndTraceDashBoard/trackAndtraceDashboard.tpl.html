@@ -1,0 +1,161 @@
+﻿<section>
+    <section ng-if="shipments.length">
+        <div class="row">
+            <div class="col-sm-12">
+                <br />
+                <div class="col-sm-12">
+                    <div>Hi {{customerDetail.ContactName}},</div>
+                    <p>{{'Shipment_Performance_90_Days' | translate}}</p>
+                </div>
+                <div class="track-and-trace-dashboard">
+                    <div class="col-sm-6">
+                        <div ng-click="viewShipments(dashBoardDetail.Delivered)" ng-class="{'pointer' : dashBoardDetail.Delivered.TotalShipment}">
+                            <div class="col-sm-2">
+                                <img ng-src="{{ImagePath + dashBoardDetail.Delivered.ImageName}}" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-7">
+                                <div>{{'Delivered' | translate}}</div>
+                                <p>{{dashBoardDetail.Delivered.TotalShipment}} {{'Shipments' | translate}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{dashBoardDetail.Delivered.Percentage.toFixed(0)}} %</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-click="viewShipments(dashBoardDetail.Exception)"
+                             ng-class="{'pointer' : dashBoardDetail.Exception.TotalShipment}">
+                            <div class="col-sm-2">
+                                <img ng-src="{{ImagePath + dashBoardDetail.Exception.ImageName}}" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-7">
+                                <div>{{'Exception' | translate}}</div>
+                                <p>{{dashBoardDetail.Exception.TotalShipment}} {{'Shipments' | translate}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{dashBoardDetail.Exception.Percentage.toFixed(0)}} %</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="track-and-trace-dashboard">
+                    <div class="col-sm-6">
+                        <div ng-click="viewShipments(dashBoardDetail.OutForDelivery)"
+                             ng-class="{'pointer' : dashBoardDetail.OutForDelivery.TotalShipment}">
+                            <div class="col-sm-2">
+                                <img ng-src="{{ImagePath + dashBoardDetail.OutForDelivery.ImageName}}" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-7">
+                                <div>{{'OutforDelivery' | translate}}</div>
+                                <p>{{dashBoardDetail.OutForDelivery.TotalShipment}} {{'Shipments' | translate}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{dashBoardDetail.OutForDelivery.Percentage.toFixed(0)}} %</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-click="viewShipments(dashBoardDetail.Pending)"
+                             ng-class="{'pointer' : dashBoardDetail.Pending.TotalShipment}">
+                            <div class="col-sm-2">
+                                <img ng-src="{{ImagePath + dashBoardDetail.Pending.ImageName}}" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-7">
+                                <div>{{'Pending' | translate}}</div>
+                                <p>{{dashBoardDetail.Pending.TotalShipment}} {{'Shipments' | translate}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{dashBoardDetail.Pending.Percentage.toFixed(0)}} %</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="track-and-trace-dashboard">
+                    <div class="col-sm-6">
+                        <div ng-click="viewShipments(dashBoardDetail.InTransit)" ng-class="{'pointer' : dashBoardDetail.InTransit.TotalShipment}">
+                            <div class="col-sm-2">
+                                <img ng-src="{{ImagePath + dashBoardDetail.InTransit.ImageName}}" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-7">
+                                <div>{{'InTransit' | translate}}</div>
+                                <p>{{dashBoardDetail.InTransit.TotalShipment}} {{'Shipments' | translate}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{dashBoardDetail.InTransit.Percentage.toFixed(0)}} %</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-click="viewShipments(dashBoardDetail.Expired)"
+                             ng-class="{'pointer' : dashBoardDetail.Expired.TotalShipment}">
+                            <div class="col-sm-2">
+                                <img ng-src="{{ImagePath + dashBoardDetail.Expired.ImageName}}" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-7">
+                                <div>{{'Expired' | translate}}</div>
+                                <p>{{dashBoardDetail.Expired.TotalShipment}} {{'Shipments' | translate}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{dashBoardDetail.Expired.Percentage.toFixed(0)}} %</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="track-and-trace-dashboard">
+                    <div class="col-sm-6">
+                        <div ng-click="viewShipments(dashBoardDetail.InfoReceived)"
+                             ng-class="{'pointer' : dashBoardDetail.InfoReceived.TotalShipment}">
+                            <div class="col-sm-2">
+                                <img ng-src="{{ImagePath + dashBoardDetail.InfoReceived.ImageName}}" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-7">
+                                <div>{{'InfoReceived' | translate}}</div>
+                                <p>{{dashBoardDetail.InfoReceived.TotalShipment}} {{'Shipments' | translate}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{dashBoardDetail.InfoReceived.Percentage.toFixed(0)}} %</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-click="viewShipments(dashBoardDetail.AttemptFail)"
+                             ng-class="{'pointer' : dashBoardDetail.AttemptFail.TotalShipment}">
+                            <div class="col-sm-2">
+                                <img ng-src="{{ImagePath + dashBoardDetail.AttemptFail.ImageName}}" class="img-responsive" />
+                            </div>
+                            <div class="col-sm-7">
+                                <div>{{'FailedAttempt' | translate}}</div>
+                                <p>{{dashBoardDetail.AttemptFail.TotalShipment}} {{'Shipments' | translate}}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{dashBoardDetail.AttemptFail.Percentage.toFixed(0)}} %</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section ng-if="!shipments.length">
+        <div class="row form-group ng-scope">
+            <div class="col-sm-12 paddingTB60">
+                <div class="boxwithcenter text-center">
+                    <h4 class="redColor">{{'No_Shipment_Available_Tracking_Yet' | translate}}</h4>
+                    <h4 class="redColor">{{'Please_Create_Shipment_First' | translate}}</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

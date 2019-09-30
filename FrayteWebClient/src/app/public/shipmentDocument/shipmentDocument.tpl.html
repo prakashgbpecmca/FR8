@@ -1,0 +1,190 @@
+﻿<div ng-if="isLogin" class="modal-header">
+    <button type="button" class="close" id="yellow" ng-click="$dismiss('cancel')">&times;</button>
+    <h4 class="modal-title">{{'Shipment' | translate}} {{'Documents' | translate}}</h4>
+</div>
+<div class="modal-body content padding-15">
+
+    <div class="col-sm-12">
+        <div class="text-center padding-tb-15"><h4>{{'PleaseUploadShipmentDocuments' | translate}}</h4></div>
+        <form name="ShipmentDocForm" ng-submit="upload(ShipmentDocForm.$valid,commercialInvoiceFile,packingListFile,customDocFile)" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperInfo.ContactName}}</div>
+                                <div>{{ShipperInfo.CompanyName}}</div>
+                                <div>{{ShipperAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ShipperInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverInfo.ContactName}}</div>
+                                <div>{{ReceiverInfo.CompanyName}}</div>
+                                <div>{{ReceiverAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ReceiverInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div>
+                    <div class="panel panel-default text-left shipmentDetail">
+                        <div class="panel-heading">{{'confirmShp_ShipmentDetail' | translate}}</div>
+                        <div class="panel-body">
+                            <div class="row1 vdivide">
+                                <div class="col-sm-12" style="padding:0px;">
+                                    <div>
+                                        <div><div class="left-part width50">{{'ShippingMethod' | translate}}</div><div class="left-part width50">{{shipment.DeliveredBy.Name}}</div><div class="clearfix"></div></div>
+                                        <div><div class="left-part width50">{{'shipment_TotalEstimatedGrossWeight' | translate}}</div><div class="left-part width50">{{getTotalKgs()}} ({{Lb_Kgs}})</div><div class="clearfix"></div></div>
+                                        <div ng-if="shipment.DeliveredBy.CourierType !=='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedChargeableWeight' | translate}}</div><div class="left-part width50">{{getTotalVolWeight()}} ({{Lb_Kgs}})</div><div class="clearfix"></div></div>
+                                        <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedCBM' | translate}}</div><div class="left-part width50">{{getTotalCBM()}} {{'CBM' | translate}}</div><div class="clearfix"></div></div>
+                                        <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedChargeableCBM' | translate}}</div><div class="left-part width50">{{getEstimatedChargeableCBM(getTotalCBM())}} {{'CBM' | translate}}</div><div class="clearfix"></div></div>
+                                        <div><div class="left-part width50">{{'confirmShp_ShipmentDate' | translate}}</div><div class="left-part width50">{{shipment.ShippingDate | date:'dd/MM/yyyy'}}</div><div class="clearfix"></div></div>
+                                        <div><div class="left-part width50">{{'confirmShp_PackingType' | translate}}</div><div class="left-part width50">{{shipment.PackagingType.Name}}</div><div class="clearfix"></div></div>
+                                        <div><div class="left-part width50">{{'confirmShp_NumberOfPieces' | translate}}</div><div class="left-part width50">{{getTotalPieces()}}</div><div class="clearfix"></div></div>
+                                        <div><div class="left-part width50">{{'shipment_DeclaredValue' | translate}}</div><div class="left-part width50">{{shipment.DeclaredValue}}</div><div class="clearfix"></div></div>
+                                        <div><div class="left-part width50">{{'confirmShp_ShipperReference' | translate}}</div><div class="left-part width50">{{shipment.PurchaseOrderNo}}</div><div class="clearfix"></div></div>
+                                        <div><div class="left-part width50">{{'confirmShp_DescriptionOfContent' | translate}}</div><div class="left-part width50">{{shipment.ContentDescription}}</div><div class="clearfix"></div></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <div>
+                    <div class="form-group col-sm-6" style="padding-left:0px;">
+                    <label class=" control-label" for="shippingOrder">
+                        {{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                        <div>
+                            <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group col-sm-6" style="padding-right: 0px;"> <label class=" control-label" for="shippingRef">
+                        {{'Shipping' | translate}} {{'Ref' | translate}}:</label>
+                        <div>
+                            <input type="text" id="shippingRef" name="shippingRef" ng-model="PurchaseOrderNo" class="form-control" readonly />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': ShipmentDocForm.commercialInvoice.$invalid &&
+                                            (ShipmentDocForm.commercialInvoice.$dirty || submitted) }">
+                    <div class="col-sm-12" style="padding:0px;">
+                        <div class="text-left col-sm-6" style="padding-left:0px;">
+                            <label class="control-label" for="commercialInvoice">{{'Commercial' | translate}} {{'Invoice' | translate}}:</label>
+                        </div>
+                        <div class="text-right col-sm-6" style="padding-right:0px;">
+                            <label for="templateDownload" class="control-label text-right">{{'Template' | translate}} {{'Download' | translate}}</label>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="inputTextDownload">
+                        <input type="text" id="commercialInvoice" name="commercialInvoice" placeholder="{{'CommercialInvoicePlaceHolder' | translate}}" ng-model="uploadDocument.CommercialInvoice" class="form-control" required />
+                        <span class="help-block has-error ng-hide" ng-show="ShipmentDocForm.commercialInvoice.$invalid &&
+                                            (ShipmentDocForm.commercialInvoice.$dirty || submitted)">
+                            {{'Commercial' | translate}} {{'InvoiceValidError' | translate}}
+                        </span>
+                    </div>
+                    <div class="button attachBtnDownload" ng-model="commercialInvoiceFile" name="commercialInvoiceFile"
+                         ngf-pattern="'application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                         accept="application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="9MB"
+                         ngf-select="whileAddingDoc($files, $file, $event, 1)">
+                        <button type="button" class="btn btn-blue">{{'Attach' | translate}}</button>                      
+                    </div>    
+                    <div class="downloadAttachButton">
+                        &nbsp;&nbsp;
+                        <span>
+                            <a href="downloadForm/2016_-_Commerical_Invoice_Template.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                            &nbsp;&nbsp;
+                            <a href="downloadForm/2016_-_Commerical_Invoice_Template.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>                  
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': ShipmentDocForm.packingList.$invalid &&
+                                            (ShipmentDocForm.packingList.$dirty || submitted) }">
+                    <div>
+                        <label class="control-label" for="packingList">{{'PackingList' | translate}}:</label>
+                    </div>
+                    <div>
+                        <div class="inputTextDownload">
+                            <input type="text" id="packingList" name="packingList" placeholder="{{'CommercialInvoicePlaceHolder' | translate}}" ng-model="uploadDocument.PackingList" class="form-control" />
+                        </div>
+                     
+                        <div class="button attachBtnDownload" ng-model="packingListFile" name="packingListFile"
+                             ngf-pattern="'application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                             accept="application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="9MB"
+                             ngf-select="whileAddingDoc($files, $file, $event, 2)">
+                            <button type="button" class="btn btn-blue">{{'Attach' | translate}}</button>                           
+                        </div>
+                       <div class="downloadAttachButton">
+                            &nbsp;&nbsp;
+                            <span>
+                                <a href="downloadForm/2016_-_Packing_List_Template_.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2016_-_Packing_List_Template_.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': ShipmentDocForm.customDoc.$invalid &&
+                                            (ShipmentDocForm.customDoc.$dirty || submitted) }">
+                    <div>
+                        <label class="control-label" for="customDoc">{{'Customs' | translate}} {{'Documents' | translate}}:</label>
+                    </div>
+                    <div>
+                        <div class="inputTextDownload">
+                            <input type="text" id="customDoc" name="customDoc" ng-model="uploadDocument.CustomDoc" class="form-control"/>
+                        </div>
+                        <div class="button attachBtnDownload" ng-model="customDocFile" name="customDocFile"
+                             ngf-pattern="'application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                             accept="application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="9MB"
+                             ngf-select="whileAddingDoc($files, $file, $event, 3)">
+                            <button type="button" class="btn btn-blue">{{'Attach' | translate}}</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="floatRight form-group">
+                    <div class="padding-tb-15"><button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Upload' | translate}}</button></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>
+

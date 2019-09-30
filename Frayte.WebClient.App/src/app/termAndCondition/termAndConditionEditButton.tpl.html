@@ -1,0 +1,21 @@
+﻿<div class="ui-grid-cell-contents fontsize12" id="dropdown-scrollable-container padding-5">
+    <div class="btn-group action-fixed-grid-center" uib-dropdown dropdown-append-to-body>
+        &nbsp;<a id="btn-append-to-to-body" href="" uib-dropdown-toggle>
+            <div class="fix-center-action pointer"><span class="action-font-family">{{'Actions' | translate}}</span> <i class="fa fa-caret-down pointer" aria-hidden="true"></i>&nbsp;</div>
+        </a>
+        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+            <li ng-hide="showMe" ng-click="grid.appScope.AddEditTermAndCondition(row)">
+                <a href="">
+                    <span class="padEdit"><i class="fa fa-edit" aria-hidden="true"></i></span>
+                    <span>{{'Edit' | translate}}</span>
+                </a>
+            </li>
+            <li ng-hide="showMe" ng-click="ViewValue = true; grid.appScope.AddEditTermAndCondition(row, ViewValue)">
+                <a href="">
+                    <span class="padEdit"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                    <span>{{'View' | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

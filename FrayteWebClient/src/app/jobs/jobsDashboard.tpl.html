@@ -1,0 +1,39 @@
+﻿<div class="panel">
+    <div class="panel-body">
+        <div id="largebutton" class="col-sm-12 jobs">
+            <div class="col-sm-6 form-group text-center">
+                <div class="directbooking col-sm-12 pointer" ng-click="NoHSCodeJobs()">
+                    <a class="btn box-shadow-none">
+                        <h3 class="uppercase pointer marginTop-zero frayte-blue bold white-space">{{'NO_HSCode_Jobs' | translate}}</h3>
+                    </a>
+                    <h3 class="text-center">{{JobDetail.ToltalUnAssignedJobs}}</h3>
+                </div>
+            </div>
+            <div class="col-sm-6 form-group text-center">
+                <div class="directbooking fix-directbooking col-sm-12 pointer" ng-click="HSCodeOperators()">
+                    <a class="btn box-shadow-none">
+                        <h3 class="uppercase pointer marginTop-zero frayte-blue bold white-space">{{'HSCode_Operators' | translate}}</h3>
+                    </a>
+                    <h3>{{JobDetail.ToltalOperators}}</h3>
+                </div>
+            </div>
+            <div class="col-sm-6 form-group text-center">
+                <div class="directbooking col-sm-12 pointer pTB67" ng-click="AvgJobsPerHour()">
+                    <a class="btn box-shadow-none">
+                        <h3 class="uppercase pointer pointer marginTop-zero frayte-blue bold white-space">{{'Jobs_Per_Hour' | translate}}</h3>
+                    </a>
+                    <h3><span class="visibility">{{'Jobs_Per_Hour' | translate}}</span></h3>
+                </div>
+            </div>
+            <div class="col-sm-6 form-group text-center">
+                <div class="directbooking fix-directbooking col-sm-12 pointer" ng-click="JobsInProgress()">
+                    <a class="btn box-shadow-none">
+                        <h3 class="uppercase pointer marginTop-zero frayte-blue bold white-space">{{'Jobs_In_Progress' | translate}}</h3>
+                    </a>
+                    <h3>{{JobDetail.JobsInProgress}} / {{JobDetail.ToltalJobs}}</h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

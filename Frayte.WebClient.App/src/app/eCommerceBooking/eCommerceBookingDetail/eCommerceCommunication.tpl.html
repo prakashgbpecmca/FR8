@@ -1,0 +1,125 @@
+﻿
+<br />
+<div ng-controller="eCommerceCommunicationController">
+    <section ng-if="communications.length">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'Internal_Communication' | translate}}</div>
+                <div class="panel-body top7">
+                    <div class="col-sm-12 paddingboth DHLScrollbar">
+                        <ul class="list-unstyled  DHL">
+                            <li ng-repeat="communication in communications" class="col-sm-12 borderLR-15 form-group">
+                                <div class="row flex">
+                                    <span class="padding8 col-sm-3">
+                                        <label>{{communication.CreatedBy}}</label>
+                                        <label><small>{{GetCorrectFormattedDate(communication.CreatedOn,communication.CreatedTime)}}</small></label>
+                                    </span>
+                                    <span class="height66 col-sm-9 border-left-15  padding8">
+                                        {{communication.Description}}
+                                    </span>
+                                    <span class="clearfix"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <section>
+        <hr />
+        <form name="invoiceCommunicationForm" ng-submit="save(invoiceCommunicationForm.$valid , invoiceCommunicationForm)" novalidate>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6 form-group" ng-class="{'has-error':invoiceCommunicationForm.message.$invalid && (invoiceCommunicationForm.message.$dirty || submitted1)}">
+                    <input type="text" name="message" ng-model="invoiceCommunication.Description" required id="message" placeholder="Enter your message here" class="form-control" />
+                    <span ng-show="invoiceCommunicationForm.message.$invalid && (invoiceCommunicationForm.message.$dirty || submitted1)" class="help-block has-error">
+                        {{'Message_Required'| translate}}
+                    </span>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <select required name="access" class="form-control" id="access" ng-options="option.key as option.value for option in options" ng-model="invoiceCommunication.AccessType"></select>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="col-sm-10 pull-right btn-simple btn-save" ng-click="submitted1 = true"> <i class="fa fa-save" aria-hidden="true"></i> {{'Submit' | translate}} </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </section>
+    <div class="clearfix"></div>
+    <section>
+        <hr />
+        <form name="EmailCommunicationForm" ng-submit="SaveEmail(EmailCommunicationForm.$valid,EmailCommunicationForm)" novalidate>
+            <div class="modal-body">
+                <div class="col-sm-12 paddingboth form-group">
+                    <div class="form-group" ng-class="{ 'has-error': HeadingAvailable || EmailCommunicationForm.heading.$invalid &&
+                                                         (EmailCommunicationForm.heading.$dirty || submitted) }">
+                        <h3>{{'Manual_Email_Remainders' | translate}}</h3>
+                        <div>
+                            <input type="text" name="heading" id="heading" ng-model="emailCommunication.EmailSubject" placeholder="Email Subject" class="form-control" required />
+                            <span class="help-block has-error"
+                                  ng-show="EmailCommunicationForm.heading.$invalid &&
+                                            (EmailCommunicationForm.heading.$dirty || submitted)">
+                                {{'Email_Subject_Required' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error':EmailCommunicationForm.emailBody.$invalid &&
+                                                         (EmailCommunicationForm.emailBody.$dirty || submitted) }">
+                        <textarea ng-model="emailCommunication.EmailBody" rows="10" class="form-control" name="emailBody" placeholder="Enter message here" required></textarea>
+                        <span class="help-block has-error"
+                              ng-show="EmailCommunicationForm.emailBody.$invalid &&
+                                            (EmailCommunicationForm.emailBody.$dirty || submitted)">
+                            {{'Email_Body_Required' | translate}}
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <div ng-class="{ 'has-error':  EmailCommunicationForm.cc.$error.email &&
+                                                         (EmailCommunicationForm.cc.$dirty || submitted) }">
+                            <input type="email" name="cc" id="heading" ng-model="emailCommunication.CC" placeholder="CC" class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="EmailCommunicationForm.cc.$error.email &&
+                                            (EmailCommunicationForm.cc.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <br />
+                    <button type="submit" ng-click="submitted=true" class="btn-simple btn-primary pull-right"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Send_Email' | translate}} </button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <div class="clearfix"></div>
+    <section ng-if="emailCommunications.length">
+        <hr />
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'Customer_Communication' | translate}}</div>
+                <div class="panel-body top7">
+                    <div class="DHLScrollbar col-sm-12 paddingboth form-group">
+                        <ul class="list-unstyled change col-sm-12">
+                            <li>
+                                <div ng-repeat="emailCommunication in emailCommunications" class="col-sm-12 paddingboth form-group">
+                                    <div class="panel-body padding0 border">
+                                        <div class="padding10 border-bottom-ddd"><span class="pull-left">{{'Email' | translate}} {{$index+1}}</span> <span class="pull-right"><i class="fa pointer fa-14 top2" ng-class="{'fa fa-plus-square-o' : !emailCommunication.collapseToggle, 'fa fa-minus-square-o' : emailCommunication.collapseToggle}" aria-hidden="true" ng-click="emailCommunication.collapseToggle=!emailCommunication.collapseToggle; emailCommunication.collapse =! emailCommunication.collapse"></i></span><span class="clearfix"></span></div>
+                                        <div uib-collapse="!emailCommunication.collapse" class="padding10">
+                                            <div class="form-group">
+                                                <p><label>Sub :</label>  {{emailCommunication.EmailSubject}}</p>
+                                            </div>
+                                            <div class="form-group" ng-bind-html="emailCommunication.EmailBody"></div>
+                                            <div class="pull-right form-group">
+                                                <button type="button" class="btn-simple btn-primary" ng-click="ResendMail(emailCommunication)"> <i class="fa fa-reply" aria-hidden="true"></i> {{'Resend_Email' | translate}} </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

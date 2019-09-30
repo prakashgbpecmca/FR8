@@ -1,0 +1,67 @@
+﻿
+<!--User Modal start -->
+    <div class="modal-header">
+        <button type="button" ng-click="$dismiss('cancel')" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add/Edit Zone </h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-sm-12" style="border: 1px solid #e5e5e5; padding-top: 10px; padding-bottom: 10px;border-radius:8px;">
+            <div class="col-sm-6">
+                <label><b style="font-size: 17px;">OperationZone Name : </b>{{ZoneCountry.OperationZoneName}}</label>
+            </div>
+            <div class="col-sm-6"><b style="font-size: 17px;">Zone Name : </b>{{ZoneCountry.ZoneName}}</div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-12">
+            <div class="col-sm-6">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border" style="border-bottom:none;">Assign Countries</legend>
+                    <div style="padding:10px;height:334px;">
+                        <div class="col-sm-12 overflow">
+
+                            <input type="search" ng-change="searchData()" ng-model="searchValue" placeholder="Search" />
+
+                            <div ng-repeat="country in ZoneCountry.Fraytezonezountry | filter : searchValue">
+                                <div class="col-sm-10">{{country.CountryName}}</div>
+                                <div class="col-sm-10 margin-left20">
+                                    <input type="number" id="TransitTime" name="TransitTime" ng-model="country.TransitTime" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="" ng-click="removeCountryFromZoneCountry(country)"><i class="fa fa-bitbucket" aria-hidden="true" style="font-size:22px;"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-sm-6">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border" style="border-bottom:none;">Add New Country</legend>
+                    <div class="col-sm-12">
+                        <div class="right-inner-addon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <input type="search" ng-change="refreshData()" class="form-control" ng-model="searchText" placeholder="Search" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 overflow">
+                        <div ng-repeat="country in Countries | orderBy:'CountryName'" class="checkbox">
+                            <label><input type="checkbox" ng-model="as" ng-change="AddCountryToZone(country)" name="optradio">{{country.CountryName}}</label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <a class="btn-simple btn-cancel ng-binding" ng-click="$dismiss('cancel')"> {{'Cancel' | translate}}</a>
+            </div>
+            <div class="pull-right">
+                <a href="" class="btn btn-md btn-theme-org" ng-click="submit(ZoneCountry)"> {{'Save' | translate}}</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+<!--user model end -->

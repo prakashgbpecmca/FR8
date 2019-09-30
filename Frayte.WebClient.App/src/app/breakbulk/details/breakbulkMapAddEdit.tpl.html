@@ -1,0 +1,203 @@
+﻿<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">Map (Product Description Catalog)</h4>
+        </div>
+        <div class="modal-body padding-bottom-none">
+            <section>
+                <!--product catalog code-->
+                <div class="form-group clearfix">
+                    <div class="pull-right">
+                        <button type="button" class="btn-simple btn-save" ng-click="productCatalogs()"><i class="fa fa-plus"></i> Add New Product</button>
+                    </div>
+                </div>
+                <!--end-->
+                <!--filter code-->
+                <section>
+                    <div class="panel panel-default fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+                        <div class="panel-body">
+                            <div class="col-sm-12 paddingboth">
+                                <!--customer code-->
+                                <div ng-if="RoleId === 1 || RoleId === 6" class="form-group clearfix">
+                                    <label for="customer" class="top7 col-sm-2">Customer</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control fontsize12" required style="margin: 0px 3px;"
+                                                ng-model="CustomerDetail"
+                                                ng-change="setCustomerInfo(CustomerDetail)"
+                                                ng-options="Customer as Customer.CompanyName +' - '+ Customer.AccountNumber for Customer in customers | orderBy : 'OrderNumber' track by Customer.CustomerId "
+                                                ng-required="userInfo.RoleId !== 3 ">
+                                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <!--country code-->
+                                <div class="col-sm-6">
+                                    <div class="form-group clearfix">
+                                        <label for="country" class="top7 col-sm-4 paddingboth">Hub</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="Hub"
+                                                    ng-disabled="true"
+                                                    ng-options="hub as hub.Name + ' - ' + hub.Code for hub in hubs">
+                                                <option value="" disabled selected class="display-none">Select Hub</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <!--product code-->
+                                <div class="col-sm-6">
+                                    <div class="form-group clearfix">
+                                        <label for="product" class="top7 col-sm-4 paddingboth">Product Description</label>
+                                        <div class="col-sm-8 paddingboth">
+                                            <input type="text" class="form-control" ng-model="track.ProductDescription" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <!--factory code-->
+                                <div class="col-sm-6" ng-if="module !== 'ExpressBooking'">
+                                    <div class="form-group clearfix">
+                                        <label for="factory" class="col-sm-4 paddingboth top7">Factory</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option value="0">Select</option>
+                                                <option value="1">Foo Pvt Ltd.</option>
+                                                <option value="2">Castle Pvt Ltd.</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-6">
+                                    <button class="btn-simple btn-primary fontsize12 pull-right" ng-click="getCatalogDetail(track)"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </section>
+                <!--end-->
+                <!--data code-->
+                <!--if po view is show-->
+                <section>
+                    <div class="panel-body padding-bottom-none">
+                        <section class="row">
+                            <!--grid data show-->
+                            <div>
+                                <!--breakbulk shipment custom grid-->
+                                <div class="panel panel-default">
+                                    <div class="width100 flex grid-background">
+                                        <div class="width986 flex">
+                                            <!--<div class="width4 bold quotation-table-padding text-center"><span class="quotation-table-body padding-10-5 width100"></span></div>-->
+                                            <div class="width24 bold quotation-table-padding" ng-class="{'width20':RoleId === 1, 'width20':RoleId === 6}" ng-if="RoleId === 1 || RoleId === 6"><span class="quotation-table-body padding-10-5">Customer</span></div>
+                                            <div class="width8 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Hub</span></div>
+                                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">L, W, H</span></div>
+                                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Weight</span></div>
+                                            <div class="width30 bold quotation-table-padding" ng-class="{'width-54':RoleId=== 6, 'width-54':RoleId=== 3}"><span class="quotation-table-body padding-10-5">Product Description</span></div>
+                                            <div class="width8 bold quotation-table-padding" ng-class="{'width8':RoleId !== 1, 'width8':RoleId !== 6}"><span class="quotation-table-body padding-10-5">Declared Value</span></div>
+                                            <div class="width10 bold quotation-table-padding" ng-class="{'width10':RoleId !== 1, 'width10':RoleId !== 6}"><span class="quotation-table-body padding-10-5">HS Code</span></div>
+                                            <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                        <div class="panel-body padding0">
+                                            <ul class="list-unstyled change margin-bottom-none">
+                                                <!-- breakbulk shipment code here -->
+                                                <li>
+                                                    <div class="width100 pointer" ng-repeat="breakbulkMap in breakbulkMaps">
+                                                        <div class="flex height30" ng-dblclick="setProductDescription(breakbulkMap)" popover-placement="auto" uib-popover='Double click to select the product catalog.' popover-trigger="'mouseenter'">
+                                                            <!--<div class="width4 bold quotation-table-padding text-center"><span class="quotation-table-body padding-5 width100"><input type="radio" /></span></div>-->
+                                                            <div class="width24 quotation-table-body word-wrap padding-5" ng-class="{'width20':RoleId === 1, 'width20':RoleId === 6}" ng-if="RoleId === 1 || RoleId === 6"><span><a>{{breakbulkMap.CustomerName}}</a></span></div>
+                                                            <div class="width8 quotation-table-body word-wrap padding-5"><span>{{breakbulkMap.HubName}}</span></div>
+                                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{breakbulkMap.Length}}, {{breakbulkMap.Width}}, {{breakbulkMap.Height}}</span></div>
+                                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{breakbulkMap.Weight}}</span></div>
+                                                            <div class="width30 quotation-table-body word-wrap padding-5" ng-class="{'width-54':RoleId=== 6, 'width-54':RoleId=== 3}"><span>{{breakbulkMap.ProductDescription}}</span></div>
+                                                            <div class="width8 quotation-table-body word-wrap padding-5" ng-class="{'width8':RoleId !== 1, 'width8':RoleId !== 6}"><span>{{breakbulkMap.DeclaredValue}}</span></div>
+                                                            <div class="width10 quotation-table-body word-wrap padding-5" ng-class="{'width10':RoleId !== 1, 'width10':RoleId !== 6}"><span>{{breakbulkMap.ItemHSCode}}</span></div>
+                                                            <div class="width10 quotation-table-body padding0 text-center" id="breakbulk-map-drp">
+                                                                <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+                                                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                        <li ng-click="setProductDescription(breakbulkMap)">
+                                                                            <a href="">
+                                                                                <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                                                <span>Selected</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li ng-click="productCatalogs(breakbulkMap.ProductcatalogId)">
+                                                                            <a href="">
+                                                                                <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                                <span>Edit Product</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!--end-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end code-->
+                            </div>
+                            <!--end-->
+                            <!--pagination code-->
+                            <div class="col-sm-12 paddingboth">
+                                <div class="col-sm-8 paddingboth m-t-2">
+                                    <div class="row clearfix">
+                                    <div class="col-sm-4 paddingboth">
+                                    <ul uib-pagination="" boundary-links="true" total-items="breakbulkMaps[0].TotalRows" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm pagination" previous-text="‹" next-text="›" first-text="«" last-text="»" style="margin: 0px 0px 10px;">
+                                        <li class="pagination-first ng-scope disabled"><a href="" ng-click="selectPage(1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" class="ng-binding" disabled="disabled" tabindex="-1">«</a></li><!-- end ngIf: ::boundaryLinks -->
+                                        <li class="pagination-prev ng-scope disabled"><a href="" ng-click="selectPage(page - 1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" class="ng-binding" disabled="disabled" tabindex="-1">‹</a></li><!-- end ngIf: ::directionLinks -->
+                                        <li class="pagination-page ng-scope active"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="" class="ng-binding">1</a></li><!-- end ngRepeat: page in pages track by $index -->
+                                        <li class="pagination-page ng-scope"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="" class="ng-binding">2</a></li><!-- end ngRepeat: page in pages track by $index -->
+                                        <li class="pagination-next ng-scope"><a href="" ng-click="selectPage(page + 1, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="" class="ng-binding">›</a></li><!-- end ngIf: ::directionLinks -->
+                                        <li class="pagination-last ng-scope"><a href="" ng-click="selectPage(totalPages, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="" class="ng-binding">»</a></li><!-- end ngIf: ::boundaryLinks -->
+                                    </ul>
+                                    </div>
+                                    <div class="col-sm-8 paddingboth">
+                                        <div ng-if="breakbulkMaps.length > 0" class="lineheight24 ng-binding">(On page no. {{track.CurrentPage}} there are {{breakbulkMaps.length}} records out of {{breakbulkMaps[0].TotalRows}})</div>
+                                        <div ng-if="breakbulkMaps.length === 0" class="lineheight24 ng-binding">(On page no. {{track.CurrentPage}} there are {{breakbulkMaps.length}} records out of {{breakbulkMaps.length}})</div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <label for="customers" class="col-sm-6 top7">Paging</label>
+                                    <div class="col-sm-4">
+                                        <select id="shipmentPaymentAccount" name="shipmentPaymentAccount" class="form-control fontsize12" style="width:77px"
+                                                ng-options="pageChanged.pageChangedValue as pageChanged.pageChangedValueDisplay for pageChanged in pageChangedObj"
+                                                ng-model="track.TakeRows"
+                                                ng-change="pageChanged(track)">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <!--end-->
+                            <div class="clearfix"></div>
+                            <!--required message show-->
+                            <div>
+                                <p class="text-left"><span class="redColor">* Transit times are approximated and are subject to flight delays and exclude customs clearance.</span></p>
+                            </div>
+                            <!--end-->
+                        </section>
+                    </div>
+                </section>
+                <!--end-->
+            </section>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+                <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>                
+        </div>
+    </div>
+</section>

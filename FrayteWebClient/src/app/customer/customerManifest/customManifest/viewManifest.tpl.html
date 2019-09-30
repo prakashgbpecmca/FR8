@@ -1,0 +1,176 @@
+﻿<!--<div id="Manifest">
+    <div class="panel panel-default">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h2 class="panel-title">{{ViewManifest.ManifestName}}</h2>
+        <div class="panel-heading">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-2">Customer Name</div>
+                <div class="col-sm-2">Couirer Company</div>
+                <div class="col-sm-3">Tracking No.</div>
+                <div class="col-sm-3">Frayte Shipment No.</div>
+                <div class="col-sm-2">To Company</div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body" style="padding:5px !important;">
+            <div ng-repeat="manifest in ViewManifest.ManifestedList">
+                <div>
+                    <h3 style="margin-top:10px !important;padding-left: 25px;">
+                        {{manifest.CourierCompanyDisplay}}
+                    </h3>
+                </div>
+                <div class="col-sm-12" ng-repeat="shipment in manifest.DirectShipments">
+
+                    <div>
+                        <div class="col-sm-2"> {{shipment.Customer}}</div>
+                        <div class="col-sm-2">{{shipment.DisplayName}}</div>
+                        <div class="col-sm-3">
+                            <a ui-sref="home.tracking-hub({carrierType:shipment.TrackingType,trackingId:shipment.TrackingNo})" target="_blank">
+                                {{shipment.TrackingNo}}
+                            </a>
+                        </div>
+                        <div class="col-sm-3">{{shipment.FrayteNumber}}</div>
+                        <div class="col-sm-2">{{shipment.ShippedToCompany}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="panel-footer">
+            <div class="pull-left"><button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12">Cancel</button></div>
+            <div class="pull-right">
+            <button type="button" class="btn btn-primary" ng-click="DownloadmanifestReport()"> DownLoad PDF</button>
+            <button type="button" class="btn btn-success" ng-click="printToCart('Manifest')"> Print Manifest</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Modal -->
+
+<div id="Manifest">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{ManifestDetail .CourierDisplay}} - {{'Menifest' | translate}} - {{ManifestDetail .ManifestName}}</h4>
+          
+        </div>
+
+        <div class="modal-body">
+            <div style="border:1px solid #ddd;">
+                <div class="col-sm-12 grid-color paddingboth">
+                    <div class="width986 flex">
+                    <div class="width18 bold  quotation-table-padding padding-10">{{'Status' | translate}}</div>
+                    <div class="width18 bold  quotation-table-padding padding-10">{{'Shipment_Method' | translate}}</div>
+                    <div class="width18 bold  quotation-table-padding padding-10">{{'Tracking_No' | translate}}</div>
+                    <div class="width18 bold  quotation-table-padding padding-10">{{'Frayte_ShipmentNo' | translate}}</div>
+                        <div class="width18 bold  quotation-table-padding padding-10">{{'From_Shipper' | translate}}</div>
+                    <div class="width18 bold  quotation-table-padding padding-10">{{'To_Consignee' | translate}}</div>
+                    <div class="width10 bold  quotation-table-padding padding-10" id="bordernone"><b class="visibility">{{'Hide' | translate}}</b></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll fontsize14">
+                <div ng-repeat="manifest in ViewManifest">
+                    <!--<div>
+                        <h3 style="margin-top:10px !important;padding-left:15px;">
+                            {{manifest.CourierCompanyDisplay}}
+                        </h3>
+                    </div>-->
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                    <div class="col-sm-12 paddingboth">
+                        <div class="action-font-family">
+                            <div class="width18 quotation-table-padding padding-10 transparent border-right-none word-wrap"> {{manifest.Status}}</div>
+                            <div class="width18 quotation-table-padding padding-10 transparent border-right-none word-wrap">{{manifest.ShippingDetail}}</div>
+                            <div class="width18 quotation-table-padding padding-10 transparent border-right-none word-wrap">
+                                <a ui-sref="home.tracking-hub({carrierType:shipment.TrackingType,trackingId:shipment.TrackingNo})" target="_blank">
+                                    {{manifest.TrackingNo}}
+                                </a>
+                            </div>
+                            <div class="width18 quotation-table-padding padding-10 transparent border-right-none word-wrap">{{manifest.FrayteNumber}}</div>
+                            <div class="width18  quotation-table-padding padding-10 transparent border-right-none word-wrap">{{manifest.ShippedFromCompany}}</div>
+                            <div class="width18  quotation-table-padding padding-10 transparent border-right-none word-wrap">{{manifest.ShippedToCompany}}</div>
+                            <div class="width10 dropdown quotation-table-padding padding-10 transparent border-right-none">
+                                    <label id="single-button" uib-dropdown="" is-open="status.isopen" uib-dropdown-toggle="" ng-disabled="disabled" class="pointer width100 action-font-family dropdown dropdown-toggle" style="margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{'Action' | translate}} <span class="caret"></span></label>
+                                    <ul class="dropdown-menu" uib-dropdown-menu="" role="menu" aria-labelledby="single-button">
+                                        <li role="menuitem"><a href="" ng-click="removeShipmentFromManifest(shipment)"><span class="red padEdit"><i class="fa fa-bitbucket" aria-hidden="true"></i></span> <span class="text-center ng-binding"> {{'Remove' | translate}} {{'Shipment' | translate}}</span></a></li>
+                                    </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div ng-show="ManifestDetail.ModuleType === 'DirectBooking'" class="modal-body">
+            <div style="border:1px solid #ddd;">
+                <div class="col-sm-12 grid-color paddingboth">
+                    <div class="width986 flex">
+                        <div class="width20 bold  quotation-table-padding padding-10">{{'Customer' | translate}}</div>
+                        <div class="width20 bold  quotation-table-padding padding-10">{{'Courier' | translate}}</div>
+                        <div class="width20 bold  quotation-table-padding padding-10">{{'Tracking_No' | translate}}</div>
+                        <div class="width20 bold  quotation-table-padding padding-10">{{'Frayte_ShipmentNo' | translate}}</div>
+                        <div class="width20 bold  quotation-table-padding padding-10 border-right-none">{{'To_Consignee' | translate}}</div>
+                        <!--<div class="width10 bold  quotation-table-padding padding-10" id="bordernone"><b class="visibility">{{'Hide' | translate}}</b></div>-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll fontsize14">
+                    <div ng-repeat="manifest in ViewManifest.ManifestedList">
+                        <!--<div>
+                        <h3 style="margin-top:10px !important;padding-left:15px;">
+                            {{manifest.CourierCompanyDisplay}}
+                        </h3>
+                    </div>-->
+                        <ul class="list-unstyled change margin-bottom-none">
+                            <li>
+                                <div class="col-sm-12 paddingboth" ng-repeat="shipment in manifest.DirectShipments">
+                                    <div class="action-font-family">
+                                        <div class="width20 quotation-table-padding padding-10 transparent border-right-none word-wrap"> {{shipment.Customer}}</div>
+                                        <div class="width20 quotation-table-padding padding-10 transparent border-right-none word-wrap">{{shipment.DisplayName}} {{shipment.RateTypeDisplay}}</div>
+                                        <div class="width20 quotation-table-padding padding-10 transparent border-right-none word-wrap">
+                                            <a ui-sref="home.tracking-hub({carrierType:shipment.TrackingType,trackingId:shipment.TrackingNo})" target="_blank">
+                                                {{shipment.TrackingNo}}
+                                            </a>
+                                        </div>
+                                        <div class="width20 quotation-table-padding padding-10 transparent border-right-none word-wrap">{{shipment.FrayteNumber}}</div>
+                                        <div class="width20  quotation-table-padding padding-10 transparent border-right-none word-wrap">{{shipment.ShippedToCompany}}</div>
+                                        <!--<div class="width10 dropdown quotation-table-padding padding-10 transparent border-right-none">
+                                            <label id="single-button" uib-dropdown="" is-open="status.isopen" uib-dropdown-toggle="" ng-disabled="disabled" class="pointer width100 action-font-family dropdown dropdown-toggle" style="margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{'Action' | translate}} <span class="caret"></span></label>
+                                            <ul class="dropdown-menu" uib-dropdown-menu="" role="menu" aria-labelledby="single-button">
+                                                <li role="menuitem"><a href="" ng-click="removeShipmentFromManifest(shipment)"><span class="red"><i class="fa fa-bitbucket" aria-hidden="true"></i></span> <span class="text-center ng-binding"> {{'Remove' | translate}} {{'Shipment' | translate}}</span></a></li>
+                                            </ul>
+                                        </div>-->
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12 paddingboth">
+                <div class="pull-left"><button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button></div>
+                <div ng-if="ManifestDetail.ModuleType !== 'eCommerce'" class="pull-right">
+                    <button type="button" class="btn-simple btn-success" ng-click="DownloadmanifestReport()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{'Download' | translate}} {{'PDF' | translate}} </button>
+                    <!--<button type="button" class="btn-simple btn-primary" ng-click="printToCart('Manifest')"><i class="fa fa-print" aria-hidden="true"></i> {{'Print' | translate}} {{'Manifest' | translate}} </button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

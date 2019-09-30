@@ -1,0 +1,61 @@
+﻿
+<section>
+        <div class="panel-body padding0">
+            <div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="company" class="col-sm-4 paddingboth lineheight30">{{'Company' | translate}}</label>
+                        <div class="col-sm-8"> 
+                            <select ng-change="MarginOptionByCompany()"
+                                    ng-options="Company as Company.LogisticCompanyDisplay for Company in Companies" ng-model="CourierCompany" class="col-sm-8 form-control">
+                                <option value="" selected class="display-none">{{'Select_Option' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="company" class="col-sm-4 paddingboth lineheight30">{{'Copy_From' | translate}}</label>
+                        <div class="col-sm-8"> 
+                            <select ng-options="SelectCompany as SelectCompany.LogisticCompanyDisplay for SelectCompany in Companies" 
+                                    ng-change="CopyLogisticCompany('CopyFrom')" ng-model="CourierCompanyCopy" class="col-sm-8 form-control">
+                                <option value="" selected class="display-none">{{'Select_Option' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>                                 
+                </div>
+                <!--<div class="col-sm-12">
+                    <div class="col-sm-12 pull-right paddingbottom5">
+                        <div class="addButtonTop padding0">
+                            <button type="button" class="btn-simple btn-save fontsize12 height44" ng-click="addNewOption()"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add' | translate}} {{'Option_' | translate}}</button>
+                        </div>
+                    </div>
+                </div>    
+                <div class="clearfix"></div>-->                
+                <!--table one start here-->
+              <div>
+                <div class="row form-group">
+                    <div ng-repeat="OptionData in CopyData.Options" class="col-sm-6 form-group">
+                        <fieldset class="margin0">
+                            <legend>{{OptionData.OptionDisplayName}}</legend>
+                            <!--<button type="button" class="close" ng-click="removeOption($index)" style="position: relative;bottom: 18px;"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>-->
+                            <div class="col-sm-12 form-group">
+                                <div ng-repeat="Option in OptionData.MarginRates" class="form-group">
+                                    <label for="doc" class="col-sm-4 lineheight30">{{Option.ShipmentTypeDisplayText}}</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" ng-model="Option.MarginPercentage" class="form-control form-group" placeholder="Please Enter Here" required />
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 form-group paddingboth">
+                <button type="button" ng-click="SaveOptions()" class="btn-BigPrimary fontsize12 pull-right"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save' | translate}}</button>
+            </div>
+        </div>
+</section>

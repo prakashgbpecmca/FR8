@@ -1,0 +1,74 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{mode}} {{'TimeZone' | translate}}</h4>
+</div>
+<form name="TimezoneForm" ng-submit="submit(TimezoneForm.$valid, timezoneDetail)" novalidate>
+    <div class="modal-body">
+
+        <div class="form-group" ng-if="timezoneDetail.TimezoneId === 0">
+            <div class="textLeft35 textName">
+                <label class="control-label" for="selectTimezone">{{'Select' | translate}} {{'TimeZone' | translate}}</label>
+            </div>
+            <div class="inputRight65">
+                <select id="selectCountry" name="selectCountry"
+                        ng-model="GlobalTimezone.SelectedTimezone"
+                        ng-options="globalTimezone.Name for globalTimezone in GlobalTimezones track by globalTimezone.Offset"
+                        class="form-control" ng-change="SetTimezone()">
+                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'TimeZone' | translate}}</option>
+                </select>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': TimezoneForm.Name.$invalid &&
+                                                         (TimezoneForm.Name.$dirty || submitted) }">
+            <div class="textLeft35 textName">
+                <label class="control-label" for="Name">{{'TimeZone' | translate}} {{'Name' | translate}}</label>
+            </div>
+            <div class="inputRight65">
+                <input type="text" class="form-control" id="Name" name="Name" autofocus ng-model="timezoneDetail.Name" placeholder="{{'TimeZone' | translate}} {{'Name' | translate}}" readonly required />
+                <span class="help-block has-error"
+                      ng-show="TimezoneForm.Name.$invalid &&
+                           (TimezoneForm.Name.$dirty || submitted)">
+                    {{'TimeZone' | translate}} {{'NameValidationError' | translate}}
+                </span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': TimezoneForm.Offset.$invalid &&
+                                                         (TimezoneForm.Offset.$dirty  || submitted) }">
+            <div class="textLeft35 textName">
+                <label class="control-label" for="Offset">{{'Offset' | translate}} {{'Detail' | translate}}</label>
+            </div>
+            <div class="inputRight65">
+                <input type="text" class="form-control" id="Offset" name="Offset" ng-model="timezoneDetail.Offset" placeholder="{{'Offset' | translate}}" required />
+                <span class="help-block has-error"
+                      ng-show="TimezoneForm.Offset.$invalid &&
+                           (TimezoneForm.Offset.$dirty  || submitted)">
+                    {{'OffsetValidError' | translate}}
+                </span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div ng-class="{ 'has-error': TimezoneForm.OffsetShort.$invalid &&
+                                      (TimezoneForm.OffsetShort.$dirty  || submitted) }">
+            <div class="textLeft35 textName">
+                <label class="control-label" for="OffsetShort">{{'Offset' | translate}}</label>
+            </div>
+            <div class="inputRight65">
+                <input type="text" class="form-control" id="OffsetShort" name="OffsetShort" ng-model="timezoneDetail.OffsetShort" placeholder="{{'Offset' | translate}}" required />
+                <span class="help-block has-error"
+                      ng-show="TimezoneForm.OffsetShort.$invalid &&
+                           (TimezoneForm.OffsetShort.$dirty  || submitted)">
+                    {{'OffsetValidError' | translate}}
+                </span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-left">
+            <button type="button" ng-click="cancel()" class="btn-simple btn-cancel"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button> &nbsp;&nbsp;
+            <button type="submit" ng-click="submitted=true" class="btn-simple btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+        </div>
+    </div>
+</form>

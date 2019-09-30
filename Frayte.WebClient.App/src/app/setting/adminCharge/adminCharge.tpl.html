@@ -1,0 +1,184 @@
+﻿
+<section>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <button type="button" ng-click="addEditCustomerAdmnCharge('Admin',null ,null,'Add')" class="btn-simple btn-save pull-right"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add_AdminCharges' | translate}}</button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <form name="adminChargeFrom" ng-submit="addAdminCharge(adminChargeFrom.$valid)" novalidate>
+                <div class="panel panel-default" ng-if="adminCharges.length">
+                    <div class="panel-heading">
+                        <div class="row" style="padding-right:8px;position:relative;">
+                            <div class="width25 PLR-10">{{'Charge_Name' | translate}}</div>
+                            <div class="width22 PLR-10">{{'ShortCode' | translate}}</div>
+                            <div class="width22 PLR-10">{{'Value' | translate}}</div>
+                            <div class="width20 PLR-10">{{'Currency' | translate}}</div>
+                            <div class="width11 PLR-10" style="left:10px">{{'Actions' | translate}}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body get-service-scroll padding0" id="fix-get-service-alternate-color">
+                        <ul class="list-unstyled margin-bottom-none change">
+                            <li>
+                                <div ng-repeat="charge in adminCharges" class="change">
+                                    <div class="col-sm-12 paddingboth">
+                                        <ng-form name="newFormCode">
+                                            <div class="col-sm-12 paddingboth flex padding-5">
+                                                <div class="width25 PLR-10" ng-class="{ 'has-error': newFormCode.value.$invalid &&
+                                                         (newFormCode.value.$dirty || submitted) }">
+                                                    {{charge.Value}}
+                                                </div>
+                                                <div class="width22 PLR-10" ng-class="{ 'has-error': newFormCode.key.$invalid &&
+                                                         (newFormCode.key.$dirty || submitted) }">
+                                                    {{charge.Key}}
+                                                </div>
+                                                <div class="width22 PLR-10" ng-class="{ 'has-error': newFormCode.amount.$invalid &&
+                                                         (newFormCode.amount.$dirty || submitted) }">
+                                                    {{charge.Amount}}
+                                                </div>
+                                                <div class="width20 PLR-10">GBP</div>
+                                                <div class="width11">
+                                                    <div class="ui-grid-cell-contents fontsize12" id="dropdown-scrollable-container padding-5">
+                                                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                            &nbsp;<a id="btn-append-to-to-body" class="bottom5" href="" uib-dropdown-toggle>
+                                                                <label ng-click="grid.appScope.showCords($event)" class="pointer"><i class="fa fa-caret-down pointer" aria-hidden="true" style="position:relative; top:4px; float:right;"></i> <span class="action-font-family">{{'Actions' | translate}}</span>&nbsp;</label>
+                                                            </a>
+                                                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                <li>
+                                                                    <a href="" ng-click="addEditCustomerAdmnCharge('Admin',charge,null, 'Edit')">
+                                                                        <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                        <span>{{'Edit' | translate}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </ng-form>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel panel-default" ng-show="showHideCustomerAdmin()">
+        <div class="panel-heading">{{'Customer_Specific_AdminCharges' | translate}}</div>
+        <div class="panel-body">
+            <div class="form-group" >
+                <button type="button" ng-click="addEditCustomerAdmnCharge('Customer',null, null, 'Add')" class="btn-simple btn-save pull-right"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add_CustomerCharges' | translate}}</button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel panel-default" ng-if="customerAdminCharges.length">
+                <div class="panel-heading">
+                    <div class="row" style="padding-right:8px;position:relative;">
+                        <div class="width100">
+                            <div class="width986 flex">
+                                <div class="width24 PLR-10">{{'Name' | translate}}</div>
+                                <div class="width65 PLR-10">
+                                <div ng-class="{'baseratcard-overflow':adminCharges}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                    <div ng-style="adminCharges.length < 10 ? { 'width':'100%' } : { 'width': 10*adminCharges.length + '%' }">
+                                        <div ng-repeat="adminCharge in adminCharges">
+                                            <div ng-style="{ 'width' :  100/adminCharges.length + '%' }" style="float:left;" class="text-left word-wrap width100">{{adminCharge.Key}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                </div>
+                                <div class="width11"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body padding0">
+                    <div class="col-sm-12 paddingboth get-service-scroll" id="fix-get-service-alternate-color">
+                        <ul class="margin-bottom-none list-unstyled change">
+                            <li>
+                                <div ng-repeat="customerCharge in customerAdminCharges">
+                                    <div class="row lineheight24">
+                                        <div class="col-sm-12">
+                                            <div class="width24 PLR-10">{{customerCharge.CustomerName}}</div>
+                                            <div class="width65 PLR-10">
+                                            <div ng-class="{'baseratcard-overflow':customerCharge.Charges }" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                                <div ng-style="customerCharge.Charges.length < 10 ? { 'width':'100%' } : { 'width': 10*customerCharge.Charges.length + '%' }">
+                                                <div ng-repeat="charge in customerCharge.Charges">
+                                                    <div ng-style="{ 'width' :  100/customerCharge.Charges.length + '%' }" style="float:left;" class="width100">{{charge.Amount}} {{charge.CurrencyCode}}</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            </div>
+                                            <div class="width11">
+                                                <div class="ui-grid-cell-contents fontsize12" id="dropdown-scrollable-container padding-5">
+                                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                        &nbsp;<a id="btn-append-to-to-body" class="bottom5" href="" uib-dropdown-toggle>
+                                                            <label ng-click="grid.appScope.showCords($event)" class="pointer"><i class="fa fa-caret-down pointer" aria-hidden="true" style="position:relative; top:11px; float:right;"></i> <span class="action-font-family">{{'Actions' | translate}}</span>&nbsp;</label>
+                                                        </a>
+                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                            <li>
+                                                                <a href="" ng-click="addEditCustomerAdmnCharge('Customer','',customerCharge,'Edit')">
+                                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                    <span>{{'Edit' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="" ng-click="removeCustomerAdminCharges(customerCharge)">
+                                                                    <span class="padEdit"><i class="fa fa-bitbucket red" aria-hidden="true"></i></span>
+                                                                    <span>{{'Delete' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <!--12 table hide scoller code-->
+                        <div class="col-sm-12 paddingboth">
+                            <div class="width24 PLR-10">
+                                <span class="visibility">Hidden</span>
+                            </div>
+                            <div class="width65 PLR-10">
+                                <div ng-class="{'baseratcard-overflow':adminCharges}" class="baseratcard-overflow" my-scroller>
+                                    <div ng-style="adminCharges.length < 10 ? { 'width':'100%' } : { 'width': 10*adminCharges.length + '%' }" style="overflow:auto;">
+                                        <div ng-repeat="adminCharge in adminCharges">
+                                            <div ng-style="{ 'width' :  100/admincharges.length + '%' }" style="float:left;" class="text-center"><span class="visibility">hidden</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="width11">
+                                <span class="visibility">Hidden</span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

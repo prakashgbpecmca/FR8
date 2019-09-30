@@ -1,0 +1,73 @@
+﻿
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" title="close" data-dismiss="modal" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'ULD_Specifications' | translate}} - {{airlineULD.code}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-sm-12">
+            <div class="form-group">
+    <div class="col-sm-8 col-sm-offset-2">
+        <img bn-lazy-src="{{ImgPath + airlineULD.img}}" style="width: 100%; padding: 3px 0;max-width:100%;" />
+    </div>
+                <div class="clearfix"></div>
+    <div class="col-sm-12 paddingboth">
+        <div class="panel panel-default">
+            <div class="panel-heading flex padding0 grid-background">
+                <div class="col-sm-12 paddingboth flex">
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'Code' | translate}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'BaseType' | translate}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'Classification' | translate}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'ClassType' | translate}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'Contour' | translate}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5"><span class="padding-5 width100">{{'Dimension' | translate}}</span></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        <div class="panel-body padding0">
+            <div class="col-sm-12 paddingboth flex">
+            <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.code}}</span></div>
+            <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.baseType}}</span></div>
+            <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.classification}}</span></div>
+            <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.classType}}</span></div>
+            <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.contour}}</span></div>
+            <div class="col-sm-2 paddingboth word-break padding-5"><span class="padding-5 width100">{{airlineULD.dimension}}</span></div>
+            <div class="clearfix"></div>
+        </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading flex padding0 grid-background">
+                <div class="col-sm-12 paddingboth flex">
+                <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'UsableDimensions' | translate}}</span></div>
+                <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'DoorDimension' | translate}}</span></div>
+                <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'Volume' | translate}}</span></div>
+                <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'EstimateMaxGrossWeight' | translate}}</span></div>
+                <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{'EstimateTareWeight' | translate}}</span></div>
+                <div class="col-sm-2 paddingboth word-break padding-5"><span class="padding-5 width100">{{'Notes' | translate}}</span></div>
+                <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="panel-body padding0">
+                <div class="col-sm-12 paddingboth flex">
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.usuabledDimension}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.doorDimension}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.volume}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.estimateMaxGross}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5 border-right-ddd"><span class="padding-5 width100">{{airlineULD.estimateTareWeight}}</span></div>
+                    <div class="col-sm-2 paddingboth word-break padding-5"><span class="padding-5 width100">{{airlineULD.note}}</span></div>
+                    <div class="clearfix"></div>
+                </div>
+                </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,156 @@
+﻿
+<form name="CountryForm" ng-submit="SaveCountryDetail(CountryForm.$valid, countryDetail)" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'Country' | translate}} {{'Detail' | translate}}</div>
+        <div class="panel-body">
+            <div>
+                <div class="col-xs-6">
+                    <div class="form-group" ng-class="{ 'has-error': CountryForm.Name.$invalid &&
+                                                         (CountryForm.Name.$dirty || submitted) }">
+                        <label class="control-label" for="Name" style="float:left;width:30%;margin-top: 6px;">{{'Country' | translate}} {{'Name' | translate}}</label>
+                        <div style="float:left;width:70%;">
+                            <input type="text" class="form-control" id="Name" name="Name" autofocus ng-model="countryDetail.Name" placeholder="{{'Country' | translate}} {{'Name' | translate}}" required />
+                            <span class="help-block has-error"
+                                  ng-show="CountryForm.Name.$invalid &&
+                           (CountryForm.Name.$dirty || submitted)">
+                                 {{'Country' | translate}} {{'NameValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group" ng-class="{ 'has-error': CountryForm.Code.$invalid &&
+                                                         (CountryForm.Code.$dirty  || submitted) }">
+                        <label class="control-label" for="Code" style="float:left;width:15%;margin-top: 6px;">{{'Code' | translate}}</label>
+                        <div style="float:left;width:40%;padding-right:4%;">
+                            <input type="text" class="form-control" id="Code" name="Code" ng-model="countryDetail.Code" placeholder="{{'Code' | translate}}" readonly required />
+                            <span class="help-block has-error"
+                                  ng-show="CountryForm.Code.$invalid &&
+                           (CountryForm.Code.$dirty  || submitted)">
+                                {{'CodeValidError' | translate}}
+                            </span>
+                        </div>
+                        <div style="float:left;width:45%;text-align:right">
+                            <button type="button" ng-click="AddEditCountryDocuments()" class="addDocBtn">{{'Add' | translate}} {{'Documents' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <hr class="customHr" />
+                <div>
+                    <div class="part50">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">{{'Air' | translate}} {{'Freight' | translate}} {{'Documents' | translate}}</legend>
+                            <div class="docBox">
+                                <div ng-repeat="item in countryDetail.CountryDocuments | filter:filterExpression('Air')">
+                                    <div class="row-one">
+                                        <div style="float:left;text-align:left;">{{item.DocumentName}}</div>
+                                        <div style="float:right;text-align:right;">
+                                            <button type="button" class="btn btn-xs btn-primary" ng-click="AddEditCountryDocuments(item)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-xs btn-danger" ng-click="DeleteCountryDocument(item)">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="part50">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">{{'Sea' | translate}} {{'Freight' | translate}} {{'Documents' | translate}}</legend>
+                            <div class="docBox">
+                                <div ng-repeat="item in countryDetail.CountryDocuments | filter:filterExpression('Sea')">
+                                    <div class="row-one">
+                                        <div style="float:left;text-align:left;">{{item.DocumentName}}</div>
+                                        <div style="float:right;text-align:right;">
+                                            <button type="button" class="btn btn-xs btn-primary" ng-click="AddEditCountryDocuments(item)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-xs btn-danger" ng-click="DeleteCountryDocument(item)">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="part50">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">{{'Courier' | translate}} {{'Documents' | translate}}</legend>
+                            <div class="docBox">
+                                <div ng-repeat="item in countryDetail.CountryDocuments | filter:filterExpression('Courier')">
+                                    <div class="row-one">
+                                        <div style="float:left;text-align:left;">{{item.DocumentName}}</div>
+                                        <div style="float:right;text-align:right;">
+                                            <button type="button" class="btn btn-xs btn-primary" ng-click="AddEditCountryDocuments(item)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-xs btn-danger" ng-click="DeleteCountryDocument(item)">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="part50">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">{{'Expryes' | translate}} {{'Documents' | translate}}</legend>
+                            <div class="docBox">
+                                <div ng-repeat="item in countryDetail.CountryDocuments | filter:filterExpression('Expryes')">
+                                    <div class="row-one">
+                                        <div style="float:left;text-align:left;">{{item.DocumentName}}</div>
+                                        <div style="float:right;text-align:right;">
+                                            <button type="button" class="btn btn-xs btn-primary" ng-click="AddEditCountryDocuments(item)">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-xs btn-danger" ng-click="DeleteCountryDocument(item)">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!--Public Holiday-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="floatLeft" ng-click="ShowHidePublicHolidayPanel()" style="cursor: pointer;margin-top:9px;"><span><i ng-class="{'fa fa-plus-square-o' : !ShowPublicHolidayPanel, 'fa fa-minus-square-o' : ShowPublicHolidayPanel}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;"></i></span><span>{{'PublicHoliday' | translate}}</span></div>
+            <div class="floatRight"><button type="button" class="btn-addPopup" ng-click="AddEditCountryHoliday()">{{'Add' | translate}} {{'PublicHoliday' | translate}}</button></div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body" ng-if="ShowPublicHolidayPanel">
+            <div data-ui-grid="gridOptionsPublicHoliday" data-ui-grid-resize-columns data-ui-grid-move-columns data-ui-grid-pinning data-ui-grid-selection data-ui-grid-exporter data-ui-grid-auto-resize class="myGrid" style="min-height:170px !important;"></div>
+        </div>
+    </div>
+    <br /><br />
+    <div>
+        <span class="floatLeft">
+            <a href="" ng-click="GoBack()" class="btn-BigSecondary">{{'Cancel' | translate}}</a>
+        </span>
+        <div class="floatRight">
+            <button type="submit" ng-click="submitted=true" class="btn-BigPrimary"> &nbsp;{{'Save' | translate}} &nbsp;</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</form>
+
+
+

@@ -1,0 +1,76 @@
+﻿
+    <div class="modal-content fontsize12" style="margin-bottom: 0px; border-color: #DBE2EC !important;">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Manifest' | translate}} {{'Generator' | translate}}</h4>
+        </div>
+        
+        <div class="modal-body">
+            <div class="col-sm-12">
+                <div class="col-sm-6 paddingboth">
+                   <label class="col-sm-4 paddingboth control-label top5">{{'Shipment_Types' | translate}}</label> 
+                    <div class="col-sm-8 form-group">
+                        <select ng-options="ship.BookingType as ship.BookingTypeDisplay  for ship in shipmentTypes" ng-model="TrackManifest.ModuleType"
+                                ng-change="seachManifest()" class="form-control" ng-disabled="IsDisable"></select>
+                    </div>
+                </div>
+              
+            </div>
+         <div class="col-sm-12">
+            <!--<div class="col-sm-12 paddingboth">
+                <div class="col-sm-6 form-group paddingboth">
+                    <div class="col-sm-12 form-group paddingright">
+                        <label for="fromdate" class="col-sm-4 paddingboth lineheight30 right15">{{'From_Date' | translate}}:</label>
+                        <div class="col-sm-7 paddingright" style="left: -10px;">
+                            <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                   uib-datepicker-popup="dd/MM/yyyy" ng-model="CustomerManifest.FromDate" is-open="status.opened"
+                                   close-text="Close" ng-click="openCalender($event)"
+                                   placeholder="{{'From_Date' | translate}}" style="padding-left: 7px !important;" />
+                        </div>
+                        <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-group paddingboth">
+                    <div class="col-sm-12 form-group paddingright">
+                        <label for="todate" class="col-sm-4 paddingboth lineheight30 right15">{{'To_Date' | translate}}:</label>
+                        <div class="col-sm-7 paddingright" style="left: -10px;">
+                            <input type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                   ng-model="CustomerManifest.ToDate" is-open="status1.opened"
+                                   close-text="Close" ng-click="openCalender1($event)"
+                                   placeholder="{{'To_Date' | translate}}" />
+                        </div>
+                        <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-group paddingboth">
+                    <div class="col-sm-2 paddingboth"><button class="btn-simple btn-save fontsize12" ng-click="SeachDirectShipments()" style="padding:6px 6px !important;"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button></div>
+                </div>
+                <div class="col-sm-6 form-group paddingboth">
+                    <div class="col-sm-2 paddingboth"><button ng-click="CreateManifest()" style="padding:6px 6px !important;"><i aria-hidden="true"></i> {{'Create Manifest' | translate}}</button></div>
+                </div>
+            </div>-->
+            <div class="clearfix"></div>
+            <div data-ui-grid="gridOptions" ui-grid-selection class="myGridFull fontsize12" style="min-height: {{gridheight}}px;"></div>
+             <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                <button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn-simple btn-success fontsize12 pull-right bottom2" ng-click="CreateManifest()" id="create" name="create" value="Create Manifest"><i class="fa fa-list-ol" aria-hidden="true"></i> {{'Create_Manifest' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

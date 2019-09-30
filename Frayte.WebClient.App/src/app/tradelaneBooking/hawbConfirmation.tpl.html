@@ -1,0 +1,22 @@
+﻿<!--<div class="newModalDialog">-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Confirmation' | translate}}</h4>
+</div>
+<div class="modal-body">
+    <div class="text-center">
+        <h3>{{'Total_packages' | translate}} : <span>{{TotalShipments}}</span></h3>
+        <h3>{{'HAWB_Allocated' | translate}} : <span>{{AllocatedShipments}}</span></h3>
+        <br />
+        <p ng-show="type==='HAWB'" class="fontsize16">{{'Sure_To_Close_Popup' | translate}}</p>
+        <p ng-show="type==='Booking'"class="fontsize16">Aye you sure you want to place the booking?</p>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="modal-footer">
+    <div class="col-sm-12 paddingboth">
+        <button type="button" class="btn btn-save ng-binding fontsize12 pull-left" ng-click="closePopUp()"><i class="fa fa-check" aria-hidden="true"></i> {{'Yes' | translate}}</button>
+        <button type="button" class="btn btn-cancel ng-binding fontsize12 pull-right" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i>&nbsp; {{'No' | translate}}</button>
+    </div>
+</div>
+<!--</div>-->

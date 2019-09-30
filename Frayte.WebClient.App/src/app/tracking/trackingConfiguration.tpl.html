@@ -1,0 +1,888 @@
+﻿
+<section>
+    <div class="panel panel-default margin-bottom-none" style="border-color: #DBE2EC !important;">
+        <div class="panel-heading ">Tracking Configuration</div>
+        <div class="panel-body">
+            <!--select service code-->
+            <div class="form-group">
+                <div class="col-sm-2 top7 paddingboth">{{'SelectService' | translate}}</div>
+                <div class="col-sm-3">
+                    <select class="form-control" ng-model="moduleType">
+                        <option value="Tradelane">Tradelane</option>
+                        <option value="BreakBulk">Break Bulk</option>
+                        <option value="ExpressSolution">Express Solutions</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end-->
+            <!--tradelane code here-->
+            <div ng-if="moduleType === 'Tradelane'">
+                <!--Header section-->
+                <div class="width100 flex" style="background-color:#C0C0C0;">
+                    <div class="width20 border-right padding-10 word-wrap "><span class="access-label-align-left21">Tracking Key <i class="fa fa-arrow-right pull-right" aria-hidden="true"></i></span><br /><span class="access-label-align-left21">Tracking Type <i class="fa fa-arrow-down pull-right" aria-hidden="true"></i></span></div>
+                    <div class="width80" style="overflow:auto;overflow:hidden;">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    MAWB<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    HAWB<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    FRAYTE Ref. No.<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <div>
+                    <ul class="list-unstyled margin-bottom-none width100 border">
+                        <!--carton scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap">
+                                    <span class="pointer">
+                                        <i ng-click="moduleRole.ShowHideModule= !moduleRole.ShowHideModule; callScroll()" ng-class="{'fa fa-plus-square-o':!moduleRole.ShowHideModule , 'fa fa-minus-square-o':moduleRole.ShowHideModule}" aria-hidden="true">
+                                        </i> &nbsp;
+                                    </span>
+                                    Carton Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code start-->
+                            <div uib-collapse="!moduleRole.ShowHideModule">
+                                <div class="width100">
+                                    <div>
+                                        <ul class="list-unstyled margin-bottom-none">
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Origin</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Destination</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code end-->
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                        <!--mawb scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap">
+                                    <span class="pointer">
+                                        <i ng-click="moduleRole.ShowHideModule= !moduleRole.ShowHideModule; callScroll()" ng-class="{'fa fa-plus-square-o':!moduleRole.ShowHideModule , 'fa fa-minus-square-o':moduleRole.ShowHideModule}" aria-hidden="true">
+                                        </i> &nbsp;
+                                    </span>
+                                    MAWB Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code start-->
+                            <div uib-collapse="!moduleRole.ShowHideModule">
+                                <div class="width100">
+                                    <div>
+                                        <ul class="list-unstyled margin-bottom-none">
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Origin</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Destination</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code end-->
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                        <!--hawb scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap">
+                                    <span class="pointer">
+                                        <i ng-click="moduleRole.ShowHideModule= !moduleRole.ShowHideModule; callScroll()" ng-class="{'fa fa-plus-square-o':!moduleRole.ShowHideModule , 'fa fa-minus-square-o':moduleRole.ShowHideModule}" aria-hidden="true">
+                                        </i> &nbsp;
+                                    </span>
+                                    HAWB Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code start-->
+                            <div uib-collapse="!moduleRole.ShowHideModule">
+                                <div class="width100">
+                                    <div>
+                                        <ul class="list-unstyled margin-bottom-none">
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Origin</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Destination</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code end-->
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                    </ul>
+                </div>
+
+            </div>
+            <!--end-->
+            <!--breakbulk code here-->
+            <div ng-if="moduleType === 'BreakBulk'">
+                <!--Header section-->
+                <div class="width100 flex" style="background-color:#C0C0C0;">
+                    <div class="width20 border-right padding-10 word-wrap "><span class="access-label-align-left21">Tracking Key <i class="fa fa-arrow-right pull-right" aria-hidden="true"></i></span><br /><span class="access-label-align-left21">Tracking Type <i class="fa fa-arrow-down pull-right" aria-hidden="true"></i></span></div>
+                    <div class="width80" style="overflow:auto;overflow:hidden;">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    MAWB<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    HAWB<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    Manifest<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <div>
+                    <ul class="list-unstyled margin-bottom-none width100 border">
+                        <!--po scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap" style="text-indent: 22px;">
+                                    PO Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                        <!--mawb scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap">
+                                    <span class="pointer">
+                                        <i ng-click="moduleRole.ShowHideModule= !moduleRole.ShowHideModule; callScroll()" ng-class="{'fa fa-plus-square-o':!moduleRole.ShowHideModule , 'fa fa-minus-square-o':moduleRole.ShowHideModule}" aria-hidden="true">
+                                        </i> &nbsp;
+                                    </span>
+                                    HAWB Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code start-->
+                            <div uib-collapse="!moduleRole.ShowHideModule">
+                                <div class="width100">
+                                    <div>
+                                        <ul class="list-unstyled margin-bottom-none">
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Origin</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Destination</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code end-->
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                        <!--hawb scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap">
+                                    <span class="pointer">
+                                        <i ng-click="moduleRole.ShowHideModule= !moduleRole.ShowHideModule; callScroll()" ng-class="{'fa fa-plus-square-o':!moduleRole.ShowHideModule , 'fa fa-minus-square-o':moduleRole.ShowHideModule}" aria-hidden="true">
+                                        </i> &nbsp;
+                                    </span>
+                                    MAWB Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code start-->
+                            <div uib-collapse="!moduleRole.ShowHideModule">
+                                <div class="width100">
+                                    <div>
+                                        <ul class="list-unstyled margin-bottom-none">
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Origin</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Destination</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code end-->
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                        <!--pod scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap" style="text-indent: 22px;">
+                                    POD Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                    </ul>
+                </div>
+                </div>
+            <!--end-->
+            <!--express solutions code here-->
+            <div ng-if="moduleType === 'ExpressSolution'">
+                <!--Header section-->
+                <div class="width100 flex" style="background-color:#C0C0C0;">
+                    <div class="width20 border-right padding-10 word-wrap "><span class="access-label-align-left21">Tracking Key <i class="fa fa-arrow-right pull-right" aria-hidden="true"></i></span><br /><span class="access-label-align-left21">Tracking Type <i class="fa fa-arrow-down pull-right" aria-hidden="true"></i></span></div>
+                    <div class="width80" style="overflow:auto;overflow:hidden;">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    MAWB<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    Manifest<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    Bag Number<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="border-left word-wrap padding-10 text-center">
+                                    Parcel<br /><span class="visibility">Hidden</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <div>
+                    <ul class="list-unstyled margin-bottom-none width100 border">
+                        <!--piece scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap" style="text-indent: 22px;">
+                                    Piece Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                        <!--bag scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap" style="text-indent: 22px;">
+                                    Bag Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                        <!--mawb scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap">
+                                    <span class="pointer">
+                                        <i ng-click="moduleRole.ShowHideModule= !moduleRole.ShowHideModule; callScroll()" ng-class="{'fa fa-plus-square-o':!moduleRole.ShowHideModule , 'fa fa-minus-square-o':moduleRole.ShowHideModule}" aria-hidden="true">
+                                        </i> &nbsp;
+                                    </span>
+                                    MAWB Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code start-->
+                            <div uib-collapse="!moduleRole.ShowHideModule">
+                                <div class="width100">
+                                    <div>
+                                        <ul class="list-unstyled margin-bottom-none">
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Origin</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-3 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="alternated">
+                                                <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>Scan on Destination</i></span><div class="clearfix"></div></div>
+                                                <div class="width80" style="overflow:auto;overflow:hidden;">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="col-sm-3 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth">
+                                                            <div class="text-center padding6rem padding6">
+                                                                <input type="checkbox" class="text-center" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--dropdown code end-->
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                        <!--pod scan code-->
+                        <li class="alternate">
+                            <div class="width20 padding7 word-wrap">
+                                <div class="word-wrap" style="text-indent: 22px;">
+                                    POD Scan
+                                </div>
+                            </div>
+                            <div class="width80" style="overflow:auto;overflow:hidden;">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 paddingboth">
+                                        <div class="word-wrap padding6 text-center">
+                                            <input type="checkbox" class="text-center" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <!--end-->
+                    </ul>
+                </div>
+            </div>
+            <!--end-->
+            </div>
+    </div>
+</section>

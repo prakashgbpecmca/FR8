@@ -1,0 +1,481 @@
+﻿
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">Add Purchase Order</h4>
+        </div>
+        <div class="modal-body clearfix padding-bottom-none">
+            <div class="col-sm-12 clearfix">
+
+                <section>
+                    <!--if po view is show-->
+                    <section>
+                        <div class="panel-body padding-bottom-none">
+                            <section class="row">
+                                <div>
+                                    <!--breakbulk shipment custom grid-->
+                                    <div class="panel panel-default">
+                                        <div class="width100 flex grid-background">
+                                            <div class="width986 flex">
+                                                <div class="width4 bold quotation-table-padding text-center"><span class="quotation-table-body padding-10-5 width100"><input type="checkbox" ng-model="breakbulkPo" /></span></div>
+                                                <div class="width16 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">PO No.</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Style No.</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Style Name</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Status</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">From/To</span></div>
+                                                <div class="width10 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">PO Created On</sapn></div>
+                                                <div class="width10 bold quotation-table-padding" style="border-right:transparent !important;"><sapn class="quotation-table-body padding-10-5">Ex-FYT Date</sapn></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                            <div class="panel-body padding0">
+                                                <ul class="list-unstyled change margin-bottom-none">
+                                                    <!-- breakbulk shipment code here -->
+                                                    <li>
+                                                        <div class="width100 pointer" ng-repeat="breakbulkShipment in breakbulkShipments track by $index">
+                                                            <div class="flex height30">
+                                                                <div class="width4 bold quotation-table-padding text-center"><span class="padding-5 width100"><input type="checkbox" ng-model="breakbulkPo" /></span></div>
+                                                                <div class="width16 quotation-table-body word-wrap padding-5" ng-click="breakbulkCollapse($index)"><span class="pointer"><span class="pointer"><i class="fa" ng-class="{'fa-plus-square-o':isBreakbulk!==$index,'fa-minus-square-o':isBreakbulk==$index}"></i></span> <a>{{breakbulkShipment.po}}</a></span></div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{breakbulkShipment.styleNo}}</span></div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span ng-click="BreakBulkTrackingDetail()">{{breakbulkShipment.styleName}}</span></div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span><img ng-src="{{ImagePath + 'T-delivered.png'}}" width="20px" class="bottom2"/> &nbsp;{{breakbulkShipment.status}}</span></div>
+                                                                <div class="width150 quotation-table-body padding-5 word-wrap"><span>{{breakbulkShipment.fromTo}}</span></div>
+                                                                <div class="width10 quotation-table-body padding-5 word-wrap"><span>{{breakbulkShipment.poCreatedOn}}</span></div>
+                                                                <div class="width10 quotation-table-body padding-5 word-wrap"><span>{{breakbulkShipment.exFactoryDate}}</span></div>
+                                                            </div>
+                                                            <div ng-if="isBreakbulk==$index">
+                                                                <div class="panel panel-default padding-15 margin-bottom-none">
+                                                                    <div class="width100 flex grid-background clearfix">
+                                                                        <div class="width100 flex">
+                                                                            <div class="width4 bold quotation-table-padding text-center"><span class="quotation-table-body padding-10-5 width100"><input type="checkbox" /></span></div>
+                                                                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Job No.</span></div>
+                                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Job Name</span></div>
+                                                                            <div class="width21 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Status</span></div>
+                                                                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Order QTY (pcs)</span></div>
+                                                                            <!--<div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Tracking No.</span></div>-->
+                                                                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Courier</span></div>
+                                                                            <div class="clearfix"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="panel-body padding0">
+                                                                        <ul class="list-unstyled margin-bottom-none">
+                                                                            <li class="change clearfix" ng-repeat="collapseBreakbulk in breakbulkShipment.collapse">
+                                                                                <div class="width100 pointer">
+                                                                                    <div class="flex height30">
+                                                                                        <div class="width4 bold quotation-table-padding text-center"><span class="padding-5 width100"><input type="checkbox" /></span></div>
+                                                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span class="pointer"><a>{{collapseBreakbulk.jobno}}</a></span></div>
+                                                                                        <div class="width150 quotation-table-body word-wrap padding-5"><span>{{collapseBreakbulk.jobname}}</span></div>
+                                                                                        <div class="width21 quotation-table-body word-wrap padding-5"><span>{{collapseBreakbulk.status}}</span></div>
+                                                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>{{collapseBreakbulk.qty}}</span></div>
+                                                                                        <!--<div class="width20 quotation-table-body word-wrap padding-5"><span class="pointer"><a>{{collapseBreakbulk.qty}}</a></span></div>-->
+                                                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>{{collapseBreakbulk.courier}}</span></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <!--end-->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end code-->
+                                </div>
+                                <!--pagination code-->
+                                <div class="col-sm-12 paddingboth">
+                                    <div style="margin-left:-15px;top:-8px;position:relative;" class="pull-left">
+                                        <ul uib-pagination="" boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm ng-pristine ng-untouched ng-valid ng-isolate-scope pagination ng-not-empty" previous-text="‹" next-text="›" first-text="«" last-text="»">
+                                            <li class="pagination-first ng-scope disabled"><a href="" ng-click="selectPage(1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" disabled="disabled" tabindex="-1">«</a></li><!-- end ngIf: ::boundaryLinks -->
+                                            <li class="pagination-prev ng-scope disabled"><a href="" ng-click="selectPage(page - 1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" disabled="disabled" tabindex="-1">‹</a></li><!-- end ngIf: ::directionLinks -->
+                                            <li class="pagination-page ng-scope active"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="">1</a></li><!-- end ngRepeat: page in pages track by $index -->
+                                            <li class="pagination-page ng-scope"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="">2</a></li><!-- end ngRepeat: page in pages track by $index -->
+                                            <li class="pagination-next ng-scope"><a href="" ng-click="selectPage(page + 1, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="">›</a></li><!-- end ngIf: ::directionLinks -->
+                                            <li class="pagination-last ng-scope"><a href="" ng-click="selectPage(totalPages, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="">»</a></li><!-- end ngIf: ::boundaryLinks -->
+                                        </ul>
+                                    </div>
+                                    <div class="pull-right">
+                                        <label for="customers" class="col-sm-6 top7">Paging</label>
+                                        <div class="col-sm-4">
+                                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount" class="form-control fontsize12 ng-pristine ng-untouched ng-valid ng-not-empty" style="width:77px"><option label="20" value="number:20">20</option><option label="50" value="number:50" selected="selected">50</option><option label="100" value="number:100">100</option><option label="200" value="number:200">200</option></select>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!--end-->
+                                <div class="clearfix"></div>
+                            </section>
+                        </div>
+                    </section>
+                    <!--end-->
+
+                </section>
+
+
+                    <!--<section>-->
+                    <!--customer code-->
+                    <!--<div class="form-group clearfix">
+                        <div>
+                            <div class="col-sm-2 lineheight30 paddingboth bold">Customer:</div>
+                            <div class="form-group col-sm-10 paddingboth">
+                            <select class="form-control">
+                                <option ng-option value="PushkarThapliyal">Pushkar Thapliyal</option>
+                                <option ng-option value="ManishJadli">Manish Jadli</option>
+                                <option ng-option value="NewCustomer">New Customer</option> 
+                            </select>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--end-->
+                    <!--customer information code-->
+                    <!--<div class="panel panel-default">
+                        <div class="panel-heading"><div ng-click="breakbulkCollapse()"><i class="fa pointer fa-14 top3" ng-class="{'fa-minus-square-o':breakbulkShow, 'fa-plus-square-o':!breakbulkShow}"></i> Customer Information:</div></div>
+                        <div class="panel-body padding-bottom-none" ng-if="breakbulkShow">
+                            <div class="col-sm-12 paddingboth">
+                                <div>
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" ng-class="{ 'has-error': AddressBookForm.companyName.$invalid &&
+                                                         (AddressBookForm.companyName.$dirty || submitted) }">
+                                                <label class="control-label textLeft40" for="companyName">{{'CompanyName' | translate}} <span class="redColor">*</span></label>
+                                                <div class="inputRight60">
+                                                    <input capitalize:first type="text" id="companyName" name="companyName" ng-model="AddressBook.CompanyName" class="form-control fontsize12"
+                                                           placeholder="{{'CompanyNamePlaceholder' | translate}}" maxlength="100" required />
+                                                    <span class="help-block has-error"
+                                                          ng-show="AddressBookForm.companyName.$invalid &&
+                                            (AddressBookForm.companyName.$dirty || submitted)">
+                                                        {{'CompanyNameValidationError' | translate}}
+                                                    </span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" ng-class="{ 'has-error': AddressBookForm.firstName.$invalid &&
+                                                         (AddressBookForm.firstName.$dirty || submitted) }">
+                                                <label class="control-label textLeft40" for="firstName">{{'Contact_First_Name' | translate}} <span class="redColor">*</span></label>
+                                                <div class="inputRight60">
+                                                    <input capitalize:first type="text" id="firstName" name="firstName" ng-model="AddressBook.FirstName" class="form-control fontsize12"
+                                                           placeholder="{{'ContactFirstName_Placeholder' | translate}}" only-letters-input maxlength="50" required />
+                                                    <span class="help-block has-error"
+                                                          ng-show="AddressBookForm.firstName.$invalid &&
+                                            (AddressBookForm.firstName.$dirty || submitted)">
+                                                        {{'FirstName_Required' | translate}}
+                                                    </span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-6">
+                                            <div ng-class="{ 'has-error': AddressBookForm.lastName.$invalid &&
+                                                         (AddressBookForm.lastName.$dirty || submitted) }">
+                                                <label class="control-label textLeft40" for="lastName">{{'Contact_Last_Name' | translate}} <span class="redColor">*</span></label>
+                                                <div class="inputRight60">
+                                                    <input capitalize:first type="text" id="lastName" name="lastName" ng-model="AddressBook.LastName" class="form-control fontsize12"
+                                                           placeholder="{{'ContactLastName_Placeholder' | translate}}" only-letters-input maxlength="50" required />
+                                                    <span class="help-block has-error"
+                                                          ng-show="AddressBookForm.lastName.$invalid &&
+                                            (AddressBookForm.lastName.$dirty || submitted)">
+                                                        {{'LastName_Required' | translate}}
+                                                    </span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <hr />
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" ng-class="{ 'has-error': AddressBookForm.phone.$invalid &&
+                                                         (AddressBookForm.phone.$dirty || submitted) }">
+                                                <label class="control-label textLeft40" for="phone">{{'Telephone_No' | translate}} <span class="redColor">*</span></label>
+                                                <div class="inputRight60">
+                                                    <div class="col-sm-4 paddingleft">
+                                                        <input type="text" class="form-control fontsize12" readonly ng-model="ShipFromPhoneCode" />
+                                                    </div>
+                                                    <div class="col-sm-8 paddingboth">
+                                                        <input type="text" id="phone" name="phone"
+                                                               ng-model="AddressBook.Phone" class="form-control fontsize12" only-Numeric maxlength="20" placeholder="{{'Telephone_No' | translate}} ({{'Required' | translate}})" required />
+                                                    </div>
+                                                    <span class="help-block has-error"
+                                                          ng-show="AddressBookForm.phone.$invalid &&
+                                            (AddressBookForm.phone.$dirty || submitted)">
+                                                        {{'Telephone_No' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                                    </span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" ng-class="{ 'has-error': AddressBookForm.email.$invalid &&
+                                                         (AddressBookForm.email.$dirty || submitted) }">
+                                                <label class="control-label textLeft40" for="email">{{'Email' | translate}}  <span class="redColor">*</span></label>
+                                                <div class="inputRight60">
+                                                    <input type="text" id="email" name="email" ng-model="AddressBook.Email" ng-pattern="emailFormat" class="form-control fontsize12" maxlength="100"
+                                                           placeholder="{{'EmailPlaceholder' | translate}}" required />
+                                                    <span class="help-block has-error"
+                                                          ng-show="AddressBookForm.email.$error.required &&
+                                            (AddressBookForm.email.$dirty || submitted)">
+                                                        {{'EmailValidationError' | translate}}
+                                                    </span>
+                                                    <span class="help-block has-error"
+                                                          ng-show="AddressBookForm.email.$error.pattern &&
+                                            (AddressBookForm.email.$dirty || submitted)">
+                                                        {{'EmailNotValid' | translate}}
+                                                    </span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--end-->
+                    <!--address information code-->
+                    <!--<div class="panel panel-default">
+                        <div class="panel-heading"><div ng-click="addressCollapse()"><i class="fa pointer fa-14 top3" ng-class="{'fa-minus-square-o':addressShow, 'fa-plus-square-o':!addressShow}"></i> Address Information:</div></div>
+                        <div class="panel-body padding-bottom-none" ng-if="addressShow">
+                            <div class="col-sm-12 paddingboth">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label textLeft40" for="country">{{'Country' | translate}} <span class="redColor">*</span></label>
+                                            <div class="inputRight60" id="Xe">
+                                                <select id="country" name="country" class="form-control fontsize12" required>
+                                                    <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                                                    <option>Australia</option>
+                                                    <option>Canada</option>
+                                                    <option>China</option>
+                                                    <option>France</option>
+                                                    <option>Germany</option>
+                                                    <option>Hong Kong</option>
+                                                    <option>India</option>
+                                                    <option>United Kingdom</option>
+                                                    <option>United States</option>
+                                                </select>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-class="{ 'has-error': AddressBookForm.address1.$invalid &&
+                                                         (AddressBookForm.address1.$dirty || submitted) }">
+                                            <label class="control-label textLeft40" for="address1">{{'Address_1' | translate}} <span class="redColor">*</span></label>
+                                            <div class="inputRight60">
+                                                <textarea cols="1" rows="2" capitalize:first type="text" id="address1" name="address1" ng-model="AddressBook.Address" maxlength="100" class="form-control fontsize12"
+                                                          placeholder="{{'AddressPlaceholder' | translate}}" required></textarea>
+                                                <span class="help-block has-error"
+                                                      ng-show="AddressBookForm.address1.$invalid &&
+                                            (AddressBookForm.address1.$dirty || submitted)">
+                                                    {{'AddressValidationError' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label textLeft40" for="address2">{{'Address_2' | translate}}</label>
+                                        <div class="inputRight60">
+                                            <textarea cols="1" rows="2" capitalize:first type="text" id="address2" name="address2" ng-model="AddressBook.Address2" maxlength="100" class="form-control fontsize12" placeholder="{{'Address2' | translate}}"></textarea>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.city.$invalid &&
+                                                         (AddressBookForm.city.$dirty || submitted) }">
+                                        <label class="control-label textLeft40" for="city">{{'City' | translate}} <span class="redColor">*</span></label>
+                                        <div class="inputRight60">
+                                            <input capitalize:first type="text" id="city" name="city" ng-model="AddressBook.City" maxlength="20" class="form-control fontsize12"
+                                                   only-alphabets
+                                                   placeholder="{{'CityPlaceholder' | translate}}" required />
+                                            <span class="help-block has-error"
+                                                  ng-show="AddressBookForm.city.$invalid &&
+                                            (AddressBookForm.city.$dirty || submitted)">
+                                                {{'CityValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label textLeft40" for="suburb">{{'Area' | translate}}</label>
+                                        <div class="inputRight60">
+                                            <input capitalize:first type="text" id="suburb" name="suburb" ng-model="AddressBook.Area" maxlength="100" class="form-control fontsize12" placeholder="{{'Area' | translate}}" />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.state.$invalid &&
+                                                         (AddressBookForm.state.$dirty || submitted) }">
+                                        <label class="control-label textLeft40" for="state">{{'State' | translate}} <span class="redColor">*</span></label>
+                                        <div class="inputRight60">
+                                            <input capitalize:first type="text" id="state" name="state" ng-model="AddressBook.State" class="form-control fontsize12" maxlength="20"
+                                                   ng-disabled="AddressBook.Country.Code === 'GBR' ||AddressBook.Country.Code === 'HKG'"
+                                                   placeholder="{{'StatePlaceholder' | translate}}" ng-required="AddressBook.Country.Code !== 'GBR'  && AddressBook.Country.Code !== 'HKG'" />
+                                            <span class="help-block has-error"
+                                                  ng-show="AddressBookForm.state.$invalid &&
+                                            (AddressBookForm.state.$dirty || submitted)">
+                                                {{'StateValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.postalCode.$invalid &&
+                                                         (AddressBookForm.postalCode.$dirty || submitted) }">
+                                        <label class="control-label textLeft40" for="postalCode">{{'Zip' | translate}} <span class="redColor">*</span></label>
+                                        <div class="inputRight60">
+                                            <input type="text" id="postalCode" name="postalCode" ng-model="AddressBook.PostCode" class="form-control fontsize12" maxlength="10"
+                                                   ng-disabled="AddressBook.Country.Code === 'HKG'"
+                                                   ng-required="AddressBook.Country.Code !== 'HKG'"
+                                                   placeholder="{{'PostalCodePlaceholder' | translate}}" />
+                                            <span class="help-block has-error"
+                                                  ng-show="AddressBookForm.postalCode.$invalid &&
+                                            (AddressBookForm.postalCode.$dirty || submitted)">
+                                                {{'PostalCodeValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>-->
+                    <!--end-->
+                    <!--purchase order code-->
+                    <!--<div class="panel panel-default">
+                        <div class="panel-heading">Purchase Order Detail:</div>
+                        <div class="panel-body padding-bottom-none">
+                            <div class="col-sm-12 paddingboth">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label textLeft40" for="country">PO Number <span class="red">*</span></label>
+                                            <div class="inputRight60">
+                                                <input type="text" class="form-control" id="poNumber" name="poNumber" placeholder="PO Number (Required)" required />
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label textLeft40">Parcel Type</label>
+                                            <div class="inputRight60">
+                                                <select class="form-control">
+                                                    <option>Parcel</option>
+                                                </select>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label textLeft40">Courier</label>
+                                        <div class="inputRight60" id="Xe">
+                                            <select class="form-control">
+                                                <option>DHL Domestic</option>
+                                                <option>DHL Express</option>
+                                                <option>DHL Economy</option>
+                                                <option>DPD Domestic</option>
+                                                <option>DPD Express</option>
+                                                <option>TNT Express</option>
+                                                <option>TNT Economy</option>
+                                                <option>Yodel</option>
+                                                <option>UK Mail</option>
+                                                <option>Hermes</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label textLeft40">Declare Value Currency</label>
+                                        <div class="inputRight60" id="Xe">
+                                            <select class="form-control">
+                                                <option>AUD - Australian Dollar</option>
+                                                <option>EUR - Euro</option>
+                                                <option>GBP - British Pound</option>
+                                                <option>HKD - Hong Kong Dollar</option>
+                                                <option>NZD - New Zealand Dollar</option>
+                                                <option>USD - US Dollar</option>
+                                                <option>AED - Emirati Dirham</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label textLeft40">Shipment Reference</label>
+                                        <div class="inputRight60">
+                                            <input type="text" id="shipmentReference" placeholder="Shipment Reference" name="shipmentReference" maxlength="20" class="form-control fontsize12" required />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div>
+                                        <div class="form-group">
+                                            <label class="control-label textLeft40">Send Alert Email</label>
+                                            <div class="inputRight60">
+                                                <div>
+                                                    <input type="email" id="alertEmail" name="alertEmail" class="form-control fontsize12" placeholder="Send Alert Email" />
+
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" name="alertEmailCheck" id="alertEmailCheck" /> Send Email Delivery Notification.</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label textLeft40">Shipment Description</label>
+                                        <div class="inputRight60">
+                                            <textarea cols="4" rows="4" id="shipmentDescription" name="shipmentDescription" maxlength="100" class="form-control fontsize12" placeholder="Shipment Description"></textarea>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>-->
+                    <!--end-->
+                    <!--</section>-->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-sm-12 clearfix">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-save" aria-hidden="true"></i> Add PO</button>
+            </div>
+        </div>
+    </div>
+</section>

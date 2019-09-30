@@ -1,0 +1,85 @@
+﻿
+
+
+
+<div class="col-xs-12 paddingboth">
+        <div class="form-group bb">
+            <div class="pull-left icon-set"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></div>
+            <div class="text-center">
+                <h3>
+                    <span ng-if="isActive">Scan Export Manifest</span>
+                    <span ng-if="!isActive">Scan Bag</span>
+                </h3>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-xs-12">
+            <!--isActive-->
+            <div ng-if="isActive" class="text-center">
+
+            </div>
+            <!--end-->
+
+            <!--!isActive-->
+            <div ng-if="!isActive">
+                <div class="clearfix lineheight28 fontsize18 bold">
+                    <div class="col-sm-12">Export Manifest Number</div>
+                </div>
+                <div class="panel-default">
+                    <div class="panel-body">
+                        <div class="clearfix form-group">
+                            <ul class="list-unstyled">
+                                <li><span>Bag 1</span><span class="pull-right"></span><span class="clearfix"></span></li>
+                                <li><span>Bag 2</span><span class="pull-right"><i class="fa fa-check"></i></span><span class="clearfix"></span></li>
+                                <li><span>Bag 3</span><span class="pull-right"><i class="fa fa-check"></i></span><span class="clearfix"></span></li>
+                                <li><span>Bag 4</span><span class="pull-right"><i class="fa fa-check"></i></span><span class="clearfix"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+        </div>
+</div>
+
+
+
+<div class="col-xs-12 fix-done" ng-if="!isActive">
+    <div class="b5rem">
+        <div class="form-group">
+            <button type="submit" class="form-control btn-danger btn-warning" ng-click="cancelBag()">Cancel</button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-primary" ng-click="confirmDispatch()">3/4 Bag Dispatch</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-xs-12 fix-done-button">
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanExportManifest()">Scan Export Manifest</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="This is the first screen on the click of Dispatch." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanBag()">Scan Bag</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="This screen open after the scan of export manifest." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="confirmDispatch()">3/4 Bag Dispatch</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="If mobile user click the dispatch button before completion of scanning. Then our system display the pop up with the message '3/4 bags are scanned. Are you sure you want to confirm'." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-danger" ng-click="cancelBag()">Cancel</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="For cancel the process mobile user will click on 'Cancel' button." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,389 @@
+﻿<script type="text/ng-template" id="customPopupTemplate.html">
+    <div class="custom-popup-wrapper"
+         ng-style="{top: position().top+'px', left: position().left+'px'}"
+         style="display: block;"
+         ng-show="isOpen() && !moveInProgress"
+         aria-hidden="{{!isOpen()}}">
+
+        <ul class="dropdown-menu" role="listbox" style="display:inline-block;">
+            <li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-click="selectMatch($index)" ng-mouseenter="selectActive($index)" role="option" id="{{::match.id}}">
+                <div typeahead-match index="$index" match="match" query="query" template-url="templateUrl" style="width:40%;"></div>
+                <a href="" tabindex="-1" style="float:inherit !important;">{{match.model.Email}}</a>
+                <div class="clearfix"></div>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<form name="WarehouseForm" ng-submit="submit(WarehouseForm.$valid, warehouseDetail)" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'BasicDetail' | translate}}</div>
+        <div class="panel-body">
+            <div class="col-xs-6 form-group">
+                <div ng-class="{ 'has-error': WarehouseForm.warehoueEmail.$invalid &&
+                                                         (WarehouseForm.warehoueEmail.$dirty || submitted) }">
+                    <label class="control-label" for="warehoueEmail">{{'Email' | translate}}</label>
+                    <div>
+                        <input type="email" class="form-control" id="warehoueEmail" name="warehoueEmail" autofocus
+                               ng-model="warehouseDetail.Email" placeholder="{{'EmailPlaceholder' | translate}}" required />
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.warehoueEmail.$invalid &&
+                           (WarehouseForm.warehoueEmail.$dirty || submitted)">
+                            {{'EmailValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.warehoueEmail.$error.email &&
+                                            (WarehouseForm.warehoueEmail.$dirty || submitted)">
+                            {{'EmailNotValid' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 form-group" ng-class="{ 'has-error': WarehouseForm.telephone.$invalid && (WarehouseForm.telephone.$dirty || submitted) ||
+                                (!WarehouseForm.telephone.$invalid && WarehouseForm.telephoneCode.$invalid &&
+                                 (WarehouseForm.telephoneCode.$dirty || submitted))}">
+                <label class="control-label " for="telephoneCode">{{'Telephone' | translate}}</label>
+                <div>
+                    <div class="countryCodeLeft">
+                        <select id="telephoneCode" name="telephoneCode"
+                                ng-model="warehouseDetail.TelephoneCode" ng-change="InitailDetailOfCountry(data,warehouseDetail.TelephoneCode,countries)"
+                                ng-options="countryPhoneCode.Name + ' - (+' + countryPhoneCode.PhoneCode + ')' for countryPhoneCode in countryPhoneCodes | orderBy:'Name' track by '(+' + countryPhoneCode.PhoneCode + ')'"
+                                class="form-control" required>
+                            <option value="" disabled selected class="display-none">{{'CountryCodePlaceholder' | translate}}</option>
+                        </select>
+                    </div>
+                    <div class="countryCodeRight">
+                        <input type="text" id="telephone" name="telephone" ng-model="warehouseDetail.TelephoneNo" class="form-control" only-numeric
+                               placeholder="{{'TelephonePlaceholder' | translate}}" required />
+                    </div>
+                    <div class="clearfix"></div>
+                    <span class="help-block has-error"
+                          ng-show="WarehouseForm.telephone.$invalid &&
+                                            (WarehouseForm.telephone.$dirty || submitted)">
+                        {{'TelephoneValidationError' | translate}}
+                    </span>
+                    <span class="help-block has-error"
+                          ng-show="!WarehouseForm.telephone.$invalid && WarehouseForm.telephoneCode.$invalid &&
+                                            (WarehouseForm.telephoneCode.$dirty || submitted)">
+                        {{'CountryCodeValidationError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (WarehouseForm.workingStartTime.$invalid || WarehouseForm.workingStartTime.$error.pattern) &&
+                                                     (WarehouseForm.workingStartTime.$dirty || submitted) }">
+                        <label class="control-label" for="workingStartTime">{{'WorkingStartTime' | translate}} <b> {{'Hours24' | translate}}</b></label>
+                        <input type="text"
+                               class="form-control input-sm"
+                               placeholder="{{'TimePlaceholder' | translate}}"
+                               name="workingStartTime"
+                               ng-model="warehouseDetail.WorkingStartTime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.workingStartTime.$invalid && !WarehouseForm.workingStartTime.$error.pattern && (WarehouseForm.workingStartTime.$dirty || submitted)">
+                            {{'TimeValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.workingStartTime.$error.pattern &&
+                                                (WarehouseForm.workingStartTime.$dirty || submitted)">
+                            {{'TimeNotValid' | translate}}
+                        </span>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (WarehouseForm.workingEndTime.$invalid || WarehouseForm.workingEndTime.$error.pattern) &&
+                                                     (WarehouseForm.workingEndTime.$dirty || submitted) }">
+                        <label class="control-label" for="workingEndTime">{{'WorkingEndTime' | translate}} <b>{{'Hours24' | translate}}</b>:</label>
+                        <input type="text"
+                               class="form-control input-sm"
+                               placeholder="{{'TimePlaceholder' | translate}}"
+                               name="workingEndTime"
+                               ng-model="warehouseDetail.WorkingEndTime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.workingEndTime.$invalid && !WarehouseForm.workingEndTime.$error.pattern && (WarehouseForm.workingEndTime.$dirty || submitted)">
+                            {{'TimeValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.workingEndTime.$error.pattern &&
+                                                (WarehouseForm.workingEndTime.$dirty || submitted)">
+                            {{'TimeNotValid' | translate}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label " for="mobileCode">{{'Mobile' | translate}}</label>
+                    <div>
+                        <div class="countryCodeLeft">
+                            <select id="mobileCode" name="mobileCode"
+                                    ng-model="warehouseDetail.MobileCode" ng-change="InitailDetailOfCountry(data,warehouseDetail.MobileCode,countries)"
+                                    ng-options="countryPhoneCode.Name + ' - (+' + countryPhoneCode.PhoneCode + ')' for countryPhoneCode in countryPhoneCodes | orderBy:'Name' track by '(+' + countryPhoneCode.PhoneCode + ')'"
+                                    class="form-control">
+                                <option value="" selected class="display-none">{{'CountryCodePlaceholder' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="countryCodeRight">
+                            <input type="text" id="mobile" name="mobile" ng-model="warehouseDetail.MobileNo" class="form-control" only-numeric placeholder="{{'MobilePlaceholder' | translate}}" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>                   
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': WarehouseForm.workingWeekDay.$invalid &&
+                                (WarehouseForm.workingWeekDay.$dirty || submitted) }">
+                    <label class="control-label" for="workingWeekDay">{{'Working' | translate}} {{'Weekdays' | translate}}</label>
+                    <div>
+                        <select id="workingWeekDay" name="workingWeekDay"
+                                ng-model="warehouseDetail.WorkingWeekDay"
+                                ng-options="WorkingWeekDay.Description for WorkingWeekDay in WorkingWeekDays | orderBy:'Description' track by WorkingWeekDay.WorkingWeekDayId"
+                                class="form-control" required>
+                            <option value="" disabled selected class="display-none">{{'WeekdaysSelectedOption' | translate}}</option>
+                        </select>
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.workingWeekDay.$invalid &&
+				   (WarehouseForm.workingWeekDay.$dirty || submitted)">
+                            {{'WeekdaysValidError' | translate}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': WarehouseForm.timeZone.$invalid &&
+                                (WarehouseForm.timeZone.$dirty || submitted) }">
+                    <label class="control-label" for="timeZone">{{'TimeZone' | translate}}</label>
+                    <div>
+                        <select id="timeZone" name="timeZone"
+                                ng-model="warehouseDetail.Timezone"
+                                ng-options="TimeZone.OffsetShort + ' - ' + TimeZone.Name  for TimeZone in timezones | orderBy:'Offset' track by TimeZone.TimezoneId"
+                                class="form-control" required>
+                            <option value="" disabled selected class="display-none">{{'TimeZoneSelectedOption' | translate}}</option>
+                        </select>
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.timeZone.$invalid &&
+                              (WarehouseForm.timeZone.$dirty || submitted)">
+                            {{'TimeZoneValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label " for="FaxCode">{{'Fax' | translate}}</label>
+                    <div>
+                        <div class="countryCodeLeft">
+                            <select id="FaxCode" name="FaxCode"
+                                    ng-model="warehouseDetail.FaxCode" ng-change="InitailDetailOfCountry(data,warehouseDetail.FaxCode,countries)"
+                                    ng-options="countryPhoneCode.Name + ' - (+' + countryPhoneCode.PhoneCode + ')' for countryPhoneCode in countryPhoneCodes | orderBy:'Name' track by '(+' + countryPhoneCode.PhoneCode + ')'"
+                                    class="form-control">
+                                <option value="" selected class="display-none">{{'CountryCodePlaceholder' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="countryCodeRight">
+                            <input type="text" id="fax" name="fax" ng-model="warehouseDetail.Fax" class="form-control" only-numeric placeholder="{{'FaxPlaceholder' | translate}}" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>           
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'Address' | translate}} {{'Detail' | translate}}</div>
+        <div class="panel-body">
+            <div class="col-xs-6 form-group">
+                <div ng-class="{ 'has-error': WarehouseForm.warehouseCountry.$invalid &&
+                                                         (WarehouseForm.warehouseCountry.$dirty || submitted) }">
+                    <label class="control-label" for="warehouseCountry">{{'Country' | translate}}</label>
+                    <div>
+                        <select id="warehouseCountry" name="warehouseCountry"
+                                ng-model="warehouseDetail.Country" ng-change="InitailDetailOfCountryCodes(data,countryPhoneCodes,warehouseDetail.Country)"
+                                ng-options="Country.Name for Country in countries | orderBy:'Name' track by Country.CountryId"
+                                class="form-control" required>
+                            <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                        </select>
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.warehouseCountry.$invalid &&
+                           (WarehouseForm.warehouseCountry.$dirty || submitted)">
+                            {{'CountryValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 form-group">
+                <div ng-class="{ 'has-error': WarehouseForm.address.$invalid &&
+                                                         (WarehouseForm.address.$dirty || submitted) }">
+                    <label class="control-label" for="address">{{'Address' | translate}}</label>
+                    <div>
+                        <input type="text" class="form-control" id="address" name="address" autofocus ng-model="warehouseDetail.Address" placeholder="{{'AddressPlaceholder' | translate}}" required />
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.address.$invalid &&
+                           (WarehouseForm.address.$dirty || submitted)">
+                            {{'AddressValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 form-group">
+                <div>
+                    <label class="control-label" for="address2">{{'Address2' | translate}}</label>
+                    <div>
+                        <input type="text" class="form-control" id="address2" name="address2" autofocus ng-model="warehouseDetail.Address2" placeholder="{{'Address2' | translate}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 form-group">
+                <div>
+                    <label class="control-label" for="address3">{{'Address3' | translate}}</label>
+                    <div>
+                        <input type="text" class="form-control" id="address3" name="address3" autofocus ng-model="warehouseDetail.Address3" placeholder="{{'Address3' | translate}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 form-group">
+                <div ng-class="{ 'has-error': WarehouseForm.city.$invalid &&
+                                                         (WarehouseForm.city.$dirty || submitted) }">
+                    <label class="control-label" for="city">{{'City' | translate}}</label>
+                    <div>
+                        <input type="text" class="form-control" id="city" name="city" autofocus ng-model="warehouseDetail.City"
+                               only-alphabets placeholder="{{'CityPlaceholder' | translate}}" required />
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.city.$invalid &&
+                           (WarehouseForm.city.$dirty || submitted)">
+                            {{'CityValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label class="control-label" for="suburb">{{'Suburb' | translate}}</label>
+                <div>
+                    <input type="text" id="suburb" name="suburb" ng-model="customerDetail.UserAddress.Suburb" class="form-control" placeholder="{{'Suburb' | translate}}" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 form-group">
+                <div ng-class="{ 'has-error': WarehouseForm.state.$invalid &&
+                                                         (WarehouseForm.state.$dirty || submitted) }">
+                    <label class="control-label" for="state">{{'State' | translate}}</label>
+                    <div>
+                        <input type="text" class="form-control" id="state" name="state" autofocus ng-model="warehouseDetail.State" ng-disabled="setStateDisable"
+                               only-alphabets placeholder="{{'StatePlaceholder' | translate}}" ng-required="setStateAndZip(warehouseDetail.Country.Code,'state')" />
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.state.$invalid &&
+                           (WarehouseForm.state.$dirty || submitted)">
+                            {{'StateValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 form-group">
+                <div ng-class="{ 'has-error': WarehouseForm.postalCode.$invalid &&
+                                                         (WarehouseForm.postalCode.$dirty || submitted) }">
+                    <label class="control-label" for="postalCode">{{'PostalCode' | translate}}</label>
+                    <div>
+                        <input type="text" id="postalCode" name="postalCode" ng-model="warehouseDetail.Zip" class="form-control" autofocus ng-disabled="setZipDisable"
+                               placeholder="{{'PostalCodePlaceholder' | translate}}" ng-required="setStateAndZip(warehouseDetail.Country.Code,'zip')" />
+                        <span class="help-block has-error"
+                              ng-show="WarehouseForm.postalCode.$invalid &&
+                           (WarehouseForm.postalCode.$dirty || submitted)">
+                            {{'PostalCodeValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--Manager Detail-->
+    <div class="panel panel-default">
+        <div class="panel-heading" ng-click="ShowHideFrayteuserPanel()" style="cursor: pointer;">
+            <div class="floatLeft" style="margin-top:9px;"><span><i ng-class="{'fa fa-plus-square-o' : !ShowFrayteuserPanel, 'fa fa-minus-square-o' : ShowFrayteuserPanel}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;"></i></span><span> {{'Manager' | translate}}  {{'Detail' | translate}} </span></div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body" ng-if="ShowFrayteuserPanel">
+            <div class="panel associateFrayteTable">
+                <div>
+                    <div class="colHeader">{{'Type' | translate}}</div>
+                    <div class="colHeader">{{'Name' | translate}}</div>
+                    <div class="colHeader">{{'Email' | translate}}</div>
+                    <div class="colHeader">{{'TelephoneNo' | translate}}</div>
+                    <div class="colHeader">{{'WorkingHrs' | translate}}</div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <div class="colCell"><input type="text" placeholder="{{'Manager' | translate}}" readonly /></div>
+                        <div class="colCell container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12" id="managerList">
+                                    <input type="text" ng-model="warehouseDetail.Manager" placeholder="{{'LineManagerPlaceHolder' | translate}}"
+                                           typeahead="frayteUser as frayteUser.ContactName for frayteUser in GetUsers($viewValue)"
+                                           typeahead-min-length="3" typeahead-popup-template-url="customPopupTemplate.html" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="colCell"><input type="text" ng-model="warehouseDetail.Manager.Email" placeholder="{{'Email' | translate}}" readonly /></div>
+                        <div class="colCell"><input type="text" ng-model="warehouseDetail.Manager.TelephoneNo" placeholder="{{'TelephoneNo' | translate}}" readonly /></div>
+                        <div class="colCell"><input type="text" ng-model="warehouseDetail.Manager.WorkingHours" placeholder="{{'WorkingHrs' | translate}}" readonly /></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'Location' | translate}}</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group row">
+                        <label for="Location" class="col-xs-3" style="padding-top: 8px;">{{'Location' | translate}}</label>
+                        <div class="col-xs-9 ">
+                            <input type="text" class="form-control" placeholder="{{'SearchYourLocation' | translate}}" ng-model="warehouseDetail.LocationName" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group row" ng-class="{'has-error' : !inputModel}">
+                        <button type="button" class="btn" ng-click="SetLocation(); toggleShow()" ng-show="!show"
+                                data-toggle="tooltip"
+                                tooltip="Change map location is disable by default. To change the map location, please click here. After changing the map location, please click 'set map location' to confirm the map lcoation."
+                                tooltip-placement="left">
+                             {{'SetMapLocation' | translate}}
+                        </button>&nbsp;&nbsp;
+                        <button type="button" class="btn" ng-click="EditLocation(); toggleShow()" ng-show="show">{{'ResetMapLocation' | translate}}</button>&nbsp;&nbsp;
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <br />
+            <div id="dvWarehouseMap">
+                <ui-gmap-google-map center="warehouseDetail.MapDetail" zoom="warehouseDetail.Zoom" draggable="true" options="map.options">
+                    <ui-gmap-marker coords="warehouseDetail.MarkerDetail" options="marker.options" events="marker.events" idkey="marker.id">
+                </ui-gmap-google-map>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="floatLeft">
+            <a href="" ng-click="GoBack()" class="btn-BigSecondary"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</a>
+        </div>
+        <div class="floatRight">
+            <button type="submit" ng-click="submitted=true" class="btn-BigPrimary"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</form>
+

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; font-family: calibri, sans-serif;padding:10px 20px;">
+	<header>
+        <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@ViewBag.ImageHeader" />
+        </div>
+    </header>
+			<br/>
+				<table style="border-spacing: 0px;">
+                <tr><td style="font-family: calibri, sans-serif;">Dear <b>@ViewBag.Staff,</b></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">Please update the fuel surcharge rate from control panel.</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">For that please click the below link and login with your credentials to update the fuel surcharge.</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;"><a href="@ViewBag.FuelPath"><img src="cid:@ViewBag.TrackButton" style="width: 150px; padding: 12px 0px;"></a></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				</table>
+				<br/>
+				<table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">@ViewBag.StaffEmail</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">FRAYTE Customer Service Team</td></tr>
+				</table>
+       <br/>
+	<footer>
+	<table style="border-spacing: 0px;">
+        <tr><td style="font-size: 12px;font-family: calibri, sans-serif;">FRAYTE GLOBAL All rights reserved.</td></tr>
+		</table>
+    </footer>
+</body>
+</html>

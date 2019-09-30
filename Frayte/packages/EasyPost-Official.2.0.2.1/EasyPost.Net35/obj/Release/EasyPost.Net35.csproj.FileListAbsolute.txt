@@ -1,0 +1,5 @@
+C:\Users\tribone\Documents\Visual Studio 2015\Projects\EasyPost\lib\net35\EasyPost.Net35.dll
+C:\Users\tribone\Documents\Visual Studio 2015\Projects\EasyPost\lib\net35\EasyPost.Net35.pdb
+C:\Users\tribone\Documents\Visual Studio 2015\Projects\EasyPost\EasyPost.Net35\obj\Release\EasyPost.Net35.csprojResolveAssemblyReference.cache
+C:\Users\tribone\Documents\Visual Studio 2015\Projects\EasyPost\EasyPost.Net35\obj\Release\EasyPost.Net35.dll
+C:\Users\tribone\Documents\Visual Studio 2015\Projects\EasyPost\EasyPost.Net35\obj\Release\EasyPost.Net35.pdb

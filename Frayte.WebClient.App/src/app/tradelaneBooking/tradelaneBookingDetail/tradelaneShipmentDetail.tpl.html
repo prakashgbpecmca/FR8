@@ -1,0 +1,235 @@
+﻿<div class="col-sm-12 paddingboth">
+    <!--start shipment detail code-->
+    <section class="P-LR">
+        <div class="row">
+            <div class="col-sm-12 flex paddingboth">
+                <div class="col-sm-6">
+                    <!--collection address details-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>{{'COLLECTION_ADDRESS' | translate}}:</strong></div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.ShipFrom.FirstName}} {{tradelaneBookingDetail.ShipFrom.LastName}}<br /></div>
+                                <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.ShipFrom.CompanyName}}<br /></div>
+                                <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.ShipFrom.Address}}<br /></div>
+                                <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.ShipFrom.Address2}}<br /></div>
+                                <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.ShipFrom.City}}<span ng-if="tradelaneBookingDetail.ShipFrom.Area">, {{tradelaneBookingDetail.ShipFrom.Area}}</span> <span ng-if="tradelaneBookingDetail.ShipFrom.Country.Code !== 'HKG'">-</span> {{tradelaneBookingDetail.ShipFrom.PostCode }}<br /></div>
+                                <div ng-if="tradelaneBookingDetail.ShipFrom.State">{{tradelaneBookingDetail.ShipFrom.State}}<br /></div>
+                                <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.ShipFrom.Country.Name}} <br /></div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div><span ng-show="tradelaneBookingDetail.DepartureAirport.AirportName">{{'Departure_Airport' | translate}}: <span>{{tradelaneBookingDetail.DepartureAirport.AirportName}} - {{tradelaneBookingDetail.DepartureAirport.AirportCode}}</span></span><br /></div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div><span ng-show="tradelaneBookingDetail.ShipFrom.Email !=='' && tradelaneBookingDetail.ShipFrom.Email !==null">{{'Email'| translate}}: <span id="link">{{tradelaneBookingDetail.ShipFrom.Email}}</span></span><br /></div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div><span ng-show="tradelaneBookingDetail.ShipFrom.Phone">{{'Phone_No'| translate}}: <span id="link">(+{{tradelaneBookingDetail.ShipFrom.Country.CountryPhoneCode}}) {{tradelaneBookingDetail.ShipFrom.Phone}}</span></span><br /></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                </div>
+                <div class="col-sm-6">
+                    <!--delivery address detail-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong>{{'DELIVERY_ADDRESS' | translate}}:</strong></div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{tradelaneBookingDetail.ShipTo.FirstName}} {{tradelaneBookingDetail.ShipTo.LastName}}<br /></div>
+                                <div>{{tradelaneBookingDetail.ShipTo.CompanyName}}<br /></div>
+                                <div>{{tradelaneBookingDetail.ShipTo.Address}}<br /></div>
+                                <div>{{tradelaneBookingDetail.ShipTo.Address2}}<br /></div>
+                                <div>{{tradelaneBookingDetail.ShipTo.City}}<span ng-if="tradelaneBookingDetail.ShipTo.Area">, {{tradelaneBookingDetail.ShipTo.Area}}</span> <span ng-if="tradelaneBookingDetail.ShipTo.Country.Code !== 'HKG'">-</span> {{tradelaneBookingDetail.ShipTo.PostCode}}<br /></div>
+                                <div ng-if="tradelaneBookingDetail.ShipTo.State">{{tradelaneBookingDetail.ShipTo.State}}<br /></div>
+                                 <div>{{tradelaneBookingDetail.ShipTo.Country.Name}}<br /></div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div><span ng-show="tradelaneBookingDetail.DestinationAirport.AirportName">{{'Destination_Airport' | translate}}: <span>{{tradelaneBookingDetail.DestinationAirport.AirportName}} - {{tradelaneBookingDetail.DestinationAirport.AirportCode}}</span></span><br /></div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div><span ng-show="tradelaneBookingDetail.ShipTo.Email !=='' && tradelaneBookingDetail.ShipTo.Email !==null">{{'Email'| translate}}: <span id="link">{{tradelaneBookingDetail.ShipTo.Email}}</span></span><br /></div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div><span ng-show="tradelaneBookingDetail.ShipTo.Phone">{{'Phone_No'| translate}}: <span id="link">(+{{tradelaneBookingDetail.ShipTo.Country.CountryPhoneCode}}) {{tradelaneBookingDetail.ShipTo.Phone}}</span></span><br /></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="clearfix">
+                     <!--<div class="col-sm-6"> 
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>{{'Notify_Party' | translate}}</strong></div>
+                            <div class="panel-body" ng-show="tradelaneBookingDetail.IsNotifyPartySameAsReceiver">
+                                <div class="uppercase bold" style="padding:5px 0;">
+                                    {{'Same_as_Consignee' | translate}}
+                                </div> 
+                            </div>
+                            <div class="panel-body" ng-show="!tradelaneBookingDetail.IsNotifyPartySameAsReceiver && tradelaneBookingDetail.NotifyParty.Country.CountryId">
+                                <div style="padding:5px 0;">
+                                    <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.NotifyParty.FirstName}} {{tradelaneBookingDetail.NotifyParty.LastName}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.NotifyParty.CompanyName}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.NotifyParty.Address}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.NotifyParty.Address2}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.NotifyParty.City}}<span ng-if="tradelaneBookingDetail.NotifyParty.Area">, {{tradelaneBookingDetail.NotifyParty.Area}}</span> <span ng-if="tradelaneBookingDetail.NotifyParty.Country.Code !== 'HKG'">-</span> {{tradelaneBookingDetail.NotifyParty.PostCode }}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{tradelaneBookingDetail.NotifyParty.Country.Name}} <br /></div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div><span ng-show="tradelaneBookingDetail.NotifyParty.Email !=='' && tradelaneBookingDetail.NotifyParty.Email !==null">{{'Email'| translate}}: <span id="link">{{tradelaneBookingDetail.NotifyParty.Email}}</span></span><br /></div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div><span ng-show="tradelaneBookingDetail.NotifyParty.Phone">{{'Phone_No'| translate}}: <span id="link">(+{{tradelaneBookingDetail.NotifyParty.Country.CountryPhoneCode}}) {{tradelaneBookingDetail.NotifyParty.Phone}}</span></span><br /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>--> 
+                    <div class="col-sm-6">
+                        <!--service options detail-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>{{'ProcessBox_ServiceOptions' | translate}}</strong></div>
+                            <div class="panel-body padding0">
+                                <div>
+                                    <div class="col-sm-12 paddingboth paddingAll10">
+                                        <div class="col-sm-6"><b>{{'Transit_Method' | translate}}:</b></div>
+                                        <div class="col-sm-6 paddingboth">{{tradelaneBookingDetail.ShipmentHandlerMethod.ShipmentHandlerMethodDisplay}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 paddingboth paddingAll10">
+                                        <div class="col-sm-6"><b>{{'Airline' | translate}}:</b></div>
+                                        <div class="col-sm-6 paddingboth">{{tradelaneBookingDetail.AirlinePreference.AirLineName}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                    <div class="col-sm-12 paddingboth paddingAll10">
+                                        <div class="col-sm-6"><b>{{'CreatedOn' | translate}}:</b></div>
+                                        <div class="col-sm-6 paddingboth">{{GetCorrectFormattedDatePanel(tradelaneBookingDetail.CreatedOnUtc)}} {{tradelaneBookingDetail.CreatedOnTime}}</div>
+                                    </div>
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-6"><b>&nbsp;</b></div>
+                                        <div class="col-sm-6 paddingboth"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+                    <div class="col-sm-6">
+                        <!--Shipment_RefDetail detail-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>{{'shipment_detail' | translate}}</strong></div>
+                            <div class="panel-body padding0">
+                                <div>
+                                    <div class="col-sm-12 paddingboth paddingAll10">
+                                        <div class="col-sm-6"><b>{{'Frayte_ShipmentNo' | translate}}</b></div>
+                                        <div class="col-sm-6 paddingboth">{{tradelaneBookingDetail.FrayteNumber}}</div>
+                                    </div>
+                                    <div class="col-sm-12 paddingboth paddingAll10">
+                                        <div class="col-sm-6"><b>{{'PaymentParty_TaxandDuties' | translate}}:</b></div>
+                                        <div class="col-sm-6 paddingboth">{{tradelaneBookingDetail.PayTaxAndDuties}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 paddingboth paddingAll10">
+                                        <div class="col-sm-6"><b>{{'Declared_Value' | translate}}:</b></div>
+                                        <div class="col-sm-6 paddingboth">{{tradelaneBookingDetail.DeclaredValue.toFixed()}} {{tradelaneBookingDetail.DeclaredCurrency.CurrencyCode}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 paddingboth paddingAll10">
+                                        <div class="col-sm-6"><b>{{'Shipment_Description' | translate}}:</b></div>
+                                        <div class="col-sm-6 paddingboth">{{tradelaneBookingDetail.ShipmentDescription}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" ng-show="Booking.TotalShipments">
+                <!--HAWB Detail section code here-->
+                <div class="col-sm-12 paddingboth" ng-show="tradelaneBookingDetail.HAWBPackages">
+                    <!--start grid code here-->
+                    <ul class="panel-body padding0 tradelaneBooking-textarea margin-bottom-none list-unstyled">
+                        <li>
+                            <div class="clearfix"></div>
+                            <div class="panel-body padding0">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading padding0">
+                                        <div class="col-sm-12 paddingboth grid-background">
+                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'HAWB' | translate}}</b></div></div>
+                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'TotalPakage' | translate}}</b> <small>({{'PKG' | translate}})</small></div></div>
+                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Cartoon' | translate}}</b> <small>({{'QTY' | translate}})</small></div></div>
+                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10"><b>{{'Gross_Weight' | translate}}</b> <small> ({{'kGS' | translate}})</small></div></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="panel-body padding0">
+                                        <div class="clearfix">
+                                            <div class="change" ng-repeat="hawb in tradelaneBookingDetail.HAWBPackages">
+                                                <div>
+                                                    <a class="col-sm-12 paddingboth flex pointer text-center">
+                                                        <div class="col-sm-3 paddingboth borderRight border-bottom" id="tradelane-document">
+                                                            <div class="padding-5" name="hawb"><span ng-click="showPopUp(hawb.HAWB , hawb.HAWBNumber)">{{hawb.HAWB}}</span> <span style="color:#333;">&nbsp; &nbsp; <i class="fa fa-download fa-14 download pointer top5" ng-click="downLaodHAWB(hawb.HAWB)" aria-hidden="true"></i></span></div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                            <div class="padding-5" name="hawb">{{hawb.Packages.length}}</div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                            <div class="padding-5" name="cartton">{{hawb.TotalCartons}}</div>
+                                                        </div>
+                                                        <div class="col-sm-3 paddingboth borderRight border-bottom">
+                                                            <div class="padding-5" name="weight">{{hawb.EstimatedWeight}}</div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="change" ng-show="Booking.UnAllocatedShipments">
+                                                <div ng-click="showPopUp('UnAllocated', Booking.HAWBNumber)">
+                                                    <a class="col-sm-12 paddingboth flex pointer text-left">
+                                                        <div class="col-sm-3 paddingboth text-center border-bottom">
+                                                            <div class="padding-5" name="hawb">{{'Unallocated_Pacakges' | translate}} ({{Booking.UnAllocatedShipments}})</div>
+                                                        </div>
+                                                        <div class="col-sm-9 paddingboth borderRight border-bottom"></div>
+                                                    </a>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 paddingboth grid-background">
+                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Total' | translate}}</b></div></div>
+                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{totalShipments()}} <span>({{'PKGS' | translate}})</span></b></div></div>
+                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{totalCarton()}} <small>({{'QTY' | translate}})</small></b></div></div>
+                                            <div class="col-sm-3 paddingboth text-center"><div class="padding-tb-lr-10"><b>{{totalWeight()}} ({{Lb_Kg}})</b></div></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <!--end-->
+                </div>
+                <!--end-->
+            </div>
+        </div>
+        <!--shipment reference details-->
+        <section>
+            <div ng-show="tradelaneBookingDetail.ShipmentStatusId !== 27" class="col-sm-12">
+                <p class="text-center underline top5 uppercase" style="color:green;">
+                    <b ng-show="tradelaneBookingDetail.OpearionZoneId === 2">{{'Please_GOTO' | translate}} <a target="_blank" class="pointer" href="{{trackingURL}}"> {{'Frayte_co_uk' | translate}}</a> {{'TrackingPageToTtrackthe_Detail' | translate}}</b>
+                    <b ng-show="tradelaneBookingDetail.OpearionZoneId === 1">{{'Please_GOTO' | translate}} <a target="_blank" class="pointer" href="{{trackingURL}}"> {{'Frayte_com' | translate}}</a> {{'TrackingPageToTtrackthe_Detail' | translate}}</b>
+                </p>
+            </div>
+        </section>
+    </section>
+    <!--end shipment detail code-->
+</div>

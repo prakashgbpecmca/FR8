@@ -1,0 +1,1086 @@
+﻿
+
+<section>
+    <form name="TradelaneIntegration" novalidate ng-submit="save(TradelaneIntegration.$valid)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+                <h4 class="modal-title">{{'Create_Manifest' | translate}}</h4>
+            </div>
+            <div class="modal-body" id="panel-color">
+                <div class="form-group">
+                    <div class="col-sm-12 paddingboth form-group">
+                        <div class="clearfix col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><strong>{{'Bags' | translate}}</strong></div>
+                                <div class="panel-body">
+                                    <div class="col-sm-12 paddingboth">
+                                        <!--bags custom grid-->
+                                        <div class="panel panel-default">
+                                            <div class="width100 flex grid-background">
+                                                <div class="width986 flex">
+                                                    <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Hub_' | translate}}</span></div>
+                                                    <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Bag_Number' | translate}}</span></div>
+                                                    <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Carrier' | translate}}</span></div>
+                                                    <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Total_Consignment' | translate}}</span> </div>
+                                                    <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Length' | translate}} ({{'CM' | translate}})</span></div>
+                                                    <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Width' | translate}} ({{'CM' | translate}})</span></div>
+                                                    <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Height' | translate}} ({{'CM' | translate}})</span></div>
+                                                    <div class="width10 bold quotation-table-padding" style="border-right:none;"><span class="quotation-table-body padding-10-5">{{'Total_Gross_Weight' | translate}} ({{'Kgs' | translate}})</span></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                                <div class="panel-body padding0">
+                                                    <ul class="list-unstyled change margin-bottom-none">
+                                                        <li ng-repeat="Package in tradelaneBookingIntegration.Shipment.Packages" ng-init="packageForm='tags'+$index" class="alternate border-bottom">
+                                                            <ng-form name="{{packageForm}}">
+                                                                <div class="flex">
+                                                                    <div class="width20 lineheight40 word-wrap padding-5 border-right">
+                                                                        <span>{{hub.Name}}</span>
+                                                                    </div>
+                                                                    <div class="width150 lineheight40 word-wrap padding-5 border-right">
+                                                                        <a ng-click="GetShipments(Package.BagId)" class="pointer">
+                                                                            {{Package.CartonNumber}}
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="width150 lineheight40 word-wrap padding-5 border-right">
+                                                                        <span>{{Package.Carrier}}</span>
+                                                                    </div>
+                                                                    <div class="width10 lineheight40 word-wrap padding-5 border-right">
+                                                                        <span>{{Package.NoOfPcs}}</span>
+                                                                    </div>
+                                                                    <div class="width10 borderRight padding-5 border-bottom border-right" ng-class="{ 'has-error': TradelaneIntegration[packageForm].length.$invalid &&
+                                                         (TradelaneIntegration[packageForm].length.$dirty || submitted) }">
+                                                                        <input type="text" only-decimal name="length" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-model="Package.Length" required />
+                                                                    </div>
+                                                                    <div class="width10 borderRight padding-5 border-bottom" ng-class="{ 'has-error': TradelaneIntegration[packageForm].width.$invalid &&
+                                                           (TradelaneIntegration[packageForm].width.$dirty || submitted) }">
+                                                                        <input type="text" only-decimal name="width" class="form-control" style="width: 100%; margin:10px 0px 10px;"
+                                                                               ng-model="Package.Width" required />
+                                                                    </div>
+                                                                    <div class="width10 borderRight padding-5 border-bottom" ng-class="{ 'has-error': TradelaneIntegration[packageForm].height.$invalid &&
+                                                           (TradelaneIntegration[packageForm].height.$dirty || submitted) }">
+                                                                        <input type="text" only-decimal name="height" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-model="Package.Height" required />
+                                                                    </div>
+                                                                    <div class="width10 lineheight40 word-wrap padding-5">
+                                                                        {{Package.Weight}}
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </ng-form>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end code-->
+                                        <div>
+                                            <b>{{'Total_Gross_Weight' | translate}} ({{'Kgs' | translate}}):</b> {{bagWeightTotal()}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 paddingboth">
+                            <div class="col-sm-12">
+                                <!--manifest detail-->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><strong>{{'shipment_detail' | translate}}:</strong></div>
+                                    <div class="panel-body">
+                                        <!--shipment handler method code here-->
+                                        <div class="col-sm-12 paddingboth form-group" ng-class="{ 'has-error': TradelaneIntegration.shipmentHandler.$invalid &&
+                                                         (TradelaneIntegration.shipmentHandler.$dirty || submitted) }">
+                                            <div class="col-sm-3 paddingboth">
+                                                <label for="shipmentHandler" id="shipmentHandlerMethod" class="control-label lineheight24">{{'ShipmentHandlerMethod' | translate}} <span class="redColor">*</span></label>
+                                            </div>
+                                            <div class="col-sm-4 paddingboth " id="Xe">
+                                                <select id="shipmentHandler" name="shipmentHandler"
+                                                        ng-options="ShipmentType as ShipmentType.ShipmentHandlerMethodDisplay for ShipmentType in ShipmentMethods | orderBy : 'ShipmentHandlerMethodName' track by ShipmentType.ShipmentHandlerMethodId "
+                                                        ng-change="ShipmentHandlerMethodChange()"
+                                                        ng-model="tradelaneBookingIntegration.Shipment.ShipmentHandlerMethod" class="form-control fontsize12" required>
+                                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'ShipmentHandlerMethod' | translate}} ({{'Required' | translate}})</option>
+                                                </select>
+                                                <span class="help-block has-error"
+                                                      ng-show="TradelaneIntegration.shipmentHandler.$invalid &&
+                                            (TradelaneIntegration.shipmentHandler.$dirty || submitted)">
+                                                    {{'ShipmentHandlerMethod' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <!--end-->
+                                        <!--battery declaration code here-->
+                                        <div>
+                                            <div>
+                                                <div class="col-sm-12 paddingboth form-group">
+                                                    <h4 class="uppercase">{{'Battery_Declaration' | translate}}:</h4>
+                                                </div>
+                                                <div class="col-sm-12 form-group clearfix paddingboth">
+                                                    <label for="batteryType" id="batteryTypeLabel" class="control-label col-sm-3 paddingboth lineheight24">{{'Battery_Type' | translate}} <span class="redColor">*</span></label>
+                                                    <div class="col-sm-4 paddingboth">
+                                                        <div id="Xe">
+                                                            <select id="batteryType"
+                                                                    ng-options="battery.value  as battery.key for battery  in batteryDeclarations " ng-model="tradelaneBookingIntegration.Shipment.BatteryDeclarationType"
+                                                                    name="batteryType" class="form-control fontsize12"></select>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div ng-show="tradelaneBookingIntegration.Shipment.BatteryDeclarationType !=='None'">
+                                                    <div class="panel panel-default">
+                                                        <div>
+                                                            <!--download template code-->
+                                                            <div class="col-sm-12 form-group clearfix paddingboth">
+                                                                <div class="col-sm-12 paddingboth border clearfix">
+                                                                    <div class="border-bottom padding-10">
+                                                                        {{'Download_Sample_MSDS' | translate}}
+                                                                    </div>
+                                                                    <div class="col-sm-12 padding-10">
+                                                                        <div class="col-sm-3 paddingboth">
+                                                                            <a href="downloadForm/Battery_Declaration_Form_MSDS.xls" download="Battery_Declaration_Form_MSDS.xls" class="btn btn-blue fontsize12  width90">
+                                                                                <i class="fa fa-file-excel-o" aria-hidden="true"></i> {{'MSDS' | translate}}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-sm-4 paddingright">
+                                                                            <a href="downloadForm/Battery_Declaration_Form_UN38.xls" download="Battery_Declaration_Form_UN38.xls" class="btn btn-blue fontsize12  width90">
+                                                                                <i class="fa fa-file-excel-o" aria-hidden="true"></i> {{'UN_38' | translate}}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-sm-5 paddingboth text-right">
+                                                                            <a href="downloadForm/Battery_Declaration_Form_sample.xls" download="Battery_Declaration_Form_sample.xls" class="btn btn-blue fontsize12 form-control">
+                                                                                <i class="fa fa-file-excel-o" aria-hidden="true"></i> {{'Battery_Declaration' | translate}}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--end-->
+
+                                                            <div class="col-sm-12 form-group clearfix paddingboth" ng-class="{ 'has-error': TradelaneIntegration.msdsBattery.$invalid &&
+                                                         (TradelaneIntegration.msdsBattery.$dirty || submitted) }">
+                                                                <div class="col-sm-4 paddingboth">
+                                                                    <label for="msdsBattery" id="msdsBatteryLabel" class="control-label lineheight24">{{'MSDS' | translate}} <span class="redColor">*</span></label>
+                                                                </div>
+                                                                <div class="col-sm-8 paddingboth">
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" name="msdsBattery" id="msdsBattery" class="form-control" ng-model="MSDS" ng-required="tradelaneBookingIntegration.Shipment.BatteryDeclarationType !== 'None'" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-4 paddingboth">
+                                                                        <div class="button col-sm-12 paddingboth"
+                                                                             ng-model="msBatteryForm"
+                                                                             name="shipmentmsBatteryForm"
+                                                                             ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                                                             accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                                                             ngf-select="WhileAddingMsBatteryForm($files, $file, $event)">
+                                                                            <button type="button" class="btn btn-blue fontsize12 col-sm-12">
+                                                                                {{'Upload_File' | translate}}
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="help-block has-error col-sm-12"
+                                                                          ng-show="TradelaneIntegration.msdsBattery.$invalid && (TradelaneIntegration.msdsBattery.$dirty || submitted)">
+                                                                        {{'MSDS_Form_Required' | translate}}
+                                                                    </span>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="col-sm-12 form-group clearfix paddingboth" ng-class="{ 'has-error': TradelaneIntegration.unBattery.$invalid && (TradelaneIntegration.unBattery.$dirty || submitted) }">
+                                                                <label for="shipmentmsBatteryFormUN38" id="shipmentmsBatteryFormUN38Label" class="control-label col-sm-4 paddingboth lineheight24">{{'UN_38' | translate}} <span class="redColor">*</span></label>
+                                                                <div class="col-sm-8 paddingboth">
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" class="form-control" readonly ng-required="tradelaneBookingIntegration.Shipment.BatteryDeclarationType !== 'None'" name="unBattery"
+                                                                               ng-model="UN38" />
+                                                                    </div>
+                                                                    <div class="col-sm-4 paddingboth">
+                                                                        <div class="button col-sm-12 paddingboth"
+                                                                             ng-model="UN38Form"
+                                                                             name="shipmentmsBatteryFormUN38"
+                                                                             ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                                                             accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                                                             ngf-select="WhileAddingUN38BatteryForm($files, $file, $event)">
+                                                                            <button type="button" class="btn btn-blue fontsize12 col-sm-12">
+                                                                                {{'Upload_File' | translate}}
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="help-block has-error col-sm-12"
+                                                                          ng-show="TradelaneIntegration.unBattery.$invalid &&  (TradelaneIntegration.unBattery.$dirty || submitted)">
+                                                                        {{'UN_Form_Required' | translate}}
+                                                                    </span>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="col-sm-12 form-group clearfix paddingboth" ng-class="{ 'has-error': TradelaneIntegration.batteryDeclarationForm.$invalid &&
+                                                         (TradelaneIntegration.batteryDeclarationForm.$dirty || submitted) }">
+                                                                <label for="shipmentmsBatteryFormBatteryDeclaration" id="shipmentmsBatteryFormBatteryDeclarationLabel" class="control-label col-sm-4 paddingboth lineheight24">{{'Battery_Declaration' | translate}} <span class="redColor">*</span></label>
+                                                                <div class="col-sm-8 paddingboth">
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" class="form-control" readonly ng-required="tradelaneBookingIntegration.Shipment.BatteryDeclarationType !== 'None'"
+                                                                               name="batteryDeclarationForm" ng-model="BatteryDeclaration" />
+                                                                    </div>
+                                                                    <div class="col-sm-4 paddingboth">
+                                                                        <div class="button col-sm-12 paddingboth"
+                                                                             ng-model="BatteryDeclarationForm2"
+                                                                             name="shipmentmsBatteryFormBatteryDeclaration"
+                                                                             ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                                                             accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                                                             ngf-select="WhileAddingBatteryDeclarationForm($files, $file, $event)">
+                                                                            <button type="button" class="btn btn-blue fontsize12 col-sm-12">
+                                                                                {{'Upload_File' | translate}}
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="help-block has-error col-sm-12"
+                                                                          ng-show="TradelaneIntegration.batteryDeclarationForm.$invalid && (TradelaneIntegration.batteryDeclarationForm.$dirty || submitted)">
+                                                                        {{'Battery_Declaration_Required' | translate}}
+                                                                    </span>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <!--end-->
+                                    </div>
+                                </div>
+                                <!--end-->
+                            </div>
+                        </div>
+                        <div class="clearfix col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i ng-class="{'fa fa-minus-square-o' : !Collapsed, 'fa fa-plus-square-o' : Collapsed}" class="pointer" ng-click="Collapsed = !Collapsed" style="font-size: 20px; padding: 1px 10px 0px 0px;float:left;">
+                                    </i> {{'MAWB_Detail' | translate}}
+                                </div>
+                                <div class="panel-body" ng-show="!Collapsed">
+                                    <div class="clearfix">
+                                        <!--upload code-->
+                                        <!--<div class="col-sm-6">
+                                            <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration.mawbDoc.$invalid &&
+                                                         (TradelaneIntegration.mawbDoc.$dirty || submitted) }">
+                                                <label class="control-label col-sm-4 paddingboth margintop7" for="mawb">{{'MAWB_Document' | translate}} <span class="redColor">*</span></label>
+                                                <div class="col-sm-8 paddingboth">
+                                                    <div class="display-none"><div class="width150"></div></div>
+                                                    <input type="text" id="mawbDoc" name="mawbDoc" ng-model="MawbDoc" readonly required
+                                                           class="form-control mawb fontsize12 ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength">
+                                                    <span class="help-block has-error"
+                                                          ng-show="TradelaneIntegration.mawbDoc.$invalid && (TradelaneIntegration.mawbDoc.$dirty || submitted)">
+                                                        {{'MAWB_Document_Required' | translate}}
+                                                    </span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="pull-right">
+                                                <div class="tradelane-document">
+                                                    <div class="button"
+                                                         ng-model="shipmentMAWB"
+                                                         name="shipmentMAWB"
+                                                         ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                                         accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                                         ngf-select="WhileAddingMAWB($files, $file, $event)">
+                                                        <button type="button" class="btn btn-blue background-white fontsize12">
+                                                            {{'Upload_MAWB' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                        <!--end-->
+                                    </div>
+                                    <div class="col-sm-12 paddingboth"><hr></div>
+                                    <div>
+                                        <div class="modal-body">
+                                            <div class="row form-group">
+                                                <div ng-if="tradelaneBookingIntegration.Shipment.ShipmentHandlerMethod.ShipmentHandlerMethodId !== 5">
+                                                    <!--MAWB and Agent code-->
+                                                    <div class="clearfix">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration.mawb.$invalid &&
+                                                         (TradelaneIntegration.mawb.$dirty || submitted) }">
+                                                                <label class="control-label col-sm-4 paddingboth margintop7" for="mawb">{{'MAWB_' | translate}} <span class="redColor">*</span></label>
+                                                                <div class="col-sm-8 paddingboth" ng-class="{'airline-three-digit-code': AirlineCode }">
+                                                                    <!--start airline code in input-->
+                                                                    <div ng-class="{'display-none': !AirlineCode, 'display-block': AirlineCode}"><div class="width150">{{AirlineCode}}</div></div>
+                                                                    <!--end-->
+                                                                    <input type="text" id="mawb" name="mawb" ng-model="MawbMainObj.MAWB" ui-mask="9999 9999" class="form-control mawb fontsize12" maxlength="9" required />
+                                                                    <span class="help-block has-error"
+                                                                          ng-show="TradelaneIntegration.mawb.$invalid && (TradelaneIntegration.mawb.$dirty || submitted)">
+                                                                        {{'MAWB_Required' | translate}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration.agent.$invalid &&  (TradelaneIntegration.agent.$dirty || submitted) }">
+                                                                <label class="control-label col-sm-4 paddingboth margintop7" for="agent">{{'Agent' | translate}} <span class="redColor">*</span></label>
+                                                                <div class="col-sm-7 paddingboth" id="Xe">
+                                                                    <select id="agent" name="agent" ng-change="setAddressBookinfo(AddressBook.Country)"
+                                                                            ng-model="MawbMainObj.Agent"
+                                                                            ng-options="Ag as Ag.CustomerName for Ag in Agents"
+                                                                            class="form-control fontsize12" required>
+                                                                        <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Agent' | translate}} ({{'Required' | translate}})</option>
+                                                                    </select>
+                                                                    <span class="help-block has-error"
+                                                                          ng-show="TradelaneIntegration.agent.$invalid && (TradelaneIntegration.agent.$dirty || submitted)">
+                                                                        {{'AgentValidError' | translate}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-sm-1">
+                                                                    <i class="fa fa-plus text-right frayte-orange fa-14 pointer top7" ng-click="AddEditUser()"></i>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <div ng-repeat="Ary in MawbMainObj.flightArray track by $index" ng-init="packageform='tag'+$index">
+                                                        <div class="clearfix col-sm-12">
+                                                            <!--<div class="clearfix" ng-class="{ 'col-sm-12': ShipmentHandlerMethodId===1, 'col-sm-6':ShipmentHandlerMethodId===2 || ShipmentHandlerMethodId===4}">-->
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">{{GetFlightNo($index, MawbMainObj.flightArray)}} {{'Flight' | translate}} <span ng-show="Ary.IsRemove === true" class="pull-right"><button type="button" class="btn-link pull-right" ng-click="RemoveitemWithoutLeg(Ary)"><i class="fa fa-minus" aria-hidden="true"></i> {{'Remove' | translate}}</button></span> <span class="clearfix"></span></div>
+                                                                <div class="panel-body">
+                                                                    <div class="col-sm-12 paddingboth clearfix">
+                                                                        <ng-form name="{{packageform}}">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageform].airline.$invalid &&  (TradelaneIntegration[packageform].airline.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="agent">{{'Airline' | translate}} <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth" id="Xe">
+                                                                                        <select id="airline" name="airline" ng-change="ChangeAirlineCode(Ary, $index)"
+                                                                                                ng-model="Ary.AirlineId"
+                                                                                                ng-options="Ar.AirlineId as Ar.AirLineName + ' - ' + Ar.AilineCode disable when Ar.Disabled === true for Ar in AirlineList"
+                                                                                                class="form-control fontsize12" required>
+                                                                                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Airline' | translate}} ({{'Required' | translate}})</option>
+                                                                                        </select>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageform].airline.$invalid && (TradelaneIntegration[packageform].airline.$dirty || submitted)">
+                                                                                            {{'Airline_Required' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageform].flight.$invalid && (TradelaneIntegration[packageform].flight.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="mawb">{{'FlightNumber' | translate}} <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth" ng-class="{'airplane-three-digit-code': Ary.AirlineCode2 !== undefined && Ary.AirlineCode2 !== null &&  Ary.AirlineCode2 !== ''}">
+                                                                                        <!--start airline code in input-->
+                                                                                        <!--<div ng-class="{'display-none': Ary.AirlineCode2 === undefined || Ary.AirlineCode2 === null ||  Ary.AirlineCode2 === '', 'display-block': Ary.AirlineCode2 !== undefined && Ary.AirlineCode2 !== null &&  Ary.AirlineCode2 !== ''}"><div class="width150">{{Ary.AirlineCode2}}</div></div>-->
+                                                                                        <!--end-->
+                                                                                        <div class="clearfix">
+                                                                                            <div class="width13">
+                                                                                        <input type="text" id="flight" placeholder="___" name="flight" value="{{Ary.AirlineCode2}}" class="form-control fix-input fontsize12 border-right-none" maxlength="3" required />
+                                                                                            </div>
+                                                                                            <div class="width87">
+                                                                                        <input type="text" alpha-numeric id="flight" name="flight" ng-model="Ary.FlightNumber" class="form-control fix-input fontsize12 border-left-none" maxlength="10"
+                                                                                               placeholder="{{'FlightNumber' | translate}} ({{'Required' | translate}})" ng-change="CheckFlightNo(Ary.FlightNumber)" required />
+                                                                                        </div>
+                                                                                            </div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageform].flight.$invalid &&  (TradelaneIntegration[packageform].flight.$dirty || submitted)">
+                                                                                            {{'FlightNumber_Required' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>                                                      
+                                                                            <div class="col-sm-12 paddingboth"><hr /></div>
+                                                                            <div class="col-sm-12 paddingboth form-group">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageform].timeZone.$invalid && (TradelaneIntegration[packageform].timeZone.$dirty || submitted) }">
+                                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="timeZone">{{'TimeZone' | translate}} <span class="redColor">*</span></label>
+                                                                                        <div class="col-sm-8 paddingboth">
+                                                                                            <div class="col-sm-12 paddingboth" id="Xe">
+                                                                                                <select id="timeZone" name="timeZone"
+                                                                                                        ng-model="Ary.Timezone"
+                                                                                                        ng-options="TimeZone as TimeZone.OffsetShort + ' - ' + TimeZone.Name for TimeZone in timezones | orderBy:'Offset' track by TimeZone.TimezoneId"
+                                                                                                        class="form-control fontsize12" required>
+                                                                                                    <option value="" disabled selected class="display-none">{{'TimeZoneSelectedOption' | translate}}</option>
+                                                                                                </select>
+                                                                                                <span class="help-block has-error"
+                                                                                                      ng-show="TradelaneIntegration[packageform].timeZone.$invalid && (TradelaneIntegration[packageform].timeZone.$dirty || submitted)">
+                                                                                                    {{'TimeZoneValidationError' | translate}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="col-sm-12 paddingboth">
+                                                                                        <div class="form-group">
+                                                                                            <span class="visibility">hidden</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageform].etdDate.$invalid && (TradelaneIntegration[packageform].etdDate.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etdDate">({{'ETD_' | translate}}) <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth">
+                                                                                        <div class="input-group col-sm-12">
+                                                                                            <input type="text" id="etdDate" name="etdDate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                                                                   ng-model="Ary.ETD" is-open="Ary.ETDopened"
+                                                                                                   min-date="mindate" max-date="maxdate" required
+                                                                                                   datepicker-options="Ary.dateOptions1" readonly
+                                                                                                   close-text="Close" ng-click="OpenCalender1($event)" placeholder="{{'ETD_' | translate}} ({{'Required' | translate}})" />
+                                                                                            <span class="input-group-btn">
+                                                                                                <button type="button" class="btn btn-default" ng-click="OpenCalender1($event, $index, Ary.ETDopened)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageform].etdDate.$invalid && (TradelaneIntegration[packageform].etdDate.$dirty || submitted)">
+                                                                                            {{'ETD_Required' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': (TradelaneIntegration[packageform].etdtime.$invalid || TradelaneIntegration[packageform].etdtime.$error.pattern) &&  (TradelaneIntegration[packageform].etdtime.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etatime">({{'ETD_' | translate}}) {{'Time' | translate}} <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth">
+                                                                                        <div class="col-sm-2 paddingboth">
+                                                                                            <input type="text"
+                                                                                                   class="form-control input-sm fontsize12"
+                                                                                                   placeholder="{{'TimePlaceholder' | translate}}"
+                                                                                                   name="etdtime"
+                                                                                                   ng-model="Ary.ETDTime"
+                                                                                                   ng-change="ValidTime(Ary.ETDTime)"
+                                                                                                   ui-mask="99:99"
+                                                                                                   ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                                                                        </div>
+                                                                                        <div class="col-sm-6 margintop7"><b>{{'Hours24' | translate}}</b></div>
+                                                                                        <div class="clearfix"></div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageform].etdtime.$invalid && !TradelaneIntegration[packageform].etdtime.$error.pattern && (TradelaneIntegration[packageform].etdtime.$dirty || submitted)">
+                                                                                            {{'TimeValidationError' | translate}}
+                                                                                        </span>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageform].etdtime.$error.pattern &&(TradelaneIntegration[packageform].etdtime.$dirty || submitted)">
+                                                                                            {{'TimeNotValid' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageform].etaDate.$invalid &&(TradelaneIntegration[packageform].etaDate.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etaDate">({{'ETA_' | translate}}) <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth">
+                                                                                        <div class="input-group co-sm-12">
+                                                                                            <input type="text" id="etaDate" name="etaDate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                                                                   ng-model="Ary.ETA" is-open="Ary.ETAopened"
+                                                                                                   min-date="mindate" max-date="maxdate" required
+                                                                                                   datepicker-options="Ary.dateOptions" readonly
+                                                                                                   close-text="Close" ng-click="OpenCalender($event, $index, Ary.opened)" placeholder="{{'ETA_' | translate}} ({{'Required' | translate}})" />
+                                                                                            <span class="input-group-btn">
+                                                                                                <button type="button" class="btn btn-default" ng-click="OpenCalender($event, $index, Ary.ETAopened)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageform].etaDate.$invalid &&(TradelaneIntegration[packageform].etaDate.$dirty || submitted)">
+                                                                                            {{'ETA_Required' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': (TradelaneIntegration[packageform].etatime.$invalid || TradelaneIntegration[packageform].etatime.$error.pattern) &&  (TradelaneIntegration[packageform].etatime.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etatime">({{'ETA_' | translate}}) {{'Time' | translate}} <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth">
+                                                                                        <div class="col-sm-2 paddingboth">
+                                                                                            <input type="text"
+                                                                                                   class="form-control input-sm fontsize12"
+                                                                                                   placeholder="{{'TimePlaceholder' | translate}}"
+                                                                                                   name="etatime"
+                                                                                                   ng-model="Ary.ETATime"
+                                                                                                   ng-change="ValidTime(Ary.ETATime)"
+                                                                                                   ui-mask="99:99"
+                                                                                                   ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                                                                        </div>
+                                                                                        <div class="col-sm-6 margintop7"><b>{{'Hours24' | translate}}</b></div>
+                                                                                        <div class="clearfix"></div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageform].etatime.$invalid && !TradelaneIntegration[packageform].etatime.$error.pattern && (TradelaneIntegration[packageform].etatime.$dirty || submitted)">
+                                                                                            {{'TimeValidationError' | translate}}
+                                                                                        </span>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageform].etatime.$error.pattern && (TradelaneIntegration[packageform].etatime.$dirty || submitted)">
+                                                                                            {{'TimeNotValid' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </ng-form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 paddingboth padding-top15" ng-show="Ary.IsAdd === true">
+                                                            <button type="button" class="btn-simple btn-save pull-right" ng-click="AdditemWithoutLeg(Ary)"><i class="fa fa-plus fa-14" aria-hidden="true"></i> {{'Add_More' | translate}}</button>
+                                                            <!--<button type="button" class="btn-simple btn-danger pull-right" ng-click="Remove(Ary)"><i class="fa fa-minus fa-14" aria-hidden="true"></i> {{'Remove' | translate}}</button>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div ng-if="tradelaneBookingIntegration.Shipment.ShipmentHandlerMethod.ShipmentHandlerMethodId === 5">
+                                                    <!--small four(6) panel code here-->
+                                                    <div class="col-sm-12">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">{{WithLegJson.FirstLeg.Leg1}}</div>
+                                                            <div class="panel-body">
+                                                                <div class="col-sm-12 paddingboth clearfix">
+                                                                    <div class="col-sm-6 form-group" ng-class="{ 'has-error':  TradelaneIntegration.mawb1.$invalid &&
+                                                         ( TradelaneIntegration.mawb1.$dirty || submitted) }">
+                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="mawb1">{{'MAWB_' | translate}} <span class="redColor">*</span></label>
+                                                                        <div class="col-sm-8 paddingboth" ng-class="{'airline-three-digit-code': AirlineCodeLegOne !== undefined && AirlineCodeLegOne !== null &&  AirlineCodeLegOne !== ''}">
+                                                                            <!--start airline code in input-->
+                                                                            <div ng-class="{'display-none': AirlineCodeLegOne === undefined || AirlineCodeLegOne === null ||  AirlineCodeLegOne === '', 'display-block': AirlineCodeLegOne !== undefined && AirlineCodeLegOne !== null &&  AirlineCodeLegOne !== ''}"><div class="width150">{{AirlineCodeLegOne}}</div></div>
+                                                                            <input type="text" id="mawb1" name="mawb1" ng-model="WithLegJson.FirstLeg.MawbMainObj.MAWB" ui-mask="9999 9999" class="form-control mawb fontsize12" maxlength="9" required />
+                                                                            <span class="help-block has-error"
+                                                                                  ng-show="TradelaneIntegration.mawb1.$invalid &&  ( TradelaneIntegration.mawb1.$dirty || submitted)">
+                                                                                {{'MAWB_Required' | translate}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': TradelaneIntegration.agent1.$invalid && (TradelaneIntegration.agent1.$dirty || submitted) || LegJsonValue1}">
+                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="agent1">{{'Agent' | translate}} <span class="redColor">*</span></label>
+                                                                        <div class="col-sm-8 paddingboth" id="Xe">
+                                                                            <select id="agent1" name="agent1" ng-change="CheckSameAgent(WithLegJson, 'Leg1')"
+                                                                                    ng-model="WithLegJson.FirstLeg.MawbMainObj.Agent"
+                                                                                    ng-options="Ag as Ag.CustomerName  for Ag in Agents"
+                                                                                    class="form-control fontsize12" required>
+                                                                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Agent' | translate}} ({{'Required' | translate}})</option>
+                                                                            </select>
+                                                                            <span class="help-block has-error"
+                                                                                  ng-show="TradelaneIntegration.agent1.$invalid &&  (TradelaneIntegration.agent1.$dirty || submitted)">
+                                                                                {{'AgentValidError' | translate}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <!--<div class="col-sm-12 paddingboth"><hr></div>-->
+                                                                </div>
+                                                                <div ng-repeat="Ary in WithLegJson.FirstLeg.MawbMainObj.flightArray track by $index" ng-init="packageForm='tag'+$index">
+                                                                    <ng-form name="{{packageForm}}">
+                                                                        <div class="col-sm-12 paddingboth clearfix">
+                                                                            <div class="col-sm-6">
+                                                                                <div ng-class="{ 'has-error': TradelaneIntegration[packageForm].airline.$invalid &&   (TradelaneIntegration[packageForm].airline.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="airline">{{'Airline' | translate}} <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth" id="Xe">
+                                                                                        <select id="airline" name="airline" ng-change="ChangeAirlineCodeLeg(Ary, $index, 'Leg1')"
+                                                                                                ng-model="Ary.AirlineId"
+                                                                                                ng-options="Ar.AirlineId as Ar.AirLineName + ' - ' + Ar.AilineCode disable when Ar.Disabled === true for Ar in AirlineList"
+                                                                                                class="form-control fontsize12" required>
+                                                                                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Airline' | translate}} ({{'Required' | translate}})</option>
+                                                                                        </select>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageForm].airline.$invalid &&   (TradelaneIntegration[packageForm].airline.$dirty || submitted)">
+                                                                                            {{'Airline_Required' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div ng-class="{ 'has-error': TradelaneIntegration[packageForm].flightNo.$invalid && (TradelaneIntegration[packageForm].flightNo.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="flightNo">{{'FlightNumber' | translate}} <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth" ng-class="{'airline-three-digit-code': Ary.AirlineCode2 !== undefined && Ary.AirlineCode2 !== null &&  Ary.AirlineCode2 !== ''}">
+                                                                                        <!--start airline code in input-->
+                                                                                        <!--<div ng-class="{'display-none': Ary.AirlineCode2 === undefined || Ary.AirlineCode2 === null ||  Ary.AirlineCode2 === '', 'display-block': Ary.AirlineCode2 !== undefined && Ary.AirlineCode2 !== null &&  Ary.AirlineCode2 !== ''}"><div class="width150">{{Ary.AirlineCode2}}</div></div>-->
+                                                                                        <!--end-->
+                                                                                        <div class="clearfix">
+                                                                                            <div class="width13">
+                                                                                                <input type="text" id="flight" placeholder="___" name="flight" value="{{Ary.AirlineCode2}}" class="form-control fix-input fontsize12 border-right-none" maxlength="3" required />
+                                                                                            </div>
+                                                                                            <div class="width87">
+                                                                                                <input type="text" alpha-numeric id="flightNo" name="flightNo" ng-model="Ary.FlightNumber" class="form-control fix-input fontsize12" maxlength="10" required
+                                                                                                       placeholder="{{'FlightNumber' | translate}} ({{'Required' | translate}})" ng-change="CheckFlightNo(Ary.FlightNumber)" />
+                                                                                                </div>
+                                                                                                    </div>
+                                                                                                <span class="help-block has-error"
+                                                                                                      ng-show="TradelaneIntegration[packageForm].flightNo.$invalid && (TradelaneIntegration[packageForm].flightNo.$dirty || submitted)">
+                                                                                                    {{'FlightNumber_Required' | translate}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="clearfix"></div>
+                                                                                        </div>
+                                                                                    </div>                                                                          
+                                                                            <div class="col-sm-12 paddingboth"><hr /></div>
+                                                                            <div class="col-sm-12 paddingboth form-group">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageForm].timeZone.$invalid && (TradelaneIntegration[packageForm].timeZone.$dirty || submitted) }">
+                                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="timeZone">{{'TimeZone' | translate}} <span class="redColor">*</span></label>
+                                                                                        <div class="col-sm-8 paddingboth">
+                                                                                            <div class="col-sm-12 paddingboth" id="Xe">
+                                                                                                <select id="timeZone" name="timeZone"
+                                                                                                        ng-model="Ary.Timezone"
+                                                                                                        ng-options="TimeZone as TimeZone.OffsetShort + ' - ' + TimeZone.Name  for TimeZone in timezones | orderBy:'Offset' track by TimeZone.TimezoneId"
+                                                                                                        class="form-control fontsize12" required>
+                                                                                                    <option value="" disabled selected class="display-none">{{'TimeZoneSelectedOption' | translate}}</option>
+                                                                                                </select>
+                                                                                                <span class="help-block has-error"
+                                                                                                      ng-show="TradelaneIntegration[packageForm].timeZone.$invalid &&(TradelaneIntegration[packageForm].timeZone.$dirty || submitted)">
+                                                                                                    {{'TimeZoneValidationError' | translate}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="col-sm-12 paddingboth">
+                                                                                        <div class="form-group">
+                                                                                            <span class="visibility">hidden</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageForm].etdDate1.$invalid && (TradelaneIntegration[packageForm].etdDate1.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etdDate">({{'ETD_' | translate}}) <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth">
+                                                                                        <div class="input-group col-sm-12">
+                                                                                            <input type="text" id="etdDate1" name="etdDate1" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                                                                   ng-model="Ary.ETD" is-open="Ary.ETDopened"
+                                                                                                   min-date="mindate" max-date="maxdate" required
+                                                                                                   datepicker-options="Ary.dateOptions1" readonly
+                                                                                                   close-text="Close" ng-click="OpenCal1($event, $index, Ary.ETDopened)" placeholder="{{'ETD_' | translate}} ({{'Required' | translate}})" />
+                                                                                            <span class="input-group-btn">
+                                                                                                <button type="button" class="btn btn-default" ng-click="OpenCal1($event, $index, Ary.ETDopened)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageForm].etdDate1.$invalid && (TradelaneIntegration[packageForm].etdDate1.$dirty || submitted)">
+                                                                                            {{'ETD_Required' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': (TradelaneIntegration[packageForm].etdtime.$invalid || TradelaneIntegration[packageForm].etdtime.$error.pattern) &&   (TradelaneIntegration[packageForm].etdtime.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etatime">({{'ETD_' | translate}}) {{'Time' | translate}} <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth">
+                                                                                        <div class="col-sm-2 paddingboth">
+                                                                                            <input type="text"
+                                                                                                   class="form-control input-sm fontsize12"
+                                                                                                   placeholder="{{'TimePlaceholder' | translate}}"
+                                                                                                   name="etdtime"
+                                                                                                   ng-model="Ary.ETDTime"
+                                                                                                   ng-change="ValidTime(Ary.ETDTime)"
+                                                                                                   ui-mask="99:99"
+                                                                                                   ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                                                                        </div>
+                                                                                        <div class="col-sm-6 margintop7"><b>{{'Hours24' | translate}}</b></div>
+                                                                                        <div class="clearfix"></div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageForm].etdtime.$invalid && !TradelaneIntegration[packageForm].etdtime.$error.pattern && (TradelaneIntegration[packageForm].etdtime.$dirty || submitted)">
+                                                                                            {{'TimeValidationError' | translate}}
+                                                                                        </span>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageForm].etdtime.$error.pattern &&  (TradelaneIntegration[packageForm].etdtime.$dirty || submitted)">
+                                                                                            {{'TimeNotValid' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageForm].etaDate1.$invalid &&  (TradelaneIntegration[packageForm].etaDate1.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etaDate">({{'ETA_' | translate}}) <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth">
+                                                                                        <div class="input-group col-sm-12">
+                                                                                            <input type="text" id="etaDate1" name="etaDate1" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                                                                   ng-model="Ary.ETA" is-open="Ary.ETAopened"
+                                                                                                   min-date="mindate" max-date="maxdate"
+                                                                                                   datepicker-options="Ary.dateOptions" readonly required
+                                                                                                   close-text="Close" ng-click="OpenCal($event, $index, Ary.ETAopened)" placeholder="{{'ETA_' | translate}} ({{'Required' | translate}})" />
+                                                                                            <span class="input-group-btn">
+                                                                                                <button type="button" class="btn btn-default" ng-click="OpenCal($event, $index, Ary.ETAopened)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageForm].etaDate1.$invalid &&  (TradelaneIntegration[packageForm].etaDate1.$dirty || submitted)">
+                                                                                            {{'ETA_Required' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group" ng-class="{ 'has-error': (TradelaneIntegration[packageForm].etatime.$invalid || TradelaneIntegration[packageForm].etatime.$error.pattern) && (TradelaneIntegration[packageForm].etatime.$dirty || submitted) }">
+                                                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etatime">({{'ETA_' | translate}}) {{'Time' | translate}} <span class="redColor">*</span></label>
+                                                                                    <div class="col-sm-8 paddingboth">
+                                                                                        <div class="col-sm-2 paddingboth">
+                                                                                            <input type="text"
+                                                                                                   class="form-control input-sm fontsize12"
+                                                                                                   placeholder="{{'TimePlaceholder' | translate}}"
+                                                                                                   name="etatime"
+                                                                                                   ng-model="Ary.ETATime"
+                                                                                                   ng-change="ValidTime(Ary.ETATime)"
+                                                                                                   ui-mask="99:99"
+                                                                                                   ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                                                                        </div>
+                                                                                        <div class="col-sm-6 margintop7"><b>{{'Hours24' | translate}}</b></div>
+                                                                                        <div class="clearfix"></div>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageForm].etatime.$invalid && !TradelaneIntegration[packageForm].etatime.$error.pattern && (TradelaneIntegration[packageForm].etatime.$dirty || submitted)">
+                                                                                            {{'TimeValidationError' | translate}}
+                                                                                        </span>
+                                                                                        <span class="help-block has-error"
+                                                                                              ng-show="TradelaneIntegration[packageForm].etatime.$error.pattern && (TradelaneIntegration[packageForm].etatime.$dirty || submitted)">
+                                                                                            {{'TimeNotValid' | translate}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ng-form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--big eight(8) panel code here-->
+                                                    <div class="col-sm-12">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">{{WithLegJson.SecondLeg.Leg2}}</div>
+                                                            <div class="panel-body">
+                                                                <div class="clearfix">
+                                                                    <div>
+                                                                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': TradelaneIntegration.mawb2.$invalid && (TradelaneIntegration.mawb2.$dirty || submitted) }">
+                                                                            <label class="control-label col-sm-4 paddingboth margintop7" for="mawb2">{{'MAWB_' | translate}} <span class="redColor">*</span></label>
+                                                                            <div class="col-sm-8 paddingboth" ng-class="{'airline-three-digit-code': AirlineCodeLegTwo !== undefined && AirlineCodeLegTwo !== null &&  AirlineCodeLegTwo !== ''}">
+                                                                                <!--start airline code in input-->
+                                                                                <!--<div ng-class="{'display-none': AirlineCodeLegTwo === undefined || AirlineCodeLegTwo === null ||  AirlineCodeLegTwo === '', 'display-block': AirlineCodeLegTwo !== undefined && AirlineCodeLegTwo !== null &&  AirlineCodeLegTwo !== ''}"><div class="width150">{{AirlineCodeLegTwo}}</div></div>-->
+                                                                                <!--end-->
+                                                                                <div class="clearfix">
+                                                                                    <div class="width13">
+                                                                                        <input type="text" id="flight" name="flight" placeholder="___" value="{{AirlineCodeLegTwo}}" class="form-control fix-input fontsize12 border-right-none" maxlength="3" required />
+                                                                                    </div>
+                                                                                    <div class="width87">
+                                                                                        <input type="text" id="mawb2" name="mawb2" ng-model="WithLegJson.SecondLeg.MawbMainObj.MAWB" ui-mask="9999 9999" class="form-control mawb fontsize12" maxlength="9" required />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <span class="help-block has-error"
+                                                                                      ng-show="TradelaneIntegration.mawb2.$invalid && (TradelaneIntegration.mawb2.$dirty || submitted)">
+                                                                                    {{'MAWB_Required' | translate}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': TradelaneIntegration.agent2.$invalid && (TradelaneIntegration.agent2.$dirty || submitted) || LegJsonValue2}">
+                                                                            <label class="control-label col-sm-4 paddingboth margintop7" for="country">{{'Agent' | translate}} <span class="redColor">*</span></label>
+                                                                            <div class="col-sm-8 paddingboth" id="Xe">
+                                                                                <select id="agent2" name="agent2" ng-change="CheckSameAgent(WithLegJson, 'Leg2')"
+                                                                                        ng-model="WithLegJson.SecondLeg.MawbMainObj.Agent"
+                                                                                        ng-options="Ag as Ag.CustomerName  for Ag in Agents"
+                                                                                        class="form-control fontsize12" required>
+                                                                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Agent' | translate}} ({{'Agent' | translate}})</option>
+                                                                                </select>
+                                                                                <span class="help-block has-error"
+                                                                                      ng-show="TradelaneIntegration.agent2.$invalid &&  (TradelaneIntegration.agent2.$dirty || submitted)">
+                                                                                    {{'AgentValidError' | translate}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-repeat="Ary in WithLegJson.SecondLeg.MawbMainObj.flightArray track by $index" ng-init="packageform1='tags'+$index" class="col-sm-12 form-group paddingboth">
+                                                                    <div class="clearfix"></div>
+                                                                    <div class="panel panel-default margin-bottom-none">
+                                                                        <div class="panel-heading">{{GetFlightNo($index, WithLegJson.SecondLeg.MawbMainObj.flightArray)}} {{'Flight' | translate}} <span ng-show="Ary.IsRemove === true" class="pull-right"><button type="button" class="btn-link pull-right" ng-click="Remove(Ary)"><i class="fa fa-minus" aria-hidden="true"></i> {{'Remove' | translate}}</button></span> <span class="clearfix"></span></div>
+                                                                        <div class="clearfix"></div>
+                                                                        <div class="panel-body">
+                                                                            <ng-form name="{{packageform1}}">
+                                                                                <div class="col-sm-6">
+                                                                                    <div ng-class="{ 'has-error': TradelaneIntegration[packageform1].airline2.$invalid && (TradelaneIntegration[packageform1].airline2.$dirty || submitted) }">
+                                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="airline2">{{'Airline' | translate}} <span class="redColor">*</span></label>
+                                                                                        <div class="col-sm-8 paddingboth" id="Xe">
+                                                                                            <select id="airline2" name="airline2" ng-change="ChangeAirlineCodeLeg(Ary, $index, 'Leg2')"
+                                                                                                    ng-model="Ary.AirlineId"
+                                                                                                    ng-options="Ar.AirlineId as Ar.AirLineName +' - '+ Ar.AilineCode disable when Ar.Disabled === true for Ar in AirlineList"
+                                                                                                    class="form-control fontsize12" required>
+                                                                                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Airline' | translate}} ({{'Required' | translate}})</option>
+                                                                                            </select>
+                                                                                            <span class="help-block has-error"
+                                                                                                  ng-show="TradelaneIntegration[packageform1].airline2.$invalid && (TradelaneIntegration[packageform1].airline2.$dirty || submitted)">
+                                                                                                {{'Airline_Required' | translate}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div ng-class="{ 'has-error': TradelaneIntegration[packageform1].flightnum.$invalid &&   (TradelaneIntegration[packageform1].flightnum.$dirty || submitted) }">
+                                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="flightnum">{{'FlightNumber' | translate}} <span class="redColor">*</span></label>
+                                                                                        <div class="col-sm-8 paddingboth" ng-class="{'airline-three-digit-code': Ary.AirlineCode2 !== undefined && Ary.AirlineCode2 !== null &&  Ary.AirlineCode2 !== ''}">
+                                                                                            <!--start airline code in input-->
+                                                                                            <!--<div ng-class="{'display-none': Ary.AirlineCode2 === undefined || Ary.AirlineCode2 === null ||  Ary.AirlineCode2 === '', 'display-block': Ary.AirlineCode2 !== undefined && Ary.AirlineCode2 !== null &&  Ary.AirlineCode2 !== ''}"><div class="width150">{{Ary.AirlineCode2}}</div></div>-->
+                                                                                            <!--end-->
+                                                                                            <div class="clearfix">
+                                                                                                <div class="width13">
+                                                                                                    <input type="text" id="flight" name="flight" value="{{Ary.AirlineCode2}}" class="form-control fix-input fontsize12 border-right-none" placeholder="___" maxlength="3" required />
+                                                                                                </div>
+                                                                                                <div class="width87">
+                                                                                                    <input type="text" alpha-numeric id="flightnum" name="flightnum" ng-model="Ary.FlightNumber" class="form-control fix-input fontsize12" maxlength="10" required
+                                                                                                           placeholder="{{'FlightNumber' | translate}} ({{'Required' | translate}})" ng-change="CheckFlightNo(Ary.FlightNumber)" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <span class="help-block has-error"
+                                                                                                  ng-show="TradelaneIntegration[packageform1].flightnum.$invalid && (TradelaneIntegration[packageform1].flightnum.$dirty || submitted)">
+                                                                                                {{'FlightNumber_Required' | translate}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12 paddingboth"><hr /></div>
+                                                                                <div class="col-sm-12 paddingboth form-group">
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageform1].timeZone1.$invalid && (TradelaneIntegration[packageform1].timeZone1.$dirty || submitted) }">
+                                                                                            <label class="control-label col-sm-4 paddingboth margintop7" for="timeZone1">{{'TimeZone' | translate}} <span class="redColor">*</span></label>
+                                                                                            <div class="col-sm-8 paddingboth">
+                                                                                                <div class="col-sm-12 paddingboth" id="Xe">
+                                                                                                    <select id="timeZone1" name="timeZone1"
+                                                                                                            ng-model="Ary.Timezone"
+                                                                                                            ng-options="TimeZone as TimeZone.OffsetShort + ' - ' + TimeZone.Name  for TimeZone in timezones | orderBy:'Offset' track by TimeZone.TimezoneId"
+                                                                                                            class="form-control fontsize12" required>
+                                                                                                        <option value="" disabled selected class="display-none">{{'TimeZoneSelectedOption' | translate}}</option>
+                                                                                                    </select>
+                                                                                                    <span class="help-block has-error"
+                                                                                                          ng-show="TradelaneIntegration[packageform1].timeZone1.$invalid && (TradelaneIntegration[packageform1].timeZone1.$dirty || submitted)">
+                                                                                                        {{'TimeZoneValidationError' | translate}}
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="col-sm-12 paddingboth">
+                                                                                            <div class="form-group">
+                                                                                                <span class="visibility">hidden</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageform1].etdDate1.$invalid && (TradelaneIntegration[packageform1].etdDate1.$dirty || submitted) }">
+                                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="etdDate">({{'ETD_' | translate}}) <span class="redColor">*</span></label>
+                                                                                        <div class="col-sm-8 paddingboth">
+                                                                                            <div class="input-group col-sm-12">
+                                                                                                <input type="text" id="etdDate1" name="etdDate1" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                                                                       ng-model="Ary.ETD" is-open="Ary.ETDopened"
+                                                                                                       min-date="mindate" max-date="maxdate" required
+                                                                                                       datepicker-options="Ary.dateOptions1" readonly
+                                                                                                       close-text="Close" ng-click="OpenCa1($event, $index, Ary.ETDopened)" placeholder="{{'ETD_' | translate}} ({{'Required' | translate}})" />
+                                                                                                <span class="input-group-btn">
+                                                                                                    <button type="button" class="btn btn-default" ng-click="OpenCa1($event, $index, Ary.ETDopened)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <span class="help-block has-error"
+                                                                                                  ng-show="TradelaneIntegration[packageform1].etdDate1.$invalid && (TradelaneIntegration[packageform1].etdDate1.$dirty || submitted)">
+                                                                                                {{'ETD_Required' | translate}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group" ng-class="{ 'has-error': (TradelaneIntegration[packageform1].etdtime.$invalid || TradelaneIntegration[packageform1].etdtime.$error.pattern) && (TradelaneIntegration[packageform1].etdtime.$dirty || submitted) }">
+                                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="etatime">({{'ETD_' | translate}}) {{'Time' | translate}} <span class="redColor">*</span></label>
+                                                                                        <div class="col-sm-8 paddingboth">
+                                                                                            <div class="col-sm-2 paddingboth">
+                                                                                                <input type="text"
+                                                                                                       class="form-control input-sm fontsize12"
+                                                                                                       placeholder="{{'TimePlaceholder' | translate}}"
+                                                                                                       name="etdtime"
+                                                                                                       ng-model="Ary.ETDTime"
+                                                                                                       ui-mask="99:99"
+                                                                                                       ng-change="ValidTime(Ary.ETDTime, $index, 'Leg2', 'ETD', TradelaneIntegration)"
+                                                                                                       ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                                                                            </div>
+                                                                                            <div class="col-sm-6 margintop7"><b>{{'Hours24' | translate}}</b></div>
+                                                                                            <div class="clearfix"></div>
+                                                                                            <span class="help-block has-error"
+                                                                                                  ng-show="TradelaneIntegration[packageform1].etdtime.$invalid && !TradelaneIntegration[packageform1].etdtime.$error.pattern && (TradelaneIntegration[packageform1].etdtime.$dirty || submitted)">
+                                                                                                {{'TimeValidationError' | translate}}
+                                                                                            </span>
+                                                                                            <span class="help-block has-error"
+                                                                                                  ng-show="TradelaneIntegration[packageform1].etdtime.$error.pattern &&  (TradelaneIntegration[packageform1].etdtime.$dirty || submitted)">
+                                                                                                {{'TimeNotValid' | translate}}
+                                                                                            </span>
+                                                                                            <div class="clearfix"></div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group" ng-class="{ 'has-error': TradelaneIntegration[packageform1].etaDate1.$invalid &&  (TradelaneIntegration[packageform1].etaDate1.$dirty || submitted) }">
+                                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="etaDate">({{'ETA_' | translate}}) <span class="redColor">*</span></label>
+                                                                                        <div class="col-sm-8 paddingboth">
+                                                                                            <div class="input-group col-sm-12">
+                                                                                                <input type="text" id="etaDate1" name="etaDate1" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                                                                       ng-model="Ary.ETA" is-open="Ary.ETAopened"
+                                                                                                       min-date="mindate" max-date="maxdate" required
+                                                                                                       datepicker-options="Ary.dateOptions" readonly
+                                                                                                       close-text="Close" ng-click="OpenCa($event, $index, Ary.ETAopened)" placeholder="{{'ETA_' | translate}} ({{'Required' | translate}})" />
+                                                                                                <span class="input-group-btn">
+                                                                                                    <button type="button" class="btn btn-default" ng-click="OpenCa($event, $index, Ary.ETAopened)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <span class="help-block has-error"
+                                                                                                  ng-show="TradelaneIntegration[packageform1].etaDate1.$invalid && (TradelaneIntegration[packageform1].etaDate1.$dirty || submitted)">
+                                                                                                {{'ETA_Required' | translate}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group" ng-class="{ 'has-error': (TradelaneIntegration[packageform1].etatime.$invalid || TradelaneIntegration[packageform1].etatime.$error.pattern) && (TradelaneIntegration[packageform1].etatime.$dirty || submitted) }">
+                                                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="etatime">({{'ETA_' | translate}}) {{'Time' | translate}} <span class="redColor">*</span></label>
+                                                                                        <div class="col-sm-8 paddingboth">
+                                                                                            <div class="col-sm-2 paddingboth">
+                                                                                                <input type="text"
+                                                                                                       class="form-control input-sm fontsize12"
+                                                                                                       placeholder="{{'TimePlaceholder' | translate}}"
+                                                                                                       name="etatime"
+                                                                                                       ng-model="Ary.ETATime"
+                                                                                                       ng-change="ValidTime(Ary.ETATime, $index, 'Leg2', 'ETA', TradelaneIntegration)"
+                                                                                                       ui-mask="99:99"
+                                                                                                       ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                                                                            </div>
+                                                                                            <div class="col-sm-6 margintop7"><b>{{'Hours24' | translate}}</b></div>
+                                                                                            <div class="clearfix"></div>
+                                                                                            <span class="help-block has-error"
+                                                                                                  ng-show="TradelaneIntegration[packageform1].etatime.$invalid && !TradelaneIntegration[packageform1].etatime.$error.pattern && (TradelaneIntegration[packageform1].etatime.$dirty || submitted)">
+                                                                                                {{'TimeValidationError' | translate}}
+                                                                                            </span>
+                                                                                            <span class="help-block has-error"
+                                                                                                  ng-show="TradelaneIntegration[packageform1].etatime.$error.pattern && (TradelaneIntegration[packageform1].etatime.$dirty || submitted)">
+                                                                                                {{'TimeNotValid' | translate}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ng-form>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12 paddingboth padding-top15" ng-show="Ary.IsAdd === true">
+                                                                        <button type="button" class="btn-simple btn-save pull-right" ng-click="Add(Ary)"><i class="fa fa-plus fa-14" aria-hidden="true"></i> {{'Add_More' | translate}}</button>
+                                                                        <!--<button type="button" class="btn-simple btn-danger pull-right" ng-click="Remove(Ary)"><i class="fa fa-minus fa-14" aria-hidden="true"></i> {{'Remove' | translate}}</button>-->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 paddingboth">
+                                                <p class="redColor">({{'ETD_' | translate}}) : <span>{{'Estimated_Date_Delivery' | translate}}</span></p>
+                                                <p class="redColor">({{'ETA_' | translate}}) : <span>{{'Estimated_Date_Arrival' | translate}}</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div>
+                                <div ng-show="attachments.length" class="pull-left lineheight34">
+                                    <span class="pointer" ng-click="open = !open;otherDocumentToggle()">
+                                        <i ng-class="{'fa fa-plus-square-o' : !open, 'fa fa-minus-square-o' : open}" class="fa-14 top3" aria-hidden="true">
+                                        </i>
+                                    </span> &nbsp; {{'Other_Documents' | translate}}
+                                </div>
+                                <div class="pull-right">
+                                    <div class="tradelane-document">
+                                        <div class="button"
+                                             ng-model="piecesExcel"
+                                             name="shipmentPiecesDetails"
+                                             ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                             accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                             ngf-select="WhileAddingOtherDoc($files, $file, $event)">
+                                            <button type="button" class="btn btn-blue background-white fontsize12">
+                                                {{'Upload_Other_Documents' | translate}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="panel-body padding-bottom-none" ng-if="open">
+                            <div ng-show="attachments.length">
+                                <div class="row">
+                                    <div class="col-sm-6" ng-repeat="document in attachments track by $index">
+                                        <div class="col-sm-12 form-group border padding-10">
+                                            <div class="col-sm-10 paddingboth top1 word-wrap">
+                                                {{document.FileName}}
+                                            </div>
+                                            <div class="col-sm-2 text-right" id="tradelane-document">
+                                                <a href="{{document.FilePath}}" download="{{document.FileName }}" target="_blank">
+                                                    <span><i class="fa fa-download fa-14 download" aria-hidden="true"></i></span>
+                                                </a> &nbsp;
+                                                <a class="pointer" ng-click="removeDoc(document)">
+                                                    <span><i class="fa fa-trash-o fa-14 download" aria-hidden="true"></i></span>
+                                                </a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="modal-footer">
+                <div class="col-sm-12">
+                    <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                    <button type="submit" ng-click="submiited = true" class="btn-simple btn-success fontsize12 pull-right"><i class="fa fa-list-ol" aria-hidden="true"></i> {{'Create_Manifest' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</section>

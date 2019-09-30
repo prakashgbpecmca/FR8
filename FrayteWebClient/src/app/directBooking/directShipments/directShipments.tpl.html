@@ -1,0 +1,243 @@
+﻿<div>
+ 
+    <div ng-if="track.BookingMethod === 'DirectBooking'" class="panel panel-default fontsize12" style="margin-bottom: 0px; border-color: #DBE2EC !important;">
+        <div class="panel-heading">{{'AdvanceFilter' | translate}} </div>
+        <div class="panel-body">
+            <div class="col-sm-12 paddingboth">
+              
+                <div class="col-sm-6 ">
+                    <div ng-if="$UserRoleId === 3" class="col-sm-12 form-group paddingboth">
+                        <label for="customers" class="col-sm-4 paddingboth top5">{{'Shipment_Types' | translate}}</label>
+                        <div class="col-sm-8">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="track.BookingMethod" ng-change="getDetails()" ng-disabled="DisableShipmentType"
+                                    ng-options="shipment.value as shipment.display for shipment in fryateShipmentTypes"
+                                    class="form-control fontsize12">
+                                <option value="" disabled selected class="display-none">{{'Select_Shipment_Type' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 form-group paddingboth" ng-show="$UserRoleId === 1">
+                        <label for="customers" class="col-sm-4 paddingboth top5">{{'Customers' | translate}}</label>
+                        <div class="col-sm-8">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="track.CustomerId"
+                                    ng-options="Customer.CustomerId as Customer.CustomerName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy: 'CustomerName' track by Customer.CustomerId"
+                                    class="form-control fontsize12">
+                                <option value="" selected >{{'All' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 form-group paddingboth">
+                        <label for="trackingno" class="col-sm-4 paddingboth top5">{{'Tracking_No' | translate}}</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="trackingno" name="trackingno" style="padding-left:7px !important;border-radius:50px;border-color: #EC8C3D !important;" class="form-control paddingleft fontsize12 text-center"
+                                   ng-model="track.TrackingNo" placeholder="{{'Tracking_Code' | translate}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 form-group paddingright">
+                        <label for="fromdate" class="col-sm-4 paddingboth top5 right15">{{'From_Date' | translate}}</label>
+                        <div class="col-sm-7 paddingright" style="left: -10px;">
+                            <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                   uib-datepicker-popup="dd/MM/yyyy" ng-model="track.FromDate1" is-open="status.opened"
+                                   close-text="Close" ng-click="openCalender($event)" ng-change="ChangeFromdate(track.FromDate1)"
+                                   placeholder="{{'From_Date' | translate}}" style="padding-left: 7px !important;" readonly />
+                        </div>
+                        <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12  paddingboth">
+                        <label for="shipmentstatus" class="col-sm-4 paddingboth top5">{{'Shipment_Status' | translate}}</label>
+                        <div class="col-sm-6" style="width:66.67% !important;">
+                            <div class="track-dropdown">
+                                <label class="form-control pointer dropdown-toggle" style="padding: 2px 0px !important; margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{buildURL}}{{CurrentStatus.ImgURL}}" style="width:40px;">{{CurrentStatus.DisplayStatusName}}</label>
+                                <i class="fa fa-caret-down pointer dropdown-toggle track-trace-fa-icon" aria-hidden="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <ul class="dropdown-menu dropdown-menu-right fontsize12 directshipmentwidth directbooking-shipment min-width89" style="">
+                                    <li ng-repeat="Status in DirectShipmentStatus" class="pointer fontsize12"><a ng-click="bookingStatus(Status)" style="padding:3px 3px 0px !important;" class="fontsize12"><img ng-src="{{buildURL}}{{Status.ImgURL}}" style="width:40px;"> {{Status.DisplayStatusName}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                  
+                </div>
+                <div class="col-sm-6 ">
+                    <div class="col-sm-12 form-group paddingboth">
+                        <label for="shipmentno" class="col-sm-4 paddingboth top5">{{'Frayte_ShipmentNo' | translate}}</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="frayteno" name="frayteno" class="form-control paddingleft fontsize12" ng-model="track.FrayteNumber"
+                                   placeholder="{{'Frayte_ShipmentNo' | translate}}" style="padding-left: 7px !important;" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingboth">
+                        <label for="logistictype" class="col-sm-4 paddingboth top5">{{'Logistic_Type' | translate}}</label>
+                        <div class="col-sm-8 track-dropdown">
+                            <label class="form-control pointer dropdown-toggle  track-dropdown" style="padding: 4px 8px !important; margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{CurrentLogisticType.LogisticTypeDisplay}}</label>
+                            <i class="fa fa-caret-down pointer dropdown-toggle track-trace-fa-icon" aria-hidden="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                            <ul class="dropdown-menu dropdown-menu-right fontsize12 directshipmentwidth directbooking-shipment min-width91">
+                                <li ng-repeat="LogisticType in LogisticTypes" class="pointer fontsize12"><a ng-click="logisticStatus(LogisticType)" style="padding:3px 9px 0px !important;" class="fontsize12">{{LogisticType.LogisticTypeDisplay}}</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 form-group paddingright">
+                        <label for="todate" class="col-sm-4 paddingboth top5 right15">{{'To_Date' | translate}}</label>
+                        <div class="col-sm-7 paddingright" style="left: -10px;">
+                            <input type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12" 
+                                   uib-datepicker-popup="dd/MM/yyyy" ng-model="track.ToDate1" is-open="status1.opened"                                   
+                                   close-text="Close" ng-click="openCalender1($event)" ng-change="ChangeTodate(track.ToDate1)"
+                                   placeholder="{{'To_Date' | translate}}" readonly />
+                        </div>
+                        <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingboth">
+                        <div ng-show="CurrentLogisticType.LogisticType === 'UKShipment'" class="col-sm-12 paddingboth">
+                            <label for="logistictype" class="col-sm-4 paddingboth top5">{{'Logistic_Service_Type' | translate}}</label>
+                            <div class="col-sm-8 track-dropdown">
+                                <label class="form-control pointer dropdown-toggle track-dropdown" style="padding: 4px 8px !important; margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{CurrentLogisticServiceType.LogisticServiceNameDisplay}}</label>
+                                <i class="fa fa-caret-down pointer dropdown-toggle track-trace-fa-icon" aria-hidden="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <ul class="dropdown-menu dropdown-menu-right fontsize12 directshipmentwidth directbooking-shipment min-width91">
+                                    <li ng-repeat="LogisticService in LogisticServiceTypes" class="pointer fontsize12"><a ng-click="logisticServiceStatus(LogisticService)" style="padding:3px 9px 0px !important;" class="fontsize12">{{LogisticService.LogisticServiceNameDisplay}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>               
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="col-sm-12">
+                    <button class="btn-simple btn-primary fontsize12 pull-right" ng-click="SeachDirectShipments()"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                </div>
+                </div>
+                <!--<div ng-if="gridOptions.data.length && CurrentStatus.ShipmentStatusId !== 14"  class="col-sm-6 form-group paddingboth">
+                    <div class="col-sm-8 paddingboth">
+                        <button  class="btn btn-success" ng-click="DownLoadDirectBookingReport()" style="padding-left: 7px !important;">{{'DownLoad_Excel' | translate}}</button>
+                    </div>
+                </div>-->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div ng-if="track.BookingMethod === 'eCommerce'" class="panel panel-default fontsize12" style="margin-bottom: 0px; border-color: #DBE2EC !important;">
+        <div class="panel-heading">{{'AdvanceFilter' | translate}}</div>
+        <div class="panel-body">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6 form-group">
+                    <div class="col-sm-12 form-group paddingboth" ng-show="$UserRoleId === 1">
+                        <label for="customers" class="col-sm-4 paddingboth top5">{{'Customers' | translate}}</label>
+                        <div class="col-sm-8">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="track.CustomerId" 
+                                    ng-options="Customer.CustomerId as Customer.CustomerName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy: 'CustomerName' track by Customer.CustomerId"
+                                    class="form-control fontsize12">
+                                <option value="" selected >{{'All' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div ng-if="$UserRoleId === 3" class="col-sm-12 form-group paddingboth">
+                        <label for="customers" class="col-sm-4 paddingboth top5">{{'Shipment_Types' | translate}}</label>
+                        <div class="col-sm-8">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="track.BookingMethod" ng-change="getDetails()" ng-disabled="DisableShipmentType"
+                                    ng-options="shipment.value as shipment.display for shipment in fryateShipmentTypes"
+                                    class="form-control fontsize12">
+                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'shipment_ShipmentDetailsShipmentType' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 form-group paddingboth">
+                        <label for="trackingno" class="col-sm-4 paddingboth top5">{{'Tracking_No' | translate}}</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="trackingno" name="trackingno" style="padding-left:7px !important;border-radius:50px;border-color: #EC8C3D !important;" class="form-control paddingleft fontsize12 text-center"
+                                   ng-model="track.TrackingNo" placeholder="{{'Tracking_Code' | translate}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 form-group paddingright">
+                        <label for="fromdate" class="col-sm-4 paddingboth top5 right15">{{'From_Date' | translate}}</label>
+                        <div class="col-sm-7 paddingright" style="left: -10px;">
+                            <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                   uib-datepicker-popup="dd/MM/yyyy" ng-model="track.FromDate" is-open="status.opened"
+                                   close-text="Close" ng-click="openCalender($event)"
+                                   placeholder="{{'From_Date' | translate}}" style="padding-left: 7px !important;" readonly />
+                        </div>
+                        <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>                  
+                </div>
+                <div class="col-sm-6 form-group">  
+                    <div class="col-sm-12 form-group paddingboth">
+                        <label for="shipmentno" class="col-sm-4 paddingboth t0p5">{{'Frayte_ShipmentNo' | translate}}</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="frayteno" name="frayteno" class="form-control paddingleft fontsize12" ng-model="track.FrayteNumber"
+                                   placeholder="{{'Frayte_ShipmentNo' | translate}}" style="padding-left: 7px !important;" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingboth">
+                        <label for="shipmentstatus" class="col-sm-4 paddingboth top5">{{'Shipment_Status' | translate}}</label>
+                        <div class="col-sm-6" style="width: 66.67%;">
+                            <div class="track-dropdown">
+                                <label class="form-control pointer dropdown-toggle" style="padding: 2px 0px !important; margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{buildURL}}{{CurrentStatus.ImgURL}}" style="width:40px;">{{CurrentStatus.DisplayStatusName}}</label>
+                                <i class="fa fa-caret-down pointer dropdown-toggle" aria-hidden="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; bottom:23px; float:right; padding:0px 6px 0px;"></i>
+                                <ul class="dropdown-menu dropdown-menu-right fontsize12 directshipmentwidth directbooking-shipment min-width89" style="">
+                                    <li ng-repeat="Status in DirectShipmentStatus" class="pointer fontsize12"><a ng-click="bookingStatus(Status)" style="padding:3px 3px 0px !important;" class="fontsize12"><img ng-src="{{buildURL}}{{Status.ImgURL}}" style="width:40px;"> {{Status.DisplayStatusName}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                    <div class="col-sm-12 form-group paddingright">
+                        <label for="todate" class="col-sm-4 paddingboth top5 right15">{{'To_Date' | translate}}</label>
+                        <div class="col-sm-7 paddingright" style="left: -10px;">
+                            <input type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                   ng-model="track.ToDate" is-open="status1.opened"
+                                   close-text="Close" ng-click="openCalender1($event)"
+                                   placeholder="{{'To_Date' | translate}}" readonly />
+                        </div>
+                        <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <button class="btn-simple btn-primary fontsize12 pull-right" ng-click="SeachDirectShipments()"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<br />
+
+<div data-ui-grid="gridOptions" ui-grid-edit ui-grid-selection ui-grid-cellnav class="myGridFull fontsize12" style="min-height: {{gridheight}}px;"></div>
+
+    <div style="margin-left:-15px;" class="width80">
+        <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+    </div>
+    <div ng-if="gridOptions.data.length && CurrentStatus.ShipmentStatusId !== 14" class="pull-right form-group top5">
+        <div>
+            <button ng-show="track.BookingMethod !== 'eCommerce'" class="btn-simple btn-success height44 pull-right top5" ng-click="DownLoadDirectBookingReport()">{{'DownLoad_Excel' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></button>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+

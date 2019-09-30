@@ -1,0 +1,487 @@
+﻿<form name="QuotationMail" novalidate ng-submit="sendQuotationMail(QuotationMail.$valid, QuotationEmail)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{ Header | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.emailaddress.$invalid &&
+                                                         (QuotationMail.emailaddress.$dirty || submitted) }">
+                        <label class="col-sm-4 control-label top5 paddingboth" for="emailaddress">{{'Customer' | translate}} {{'Email' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <input type="text" placeholder="{{'Customer' | translate}} {{'Email' | translate}} ({{'Required' | translate}})" name="emailaddress" id="emailaddress" ng-pattern="emailFormat" ng-model="QuotationEmail.Email" required class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="QuotationMail.emailaddress.$error.pattern &&
+                                            (QuotationMail.emailaddress.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.toccemailaddress.$invalid &&
+                                                         (QuotationMail.toccemailaddress.$dirty || submitted) }">
+                        <label class="col-sm-4 control-label top5 paddingboth" for="toccemailaddress">{{'ToCc_Email' | translate}}</label>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <input type="text" placeholder="{{'ToCc_Email' | translate}}" name="toccemailaddress" id="toccemailaddress" ng-pattern="emailFormat" ng-model="QuotationEmail.ToCCEmail" class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="QuotationMail.toccemailaddress.$error.pattern &&
+                                            (QuotationMail.toccemailaddress.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.emailname.$invalid &&
+                                                      (QuotationMail.emailname.$dirty || submitted) }">
+                        <label class="col-sm-4 control-label top5 paddingboth" for="emailname">{{'Customer' | translate}} {{'Name' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <input type="text" placeholder="{{'Customer' | translate}} {{'Name' | translate}} ({{'Required' | translate}})" name="emailname" id="emailname" ng-model="QuotationEmail.CustomerName" required class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="QuotationMail.emailname.$invalid &&
+                                            (QuotationMail.emailname.$dirty || submitted)">
+                                {{'Customer_Name_Required' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.tobccemailaddress.$invalid &&
+                                                      (QuotationMail.tobccemailaddress.$dirty || submitted) }">
+                        <label class="col-sm-4 control-label top5 paddingboth" for="tobccemailaddress">{{'ToBCc_Email' | translate}}</label>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <input type="text" placeholder="{{'ToBCc_Email' | translate}}" name="tobccemailaddress" id="tobccemailaddress" ng-pattern="emailFormat" ng-model="QuotationEmail.ToBCCEmail" class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="QuotationMail.tobccemailaddress.$error.pattern &&
+                                            (QuotationMail.tobccemailaddress.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div ng-show="quotationDetail">
+                        <p><span>{{'Dear' | translate}}</span> <span>{{QuotationEmail.CustomerName}}</span>,</p>
+                        <div class="col-sm-12 paddingboth"> 
+                            <p ng-show="SITECOMPANY === 'FRAYTE'"><span>{{'On_Behalf_Of_Frayte_Logistics' | translate}}</span> <span>[{{CompanyName}}].</span></p>
+                            <p ng-show="SITECOMPANY === 'MAXLOGISTIC'"><span>{{'On_Behalf_Of_Frayte_Logistics_MEX' | translate}}</span> <span>[{{CompanyName}}].</span></p>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex same-grid-font">
+                                        <div class="col-sm-6 paddingboth email-header bold">{{'Quote_Ref' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-header bold">{{QuoteNo}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Pickup_Country' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{quotationDetail.QuotationFromAddress.Country.Name}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Destination_Country' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{quotationDetail.QuotationToAddress.Country.Name}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Carrier' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{quotationDetail.LogisticCompanyDisplay}} {{quotationDetail.RateTypeDisplay}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Approx_CWT' | translate}}</div>
+                                        <div ng-if="quotationDetail.PakageCalculatonType === 'kgToCms'" class="col-sm-6 paddingboth email-body">{{quotationDetail.TotalEstimatedWeight | number}} kg</div>
+                                        <div ng-if="quotationDetail.PakageCalculatonType === 'lbToInchs'" class="col-sm-6 paddingboth email-body">{{quotationDetail.TotalEstimatedWeight | number}} lb</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-12 email-body bold same-grid-font email-body">{{'Actual_CWT_Is_Higher' | translate}}</div>
+                                    </div>
+                                </li>                                
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Est_Transit_Time' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{quotationDetail.QuotationRateCard.TransitTime}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Rate_Excl_Fuel' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{quotationDetail.QuotationRateCard.CurrencyCode}} {{quotationDetail.EstimatedTotalCost | number}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Surcharges' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{quotationDetail.QuotationRateCard.CurrencyCode}} {{quotationDetail.QuotationRateCard.AdditionalSurcharge}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body bold same-grid-font">{{'Fuel_Surcharge' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{quotationDetail.QuotationRateCard.CurrencyCode}} {{quotationDetail.FuelSurCharge | number}} ({{quotationDetail.FuelPercent}}%) [{{FuelMonth}}]</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-6 paddingboth email-header same-grid-font bold">{{'Total_Estimated_Charges' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body bold">{{quotationDetail.QuotationRateCard.CurrencyCode}} {{SumTotalCost(quotationDetail.EstimatedCost, quotationDetail.QuotationRateCard.AdditionalSurcharge, quotationDetail.FuelSurCharge) | number}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-12 paddingboth email-body">
+                                            ({{'Excluding_ImportDuties_Taxes' | translate}})
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Valid_Until' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth  email-body">{{quotationDetail.ValidDays}} {{GetDays(quotationDetail.ValidDays)}} ({{quotationDetail.ValidDate | date : 'dd-MMM-yyyy'}})</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div ng-show="item">
+                        <p><span>{{'Dear' | translate}}</span> <span>{{QuotationEmail.CustomerName}}</span>,</p>
+                        <div class="col-sm-12 paddingboth">
+                            <p ng-show="SITECOMPANY === 'FRAYTE'"><span>{{'On_Behalf_Of_Frayte_Logistics' | translate}}</span> <span>[{{CompanyName}}].</span></p>
+                            <p ng-show="SITECOMPANY === 'MAXLOGISTIC'"><span>{{'On_Behalf_Of_Frayte_Logistics_MEX' | translate}}</span> <span>[{{CompanyName}}].</span></p>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex same-grid-font">
+                                        <div class="col-sm-6 paddingboth email-header bold">{{'Quote_Ref' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-header bold">{{QuoteNo}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Pickup_Country' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{item.QuotationFromAddress.Country.Name}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Destination_Country' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{item.QuotationToAddress.Country.Name}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Carrier' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{item.LogisticCompanyDisplay}} {{item.RateTypeDisplay}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Approx_CWT' | translate}}</div>
+                                        <div ng-if="item.PakageCalculatonType === 'kgToCms'" class="col-sm-6 paddingboth email-body">{{item.TotalEstimatedWeight | number}} kg</div>
+                                        <div ng-if="item.PakageCalculatonType === 'lbToInchs'" class="col-sm-6 paddingboth email-body">{{item.TotalEstimatedWeight | number}} lb</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-12 email-body bold same-grid-font email-body">{{'Actual_CWT_Is_Higher' | translate}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Est_Transit_Time' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{item.TransitTime}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Rate_Excl_Fuel' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{item.CurrenyCode}} {{item.EstimatedTotalCost}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Surcharges' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{item.CurrenyCode}} {{item.AdditionalSurcharge}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body bold same-grid-font">{{'Fuel_Surcharge' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{item.CurrenyCode}} {{item.FuelSurCharge | number}} ({{item.FuelPercent}}%) [{{FuelMonth}}]</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-6 paddingboth email-header bold same-grid-font bold">{{'Total_Estimated_Charges' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body bold">{{item.CurrenyCode}} {{SumTotalCost(item.EstimatedCost, item.AdditionalSurcharge, item.FuelSurCharge) | number}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 paddingboth margin-bottom6">
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-12 paddingboth email-body">
+                                            ({{'Excluding_ImportDuties_Taxes' | translate}})
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth BB-2-DDD flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Valid_Until' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{item.ValidDays}} {{GetDays(item.ValidDays)}} ({{item.ValidDate | date : 'dd-MMM-yyyy'}})</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br /><br />
+                    <div>
+                        <b>{{'Additional_Information' | translate}}</b> {{'this_is_based_on_the_following' | translate}}
+                    </div>
+                    <div>
+                        <ol>
+                            <li>{{'Out_Of_Remote_Area' | translate}}</li>
+                            <li>{{'Shipment_Being_Stackable_Charged' | translate}}</li>
+                            <li>{{'Shipment_Being_Declared_Non_Hazardous_Charged' | translate}}</li>
+                            <li>{{'Shipment_Charges_Based_On_Volumetric_Weight' | translate}}</li>
+                            <li>{{'Dimensions_Measured_On_Receipt_Cargo_Quotation' | translate}}</li>
+                        </ol>
+                        <br /><br />
+                    </div>
+
+                    <div ng-if="(quotationDetail.OperationZoneId == 2) || (item.OperationZoneId == 2)">
+                        <div ng-if="(quotationDetail !== undefined && quotationDetail.LogisticCompany === 'DHL') || (item !== undefined && item.LogisticCompany === 'DHL')" width="100%" style="border-spacing: 0px;">
+                            <!--<br /><br />-->
+                            <div>
+                                <p>{{'Review_Shipment_Liable_Any_Additional_Charges' | translate}}</p>
+                            </div>
+                            <ul class="list-unstyled" id="email">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-header">{{'Description' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-header">{{'Surcharge_GBP' | translate}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Remote_Area_Services' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{'Remote_Area_Services_Charges' | translate}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Dangerous_Goods_In_Excepted_Quantities' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 4.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Limited_Quantities_By_Road' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 16.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Full_Dangerous_Goods' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 64.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Dry_Ice' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 8.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Lithium_Batteries_Section_IIA' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 4.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Lithium_Batteries_Section_IIB' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{'No_Charge' | translate}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Lithium_Batteries_Section_IB' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 64.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Biological_Substances' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">{{'No_Charge' | translate}}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Oversized_Piece' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 70.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'NonStackable_Pallet' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 130.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Address_Correction' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 9.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Data_Entry' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 2.50</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Elevated_Risk' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 15.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Restricted_Destination' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 22.00</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-sm-12 paddingboth border-bottom-ddd flex">
+                                        <div class="col-sm-6 paddingboth email-body">{{'Exporter_Validation' | translate}}</div>
+                                        <div class="col-sm-6 paddingboth email-body">GBP 22.00</div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                            <br /><br />
+                            <div>
+                                <p>{{'Following_Surcharges_Are_Payable_On_Domestic_Shipments' | translate}}</p>
+                                <br />
+                            </div>
+                            <div>
+                                <ul class="list-unstyled" id="email">
+                                    <li>
+                                        <div class="col-sm-12 paddingboth flex">
+                                            <div class="col-sm-6 paddingboth email-header">{{'Description' | translate}}</div>
+                                            <div class="col-sm-6 paddingboth email-header">{{'Surcharge_GBP' | translate}}</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="col-sm-12 paddingboth border-bottom-ddd flex">
+                                            <div class="col-sm-6 paddingboth email-body">{{'Address_Correction' | translate}}</div>
+                                            <div class="col-sm-6 paddingboth email-body">GBP 4.50</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div ng-if="(quotationDetail !== undefined && quotationDetail.LogisticCompany === 'TNT') || (item !== undefined && item.LogisticCompany === 'TNT')">
+                            <ul class="list-unstyled">
+                                <li><b>{{'TNT_Security_Surcharge' | translate}}</b></li>
+                                <li>{{'TNT_Security_Surcharge_First_Para' | translate}}</li>
+                                <li>{{'TNT_Security_Surcharge_Second_Para' | translate}}</li>
+                                <li>{{'TNT_Security_Surcharge_Third_Para' | translate}}</li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div ng-if="(quotationDetail.OperationZoneId == 1) || (item.OperationZoneId == 1)">
+                        <div ng-if="(quotationDetail.LogisticCompanyDisplay == 'DHL') || (item.LogisticCompanyDisplay == 'DHL')">
+                            <p>{{'Please_Review_Attached_2018_DHL' | translate}}</p>
+                        </div>
+                    </div>
+                    <br /><br />
+                    <div>
+                        <ul class="list-unstyled">
+                            <li><b>{{'Thank_You_Opportunity_For_Quote_Shipment' | translate}}</b></li>
+                            <li>{{'Any_Feedback_Question_Please_Contact_Us' | translate}}</li>
+                        </ul>
+                    </div>
+                    <br />
+                </div>
+                <!--add rate card checkbox code-->
+                <div class="form-group">
+                    <div class="padding-10 border">
+                        <div class="checkbox" style="margin-top:0px;margin-bottom:0px;">
+                            <label><input type="checkbox" ng-model="QuotationEmail.IsRateSend" name="addRateCard"> {{'Add' | translate}} {{'Customer_RateCard' | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <div class="form-group">
+                    <p>{{'Kindly_Regards' | translate}},</p>
+                    <br />
+                    <ul class="list-unstyled">
+                        <li class="bold">{{SalesRepresentativedata.Name}}</li>
+                        <li class="bold">{{SalesRepresentativedata.DeptName | translate}}</li>
+                        <li ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="bold">MEX Logistic</li>
+                        <li ng-show="SITECOMPANY === 'FRAYTE'" class="bold">{{'FRAYTE_Logistics_Ltd' | translate}}</li>
+                        <li><a target="_blank" href="{{webURL}}">{{Websitefrayte}}</a></li>
+                        <li><span class="bold">{{'Phone' | translate}}:</span> {{Phone}}</li>
+                        <li><span class="bold">{{'Email' | translate}}:</span> <span class="bold">{{SalesRepresentativedata.Email}}</span></li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                 <button class="btn btn-simple btn-cancel fontsize12" type="button" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-simple btn-primary fontsize12" type="submit" ng-click="submitted=true;" name="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Send' | translate}} {{'Email' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,36 @@
+﻿
+<section>
+    <div class="modal-content fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Manifest' | translate}} {{'Generator' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-12">
+                <div class="col-sm-6 paddingboth">
+                    <label class="col-sm-4 paddingboth control-label top5">{{'Shipment_Types' | translate}}</label>
+                    <div class="col-sm-8 form-group">
+                        <select ng-options="ship.BookingType as ship.BookingTypeDisplay  for ship in shipmentTypes" ng-model="TrackManifest.ModuleType"
+                                ng-change="seachManifest()" class="form-control" ng-disabled="IsDisable"></select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-sm-12 form-group">
+                <div data-ui-grid="gridOptions" ui-grid-selection class="myGridFull fontsize12" style="min-height: {{gridheight}}px;"></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn-simple btn-success fontsize12 pull-right bottom2" ng-click="CreateManifest()" id="create" name="create" value="Create Manifest"><i class="fa fa-list-ol" aria-hidden="true"></i> {{'Create_Manifest' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

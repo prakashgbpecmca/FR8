@@ -1,0 +1,111 @@
+﻿<form name="QuotationMail" novalidate ng-submit="sendQuotationMail(QuotationMail.$valid, QuotationEmail)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{ Header | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.emailaddress.$invalid &&
+                                                         (QuotationMail.emailaddress.$dirty || submitted) }">
+                        <label class="col-sm-4 control-label top5 paddingboth" for="emailaddress">{{'Customer' | translate}} {{'Email' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <input type="text" placeholder="{{'Customer' | translate}} {{'Email' | translate}} ({{'Required' | translate}})" name="emailaddress" id="emailaddress" ng-pattern="emailFormat" ng-model="QuotationEmail.Email" required class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="QuotationMail.emailaddress.$error.pattern &&
+                                           (QuotationMail.emailaddress.$dirty || submitted)">
+                                           {{'EmailNotValid' | translate}}
+                            </span> 
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.toccemailaddress.$invalid &&
+                                                         (QuotationMail.toccemailaddress.$dirty || submitted) }">
+                        <label class="col-sm-4 control-label top5 paddingboth" for="toccemailaddress">{{'ToCc_Email' | translate}}</label>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <input type="text" placeholder="{{'ToCc_Email' | translate}}" name="toccemailaddress" id="toccemailaddress" ng-pattern="emailFormat" ng-model="QuotationEmail.ToCCEmail" class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="QuotationMail.toccemailaddress.$error.pattern &&
+                                            (QuotationMail.toccemailaddress.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.emailname.$invalid &&
+                                                      (QuotationMail.emailname.$dirty || submitted) }">
+                        <label class="col-sm-4 control-label top5 paddingboth" for="emailname">{{'Customer' | translate}} {{'Name' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <input type="text" placeholder="{{'Customer' | translate}} {{'Name' | translate}} ({{'Required' | translate}})" name="emailname" id="emailname" ng-model="QuotationEmail.CustomerName" required class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="QuotationMail.emailname.$invalid &&
+                                            (QuotationMail.emailname.$dirty || submitted)">
+                                {{'Customer_Name_Required' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.tobccemailaddress.$invalid &&
+                                                      (QuotationMail.tobccemailaddress.$dirty || submitted) }">
+                        <label class="col-sm-4 control-label top5 paddingboth" for="tobccemailaddress">{{'ToBCc_Email' | translate}}</label>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <input type="text" placeholder="{{'ToBCc_Email' | translate}}" name="tobccemailaddress" id="tobccemailaddress" ng-pattern="emailFormat" ng-model="QuotationEmail.ToBCCEmail" class="form-control" />
+                            <span class="help-block has-error"
+                                  ng-show="QuotationMail.tobccemailaddress.$error.pattern &&
+                                            (QuotationMail.tobccemailaddress.$dirty || submitted)">
+                                            {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                </div>
+                <div>
+                    <div class="form-group" ng-class="{ 'has-error': QuotationMail.AddtionalText.$invalid &&
+                                                         (QuotationMail.AddtionalText.$dirty || submitted) }">
+                        <p><span>{{'Dear' | translate}}</span> <span>{{QuotationEmail.CustomerName}}</span>,</p><br /><br />
+                        <!--<textarea class="form-group form-control" type="text" placeholder="{{'Email' | translate}} {{'Description' | translate}}" name="AddtionalText" id="AddtionalText" ng-model="QuotationEmail.MailContent" required rows="8" cols="8"></textarea>-->
+                        <p><span>We are pleased to send your current rate cards.</span></p>
+                        <p><span>Follow this link to <a ng-href='{{LandingPage}}' target="_blank">FRAYTE Logistics Ltd.</a></span></p>
+                        <p><span>By clicking the Direct Booking icon, you can book international and domestic courier shipments, generate shipping labels and track the status of your shipments.</span></p>
+                        <p><span>You can also use your login to view and download all your rate cards.</span></p>
+                    </div>
+                    <span class="help-block has-error"
+                          ng-show="QuotationMail.AddtionalText.$invalid &&
+                                            (QuotationMail.AddtionalText.$dirty || submitted)">
+                        {{'Email' | translate}} {{'DescriptionValidationError' | translate}}
+                    </span>
+                </div>
+                <div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <p>{{'Kindly_Regards' | translate}},</p>
+                        <br />
+                        <ul class="list-unstyled">
+                            <li class="bold">{{SalesRepresentativedata.Name}}</li>
+                            <li class="bold">{{SalesRepresentativedata.DeptName | translate}}</li>
+                            <li class="bold">{{'FRAYTE_Logistics_Ltd' | translate}}</li>
+                            <li><a ng-href="{{webURL}}" target="_blank">{{Websitefrayte}}</a></li>
+                            <li><span class="bold">{{'Phone' | translate}}:</span> {{PhoneNo}}</li>
+                            <li><span class="bold">{{'Email' | translate}}:</span> <span class="bold">{{SalesRepresentativedata.Email}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button class="btn btn-simple btn-cancel fontsize12" type="button" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-simple btn-primary fontsize12" type="submit" ng-click="submitted=true;" name="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Send' | translate}} {{'Email' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

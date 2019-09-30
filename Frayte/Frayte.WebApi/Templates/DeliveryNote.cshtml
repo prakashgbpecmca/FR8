@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Interim Receipts</title>
+    @*<link href="~/Content/DeliveryNote.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    @*  <link href="D:\IRA\frayte\Frayte\Frayte.WebApi\Content\DeliveryNote.css" rel="stylesheet" />
+        <link href="D:\IRA\frayte\Frayte\Frayte.WebApi\Content\bootstrap.min.css" rel="stylesheet" />*@
+
+    <link href="@Model.PageStyleSheet" rel="stylesheet" />
+    <link href="@Model.BootStrapStyleSheet" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div>
+            <img src="@Model.ImgSrc" style="width:100%;" />
+            @*<img src="D:\IRA\frayte\Frayte\Frayte.WebApi\Content\FrayteLogo.png" style="width: 191px;" />*@
+        </div>
+        @*<div class="headerRight"></div>*@
+        <div style="clear:both;"></div>
+    </header>
+    <div class="wrapper1" style="margin-top:30px; width:100%;">
+        <div class="mainHeading1">
+            <div class="subHeadLeft">Interim Receipt</div>
+            <div class="pageNo">Page 1 of 1</div>
+            <div class="clearfix"></div>
+        </div>
+        <div>
+            <div class="floatRight shipmentNoBlock">
+                @if (@Model.ShipmentDetail != null)
+                {
+                    <span class="shipmentInfo">Shipment#</span>
+                    <span class="shipmentNo">@Model.ShipmentDetail.ShipmentId</span>
+                }
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            @*<div class="floatRight deliveryDateBlock">
+                <span class="deliveryInfo">Date</span>
+
+                <span class="deliveryDate">
+                    @if (@Model.ShipmentDetail.ShippingDate != null)
+                    {
+                        @Model.ShipmentDetail.ShippingDate.ToString("dd/MM/yyyy")
+                    }
+                    - @if (@Model.ShipmentDetail.ShippingTime != null)
+                    {
+                          @Model.ShipmentDetail.ShippingTime
+                    }
+                </span>
+                <div class="clearfix"></div>
+            </div>*@
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div style="margin-top:2px;">
+            <div class="floatLeft width49">
+                <div class="interimReceipt">
+                    <span class="interimReceiptLeft">INTERIM RECEIPT</span>
+                    <span class="interimReceiptRight"></span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="floatRight width49">
+                <div class="interimReceiptDate">
+                    <span class="interimReceiptLeft">INTERIM REC DATE</span>
+                    <span class="interimReceiptRight">
+                    @if (@Model.ShipmentDetail.ShippingDate != null)
+                    {
+                        @Model.ShipmentDetail.ShippingDate.ToString("dd/MM/yyyy")
+                    }
+                    </span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="marginTop3">
+            <div class="floatLeft width49 border1">
+                <div class="fill" style="height:276px;">
+                    <div class="fillFullPart">CONSIGNOR</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                        @if (@Model.ShipmentDetail.Shipper != null)
+                        {
+                            <div>@Model.ShipmentDetail.Shipper.CompanyName <br /></div>
+                        }
+                        @if (@Model.ShipmentDetail.ShipperAddress != null)
+                        {
+                            <div>@Model.ShipmentDetail.ShipperAddress.Address <br /></div>
+                            <div>@Model.ShipmentDetail.ShipperAddress.City <br /></div>
+                            <div>@Model.ShipmentDetail.ShipperAddress.State <br /></div>
+                            <div>@Model.ShipmentDetail.ShipperAddress.Country.Name<br /></div>
+                        }
+                        <div><br /></div>
+                        <div><br /></div>
+                        </div>
+                        <div>
+                            <div class="floatLeft width50">
+                                Phone: <span>
+                                @if (@Model.ShipmentDetail.Shipper != null)
+                                { @Model.ShipmentDetail.Shipper.TelephoneNo}
+                                </span>
+                            </div>
+                            <div class="floatRight width50">
+                                Fax: <span>
+                                @if (@Model.ShipmentDetail.Shipper != null)
+                                { @Model.ShipmentDetail.Shipper.FaxNumber}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                     
+                <div class="clearfix"></div>
+            </div>
+                <div class="floatRight width49 border1">
+                    <div class="fill">
+                        <div class="fillFullPart">CONSIGNEE</div>
+                        <div class="padding2">
+                            <div class="upperCase">
+
+                                @if (@Model.ShipmentDetail.Receiver != null)
+                                {
+                                    <div>@Model.ShipmentDetail.Receiver.CompanyName <br /></div>
+                                }
+                                @if (@Model.ShipmentDetail.ReceiverAddress != null)
+                                {
+                                    <div>@Model.ShipmentDetail.ReceiverAddress.Address <br /></div>
+
+                                    <div>@Model.ShipmentDetail.ReceiverAddress.City <br /></div>
+                                    <div>@Model.ShipmentDetail.ReceiverAddress.State <br /></div>
+
+                                    <div>@Model.ShipmentDetail.ReceiverAddress.Country.Name<br /></div>
+                                }
+                                <div><br /></div>
+                                <div><br /></div>
+
+
+                            </div>
+                            <div>
+                                <div class="floatLeft width50">
+                                    Phone: <span>
+                                        @if (@Model.ShipmentDetail.Receiver != null)
+                                        { @Model.ShipmentDetail.Receiver.TelephoneNo}
+                                    </span>
+                                </div>
+                                <div class="floatRight width50">
+                                    Fax: <span>
+                                        @if (@Model.ShipmentDetail.Shipper != null)
+                                        { @Model.ShipmentDetail.Shipper.FaxNumber}
+                                    </span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="floatRight width49 border1">
+                    <div class="fillFullPart">NOTIFY PARTY</div>
+                    <div class="padding2">
+                        @if (@Model.Agent != null)
+                        {
+                            <div class="upperCase">
+
+                                <div>@Model.Agent.CompanyName <br /></div>
+                                <div>@Model.Agent.UserAddress.Address <br /></div>
+                                <div>@Model.Agent.UserAddress.City <br /></div>
+                                <div>@Model.Agent.UserAddress.State <br /></div>
+                                <div>@Model.Agent.UserAddress.Country.Name <br /></div>
+                                <div><br /></div>
+
+                            </div>
+                            <div>
+                                <div class="floatLeft width50">Phone: <span>@Model.Agent.TelephoneNo</span></div>
+                                <div class="floatRight width50">Fax: <span>@Model.Agent.FaxNumber</span></div>
+                                <div class="clearfix"></div>
+
+                            </div>
+
+                        }
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    <div style="margin-top:3px;">
+        <div class="floatLeft width49" style="margin-top:-30px;">
+            <div class="floatLeft width100 border1">
+                <div class="interimReceipt">
+                    <span class="interimReceiptLeft">FRAYTE TERM</span>
+                    @if (@Model.ShipmentDetail.ShipmentTerm != null)
+                    {
+                        <span class="interimReceiptRight">@Model.ShipmentDetail.ShipmentTerm.Code</span>
+                    }
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+        <div class="marginTop3">
+            <div class="floatLeft width49">
+                <div class="floatLeft width49 border1">
+                    <div class="fillFullPart">PLACE OF RECEIPT</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            <div><br /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floatRight width49 border1">
+                    <div class="fillFullPart">PORT OF LOADING</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            <div><br /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="floatRight width49">
+                <div class="floatLeft width49 border1">
+                    <div class="fillFullPart">PORT OF DISCHARGE</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            <div><br /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floatRight width49 border1">
+                    <div class="fillFullPart">PLACE OF DELIVERY</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            <div><br /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="marginTop3">
+            <div class="floatLeft width49">
+                <div class="floatLeft width100 border1">
+                    <div class="fillFullPart">FLIGHT / DATE</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            <div><br /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="floatRight width49">
+                <div class="floatLeft width49 border1">
+                    <div class="fillFullPart">LOAD</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            <div>@Model.ShipmentDetail.ShipperAddress.Country.Name<br /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floatRight width49 border1">
+                    <div class="fillFullPart">DISCHARGE</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            <div>@Model.ShipmentDetail.ReceiverAddress.Country.Name<br /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="marginTop3">
+            <div class="floatLeft width100 border1">
+                <div class="fillFullPart">COMMODITY SUMMARY</div>
+                <div class="padding2">
+                    <div class="upperCase">
+                        @Model.ShipmentDetail.ContentDescription
+                        <div><br /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <br />
+        <div class="marginTop3">
+            <div class="floatLeft width49 border1">
+                <div class="fillFullPart">LOCATION OF GOODS</div>
+                <div class="padding2">
+                    <div class="upperCase">
+                        @if (@Model.ShipmentDetail.ShipperAddress != null)
+                        {
+                            <div>@Model.ShipmentDetail.ShipperAddress.Address <br /></div>
+                            <div>@Model.ShipmentDetail.ShipperAddress.City <br /></div>
+                            <div>@Model.ShipmentDetail.ShipperAddress.State <br /></div>
+                            <div>@Model.ShipmentDetail.ShipperAddress.Country.Name<br /></div>
+                        }
+                        <div><br /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="floatRight width49 border1">
+                <div class="fillFullPart">GOODS RECEIVAL POINT</div>
+                <div class="padding2">
+                    <div class="upperCase">
+                        @if (@Model.ShipmentDetail.ReceiverAddress != null)
+                        {
+                            <div>@Model.ShipmentDetail.ReceiverAddress.Address <br /></div>
+                            <div>@Model.ShipmentDetail.ReceiverAddress.City <br /></div>
+                            <div>@Model.ShipmentDetail.ReceiverAddress.State <br /></div>
+                            <div>@Model.ShipmentDetail.ReceiverAddress.Country.Name<br /></div>
+                        }
+                        <div><br /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <br />
+        <div class="marginTop3">
+            <div class="floatLeft width49 border1">
+                <p class="signDate">
+                    We certify that the cargo is in good order and condition and that the quantities,
+                    weights, and measurements shown here are true and correct at the time of
+                    loading into the container or delivery to the carrier.
+                </p>
+                <div><span class="floatLeft width50"><b>Signed</b></span><span class="floatLeft width50"><b>Date</b></span></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="floatRight width49 border1">
+                <p class="signDate">
+                    Received the above mentioned cargo/container in apparent good order and
+                    condition subject to the terms, conditions and exceptions contained in the Container
+                    Bill of Lading issued by this Company on behalf of the owner.
+                </p>
+                <div><span class="floatLeft width50"><b>Signed</b></span><span class="floatLeft width50"><b>Date</b></span></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <br />
+        <div>
+            <div class="floatRight width50 text-right">
+                <div>
+                    @*<img src="@Model.ImgSrc" />*@
+                    @*<img src="~/Content/Interim_Receipt.png" />*@
+                </div>
+                @*[HKGIRTHKGLHRS00008526]*@
+                @*Enter number bard code number here*@
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="fillFullPart text-center border1">
+            END OF DOCUMENT
+        </div>
+        <br />
+    </div>
+    <footer>
+        <span class="footerText">p</span><span> +852 2148 4480</span>
+        <span class="footerLogo">WWW.frayte.com</span>
+        <span class="footerText">f</span><span> +852 2148 4480</span>
+    </footer>
+</body>
+</html>

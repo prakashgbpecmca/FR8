@@ -1,0 +1,237 @@
+<div id="wrapper">
+    <!--dropdown header code with frayte logo-->
+    <div class="large-menu">
+        <div class="container">
+            <div>
+                <!--<div class="col-xs-6 col-sm-6 col-md-6 paddingboth" ng-if="Site_Company === 'FRAYTE'">-->
+                <div class="col-xs-6 col-sm-6 col-md-6 paddingboth" ng-if="Site_Company === 'FRAYTE'">
+                    <a class="pointer" ng-click="rootStateHeader()">
+                        <span ng-if="IsSiteCountry==='COM'"><img ng-src="{{ImagePath + 'FrayteHK.png'}}" class="logo" style="width: 170px;padding: 20px 0px;" /></span>
+                        <span ng-if="IsSiteCountry==='CO.UK'"><img ng-src="{{ImagePath + 'FrayteUK.png'}}" class="logo" style="width: 170px;padding: 20px 0px;" /></span>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 paddingboth" ng-if="Site_Company === 'MAXLOGISTIC'">
+                    <a class="pointer" ng-click="rootStateHeader()"><img ng-src="{{ImagePath + 'MexLogo.png'}}" class="logo" style="width: 170px;padding: 20px 0px;" /></a>
+                </div>
+                <div ng-include="'loginView/offline.tpl.html'" ng-show="!online"></div>
+                <div ng-show="!isNotFound" class="col-xs-6 col-sm-6 col-md-6 paddingboth" style="margin-top: 15px;">
+                    <div class="col-sm-12 paddingboth">
+                        <div class="col-sm-9 paddingboth" id="select-booking">
+                            <ul class="nav navbar-nav navbar-right" ng-show="moduleType()">
+                                <li class="dropdown">
+                                    <span class="smallCaret dropdown-toggle pointer padding10-20" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="padding-lr-5 usr-img"><img ng-src="{{ImagePath + selectedImage}}" /></span> <b class="frayte-orange">{{selectedModule}}</b></span>
+                                    <ul ng-hide="userInfo.UserType === 'SPECIAL'" class="dropdown-menu absolute-24">
+                                        <li ng-hide="userInfo.UserType === 'SPECIAL' && (!CustomerModules.IsDirectBooking || IsDirectBookingSelected)"><a class="pointer fontsize12" ng-click="goToBooking('DirectBooking')" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsDirectBooking || IsDirectBookingSelected }" a-disabled="!CustomerModules.IsDirectBooking || IsDirectBookingSelected "><span class="padding-lr-5 usr-img"><img ng-src="{{ImagePath + 'directbooking-30.png'}}" id="booking-dropdown"></span> &nbsp;{{'Direct_Bookingg' | translate}}</a></li>
+                                        <li ng-hide="userInfo.UserType === 'SPECIAL' && (!CustomerModules.IsTradeLaneBooking || IsTradelaneSelected)"><a class="pointer fontsize12" ng-click="goToBooking('Tradelane')" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsTradeLaneBooking || IsTradelaneSelected}" a-disabled="!CustomerModules.IsTradeLaneBooking || IsTradelaneSelected"><span class="padding-lr-5 usr-img"><img ng-src="{{ImagePath + 'tradelane-30.png'}}" id="booking-dropdown"></span> &nbsp;{{'Tradelane' | translate}}</a></li>
+                                        <li ng-hide="userInfo.UserType === 'SPECIAL' && true"><a class="pointer fontsize12" ng-click="goToBooking('Tradelane')" ng-class="{ 'moduleNotAvailable': true}" a-disabled="true"><span class="padding-lr-5 usr-img"><img ng-src="{{ImagePath + 'breakbulk-30.png'}}" id="booking-dropdown"></span> &nbsp;{{'Breakbulk' | translate}}</a></li>
+                                        <li ng-hide="userInfo.UserType === 'SPECIAL' && true"><a class="pointer fontsize12" ng-click="goToBooking('eCommerce')" ng-class="{ 'moduleNotAvailable': !CustomerModules.IseCommerceBooking || IseCommerceBookingSelected}" a-disabled="!CustomerModules.IseCommerceBooking || IseCommerceBookingSelected"><span class="padding-lr-5 usr-img"><img ng-src="{{ImagePath + 'ecommerce-30.png'}}" id="booking-dropdown"></span> &nbsp;{{'Ecommerce' | translate}}</a></li>
+                                        <li ng-hide="userInfo.UserType === 'SPECIAL' && true"><a class="pointer fontsize12" ng-click="goToBooking('Tradelane')" ng-class="{ 'moduleNotAvailable': true}" a-disabled="true"><span class="padding-lr-5 usr-img"><img ng-src="{{ImagePath + 'warehouse-30.png'}}" id="booking-dropdown"></span> &nbsp;{{'Warehouse' | translate}} {{'And' | translate}} {{'Transport' | translate}}</a></li>
+                                        <li ng-hide="userInfo.UserType === 'SPECIAL' && true"><a class="pointer fontsize12" ng-click="goToBooking('Tradelane')" ng-class="{ 'moduleNotAvailable': true}" a-disabled="true"><span class="padding-lr-5 usr-img"><img ng-src="{{ImagePath + 'express-solutions-30.png'}}" id="booking-dropdown"></span> &nbsp;{{'Express' | translate}} {{'Solutions' | translate}}</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 paddingboth text-right" style="padding: 6px 0px;text-align: right;line-height: 18px;">{{CurrentDateTime}}</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="usr-setting text-right">
+                        <ul class="nav navbar-nav navbar-right bottom-zero">
+                            <!--notification code here-->
+                            <!--<li class="dashboard-notification">
+                          <span class="padding-lr-5 usr-img pointer" ng-click="notification()"><i class="fa fa-bell-o fa-2x" aria-hidden="true"></i> <span class="notification-count notification-text-small">10</span></span>
+                          <div id="open-notification" ng-if="openNotification">
+                <div class="col-sm-12 paddingboth fix-scroll">
+                    <div class="paddingTB-8 border-bottom-ddd pointer flex" href="">
+                    <div class="col-sm-9 text-left">Unallocated Shipments</div>
+                    <div class="col-sm-3 margin-tb-auto"><span class="notification-count">4</span></div>
+                    <div class="clearfix"></div>
+                    </div>
+                    <div class="paddingTB-8 border-bottom-ddd pointer flex" href="">
+                        <div class="col-sm-9 text-left">Ready for Pre-Alert Shipments</div>
+                        <div class="col-sm-3 margin-tb-auto"><span class="notification-count">7</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="paddingTB-8 border-bottom-ddd pointer flex" href="">
+                        <div class="col-sm-9 text-left">Milestone not Completed</div>
+                        <div class="col-sm-3 margin-tb-auto"><span class="notification-count">3</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="paddingTB-8 border-bottom-ddd pointer flex" href="">
+                        <div class="col-sm-9 text-left">MAWB Pending Shipments</div>
+                        <div class="col-sm-3 margin-tb-auto"><span class="notification-count">4</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="paddingTB-8 border-bottom-ddd pointer flex" href="">
+                        <div class="col-sm-9 text-left">MAWB Shipments</div>
+                        <div class="col-sm-3 margin-tb-auto"><span class="notification-count">6</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="paddingTB-8 border-bottom-ddd pointer flex" href="">
+                        <div class="col-sm-9 text-left">Claim Shipments</div>
+                        <div class="col-sm-3 margin-tb-auto"><span class="notification-count">5</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="paddingTB-8 flex pointer" href="">
+                        <div class="col-sm-9 text-left pointer" href="">Allocated Shipments</div>
+                        <div class="col-sm-3 margin-tb-auto"><span class="notification-count">2</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                          </div>
+                          </li>-->
+                            <!--end-->
+                            <li class="padding-0-5"><span class="padding-lr-5 usr-img"><img ng-src="{{userInfo.PhotoUrl}}" /></span></li>
+                            <li style="margin-top:6px;"><span class="welcome-msg">{{'Welcome' | translate}}</span><span ng-show="userInfo">{{userInfo.EmployeeName}}</span></li>
+                            <li class="logoutDropdown">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a href="" class="smallCaret dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                                        <ul class="dropdown-menu top3">
+                                            <li><a href="" ng-click="ProfileModal()"><i class="fa fa-user" aria-hidden="true"></i> &nbsp;{{'MyProfile' | translate}}</a></li>
+                                            <li><a href="" ng-click="rootStateHeader()"><i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp; {{'Dashboard' | translate}}</a></li>
+                                            <li><a href="" ng-click="Logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;{{'Logout' | translate}}</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+    <div class="clearfix"></div>
+    <div id="content">
+        <div class="content2">
+            <!--cathey pacific collapse start here-->
+            <div class="panel-group" id="login-collapse">
+                <br />
+                <div class="panel panel-default fontsize12 padding0" ng-if="reslength === false && SITECOMPANY === 'FRAYTE'">
+                    <div class="cathey-collapse">
+                        <a class="panel-title pointer show-opacity">
+                            <div ng-click="val = !val" style="border-bottom: 1px solid #ddd;height:37px;">
+                                <div>
+                                    <span ng-hide="!Count">
+                                        <span class="error-icon-yellow"><i ng-hide="val === true" class="fa fa-exclamation error-icon full-opacity" style="opacity:0.8;" aria-hidden="true"></i></span>
+                                        <span class="fontsize12 middle">{{Count}} {{SystemAlertMessage() | translate}}</span>
+                                    </span>
+                                    <span ng-hide="val === true" class="system-error-down fontsize12 middle" id="date-collapse">
+                                        {{PublicPageDate}} <span>({{GMT}}) </span>
+                                    </span>
+                                    <span>
+                                        <i ng-show="val === false" class="fa fa-chevron-down pull-right full-opacity top9" aria-hidden="true" style="opacity:0.8;"></i>
+                                        <i ng-show="val === true" class="fa fa-chevron-up pull-right full-opacity top9" aria-hidden="true" style="opacity:0.8;"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div ng-show="val === true" ng-repeat="result in result" class="panel-heading padding3x0 cathey-collapse" style="background:transparent !important;border-bottom:1px solid #ddd;height:37px;">
+                            <div class="width100">
+                                <div class="width70 show-opacity">
+                                    <a href="{{sURL}}{{result.Heading}}" target="_blank" class="panel-title pointer">
+                                        <span>
+                                            <span class="error-icon-yellow"><i class="fa fa-exclamation error-icon full-opacity fontsize12" aria-hidden="true" style="opacity:0.8; top: 0px !important;"></i></span> <span class="fontsize12 middle-sub">{{result.Heading}}</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="pull-right">
+                                    <span class="middle fontsize12">
+                                        {{result.Date}}<span> ({{result.TimeZoneDetail.OffsetShort}})</span>&nbsp;&nbsp;
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--cathey pacific collapse end here-->
+            <!--error 404 page code here-->
+            <section class="container content-admin">
+                <div class="content-admin">
+                    <div ng-show="isNotFound">
+                        <div id="content">
+                            <div class="content2">
+                                <section class="container admin">
+                                    <div class="content-admin">
+                                        <div class="col-sm-12 paddingboth flex" style="padding: 20rem 0px;">
+                                            <div class="col-sm-5 padding-10"><img class="img-responsive" ng-src="{{ImagePath + 'error_image.png'}}" /></div>
+                                            <div class="col-sm-7">
+                                                <div class="padding-10 fontsize34"><label class="bold">{{'404' | translate}}</label> <label>{{'Not_Found' | translate}}</label></div>
+                                                <div class="padding-10">
+                                                    <p>{{'ErrorPageMessage' | translate}}</p>
+                                                </div>
+                                                <div class="fontsize16 padding-10">
+                                                    <a href="javascript: history.back()" ng-click="rootState()" class="btn btn-simple btn-cancel"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{'GoBack' | translate}}</a>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingboth">
+                        <div ng-show="!isNotFound" style="border:1px solid #DBE2EC; border-radius:3px;background:#fff;padding:15px 15px 0px 15px;height:auto !important;" ui-view>
+                        </div>
+                    </div>
+                    <toaster-container></toaster-container>
+                </div>
+            </section>
+            <!--end-->
+        </div>
+    </div>
+</div>
+<footer class="pre-footer-top-border" ng-if="Site_Company === 'FRAYTE'">
+    <div class="container">
+        <div class="col-sm-12 paddingboth">
+            <div>
+                <div class="pull-left lineheight24 xs-footerCenter top7 left-40rem">
+                    <div>
+                        <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+                        <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}} </button>
+                        <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'hkong.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TD' | translate}} </button>
+                        <button ng-click="changeLanguage('th')" class="btn btn-link fontsize12" ng-disabled="isDisabled4" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'th.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TH' | translate}} </button>
+                    </div>
+                </div>
+                <div>
+                    <ul class="text-right">
+                        <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                        <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                        <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                        <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="pull-left xs-footerCenter top2">
+                    <div class="copyText"><span class="mobile-left"><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /> <span class="word-break">&copy; {{'2018' | translate}} <span ng-if="IsSiteCountry==='COM'">{{'FRAYTE_HK' | translate}}</span><span ng-if="IsSiteCountry==='CO.UK'">{{'FRAYTE_UK' | translate}}</span>. {{'AllRightsReserved' | translate}}.</span></span></div>
+                </div>
+                <div class="pull-right textAlignR xs-footercenter top2 text-right">
+                    <a ng-click="setScroll('top')" ui-sref='helpSupport' target="_blank" class="fontsize12">{{'Help_Support' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.privacyPolicy' target="_blank" class="fontsize12">{{'Privacy_Policy' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.term-and-condition' target="_blank" class="fontsize12">{{'TermsAndCondition' | translate}}</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</footer>
+<footer class="pre-footer-top-border" ng-if="Site_Company === 'MAXLOGISTIC'">
+    <div class="container">
+        <div class="col-sm-12 paddingboth">
+            <div class="pull-right">
+                <div><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/mex-logistic-limited/" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></div>
+            </div>
+            <div class="pull-left xs-footerCenter" style="top:12px;">
+                <div class="copyText"><span class="mobile-left"><img ng-src="{{ImagePath + 'favicon-maxlogistic.png'}}" class="frayte-footer-icon" /> <span class="word-break">&copy; {{'2018' | translate}} {{'Max' | translate}} {{'LogisticLTD' | translate}}. {{'AllRightsReserved' | translate}}.</span></span></div>
+            </div>
+            <!--<div class="pull-right textAlignR xs-footercenter top2 text-right">
+                <a ng-click="setScroll('top')" ui-sref='helpSupport' target="_blank" class="fontsize12">{{'Help_Support' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.privacyPolicy' target="_blank" class="fontsize12">{{'Privacy_Policy' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.term-and-condition' target="_blank" class="fontsize12">{{'TermsAndCondition' | translate}}</a>
+            </div>-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</footer>

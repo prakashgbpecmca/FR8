@@ -1,0 +1,380 @@
+﻿
+<section>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancelService()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Quotation_Available' | translate}} <span class="redColor">*</span> - {{'From_' | translate}} <span class="frayte-orange">{{quotationDetail.QuotationFromAddress.Country.Name}} <span class="text-uppercase" ng-show="quotationDetail.QuotationFromAddress.Country.Code ===  'GBR' && quotationDetail.QuotationToAddress.Country.Code ===  'GBR'">({{quotationDetail.QuotationFromAddress.PostCode}})</span></span> to <span class="frayte-orange">{{quotationDetail.QuotationToAddress.Country.Name}} <span class="text-uppercase" ng-show="quotationDetail.QuotationFromAddress.Country.Code ===  'GBR' &&  quotationDetail.QuotationToAddress.Country.Code ===  'GBR'">({{quotationDetail.QuotationToAddress.PostCode}})</span></span></h4>
+    </div>
+
+    <div class="modal-body" id="arrow-right-fixed" ng-if="courierServices.length > 0">
+        <div id="getservice">
+            <!--filter table-->
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-7 paddingboth redColor">
+                    <span class="lineheight34">* {{'Availability_Services_Dependent_PostCodes' | translate}}</span>
+                </div>
+                <div class="col-sm-5 pull-right form-group paddingboth">
+                    <label for="sortby" class="col-sm-3 paddingboth control-label top7 bold text-right">{{'Sorty_By' | translate}}</label>
+                    <div class="col-sm-9 paddingboth">
+                        <div class="col-sm-11 quotation-table-body">
+                            <select class="form-control fontsize12" ng-options="option.value as option.display for option in options" ng-change="setGridOrder(SortBy, 'dropdown')" ng-model="SortBy"></select>
+                        </div>
+                        <div class="col-sm-1 paddingboth bottom4">
+                            <i ng-class="{'active-gray': sortByOrder === 'Ascending'}" class="fa fa-chevron-up pointer" title="Ascending" ng-click="SortBy = gridbyIcon(SortBy, 'buttonAscending')" aria-hidden="true"></i>
+                            <br />
+                            <i ng-class="{'active-gray': sortByOrder === 'Descending'}" class="fa fa-chevron-down pointer" title="Descending" ng-click="SortBy = gridbyIcon(SortBy, 'buttonDescending')" aria-hidden="true"></i>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end-->
+            <!--start quotation tool service header here-->
+            <div ng-if="newUkShipmentService.IsUkShipment && courierServices.length">
+                <div class="width100 flex quotation-header-overflow grid-background">
+                    <div class="width100 flex" id="rateshow">
+                        <div class="bold">
+                            <span class="quotation-table-body">{{'Courier' | translate}} &nbsp;</span>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="bold"><span class="quotation-table-body padding-10">{{'Chargeable_Weight' | translate}}</span> <span class="redColor chargeable-weight">**</span></div>
+                        <div class="bold"><span class="quotation-table-body padding-10">{{'Transit_Time_' | translate}}</span> <span class="redColor top5">*</span></div>
+                        <div class="bold"><span class="quotation-table-body padding-10">{{'Service_Type' | translate}}</span></div>
+                        <div class="bold">
+                            <span class="quotation-table-body">{{'Price' | translate}} <span class="redColor">{{'Hash' | translate}}</span> &nbsp;</span>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="bold"><span class="quotation-table-body padding-10">{{'Fuel_Surcharge' | translate}}</span></div>
+                        <div class="bold">
+                            <span class="quotation-table-body width80">{{'Total_EstCost' | translate}} <span class="redColor">{{'Hash' | translate}}</span> &nbsp;</span>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="bold lineheight20" style="border-right:transparent !important;">
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div ng-if="!ukShipmentService.IsUkShipment && courierServices.length">
+                <div class="width100 flex grid-background">
+                    <div class="flex width986" id="Norateshow">
+                        <div class="bold">
+                            <span class="quotation-table-body">{{'Courier' | translate}} &nbsp; </span>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="bold"><span class="quotation-table-body padding-10">{{'Chargeable_Weight' | translate}}</span> <span class="redColor  chargeable-weight">**</span></div>
+                        <div class="bold"><span class="quotation-table-body padding-10">{{'Transit_Time_' | translate}}</span> <span class="redColor top5">*</span></div>
+                        <div class="bold">
+                            <span class="quotation-table-body">{{'Price' | translate}} <span class="redColor">{{'Hash' | translate}}</span> &nbsp; </span>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="bold"><span class="quotation-table-body padding-10">{{'Fuel_Surcharge' | translate}}</span></div>
+                        <div class="bold">
+                            <span class="quotation-table-body">{{'Total_EstCost' | translate}} <span class="redColor">{{'Hash' | translate}}</span> &nbsp; </span>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="bold lineheight20" style="border-right:transparent !important;"></div>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end quotation tool service header-->
+            <!--start quotation tool body service here-->
+            <div ng-if="courierServices.length" class="get-service-scrolled border-LB">
+                <div class="panel-body padding0">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div ng-if="!newUkShipmentService.IsUkShipment && !IsPriceGrid" ng-repeat="courierService in newUkShipmentService.Services">
+                                <div ng-dblclick="setCustomerRateCard(courierService); " ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100  flex pointer" popover-placement="auto" uib-popover='Double click to select the service.' popover-trigger="'mouseenter'">
+                                    <div class="width120 quotation-table-body text-center"><span><img class="img100x30 top2 top20" ng-class="{'padding-5': courierService.CourierName != 'DHL'}" ng-src="{{courierService.ImageURL}}" /></span></div>
+
+                                    <!--new code-->
+                                    <div class="width78 bordered-left bordered-right">
+                                        <div style="text-align: left;padding: 10px;border-bottom: 1px solid #ddd;">{{courierService.CourierDescription}}</div>
+                                        <div class="flex">
+                                            <div class="width25-5 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.Weight}} Kgs</span></div>
+                                            <div class="width13 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.TransitTime}}</span></div>
+                                            <div class="width16-7 quotation-table-body bordered-right">
+                                                <span class="quotation-table-body padding-10 margin6x0x6">
+                                                    <span>{{courierService.CustomerCurrency}} {{courierService.Rate}}</span>
+                                                    <span ng-show="courierService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span>
+                                                    <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span>
+                                                </span>
+                                            </div>
+                                            <div class="width22 quotation-table-body bordered-right">
+                                                <span class="quotation-table-body padding-10 margin6x0x6">{{courierService.FuelSurcharge}} % ({{courierService.FuelMonth}})</span>
+                                            </div>
+                                            <div class="width22-5 quotation-table-body">
+                                                <span class="quotation-table-body padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.TotalEstimatedCharge}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!--end-->
+
+                                    <div class="width10 line-height-3rem quotation-table-body padding0 text-center top20">
+                                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                            <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-10 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                <li ng-click="setCustomerRateCard(courierService)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                                <li ng-click="DownloadGetServiceSupplymentryCharges(courierService)"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Quote_Add_On_Rate' | translate}} {{'PDF' | translate}}</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <!--Logistics optional service in DHL-->
+                                <div ng-if="courierService.OptionalServices.length > 0">
+                                    <div ng-repeat="optionservice in courierService.OptionalServices">
+                                        <div ng-if="optionservice.LogisticCompany == 'DHL'" class="padding-10-5 col-sm-12 NDS" style="font-size: 14px;">
+                                            <div class="checkbox"><b>{{'Add_On_Services' | translate}}: </b> <label><input type="checkbox" ng-model="optionservice.IsEnable"> {{optionservice.ServiceCode}} -  {{optionservice.ServiceDescription}}</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <!--end-->
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <!-- UK Shipmemnt Rate-->
+                    <ul class="list-unstyled margin-bottom-none">
+                        <li>
+                            <div ng-if="newUkShipmentService.IsUkShipment && !IsPriceGrid">
+                                <div ng-repeat="service in newUkShipmentService.Services">
+                                    <div style="background-color:{{service.Services[0].backGroundColor}}" ng-if="service.Services.length" ng-dblclick="setCustomerRateCard(service.Services[0])"
+                                         ng-click="selectCustomerRateCard(service.Services[0])"
+                                         ng-class="{'demoClass':service.Services[0].RowSelect, 'greenClass': true}" class="width100 pointer flex" popover-placement="auto" uib-popover='Double click to select the service.' popover-trigger="'mouseenter'">
+                                        <div class="width10 quotation-table-body text-center"><span><img class="img100x30 top2 top20" ng-class="{'padding-5': service.Services[0].CourierName != 'DHL'}" ng-src="{{service.Services[0].ImageURL}}" /></span></div>
+
+                                        <!--new code-->
+                                        <div class="width80 bordered-right bordered-left">
+                                            <div style="text-align: left;padding: 10px;border-bottom: 1px solid #ddd;">{{service.Services[0].CourierDescription}}</div>
+                                            <div class="flex">
+                                                <div class="width17-4 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{service.Services[0].Weight}} Kgs</span></div>
+                                                <div class="width12-5 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{service.Services[0].TransitTime}}</span></div>
+                                                <div class="width30 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{service.Services[0].ShipmentType}}</span></div>
+                                                <div class="width12-66 quotation-table-body bordered-right">
+                                                    <span class="quotation-table-body padding-10 margin6x0x6"><span>{{service.Services[0].CustomerCurrency}} {{service.Services[0].Rate}}</span> <span ng-show="service[0].UnitOfMeasurement==='Per Kg'">/Kg</span> <span ng-show="service[0].UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></span>
+                                                </div>
+                                                <div class="width12-5 quotation-table-body bordered-right">
+                                                    <span class="quotation-table-body padding-10 margin6x0x6">{{service.Services[0].FuelSurcharge}}% ({{service.Services[0].FuelMonth}})</span>
+                                                </div>
+                                                <div class="width150 quotation-table-body bordered-right">
+                                                    <span class="quotation-table-body padding-10 margin6x0x6"><span>{{service.Services[0].CustomerCurrency}} {{service.Services[0].TotalEstimatedCharge}}</span> <span ng-show="service[0].UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="service[0].UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <!--end-->
+
+                                        <div class="width10 line-height-3rem quotation-table-body padding0 text-center top20">
+                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-10 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                    <li ng-click="setCustomerRateCard(service.Services[0])"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'service' | translate}}</span></a></li>
+                                                    <li ng-click="DownloadGetServiceSupplymentryCharges(service.Services[0])"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Quote_Add_On_Rate' | translate}} {{'PDF' | translate}}</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div>
+                                        <!--Logistics optional service in DHL-->
+                                        <div ng-if="service.Services[0].OptionalServices.length > 0">
+                                            <div ng-repeat="optionservice in service.Services[0].OptionalServices">
+                                                <div ng-if="optionservice.LogisticCompany == 'DHL'" class="padding-10-5 col-sm-12 NDS" style="font-size: 14px;">
+                                                    <div class="checkbox"><b>{{'Add_On_Services' | translate}}: </b> <label><input type="checkbox" ng-model="optionservice.IsEnable"> {{optionservice.ServiceCode}} -  {{optionservice.ServiceDescription}}</label></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end-->
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div ng-if="service.Services.length > 1" class="padding-10 get-service-plus-minus-background">
+                                        <a class="pointer" ng-click="service.IsCollapsed = !service.IsCollapsed">
+                                            <span>
+                                                <i ng-class="{'fa fa-plus-square-o' : !service.IsCollapsed, 'fa fa-minus-square-o' : service.IsCollapsed}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;">
+                                                </i>
+                                            </span><span style="font-size:14px !important">{{service.CourierName}} ({{'Optional Services' | translate}})</span>
+                                        </a>
+                                    </div>
+                                    <div ng-if="service.Services.length > 1">
+                                        <div class="clearfix"></div>
+                                        <ul class="list-unstyled margin-bottom-none">
+                                            <li>
+                                                <div style="background-color:{{courierService.backGroundColor}}" ng-if="service.IsCollapsed && $index > 0" ng-repeat="courierService in service.Services" ng-if="$index > 0">
+                                                    <div ng-if="IsRateShow" ng-dblclick="setCustomerRateCard(courierService); " ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100   flex pointer" popover-placement="auto" uib-popover='Double click to select the service.' popover-trigger="'mouseenter'">
+                                                        <div class="width10 quotation-table-body text-center"><span><img class="img100x30 top2 top20" ng-class="{'padding-5': courierService.CourierName != 'DHL'}" ng-src="{{courierService.ImageURL}}" /></span><!--<span class="">{{courierService.DisplayName}}</span>--></div>
+
+                                                        <!--new code-->
+                                                        <div class="width80 bordered-left bordered-right">
+                                                            <div style="text-align: left;padding: 10px;border-bottom: 1px solid #ddd;">{{courierService.CourierDescription}}</div>
+                                                            <div class="flex">
+                                                                <div class="width17-4 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.Weight}} Kgs</span></div>
+                                                                <div class="width12-5 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.TransitTime}}</span></div>
+                                                                <div class="width30 quotation-table-body bordered-right"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.ShipmentType}}</span></div>
+                                                                <div class="width12-66 quotation-table-body bordered-right">
+                                                                    <sapn ng-if="courierService.RateValue > 0.00">
+                                                                        <span class="quotation-table-body padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.Rate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></span>
+                                                                    </sapn>
+                                                                    <sapn ng-if="courierService.RateValue === 0.00" class="quotation-table-body padding-10 margin6x0x6">N/A</sapn>
+                                                                </div>
+                                                                <div class="width12-5 quotation-table-body bordered-right">
+                                                                    <sapn ng-if="courierService.FuelSurchargeValue > 0.00">
+                                                                        <span class="quotation-table-body padding-10 margin6x0x6">{{courierService.FuelSurcharge}}% ({{courierService.FuelMonth}})</span>
+                                                                    </sapn>
+                                                                    <sapn ng-if="courierService.FuelSurchargeValue === 0.00" class="quotation-table-body padding-10 margin6x0x6">N/A</sapn>
+                                                                </div>
+                                                                <div class="width150 quotation-table-body bordered-right">
+                                                                    <span ng-if="courierService.TotalEstimatedChargeValue > 0.00"><span class="quotation-table-body padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.TotalEstimatedCharge}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></span></span>
+                                                                    <sapn ng-if="courierService.TotalEstimatedChargeValue === 0.00" class="quotation-table-body padding-10 margin6x0x6">N/A</sapn>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <!--end-->
+
+
+                                                        <div class="width10 line-height-3rem quotation-table-body padding0 text-center top20">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-10 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="setCustomerRateCard(courierService)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                                                    <li ng-click="DownloadGetServiceSupplymentryCharges(courierService)"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Quote_Add_On_Rate' | translate}} {{'PDF' | translate}}</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <!--Logistics optional service in DHL-->
+                                    <div ng-if="service.OptionalServices.length > 0">
+                                        <div ng-repeat="optionservices in service.OptionalServices">
+                                            <div ng-if="optionservices.LogisticCompany == 'DHL'" class="padding-10-5 col-sm-12 NDS" style="font-size: 14px;">
+                                                <div class="checkbox"><b>{{'Add_On_Services' | translate}}: </b> <label><input type="checkbox" ng-model="optionservices.IsEnable"> {{optionservices.ServiceCode}} -  {{optionservices.ServiceDescription}}</label></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            {{courierService.CourierName}}
+                        </li>
+                    </ul>
+                    <div ng-if="newUkShipmentService.IsUkShipment && IsPriceGrid">
+                        <div ng-include="'directBooking/directBookingServices/ukShipmentSortByPrice.tpl.html'">
+                        </div>
+                    </div>
+                    <div ng-if="!newUkShipmentService.IsUkShipment && IsPriceGrid">
+                        <div ng-include="'directBooking/directBookingServices/hkSortByPrice.tpl.html'">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--end quotation tool body service-->
+        </div>
+    </div>
+
+    <!--start error message when no service available-->
+    <div class="modal-body" id="arrow-right-fixed" ng-if="NoServicesAssign == true">
+        <div>
+            <div class="panel-body padding0">
+                <!--start new code here for max-weight in courier service-->
+                <div class="paddingTB182">
+                    <p class="redColor fontsize16 text-center">
+                        {{'Currently_NoService_Available' | translate}} <a href="" title='{{SalesFrayteWeb}}'> {{SalesFrayteWeb}}</a> {{'For_Further_Assistance' | translate}}
+                    </p>
+                </div>
+                <!--end-->
+            </div>
+        </div>
+    </div>
+    <!--end-->
+
+    <!--start error message when special country quote like Australia, Chile, Mexico, Brazil-->
+    <div class="modal-body" id="arrow-right-fixed" ng-if="CourierServiceSpecialCountry.length === 0">
+        <div>
+            <div class="panel-body padding0">
+                <!--start new code here for max-weight in courier service-->
+                <div class="paddingTB182">
+                    <p class="redColor fontsize16 text-center">
+                        {{'Currently_NoService_Available' | translate}} <a href="" title='{{SalesFrayteWeb}}'> {{SalesFrayteWeb}}</a> {{'For_Further_Assistance' | translate}}
+                    </p>
+                </div>
+                <!--end-->
+            </div>
+        </div>
+    </div>
+    <!--end-->
+
+    <!--start quotation tool error message here-->
+    <div class="modal-body" id="arrow-right-fixed" ng-if="CourierServiceWeightLimit.length > 0">
+        <div>
+            <div class="panel-body padding0">
+                <!--start new code here for max-weight in courier service-->
+                <div>
+                    <div>
+                        <p class="redColor fontsize16 text-center">{{'NoService_Available_' | translate}} <a href="" title='{{SalesFrayteWeb}}'>{{SalesFrayteWeb}}</a></p>
+                        <hr style="margin:10px 0px !important" />
+                        <p class="fontsize16 text-center">{{'Limit_Courier_Service' | translate}}</p>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading padding0">
+                            <ul class="list-unstyled margin-bottom-none">
+                                <li>
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth flex">
+                                            <div class="col-sm-4 panel-real-heading bordered-right">{{'Courier' | translate}}</div>
+                                            <div class="col-sm-4 panel-real-heading bordered-right">{{'Service_Type' | translate}}</div>
+                                            <div class="col-sm-4 panel-real-heading">{{'Max_Weight' | translate}}</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body padding0">
+                            <ul class="list-unstyled change  margin-bottom-none">
+                                <li>
+                                    <div class="flex" ng-repeat="Courier in CourierServiceWeightLimit">
+                                        <div class="col-sm-12 paddingboth flex" ng-if="Courier.IsWeightShow === true">
+                                            <div class="col-sm-4 flex padding5all bordered-right"><span><img class="img100x30" ng-class="{'padding-5': Courier.CourierName != 'DHL'}" ng-src="{{Courier.ImageURL}}" /></span></div>
+                                            <div class="col-sm-4 padding5all bordered-right lineheight38">{{Courier.ServiceType}}</div>
+                                            <div class="col-sm-4 padding5all lineheight38">{{Courier.Weight}} KG</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end-->
+            </div>
+        </div>
+    </div>
+    <!--end quotation tool error message code-->
+
+    <div ng-if="courierServices.length" class="modal-footer text-left">
+        <p class="text-left"><i class="fa fa-copyright" aria-hidden="true"></i> <span class="copyright">{{'Courier_Company_Copyright_Trademarks' | translate}}</span></p>
+        <p ng-show="SITECOMPANY === 'FRAYTE'" class="col-sm-12 paddingboth redColor text-left"><strong>{{'Hash' | translate}}: </strong> {{'TotalEstimate_BillingWeightGetServices' | translate}} <a href="" ng-click="setScroll('top')" ui-sref='public.term-and-condition' target="_blank">{{'Terms_And_Conditions' | translate}}.</a></p>
+        <p ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="col-sm-12 paddingboth redColor text-left"><strong>{{'Hash' | translate}}: </strong> {{'TotalEstimate_BillingWeightGetServices_MEX' | translate}}</p>
+        <p class="text-left"><span class="redColor">* {{'Transit_Time_Approximates' | translate}}</span></p>
+        <p class="text-left"><span class="redColor">** {{'WeightPerCourierCompany' | translate}}</span></p>
+    </div>
+</section>

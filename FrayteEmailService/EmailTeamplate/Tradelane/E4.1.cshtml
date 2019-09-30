@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0;font-family: calibri, sans-serif;padding:10px 20px;">
+<header>
+        <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@Model.ImageHeader" />
+        </div>
+    </header>
+	<br/>
+	<table style="border-spacing: 0px;">
+	<tr><td style="font-family: calibri, sans-serif;">Dear <span><b>@Model.UserName,</b></span></td></tr>
+	<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+	<tr><td style="font-family: calibri, sans-serif;">In order for us to be able to process the unallocated MAWB shipment(s), we ask you to fill in the following details online by clicking on the Shipment reference number(s) in the below column.</td></tr>
+	</table>
+	<br/>
+	@if(@Model.ConsolidateShipments.TradelaneShipmentList.Count > 0){
+	<table border="1" style="text-align: center;border-spacing: 0px;">
+	<tr>
+	<th style="font-family: calibri, sans-serif;">Customer</th>
+	<th style="font-family: calibri, sans-serif;">Shipment Ref No#</th>
+	<th style="font-family: calibri, sans-serif;">From Shipper</th>
+	<th style="font-family: calibri, sans-serif;">To Consignee</th>
+	<th style="font-family: calibri, sans-serif;">Created On</th>
+	<th style="font-family: calibri, sans-serif;">Upload</th>
+	</tr>
+	@foreach(var name in Model.ConsolidateShipments.TradelaneShipmentList)
+				         { 
+						 <tr>
+	<td style="font-family: calibri, sans-serif;">@name.Customer</td>
+	<td style="font-family: calibri, sans-serif;"><a href=""><span style="text-decoration:underline !important;color:blue;position:relative;cursor:pointer !important;text-style:underline;">@name.FrayteRefNo</span></a></td>
+	<td style="font-family: calibri, sans-serif;">@name.ShipperCompanyName</td>
+	<td style="font-family: calibri, sans-serif;">@name.ConsigneeCompanyName</td>
+	<td style="font-family: calibri, sans-serif;">@name.Status</td>
+	<td style="font-family: calibri, sans-serif;"><a href="@name.MAWBURL"><p>Upload</p></a></td>
+	</tr>
+	}
+	
+	</table>
+	}
+	<br/>
+	
+	
+<table style="border-spacing: 0px;">
+<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">Should you have any questions or concerns, please feel free to contact us.</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">Customer Service Team</td></tr>
+<tr><td style="font-family: calibri, sans-serif;"><b>FRAYTE GLOBAL</b></td></tr>
+<tr><td style="font-family: calibri, sans-serif;"><b>Email: </b><span>@Model.SystemEmail</span></td></tr>
+<tr><td style="font-family: calibri, sans-serif;"><b>Phone: </b><span>@Model.UserPhone</span></td></tr>
+<tr><td style="font-family: calibri, sans-serif;"><a href="@Model.SiteAddress" title="@Model.SiteAddress">@Model.Site</a></td></tr>
+</table>
+<br/>
+
+	<table style="border-spacing: 0px;">
+        <tr><td style="font-size: 12px;font-family: calibri, sans-serif;">FRAYTE GLOBAL All rights reserved.</td></tr>
+	</table>
+</body>
+</html>
+

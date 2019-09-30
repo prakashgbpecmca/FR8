@@ -1,0 +1,106 @@
+﻿<!--HAWB Detail section code here-->
+<div class="col-sm-12">
+    <!--start grid code here-->
+    <div class="col-sm-12 paddingboth">
+        <div class="panel panel-default margin-bottom-none">
+            <ul class="panel-body padding0 tradelaneBooking-textarea margin-bottom-none list-unstyled">
+                <li ng-repeat="hawb in hawbGroupedPackages">
+                    <div class="col-sm-12 paddingboth bordered-bottom padding-5 panel-heading grid-background">
+                        <div class="padding-5"><i class="fa fa-plus-square-o" aria-hidden="true"></i> <b>{{'HAWB' | translate}} -</b> {{hawb.HAWB}}</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="panel-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading padding0">
+                                <div class="col-sm-12 paddingboth grid-background">
+                                    <div class="col-sm-2 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Carton_Number' | translate}}</b></div></div>
+                                    <div class="col-sm-2 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Cartoon' | translate}} </b><small>({{'QTY' | translate}})</small></div></div>
+                                    <div class="col-sm-2 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Length' | translate}}</b><small>({{'CM' | translate}})</small></div></div>
+                                    <div class="col-sm-2 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Width' | translate}}</b><small>({{'CM' | translate}})</small></div></div>
+                                    <div class="col-sm-2 paddingboth text-center"><div class="padding-tb-lr-10 border-right-ddd"><b>{{'Height' | translate}}</b><small>({{'CM' | translate}})</small></div></div>
+                                    <div class="col-sm-2 paddingboth text-center"><div class="padding-tb-lr-10"><b>{{'Gross_Weight' | translate}}</b><small>({{'kGS' | translate}})</small></div></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="panel-body padding0">
+                                <div class="alternate" ng-repeat="Package in hawb.Packages">
+                                    <ng-form name="{{packageForm}}">
+                                        <div style="padding:10px 0px 0px !important;">
+                                            <div class="col-sm-12 paddingboth flex">
+                                                <div class="col-sm-2 paddingboth borderRight margin-10 border-bottom" ng-class="{ 'has-error': TradelaneBookingForm[packageForm].currencyValue.$invalid &&
+                                                           (TradelaneBookingForm[packageForm].currencyValue.$dirty || submitted) }">
+                                                    <!--<input type="text" only-decimal name="currencyValue" ng-blur="checkDeclaredValue(TradelaneBookingForm,TradelaneBookingForm[packageForm],Package.Value)"
+                                                    ng-change="Package.Value = SetValueNotZero(Package.Value)" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-model="Package.CartonNumber"  />-->
+                                                    <div class="padding-5" only-decimal name="currencyValue" ng-change="Package.Value = SetValueNotZero(Package.Value)" ng-model="Package.CartonNumber">{{Package.CartonNumber}}</div>
+                                                </div>
+                                                <div class="col-sm-2 paddingboth borderRight margin-10 border-bottom" ng-class="{ 'has-error':TradelaneBookingForm[packageForm].cartton.$invalid &&
+                                                         (TradelaneBookingForm[packageForm].cartton.$dirty || submitted) }">
+                                                    <!--<input type="text" name="cartton" class="form-control" style="width: 100%; margin:10px 0px 10px;"
+                                                           ng-change="Package.CartoonValue = SetValueNotZero(Package.CartoonValue)" ng-model="Package.CartonValue" valid-number allow-decimal="false" allow-negative="false"  />-->
+                                                    <div class="padding-5" name="cartton" ng-change="Package.CartoonValue = SetValueNotZero(Package.CartoonValue)" ng-model="Package.CartonValue" valid-number allow-decimal="false" allow-negative="false">{{Package.CartonValue}}</div>
+                                                </div>
+                                                <div class="col-sm-2 paddingboth borderRight margin-10 border-bottom" ng-class="{ 'has-error': TradelaneBookingForm[packageForm].length.$invalid &&
+                                                         (TradelaneBookingForm[packageForm].length.$dirty || submitted) }">
+                                                    <!--<input type="text" only-decimal name="length" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-readonly="tradelaneBooking.CustomerRateCard.LogisticServiceId >0"
+                                                           ng-change="Package.Length = SetValueNotZero(Package.Length)" ng-model="Package.Length"  />-->
+                                                    <div class="padding-5" name="length" ng-change="Package.Length = SetValueNotZero(Package.Length)" only-decimal ng-model="Package.Length">{{Package.Length}}</div>
+                                                </div>
+                                                <div class="col-sm-2 paddingboth borderRight margin-10 border-bottom" ng-class="{ 'has-error': TradelaneBookingForm[packageForm].width.$invalid &&
+                                                           (TradelaneBookingForm[packageForm].width.$dirty || submitted) }">
+                                                    <!--<input type="text" only-decimal name="width" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-readonly="tradelaneBooking.CustomerRateCard.LogisticServiceId >0"
+                                                           ng-change="Package.Width = SetValueNotZero(Package.Width)" ng-model="Package.Width"  />-->
+                                                    <div class="padding-5" only-decimal name="width" ng-change="Package.Width = SetValueNotZero(Package.Width)" ng-model="Package.Width">{{Package.Width}}</div>
+                                                </div>
+                                                <div class="col-sm-2 paddingboth borderRight margin-10 border-bottom" ng-class="{ 'has-error': TradelaneBookingForm[packageForm].height.$invalid &&
+                                                           (TradelaneBookingForm[packageForm].height.$dirty || submitted) }">
+                                                    <!--<input type="text" only-decimal name="height" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-readonly="tradelaneBooking.CustomerRateCard.LogisticServiceId >0"
+                                                           ng-change="Package.Height = SetValueNotZero(Package.Height)" ng-model="Package.Height"  />-->
+                                                    <div class="padding-5" only-decimal name="height" ng-change="Package.Height = SetValueNotZero(Package.Height)" ng-model="Package.Height">{{Package.Height}}</div>
+                                                </div>
+                                                <div class="col-sm-2 paddingboth borderRight margin-10 border-bottom" ng-class="{ 'has-error': TradelaneBookingForm[packageForm].weight.$invalid &&
+                                                           (TradelaneBookingForm[packageForm].weight.$dirty || submitted) }">
+                                                    <!--<input type="text" only-decimal-limit name="weight" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-readonly="tradelaneBooking.CustomerRateCard.LogisticServiceId >0"
+                                                           ng-change="Package.Weight = SetValueNotZero(Package.Weight); Package.Weight = SetMaxixumWeight(Package.Weight, Package.CartoonValue,tradelaneBooking.PakageCalculatonType ,tradelaneBooking)" ng-model="Package.Weight" maxlength="5"  />-->
+                                                    <div class="padding-5" only-decimal-limit name="weight" ng-change="Package.Weight = SetValueNotZero(Package.Weight); Package.Weight = SetMaxixumWeight(Package.Weight, Package.CartoonValue,tradelaneBooking.PakageCalculatonType ,tradelaneBooking)" ng-model="Package.Weight" maxlength="5">{{Package.Weight}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="col-sm-12 paddingboth flex grid-background">
+                <div class="col-sm-6 paddingboth padding-10" style="padding-left: 5px;">{{'Total_Shipment_Pieces' | translate}}: {{totalPieces(tradelaneBooking)}}</div>
+                <div class="col-sm-1 paddinboth word-break border-left-e5e5e5 padding-10">
+                    {{getTotalKgs()}}
+                    ({{Lb_Kg}})
+                </div>
+                <div class="word-break border-left-e5e5e5 padding-10">
+                    {{PackagesTotal(tradelaneBooking.Packages, 'Value')}} <small class="uppercase" ng-show="tradelaneBooking.Currency.CurrencyCode !==undefined && tradelaneBooking.Currency.CurrencyCode !=='' && tradelaneBooking.Currency.CurrencyCode !== null"> ({{tradelaneBooking.Currency.CurrencyCode}})</small>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth border total-estimate">
+                <div class="width72 paddingleft estimatedWeight fontsize12" style="position:relative;margin-left:5px;">
+                    {{'Estimated_Chargeable_Weight' | translate}} <span class="redColor">{{'Hash' | translate}}</span>:
+                    <a href="" class="padding7px" popover-placement="auto" uib-popover="This is the estimated volumetric weight based on the dimensions you have provided. For further information on volumetric weight and hows its calculated, please refer to your agreed Frayte Logistics Terms and Conditions." popover-trigger="'outsideClick'">
+                        <i class="fa fa-question-circle help-set fontsize12" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="width27 fontsize12 word-wrap">{{getChargeableWeight(tradelaneBooking.Packages, 'Weight')}}  ({{Lb_Kg}})</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <p><span class="redColor">{{'Hash' | translate}}: </span>{{'TotalEstimate_BillingWeight' | translate}}</p>
+    </div>
+    <!--end-->
+    <div class="clearfix"></div>
+</div>
+<!--end-->

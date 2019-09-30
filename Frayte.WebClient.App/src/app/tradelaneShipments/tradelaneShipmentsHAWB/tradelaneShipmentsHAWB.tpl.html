@@ -1,0 +1,831 @@
+﻿
+<section>
+
+
+    <section>
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">Tradlane Shipment HAWB</h4>
+        </div>
+        <form name="HAWBAddressForm" ng-submit="SaveHAWBAddress(HAWBAddressForm)" novalidate autocomplete="off">
+            <div class="modal-body">
+                <div class="form-group clearfix">
+                    <!--<div class="col-sm-4">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="assingNotifyParty" /> Assign notify party</label>
+                        </div>
+                    </div>-->
+                    <!--<div class="col-sm-4">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="assingTradelane" /> All address from tradelane</label>
+                        </div>
+                    </div>-->
+                </div>
+                <div id="EcommerceTab-Set">
+                    <div class="paddingleft">
+                        <uib-tabset>
+                            <!--ship from code-->
+                            <uib-tab ng-click="tabType = 'Detail'" class="borderleft2f5f5f5">
+                                <uib-tab-heading>
+                                    {{'COLLECTION_ADDRESS' | translate}}
+                                </uib-tab-heading>
+
+                                <div class="form-group"></div>
+                                <div class="col-sm-6 paddingboth padding5both" ng-class="{'form-group':shipFromDefault}">
+                                    <!--start ship from code-->
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="lineheight024 uppercase">{{'Ship_From' | translate}}</div>
+                                    </div>
+                                    <div class="col-sm-7 paddingboth">
+                                        <div class="fix-tradelane-hawb-address">
+                                            <a ng-click="addressBook('Shipper')" class="pointer">
+                                                <img ng-src="{{photoUrl}}" class="directbookingimg" />
+                                                <small>{{'Address_Book' | translate}}</small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 paddingboth country">
+                                        <a href="" class="padding7px" popover-placement="auto" uib-popover="The Address Book is dependent on the Payment Party (Customer) being filled in." popover-trigger="'outsideClick'">
+                                            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <!--end-->
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipFromCountry.$invalid &&
+                                                         (HAWBAddressForm.shipFromCountry.$dirty || submitted) }">
+                                    <label for="shipFromCountry" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Country' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth" id="Xe">
+                                        <select id="shipFromCountry" name="shipFromCountry" ng-change="SetShipinfo(hawbAddress.ShipFrom.Country, 'Shipper');  FromCountryStateCode(hawbAddress.ShipFrom.Country.CountryId)"
+                                                ng-model="hawbAddress.ShipFrom.Country"
+                                                ng-options="Country.Name disable when Country.Disabled === true for Country in CountriesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                                                class="form-control fontsize12" required>
+                                            <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                                        </select>
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipFromCountry.$invalid &&
+                                            (HAWBAddressForm.shipFromCountry.$dirty || submitted)">
+                                            {{'CountryValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-1 paddingboth country">
+                                        <a href="" class="padding7px" popover-placement="auto" uib-popover="China covers Guangdong Province only." popover-trigger="'outsideClick'">
+                                            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <span class="clearfix"></span>
+                                <div ng-if="hawbAddress.ShipFrom.Country.Code === 'HKG' || hawbAddress.ShipFrom.Country.Code === 'BHS'" class="col-sm-6 form-group paddingboth  postcode" ng-class="{ 'has-error': HAWBAddressForm.shipFromPostcode.$invalid &&
+                                                         (HAWBAddressForm.shipFromPostcode.$dirty || submitted) }">
+                                    <label for="shipFromPostcode" id="shipFromPostcodeLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+                                    <div id="scrollable-dropdown-menu" class="col-sm-7 paddingboth typeahead-demo">
+                                        <i ng-if="hawbAddress.ShipFrom.Country.Code === 'GBR'" class="fa fa-search search-right-fixed" aria-hidden="true"></i>
+                                        <input type="text" id="shipFromPostcode" name="shipFromPostcode"
+                                               ng-model="hawbAddress.ShipFrom.PostCode" ng-class="{'padding-left25': hawbAddress.ShipFrom.Country.Code === 'GBR'}" class="form-control fontsize12"
+                                               ng-blur="SetPostCodeAddressValue('Shipper')"
+                                               ng-readonly="disabled"
+                                               ng-required="hawbAddress.ShipFrom.Country.Code !== 'HKG' && hawbAddress.ShipFrom.Country.Code !== 'BHS'"
+                                               placeholder="{{'PostalCode' | translate}} ({{'Required' | translate}})"
+                                               maxlength="{{MaximamLengthShipFrom}}"
+                                               typeahead-on-select="onSelectPostCode($item, $model, $label, $event,hawbAddress.ShipFrom.PostCode ,'Shipper' )"
+                                               uib-typeahead="frayteUser as frayteUser.FillPostCodeInput for frayteUser in GetPostCodeAddress($viewValue, hawbAddress.ShipFrom.Country.Code2 , 'Shipper') | limitTo:20"
+                                               uib-typeahead-min-length="6" uppercased />
+
+                                        <div ng-show="PostCodeAddressValue && !HAWBAddressForm.shipFromPostcode.$invalid">
+                                            <span class="error-color">{{'NoResult_Postcode' | translate}}</span>
+                                        </div>
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipFromPostcode.$invalid &&
+                                            (HAWBAddressForm.shipFromPostcode.$dirty || submitted)">
+                                            {{'PostalCodeValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--<div class="col-sm-6 form-group paddingboth clearfix" ng-class="{ 'has-error': HAWBAddressForm.departureAirPort.$invalid &&
+                                                             (HAWBAddressForm.departureAirPort.$dirty || submitted) }">
+                                    <label class="control-label col-sm-4 lineheight24 paddingboth" for="departureAirPort">{{'Departure_Airport' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <div id="Xe">
+                                            <select id="departureAirPort" name="departureAirPort" class="form-control fontsize12"
+                                                    ng-options="DepartureAirport as DepartureAirport.AirportCode + ' - ' + DepartureAirport.AirportName for DepartureAirport in DepartureAirportCodes | orderBy : 'AirportName' track by DepartureAirport.AirportCodeId "
+                                                    ng-model="hawbAddress.DepartureAirport" required>
+                                                <option value="" class="display-none" disabled selected>{{'Select' | translate}} {{'Departure_Airport' | translate}} ({{'Required' | translate}})</option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="HAWBAddressForm.departureAirPort.$invalid &&
+                                                (HAWBAddressForm.departureAirPort.$dirty || submitted)">
+                                                {{'Departure_Airport_Required' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-sm-1 paddingboth country">
+                                        <a href="" class="padding7px" popover-placement="auto" uib-popover="Add new Airport for selected Country" popover-trigger="'mouseenter'">
+                                            <i class="fa fa-plus help fontsize14 top5" ng-click="AddFromAirport(hawbAddress.ShipFrom.Country)" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>-->
+                                <div class="col-sm-12 directBookingBorder" style="width:100%;"></div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipFromCompanyName.$invalid &&
+                                                         (HAWBAddressForm.shipFromCompanyName.$dirty || submitted) }">
+                                    <label for="shipFromCompanyName" id="shipFromCompanyNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Company_Name' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipFromCompanyName" id="shipFromCompanyName" data-panel="Collection Address" data-label="Ship From Company" maxlength="100"
+                                               capitalize-first ng-model="hawbAddress.ShipFrom.CompanyName" class="form-control fontsize12" placeholder="{{'Company_Name' | translate}} ({{'Required' | translate}})" required />
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipFromCompanyName.$invalid &&
+                                            (HAWBAddressForm.shipFromCompanyName.$dirty || submitted)">
+                                            {{'CompanyNameValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipFromFirstName.$invalid &&
+                                                         (HAWBAddressForm.shipFromFirstName.$dirty || submitted) }">
+                                    <label for="shipFromFirstName" id="shipFromFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_First_Name' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" maxlength="50" name="shipFromFirstName" id="shipFromFirstName" only-letters-input data-panel="Collection Address" data-label="Ship From Company"
+                                               capitalize-first ng-model="hawbAddress.ShipFrom.FirstName" class="form-control fontsize12" required placeholder="{{'Contact_First_Name' | translate}} ({{'Required' | translate}})" />
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipFromFirstName.$invalid &&
+                                            (HAWBAddressForm.shipFromFirstName.$dirty || submitted)">
+                                            {{'FirstName_Required' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipFromLastName.$invalid &&
+                                                         (HAWBAddressForm.shipFromLastName.$dirty || submitted) }">
+                                    <label for="shipFromLastName" id="shipFromFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_Last_Name' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipFromLastName" id="shipFromLastName" only-letters-input maxlength="50"
+                                               capitalize-first ng-model="hawbAddress.ShipFrom.LastName" class="form-control fontsize12" required placeholder="{{'Contact_Last_Name' | translate}} ({{'Required' | translate}})" />
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipFromLastName.$invalid &&
+                                            (HAWBAddressForm.shipFromLastName.$dirty || submitted)">
+                                            {{'LastName_Required' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 directBookingBorder" style="width:100%;"></div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipFromAddress1.$invalid &&
+                                                         (HAWBAddressForm.shipFromAddress1.$dirty || submitted) }">
+                                    <label for="shipFromAddress1" id="shipFromAddress1Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_1' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <textarea name="shipFromAddress1" id="shipFromAddress1"
+                                                  capitalize-first maxlength="100" ng-model="hawbAddress.ShipFrom.Address" class="form-control fontsize12" required rows="3" cols="4" placeholder="{{'Address_1' | translate}} ({{'Required' | translate}})"></textarea>
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipFromAddress1.$invalid &&
+                                            (HAWBAddressForm.shipFromAddress1.$dirty || submitted)">
+                                            {{'AddressValidationError' | translate}}
+                                        </span>
+                                        <span class="has-error error-color" ng-if="hawbAddress.ShipFrom.Address.length > 99">
+                                            {{'Max100Character_Entered' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth">
+                                    <label for="shipFromAddress2" id="shipFromAddress2Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_2' | translate}}</label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <textarea name="shipFromAddress2" id="shipFromAddress2" maxlength="100"
+                                                  capitalize-first ng-model="hawbAddress.ShipFrom.Address2" class="form-control fontsize12" rows="3" cols="4" placeholder="{{'Address_2' | translate}}"></textarea>
+                                        <span class="has-error error-color" ng-if="hawbAddress.ShipFrom.Address2.length > 99">
+                                            {{'Max100Character_Entered' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipFromCityName.$invalid &&
+                                                         (HAWBAddressForm.shipFromCityName.$dirty || submitted) }">
+                                    <label for="shipFromCityName" id="shipFromCityNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'City' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipFromCityName" id="shipFromCityName" only-alphabets maxlength="50"
+                                               capitalize-first ng-model="hawbAddress.ShipFrom.City" class="form-control fontsize12" required placeholder="{{'City' | translate}} ({{'Required' | translate}})" />
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipFromCityName.$invalid &&
+                                            (HAWBAddressForm.shipFromCityName.$dirty || submitted)">
+                                            {{'CityValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth">
+                                    <div ng-show="shipFromToggleState(hawbAddress.ShipFrom.Country)" ng-class="{ 'has-error': HAWBAddressForm.shipFromState.$invalid &&
+                                                         (HAWBAddressForm.shipFromState.$dirty || submitted) }">
+                                        <label for="shipFromState" id="shipToStateLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'State' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-7 paddingboth">
+                                            <input type="text" name="shipFromState" id="shipFromState" maxlength="50"
+                                                   ng-disabled="hawbAddress.ShipFrom.Country !== null && (hawbAddress.ShipFrom.Country.Code === 'GBR' || hawbAddress.ShipFrom.Country.Code === 'HKG') "
+                                                   ng-required="shipFromToggleState(hawbAddress.ShipFrom.Country)" capitalize-first ng-model="hawbAddress.ShipFrom.State" class="form-control fontsize12" placeholder="{{'State' | translate}}" />
+                                            <span class="help-block has-error"
+                                                  ng-show="HAWBAddressForm.shipFromState.$invalid &&
+                                                           (HAWBAddressForm.shipFromState.$dirty || submitted)">
+                                                {{'CountryStateValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth">
+                                    <label for="shipFromAreaName" id="shipFromAreaNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Area' | translate}}</label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipFromAreaName" id="shipFromAreaName" maxlength="100"
+                                               capitalize-first ng-model="hawbAddress.ShipFrom.Area" class="form-control fontsize12" placeholder="{{'Area' | translate}}" />
+                                    </div>
+                                    <div class="col-sm-1 paddingboth area">
+                                        <a href="" class="padding7px" popover-placement="auto" uib-popover="Area is like a Suburb" popover-trigger="'outsideClick'">
+                                            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 directBookingBorder" style="width:100%;"></div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipFromPhone.$invalid &&
+                                                         (HAWBAddressForm.shipFromPhone.$dirty || submitted) }">
+                                    <div class="clearfix">
+                                        <label for="shipFromPhone" id="shipFromPhoneLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'TelephoneNo' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-7 paddingboth">
+                                            <div class="col-sm-4 paddingleft">
+                                                <input type="text" class="form-control fontsize12" readonly ng-model="ShipFromPhoneCode" />
+                                            </div>
+                                            <div class="col-sm-8 paddingboth">
+                                                <input type="text" name="shipFromPhone" id="shipFromPhone" maxlength="10"
+                                                       only-Numeric ng-model="hawbAddress.ShipFrom.Phone" class="form-control fontsize12" required placeholder="{{'TelephoneNo' | translate}} ({{'Required' | translate}})" />
+                                            </div>
+                                            <span class="help-block has-error"
+                                                  ng-show="HAWBAddressForm.shipFromPhone.$invalid &&
+                                            (HAWBAddressForm.shipFromPhone.$dirty || submitted)">
+                                                {{'TelephoneValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': (HAWBAddressForm.shipFromMail.$invalid &&
+                                                         (HAWBAddressForm.shipFromMail.$dirty || submitted)) }">
+                                    <div class="clearfix">
+                                        <label for="shipFromMail" id="shipFromMailLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Email' | translate}}</label>
+                                        <div class="col-sm-7 paddingboth">
+                                            <input type="text" cols="3" rows="3" name="shipFromMail" id="shipFromMail"
+                                                   ng-model="hawbAddress.ShipFrom.Email" class="form-control fontsize12" placeholder="{{'Email' | translate}}" />
+                                            <span class="help-block has-error"
+                                                  ng-show="HAWBAddressForm.shipFromMail.$error.required &&
+                                                    (HAWBAddressForm.shipFromMail.$dirty || submitted)">
+                                                {{'EmailValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth sendEmail">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover="If required, please enter the email address of the person you wish to receive this shipments details once booked." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <label class="col-sm-4"></label>
+                                        <!--<div for="shipFromMail" id="shipFromMailLabel" class="col-sm-7 control-label paddingleft paddingright">
+                                            <label class="checkbox-inline"><input type="checkbox" ng-model="hawbAddress.ShipFrom.IsMailSend" /> <span>{{'Email_NotificationShipper' | translate}}</span></label>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth sendEmail">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover="Ticking this will send the newly created shipment detail to the provided shipper email." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help icon-margin" aria-hidden="true"></i>
+                                            </a>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            <!--end-->
+                            <!--ship to code-->
+                            <uib-tab class="tabBorder">
+                                <uib-tab-heading>
+                                    {{'DELIVERY_ADDRESS' | translate}}
+                                </uib-tab-heading>
+
+                                <div class="form-group"></div>
+                                <div class="col-sm-6 paddingboth padding5both" ng-class="{'form-group':shipToDefault}">
+                                    <!--start ship to code-->
+                                    <div class="col-sm-4 paddingboth">
+                                        <div class="lineheight024 uppercase">{{'Ship_To' | translate}}</div>
+                                    </div>
+                                    <div class="col-sm-7 paddingboth">
+                                        <div class="fix-tradelane-hawb-address">
+                                            <a ng-click="addressBook('Receiver')" class="pointer">
+                                                <img ng-src="{{photoUrl}}" class="directbookingimg" />
+                                                <small>{{'Address_Book' | translate}}</small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 paddingboth country">
+                                        <a href="" class="padding7px" popover-placement="auto" uib-popover="The Address Book is dependent on the Payment Party (Customer) being filled in." popover-trigger="'outsideClick'">
+                                            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <!--end-->
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipToCountry.$invalid &&
+                                                         (HAWBAddressForm.shipToCountry.$dirty || submitted) }">
+                                    <label for="shipToCountry" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Country' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth" id="Xe">
+                                        <select id="shipToCountry" name="shipToCountry"
+                                                ng-model="hawbAddress.ShipTo.Country" ng-change="SetShipinfo(hawbAddress.ShipTo.Country, 'Receiver')"
+                                                ng-options="Country.Name disable when Country.Disabled === true for Country in CountriesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                                                class="form-control fontsize12" required>
+                                            <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                                        </select>
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipToCountry.$invalid &&
+                                            (HAWBAddressForm.shipToCountry.$dirty || submitted)">
+                                            {{'CountryValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-1 paddingboth country">
+                                        <a href="" class="padding7px" popover-placement="auto" uib-popover="China covers Guangdong Province only." popover-trigger="'outsideClick'">
+                                            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <span class="clearfix"></span>
+                                <div class="postcode">
+                                    <div ng-hide="hawbAddress.ShipTo.Country.Code === 'HKG'" class="col-sm-6 form-group paddingboth typeahead-demo" ng-class="{ 'has-error': HAWBAddressForm.shipToPostcode.$invalid &&
+                                                         (HAWBAddressForm.shipToPostcode.$dirty || submitted) }">
+                                        <label for="shipToPostcode" id="shipToPostcodeLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+                                        <div id="scrollable-dropdown-menu" class="col-sm-7 paddingboth">
+                                            <i ng-if="hawbAddress.ShipTo.Country.Code === 'GBR'" class="fa fa-search search-right-fixed" aria-hidden="true"></i>
+                                            <input type="text" id="shipToPostcode" name="shipToPostcode" ng-model="hawbAddress.ShipTo.PostCode" ng-class="{'padding-left25': hawbAddress.ShipTo.Country.Code === 'GBR'}" class="form-control fontsize12"
+                                                   ng-disabled="hawbAddress.ShipTo.Country !== null && hawbAddress.ShipTo.Country.Code === 'HKG'"
+                                                   ng-blur="SetPostCodeAddressValue('Receiver')"
+                                                   ng-readonly="disabled"
+                                                   ng-required="hawbAddress.ShipTo.Country.Code !== 'HKG'" placeholder="{{'PostalCode' | translate}} ({{'Required' | translate}})"
+                                                   maxlength="{{MaximamLengthShipTo}}"
+                                                   typeahead-on-select="onSelectPostCode($item, $model, $label, $event, hawbAddress.ShipTo.PostCode , 'Receiver' )"
+                                                   uib-typeahead="frayteUser as frayteUser.FillPostCodeInput for frayteUser in GetPostCodeAddress($viewValue, hawbAddress.ShipTo.Country.Code2 , 'Receiver') | limitTo:20"
+                                                   uib-typeahead-min-length="6" uppercased />
+                                            <div ng-show="ShipperPostCodeAddressValue && !HAWBAddressForm.shipToPostcode.$invalid">
+                                                <span class="error-color">{{'NoResult_Postcode' | translate}}</span>
+                                            </div>
+                                            <span class="help-block has-error"
+                                                  ng-show="HAWBAddressForm.shipToPostcode.$invalid &&
+                                            (HAWBAddressForm.shipToPostcode.$dirty || submitted)">
+                                                {{'PostalCodeValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-sm-6 paddingboth form-group clearfix">
+                                    <div ng-class="{ 'has-error': HAWBAddressForm.destinationAirport.$invalid &&
+                                                         (HAWBAddressForm.destinationAirport.$dirty || submitted) }">
+                                        <label class="control-label col-sm-4 paddingboth lineheight24" for="destinationAirport">{{'Destination_Airport' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-7 paddingboth">
+                                            <div id="Xe">
+                                                <select id="destinationAirport" name="destinationAirport"
+                                                        ng-options="DestinationAirport as  DestinationAirport.AirportCode +' - '+ DestinationAirport.AirportName for DestinationAirport in DestinationAirportCodes | orderBy : 'AirportName' track by DestinationAirport.AirportCodeId"
+                                                        ng-model="hawbAddress.DestinationAirport" class="form-control fontsize12" required>
+                                                    <option value="" class="display-none" disabled selected>{{'Select' | translate}} {{'Destination_Airport' | translate}}  ({{'Required' | translate}})</option>
+                                                </select>
+                                                <span class="help-block has-error"
+                                                      ng-show="HAWBAddressForm.destinationAirport.$invalid &&
+                                                                (HAWBAddressForm.destinationAirport.$dirty || submitted)">
+                                                    {{'Destination_Airport_Required' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth country">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover="Add new Airport for selected Country" popover-trigger="'mouseenter'">
+                                                <i class="fa fa-plus help fontsize14 top5" ng-click="AddToAirport(hawbAddress.ShipTo.Country)" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-sm-12 directBookingBorder" style="width:100%;"></div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipToCompanyName.$invalid &&
+                                                         (HAWBAddressForm.shipToCompanyName.$dirty || submitted) }">
+                                    <label for="shipToCompanyName" id="shipToCompanyNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Company_Name' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipToCompanyName" id="shipToCompanyName" maxlength="100"
+                                               required capitalize-first ng-model="hawbAddress.ShipTo.CompanyName" class="form-control fontsize12" placeholder="{{'Company_Name' | translate}} ({{'Required' | translate}})" />
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipToCompanyName.$invalid &&
+                                            (HAWBAddressForm.shipToCompanyName.$dirty || submitted)">
+                                            {{'CompanyNameValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipToFirstName.$invalid &&
+                                                         (HAWBAddressForm.shipToFirstName.$dirty || submitted) }">
+                                    <label for="shipToFirstName" id="shipToFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_First_Name' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipToFirstName" id="shipToFirstName" only-letters-input maxlength="50"
+                                               capitalize-first ng-model="hawbAddress.ShipTo.FirstName" class="form-control fontsize12" required placeholder="{{'Contact_First_Name' | translate}} ({{'Required' | translate}})" />
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipToFirstName.$invalid &&
+                                            (HAWBAddressForm.shipToFirstName.$dirty || submitted)">
+                                            {{'FirstName_Required' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipToLastName.$invalid &&
+                                                         (HAWBAddressForm.shipToLastName.$dirty || submitted) }">
+                                    <label for="shipToLastName" id="shipToFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_Last_Name' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipToLastName" id="shipToLastName" only-letters-input maxlength="50"
+                                               capitalize-first ng-model="hawbAddress.ShipTo.LastName" class="form-control fontsize12" required placeholder="{{'Contact_Last_Name' | translate}} ({{'Required' | translate}})" />
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipToLastName.$invalid &&
+                                            (HAWBAddressForm.shipToLastName.$dirty || submitted)">
+                                            {{'LastName_Required' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 directBookingBorder" style="width:100%;"></div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipToAddress1.$invalid &&
+                                                         (HAWBAddressForm.shipToAddress1.$dirty || submitted) }">
+                                    <label for="shipToAddress1" id="shipToAddress1Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_1' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <textarea name="shipToAddress1" id="shipToAddress1" maxlength="100"
+                                                  capitalize-first ng-model="hawbAddress.ShipTo.Address" class="form-control fontsize12" rows="3" cols="4" required placeholder="{{'Address_1' | translate}} ({{'Required' | translate}})"></textarea>
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipToAddress1.$invalid &&
+                                                               (HAWBAddressForm.shipToAddress1.$dirty || submitted)">
+                                            {{'AddressValidationError' | translate}}
+                                        </span>
+                                        <span class="has-error error-color" ng-if="hawbAddress.ShipTo.Address.length > 99">
+                                            {{'Max100Character_Entered' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth">
+                                    <label for="shipToAddress2" id="shipToAddress2Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_2' | translate}}</label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <textarea name="shipToAddress2" id="shipToAddress2" maxlength="100"
+                                                  capitalize-first ng-model="hawbAddress.ShipTo.Address2" class="form-control fontsize12" rows="3" cols="4" placeholder="{{'Address_2' | translate}}"></textarea>
+                                        <span class="has-error error-color" ng-if="hawbAddress.ShipTo.Address2.length > 99">
+                                            {{'Max100Character_Entered' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipToCityName.$invalid &&
+                                                         (HAWBAddressForm.shipToCityName.$dirty || submitted) }">
+                                    <label for="shipToCityName" id="shipToCityNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'City' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipToCityName" id="shipToCityName" only-alphabets maxlength="50"
+                                               capitalize-first ng-model="hawbAddress.ShipTo.City" class="form-control fontsize12" required placeholder="{{'City' | translate}} ({{'Required' | translate}})" />
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipToCityName.$invalid &&
+                                            (HAWBAddressForm.shipToCityName.$dirty || submitted)">
+                                            {{'CityValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth">
+                                    <div ng-show="shipToToggleState(hawbAddress.ShipTo.Country)" ng-class="{ 'has-error': HAWBAddressForm.shipToState.$invalid &&
+                                                         (HAWBAddressForm.shipToState.$dirty || submitted) }">
+                                        <label for="shipToState" id="shipToStateLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'State' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-7 paddingboth">
+                                            <input type="text" name="shipToState" id="shipToState" maxlength="50"
+                                                   ng-required="shipToToggleState(hawbAddress.ShipTo.Country)" ng-disabled="hawbAddress.ShipTo.Country !== null && (hawbAddress.ShipTo.Country.Code === 'GBR' || hawbAddress.ShipTo.Country.Code === 'HKG')"
+                                                   capitalize-first ng-model="hawbAddress.ShipTo.State" class="form-control fontsize12" placeholder="{{'State' | translate}}" />
+                                            <span class="help-block has-error"
+                                                  ng-show="HAWBAddressForm.shipToState.$invalid &&
+				                                               (HAWBAddressForm.shipToState.$dirty || submitted)">
+                                                {{'CountryStateValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth">
+                                    <label for="shipToAreaName" id="shipToAreaNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Area' | translate}}</label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <input type="text" name="shipToAreaName" id="shipToAreaName" maxlength="100"
+                                               capitalize-first ng-model="hawbAddress.ShipTo.Area" class="form-control fontsize12" placeholder="{{'Area' | translate}}" />
+                                    </div>
+                                    <div class="col-sm-1 paddingboth area">
+                                        <a href="" class="padding7px" popover-placement="auto" uib-popover="Area is like a Suburb" popover-trigger="'outsideClick'">
+                                            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 directBookingBorder" style="width:100%;"></div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': HAWBAddressForm.shipToPhone.$invalid &&
+                                                         (HAWBAddressForm.shipToPhone.$dirty || submitted) }">
+                                    <label for="shipToPhone" id="shipToPhoneLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'TelephoneNo' | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-7 paddingboth">
+                                        <div class="col-sm-4 paddingleft">
+                                            <input type="text" class="form-control fontsize12" readonly ng-model="ShipToPhoneCode" />
+                                        </div>
+                                        <div class="col-sm-8 paddingboth">
+                                            <input type="text" name="shipToPhone" id="shipToPhone" only-numeric
+                                                   maxlength="10" ng-model="hawbAddress.ShipTo.Phone" class="form-control fontsize12" required placeholder="{{'TelephoneNo' | translate}} ({{'Required' | translate}})" />
+                                        </div>
+                                        <span class="help-block has-error"
+                                              ng-show="HAWBAddressForm.shipToPhone.$invalid &&
+                                            (HAWBAddressForm.shipToPhone.$dirty || submitted)">
+                                            {{'TelephoneValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': (HAWBAddressForm.shipToMail.$invalid &&
+                                                         (HAWBAddressForm.shipToMail.$dirty || submitted)) }">
+                                    <div class="clearfix">
+                                        <label for="shipToMail" id="shipToMailLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Email' | translate}}</label>
+                                        <div class="col-sm-7 paddingboth">
+                                            <input type="text" cols="3" rows="3" name="shipToMail" id="shipToMail"
+                                                   ng-model="hawbAddress.ShipTo.Email" class="form-control fontsize12" placeholder="{{'Email' | translate}}" />
+                                            <span class="help-block has-error"
+                                                  ng-show="HAWBAddressForm.shipToMail.$error.required &&
+                                                        (HAWBAddressForm.shipToMail.$dirty || submitted)">
+                                                {{'EmailValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth sendEmail">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover="If required, please enter the email address of the person you wish to receive this shipments details once booked." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <label class="col-sm-4"></label>
+                                        <!--<div for="shipToSendMail" id="shipToSendMail" class="col-sm-7 control-label paddingleft paddingright">
+                                            <label class="checkbox-inline"><input type="checkbox" ng-change="setNotifyNotification()" ng-model="hawbAddress.ShipTo.IsMailSend" /> <span>{{'Email_NotificationConsignee' | translate}}</span></label>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth sendEmail">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover="Ticking this will send the newly created shipment detail to the provided shipper email." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help icon-margin" aria-hidden="true"></i>
+                                            </a>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            <!--end-->
+                            <!--notify party code-->
+                            <uib-tab class="tabBorder">
+                                <uib-tab-heading>
+                                    {{'Notify_Party' | translate}}
+                                </uib-tab-heading>
+                                <div class="col-sm-12 form-group paddingboth">
+                                    <div class="checkbox col-sm-12 top9 form-group paddingboth">
+                                        <h4 class="control-label uppercase">
+                                            <label>
+                                                <input type="checkbox" ng-model="hawbAddress.IsNotifyPartySameAsReceiver" ng-change="toggleNotifyParty()" />
+                                                {{'Same_as_Consignee' | translate}}
+                                            </label>
+                                        </h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 form-group paddingboth direct-booking-border" ng-if="hawbAddress.IsNotifyPartySameAsReceiver">
+                                        <p class="col-sm-12 uppercase marginTB-20 paddingboth paddingTB60">
+                                            {{'Notify_Party_Checkbox' | translate}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div style="top: 1.5rem;position: relative;" ng-if="!hawbAddress.IsNotifyPartySameAsReceiver">
+                                    <div class="col-sm-6 form-group paddingboth clearfix" ng-class="{ 'has-error': HAWBAddressForm.notifyCountry.$invalid &&
+                                                         (HAWBAddressForm.notifyCountry.$dirty || submitted) }">
+                                        <label for="notifyCountry" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Country' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-11 paddingboth" id="Xe">
+                                                <select id="notifyCountry" name="notifyCountry" ng-change="SetShipinfo(hawbAddress.NotifyParty.Country, 'notify')"
+                                                        ng-model="hawbAddress.NotifyParty.Country"
+                                                        ng-options="Country.Name disable when Country.Disabled === true for Country in CountriesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                                                        class="form-control fontsize12" required>
+                                                    <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                                                </select>
+                                                <span class="help-block has-error"
+                                                      ng-show="HAWBAddressForm.notifyCountry.$invalid &&
+                                                    (HAWBAddressForm.notifyCountry.$dirty || submitted)">
+                                                    {{'CountryValidationError' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-1 paddingboth uploadfile">
+                                                <a href="" class="padding7px" popover-placement="auto" uib-popover="China covers Guangdong Province only." popover-trigger="'outsideClick'">
+                                                    <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div ng-hide="hawbAddress.NotifyParty.Country.Code === 'HKG'" class="col-sm-6 form-group paddingboth clearfix postcode" ng-class="{ 'has-error': HAWBAddressForm.notifyPostcode.$invalid &&
+                                                         (HAWBAddressForm.notifyPostcode.$dirty || submitted) }">
+                                        <label for="notifyPostcode" id="notifyPostcodeLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div id="scrollable-dropdown-menu" class="col-sm-11 paddingboth typeahead-demo">
+                                                <i ng-if="hawbAddress.NotifyParty.Country.Code === 'GBR'" class="fa fa-search search-right-fixed" aria-hidden="true"></i>
+                                                <input type="text" id="notifyPostcode" name="notifyPostcode" ng-model="hawbAddress.NotifyParty.PostCode" ng-class="{'padding-left25': hawbAddress.NotifyParty.Country.Code === 'GBR'}" class="form-control fontsize12"
+                                                       ng-blur="SetPostCodeAddressValue('notify')"
+                                                       ng-required="hawbAddress.NotifyParty.Country.Code !== 'HKG'"
+                                                       ng-readonly="disabled"
+                                                       placeholder="{{'PostalCode' | translate}} ({{'Required' | translate}})"
+                                                       maxlength="{{MaximamLengthNotyiFy}}"
+                                                       typeahead-on-select="onSelectPostCode($item, $model, $label, $event,hawbAddress.NotifyParty.Country.Code2 ,'notify' )"
+                                                       uib-typeahead="frayteUser as frayteUser.FillPostCodeInput for frayteUser in GetPostCodeAddress($viewValue, hawbAddress.NotifyParty.Country.Code2 , 'notify') | limitTo:20"
+                                                       uib-typeahead-min-length="6" uppercased />
+                                                <div ng-show="NotifyCodeAddressValue && !HAWBAddressForm.notifyPostcode.$invalid">
+                                                    <span class="error-color">{{'NoResult_Postcode' | translate}}</span>
+                                                </div>
+                                                <span class="help-block has-error"
+                                                      ng-show="HAWBAddressForm.notifyPostcode.$invalid &&
+                                            (HAWBAddressForm.notifyPostcode.$dirty || submitted)">
+                                                    {{'PostalCodeValidationError' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 directBookingBorder" style="width: 100% !important;"></div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth" ng-class="{ 'has-error': HAWBAddressForm.notifyCompanyName.$invalid &&
+                                                         (HAWBAddressForm.notifyCompanyName.$dirty || submitted) }">
+                                        <label for="notifyCompanyName" id="notifyCompanyNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Company_Name' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-11 paddingboth">
+                                                <input type="text" name="notifyCompanyName" maxlength="100" id="notifyCompanyName" data-panel="Collection Address" data-label="Ship From Company"
+                                                       capitalize-first ng-model="hawbAddress.NotifyParty.CompanyName" class="form-control fontsize12" required placeholder="{{'Company_Name' | translate}} ({{'Required' | translate}})" />
+                                                <span class="help-block has-error"
+                                                      ng-show="HAWBAddressForm.notifyCompanyName.$invalid &&
+                                            (HAWBAddressForm.notifyCompanyName.$dirty || submitted)">
+                                                    {{'Notify_Company_Required' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth" ng-class="{ 'has-error': HAWBAddressForm.notifyFirstName.$invalid &&
+                                                         (HAWBAddressForm.notifyFirstName.$dirty || submitted) }">
+                                        <label for="notifyFirstName" id="notifyFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_First_Name' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-11 paddingboth">
+                                                <input type="text" name="notifyFirstName" id="notifyFirstName" only-letters-input data-panel="Collection Address" data-label="Ship From Company" maxlength="50"
+                                                       capitalize-first ng-model="hawbAddress.NotifyParty.FirstName" class="form-control fontsize12" required placeholder="{{'Contact_First_Name' | translate}} ({{'Required' | translate}})" />
+                                                <span class="help-block has-error"
+                                                      ng-show="HAWBAddressForm.notifyFirstName.$invalid &&
+                                            (HAWBAddressForm.notifyFirstName.$dirty || submitted)">
+                                                    {{'FirstName_Required' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth" ng-class="{ 'has-error': HAWBAddressForm.notifyLastName.$invalid &&
+                                                         (HAWBAddressForm.notifyLastName.$dirty || submitted) }">
+                                        <label for="notifyLastName" id="notifyFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_Last_Name' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-11 paddingboth">
+                                                <input type="text" name="notifyLastName" id="notifyLastName" only-letters-input maxlength="50"
+                                                       capitalize-first ng-model="hawbAddress.NotifyParty.LastName" class="form-control fontsize12" required placeholder="{{'Contact_Last_Name' | translate}} ({{'Required' | translate}})" />
+                                                <span class="help-block has-error"
+                                                      ng-show="HAWBAddressForm.notifyLastName.$invalid &&
+                                            (HAWBAddressForm.notifyLastName.$dirty || submitted)">
+                                                    {{'LastName_Required' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 directBookingBorder" style="width: 100% !important;"></div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth" ng-class="{ 'has-error': HAWBAddressForm.notifyAddress1.$invalid &&
+                                                         (HAWBAddressForm.notifyAddress1.$dirty || submitted) }">
+                                        <label for="notifyAddress1" id="notifyAddress1Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_1' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-11 paddingboth">
+                                                <textarea name="notifyAddress1" id="notifyAddress1"
+                                                          capitalize-first maxlength="100" ng-model="hawbAddress.NotifyParty.Address" class="form-control fontsize12" required rows="3" cols="4" placeholder="{{'Address_1' | translate}} ({{'Required' | translate}})"></textarea>
+                                                <span class="help-block has-error"
+                                                      ng-show="HAWBAddressForm.notifyAddress1.$invalid &&
+                                            (HAWBAddressForm.notifyAddress1.$dirty || submitted)">
+                                                    {{'AddressValidationError' | translate}}
+                                                </span>
+                                                <span class="has-error error-color" ng-if="hawbAddress.NotifyParty.Address.length > 99">
+                                                    {{'Max100Character_Entered' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth">
+                                        <label for="notifyAddress2" id="notifyAddress2Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_2' | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-11 paddingboth">
+                                                <textarea name="notifyAddress2" id="notifyAddress2" maxlength="100"
+                                                          capitalize-first ng-model="hawbAddress.NotifyParty.Address2" class="form-control fontsize12" rows="3" cols="4" placeholder="{{'Address_2' | translate}}"></textarea>
+                                                <span class="has-error error-color" ng-if="hawbAddress.notify.Address2.length > 99">
+                                                    {{'Max100Character_Entered' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth" ng-class="{ 'has-error': HAWBAddressForm.notifyCityName.$invalid &&
+                                                         (HAWBAddressForm.notifyCityName.$dirty || submitted) }">
+                                        <label for="notifyCityName" id="notifyCityNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'City' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-11 paddingboth">
+                                                <input type="text" name="notifyCityName" id="notifyCityName" only-alphabets maxlength="50"
+                                                       capitalize-first ng-model="hawbAddress.NotifyParty.City" class="form-control fontsize12" required placeholder="{{'City' | translate}} ({{'Required' | translate}})" />
+                                                <span class="help-block has-error"
+                                                      ng-show="HAWBAddressForm.notifyCityName.$invalid &&
+                                            (HAWBAddressForm.notifyCityName.$dirty || submitted)">
+                                                    {{'CityValidationError' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth">
+                                        <div ng-show="notifyPartyToggleState(hawbAddress.NotifyParty.Country)" ng-class="{ 'has-error': HAWBAddressForm.notifyState.$invalid &&
+                                                         (HAWBAddressForm.notifyState.$dirty || submitted) }">
+                                            <label for="notifyState" id="shipToStateLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'State' | translate}} <span class="redColor">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="col-sm-11 paddingboth">
+                                                    <input type="text" name="notifyState" id="notifyState" maxlength="50"
+                                                           ng-required="notifyPartyToggleState(hawbAddress.NotifyParty.Country)" capitalize-first ng-model="hawbAddress.NotifyParty.State" class="form-control fontsize12" placeholder="{{'State' | translate}}" />
+                                                    <span class="help-block has-error"
+                                                          ng-show="HAWBAddressForm.notifyState.$invalid &&
+                                                           (HAWBAddressForm.notifyState.$dirty || submitted)">
+                                                        {{'CountryStateValidationError' | translate}}
+                                                    </span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth">
+                                        <label for="notifyAreaName" id="notifyAreaNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Area' | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-11 paddingboth">
+                                                <input type="text" name="notifyAreaName" id="notifyAreaName" maxlength="100"
+                                                       capitalize-first ng-model="hawbAddress.NotifyParty.Area" class="form-control fontsize12" placeholder="{{'Area' | translate}}" />
+                                            </div>
+                                            <div class="col-sm-1 paddingboth quotation-tool">
+                                                <a href="" class="padding7px" popover-placement="auto" uib-popover="Area is like a Suburb" popover-trigger="'outsideClick'">
+                                                    <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 directBookingBorder" style="width: 100% !important;"></div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth" ng-class="{ 'has-error': HAWBAddressForm.notifyPhone.$invalid &&
+                                                         (HAWBAddressForm.notifyPhone.$dirty || submitted) }">
+                                        <label for="notifyPhone" id="notifyPhoneLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'TelephoneNo' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-3 paddingleft">
+                                                <input type="text" class="form-control fontsize12" readonly ng-model="NotifyPartyPhoneCode" />
+                                            </div>
+                                            <div class="col-sm-8 paddingboth">
+                                                <input type="text" name="notifyPhone" id="notifyPhone" maxlength="10"
+                                                       only-Numeric ng-model="hawbAddress.NotifyParty.Phone" class="form-control fontsize12" required placeholder="{{'TelephoneNo' | translate}} ({{'Required' | translate}})" />
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <span class="help-block has-error"
+                                                  ng-show="HAWBAddressForm.notifyPhone.$invalid &&
+                                            (HAWBAddressForm.notifyPhone.$dirty || submitted)">
+                                                {{'TelephoneValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group clearfix paddingboth" ng-class="{ 'has-error': (HAWBAddressForm.notifyMail.$invalid &&
+                                                         (HAWBAddressForm.notifyMail.$dirty || submitted)) }">
+                                        <div class="clearfix">
+                                            <label for="notifyMail" id="notifyMailLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Email' | translate}}</label>
+                                            <div class="col-sm-8">
+                                                <div class="col-sm-11 paddingboth">
+                                                    <input type="text" cols="3" rows="3" name="notifyMail" id="notifyMail" ng-model="hawbAddress.NotifyParty.Email" class="form-control fontsize12" placeholder="{{'Email' | translate}}" />
+                                                    <span class="help-block has-error"
+                                                          ng-show="HAWBAddressForm.notifyMail.$error.required &&
+                                            (HAWBAddressForm.notifyMail.$dirty || submitted)">
+                                                        {{'EmailValidationError' | translate}}
+                                                    </span>
+                                                </div>
+                                                <div class="col-sm-1 paddingboth uploadfile">
+                                                    <a href="" class="padding7px" popover-placement="auto" uib-popover="If required, please enter the email address of the person you wish to receive this shipments details once booked." popover-trigger="'outsideClick'">
+                                                        <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                            <label class="col-sm-4"></label>
+                                            <div class="col-sm-8">
+                                                <!--<div for="notifyMail" id="notifyMailLabel" class="col-sm-11 control-label paddingleft paddingright">
+                                                    <label class="checkbox-inline"><input type="checkbox" ng-model="hawbAddress.NotifyParty.IsMailSend" /> <span>{{'Email_NotificationShipper' | translate}}</span></label>
+                                                </div>
+                                                <div class="col-sm-1 paddingboth uploadfile">
+                                                    <a href="" class="padding7px" popover-placement="auto" uib-popover="Ticking this will send the newly created shipment detail to the provided shipper email." popover-trigger="'outsideClick'">
+                                                        <i class="fa fa-question-circle help icon-margin" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </uib-tab>
+                            <!--end-->
+                        </uib-tabset>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times"></i> {{'Cancel' | translate}}</button>
+                <button type="submit" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-clone"></i> {{'Save' | translate}}</button>
+            </div>
+        </form>
+    </section>
+</section>

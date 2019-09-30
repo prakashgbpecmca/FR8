@@ -1,0 +1,146 @@
+﻿
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">Add PO</h4>
+</div>
+<div class="modal-body">
+    <div class="panel-body">
+        <section class="row">
+            <div>
+                <!--breakbulk shipment custom grid-->
+                <div class="panel panel-default">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex">
+                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">PO No.</span></div>
+                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Style No.</span></div>
+                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Style Name</span></div>
+                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Status</span></div>
+                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">From/To</span></div>
+                            <div class="width10 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">PO Created On</sapn></div>
+                            <div class="width10 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">Ex-FYT Date</sapn></div>
+                            <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <ul class="list-unstyled change margin-bottom-none">
+                                <!-- breakbulk shipment code here -->
+                                <li>
+                                    <div class="width100 pointer" ng-repeat="breakbulkShipment in breakbulkShipments track by $index">
+                                        <div class="flex height30">
+                                            <div class="width10 quotation-table-body word-wrap padding-5" ng-click="breakbulkCollapse($index)"><span class="pointer"><span class="pointer"><i class="fa" ng-class="{'fa-plus-square-o':isBreakbulk!==$index,'fa-minus-square-o':isBreakbulk==$index}"></i></span> <a>{{breakbulkShipment.po}}</a></span></div>
+                                            <div class="width150 quotation-table-body word-wrap padding-5"><span class="ng-binding">{{breakbulkShipment.styleNo}}</span></div>
+                                            <div class="width150 quotation-table-body word-wrap padding-5"><span ng-click="BreakBulkTrackingDetail()" class="pointer">{{breakbulkShipment.styleName}}</span></div>
+                                            <div class="width150 quotation-table-body word-wrap padding-5"><span title="CBG - Cambridge to UNT - Unst">{{breakbulkShipment.status}}</span></div>
+                                            <div class="width150 quotation-table-body padding-5 word-wrap"><span class="ng-binding">{{breakbulkShipment.fromTo}}</span></div>
+                                            <div class="width10 quotation-table-body padding-5 word-wrap"><span class="ng-binding">{{breakbulkShipment.poCreatedOn}}</span></div>
+                                            <div class="width10 quotation-table-body padding-5 word-wrap"><span class="ng-binding">{{breakbulkShipment.exFactoryDate}}</span></div>
+                                            <div class="width10 quotation-table-body padding0 text-center">
+                                                <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+                                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                        <li ng-click="breakbulkShipmentDetail()">
+                                                            <a href="">
+                                                                <span class="padEdit"><i class="fa fa-eye"></i></span>
+                                                                <span>View Detail</span>
+                                                            </a>
+                                                        </li>
+                                                        <li ng-click="purchaseOrderDetail()">
+                                                            <a href="">
+                                                                <span class="padEdit"><i class="fa fa-glide-g Shipment"></i></span>
+                                                                <span>Edit PO</span>
+                                                            </a>
+                                                        </li>
+                                                        <li ng-click="breakbulkCreateCarton()">
+                                                            <a href="">
+                                                                <span class="padEdit"><i class="fa fa-plus Shipment"></i></span>
+                                                                <span>Create Carton</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span class="padEdit"><i class="fa fa-product-hunt Shipment"></i></span>
+                                                                <span>Generate Label</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span class="padEdit"><i class="fa fa-eye Shipment"></i></span>
+                                                                <span>Download Carton Label</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if="isBreakbulk==$index">
+                                            <div class="panel panel-default padding-15 margin-bottom-none">
+                                                <div class="width100 flex grid-background clearfix">
+                                                    <div class="width100 flex">
+                                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Job No.</span></div>
+                                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Status</span></div>
+                                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Order QTY</span></div>
+                                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Tracking No.</span></div>
+                                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Courier</span></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body padding0">
+                                                    <ul class="list-unstyled margin-bottom-none">
+                                                        <li class="change clearfix" ng-repeat="collapseBreakbulk in breakbulkShipment.collapse">
+                                                            <div class="width100 pointer">
+                                                                <div class="flex height30">
+                                                                    <div class="width20 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">{{collapseBreakbulk.jobno}}</a></span></div>
+                                                                    <div class="width20 quotation-table-body word-wrap padding-5"><span class="ng-binding">{{collapseBreakbulk.status}}</span></div>
+                                                                    <div class="width20 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">{{collapseBreakbulk.po}}</a></span></div>
+                                                                    <div class="width20 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">{{collapseBreakbulk.qty}}</a></span></div>
+                                                                    <div class="width20 quotation-table-body word-wrap padding-5"><span title="CBG - Cambridge to UNT - Unst" class="ng-binding">{{collapseBreakbulk.fromTo}}</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--end-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end code-->
+            </div>
+            <!--pagination code-->
+            <div class="col-sm-12 paddingboth">
+                <div style="margin-left:-15px;top:-8px;position:relative;" class="pull-left">
+                    <ul uib-pagination="" boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm ng-pristine ng-untouched ng-valid ng-isolate-scope pagination ng-not-empty" previous-text="‹" next-text="›" first-text="«" last-text="»">
+                        <li class="pagination-first ng-scope disabled"><a href="" ng-click="selectPage(1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" class="ng-binding" disabled="disabled" tabindex="-1">«</a></li><!-- end ngIf: ::boundaryLinks -->
+                        <li class="pagination-prev ng-scope disabled"><a href="" ng-click="selectPage(page - 1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" class="ng-binding" disabled="disabled" tabindex="-1">‹</a></li><!-- end ngIf: ::directionLinks -->
+                        <li class="pagination-page ng-scope active"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="" class="ng-binding">1</a></li><!-- end ngRepeat: page in pages track by $index -->
+                        <li class="pagination-page ng-scope"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="" class="ng-binding">2</a></li><!-- end ngRepeat: page in pages track by $index -->
+                        <li class="pagination-next ng-scope"><a href="" ng-click="selectPage(page + 1, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="" class="ng-binding">›</a></li><!-- end ngIf: ::directionLinks -->
+                        <li class="pagination-last ng-scope"><a href="" ng-click="selectPage(totalPages, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="" class="ng-binding">»</a></li><!-- end ngIf: ::boundaryLinks -->
+                    </ul>
+                </div>
+                <div class="pull-right">
+                    <label for="customers" class="col-sm-6 top7">Paging</label>
+                    <div class="col-sm-4">
+                        <select id="shipmentPaymentAccount" name="shipmentPaymentAccount" class="form-control fontsize12 ng-pristine ng-untouched ng-valid ng-not-empty" style="width:77px"><option label="20" value="number:20">20</option><option label="50" value="number:50" selected="selected">50</option><option label="100" value="number:100">100</option><option label="200" value="number:200">200</option></select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end-->
+            <div class="clearfix"></div>
+        </section>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-sm-12">
+        <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+        <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add PO</button>
+    </div>
+</div>

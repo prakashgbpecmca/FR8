@@ -1,0 +1,80 @@
+﻿
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">Generate Manifest</h4>
+    </div>
+<div class="modal-body">
+<div class="col-sm-12 paddingboth">
+    <!--Customer code here-->
+    <div class="col-sm-12 paddingboth">
+       <div class="col-sm-12">
+            <label for="customers" class="col-sm-2 paddingboth top5">Customer <span class="redColor">*</span></label>
+            <div class="col-sm-10 paddingboth" id="Xe">
+                <select id="customers" name="customers" class="form-control fontsize12" required>
+                    <option value="" disabled="" selected="selected" class="display-none">Select Customer</option>
+                    <option label="SERIOUS STUFF LIMITED - 929-313-261" value="80" selected="selected">SERIOUS STUFF LIMITED - 929-313-261</option>
+                    <option label="IND (INDIA) Ltd - 929-313-261" value="5">IND (INDIA) Ltd - 929-313-261</option>
+                </select> 
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-sm-12"><hr style="margin:10px 0px;"></div>
+        <div class="col-sm-12 form-group">
+            <label for="customers" class="col-sm-2 paddingboth top5">Hub <span class="redColor">*</span></label>
+            <div class="col-sm-4 paddingboth" id="Xe">
+                <select id="destinationAirport" name="destinationAirport" class="form-control fontsize12" required="" style=""><option value="" disabled="" selected="selected" class="ng-binding">Select Hub  (Required)</option><option label="IDR - Indore" value="79">IDR - Indore</option><option label="JAI - Jaipur" value="88">JAI - Jaipur</option><option label="NAG - Nagpur" value="116">NAG - Nagpur</option><option label="UDR - Udaipur" value="177">UDR - Udaipur</option><option label="BDQ - Vadodara" value="14">BDQ - Vadodara</option></select>            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+            <!--breakbulk shipment custom grid-->
+            <div class="panel panel-default">
+                <div class="width100 flex grid-background">
+                    <div class="width986 flex">
+                        <div class="width4 bold quotation-table-padding text-center"><span class="quotation-table-body padding-10-5 width100"><input type="checkbox" ng-model="IsAllChecked" ng-change="CheckUncheckAll()" /></span></div>
+                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Customer</span></div>
+                        <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">PO No.</span></div>
+                        <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Job No.</span></div>
+                        <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Tracking No.</span></div>
+                        <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Carrier</span></div>
+                        <div class="width150 bold quotation-table-padding text-center"><span class="quotation-table-body padding-10-5">Gross Weight / Total No. of Shipment</span> </div>
+                        <div class="width11 bold quotation-table-padding" style="border-right:0px !important;"><sapn class="quotation-table-body padding-10-5">Created On</sapn> </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                    <div class="panel-body padding0">
+                        <ul class="list-unstyled margin-bottom-none">
+                            <li class="change clearfix" ng-repeat="item in createManifest">
+                                <div class="width100 pointer ng-scope">
+                                    <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                        <div class="width4 bold quotation-table-padding text-center"><span class="quotation-table-body padding-5 width100"><input type="checkbox" ng-model="item.active" ng-change="CheckUncheckHeader()" /></span></div>
+                                        <div class="width20 quotation-table-body padding-5"><span>{{item.customer}}</span></div>
+                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>{{item.poNo}}</span></div>
+                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>{{item.jobNo}}</span></div>
+                                        <div class="width150 quotation-table-body word-wrap padding-5"><span><a href="" class="pointer">{{item.trackingNo}}</a></span></div>
+                                        <div class="width10 quotation-table-body word-wrap padding-5"><span><img ng-src="{{ImagePath + 'T-delivered.png'}}" class="bottom2" width="20px"> &nbsp; {{item.carrier}}</span></div>
+                                        <div class="width150 quotation-table-body word-wrap padding-5"><span>{{item.grossWeight}}</span></div>
+                                        <div class="width11 quotation-table-body word-wrap padding-5" style="border-right:0px !important;"><span>{{item.createdOn}}</span></div>
+                                    </div>
+                                </div> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--end code-->
+    </div>
+    <!--end-->
+</div>
+</div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+            <button type="button" ng-click="$dismiss('cancel')"  class="btn-simple btn-success fontsize12 pull-right"><i class="fa fa fa-list-ol" aria-hidden="true"></i> Create Manifest</button>
+        </div>
+    </div>
+</div>

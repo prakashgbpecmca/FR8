@@ -1,0 +1,72 @@
+﻿
+
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Service_Available' | translate}} <span class="redColor">*</span> - {{'From_' | translate}} <span class="frayte-orange">{{expObj.ShipFrom.Country.Name}} <span class="text-uppercase">({{expObj.ShipFrom.PostCode}})</span></span> to <span class="frayte-orange">{{expObj.ShipTo.Country.Name}} <span class="text-uppercase">({{expObj.ShipTo.PostCode}})</span></span></h4>
+        </div>
+        <div class="modal-body" id="arrow-right-fixed">
+            <div id="getservice" style="border-left: 1px solid #ddd;border-bottom: 1px solid #ddd;border-right: 1px solid #ddd;">
+                <div class="width100 flex grid-background ng-scope">
+                    <div class="width986 flex">
+                        <div class="width100">
+                        <div class="bold width120 quotation-table-body bordered-right bold padding-5">
+                            <span class="quotation-table-body padding-10"><span>Carrier</span> &nbsp;</span>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="width78">
+                        <div class="width100">
+                        <div class="width30 quotation-table-body bordered-right bold padding-5"><span class="quotation-table-body padding-10">{{'Transit_Time_' | translate}}</span> <span class="redColor top5">*</span></div>
+                        <div class="bold width70 quotation-table-body bordered-right bold padding-5"><span class="quotation-table-body padding-10 ng-binding">Service Type</span></div>
+                        </div>
+                        <span class="clearfix"></span>
+                        </div>
+                        <div class="bold width10" style="border-right:transparent !important;"></div>
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+                <div class="get-service-scrolled border-LB">
+                    <div class="panel-body padding0">
+                        <!-- HK Shipmemnt Rate Start Default-->
+                        <ul class="list-unstyled margin-bottom-none">
+                            <li class="alternate clearfix" ng-repeat="courierService in services">
+                                <div class="border-bottom-ddd">
+                                    <div ng-dblclick="setCustomerRateCard(courierService)"  ng-class="{'demoClass':services.Services[0].RowSelect }" class="width100 pointer flex greenClass border-bottom-ddd" popover-placement="auto" uib-popover="Double click to select the service." popover-trigger="'mouseenter'">
+                                    <div class="width120 quotation-table-body text-left">
+                                    <span><img class="img100x30 top5 padding-5" ng-class="{'padding-5': services.Services[0].CourierName != 'DHL'}" ng-src="{{ImagePath + 'DHL.png'}}"></span>
+                                    </div>
+                                    <div class="width78 bordered-left bordered-right">
+                                    <div class="flex">
+                                    <div class="width30 quotation-table-body bordered-right padding-5"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.TransitTime}}</span></div>
+                                    <div class="width70 quotation-table-body"><span class="quotation-table-body padding-10 margin6x0x6 ng-binding">{{courierService.HubCarrier}} {{courierService.RateType}}</span></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width10" style="line-height: 38px;">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-10 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                    <li ng-click="setCustomerRateCard(courierService)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        <div class="modal-footer">
+            <div class="col-sm-12 paddingboth">
+                <div class="pull-left"><button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>                

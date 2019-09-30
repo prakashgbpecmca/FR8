@@ -1,0 +1,236 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.tableHeading {
+    border: 1px solid #000000;
+    padding: 10px;
+    margin: 20px 0 0;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.marginTop2 {
+    margin-top: 2px;
+}
+
+.marginTop3 {
+    margin-top: 3px;
+}
+
+.marginTop30 {
+    margin-top: 30px;
+}
+
+.padding1 {
+    padding: 1px;
+}
+
+.padding2 {
+    padding: 2px;
+}
+
+.padding3 {
+    padding: 3px;
+}
+
+.padding5 {
+    padding: 5px !important;
+}
+
+.padding10 {
+    padding: 10px !important;
+}
+
+.borderR {
+    border-right: 1px solid #333;
+}
+
+.borderL {
+    border-left: 1px solid #333;
+}
+
+.borderLR {
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+}
+
+.borderRd {
+    border-right: 1PX dotted #333;
+}
+
+.border1 {
+    border: 1px solid #333;
+}
+
+.borderTB {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.borderB {
+    border-bottom: 1px solid #333;
+}
+
+.borderBDot {
+    border-bottom: 1px dotted #333;
+}
+
+.borderT {
+    border-top: 1px solid #333;
+}
+
+.fadeBgColor {
+    background: #e5e5e5;
+}
+
+.ColorBlue {
+    color: #0026ff;
+}
+
+.ColorRed {
+    color: #f00;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+.width5 {
+    width: 5%;
+    padding: 1px;
+}
+
+.width10 {
+    width: 10%;
+    padding: 1px;
+}
+
+.width12 {
+    width: 12%;
+    padding: 1px;
+}
+
+.width15 {
+    width: 15%;
+    padding: 1px;
+}
+
+.width20 {
+    width: 20%;
+    padding: 1px;
+}
+
+.width25 {
+    width: 25%;
+    padding: 1px;
+}
+
+.width28 {
+    width: 28%;
+    padding: 1px;
+}
+
+.width30 {
+    width: 30%;
+    padding: 1px;
+}
+
+.width33 {
+    width: 33.3%;
+    padding: 1px;
+}
+
+.width35 {
+    width: 35%;
+    padding: 1px;
+}
+
+.width40 {
+    width: 40%;
+    padding: 1px;
+}
+
+.width49 {
+    width: 49.7%;
+    padding: 0px;
+}
+
+.width50 {
+    width: 50%;
+    padding: 1px;
+}
+
+.width57 {
+    width: 57%;
+    padding: 1px;
+}
+
+.width60 {
+    width: 60%;
+    padding: 1px;
+}
+
+.width65 {
+    width: 65%;
+    padding: 1px;
+}
+
+.width70 {
+    width: 70%;
+    padding: 1px;
+}
+
+.width80 {
+    width: 80%;
+    padding: 1px;
+}
+
+.width90 {
+    width: 90%;
+    padding: 1px;
+}
+
+.width100 {
+    width: 100%;
+    padding: 0px;
+}
+
+
+
+.upperCase {
+    text-transform: uppercase;
+}
+
+
+footer {
+    height: 60px;
+    color: #333;
+    text-align: center;
+    padding: 12px 0px;
+}
+
+    footer .footerLogo {
+        color: #EB8633;
+        padding: 0 15px;
+        font-size: 16px;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        display: inline-block;
+        font-weight: 700;
+    }
+
+    footer .footerText {
+        font-size: 16px;
+        color: #EB8633;
+        font-weight: 700;
+    }

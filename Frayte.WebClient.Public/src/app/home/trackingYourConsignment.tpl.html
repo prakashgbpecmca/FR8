@@ -1,0 +1,18 @@
+﻿
+<div class="clearfix"></div>
+<div class="container" id="top">
+    <div ng-if="true" class="col-sm-12 flex change-color paddingboth" style="margin:30px 0px 30px;border:1px solid #ddd;">
+        <div class="col-sm-4 col-xs-12 orange-color new-border-left">
+            <center>
+                <img ng-src="{{ImagePath + 'tracking_your_consignment.png'}}" alt="FRAYTE Forwarding" class="img-responsive" />
+            </center>
+        </div>
+        <div class="col-sm-8 col-xs-12 blue-color">
+            <h3>{{'Tracking_Your_Consignment' | translate}}</h3>
+            <p><span ng-if="FrayteWebSite==='COM' || FrayteWebSite==='CO.TH'">{{'FRAYTE_GLOBAL_COM' | translate}}</span><span ng-if="FrayteWebSite==='CO.UK'">{{'FRAYTE_GLOBAL' | translate}}</span>. {{'FRAYTE_Logistics_Ltd_Is_Able_To_Provide_State' | translate}} <a href=""><span ng-if="FrayteWebSite==='COM'">{{'FRAYTE_Dot_Com' | translate}}</span><span ng-if="FrayteWebSite==='CO.UK'">{{'FRAYTE_CO_Dot_UK' | translate}}</span><span ng-if="FrayteWebSite==='CO.TH'">{{'FRAYTE_Dot_Co_Th' | translate}}</span></a></p>
+            <p>{{'If_You_Need_Any_Further_Help_OR_Customization' | translate}}  <a href=""><span ng-if="FrayteWebSite==='COM'">{{'Tracking_Frayte_Dot_Com' | translate}}</span><span ng-if="FrayteWebSite==='CO.UK'">{{'Tracking_MailCOUK' | translate}}</span><span ng-if="FrayteWebSite==='CO.TH'">{{'Tracking_Frayte_Dot_Co_Th' | translate}}</span></a></p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

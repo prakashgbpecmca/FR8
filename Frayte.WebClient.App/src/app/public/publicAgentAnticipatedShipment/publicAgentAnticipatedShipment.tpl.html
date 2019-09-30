@@ -1,0 +1,127 @@
+﻿<div class="content padding-15">
+    <div class="col-sm-12">
+        <div class="text-center padding-tb-15"><h4>{{'UpdateAnticipatedDateTime' | translate}}</h4></div>
+        <form name="UpdateAnticipatedForm" ng-submit="AgentAnticipating(UpdateAnticipatedForm.$valid)" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperInfo.ContactName}}</div>
+                                <div>{{ShipperInfo.CompanyName}}</div>
+                                <div>{{ShipperAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ShipperInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverInfo.ContactName}}</div>
+                                <div>{{ReceiverInfo.CompanyName}}</div>
+                                <div>{{ReceiverAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ReceiverInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group col-sm-6" style="padding-left:0px;">
+                <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                <div>
+                    <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+                <div class="form-group col-sm-4">
+                    <div class="form-group" ng-class="{ 'has-error': UpdateAnticipatedForm.deliveryDate.$invalid &&
+                                                         (UpdateAnticipatedForm.deliveryDate.$dirty || submitted) }">
+                        <label class="control-label" for="deliveryDate">{{'Anticipated' | translate}} {{'Delivery' | translate}} {{'Date' | translate}}</label>
+                        <p class="input-group">
+                            <input type="text" id="deliveryDate" name="deliveryDate" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy"
+                                   ng-model="updateAnticipatedDetail.AnticipatedDeliveryDate" is-open="status.opened"
+                                   ng-required="true" close-text="Close" ng-click="openCalender($event)" placeholder="{{'DatePlaceholder' | translate}}" required />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                        <span class="help-block has-error"
+                              ng-show="UpdateAnticipatedForm.deliveryDate.$error.required &&
+                                                (UpdateAnticipatedForm.deliveryDate.$dirty || submitted)">
+                            {{'Anticipated' | translate}} {{'Delivery' | translate}} {{'DateValidError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="UpdateAnticipatedForm.deliveryDate.$invalid && !UpdateAnticipatedForm.deliveryDate.$error.required &&
+                                                (UpdateAnticipatedForm.deliveryDate.$dirty || submitted)">
+                            {{'Invalid' | translate}} {{'Delivery' | translate}} {{'Date' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group" ng-class="{ 'has-error': (UpdateAnticipatedForm.selectTime.$invalid || UpdateAnticipatedForm.selectTime.$error.pattern) &&
+                                                     (UpdateAnticipatedForm.selectTime.$dirty || submitted) }">
+                        <label class="control-label" for="selectTime">{{'Time' | translate}} <b> {{'Hours24' | translate}}</b></label>
+                        
+                        <input type="text"
+                               class="form-control input-sm"
+                               placeholder="{{'TimePlaceholder' | translate}}"
+                               name="selectTime"
+                               ng-model="updateAnticipatedDetail.AnticipatedDeliveryTime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                        <span class="help-block has-error"
+                              ng-show="UpdateAnticipatedForm.selectTime.$invalid && !UpdateAnticipatedForm.selectTime.$error.pattern && (UpdateAnticipatedForm.selectTime.$dirty || submitted)">
+                            {{'TimeValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="UpdateAnticipatedForm.workingStartTime.$error.pattern &&
+                                                (UpdateAnticipatedForm.workingStartTime.$dirty || submitted)">
+                            {{'TimeNotValid' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            <div class="form-group">
+                <label>{{'CustomerAndOtherIssue' | translate}}:</label>
+                <textarea id="message" name="message" ng-model="updateAnticipatedDetail.OtherCustomIssues" class="form-control" style="height:100px;"></textarea>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" ng-click="unexpectedComment(updateanticipateddetail.IsUnexpectedDelay)" ng-model="updateanticipateddetail.IsUnexpectedDelay" value="">Unexpected Clearance Delay</label>
+            </div>
+            <div ng-if="updateanticipateddetail.IsUnexpectedDelay" class="form-group" ng-class="{ 'has-error': UpdateAnticipatedForm.unexpectedcomment.$invalid &&
+                                                     (UpdateAnticipatedForm.unexpectedcomment.$dirty || submitted) }">
+                <label class="control-label" for="unexpectedcomment">Comment</label>
+                <textarea id="message" name="unexpectedcomment" ng-model="updateAnticipatedDetail.UnexpectedClearance" class="form-control" style="height:100px;" ng-required="updateAnticipatedDetail.IsUnexpectedDelay"></textarea>
+                <span class="help-block has-error"
+                      ng-show="UpdateAnticipatedForm.unexpectedcomment.$invalid &&
+                                                     (UpdateAnticipatedForm.unexpectedcomment.$dirty || submitted)">
+                    Comment is required.
+                </span>
+            </div>
+                <div class="floatRight form-group">
+                    <div class="padding-tb-15"><button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Submit' | translate}}</button></div>
+                </div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

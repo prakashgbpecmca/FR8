@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.zoneSetting',['ui.router','ngApp.common','ui.grid']);

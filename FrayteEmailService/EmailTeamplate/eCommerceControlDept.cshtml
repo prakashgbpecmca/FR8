@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0;font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+         <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@ViewBag.ImageHeader" />
+        </div>
+    </header>
+ <br/>
+			<table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Dear <b>@ViewBag.Name,</b></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@ViewBag.TrackingDescription</td></tr>
+            </table>
+            <br />
+			<table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>FRAYTE GLOBAL (UK) CO. LTD.</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><a href="@ViewBag.SiteAddress">@ViewBag.SiteAddress</a></td></tr>
+            </table>
+<br/>
+	<footer>
+        <table style="border-spacing: 0px;">
+            <tr><td style="font-size: 12px;font-family: calibri, sans-serif;">FRAYTE GLOBAL (UK) CO. LTD. All rights reserved.</td></tr>
+        </table>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿<div class="newModalDialog">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title" ng-if="shipmentChild.Shipper.UserId > 0">{{'ShipmentUpdateSuccess' | translate}}</h4>
+        <h4 class="modal-title" ng-if="shipmentChild.Shipper.UserId === 0">{{'NewShipmentCreateSuccess' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <div>
+            <p ng-if="shipmentChild.Shipper.UserId > 0">
+                {{'CongratulationSuccessfullyUpdatedShipment' | translate}}.<br />
+                {{'CustomerAndShipperGetUpdated' | translate}}.<br />
+            </p>
+            <p ng-if="shipmentChild.Shipper.UserId === 0">
+                {{'ShipmentCongratsText1' | translate}}.<br />
+                {{'ShipmentCongratsText2' | translate}}.<br />
+                {{'ShipmentCongratsText3' | translate}}.<br />
+                {{'ShipmentCongratsText4' | translate}}.
+            </p>  
+            <br />
+            <p>                
+                {{'PleaseDownloadShipmentDetailPDF' | translate}} <img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" />  {{'From' | translate}} <a href="{{pdfPath}}" target="_blank">{{'Here' | translate}}</a>
+            </p>          
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn other-btn-modal" ng-click="$dismiss('Ok')">{{'Ok' | translate}}</button>
+    </div>
+</div>

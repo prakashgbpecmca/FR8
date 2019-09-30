@@ -1,0 +1,84 @@
+﻿<!--moadal started-->
+<!--User Modal start -->
+<div class="modal-header">
+    <button type="button" ng-click="$dismiss('cancel')" class="close" data-dismiss="modal"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'AddEdit_Zone' | translate}} </h4>
+</div>
+<div class="modal-body">
+
+    <div class="col-sm-12">
+        <div style="border: 1px solid #e5e5e5; padding-top:10px; padding-bottom:30px;">
+            <div class="col-sm-6">
+                <label><b style="font-size: 17px;">{{'BusinessUnit_Zone' | translate}}: </b>{{ZoneCountry.OperationZoneName}}</label>
+            </div>
+            <div class="col-sm-6"><b style="font-size: 17px;">{{'Zone_Name' | translate}}: </b>{{ZoneCountry.ZoneDisplayName}}</div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div style="border: 1px solid #e5e5e5; padding-top:10px; padding-bottom:30px;">
+            <div class="col-sm-6">
+                <label><b style="font-size: 17px;">{{'CourierCompany' | translate}}: </b>{{ZoneCourierCompany.Display}}</label>
+            </div>
+            <div class="col-sm-6"><b style="font-size: 17px;">{{'Rate' | translate}} {{'Type' | translate}}: </b>{{ZoneRateType.Display}}</div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    <div class="col-sm-12 paddingboth">
+        <div class="col-sm-6">
+            <!--<fieldset class="scheduler-border">-->
+                <!--<legend class="scheduler-border" style="border-bottom:none;">{{'Assign_Countries' | translate}}</legend>-->
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'Assign_Countries' | translate}}</div>
+                <div class="panel-body padding0">
+                <div class="pull-right del padding-tb-10" style="margin:10px 10px 0px;"><strong>{{'Delete_Country' | translate}}</strong></div>
+                <div style="height:334px;">
+                    <div class="col-sm-12 overflow paddingboth">
+                        <div ng-repeat="country in ZoneCountry.Fraytezonezountry">
+                            <div class="col-sm-10 margin-left20">{{country.CountryName}}</div>
+                            <div class="col-sm-2">
+                                <a href="" ng-click="removeCountryFromZoneCountry(country)"><i class="fa fa-bitbucket red" aria-hidden="true" style="font-size:22px;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!--</fieldset>-->
+        </div>
+        <div class="col-sm-6">
+            <!--<fieldset class="scheduler-border">-->
+                <!--<legend class="scheduler-border" style="border-bottom:none;">{{'Add_Country' | translate}}</legend>-->
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'Add_Country' | translate}}</div>
+                <div class="panel-body padding0">
+                <div class="col-sm-12">
+                    <div class="right-inner-addon padding-tb-10">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <input capitalize:first type="search" ng-change="refreshData()" class="form-control" ng-model="searchText" placeholder="{{'Search' | translate}}" />
+                    </div>
+                </div>
+                <div class="col-sm-12 overflow" style="height:296px !important;">
+                    <div ng-repeat="country in Countries | orderBy:'CountryName'" class="checkbox">
+                        <label class="margin-left20"><input type="checkbox" ng-model="as" ng-change="AddCountryToZone(country)" name="optradio">{{country.CountryName}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!--</fieldset>-->
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="modal-footer">
+    <div class="col-sm-12">
+        <div class="pull-left">
+            <a class="btn-simple btn-cancel ng-binding fontsize12" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</a>
+        </div>
+        <div class="pull-right">
+            <a href="" class="btn btn-md btn-theme-org fontsize12" ng-click="submit(ZoneCountry)"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!--user model end -->

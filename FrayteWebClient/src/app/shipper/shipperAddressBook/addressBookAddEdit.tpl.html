@@ -1,0 +1,140 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{mode}} {{'Address' | translate}} {{'Book' | translate}}</h4>
+</div>
+<form name="pickupAddressBookForm" ng-submit="submit(pickupAddressBookForm.$valid, pickupAddress)" novalidate>
+    <div class="modal-body">
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': pickupAddressBookForm.country.$invalid &&
+                                        (pickupAddressBookForm.country.$dirty || submitted) }">
+                <label class="control-label textLeft30" for="country">{{'Country' | translate}} <span class="redColor">*</span></label>
+                <div class="inputRight70">
+                    <select id="country" name="country" ng-change="SetShipperReceiverStateZip(pickupAddress.Country)"
+                            ng-model="pickupAddress.Country"
+                            ng-options="Country.Name for Country in countries | orderBy:'Name' track by Country.CountryId"
+                            class="form-control fontsize12" required>
+                        <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="pickupAddressBookForm.country.$invalid &&
+                        (pickupAddressBookForm.country.$dirty || submitted)">
+                        {{'CountryValidationError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': pickupAddressBookForm.address.$invalid &&
+                                                         (pickupAddressBookForm.address.$dirty || submitted) }">
+                <label class="control-label textLeft30" for="address">{{'Address' | translate}} {{'1' | translate}} <span class="redColor">*</span></label>
+                <div class="inputRight70">
+                    <textarea cols="1" rows="2" id="address" name="address" capitalize-first ng-model="pickupAddress.Address" class="form-control fontsize12"
+                           placeholder="{{'AddressPlaceholder' | translate}}"  required></textarea>
+                    <!--<input type="text" id="address" name="address" capitalize-first ng-model="pickupAddress.Address" class="form-control fontsize12"
+                           placeholder="{{'AddressPlaceholder' | translate}}" required />-->
+                    <span class="help-block has-error"
+                          ng-show="pickupAddressBookForm.address.$invalid &&
+                                            (pickupAddressBookForm.address.$dirty || submitted)">
+                        {{'AddressValidationError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label textLeft30" for="address2">{{'Address2' | translate}}</label>
+                <div class="inputRight70">
+                    <textarea cols="1" rows="2" id="address2" name="address2" capitalize-first ng-model="pickupAddress.Address2" class="form-control fontsize12" placeholder="{{'Address2' | translate}}"></textarea>
+                    <!--<input type="text" id="address2" name="address2" capitalize-first ng-model="pickupAddress.Address2" class="form-control fontsize12" placeholder="{{'Address2' | translate}}" />-->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label textLeft30" for="address3">{{'Address3' | translate}}</label>
+                <div class="inputRight70">
+                    <textarea cols="1" rows="2" id="address3" name="address3" capitalize-first ng-model="pickupAddress.Address3" class="form-control fontsize12" placeholder="{{'Address3' | translate}}"></textarea>
+                    <!--<input type="text" id="address3" name="address3" capitalize-first ng-model="pickupAddress.Address3" class="form-control fontsize12" placeholder="{{'Address3' | translate}}" />-->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': pickupAddressBookForm.city.$invalid &&
+                                                         (pickupAddressBookForm.city.$dirty || submitted) }">
+                <label class="control-label textLeft30" for="city">{{'City' | translate}} <span class="redColor">*</span></label>
+                <div class="inputRight70">
+                    <input type="text" id="city" name="city" capitalize-first ng-model="pickupAddress.City" class="form-control fontsize12"
+                           only-alphabets
+                           placeholder="{{'CityPlaceholder' | translate}}" required />
+                    <span class="help-block has-error"
+                          ng-show="pickupAddressBookForm.city.$invalid &&
+                                            (pickupAddressBookForm.city.$dirty || submitted)">
+                        {{'CityValidationError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label textLeft30" for="suburb">{{'Suburb' | translate}}</label>
+                <div class="inputRight70">
+                    <input type="text" id="suburb" name="suburb" capitalize-first ng-model="pickupAddress.Suburb" class="form-control fontsize12" placeholder="{{'Suburb' | translate}}" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': pickupAddressBookForm.state.$invalid &&
+                                                         (pickupAddressBookForm.state.$dirty || submitted) }">
+                <label class="control-label textLeft30" for="state">{{'State' | translate}} <span class="redColor">*</span></label>
+                <div class="inputRight70">
+                    <input type="text" id="state" name="state" capitalize-first ng-model="pickupAddress.State" class="form-control fontsize12" ng-disabled="setStateDisable"
+                           only-alphabets
+                           placeholder="{{'StatePlaceholder' | translate}}" ng-required="setStateAndZip(pickupAddress.Country.Code,'state')" />
+                    <span class="help-block has-error"
+                          ng-show="pickupAddressBookForm.state.$invalid &&
+                                            (pickupAddressBookForm.state.$dirty || submitted)">
+                        {{'StateValidationError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': pickupAddressBookForm.postalCode.$invalid &&
+                                                         (pickupAddressBookForm.postalCode.$dirty || submitted) }">
+                <label class="control-label textLeft30" for="postalCode">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+                <div class="inputRight70">
+                    <input type="text" id="postalCode" name="postalCode" ng-model="pickupAddress.Zip" class="form-control fontsize12" ng-disabled="setZipDisable"
+                           placeholder="{{'PostalCodePlaceholder' | translate}}" ng-required="setStateAndZip(pickupAddress.Country.Code,'zip')" />
+                    <span class="help-block has-error"
+                          ng-show="pickupAddressBookForm.postalCode.$invalid &&
+                                            (pickupAddressBookForm.postalCode.$dirty || submitted)">
+                        {{'PostalCodeValidationError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <button type="button" ng-click="AddressGoBack()" class="btn btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+            <div class="pull-right">
+                <button type="submit" ng-click="submitted=true" class="btn btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+           <div class="clearfix"></div>
+        </div>
+    </div>
+</form>

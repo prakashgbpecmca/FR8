@@ -1,0 +1,1071 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{005FA870-DF73-4739-B337-AE73D68EE70A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Report.Generator</RootNamespace>
+    <AssemblyName>Report.Generator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v16.2.Wizard, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v16.2.UI, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v16.2.Extensions, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ManifestReport\BaseRateReport.cs" />
+    <Compile Include="ManifestReport\CommercialInvoice.cs" />
+    <Compile Include="ManifestReport\ControlDeptGenerateExcel.cs" />
+    <Compile Include="ManifestReport\CustomerBaseRateReport.cs" />
+    <Compile Include="ManifestReport\DPDHtmlToImage.cs" />
+    <Compile Include="ManifestReport\eCommerceBagLabelReport.cs" />
+    <Compile Include="ManifestReport\eCommerceInvoiceReport.cs" />
+    <Compile Include="ManifestReport\eCommerceShipmentLabelReport.cs" />
+    <Compile Include="ManifestReport\FrayteManifestReport.cs" />
+    <Compile Include="ManifestReport\FrayteMAWBReport.cs" />
+    <Compile Include="ManifestReport\FrayteTrackAndTraceReport.cs" />
+    <Compile Include="ManifestReport\PackageLabelReport.cs" />
+    <Compile Include="ManifestReport\QuoteReport.cs" />
+    <Compile Include="ManifestReport\TNTHtmlToImage.cs" />
+    <Compile Include="ManifestReport\TradelaneDocument.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\FrayteMAWB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\FrayteMAWB.Designer.cs">
+      <DependentUpon>FrayteMAWB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\AllUKReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\AllUKReport.Designer.cs">
+      <DependentUpon>AllUKReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\CommercialInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\CommercialInvoice.Designer.cs">
+      <DependentUpon>CommercialInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DHLImageToPDFReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DHLImageToPDFReport.Designer.cs">
+      <DependentUpon>DHLImageToPDFReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DirectBookingLabelReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DirectBookingLabelReport.Designer.cs">
+      <DependentUpon>DirectBookingLabelReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DPDHtmlToImageReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DPDHtmlToImageReport.Designer.cs">
+      <DependentUpon>DPDHtmlToImageReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DPDImageToPDFReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DPDImageToPDFReport.Designer.cs">
+      <DependentUpon>DPDImageToPDFReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\eCommerceLabelReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\eCommerceLabelReport.Designer.cs">
+      <DependentUpon>eCommerceLabelReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\eCommerceManifestReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\eCommerceManifestReport.Designer.cs">
+      <DependentUpon>eCommerceManifestReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\ExportManifestBreakBulk.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\ExportManifestBreakBulk.Designer.cs">
+      <DependentUpon>ExportManifestBreakBulk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\DriverManifestExpressSolution.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\DriverManifestExpressSolution.Designer.cs">
+      <DependentUpon>DriverManifestExpressSolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\ExportManifestExpressSolution.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\ExportManifestExpressSolution.Designer.cs">
+      <DependentUpon>ExportManifestExpressSolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\EXSBagLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\EXSBagLabel.Designer.cs">
+      <DependentUpon>EXSBagLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\EXSBagNumber.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Express\EXSBagNumber.Designer.cs">
+      <DependentUpon>EXSBagNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\HKQuote.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\HKQuote.Designer.cs">
+      <DependentUpon>HKQuote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHL3rdPartyExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHL3rdPartyExpressSummery.Designer.cs">
+      <DependentUpon>DHL3rdPartyExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHL3rdPartyExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHL3rdPartyExpress.Designer.cs">
+      <DependentUpon>DHL3rdPartyExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLExportEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLExportEconomySummery.Designer.cs">
+      <DependentUpon>DHLExportEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLExportEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLExportEconomy.Designer.cs">
+      <DependentUpon>DHLExportEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLExportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLExportExpressSummery.Designer.cs">
+      <DependentUpon>DHLExportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLExportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLExportExpress.Designer.cs">
+      <DependentUpon>DHLExportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLImportEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLImportEconomySummery.Designer.cs">
+      <DependentUpon>DHLImportEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLImportEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLImportEconomy.Designer.cs">
+      <DependentUpon>DHLImportEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLImportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLImportExpressSummery.Designer.cs">
+      <DependentUpon>DHLImportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLImportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\DHLImportExpress.Designer.cs">
+      <DependentUpon>DHLImportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNT3rdPartyExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNT3rdPartyExpress.Designer.cs">
+      <DependentUpon>TNT3rdPartyExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTExportEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTExportEconomySummery.Designer.cs">
+      <DependentUpon>TNTExportEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTExportEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTExportEconomy.Designer.cs">
+      <DependentUpon>TNTExportEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTExportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTExportExpressSummery.Designer.cs">
+      <DependentUpon>TNTExportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTExportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTExportExpress.Designer.cs">
+      <DependentUpon>TNTExportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTImportEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTImportEconomySummery.Designer.cs">
+      <DependentUpon>TNTImportEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTImportEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTImportEconomy.Designer.cs">
+      <DependentUpon>TNTImportEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTImportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTImportExpressSummery.Designer.cs">
+      <DependentUpon>TNTImportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTImportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\TNTImportExpress.Designer.cs">
+      <DependentUpon>TNTImportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpeditedSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpeditedSummery.Designer.cs">
+      <DependentUpon>UPSExportExpeditedSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpedited.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpedited.Designer.cs">
+      <DependentUpon>UPSExportExpedited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpressLanesSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpressLanesSummery.Designer.cs">
+      <DependentUpon>UPSExportExpressLanesSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpressSummery.Designer.cs">
+      <DependentUpon>UPSExportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpress.Designer.cs">
+      <DependentUpon>UPSExportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpressLanes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportExpressLanes.Designer.cs">
+      <DependentUpon>UPSExportExpressLanes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportSaverLanesSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportSaverLanesSummery.Designer.cs">
+      <DependentUpon>UPSExportSaverLanesSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportSaverSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportSaverSummery.Designer.cs">
+      <DependentUpon>UPSExportSaverSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportSaver.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportSaver.Designer.cs">
+      <DependentUpon>UPSExportSaver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpeditedSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpeditedSummery.Designer.cs">
+      <DependentUpon>UPSImportExpeditedSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpedited.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpedited.Designer.cs">
+      <DependentUpon>UPSImportExpedited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpressLanesSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpressLanesSummery.Designer.cs">
+      <DependentUpon>UPSImportExpressLanesSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpressSummery.Designer.cs">
+      <DependentUpon>UPSImportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpress.Designer.cs">
+      <DependentUpon>UPSImportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportSaverLanes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSExportSaverLanes.Designer.cs">
+      <DependentUpon>UPSExportSaverLanes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpressLanes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportExpressLanes.Designer.cs">
+      <DependentUpon>UPSImportExpressLanes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportSaverLanesSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportSaverLanesSummery.Designer.cs">
+      <DependentUpon>UPSImportSaverLanesSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportSaverLanes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportSaverLanes.Designer.cs">
+      <DependentUpon>UPSImportSaverLanes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportSaverSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportSaverSummery.Designer.cs">
+      <DependentUpon>UPSImportSaverSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportSaver.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\HKRateCards\UPSImportSaver.Designer.cs">
+      <DependentUpon>UPSImportSaver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\ManifestDHLReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\ManifestDHLReport.Designer.cs">
+      <DependentUpon>ManifestDHLReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\ManifestReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\ManifestReport.Designer.cs">
+      <DependentUpon>ManifestReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\PackageLabelReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\PackageLabelReport.Designer.cs">
+      <DependentUpon>PackageLabelReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\PackageLabelsPdfReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\PackageLabelsPdfReport.Designer.cs">
+      <DependentUpon>PackageLabelsPdfReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\TNTHtmlToImageReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\TNTHtmlToImageReport.Designer.cs">
+      <DependentUpon>TNTHtmlToImageReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\TNTImagesToPDFReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\TNTImagesToPDFReport.Designer.cs">
+      <DependentUpon>TNTImagesToPDFReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\TrackAndTraceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\TrackAndTraceReport.Designer.cs">
+      <DependentUpon>TrackAndTraceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\eCommerceBagLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\eCommerceBagLabel.Designer.cs">
+      <DependentUpon>eCommerceBagLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\eCommerceInvoiceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\eCommerceInvoiceReport.Designer.cs">
+      <DependentUpon>eCommerceInvoiceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\CoLoadBookingForm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\CoLoadBookingForm.Designer.cs">
+      <DependentUpon>CoLoadBookingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\DriverManifestExpressSolution.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\DriverManifestExpressSolution.Designer.cs">
+      <DependentUpon>DriverManifestExpressSolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\MAWB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\MAWB.Designer.cs">
+      <DependentUpon>MAWB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\HAWB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\HAWB.Designer.cs">
+      <DependentUpon>HAWB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\Manifest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\Manifest.Designer.cs">
+      <DependentUpon>Manifest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\HAWBLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\HAWBLabel.Designer.cs">
+      <DependentUpon>HAWBLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\PackageLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\PackageLabel.Designer.cs">
+      <DependentUpon>PackageLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\ShipmentDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Tradelane\ShipmentDetail.Designer.cs">
+      <DependentUpon>ShipmentDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\UKQuote.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\UKQuote.Designer.cs">
+      <DependentUpon>UKQuote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHL3rdPartyEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHL3rdPartyEconomy.Designer.cs">
+      <DependentUpon>DHL3rdPartyEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHL3rdPartyEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHL3rdPartyEconomySummery.Designer.cs">
+      <DependentUpon>DHL3rdPartyEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHL3rdPartyExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHL3rdPartyExpressSummery.Designer.cs">
+      <DependentUpon>DHL3rdPartyExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHL3rdPartyExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHL3rdPartyExpress.Designer.cs">
+      <DependentUpon>DHL3rdPartyExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLExportEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLExportEconomySummery.Designer.cs">
+      <DependentUpon>DHLExportEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLExportEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLExportEconomy.Designer.cs">
+      <DependentUpon>DHLExportEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLExportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLExportExpressSummery.Designer.cs">
+      <DependentUpon>DHLExportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLExportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLExportExpress.Designer.cs">
+      <DependentUpon>DHLExportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLImportEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLImportEconomySummery.Designer.cs">
+      <DependentUpon>DHLImportEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLImportEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLImportEconomy.Designer.cs">
+      <DependentUpon>DHLImportEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLImportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLImportExpressSummery.Designer.cs">
+      <DependentUpon>DHLImportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLImportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\DHLImportExpress.Designer.cs">
+      <DependentUpon>DHLImportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\Hermes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\Hermes.Designer.cs">
+      <DependentUpon>Hermes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\HermesSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\HermesSummery.Designer.cs">
+      <DependentUpon>HermesSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\ThirdPartyMatrixEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\ThirdPartyMatrixEconomy.Designer.cs">
+      <DependentUpon>ThirdPartyMatrixEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\ThirdPartyMatrixExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\ThirdPartyMatrixExpress.Designer.cs">
+      <DependentUpon>ThirdPartyMatrixExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNT3rdPartyExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNT3rdPartyExpress.Designer.cs">
+      <DependentUpon>TNT3rdPartyExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTExportEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTExportEconomySummery.Designer.cs">
+      <DependentUpon>TNTExportEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTExportEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTExportEconomy.Designer.cs">
+      <DependentUpon>TNTExportEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTExportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTExportExpressSummery.Designer.cs">
+      <DependentUpon>TNTExportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTExportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTExportExpress.Designer.cs">
+      <DependentUpon>TNTExportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTImportEconomySummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTImportEconomySummery.Designer.cs">
+      <DependentUpon>TNTImportEconomySummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTImportEconomy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTImportEconomy.Designer.cs">
+      <DependentUpon>TNTImportEconomy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTImportExpressSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTImportExpressSummery.Designer.cs">
+      <DependentUpon>TNTImportExpressSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTImportExpress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\TNTImportExpress.Designer.cs">
+      <DependentUpon>TNTImportExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\UKDomesticDHLSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\UKDomesticDHLSummery.Designer.cs">
+      <DependentUpon>UKDomesticDHLSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\UKDomesticDHL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\UKDomesticDHL.Designer.cs">
+      <DependentUpon>UKDomesticDHL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\UKMail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\UKMail.Designer.cs">
+      <DependentUpon>UKMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\UKMailSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\UKMailSummery.Designer.cs">
+      <DependentUpon>UKMailSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\YodelSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\YodelSummery.Designer.cs">
+      <DependentUpon>YodelSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\Yodel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\UKRateCards\Yodel.Designer.cs">
+      <DependentUpon>Yodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\ControlDeptExcel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\ControlDeptExcel.Designer.cs">
+      <DependentUpon>ControlDeptExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DriverManifestBreakBulk.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTemplate\Other\DriverManifestBreakBulk.Designer.cs">
+      <DependentUpon>DriverManifestBreakBulk.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Express\FrayteMAWB.resx">
+      <DependentUpon>FrayteMAWB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\AllUKReport.resx">
+      <DependentUpon>AllUKReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\CommercialInvoice.resx">
+      <DependentUpon>CommercialInvoice.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\DHLImageToPDFReport.resx">
+      <DependentUpon>DHLImageToPDFReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\DirectBookingLabelReport.resx">
+      <DependentUpon>DirectBookingLabelReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\DPDHtmlToImageReport.resx">
+      <DependentUpon>DPDHtmlToImageReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\DPDImageToPDFReport.resx">
+      <DependentUpon>DPDImageToPDFReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\eCommerceBagLabel.resx">
+      <DependentUpon>eCommerceBagLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\eCommerceLabelReport.resx">
+      <DependentUpon>eCommerceLabelReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\eCommerceManifestReport.resx">
+      <DependentUpon>eCommerceManifestReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\ExportManifestBreakBulk.resx">
+      <DependentUpon>ExportManifestBreakBulk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Express\DriverManifestExpressSolution.resx">
+      <DependentUpon>DriverManifestExpressSolution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Express\ExportManifestExpressSolution.resx">
+      <DependentUpon>ExportManifestExpressSolution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Express\EXSBagLabel.resx">
+      <DependentUpon>EXSBagLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Express\EXSBagNumber.resx">
+      <DependentUpon>EXSBagNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\HKQuote.resx">
+      <DependentUpon>HKQuote.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\DHL3rdPartyExpressSummery.resx">
+      <DependentUpon>DHL3rdPartyExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\DHL3rdPartyExpress.resx">
+      <DependentUpon>DHL3rdPartyExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\DHLExportExpressSummery.resx">
+      <DependentUpon>DHLExportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\DHLExportExpress.resx">
+      <DependentUpon>DHLExportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\DHLImportExpressSummery.resx">
+      <DependentUpon>DHLImportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\DHLImportExpress.resx">
+      <DependentUpon>DHLImportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNT3rdPartyExpress.resx">
+      <DependentUpon>TNT3rdPartyExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNTExportEconomySummery.resx">
+      <DependentUpon>TNTExportEconomySummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNTExportEconomy.resx">
+      <DependentUpon>TNTExportEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNTExportExpressSummery.resx">
+      <DependentUpon>TNTExportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNTExportExpress.resx">
+      <DependentUpon>TNTExportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNTImportEconomySummery.resx">
+      <DependentUpon>TNTImportEconomySummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNTImportEconomy.resx">
+      <DependentUpon>TNTImportEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNTImportExpressSummery.resx">
+      <DependentUpon>TNTImportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\TNTImportExpress.resx">
+      <DependentUpon>TNTImportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportExpeditedSummery.resx">
+      <DependentUpon>UPSExportExpeditedSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportExpedited.resx">
+      <DependentUpon>UPSExportExpedited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportExpressLanesSummery.resx">
+      <DependentUpon>UPSExportExpressLanesSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportExpressSummery.resx">
+      <DependentUpon>UPSExportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportExpress.resx">
+      <DependentUpon>UPSExportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportExpressLanes.resx">
+      <DependentUpon>UPSExportExpressLanes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportSaverLanesSummery.resx">
+      <DependentUpon>UPSExportSaverLanesSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportSaverSummery.resx">
+      <DependentUpon>UPSExportSaverSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportSaver.resx">
+      <DependentUpon>UPSExportSaver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportExpeditedSummery.resx">
+      <DependentUpon>UPSImportExpeditedSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportExpedited.resx">
+      <DependentUpon>UPSImportExpedited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportExpressLanesSummery.resx">
+      <DependentUpon>UPSImportExpressLanesSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportExpressSummery.resx">
+      <DependentUpon>UPSImportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportExpress.resx">
+      <DependentUpon>UPSImportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSExportSaverLanes.resx">
+      <DependentUpon>UPSExportSaverLanes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportExpressLanes.resx">
+      <DependentUpon>UPSImportExpressLanes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportSaverLanesSummery.resx">
+      <DependentUpon>UPSImportSaverLanesSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportSaverLanes.resx">
+      <DependentUpon>UPSImportSaverLanes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportSaverSummery.resx">
+      <DependentUpon>UPSImportSaverSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\HKRateCards\UPSImportSaver.resx">
+      <DependentUpon>UPSImportSaver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\ManifestDHLReport.resx">
+      <DependentUpon>ManifestDHLReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\ManifestReport.resx">
+      <DependentUpon>ManifestReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\PackageLabelReport.resx">
+      <DependentUpon>PackageLabelReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\PackageLabelsPdfReport.resx">
+      <DependentUpon>PackageLabelsPdfReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\TNTHtmlToImageReport.resx">
+      <DependentUpon>TNTHtmlToImageReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\TNTImagesToPDFReport.resx">
+      <DependentUpon>TNTImagesToPDFReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\TrackAndTraceReport.resx">
+      <DependentUpon>TrackAndTraceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\eCommerceInvoiceReport.resx">
+      <DependentUpon>eCommerceInvoiceReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Tradelane\CoLoadBookingForm.resx">
+      <DependentUpon>CoLoadBookingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Tradelane\DriverManifestExpressSolution.resx">
+      <DependentUpon>DriverManifestExpressSolution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Tradelane\MAWB.resx">
+      <DependentUpon>MAWB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Tradelane\HAWB.resx">
+      <DependentUpon>HAWB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Tradelane\Manifest.resx">
+      <DependentUpon>Manifest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Tradelane\HAWBLabel.resx">
+      <DependentUpon>HAWBLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Tradelane\PackageLabel.resx">
+      <DependentUpon>PackageLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Tradelane\ShipmentDetail.resx">
+      <DependentUpon>ShipmentDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\UKQuote.resx">
+      <DependentUpon>UKQuote.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHL3rdPartyEconomy.resx">
+      <DependentUpon>DHL3rdPartyEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHL3rdPartyEconomySummery.resx">
+      <DependentUpon>DHL3rdPartyEconomySummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHL3rdPartyExpressSummery.resx">
+      <DependentUpon>DHL3rdPartyExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHL3rdPartyExpress.resx">
+      <DependentUpon>DHL3rdPartyExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHLExportEconomySummery.resx">
+      <DependentUpon>DHLExportEconomySummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHLExportEconomy.resx">
+      <DependentUpon>DHLExportEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHLExportExpressSummery.resx">
+      <DependentUpon>DHLExportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHLExportExpress.resx">
+      <DependentUpon>DHLExportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHLImportEconomySummery.resx">
+      <DependentUpon>DHLImportEconomySummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHLImportEconomy.resx">
+      <DependentUpon>DHLImportEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHLImportExpressSummery.resx">
+      <DependentUpon>DHLImportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\DHLImportExpress.resx">
+      <DependentUpon>DHLImportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\Hermes.resx">
+      <DependentUpon>Hermes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\HermesSummery.resx">
+      <DependentUpon>HermesSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\ThirdPartyMatrixEconomy.resx">
+      <DependentUpon>ThirdPartyMatrixEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\ThirdPartyMatrixExpress.resx">
+      <DependentUpon>ThirdPartyMatrixExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\TNTExportEconomySummery.resx">
+      <DependentUpon>TNTExportEconomySummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\TNTExportEconomy.resx">
+      <DependentUpon>TNTExportEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\TNTExportExpressSummery.resx">
+      <DependentUpon>TNTExportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\TNTExportExpress.resx">
+      <DependentUpon>TNTExportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\TNTImportEconomySummery.resx">
+      <DependentUpon>TNTImportEconomySummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\TNTImportEconomy.resx">
+      <DependentUpon>TNTImportEconomy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\TNTImportExpressSummery.resx">
+      <DependentUpon>TNTImportExpressSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\TNTImportExpress.resx">
+      <DependentUpon>TNTImportExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\UKDomesticDHLSummery.resx">
+      <DependentUpon>UKDomesticDHLSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\UKDomesticDHL.resx">
+      <DependentUpon>UKDomesticDHL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\UKMail.resx">
+      <DependentUpon>UKMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\UKMailSummery.resx">
+      <DependentUpon>UKMailSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\YodelSummery.resx">
+      <DependentUpon>YodelSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\UKRateCards\Yodel.resx">
+      <DependentUpon>Yodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\ControlDeptExcel.resx">
+      <DependentUpon>ControlDeptExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTemplate\Other\DriverManifestBreakBulk.resx">
+      <DependentUpon>DriverManifestBreakBulk.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Frayte.Services\Frayte.Services.csproj">
+      <Project>{4ba4bac4-11a2-48f1-b85b-715d46f5c3e1}</Project>
+      <Name>Frayte.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>RD /S /Q "$(TargetDir)de\"
+RD /S /Q "$(TargetDir)es\"
+RD /S /Q "$(TargetDir)ja\"
+RD /S /Q "$(TargetDir)ru\"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

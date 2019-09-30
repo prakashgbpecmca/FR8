@@ -1,0 +1,21 @@
+﻿<section class="row">
+    <div class="row paddingboth" style="margin-right: 15px; margin-left: 15px;">
+        <div id="metaltop-teal" style="padding: 0px 0px 0px; overflow: hidden;">
+            <ul>
+                <li ng-repeat="tab in tab.childTabs | orderBy : 'TabOrder'" class="first">
+                    <button class="btn btn-lg borderradius" ng-disabled="(customerId < 1 || tab.IsTabHide) && disableTab(tab) " ng-class="{'active': activeRate(tab)}"
+                            ng-click="changeState(tab)">
+                        {{tab.tabKey | translate}}
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="col-sm-12">
+        <div style="border:1px solid #DBE2EC; padding:15px;" data-ui-view=""></div>
+    </div>
+    <div class="clearfix"></div>
+</section>

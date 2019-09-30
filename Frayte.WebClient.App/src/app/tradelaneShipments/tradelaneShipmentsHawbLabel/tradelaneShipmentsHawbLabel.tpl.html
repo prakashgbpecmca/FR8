@@ -1,0 +1,65 @@
+﻿<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'HAWB_Label' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <section>
+                <!--hawb label custom grid-->
+                <div class="panel panel-default margin-bottom-none">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex">
+                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Box_Number' | translate}}</span></div>
+                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Carton' | translate}} {{'Value' | translate}}</span></div>
+                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Length' | translate}}</span></div>
+                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Width' | translate}}</span></div>
+                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Height' | translate}}</span></div>
+                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Weight' | translate}}</span></div>
+                            <div class="width20 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'HAWB' | translate}}</sapn> </div>
+                            <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <ul class="list-unstyled change margin-bottom-none">
+                                <li>
+                                    <div class="width100 pointer" ng-repeat="getHawbData in getHawbData">
+                                        <div class="flex height30">
+                                            <div class="width20 quotation-table-body word-wrap padding-5"><span>{{getHawbData.CartonNumber}}</span></div>
+                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{getHawbData.CartonValue}}</span></div>
+                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{getHawbData.Length}}</span></div>
+                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{getHawbData.Width}}</span></div>
+                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{getHawbData.Height}}</span></div>
+                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{getHawbData.Weight}}</span></div>
+                                            <div class="width20 quotation-table-body padding-5 word-wrap"><span>{{getHawbData.HAWB}}</span></div>
+                                            <div class="width10 quotation-table-body padding0 text-center">
+                                                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none pointer">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                        <li ng-click="downloadHawbLabel(getHawbData.HAWB, $index + 1, getHawbData.TradelaneShipmentDetailId)" class="pointer">
+                                                            <a>
+                                                                <span class="padDelete"><i class="fa fa-download" aria-hidden="true"></i></span>
+                                                                <span>{{'Download' | translate}}</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end code-->
+            </section>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-simple btn-cancel pull-left" ng-click="$dismiss()"><i class="fa fa-times"></i> {{'Cancel' | translate}}</button>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0;font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+         <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@ViewBag.ImageHeader" />
+        </div>
+    </header>
+		<br/>
+		<table style="border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;"><b>Date:</b> @ViewBag.CreatedOn</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">Dear <b>@ViewBag.CustomerName,</b></td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+            <tr><td style="font-family: calibri, sans-serif;">We are pleased to inform you that the following Shipment has been created. See Shipment Summary below.</td></tr>  
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Shipment Ref No#:</b> @ViewBag.FrayteNumber</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		    <tr><td style="font-family: calibri, sans-serif;"><b>Shipping Service:</b> @ViewBag.ShipmentMethod</td></tr>
+		    <tr><td style="font-family: calibri, sans-serif;"><b>Tracking No#:</b> @ViewBag.TrackingNo</td></tr>
+		    <tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		    <!-- <tr><td style="font-family: calibri, sans-serif;"><a href="@ViewBag.TrackingURL"><img src="cid:@ViewBag.TrackButton" style="width: 150px;"></a></td></tr>
+            <tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr> -->
+			<tr><td style="font-family: calibri, sans-serif;">
+				@if(@ViewBag.OperationZoneId == 1)
+				{
+					<div><b>Please print out the Shipments Labels on a label printer or A4 printer.</b></div>
+					<div>For international shipments, please attach 3 copies of the Commercial Invoice.</div>		
+				}
+				else if(@ViewBag.OperationZoneId == 2)
+				{
+					<div><b>Please print out the AWB and shipment Labels on a label printer or A4 printer.</b></div>
+					<div>For shipments destined or originating outside the EU, please attach 3 copies of the Commercial Invoice.</div>
+				}
+			</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			</table>
+			<br />
+            <table style="border-spacing: 0px;">
+					<tr><td style="font-family: calibri, sans-serif;"><b>Collection Address (Shipper) Details</b></td></tr>
+				    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipFrom.FirstName @Model.ShipFrom.LastName</td></tr>					
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipFrom.Address</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipFrom.Address2</td></tr>                   
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipFrom.City</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipFrom.State</td></tr>
+                    <tr><td style="font-family: calibri, sans-serif;">@Model.ShipFrom.PostCode</td></tr>
+					<tr><td style="font-family: calibri, sans-serif;">@Model.ShipFrom.Country.Name</td></tr>                   
+            </table>
+            <br />
+            <table style="border-spacing: 0px;">
+                <tr><td style="font-family: calibri, sans-serif;"><b>Delivery Address (Consignee) Details</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipTo.FirstName @Model.ShipTo.LastName</td></tr>					
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipTo.Address</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipTo.Address2</td></tr>                   
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipTo.City</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipTo.State</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@Model.ShipTo.PostCode</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">@Model.ShipTo.Country.Name</td></tr> 
+            </table>
+            <br />
+			<table style="border-spacing: 0px;">
+			  <tr><td style="font-family: calibri, sans-serif;"><b>Total Cartons:</b> @ViewBag.TotalCartoon</td></tr>
+			  <tr><td style="font-family: calibri, sans-serif;"><b>Estimated Weight*:</b> @ViewBag.TotalWeight <span>kgs</span></td></tr>
+			  <tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			  <tr><td style="font-family: calibri, sans-serif;"><b>Note*:</b> Actual weight may differ to the estimated weight, therefor total estimated charges may vary depending on actual billable weight.</td></tr>
+			</table>
+			<br />
+			<table style="font-size:12px;border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;"><span style="text-decoration:underline"><b>What do I do next?</b></span></td></tr>
+			<tr><td style="font-size:12px;font-family: calibri, sans-serif;">
+			<ul style="list-style:upper-alpha;">
+				<li>If you are sending documents please print all pages of the shipment label(s) and attach to the shipment securely.</li>
+				<li>If you are sending non-documents:</li>
+			</ul>
+			<ul style="list-style-type:circle;padding-left:70px;">
+				<li>Print all pages of the shipment label(s) and attach to each carton if you are sending more than one.</li>
+				<li>Three copies of the commercial invoice - these can be given to the driver or placed within a document wallet and attached to your shipment (originating or destined outside of the EU only).</li>
+			</ul>
+			</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>	
+
+			@if(@ViewBag.PickUp != "")
+			{
+				<tr><td style="font-family: calibri, sans-serif;"><span style="text-decoration:underline"><b>Pickup details</b></span></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">Your pickup has been successfully scheduled with pickup reference: @ViewBag.PickUp.</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			}				
+				<tr><td style="font-family: calibri, sans-serif;"><span style="text-decoration:underline"><b>Have a question?</b></span></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">For assistance please contact our Customer Service team at @ViewBag.UserPhone.</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			</table>
+			<br/>
+			 <table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;">@ViewBag.UserName</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;"><b>@ViewBag.UserPosition</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>MEX Logistics Ltd.</b></td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>Email:</b>&nbsp;@ViewBag.UserEmail</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><b>Phone:</b>&nbsp;@ViewBag.UserPhone</td></tr>
+                <tr><td style="font-family: calibri, sans-serif;"><a href="@ViewBag.SiteAddress">@ViewBag.SiteAddress</a></td></tr>
+				<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+				<tr><td style="font-family: calibri, sans-serif;font-size: 10px;">
+				<b>Disclaimer:</b> This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error please notify us. 
+				Any views or opinions presented in this email are solely those of the author and do not necessarily represent those of MEX Logistics Ltd. 
+				Warning: Although MEX Logistics Ltd. has taken reasonable precautions to ensure no viruses are present in this email, the company cannot accept responsibility for any loss or damage arising from the use of this email or attachments.
+				</td></tr>
+				<tr><td>&nbsp;</td></tr>
+			</table>
+<br/>
+    <footer>
+        <table style="border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;font-size: 12px;">MEX Logistics Ltd. All rights reserved.</td></tr>
+			</table>
+    </footer>
+	
+</body>
+</html>

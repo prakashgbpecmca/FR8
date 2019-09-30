@@ -1,0 +1,35 @@
+﻿
+
+<!---Consigmnet Tracking Message--->
+<div>
+    <div>
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Consignment_Tracking' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <section>
+                <div ng-show="!TNTError">
+                    <div class="col-sm-12">
+                        <p>{{'Receive_Acknowledment_From' | translate}}</p>
+                        <p>{{'Please_Try_Later' | translate}}</p>
+                    </div>
+                </div>
+                <div ng-show="TNTError">
+                    <div class="col-sm-12">
+                        <p>{{'Incorrect_Tracking_Number_Detail' | translate}}</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---End--->

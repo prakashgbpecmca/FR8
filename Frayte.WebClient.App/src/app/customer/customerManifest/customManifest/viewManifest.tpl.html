@@ -1,0 +1,110 @@
+﻿
+
+<div id="Manifest">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Menifest' | translate}} - {{ManifestDetail.ManifestName}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="border-ddd">
+                <div class="col-sm-12 grid-color paddingboth manifest flex grid-background">
+                    <div class="width986 flex">
+                        <div class="width4 padding-5 text-center"><span class="visibility">Hidden</span></div>
+                            <div class="width20 bold  quotation-table-padding padding-10-5">{{'Status' | translate}}</div>
+                            <div class="width16 bold  quotation-table-padding padding-10-5">{{'TrackingNo' | translate}} <span class="red">#</span></div>
+                            <div class="width20 bold  quotation-table-padding padding-10-5">{{'Frayte_ShipmentNo#' | translate}} <span class="red">#</span></div>
+                            <div class="width20 bold  quotation-table-padding padding-10-5">{{'From_Shipper' | translate}}</div>
+                            <div class="width20 bold  quotation-table-padding padding-10-5 border-right-none">{{'To_Consignee' | translate}}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll fontsize14">
+                <div>
+                    <ul class="list-unstyled margin-bottom-none grid-hover">
+                    <li class="col-sm-12 paddingboth manifest alternate" ng-repeat="manifest in ViewManifest">
+                        <div class="action-font-family height30">
+                            <div class="width4 padding-5 text-center"><i class="fa pointer " ng-class="{'fa fa-plus-square-o' : !manifest.collapseToggle, 'fa fa-minus-square-o' : manifest.collapseToggle}" aria-hidden="true" ng-click="manifest.collapseToggle=!manifest.collapseToggle; manifest.collapse =! manifest.collapse" style="font-size:18px;vertical-align: text-top;"></i></div>
+                            <div class="width20 quotation-table-padding padding-5 transparent border-right-none word-wrap"> {{manifest.Status}}</div>
+                            <div class="width16 quotation-table-padding padding-5 transparent border-right-none word-wrap">
+                                <a ui-sref="home.tracking-hub({carrierType:shipment.TrackingType,trackingId:shipment.TrackingNo})" target="_blank">
+                                    {{manifest.TrackingNo}}
+                                </a>
+                            </div>
+                            <div class="width20 quotation-table-padding padding-5 transparent border-right-none word-wrap">{{manifest.FrayteNumber}}</div>
+                            <div class="width20  quotation-table-padding padding-5 transparent border-right-none word-wrap">{{manifest.ShippedFromCompany}}</div>
+                            <div class="width20  quotation-table-padding padding-5 transparent border-right-none word-wrap">{{manifest.ShippedToCompany}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--view manifest with collapse-->
+                        <div class="panel-body collapse panel-collapse padding0" uib-collapse="manifest.collapse" id="reminderHeader{{item.QuotationShipmentId}}">
+                            <div class="width100 flex">
+                                <div class="width4 background-white"><span class="visibility">Hide</span></div>
+                                <div class="width96" style="background:#EAF0F5;margin:0 auto;padding:5px 5px 5px;">
+                                    <div class="fix-overflow-header-width">
+                                        <div class="width20  word-wrap word-break bold">{{'Carton' | translate}} <small>({{'qty_' | translate}})</small></div>
+                                        <div class="width20 word-wrap word-break bold">{{'Length' | translate}} <small>({{'CM' | translate}})</small></div>
+                                        <div class="width20 word-wrap word-break bold">{{'Width' | translate}} <small>({{'CM' | translate}})</small></div>
+                                        <div class="width20 word-wrap word-break bold">{{'Height' | translate}} <small>({{'CM' | translate}})</small></div>
+                                        <div class="width20 word-wrap word-break bold">{{'Weight' | translate}} <small>({{'kGS' | translate}})</small></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="width100">
+                                <div class="width100 jobinprogress-header-overflow">
+                                    <ul class="list-unstyled">
+                                        <li class="alternate-hscode" ng-repeat="Package in manifest.PackageDetail" style="border-bottom: transparent;margin-bottom: -1px;">
+                                            <div class="width100 flex border-bottom-ddd">
+                                                <div class="width4 padding-5 background-white" style="border-bottom: transparent;margin-bottom: -1px;">
+                                                    <span class="visibility">hide</span>
+                                                </div>
+                                                <div class="width96">
+                                                    <div class="width20 padding-5">
+                                                        <span class="middle">{{Package.CartoonValue}}</span>
+                                                    </div>
+                                                    <div class="width20 padding-5">
+                                                        <span class="middle">{{Package.Length}}</span>
+                                                    </div>
+                                                    <div class="width20 padding-5">
+                                                        <span class="middle">{{Package.Width}}</span>
+                                                    </div>
+                                                    <div class="width20 padding-5">
+                                                        <span class="middle">{{Package.Height}}</span>
+                                                    </div>
+                                                    <div class="width20 padding-5">
+                                                        <span class="middle">{{Package.Weight}}</span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--end-->
+                    </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12 paddingboth">
+                <div class="pull-left"><button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button></div>
+            </div>
+        </div>
+    </div>
+</div>

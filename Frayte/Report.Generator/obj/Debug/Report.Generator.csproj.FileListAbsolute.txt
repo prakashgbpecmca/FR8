@@ -1,0 +1,757 @@
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Report.Generator.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Report.Generator.pdb
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Frayte.Services.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\EntityFramework.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\EasyPost.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Parcelhub.API.InterfaceNet2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\RazorEngine.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Newtonsoft.Json.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Elmah.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\RestSharp.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Frayte.Services.pdb
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\EntityFramework.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\EasyPost.pdb
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\RazorEngine.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Newtonsoft.Json.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\RestSharp.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.csprojResolveAssemblyReference.cache
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.csproj.GenerateResource.Cache
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.dll.licenses
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.pdb
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\Report.Generator.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\Report.Generator.pdb
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Charts.v15.2.Core.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Data.v15.2.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v15.2.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Office.v15.2.Core.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.PivotGrid.v15.2.Core.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Printing.v15.2.Core.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.RichEdit.v15.2.Core.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Sparkline.v15.2.Core.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Xpo.v15.2.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v15.2.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGauges.v15.2.Core.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v15.2.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\Frayte.Services.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\EntityFramework.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\EasyPost.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\Parcelhub.API.InterfaceNet2.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\RazorEngine.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\Newtonsoft.Json.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\Elmah.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.CodeParser.v15.2.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v15.2.Core.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v15.2.Drawing.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\RestSharp.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\Frayte.Services.pdb
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Data.v15.2.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v15.2.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Office.v15.2.Core.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.PivotGrid.v15.2.Core.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Printing.v15.2.Core.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.RichEdit.v15.2.Core.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Sparkline.v15.2.Core.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Xpo.v15.2.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v15.2.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGauges.v15.2.Core.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v15.2.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\EntityFramework.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\EasyPost.pdb
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\RazorEngine.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\Newtonsoft.Json.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v15.2.Core.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v15.2.Drawing.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\RestSharp.xml
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.Data.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.Data.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Data.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Data.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.DataAccess.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.DataAccess.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.DataAccess.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.DataAccess.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.Office.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.Office.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Office.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Office.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.PivotGrid.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.PivotGrid.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.PivotGrid.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.PivotGrid.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.Printing.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.Printing.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Printing.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Printing.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.RichEdit.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.RichEdit.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.RichEdit.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.RichEdit.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.Sparkline.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.Sparkline.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Sparkline.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Sparkline.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.Xpo.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.Xpo.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Xpo.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Xpo.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraCharts.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraCharts.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraCharts.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraCharts.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraGauges.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraGauges.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraGauges.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraGauges.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraReports.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraReports.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraReports.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraReports.v15.2.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\de\DevExpress.Pdf.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\es\DevExpress.Pdf.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Pdf.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Pdf.v15.2.Core.resources.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.csprojResolveAssemblyReference.cache
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.BaseRateCardReport.resources
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.BaseRateCardThirdParty.resources
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Hermes.resources
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.ManifestReport.resources
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.TrackAndTraceReport.resources
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKMail.resources
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Yodel.resources
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.csproj.GenerateResource.Cache
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.dll.licenses
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.dll
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.pdb
+E:\IRA\FrayteLogistic - Copy\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.MyQuote.resources
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Report.Generator.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Report.Generator.pdb
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Frayte.Services.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\EntityFramework.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\com.esendex.sdk.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\EasyPost.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Parcelhub.API.InterfaceNet2.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Spire.Barcode.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\RazorEngine.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Newtonsoft.Json.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Elmah.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\RestSharp.dll
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Frayte.Services.pdb
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\EntityFramework.xml
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\com.esendex.sdk.xml
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\EasyPost.pdb
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Spire.Barcode.xml
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\RazorEngine.xml
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\Newtonsoft.Json.xml
+D:\ProjectFrayte\Frayte\Report.Generator\bin\Debug\RestSharp.xml
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.csprojResolveAssemblyReference.cache
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.BaseRateCardSummery.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.BaseRateCardReport.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.BaseRateCardThirdParty.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.BaseRateCardThirdPartySummery.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.CommercialInvoice.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.eCommerceBagLabel.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.eCommerceLabelReport.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Hermes.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HermesSummery.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.ManifestReport.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.MyQuote.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.SupplementryChargeReport.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.TrackAndTraceReport.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKMail.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKMailSummery.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Yodel.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.YodelSummery.resources
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.csproj.GenerateResource.Cache
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.dll.licenses
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.dll
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.pdb
+D:\ProjectFrayte\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.eCommerceInvoiceReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.Properties.Resources.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.DriverManifestExpressSolution.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.ExportManifestExpressSolution.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.EXSBagLabel.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.EXSBagNumber.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHL3rdPartyExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHL3rdPartyExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHLExportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHLExportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHLImportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHLImportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNT3rdPartyExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTExportEconomySummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTExportEconomy.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTExportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTExportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTImportEconomySummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTImportEconomy.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTImportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTImportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpeditedSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpedited.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpressLanesSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpressLanes.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportSaverLanesSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportSaverSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportSaver.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpeditedSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpedited.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpressLanesSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportSaverLanes.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpressLanes.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportSaverLanesSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportSaverLanes.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportSaverSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportSaver.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.CoLoadBookingForm.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.MAWB.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.HAWB.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.Manifest.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.PackageLabel.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.ShipmentDetail.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHL3rdPartyEconomy.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHL3rdPartyEconomySummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHL3rdPartyExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHL3rdPartyExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLExportEconomySummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLExportEconomy.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLExportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLExportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLImportEconomySummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLImportEconomy.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLImportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLImportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.Hermes.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.HermesSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.ThirdPartyMatrixEconomy.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.ThirdPartyMatrixExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTExportEconomySummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTExportEconomy.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTExportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTExportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTImportEconomySummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTImportEconomy.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTImportExpressSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTImportExpress.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.UKDomesticDHL.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.UKDomesticDHLSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.UKMail.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.UKMailSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.YodelSummery.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.Yodel.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Charts.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.CodeParser.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Data.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Office.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.PivotGrid.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Printing.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.RichEdit.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Sparkline.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Utils.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Utils.v16.2.UI.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Xpo.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraBars.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.Wizard.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraEditors.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGauges.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraPrinting.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v16.2.Extensions.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Aftership-API.exe
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\XStreamline.Log.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Spire.Barcode.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Parcelhub.API.InterfaceNet2.Client.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\HtmlAgilityPack.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\AutoMapper.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraTreeList.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraVerticalGrid.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraLayout.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGrid.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraNavBar.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraRichEdit.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v16.2.UI.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.Extensions.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraPivotGrid.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Diagram.v16.2.Core.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraDiagram.v16.2.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Data.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Office.v16.2.Core.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.PivotGrid.v16.2.Core.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v16.2.Core.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Printing.v16.2.Core.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.RichEdit.v16.2.Core.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Sparkline.v16.2.Core.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Utils.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Xpo.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraBars.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.Wizard.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraEditors.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGauges.v16.2.Core.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraPrinting.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Utils.v16.2.UI.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v16.2.Extensions.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\Spire.Barcode.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\HtmlAgilityPack.pdb
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\HtmlAgilityPack.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\AutoMapper.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraTreeList.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraVerticalGrid.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraLayout.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGrid.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraNavBar.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraRichEdit.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v16.2.UI.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraPivotGrid.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.Diagram.v16.2.Core.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\DevExpress.XtraDiagram.v16.2.xml
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.Data.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.Data.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Data.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Data.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.DataAccess.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.DataAccess.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.DataAccess.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.DataAccess.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.Office.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.Office.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Office.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Office.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.PivotGrid.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.PivotGrid.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.PivotGrid.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.PivotGrid.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.Pdf.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.Pdf.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Pdf.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Pdf.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.Printing.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.Printing.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Printing.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Printing.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.RichEdit.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.RichEdit.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.RichEdit.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.RichEdit.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.Sparkline.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.Sparkline.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Sparkline.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Sparkline.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.Utils.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.Utils.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Utils.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Utils.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.Xpo.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.Xpo.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Xpo.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Xpo.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraBars.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraBars.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraBars.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraBars.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraCharts.v16.2.Wizard.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraCharts.v16.2.Wizard.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraCharts.v16.2.Wizard.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraCharts.v16.2.Wizard.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraCharts.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraCharts.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraCharts.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraCharts.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraEditors.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraEditors.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraEditors.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraEditors.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraGauges.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraGauges.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraGauges.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraGauges.v16.2.Core.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraPrinting.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraPrinting.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraPrinting.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraPrinting.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.Utils.v16.2.UI.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.Utils.v16.2.UI.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Utils.v16.2.UI.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Utils.v16.2.UI.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraReports.v16.2.Extensions.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraReports.v16.2.Extensions.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraReports.v16.2.Extensions.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraReports.v16.2.Extensions.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraReports.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraReports.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraReports.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraReports.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraTreeList.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraTreeList.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraTreeList.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraTreeList.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraVerticalGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraVerticalGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraVerticalGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraVerticalGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraLayout.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraLayout.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraLayout.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraLayout.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraNavBar.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraNavBar.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraNavBar.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraNavBar.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraRichEdit.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraRichEdit.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraRichEdit.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraRichEdit.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.DataAccess.v16.2.UI.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.DataAccess.v16.2.UI.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.DataAccess.v16.2.UI.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.DataAccess.v16.2.UI.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraPivotGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraPivotGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraPivotGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraPivotGrid.v16.2.resources.dll
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.HKQuote.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.UKQuote.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.CommercialInvoice.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.ManifestDHLReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.ManifestReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.TrackAndTraceReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DHLImageToPDFReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DirectBookingLabelReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.ControlDeptExcel.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.XtraReport1.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DPDHtmlToImageReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DPDImageToPDFReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.eCommerceBagLabel.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.eCommerceLabelReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.eCommerceManifestReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.ExportManifestBreakBulk.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.PackageLabelReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.PackageLabelsPdfReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.TNTHtmlToImageReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.TNTImagesToPDFReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.eCommerceInvoiceReport.resources
+E:\IRA\FrayteLogistic\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DriverManifestBreakBulk.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Report.Generator.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Report.Generator.pdb
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Charts.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.CodeParser.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Data.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Office.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.PivotGrid.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Printing.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.RichEdit.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Sparkline.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Utils.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Utils.v16.2.UI.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Xpo.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraBars.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.Wizard.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraEditors.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGauges.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraPrinting.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v16.2.Extensions.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Frayte.Services.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\EasyPost.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\EntityFramework.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Aftership-API.exe
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\XStreamline.Log.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Spire.Barcode.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\RazorEngine.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Newtonsoft.Json.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\HtmlAgilityPack.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Elmah.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\AutoMapper.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraTreeList.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraVerticalGrid.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraLayout.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGrid.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraNavBar.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraRichEdit.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v16.2.UI.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.Extensions.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraPivotGrid.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\RestSharp.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Diagram.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraDiagram.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Frayte.Services.pdb
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Frayte.Services.dll.config
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Data.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Office.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.PivotGrid.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Printing.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.RichEdit.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Sparkline.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Utils.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Xpo.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraBars.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.Wizard.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraCharts.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraEditors.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGauges.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraPrinting.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Utils.v16.2.UI.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v16.2.Extensions.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraReports.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\EasyPost.pdb
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\EntityFramework.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Spire.Barcode.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\RazorEngine.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\Newtonsoft.Json.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\HtmlAgilityPack.pdb
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\HtmlAgilityPack.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\AutoMapper.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraTreeList.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraVerticalGrid.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraLayout.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraGrid.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraNavBar.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraRichEdit.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.DataAccess.v16.2.UI.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraPivotGrid.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\RestSharp.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Diagram.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.XtraDiagram.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.Data.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.Data.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Data.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Data.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.DataAccess.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.DataAccess.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.DataAccess.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.DataAccess.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.Office.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.Office.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Office.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Office.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.PivotGrid.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.PivotGrid.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.PivotGrid.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.PivotGrid.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.Pdf.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.Pdf.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Pdf.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Pdf.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.Printing.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.Printing.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Printing.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Printing.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.RichEdit.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.RichEdit.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.RichEdit.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.RichEdit.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.Sparkline.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.Sparkline.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Sparkline.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Sparkline.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.Utils.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.Utils.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Utils.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Utils.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.Xpo.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.Xpo.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Xpo.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Xpo.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraBars.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraBars.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraBars.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraBars.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraCharts.v16.2.Wizard.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraCharts.v16.2.Wizard.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraCharts.v16.2.Wizard.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraCharts.v16.2.Wizard.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraCharts.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraCharts.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraCharts.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraCharts.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraEditors.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraEditors.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraEditors.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraEditors.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraGauges.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraGauges.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraGauges.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraGauges.v16.2.Core.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraPrinting.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraPrinting.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraPrinting.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraPrinting.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.Utils.v16.2.UI.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.Utils.v16.2.UI.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.Utils.v16.2.UI.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.Utils.v16.2.UI.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraReports.v16.2.Extensions.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraReports.v16.2.Extensions.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraReports.v16.2.Extensions.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraReports.v16.2.Extensions.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraReports.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraReports.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraReports.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraReports.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraTreeList.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraTreeList.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraTreeList.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraTreeList.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraVerticalGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraVerticalGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraVerticalGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraVerticalGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraLayout.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraLayout.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraLayout.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraLayout.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraNavBar.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraNavBar.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraNavBar.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraNavBar.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraRichEdit.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraRichEdit.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraRichEdit.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraRichEdit.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.DataAccess.v16.2.UI.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.DataAccess.v16.2.UI.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.DataAccess.v16.2.UI.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.DataAccess.v16.2.UI.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\de\DevExpress.XtraPivotGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\es\DevExpress.XtraPivotGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ja\DevExpress.XtraPivotGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\ru\DevExpress.XtraPivotGrid.v16.2.resources.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.csprojAssemblyReference.cache
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.Properties.Resources.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.FrayteMAWB.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.AllUKReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.CommercialInvoice.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DHLImageToPDFReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DirectBookingLabelReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DPDHtmlToImageReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DPDImageToPDFReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.eCommerceBagLabel.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.eCommerceLabelReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.eCommerceManifestReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.ExportManifestBreakBulk.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.DriverManifestExpressSolution.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.ExportManifestExpressSolution.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.EXSBagLabel.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Express.EXSBagNumber.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.HKQuote.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHL3rdPartyExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHL3rdPartyExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHLExportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHLExportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHLImportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.DHLImportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNT3rdPartyExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTExportEconomySummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTExportEconomy.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTExportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTExportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTImportEconomySummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTImportEconomy.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTImportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.TNTImportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpeditedSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpedited.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpressLanesSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportExpressLanes.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportSaverLanesSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportSaverSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportSaver.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpeditedSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpedited.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpressLanesSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSExportSaverLanes.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportExpressLanes.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportSaverLanesSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportSaverLanes.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportSaverSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.UPSImportSaver.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.ManifestDHLReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.ManifestReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.PackageLabelReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.PackageLabelsPdfReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.TNTHtmlToImageReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.TNTImagesToPDFReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.TrackAndTraceReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.eCommerceInvoiceReport.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.CoLoadBookingForm.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.MAWB.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.HAWB.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.Manifest.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.PackageLabel.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.ShipmentDetail.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.UKQuote.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHL3rdPartyEconomy.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHL3rdPartyEconomySummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHL3rdPartyExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHL3rdPartyExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLExportEconomySummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLExportEconomy.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLExportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLExportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLImportEconomySummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLImportEconomy.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLImportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.DHLImportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.Hermes.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.HermesSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.ThirdPartyMatrixEconomy.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.HKRateCards.ThirdPartyMatrixExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTExportEconomySummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTExportEconomy.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTExportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTExportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTImportEconomySummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTImportEconomy.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTImportExpressSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.TNTImportExpress.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.UKDomesticDHLSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.UKDomesticDHL.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.UKMail.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.UKMailSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.YodelSummery.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.UKRateCards.Yodel.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.ControlDeptExcel.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.XtraReport1.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Other.DriverManifestBreakBulk.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.csproj.GenerateResource.cache
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.dll.licenses
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.csproj.CoreCompileInputs.cache
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.csproj.CopyComplete
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.pdb
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Docs.v16.2.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Snap.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Spreadsheet.v16.2.Core.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v16.2.Drawing.dll
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Docs.v16.2.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Snap.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Spreadsheet.v16.2.Core.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\bin\Debug\DevExpress.Pdf.v16.2.Drawing.xml
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.DriverManifestExpressSolution.resources
+E:\IRA\frayte\New Code\Frayte\Report.Generator\obj\Debug\Report.Generator.ReportTemplate.Tradelane.HAWBLabel.resources

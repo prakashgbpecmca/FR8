@@ -1,0 +1,203 @@
+﻿
+<form name="TradelaneBookingForm" novalidate ng-submit="changeAddress(TradelaneBookingForm.$valid)">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Edit' | translate}} {{'Address' | translate}}</h4>
+    </div> 
+    <div class="modal-body clearfix" id="prealert-mail">     
+         <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': TradelaneBookingForm.shipFromCountry.$invalid &&
+                                                         (TradelaneBookingForm.shipFromCountry.$dirty || submitted) }">
+             <label for="shipFromCountry" class="col-sm-4 lineheight24 control-label">{{'Country' | translate}} <span class="redColor">*</span></label>
+             <div class="col-sm-8" id="Xe">
+                 <select id="shipFromCountry" name="shipFromCountry" ng-change="SetShipinfo(address.Country, 'Shipper');  FromCountryStateCode(address.Country.CountryId)"
+                         ng-model="address.Country"
+                         ng-options="Country.Name disable when Country.Disabled === true for Country in CountriesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                         class="form-control fontsize12" required>
+                     <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                 </select>
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromCountry.$invalid &&
+                                            (TradelaneBookingForm.shipFromCountry.$dirty || submitted)">
+                     {{'CountryValidationError' | translate}}
+                 </span>
+             </div>
+             <!--<div class="col-sm-1 paddingboth country">
+                 <a href="" class="padding7px" popover-placement="auto" uib-popover="China covers Guangdong Province only." popover-trigger="'outsideClick'">
+                     <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                 </a>
+             </div>-->
+         </div>
+         <div ng-hide="address.Country.Code === 'HKG'" class="col-sm-6 form-group postcode" ng-class="{ 'has-error': TradelaneBookingForm.shipFromPostcode.$invalid &&
+                                                         (TradelaneBookingForm.shipFromPostcode.$dirty || submitted) }">
+             <label for="shipFromPostcode" id="shipFromPostcodeLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+             <div id="scrollable-dropdown-menu" class="col-sm-8 typeahead-demo">
+
+                 <input type="text" id="shipFromPostcode" class="form-control" name="shipFromPostcode"
+                        ng-model="address.PostCode"
+                        ng-required="address.Country.Code !== 'HKG'"
+                        placeholder="{{'PostalCode' | translate}} ({{'Required' | translate}})" />
+
+
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromPostcode.$invalid &&
+                                            (TradelaneBookingForm.shipFromPostcode.$dirty || submitted)">
+                     {{'PostalCodeValidationError' | translate}}
+                 </span>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': TradelaneBookingForm.shipFromCompanyName.$invalid &&
+                                                         (TradelaneBookingForm.shipFromCompanyName.$dirty || submitted) }">
+             <label for="shipFromCompanyName" id="shipFromCompanyNameLabel" class="col-sm-4 lineheight24 control-label">{{'Company_Name' | translate}} <span class="redColor">*</span></label>
+             <div class="col-sm-8">
+                 <input type="text" name="shipFromCompanyName" id="shipFromCompanyName" data-panel="Collection Address" data-label="Ship From Company" maxlength="100"
+                        capitalize-first ng-model="address.CompanyName" class="form-control fontsize12" placeholder="{{'Company_Name' | translate}} ({{'Required' | translate}})" required />
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromCompanyName.$invalid &&
+                                            (TradelaneBookingForm.shipFromCompanyName.$dirty || submitted)">
+                     {{'CompanyNameValidationError' | translate}}
+                 </span>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': TradelaneBookingForm.shipFromFirstName.$invalid &&
+                                                         (TradelaneBookingForm.shipFromFirstName.$dirty || submitted) }">
+             <label for="shipFromFirstName" id="shipFromFirstNameLabel" class="col-sm-4 lineheight24 control-label">{{'Contact_First_Name' | translate}} <span class="redColor">*</span></label>
+             <div class="col-sm-8">
+                 <input type="text" maxlength="50" name="shipFromFirstName" id="shipFromFirstName" only-letters-input data-panel="Collection Address" data-label="Ship From Company"
+                        capitalize-first ng-model="address.FirstName" class="form-control fontsize12" required placeholder="{{'Contact_First_Name' | translate}} ({{'Required' | translate}})" />
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromFirstName.$invalid &&
+                                            (TradelaneBookingForm.shipFromFirstName.$dirty || submitted)">
+                     {{'FirstName_Required' | translate}}
+                 </span>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': TradelaneBookingForm.shipFromLastName.$invalid &&
+                                                         (TradelaneBookingForm.shipFromLastName.$dirty || submitted) }">
+             <label for="shipFromLastName" id="shipFromFirstNameLabel" class="col-sm-4 lineheight24 control-label">{{'Contact_Last_Name' | translate}} <span class="redColor">*</span></label>
+             <div class="col-sm-8">
+                 <input type="text" name="shipFromLastName" id="shipFromLastName" only-letters-input maxlength="50"
+                        capitalize-first ng-model="address.LastName" class="form-control fontsize12" required placeholder="{{'Contact_Last_Name' | translate}} ({{'Required' | translate}})" />
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromLastName.$invalid &&
+                                            (TradelaneBookingForm.shipFromLastName.$dirty || submitted)">
+                     {{'LastName_Required' | translate}}
+                 </span>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': TradelaneBookingForm.shipFromAddress1.$invalid &&
+                                                         (TradelaneBookingForm.shipFromAddress1.$dirty || submitted) }">
+             <label for="shipFromAddress1" id="shipFromAddress1Label" class="col-sm-4 lineheight24 control-label">{{'Address_1' | translate}} <span class="redColor">*</span></label>
+             <div class="col-sm-8">
+                 <textarea name="shipFromAddress1" id="shipFromAddress1"
+                           capitalize-first maxlength="100" ng-model="address.Address" class="form-control fontsize12" required rows="3" cols="4" placeholder="{{'Address_1' | translate}} ({{'Required' | translate}})"></textarea>
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromAddress1.$invalid &&
+                                            (TradelaneBookingForm.shipFromAddress1.$dirty || submitted)">
+                     {{'AddressValidationError' | translate}}
+                 </span>
+                 <span class="has-error error-color" ng-if="address.Address.length > 99">
+                     {{'Max100Character_Entered' | translate}}
+                 </span>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth">
+             <label for="shipFromAddress2" id="shipFromAddress2Label" class="col-sm-4 lineheight24 control-label">{{'Address_2' | translate}}</label>
+             <div class="col-sm-8">
+                 <textarea name="shipFromAddress2" id="shipFromAddress2" maxlength="100"
+                           capitalize-first ng-model="address.Address2" class="form-control fontsize12" rows="3" cols="4" placeholder="{{'Address_2' | translate}}"></textarea>
+                 <span class="has-error error-color" ng-if="address.Address2.length > 99">
+                     {{'Max100Character_Entered' | translate}}
+                 </span>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': TradelaneBookingForm.shipFromCityName.$invalid &&
+                                                         (TradelaneBookingForm.shipFromCityName.$dirty || submitted) }">
+             <label for="shipFromCityName" id="shipFromCityNameLabel" class="col-sm-4 lineheight24 control-label">{{'City' | translate}} <span class="redColor">*</span></label>
+             <div class="col-sm-8">
+                 <input type="text" name="shipFromCityName" id="shipFromCityName" only-alphabets maxlength="50"
+                        capitalize-first ng-model="address.City" class="form-control fontsize12" required placeholder="{{'City' | translate}} ({{'Required' | translate}})" />
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromCityName.$invalid &&
+                                            (TradelaneBookingForm.shipFromCityName.$dirty || submitted)">
+                     {{'CityValidationError' | translate}}
+                 </span>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth">
+             <div ng-show="shipFromToggleState(address.Country)" ng-class="{ 'has-error': TradelaneBookingForm.shipFromState.$invalid &&
+                                                         (TradelaneBookingForm.shipFromState.$dirty || submitted) }">
+                 <label for="shipFromState" id="shipToStateLabel" class="col-sm-4 lineheight24 control-label">{{'State' | translate}} <span class="redColor">*</span></label>
+                 <div class="col-sm-8">
+                     <input type="text" name="shipFromState" id="shipFromState" maxlength="50"
+                            ng-disabled="address.Country !== null && (address.Country.Code === 'GBR' || address.Country.Code === 'HKG') "
+                            ng-required="shipFromToggleState(address.Country)" capitalize-first ng-model="address.State" class="form-control fontsize12" placeholder="{{'State' | translate}}" />
+                     <span class="help-block has-error"
+                           ng-show="TradelaneBookingForm.shipFromState.$invalid &&
+                                                           (TradelaneBookingForm.shipFromState.$dirty || submitted)">
+                         {{'CountryStateValidationError' | translate}}
+                     </span>
+                 </div>
+                 <div class="clearfix"></div>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth">
+             <label for="shipFromAreaName" id="shipFromAreaNameLabel" class="col-sm-4 lineheight24 control-label">{{'Area' | translate}}</label>
+             <div class="col-sm-8">
+                 <input type="text" name="shipFromAreaName" id="shipFromAreaName" maxlength="100"
+                        capitalize-first ng-model="address.Area" class="form-control fontsize12" placeholder="{{'Area' | translate}}" />
+             </div>
+             <!--<div class="col-sm-1 paddingboth area">
+                 <a href="" class="padding7px" popover-placement="auto" uib-popover="Area is like a Suburb" popover-trigger="'outsideClick'">
+                     <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                 </a>
+             </div>-->
+         </div>     
+         <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': TradelaneBookingForm.shipFromPhone.$invalid &&
+                                                         (TradelaneBookingForm.shipFromPhone.$dirty || submitted) }">
+             <label for="shipFromPhone" id="shipFromPhoneLabel" class="col-sm-4 lineheight24 control-label">{{'TelephoneNo' | translate}} <span class="redColor">*</span></label>
+             <div class="col-sm-8">
+                 <div class="col-sm-4 paddingleft">
+                     <input type="text" class="form-control fontsize12" readonly ng-model="ShipFromPhoneCode" />
+                 </div>
+                 <div class="col-sm-8 paddingboth">
+                     <input type="text" name="shipFromPhone" id="shipFromPhone" maxlength="10"
+                            only-Numeric ng-model="address.Phone" class="form-control fontsize12" required placeholder="{{'TelephoneNo' | translate}} ({{'Required' | translate}})" />
+                 </div>
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromPhone.$invalid &&
+                                            (TradelaneBookingForm.shipFromPhone.$dirty || submitted)">
+                     {{'TelephoneValidationError' | translate}}
+                 </span>
+             </div>
+         </div>
+         <div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': (TradelaneBookingForm.shipFromMail.$invalid &&
+                                                         (TradelaneBookingForm.shipFromMail.$dirty || submitted)) }">
+             <label for="shipFromMail" id="shipFromMailLabel" class="col-sm-4 lineheight24 control-label">{{'Send_Alert_Email' | translate}}</label>
+             <div class="col-sm-8">
+                 <input type="text" name="shipFromMail" id="shipFromMail" ng-pattern="emailFormat"
+                        ng-model="address.Email" class="form-control fontsize12" ng-required="address.IsMailSend" placeholder="{{'Send_Shipment_Details' | translate}}" />
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromMail.$error.required &&
+                                            (TradelaneBookingForm.shipFromMail.$dirty || submitted)">
+                     {{'EmailValidationError' | translate}}
+                 </span>
+                 <span class="help-block has-error"
+                       ng-show="TradelaneBookingForm.shipFromMail.$error.pattern &&
+                                            (TradelaneBookingForm.shipFromMail.$dirty || submitted)">
+                     {{'EmailNotValid' | translate}}
+                 </span>
+             </div>
+             <!--<div class="col-sm-1 paddingboth sendEmail">
+                 <a href="" class="padding7px" popover-placement="auto" uib-popover="If required, please enter the email address of the person you wish to receive this shipments details once booked." popover-trigger="'outsideClick'">
+                     <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                 </a>
+             </div>-->
+         </div>
+     </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+        <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel pull-left"><i class="fa fa-save"></i> {{'Cancel'| translate}}</button>
+        <button type="submit" ng-click="submitted = true" class="btn-simple btn-save pull-right"><i class="fa fa-save"></i> {{'Save'| translate}}</button>
+    </div>
+    </div>
+</form>

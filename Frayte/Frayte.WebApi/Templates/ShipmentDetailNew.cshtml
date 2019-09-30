@@ -1,0 +1,465 @@
+﻿
+@using RazorEngine.Templating
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Booking Confirmation - Air/Sea/Courier etc.</title>
+    <!--<link href="confirm.css" rel="stylesheet" />
+    <link href="bootstrap.min.css" rel="stylesheet" />-->
+
+    <link href="@Model.PageStyleSheet" rel="stylesheet" />
+    <link href="@Model.BootStrapStyleSheet" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 logo1">
+                    <a href="#"><img src="@Model.pdfLogo" style="width:100%;" /></a>
+                </div>
+               @* <div class="headerRight"></div>
+                <div class="clearfix"></div>*@
+            </div>
+        </div>
+    </header>
+    @*<header>
+            <div class="logo">
+                <img src="@Model.pdfLogo" style="width: 191px;" />
+            </div>
+            <div class="headerRight"></div>
+            <div style="clear:both;"></div>
+        </header>*@
+    <div class="container">
+        <div style="margin-top:30px;">
+            <div class="mainHeading1">
+                <div class="subHeadLeft" style="width:100%; text-align:center;">Booking Confirmation -  @Model.ShipmentDetail.DeliveredBy.CourierType</div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="floatRight shipmentNoBlock">
+
+                <span class="shipmentInfo">FRAYTE  SHIPMENTID</span>
+				@if(@Model.ShipmentDetail !=null){
+				<span class="shipmentNo">@Model.ShipmentDetail.ShipmentId</span>
+				}
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            @*<div class="floatRight deliveryDateBlock">
+                    <span class="deliveryInfo">DATE</span>
+
+                    <span class="deliveryDate">12-MAY-2016</span>
+                    <div class="clearfix"></div>
+                </div>*@
+            <div class="clearfix"></div>
+
+
+            <div class="clearfix"></div>
+
+
+            <div class="marginTop3">
+                <div class="floatLeft width49 border1">
+                    <div class="fillFullPart" style="padding: 20px;line-height: 1px;">SHIP FROM</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            @if (@Model.ShipmentDetail.Shipper != null)
+                            {
+                                <div>@Model.ShipmentDetail.Shipper.ContactName<br /></div>
+                                <div> @Model.ShipmentDetail.Shipper.CompanyName<br /></div>
+                                if (@Model.ShipmentDetail.ShipperAddress != null)
+                                {
+                                    <div>@Model.ShipmentDetail.ShipperAddress.Address <br /></div>
+                                    if (!String.IsNullOrEmpty(@Model.ShipmentDetail.ShipperAddress.Address2))
+                                    {
+                                        <div>@Model.ShipmentDetail.ShipperAddress.Address2 <br /></div>
+                                    }
+                                    if (!String.IsNullOrEmpty(@Model.ShipmentDetail.ShipperAddress.Address3))
+                                    {
+                                        <div>@Model.ShipmentDetail.ShipperAddress.Address3<br /></div>
+                                    }
+                                    <div>@Model.ShipmentDetail.ShipperAddress.City,@Model.ShipmentDetail.ShipperAddress.State<br /></div>
+                                    <div>@Model.ShipmentDetail.ShipperAddress.Country.Name - @Model.ShipmentDetail.ShipperAddress.Zip<br /></div>
+                                }
+
+                            }
+                        </div>
+                        <div>
+                            <div class="color">
+                                <b>T : </b>span>@if (@Model.ShipmentDetail.Shipper != null)
+                                { @Model.ShipmentDetail.Shipper.TelephoneNo}</span>
+                            </div>
+                            <div class="color">
+                                <b>E : </b>@if (@Model.ShipmentDetail.Shipper != null)
+                                { @Model.ShipmentDetail.Shipper.Email}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="floatRight width49 border1">
+                    <div class="fillFullPart" style="padding: 20px;line-height: 1px;">SHIP TO</div>
+                    <div class="padding2">
+                        <div class="upperCase">
+                            @if (@Model.ShipmentDetail.Receiver != null)
+                            {
+                                <div>@Model.ShipmentDetail.Receiver.ContactName<br /></div>
+                                <div>@Model.ShipmentDetail.Receiver.CompanyName <br /></div>
+                                if (@Model.ShipmentDetail.ReceiverAddress != null)
+                                {
+                                    <div>@Model.ShipmentDetail.ReceiverAddress.Address <br /></div>
+                                    if (!String.IsNullOrEmpty(@Model.ShipmentDetail.ReceiverAddress.Address2))
+                                    {
+                                        <div>@Model.ShipmentDetail.ReceiverAddress.Address2 <br /></div>
+                                    }
+                                    if (!String.IsNullOrEmpty(@Model.ShipmentDetail.ReceiverAddress.Address2))
+                                    {
+                                        <div>@Model.ShipmentDetail.ReceiverAddress.Address3<br /></div>
+                                    }
+                                    <div>@Model.ShipmentDetail.ReceiverAddress.City,@Model.ShipmentDetail.ReceiverAddress.State<br /></div>
+                                    if (@Model.ShipmentDetail.ReceiverAddress.Country != null)
+                                    {
+                                        <div>
+                                            <label>@Model.ShipmentDetail.ReceiverAddress.Country.Name - @Model.ShipmentDetail.ReceiverAddress.Zip</label><br />
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                        <div class="color">
+                            <b>T : </b><span>
+                                @if (@Model.ShipmentDetail.Receiver != null)
+                                { @Model.ShipmentDetail.Receiver.TelephoneNo}
+                            </span>
+                        </div>
+                        <div class="color">
+                            <b>E : </b><span>
+                                @if (@Model.ShipmentDetail.Receiver != null)
+                                { @Model.ShipmentDetail.Receiver.Email}
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="marginTop3">
+                <div class="fillFullPart" style="padding:20px; line-height:1px;">
+                    SHIPMENT DETAIL
+                </div>
+                <div style="width: 100%; padding: 1%; border:1px solid black;">
+                    <div style="width:100%;">
+                        <div class="width50" style="float:left;">
+                            <div class="width49" style="float:left;">
+                                <div>SHIPMENT METHOD:</div>
+
+                                <div>SHIPMENT TERM:</div>
+
+                            </div>
+                            <div class="width49" style="float:left;">
+                                <div>
+                                    @if (@Model.ShipmentDetail.DeliveredBy != null)
+                                    {@Model.ShipmentDetail.DeliveredBy.Name}
+                                </div>
+                                <div>
+                                    @if (@Model.ShipmentDetail.ShipmentTerm != null)
+                                    {@Model.ShipmentDetail.ShipmentTerm.Detail}
+                                </div>
+                            </div>
+                            <div class="clear:both;"></div>
+                        </div>
+                        <div class="width50" style="float:left;">
+                            <div class="width49" style="float:left;">
+                                <div>PACKAGING TYPE:</div>
+                                @if (@Model.ShipmentDetail.SpecialDelivery != null && !String.IsNullOrEmpty(@Model.ShipmentDetail.SpecialDelivery.Detail))
+                                {
+                                    <div>SPECIAL DELIVERY NEEDED:</div>
+                                }
+                            </div>
+                            <div class="width49" style="float:left;">
+                                <div>
+                                    @if (@Model.ShipmentDetail.PackagingType != null)
+                                    {@Model.ShipmentDetail.PackagingType.Name}
+                                </div>
+                                <div>
+                                    @if (@Model.ShipmentDetail.SpecialDelivery != null)
+                                    {@Model.ShipmentDetail.SpecialDelivery.Detail}
+
+                                </div>
+                            </div>
+                            <div class="clear:both;"></div>
+                        </div>
+                    </div>
+
+                    <br /><br />
+
+                    <hr />
+
+
+                    <div style="width:100%;">
+                        <div><h4>Schedule Pickup</h4></div>
+                        <div class="width50" style="float:left;">
+                            <div class="width49" style="float:left;">
+                                <div>CONTACT NAME:</div>
+                                <div>LOCATION TYPE:</div>
+                                @if (@Model.ShipmentDetail.PickupDate != null)
+                                {
+                                    <div>PICK UP DATE & TIME:</div>
+                                }
+                                @if (@Model.ShipmentDetail.Timezone != null)
+                                {
+                                    <div>TIME ZONE:</div>
+                                }
+								 @if (@Model.ShipmentDetail.TransportToWarehouse != null){
+<div>TRANSPORT TO WAREHOUSE:</div>								
+								}
+                                
+                            </div>
+                            <div class="width49" style="float:left;">
+                                <div>
+                                    @if (@Model.ShipmentDetail.ShipmentPickupContactName != null)
+                                    {@Model.ShipmentDetail.ShipmentPickupContactName}
+                                </div>
+                                <div>
+                                    @if (@Model.ShipmentDetail.LocationType != null)
+                                    {@Model.ShipmentDetail.LocationType}
+                                </div>
+                                <div>
+                                    @if (@Model.ShipmentDetail.PickupDate != null)
+                                    {@Model.ShipmentDetail.PickupDate.ToString("dd/MM/yyyy")}
+                                </div>
+                                <div>
+                                    @if (@Model.ShipmentDetail.Timezone != null)
+                                    {@Model.ShipmentDetail.Timezone.OffsetShort}
+                                </div>
+                                <div>
+                                    @if (@Model.ShipmentDetail.TransportToWarehouse != null)
+                                    {@Model.ShipmentDetail.TransportToWarehouse.Name}
+
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+                        <div class="width50" style="float:left;">
+                            <div class="width49" style="float:left;">
+                                <div>SPECIAL INSTRUCTIONS:</div>
+                                     @if (@Model.ShipmentDetail.Warehouse != null && @Model.ShipmentDetail.Warehouse.WarehouseName != null)
+									 {
+                                       <div>WAREHOUSE:</div>
+                                     }  
+                                <div></div>
+                            </div>
+                            <div class="width49" style="float:left;">
+                                <div>
+                                    @if (@Model.ShipmentDetail.SpecialInstruction != null)
+                                    {@Model.ShipmentDetail.SpecialInstruction}
+                                </div>
+                                <div>
+                                    @if (@Model.ShipmentDetail.Warehouse != null && @Model.ShipmentDetail.Warehouse.WarehouseName != null)
+                                    {@Model.ShipmentDetail.Warehouse.WarehouseName}
+                                </div>
+                                <div></div>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <br />
+                    <hr />
+                    @*<section>
+                            <div class="piecesDetailTable">
+                                <div class="col-sm-12">
+                                    <h4 class="padding-tb-5">Piece Details:</h4>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="colHeader" style="width:8%;">Job No</div>
+                                            <div class="colHeader" style="width:13%">Style No.</div>
+                                            <div class="colHeader" style="width:10%">HS Code</div>
+                                            <div class="colHeader" style="width:12%">Carton Qty</div>
+                                            <div class="colHeader" style="width:7%">Pieces</div>
+                                            <div class="colHeader" style="width:14%">Weight (Kgs)</div>
+                                            <div class="colHeader" style="width:7%">L (cms)</div>
+                                            <div class="colHeader" style="width:8%">W (cms)</div>
+                                            <div class="colHeader" style="width:7%">H (cms)</div>
+                                            <div class="colHeader" style="width:14%">Pieces Content</div>
+                                        </div>
+                                        <div class="panel-body">
+                                            @foreach (var item in Model.ShipmentDetail.ShipmentDetails)
+                                            {
+                                                <div class="colHeader" style="width:8%"><div>@item.JobNumber</div></div>
+                                                <div class="colHeader" style="width:13%"><div>@item.JobStyle</div></div>
+                                                <div class="colHeader" style="width:10%"><div>@item.HSCode</div></div>
+                                                <div class="colHeader" style="width:12%"><div>@item.CartonQty</div></div>
+                                                <div class="colHeader" style="width:7%"><div>@item.Pieces</div></div>
+                                                <div class="colHeader" style="width:14%"><div>@item.WeightKg</div></div>
+                                                <div class="colHeader" style="width:7%"><div>@item.Lcms</div></div>
+                                                <div class="colHeader" style="width:8%"><div>@item.Wcms</div></div>
+                                                <div class="colHeader" style="width:7%">@item.Hcms</div>
+                                                <div class="colHeader" style="width:14%">@item.PiecesContent</div>
+                                            }
+
+                                        </div>
+                                        <div class="panel-footer">
+                                            <div class="colFooter">
+                                                <div>Total number of pieces : <span>@Model.TotalPieces</span></div>
+                                            </div>
+                                            <div class="colFooter">
+                                                <div>Total weight : <span>@Model.TotalKgs</span> (Kgs)</div>
+                                            </div>
+                                            <div class="colFooter">
+                                                <div>Total dim weight : <span>@Model.TotalWeight</span> (Kgs)</div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>*@
+
+                    <section>
+                        <div class="piecesDetailTable">
+                            <div class="col-sm-12">
+                                <h4 class="padding-tb-5">Piece Details:</h4>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="colHeader" style="width:8%">Job No</div>
+                                        <div class="colHeader" style="width:13%">Style No.</div>
+                                        <div class="colHeader" style="width:10%">HS Code</div>
+                                        <div class="colHeader" style="width:12%">Carton Qty</div>
+                                        <div class="colHeader" style="width:7%">Pieces</div>
+                                        <div class="colHeader" style="width:14%">Weights Kgs</div>
+                                        <div class="colHeader" style="width:7%">L cms</div>
+                                        <div class="colHeader" style="width:8%">W cms</div>
+                                        <div class="colHeader" style="width:7%">H cms</div>
+                                        <div class="colHeader" style="width:14%">Pieces Content</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="panel-body">
+                                        @foreach (var item in Model.ShipmentDetail.ShipmentDetails)
+                                        {
+                                            <div ng-repeat="shippingDetail in shipmentDetail.ShipmentDetails">
+                                                <div class="colHeader" style="width:8%"><div>@item.JobNumber</div></div>
+                                                <div class="colHeader" style="width:13%"><div>@item.JobStyle</div></div>
+                                                <div class="colHeader" style="width:10%"><div>@item.HSCode</div></div>
+                                                <div class="colHeader" style="width:12%"><div>@item.CartonQty</div></div>
+                                                <div class="colHeader" style="width:7%"><div>@item.Pieces</div></div>
+                                                <div class="colHeader" style="width:14%"><div>@item.WeightKg</div></div>
+                                                <div class="colHeader" style="width:7%"><div>@item.Lcms</div></div>
+                                                <div class="colHeader" style="width:8%"><div>@item.Wcms</div></div>
+                                                <div class="colHeader" style="width:7%"><div>@item.Hcms</div></div>
+                                                <div class="colHeader" style="width:14%">@item.PiecesContent</div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="colFooter">
+                                            <div>Total number of pieces : <span>@Model.TotalPieces</span></div>
+                                        </div>
+                                        <div class="colFooter">
+                                            <div>Total weight : <span>@Model.TotalKgs</span> (Kgs)</div>
+                                        </div>
+                                        <div class="colFooter">
+                                            <div>Total dim weight : <span>@Model.TotalWeight</span> (Kgs)</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                    <br />
+                    <div style="width:100%">
+                        <div><h4>Shipment Details</h4></div>
+                        <div class="width50" style="float:left;">
+                            <div class="width49" style="float:left;">
+                                <div>DESCRIPTION OF CONTENTS:</div>
+                            </div>
+                            <div class="width49" style="float:left;">
+                                <div>@Model.ShipmentDetail.ContentDescription</div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="width50" style="float:left;">
+                            <div class="width49" style="float:left;">
+                                <div>DUTIABLE OR NOT:</div>
+                                <div>SHIPPING REFERENCE</div>
+                                <div>SHIPPING DATE</div>
+                            </div>
+                            <div class="width49" style="float:left;">
+                                <div>@Model.ShipmentDetail.ShipmentDuitable.Description</div>
+                                <div class="part50">@Model.ShipmentDetail.PurchaseOrderNo</div>
+                                <div class="part50">@Model.ShipmentDetail.ShippingDate.ToString("dd/MM/yyyy")</div>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+
+                    <div style="width:100%">
+                        <div class="width50" style="float:left;">
+                            <h4>Payment Party</h4>
+                            <div class="width49" style="float:left;">
+                                <div>WHO IS GOING TO PAY THE FOR SHIPMENT:</div>
+                                <div>@Model.ShipmentDetail.PaymentParty</div>
+                            </div>
+                            <div class="width49" style="float:left;">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="width50" style="float:left;">
+                            <h4>Customs Information</h4>
+                            <div class="width49" style="float:left;">
+                                <div>DECLARED VALUE</div>
+                                <div>CURRENCY</div>
+                            </div>
+                            <div class="width49" style="float:left;">
+                                <div>@Model.DeclaredValue</div>
+                                @if (@Model.ShipmentDetail.DeclaredCurrency != null)
+                                {
+                                    @Model.ShipmentDetail.DeclaredCurrency.CurrencyCode
+							    }
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="fillFullPart border1" style="height:35px;padding:9px;">
+                    Term & Conditions :
+                </div>
+                <br />
+                <div>  
+                    @(new RazorEngine.Text.RawString(@Model.TermAndConditionNew))               
+                </div>
+            </div>
+            <br />
+            <div class="fillFullPart text-center border1">
+                END OF DOCUMENT
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top:30px;">
+        <footer>
+            <span class="footerText">p</span><span> +852 2148 4480</span>
+            <span class="footerLogo">WWW.frayte.com</span>
+            <span class="footerText">f</span><span> +852 2148 4480</span>
+        </footer>
+    </div>
+
+</body>
+</html>

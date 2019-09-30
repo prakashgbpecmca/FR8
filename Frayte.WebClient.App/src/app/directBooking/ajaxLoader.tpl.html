@@ -1,0 +1,59 @@
+﻿
+<section>
+    <div style="color:#efb73e;">
+        <div> <img style="-webkit-user-select: none; height:300px !important; width:100%;"   ng-src="{{ImagePath + 'ajax.gif'}}"></div>
+        <div ng-show="GetServiceValue === true" class="panel-body message-fixed" style="width:100% !important;margin-top:-50px;color:#000;">
+            <h3 class="text-center"><strong>{{'PleaseWaitWhile_ProcessingService' | translate}} ...</strong></h3>
+            <p ng-show="SITECOMPANY === 'FRAYTE'" class="text-left">
+                {{'ThankYouFor_UsingFRAYTELogisticsLtd' | translate}} <b>{{'TakeUpTo_60Seconds' | translate}}</b>. {{'Please_RemainOn_This_Screen' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="text-left">
+                {{'ThankYouFor_UsingMEXLogisticsLtd' | translate}} <b>{{'TakeUpTo_60Seconds' | translate}}</b>. {{'Please_RemainOn_This_Screen' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'FRAYTE'" class="text-left">
+                {{'Kindly_Regards' | translate}}, <br />
+                {{'FRAYTE_Customer_Service_Team' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="text-left">
+                {{'Kindly_Regards' | translate}}, <br />
+                {{'MEX_Customer_Service_Team' | translate}}
+            </p>
+        </div>
+
+        <div ng-show="GetServiceValue === false" class="panel-body message-fixed" style="width:100% !important;margin-top:-50px;color:#000;">
+            <h3 class="text-center"><strong>{{'PleaseWaitWhile_Placing_Booking' | translate}} ...</strong></h3>
+            <p ng-show="SITECOMPANY === 'FRAYTE'" class="text-left">
+                {{'ThankYouFor_UsingFRAYTELogisticsLtd' | translate}} <b>{{'TakeUpTo_60Seconds' | translate}}</b>. {{'Please_RemainOn_This_Screen' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="text-left">
+                {{'ThankYouFor_UsingMEXLogisticsLtd' | translate}} <b>{{'TakeUpTo_60Seconds' | translate}}</b>. {{'Please_RemainOn_This_Screen' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'FRAYTE'" class="text-left">
+                {{'Kindly_Regards' | translate}}, <br />
+                {{'FRAYTE_Customer_Service_Team' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="text-left">
+                {{'Kindly_Regards' | translate}}, <br />
+                {{'MEX_Customer_Service_Team' | translate}}
+            </p>
+        </div>
+
+        <div ng-show="GetRateValue === true" class="panel-body message-fixed" style="width:100% !important;margin-top:-50px;color:#000;">
+            <h3 class="text-center"><strong>{{'PleaseWaitWhile_Get_Rate' | translate}} ...</strong></h3>
+            <p ng-show="SITECOMPANY === 'FRAYTE'" class="text-left">
+                {{'ThankYouFor_UsingFRAYTELogisticsLtd' | translate}} <b>{{'TakeUpTo_60Seconds' | translate}}</b>. {{'Please_RemainOn_This_Screen' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="text-left">
+                {{'ThankYouFor_UsingMEXLogisticsLtd' | translate}} <b>{{'TakeUpTo_60Seconds' | translate}}</b>. {{'Please_RemainOn_This_Screen' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'FRAYTE'" class="text-left">
+                {{'Kindly_Regards' | translate}}, <br />
+                {{'FRAYTE_Customer_Service_Team' | translate}}
+            </p>
+            <p ng-show="SITECOMPANY === 'MAXLOGISTIC'" class="text-left">
+                {{'Kindly_Regards' | translate}}, <br />
+                {{'MEX_Customer_Service_Team' | translate}}
+            </p>
+        </div>
+    </div>
+</section>

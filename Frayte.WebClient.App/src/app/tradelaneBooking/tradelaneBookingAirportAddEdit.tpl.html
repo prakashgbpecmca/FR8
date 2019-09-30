@@ -1,0 +1,44 @@
+﻿
+<form name="AirportCodeForm" ng-submit="SaveAirport(AirportCodeForm.$valid, newAirport)" novalidate>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')">
+            <i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i>
+        </button>
+        <h4 class="modal-title">Add Airport</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="clearfix row">
+            <div class="col-sm-12 form-group" ng-class="{ 'has-error': AirportCodeForm.airportCode.$invalid &&
+                                                         (AirportCodeForm.airportCode.$dirty || submitted) }">
+                <label for="airportCode" class="control-label top5 col-sm-4">Airport Code <span class="redColor">*</span></label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="airportCode" id="airportCode" maxlength="3" ng-model="newAirport.AirportCode" placeholder="Airport Code (Required')" required />
+                    <span class="help-block has-error"
+                          ng-show="AirportCodeForm.airportCode.$invalid &&
+                        (AirportCodeForm.airportCode.$dirty || submitted)">
+                        {{'Airport_Code_Is_Required' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-12 form-group" ng-class="{ 'has-error': AirportCodeForm.airportName.$invalid &&
+                                                         (AirportCodeForm.airportName.$dirty || submitted) }">
+                <label for="airportName" class="control-label top5 col-sm-4">Airport Name <span class="redColor">*</span></label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="airportName" id="airportName" ng-model="newAirport.AirportName" placeholder="Airport Name (Required')" required />
+                    <span class="help-block has-error"
+                          ng-show="AirportCodeForm.airportName.$invalid &&
+                        (AirportCodeForm.airportName.$dirty || submitted)">
+                        {{'Airport_Name_Is_Required' | translate}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer clearfix">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            <button type="submit" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+        </div>
+    </div>
+</form>
+

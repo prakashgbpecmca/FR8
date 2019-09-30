@@ -1,0 +1,575 @@
+
+
+// less code start here
+@import "variables";
+//end less code
+
+
+//font family code here
+
+@fontPath: "../../build/fonts/";
+
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url("@{fontPath}Roboto-Bold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url("@{fontPath}Roboto-Medium.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url("@{fontPath}Roboto-Regular.ttf") format('truetype');
+}
+
+//end
+
+//upload button code
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+
+    .btn {
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 0px 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        .pointer;
+    }
+}
+
+//end
+
+
+//sidenav code here
+.sidenav {
+    min-height: 605px;
+    width: 0;
+    position: @absolute;
+    z-index: 1;
+    top: 2.3rem;
+    left: auto;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    overflow-y: scroll;
+    height: 605px;
+}
+
+.top7 {
+    position: relative;
+    top: 7px;
+}
+
+.sidenav a {
+    padding: 0px 8px 0px 30px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+//end
+.fontsize18 {
+    font-size: 18px;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.input-padding {
+    .padding (12px 44px);
+}
+
+.frayte-login-logo {
+    .width (90%);
+    position: @relative;
+}
+
+.form-center {
+    .icon-fix {
+        position: @absolute;
+        .z-index (9999);
+        .padding (2px 7px 0px);
+        .fontsize (32px);
+    }
+
+    .max-width (390px);
+    .padding (14px);
+    .margin (0 auto);
+
+    input[type="email"] {
+        .margin-bottom (-.5px);
+        border-bottom-right-radius: @zero;
+        border-bottom-left-radius: @zero;
+    }
+
+    .form-control {
+        position: @relative;
+        .height (auto);
+        .box-sizing (border-box);
+        .fontsize (16px);
+
+        &:focus {
+            border-color: @color-66afe9;
+            .outline (0);
+            .box-shadow ('inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)');
+        }
+    }
+}
+ 
+.button,.btn, .btn-md{
+  .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    .outline (0px) !important;
+}
+}
+.buttonColor-Outline {
+    color: @white;
+    .outline (none);
+}
+
+.login-padding {
+    .padding(13px 8px 13px) !important;
+}
+
+.paddingleft {
+    padding-left: 0px;
+}
+
+.paddingright {
+    padding-right: 0px;
+}
+
+.paddingboth {
+    padding: 0px;
+}
+
+.fix-mobile-image {
+    background-repeat: no-repeat;
+    width: 480px;
+    margin: 0 auto;
+    padding: 9px;
+    z-index: 9999;
+    height: 876px;
+    border-radius: 9% 27% 27% 9%;
+}
+
+.container {
+    width: 461px !important;
+    right: 15px !important;
+    position: relative;
+    top: 10rem !important;
+}
+
+.modal-lg, .modal-sm, .modal-xs, .modal-md {
+    width: 365px;
+    top: 27rem;
+    /*right: 30.5rem;*/
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .modal-dialog {
+        margin: 32px 50rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-lg, .modal-sm, .modal-xs, .modal-md {
+        right: 30.4rem;
+        top: 27rem;
+    }
+}
+
+.modal-footer {
+    button {
+        .width (100px) !important;
+    }
+}
+
+.ML-23 {
+    margin-left: -23px;
+}
+
+.fix-home {
+    position: relative;
+    top: 9rem;
+    width: 430px;
+    padding: 14px;
+}
+
+.white-space {
+    white-space: nowrap;
+}
+.width-250{
+    width:250px;
+    float:left;
+}
+
+.width-408 {
+    width: 408px;
+    float: left;
+}
+
+.width-70per {
+    top: 2rem;
+    width: 70%;
+    float: left;
+}
+
+#toast-container {
+    position: fixed;
+    z-index: 999999;
+    border-right: 2px solid #333;
+    min-height: 909px;
+    right: 40%;
+    float: @left;
+}
+
+.btn-cancel {
+    color: @white;
+    background-color: @color-94a4bd;
+    border: @one @solid @transparent;
+    .border-radius (2px);
+}
+
+.btn-cancel:hover, .btn-cancel:focus, .btn-cancel:active {
+    color: @white;
+    background-color: @color-607894;
+    border: @one @solid @color-607894;
+    .opacity (0.9);
+}
+
+.frayte-home {
+    width: 50%;
+    position: relative;
+    float: left;
+    padding-bottom: 15px;
+    top: 0rem;
+    margin: 0 auto;
+}
+
+.col-xs-12 {
+    width: 94% !important;
+}
+
+#frayte-fix-home {
+    width: 75%;
+    margin-left: -43rem;
+    background: rgba(0,0,0,1);
+    .min-height (87rem);
+    .z-index (9);
+    .width (0%);
+    animation: scrolling 4s linear;
+    .padding (15px);
+    color: #fff;
+    .box-shadow (0px 0px 5px #333);
+    text-overflow: ellipsis;
+    word-spacing: @normal;
+    white-space: @nowrap;
+    overflow: hidden;
+
+    ul li i.fa-listhover {
+        .width(75%);
+    }
+}
+
+.frayte-data-home {
+    width: 30%;
+}
+
+
+
+@keyframes scrolling {
+    from {
+        width: 75%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+.fa-14 {
+    .fontsize (1.49em);
+}
+
+.bb {
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+}
+
+.icon-set {
+    margin-left: 10px;
+    bottom: 4px;
+    position: relative;
+}
+
+.frayte-blue {
+    color: @color-0B3D5A;
+}
+
+.lineheight28 {
+    .line-height(28px);
+}
+
+.carton-scan {
+    .width (33.3%);
+    float: @left;
+}
+
+.fix-done {
+    position: @absolute;
+    .width (377px) !important;
+    .top (57rem);
+}
+
+.fix-done-button {
+    position: @fixed;
+    .width (450px) !important;
+    .right (6%);
+}
+
+.pointer {
+    cursor: @pointer;
+}
+
+.send-print {
+    position: relative;
+    margin: 3rem auto;
+}
+
+* {
+    .margin (0px);
+    .padding (0px);
+    .transition(all ease 0.5s ease-in-out);
+}
+
+html, body {
+    -webkit-overflow-scrolling: auto; /* Stops scrolling immediately */
+    margin: @zero;
+    padding: @zero;
+    min-height: @full-width-height;
+    width: @full-width-height;
+    position: @absolute;
+    background: @body-background;
+    font-family: @font-family-roboto-regular;
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        background-color: rgba(0,0,0,0.09);
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+    }
+
+    ::-webkit-scrollbar:hover {
+        background-color: rgba(0, 0, 0, 0.09);
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+        background: rgba(0,0,0,0.5);
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+    }
+
+    ::-webkit-scrollbar-thumb:vertical:active {
+        background: rgba(0,0,0,0.61);
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal:active {
+        background: rgba(0,0,0,0.61);
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+        background: rgba(0,0,0,0.5);
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+    }
+}
+
+body {
+    min-height: 100% !important;
+    position: relative;
+    font-family: @font-family-roboto-regular;
+}
+
+
+.panel {
+    .width (345px);
+}
+
+.btn-simple {
+    display: @inline-block;
+    .padding (6px 12px);
+    .margin-bottom (0);
+    text-decoration: @none;
+    .fontsize (14px);
+    .font-weight (400);
+    .line-height (1.42857143);
+    text-align: @center;
+    white-space: @nowrap;
+    vertical-align: @middle;
+    .touch-action (manipulation);
+    cursor: @pointer;
+    .user-select (none);
+    background-image: @none;
+    border: @one @solid @transparent;
+    .border-radius (2px);
+    .width(345px) !important;
+}
+
+.btn-save {
+    color: @white;
+    background-color: @color-EC8A39;
+    border: @one @solid @transparent;
+    .border-radius (2px);
+    .opacity (0.8);
+}
+
+.input-background {
+    background-color: @white;
+}
+
+.btn-save:hover, .btn-save:focus, .btn-save:active {
+    color: @white;
+    background-color: @color-e68545;
+    border: @one @solid @color-e68545;
+    .opacity (1);
+    .outline (0);
+}
+
+.width-380 {
+    width: 378px !important;
+}
+
+.left-sidebar {
+    width: 480px !important;
+    margin: 5px 16.6rem;
+    float: left;
+    z-index: 9999;
+    height: 875px;
+    text-indent: 0rem !important;
+}
+
+.right-sidebar {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.c-green {
+    color: green;
+}
+
+.Ti-10 {
+    text-indent: 15px;
+}
+.fix-help{
+        padding: 7px;
+    font-size: 1.5em;
+    position: relative;
+    top: .31rem;
+}
+
+.b5rem {
+    bottom: 5rem;
+    position: relative;
+}
+
+#username {
+    border-bottom: @one @solid;
+    white-space: @nowrap;
+    overflow: @hidden;
+    text-overflow: @ellipsis;
+    word-spacing: @normal;
+    .width-250;
+    img{
+        .margin (0 auto);
+    }
+    .userdetail > p {
+        color: #ddd;
+        font-size: 1.5rem;
+    }
+}
+
+.popover{
+    background:@color-0B3D5A !important;
+    color:@white !important;
+}
+.popover.top>.arrow:after{
+        border-top-color: @color-0B3D5A !important;
+}
+ i.fa-question-circle{
+    color:@frayte-orange !important;
+}
+
+
+.country .popover.top > .arrow, div.country .popover.bottom > .arrow {
+    .left (67%) !important;
+}
+.b{
+    border:@one @solid @color-ddd;
+}
+.p30{
+    .padding(30px);
+}
+.l4{
+        .left (4%);
+    position: @relative;
+}

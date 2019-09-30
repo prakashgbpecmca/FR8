@@ -1,0 +1,579 @@
+﻿<form name="ShipmentForm" ng-submit="submit(ShipmentForm.$valid, shipment)" novalidate>
+    <section ng-class="{ 'container': !isLogin }">
+        <div ng-class="{ 'content-Quickbooking': !isLogin }">
+            <div ng-class="{ 'padding-15': !isLogin }">
+                <div class="col-sm-12 ">
+                    <div class="countbox">
+                        <div class="pos-rel">
+                            <div class="hrRule"></div>
+                            <div class="stepContainer">
+                                <div class="col-xs-3">
+                                    <div class="outerBlock">
+                                        <div class="innerBlock-white">
+                                            <span class="step-boxFill">
+                                                <img ng-src="{{ImagePath + 'visitedAddrDetail.png'}}" style=" width: 59px; margin: -7px 0 0 -8px;" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="step-boxTitleFill">{{'ProcessBox_AddressDetails' | translate}}</div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="outerBlock">
+                                        <div class="innerBlock-white">
+                                            <span class="step-boxActive"><img ng-src="{{ImagePath + 'activeServiceOption.png'}}" style=" width: 36px; margin: -8px 0 0 1px;" /></span>
+                                        </div>
+                                    </div>
+                                    <div class="step-boxTitleActive">{{'ProcessBox_ServiceOptions' | translate}}</div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="outerBlock">
+                                        <div class="innerBlock-white">
+                                            <span class="step-box"><img ng-src="{{ImagePath + 'inActiveShipDetail.png'}}" style=" width: 45px; margin: -7px 0 0px 0;" /></span>
+                                        </div>
+                                    </div>
+                                    <div class="step-boxTitle">{{'ProcessBox_ShipmentDetails' | translate}}</div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="outerBlock">
+                                        <div class="innerBlock-white">
+                                            <span class="step-box"><img ng-src="{{ImagePath + 'inActiveConfirm.png'}}" style=" width: 59px; margin: -7px 0 0px -8px;" /></span>
+                                        </div>
+                                    </div>
+                                    <div class="step-boxTitle">{{'ProcessBox_ConfirmShipment' | translate}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6 ">
+                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.shippingMethod.$invalid &&
+                                                         (ShipmentForm.shippingMethod.$dirty || submitted) }">
+                            <label class="control-label" for="shippingMethod">{{'serviceoptn_ShippingMethod' | translate}}</label>
+                            <select id="shippingMethod" name="shippingMethod"
+                                    ng-model="shipment.DeliveredBy" ng-change="selectpaymentParty(shipment.DeliveredBy)"
+                                    ng-options="DeliveredBy.Name for DeliveredBy in couriers| orderBy:'OrderNumber' track by DeliveredBy.CourierId" class="form-control" required>
+                                <option value="" disabled selected>{{'serviceoptn_ShippingMethodSelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="ShipmentForm.shippingMethod.$invalid &&
+                                            (ShipmentForm.shippingMethod.$dirty || submitted)">
+                                {{'serviceoptn_ShippingMethodValidError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6"></div>
+                </div>
+                <div ng-if="shipment.DeliveredBy.CourierType==='Air' || shipment.DeliveredBy.CourierType==='Sea'" class="col-sm-12">
+                    <div class="col-sm-6 ">
+                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.portofdeparture.$invalid &&
+                                                         (ShipmentForm.portofdeparture.$dirty || submitted) }">
+                            <label class="control-label" for="shippingMethod">{{'Port' | translate}} {{'Of' | translate}} {{'Departure' | translate}}</label>   
+                            <select id="shippingMethod" name="portofdeparture"
+                                    ng-model="shipment.FrayteShipmentPortOfDeparture"
+                                    ng-options="PortOfDeparture as (  PortOfDeparture.PortName + ' '+'(' + PortOfDeparture.PortCode + ')')  for PortOfDeparture in ports | orderBy:'PortName' | filter :{PortType: shipment.DeliveredBy.CourierType , CountryId:shipment.ShipperAddress.Country.CountryId }  track by PortOfDeparture.CountryShipmentPortId" class="form-control" required>
+                                <option value="" disabled selected>{{'PortOfDepartureSelect' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="ShipmentForm.portofdeparture.$invalid &&
+                                            (ShipmentForm.portofdeparture.$dirty || submitted)">
+                                {{'PortOfDepartureValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.portofarrival.$invalid &&
+                                                         (ShipmentForm.portofarrival.$dirty || submitted) }">
+                            <label class="control-label" for="shippingMethod">{{'Port' | translate}} {{'Of' | translate}} {{'Arrival' | translate}}</label>
+                            <select id="shippingMethod" name="portofarrival"
+                                    ng-model="shipment.FrayteShipmentPortOfArrival"
+                                    ng-options="PortOfArrival as (  PortOfArrival.PortName + ' '+'(' + PortOfArrival.PortCode + ')')  for PortOfArrival in ports | orderBy:'PortName' |  filter :{PortType: shipment.DeliveredBy.CourierType , CountryId:shipment.ReceiverAddress.Country.CountryId } track by PortOfArrival.CountryShipmentPortId" class="form-control" required>
+                                <option value="" disabled selected>{{'PortOfArrivalSelect' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="ShipmentForm.portofarrival.$invalid &&
+                                            (ShipmentForm.portofarrival.$dirty || submitted)">
+                                {{'PortOfArrivalValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="CustomInfo" class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-heading">{{'CustomInfo' | translate}}</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.contentsType.$invalid &&
+                                                         (ShipmentForm.contentsType.$dirty || submitted) }">
+                                            <label class="control-label" for="contentsType">{{'contentsType' | translate}}</label>
+                                            <select id="contentsType" name="contentsType"
+                                                    ng-model="shipment.CustomInfo.ContentsType" ng-change="disableContent(shipment.CustomInfo.ContentsType)"
+                                                    ng-options="item.value as item.name for item in ContentsType" class="form-control" required>
+                                                <option value="" disabled selected>{{'contentsTypePlaceHolder' | translate}}</option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.contentsType.$invalid &&
+                                            (ShipmentForm.contentsType.$dirty || submitted)">
+                                                {{'contentsTypeValidError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.contentsExplanation.$invalid && !disableContentExplanation &&
+                                                         (ShipmentForm.contentsExplanation.$dirty || submitted) }">
+                                            <label class="control-label" for="contentsExplanation">{{'contentsExplanation' | translate}}</label>
+                                            <textarea id="contentsExplanation" name="contentsExplanation" ng-model="shipment.CustomInfo.ContentsExplanation" class="form-control"
+                                                      ng-disabled="disableContentExplanation" placeholder="{{'contentsExplanationPlaceHolder' | translate}}" ng-required="!disableContentExplanation"></textarea>
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.contentsExplanation.$invalid && !disableContentExplanation &&
+                                            (ShipmentForm.contentsExplanation.$dirty || submitted)">
+                                                {{'contentsExplanationValidError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.restrictionType.$invalid &&
+                                                         (ShipmentForm.restrictionType.$dirty || submitted) }">
+                                            <label class="control-label" for="restrictionType">{{'restrictionType' | translate}}</label>
+                                            <select id="restrictionType" name="restrictionType" ng-change="disableRestriction(shipment.CustomInfo.RestrictionType)"
+                                                    ng-model="shipment.CustomInfo.RestrictionType"
+                                                    ng-options="item.value as item.name for item in RestrictionType" class="form-control" required>
+                                                <option value="" disabled selected>{{'restrictionTypePlaceHolder' | translate}}</option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.restrictionType.$invalid &&
+                                            (ShipmentForm.restrictionType.$dirty || submitted)">
+                                                {{'restrictionTypeValidError' | translate}}
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.restrictionComments.$invalid && !disableRestrictionComment &&
+                                                         (ShipmentForm.restrictionComments.$dirty || submitted) }">
+                                            <label class="control-label" for="restrictionComments">{{'restrictionComments' | translate}}</label>
+                                            <textarea id="restrictionComments" name="restrictionComments" ng-model="shipment.CustomInfo.RestrictionComments" class="form-control"
+                                                      ng-disabled="disableRestrictionComment" placeholder="{{'restrictionCommentsPlaceHolder' | translate}}" ng-required="!disableRestrictionComment"></textarea>
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.restrictionComments.$invalid && !disableRestrictionComment &&
+                                            (ShipmentForm.restrictionComments.$dirty || submitted)">
+                                                {{'restrictionCommentsValidError' | translate}}
+                                            </span>
+                                        </div>
+                                      
+                                     </div>
+                                 
+                                    <div class="clearfix"></div>
+                              
+                                </div>
+                                <div>
+                                <div class="col-sm-6">
+                                    <hr style="border: 4px solid #DBE2EC;margin-top:5px;" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <hr style="border: 4px solid #DBE2EC;margin-top:5px; margin-bottom:6px;" />
+                                </div>
+                                </div>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.customsCertify.$invalid &&
+                                                         (ShipmentForm.customsCertify.$dirty || submitted) }">
+
+                                            <div class="checkbox">
+                                                <label class="control-label" for="customsCertify">
+                                                    <input type="checkbox" id="customsCertify" name="customsCertify" ng-change="disableSigner(shipment.CustomInfo.CustomsCertify)"
+                                                           ng-model="shipment.CustomInfo.CustomsCertify" /> {{'customsCertify' | translate}}
+                                                </label>
+                                            </div>
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.customsCertify.$invalid &&
+                                            (ShipmentForm.customsCertify.$dirty || submitted)">
+                                                {{'customsCertifyValidError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.customsSigner.$invalid &&
+                                                         (ShipmentForm.customsSigner.$dirty || submitted) }">
+                                            <label class="control-label" for="customsSigner">{{'customsSigner' | translate}}</label>
+                                            <input type="text" id="customsSigner" name="customsSigner" ng-model="shipment.CustomInfo.CustomsSigner" class="form-control"
+                                                   ng-disabled="disableCustomerSigner" placeholder="{{'customsSignerPlaceHolder' | translate}}" ng-required="!disableCustomerSigner" />
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.customsSigner.$invalid &&
+                                            (ShipmentForm.customsSigner.$dirty || submitted)">
+                                                {{'customsSignerValidError' | translate}}
+                                            </span>
+                                        </div>
+                                        </div>
+                                    <div class="clearfix"></div>
+                                        <div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group" ng-class="{ 'has-error': ShipmentForm.nonDeliveryOption.$invalid &&
+                                                         (ShipmentForm.nonDeliveryOption.$dirty || submitted) }">
+                                                    <label class="control-label" for="nonDeliveryOption">{{'nonDeliveryOption' | translate}}</label>
+                                                    <select id="nonDeliveryOption" name="nonDeliveryOption"
+                                                            ng-model="shipment.CustomInfo.NonDeliveryOption"
+                                                            ng-options="item.value as item.name for item in NonDeliveryOption" class="form-control" required>
+                                                        <option value="" disabled selected>{{'nonDeliveryOptionPlaceHolder' | translate}}</option>
+                                                    </select>
+                                                    <span class="help-block has-error"
+                                                          ng-show="ShipmentForm.nonDeliveryOption.$invalid &&
+                                            (ShipmentForm.nonDeliveryOption.$dirty || submitted)">
+                                                        {{'nonDeliveryOptionValidError' | translate}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="checkbox" name="checkcustom" ng-model="shipment.checkCustomInfo" ng-change="CustomTermAndCondition()" />
+                                                By filling in the Customs Signature this is agreeing all information is true
+                                                and correct for customs clearance purpose.
+                                                FRAYTE Logistics Ltd shall not be held responsible for any issue or delay this
+                                                may cause to the shipment.                                            
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 schedulePickup">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-heading">{{'serviceoptn_SchedulePickup' | translate}}</div>
+                        <div class="panel-body">
+                            <div class="row vdivide">
+                                <div class="col-sm-6">
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.contactName.$invalid &&
+                                                         (ShipmentForm.contactName.$dirty || submitted) }">
+                                        <label class="control-label" for="contactName">{{'Contact' | translate}}</label>
+                                        <input type="text" id="contactName" name="contactName" ng-readonly="checked" ng-model="shipment.ShipmentPickupContactName" class="form-control" placeholder="{{'ContactPlaceholder' | translate}}" required />
+
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.contactName.$invalid &&
+                                            (ShipmentForm.contactName.$dirty || submitted)">
+                                            {{'ContactValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.contactPhoneNumber.$invalid && (ShipmentForm.contactPhoneNumber.$dirty || submitted) ||
+                                                               (!ShipmentForm.contactPhoneNumber.$invalid && ShipmentForm.pickupContactPhoneCode.$invalid &&
+                                                                (ShipmentForm.pickupContactPhoneCode.$dirty || submitted))}">
+                                        <label class="control-label" for="pickupContactPhoneCode">{{'serviceoptn_ContactPhoneNumber' | translate}}</label>
+                                        <div>
+                                            <div class="countryCodeLeft defaultCursor">
+                                                <select id="pickupContactPhoneCode" name="pickupContactPhoneCode" ng-disabled="checked"
+                                                        ng-model="shipment.ShipmentPickupContactPhoneNumberCode" ng-change="PickupAddressCountry(shipment.ShipmentPickupContactPhoneNumberCode)"
+                                                        ng-options="countryPhoneCode.Name + ' - (+' + countryPhoneCode.PhoneCode + ')' for countryPhoneCode in countryPhoneCodes | orderBy:'Name' track by '(+' + countryPhoneCode.PhoneCode + ')'"
+                                                        class="form-control" required>
+                                                    <option value="" disabled selected>{{'CountryCodePlaceholder' | translate}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="countryCodeRight">
+                                                <input type="text" id="contactPhoneNumber" name="contactPhoneNumber" ng-readonly="checked" ng-model="shipment.ShipmentPickupContactPhoneNumber" class="form-control"
+                                                       placeholder="{{'serviceoptn_ContactPhoneNumberPlaceHolder' | translate}}" only-numeric required />
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.contactPhoneNumber.$invalid &&
+                                            (ShipmentForm.contactPhoneNumber.$dirty || submitted)">
+                                            {{'serviceoptn_ContactPhoneNumberValidError' | translate}}
+                                        </span>
+                                        <span class="help-block has-error"
+                                              ng-show="!ShipmentForm.contactPhoneNumber.$invalid && ShipmentForm.pickupContactPhoneCode.$invalid &&
+                                            (ShipmentForm.pickupContactPhoneCode.$dirty || submitted)">
+                                            {{'CountryCodeValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.address.$invalid &&
+                                                         (ShipmentForm.address.$dirty || submitted) }">
+                                        <label class="control-label" for="address">{{'Address' | translate}}</label>
+                                        <input type="text" id="address" name="address" ng-readonly="checked" ng-model="shipment.PickupAddress.Address" class="form-control" placeholder="{{'AddressPlaceholder' | translate}}" required />
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.address.$invalid &&
+                                            (ShipmentForm.address.$dirty || submitted)">
+                                            {{'AddressValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="address2">{{'Address2' | translate}}</label>
+                                        <input type="text" id="address2" name="address2" ng-readonly="checked" ng-model="shipment.PickupAddress.Address2" class="form-control" placeholder="{{'Address2' | translate}}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="address3">{{'Address3' | translate}}</label>
+                                        <input type="text" id="address3" name="address3" ng-readonly="checked" ng-model="shipment.PickupAddress.Address3" class="form-control" placeholder="{{'Address3' | translate}}" />
+                                    </div>
+                                    <div ng-if="SetShipperReceiverState(shipment.PickupAddress.Country.Code,'zip')" class="form-group" ng-class="{ 'has-error': ShipmentForm.postalCode.$invalid &&
+                                                         (ShipmentForm.postalCode.$dirty || submitted) }">
+                                        <label class="control-label" for="postalCode">{{'PostalCode' | translate}}</label>
+                                        <input type="text" id="postalCode" name="postalCode" ng-readonly="checked" ng-model="shipment.PickupAddress.Zip" class="form-control" placeholder="{{'PostalCodePlaceholder' | translate}}" required />
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.postalCode.$invalid &&
+                                            (ShipmentForm.postalCode.$dirty || submitted)">
+                                            {{'PostalCodeValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.city.$invalid &&
+                                                         (ShipmentForm.city.$dirty || submitted) }">
+                                        <label class="control-label" for="city">{{'City' | translate}}</label>
+                                        <input type="text" id="city" name="city" ng-model="shipment.PickupAddress.City" ng-readonly="checked"
+                                               only-alphabets class="form-control" placeholder="{{'CityPlaceholder' | translate}}" required />
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.city.$invalid &&
+                                            (ShipmentForm.city.$dirty || submitted)">
+                                            {{'CityValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div ng-if="SetShipperReceiverState(shipment.PickupAddress.Country.Code,'state')" class=" form-group" ng-class="{ 'has-error': ShipmentForm.state.$invalid &&
+                                                         (ShipmentForm.state.$dirty || submitted) }">
+                                        <label class="control-label" for="state">{{'State' | translate}}</label>
+                                        <input type="text" id="state" name="state" ng-model="shipment.PickupAddress.State" ng-readonly="checked"
+                                               only-alphabets class="form-control" placeholder="{{'StatePlaceholder' | translate}}" ng-required="SetReceiverState(shipment.ShipperAddress.Country.Code)" />
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.state.$invalid &&
+                                            (ShipmentForm.state.$dirty || submitted)">
+                                            {{'StateValidationError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.country.$invalid &&
+                                                         (ShipmentForm.country.$dirty || submitted) }">
+                                        <label class="control-label" for="country">{{'Country' | translate}}</label>
+                                        <div class="defaultCursor">
+                                            <select id="country" name="country" ng-disabled="checked"
+                                                    ng-model="shipment.PickupAddress.Country" ng-change="PickUpCustomInfo(shipment.PickupAddress.Country)"
+                                                    ng-options="Country.Name for Country in countries track by Country.CountryId"
+                                                    class="form-control" required>
+                                                <option value="" disabled selected>{{'CountrySelectedOption' | translate}}</option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.country.$invalid &&
+                                            (ShipmentForm.country.$dirty || submitted)">
+                                                {{'CountryValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" ng-model="shipment.OtherPickupAddress" ng-change="OtherPickupAddress(shipment.OtherPickupAddress)" /> {{'OtherPickupAddress' | translate}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.locationType.$invalid &&
+                                                         (ShipmentForm.locationType.$dirty || submitted) }">
+                                        <label class="control-label" for="locationType">{{'Shipment' | translate}} {{'PickUp' | translate}} {{'serviceoptn_LocationType' | translate}}</label>
+                                        <select id="locationType" name="locationType"
+                                                ng-model="shipment.LocationType"
+                                                ng-options="item.name as item.name for item in LocationType" class="form-control" required>
+                                            <option value="" disabled selected>{{'Shipment' | translate}} {{'PickUp' | translate}} {{'serviceoptn_LocationType' | translate}} {{'Required' | translate}}</option>
+                                        </select>
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.locationType.$invalid &&
+                                            (ShipmentForm.locationType.$dirty || submitted)">
+                                            {{'Shipment' | translate}} {{'PickUp' | translate}} {{'serviceoptn_LocationTypeValidError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.specialInstracutions.$invalid &&
+                                                         (ShipmentForm.specialInstracutions.$dirty || submitted) }">
+                                        <label class="control-label" for="specialInstracutions">{{'Special' | translate}} {{'PickUp' | translate}} {{'Instruction' | translate}}</label>
+                                        <textarea id="specialInstracutions" name="specialInstracutions" ng-model="shipment.SpecialInstruction" class="form-control"
+                                                  placeholder="{{'Special' | translate}} {{'PickUp' | translate}} {{'Instruction' | translate}}"></textarea>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.exportType.$invalid &&
+                                                         (ShipmentForm.exportType.$dirty || submitted) }">
+                                        <label class="control-label" for="exportType">{{'ShipmentViaFrayteWarehouse' | translate}} <span class="glyphicon glyphicon-question-sign" style="font-size:17px;" tooltip-placement="top" tooltip="{{'shipmentViaTooltip' | translate}}"></span></la></span></label>
+                                        <select id="exportType" name="exportType"
+                                                ng-model="shipment.ExportType" ng-change="changeValue(shipment.ExportType)"
+                                                class="form-control" required>
+                                            <option value="Import" selected>{{'No' | translate}}</option>
+                                            <option value="Export">{{'Yes' | translate}}</option>
+                                        </select>
+                                        <span class="help-block has-error" ng-show="ShipmentForm.exportType.$invalid &&
+                                            (ShipmentForm.exportType.$dirty || submitted)">
+                                            {{'shipmentViaValidError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div ng-if="shipment.ExportType === 'Export'" class="form-group" ng-class="{ 'has-error': ShipmentForm.warehouse.$invalid &&
+                                                         (ShipmentForm.warehouse.$dirty || submitted) }">
+                                        <label class="control-label" for="warehouse">{{'Warehouse' | translate}}</label>
+                                        <select id="warehouse" name="warehouse"
+                                                ng-model="shipment.Warehouse" ng-change="selectCustomInfo(shipment.Warehouse)"
+                                                ng-options="Warehouse.WarehouseName for Warehouse in warehouses track by Warehouse.WarehouseId"
+                                                class="form-control" required>
+                                            <option value="" disabled selected>{{'WarehousePlaceholder' | translate}}</option>
+                                        </select>
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.warehouse.$invalid &&
+                                            (ShipmentForm.warehouse.$dirty || submitted)">
+                                            {{'WarehouseValidError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div ng-if="shipment.ExportType === 'Export'" class="form-group" ng-class="{ 'has-error': ShipmentForm.transporttowarehouse.$invalid &&
+                                                         (ShipmentForm.transporttowarehouse.$dirty || submitted) }">
+                                        <label class="control-label" for="transporttowarehouse">{{'Method' | translate}} {{'Of' | translate}} {{'serviceoptn_TransportWarehouse' | translate}}</label>
+                                        <select id="transporttowarehouse" name="transporttowarehouse"
+                                                ng-model="shipment.TransportToWarehouse" ng-change="SelectOption(shipment.TransportToWarehouse)"
+                                                ng-options="TransportToWarehouse.Name for TransportToWarehouse in transportToWarehouses track by TransportToWarehouse.TransportToWarehouseId"
+                                                class="form-control" required>
+                                            <option value="" disabled selected>{{'Method' | translate}} {{'Of' | translate}} {{'serviceoptn_TransportWarehouse' | translate}} {{'Required' | translate}}</option>
+                                        </select>
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.transporttowarehouse.$invalid &&
+                                            (ShipmentForm.transporttowarehouse.$dirty || submitted)">
+                                            {{'Method' | translate}} {{'Of' | translate}}  {{'serviceoptn_TransportWarehouseValidError' | translate}}
+                                        </span>
+                                    </div>
+                                    <div ng-if="onlyShowTrackingNumber && shipment.ExportType === 'Export'">
+
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.couriertranportexportType.$invalid &&
+                                                         (ShipmentForm.couriertranportexportType.$dirty || submitted) }">
+                                            <label class="control-label" for="couriertranportexportType">{{'Transport' | translate}} {{'To' | translate}} {{'Warehouse' | translate}} {{'Courier' | translate}}</label>
+                                            <select id="couriertranportexportType" name="couriertranportexportType"
+                                                    ng-model="shipment.TransportToWareHouseCarrier" ng-change="showOtherCourier(shipment.TransportToWareHouseCarrier)"
+                                                    ng-options="courierExportType.name as courierExportType.name for courierExportType in CourierExportTypes"
+                                                    class="form-control" required>
+                                                <option value="" disabled selected>{{'Transport' | translate}} {{'To' | translate}} {{'Warehouse' | translate}} {{'Courier' | translate}} {{'Required' | translate}}</option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.couriertranportexportType.$invalid &&
+                                            (ShipmentForm.couriertranportexportType.$dirty || submitted)">
+                                                {{'Transport' | translate}} {{'To' | translate}} {{'Warehouse' | translate}} {{'Courier' | translate}} {{'RequiredOnly' | translate}}
+                                            </span>
+                                        </div>
+
+                                        <div ng-if="otherCourierTranport">
+                                            <div class="form-group" ng-class="{ 'has-error': ShipmentForm.othercouriertranportexportType.$invalid &&
+                                                         (ShipmentForm.othercouriertranportexportType.$dirty || submitted) }">
+
+                                                <label class="control-label" for="othercouriertranportexportType">{{'Other' | translate}} {{'Courier' | translate}} {{'Service' | translate}}</label>
+                                                <input type="text" id="othercouriertranportexportType" ng-model="shipment.OtherTransportToWareHouseCarrier" class="form-control" name="othercouriertranportexportType" placeholder="{{'Other' | translate}} {{'Courier' | translate}} {{'Service' | translate}} {{'Required' | translate}}" ng-required="otherCourierTranport" />
+                                                <span class="help-block has-error"
+                                                      ng-show="ShipmentForm.othercouriertranportexportType.$invalid &&
+                                                (ShipmentForm.othercouriertranportexportType.$dirty || submitted)">
+                                                    {{'Other' | translate}} {{'Courier' | translate}} {{'Service' | translate}} {{'RequiredOnly' | translate}}
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.trackingNumber.$invalid &&
+                                                         (ShipmentForm.trackingNumber.$dirty || submitted) }">
+                                            <label class="control-label" for="trackingNumber">{{'TrackingNumber' | translate}}</label>
+                                            <input type="text" id="trackingNumber" ng-model="shipment.TrackingNumber" class="form-control" name="trackingNumber" placeholder="{{'TrackingNumber' | translate}}  {{'Required' | translate}}" ng-required="onlyShowTrackingNumber && shipment.ExportType === 'Export'" />
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.trackingNumber.$invalid &&
+                                                (ShipmentForm.trackingNumber.$dirty || submitted)">
+                                                {{'TrackingNumber' | translate}} {{'RequiredOnly' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div ng-if="onlyShowVehicleRegNo && shipment.ExportType === 'Export'">
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.vehicleRegNo.$invalid &&
+                                                         (ShipmentForm.vehicleRegNo.$dirty || submitted) }">
+                                            <label class="control-label" for="vehicleRegNo">{{'VehicleRegistrationNumber' | translate}}</label>
+                                            <input type="text" class="form-control" ng-model="shipment.VehicleRegNo" id="vehicleRegNo" name="vehicleRegNo" placeholder="{{'VehicleRegistrationNumber' | translate}}" ng-required="onlyShowVehicleRegNo && shipment.ExportType === 'Export'" />
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.vehicleRegNo.$invalid &&
+                                                (ShipmentForm.vehicleRegNo.$dirty || submitted)">
+                                                {{'VehicleRegistrationNumber' | translate}} {{'RequiredOnly' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div ng-if="onlyShowDateTime && shipment.ExportType === 'Export'">
+                                        <div class="row">
+                                            <div class="col-sm-8 form-group" ng-class="{ 'has-error': ShipmentForm.pickupDate.$invalid &&
+                                                         (ShipmentForm.pickupDate.$dirty || submitted) }">
+
+                                                <label class="control-label" for="pickupDate">{{'serviceoptn_PickupDate' | translate}} <b> {{'Hours24' | translate}}</b>:</label>
+                                                <p class="input-group">
+                                                    <input type="text" id="pickupDate" name="pickupDate" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy" ng-model="shipment.PickupDate" is-open="status.opened"
+                                                           ng-required="true" close-text="Close" ng-click="openCalender($event)" placeholder="{{'DatePlaceholder' | translate}}" />
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                    </span>
+                                                </p>
+                                                <span class="help-block has-error"
+                                                      ng-show="ShipmentForm.pickupDate.$error.required &&
+                                                (ShipmentForm.pickupDate.$dirty || submitted)">
+                                                    {{'serviceoptn_PickupDateValidError' | translate}}
+                                                </span>
+                                                <span class="help-block has-error"
+                                                      ng-show="ShipmentForm.pickupDate.$invalid && !ShipmentForm.pickupDate.$error.required &&
+                                                (ShipmentForm.pickupDate.$dirty || submitted)">
+                                                    {{'serviceoptn_PickupDateInvalid' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-4 form-group" ng-class="{ 'has-error': (ShipmentForm.myShipmentReady.$invalid || ShipmentForm.myShipmentReady.$error.pattern) &&
+                                                     (ShipmentForm.myShipmentReady.$dirty || submitted) }">
+                                                <label class="control-label" for="myShipmentReady" style="visibility:hidden;">{{'ShipmentReadyBy' | translate}}</label>
+                                                <input type="text"
+                                                       class="form-control input-sm"
+                                                       placeholder="{{'TimePlaceholder' | translate}}"
+                                                       name="myShipmentReady"
+                                                       ng-model="shipment.ShipmentReadyBy"
+                                                       ui-mask="99:99"
+                                                       ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                                <span class="help-block has-error"
+                                                      ng-show="ShipmentForm.myShipmentReady.$invalid && !ShipmentForm.myShipmentReady.$error.pattern && (ShipmentForm.myShipmentReady.$dirty || submitted)">
+                                                    {{'TimeValidationError' | translate}}
+                                                </span>
+                                                <span class="help-block has-error"
+                                                      ng-show="ShipmentForm.workingStartTime.$error.pattern &&
+                                                (ShipmentForm.workingStartTime.$dirty || submitted)">
+                                                    {{'TimeNotValid' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.timeZone.$invalid &&
+                                (ShipmentForm.timeZone.$dirty || submitted) }">
+                                            <label class="control-label" for="timeZone">{{'TimeZone' | translate}}</label>
+                                            <div class="defaultCursor">
+                                                <select id="timeZone" name="timeZone" ng-disabled="checked"
+                                                        ng-model="shipment.Timezone" ng-change="SelectPickupCountry(shipment.Timezone)"
+                                                        ng-options="TimeZone.OffsetShort + ' - ' + TimeZone.Name  for TimeZone in timezones | orderBy:'Offset' track by TimeZone.TimezoneId"
+                                                        class="form-control" required>
+                                                    <option value="" disabled selected>{{'TimeZoneSelectedOption' | translate}}</option>
+                                                </select>
+                                            </div>
+                                            <span class="help-block has-error"
+                                                  ng-show="ShipmentForm.timeZone.$invalid &&
+                                                    (ShipmentForm.timeZone.$dirty || submitted)">
+                                                {{'TimeZoneValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <div ng-class="{ 'container': !isLogin }">
+        <div ng-class="{ 'col-sm-12': isLogin }">
+            <div class="left-part">
+                <a href="" ng-click="StepBack(shipment)" class="secondary-btn">{{'Previous' | translate}}</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="CancelForm()" class="secondary-btn">{{'Cancel' | translate}}</a>
+            </div>
+            <div class="right-part">
+                <button type="submit" ng-click="submitted=true" class="btn primary-btn">{{'Next' | translate}}</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</form>
+<br /><br />

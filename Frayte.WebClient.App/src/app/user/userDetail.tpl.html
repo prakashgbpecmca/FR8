@@ -1,0 +1,531 @@
+﻿<form name="UserForm" ng-submit="SaveUserDetail(UserForm.$valid && !isEmailRegisered, userDetail)" novalidate>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title underline">{{'UserDetail' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'BasicDetail' | translate}}</div>
+            <div class="panel-body">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.country.$invalid &&
+                                        (UserForm.country.$dirty || submitted) }">
+                        <label class="control-label" for="country">{{'Country' | translate}} <span class="redColor">*</span></label>
+                        <div id="Xe">
+                            <select id="country" name="country"
+                                    ng-model="userDetail.Country" ng-change="SetCountryPhoneCodeIssue(userDetail.Country)"
+                                    ng-options="Country.Name disable when Country.Disabled === true for Country in Countries | orderBy:'OrderNumber' track by Country.CountryId"
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.country.$invalid &&
+                                        (UserForm.country.$dirty || submitted)">
+                                {{'CountryValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.contact.$invalid &&
+                                                         (UserForm.contact.$dirty || submitted) }">
+                        <div>
+                            <label class="control-label" for="contact">{{'Contact' | translate}} <span class="redColor">*</span></label>
+                        </div>
+                        <div>
+                            <input type="text" id="contact" name="contact" capitalize-first ng-model="userDetail.ContactName" class="form-control fontsize12" only-Alphabets
+                                   placeholder="{{'ContactPlaceholder' | translate}}" required />
+                        </div>
+                        <div class="clearfix"></div>
+                        <span class="help-block has-error"
+                              ng-show="UserForm.contact.$invalid &&
+                        (UserForm.contact.$dirty || submitted)">
+                            {{'ContactValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.nickName.$invalid &&
+                                                         (UserForm.nickName.$dirty || submitted) }">
+                        <div>
+                            <label class="control-label" for="nickName">{{'Short_Name' | translate}} <span class="redColor">*</span></label>
+                        </div>
+                        <div>
+                            <input type="text" id="nickName" name="nickName" capitalize-first ng-model="userDetail.ShortName" only-Alphabets
+                                   placeholder="{{'Short_Name' | translate}} ({{'Required' | translate}})" class="form-control fontsize12" required />
+                        </div>
+                        <div class="clearfix"></div>
+                        <span class="help-block has-error"
+                              ng-show="UserForm.nickName.$invalid &&
+                                            (UserForm.nickName.$dirty || submitted)">
+                            {{'ShortNameValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': (UserForm.email.$invalid || (!UserForm.email.$invalid && isEmailRegisered)) &&
+                                                         (UserForm.email.$dirty || submitted) }">
+                        <div>
+                            <label class="control-label" for="email">{{'Email' | translate}} <span class="redColor">*</span></label>
+                        </div>
+                        <div class="col-sm-11 paddingboth">
+                            <input type="email" id="email" name="email" ng-model="userDetail.Email"
+                                   ng-blur="checkEmailValidity(UserForm.email.$invalid)"
+                                   ng-disabled="userDetail.UserId > 0" class="form-control fontsize12" placeholder="{{'EmailPlaceholder' | translate}}" required />
+                        </div>
+                        <div class="col-sm-1 paddingboth text-right uploadfile">
+                            <a href="" class="padding7px" popover-placement="auto" uib-popover="User email is not editable." popover-trigger="'outsideClick'">
+                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <span class="help-block has-error"
+                              ng-show="UserForm.email.$error.required &&
+                        (UserForm.email.$dirty || submitted)">
+                            {{'EmailValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="UserForm.email.$error.email &&
+                        (UserForm.email.$dirty || submitted)">
+                            {{'EmailNotValid' | translate}}
+                        </span>
+                        <span class="help-block has-error" ng-show="isEmailRegisered && !UserForm.email.$invalid &&
+                                                         (UserForm.email.$dirty || submitted)">
+                            {{'Email_Is_Already_Registered' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.skype.$invalid &&
+                                                         (UserForm.skype.$dirty || submitted) }">
+                        <div>
+                            <label class="control-label" for="skype">{{'Skype_No' | translate}}. <span class="redColor">*</span></label>
+                        </div>
+                        <div>
+                            <input type="text" id="skype" name="skype" ng-model="userDetail.Skype" class="form-control fontsize12"
+                                   placeholder="{{'SkypePlaceHolder' | translate}}" required />
+                        </div>
+                        <div class="clearfix"></div>
+                        <span class="help-block has-error"
+                              ng-show="UserForm.skype.$invalid &&
+                        (UserForm.skype.$dirty || submitted)">
+                            {{'SkypeValidError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.telephone.$invalid && (UserForm.telephone.$dirty || submitted) ||
+                                                               (!UserForm.telephone.$invalid && UserForm.telephoneCode.$invalid &&
+                                                                (UserForm.telephoneCode.$dirty || submitted))}">
+                        <label class="control-label " for="telephoneCode">{{'Telephone' | translate}} {{'No' | translate}}. <span class="redColor">*</span></label>
+                        <div class="col-sm-12 paddingboth">
+                            <div class="col-sm-4 paddingleft">
+                                <input type="text" ng-model="code" class="form-control fontsize12" readonly />
+                            </div>
+                            <div class="col-sm-8 paddingboth">
+                                <input type="text" id="telephone" name="telephone" ng-model="userDetail.TelephoneNo"
+                                       class="form-control fontsize12" only-numeric placeholder="{{'TelephonePlaceholder' | translate}}" required />
+                            </div>
+                            <div class="clearfix"></div>
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.telephone.$invalid &&
+                                            (UserForm.telephone.$dirty || submitted)">
+                                {{'TelephoneValidationError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="!UserForm.telephone.$invalid && UserForm.telephoneCode.$invalid &&
+                                            (UserForm.telephoneCode.$dirty || submitted)">
+                                {{'CountryCodeValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label " for="mobileCode">{{'Mobile' | translate}} {{'No' | translate}}.</label>
+                        <div class="col-sm-12 paddingboth">
+                            <div class="col-sm-4 paddingleft">
+                                <input type="text" ng-model="code" class="form-control fontsize12" readonly />
+                            </div>
+                            <div class="col-sm-8 paddingboth">
+                                <input type="text" id="mobile" name="mobile" ng-model="userDetail.MobileNo" class="form-control fontsize12"
+                                       placeholder="{{'MobilePlaceholder' | translate}}" only-numeric />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': (UserForm.workingStartTime.$invalid || UserForm.workingStartTime.$error.pattern) &&
+                                                     (UserForm.workingStartTime.$dirty || submitted) }">
+                            <label class="control-label" for="workingStartTime">{{'OfficeStartTime' | translate}} <b> {{'Hours24' | translate}}</b></label>
+                            <input type="text"
+                                   class="form-control input-sm fontsize12"
+                                   placeholder="{{'TimePlaceholder' | translate}}"
+                                   name="workingStartTime"
+                                   ng-model="userDetail.WorkingStartTime"
+                                   ui-mask="99:99" ng-change="ValidStartTime(userDetail.WorkingStartTime)"
+                                   required style="width: 60px;" />
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.workingStartTime.$invalid && !UserForm.workingStartTime.$error.pattern && (UserForm.workingStartTime.$dirty || submitted)">
+                                {{'TimeValidationError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.workingStartTime.$error.pattern &&
+                                                (UserForm.workingStartTime.$dirty || submitted)">
+                                {{'TimeNotValid' | translate}}
+                            </span>
+                        </div>
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': (UserForm.workingEndTime.$invalid || UserForm.workingEndTime.$error.pattern) &&
+                                                     (UserForm.workingEndTime.$dirty || submitted) }">
+                            <label class="control-label" for="workingEndTime">{{'OfficeEndTime' | translate}} <b> {{'Hours24' | translate}}</b></label>
+                            <input type="text"
+                                   class="form-control input-sm fontsize12"
+                                   placeholder="{{'TimePlaceholder' | translate}}"
+                                   name="workingEndTime"
+                                   ng-model="userDetail.WorkingEndTime"
+                                   ui-mask="99:99" ng-change="ValidEndTime(userDetail.WorkingEndTime)"
+                                   required style="width: 60px;" />
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.workingEndTime.$invalid && !UserForm.workingEndTime.$error.pattern && (UserForm.workingEndTime.$dirty || submitted)">
+                                {{'TimeValidationError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.workingEndTime.$error.pattern &&
+                                                (UserForm.workingEndTime.$dirty || submitted)">
+                                {{'TimeNotValid' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.workingWeekDay.$invalid &&
+                                (UserForm.workingWeekDay.$dirty || submitted) }">
+                        <label class="control-label" for="workingWeekDay">{{'Working' | translate}} {{'Weekdays' | translate}}</label>
+                        <div>
+                            <select id="workingWeekDay" name="workingWeekDay"
+                                    ng-model="userDetail.WorkingWeekDay"
+                                    ng-options="WorkingWeekDay.Description for WorkingWeekDay in WorkingWeekDays | orderBy:'Description' track by WorkingWeekDay.WorkingWeekDayId"
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'WeekdaysSelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.workingWeekDay.$invalid &&
+				                    (UserForm.workingWeekDay.$dirty || submitted)">
+                                {{'WeekdaysValidError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.frayteRole.$invalid &&
+                                                      (UserForm.frayteRole.$dirty || submitted) }">
+                        <div>
+                            <label class="control-label" for="frayteRole">{{'Frayte' | translate}} {{'System' | translate}} {{'Role' | translate}} <span class="redColor">*</span></label>
+                        </div>
+                        <div>
+                            <select id="frayteRole" name="frayteRole"
+                                    ng-model="userDetail.RoleId"
+                                    ng-options="frayteRole.RoleId as frayteRole.DisplayName for frayteRole in frayteRoles | orderBy:'Name' "
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'RoleSelectedOption' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <span class="help-block has-error"
+                              ng-show="UserForm.frayteRole.$invalid &&
+                        (UserForm.frayteRole.$dirty || submitted)">
+                            {{'RoleValidError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.timeZone.$invalid &&
+                                                     (UserForm.timeZone.$dirty || submitted) }">
+                        <label class="control-label" for="timeZone">{{'TimeZone' | translate}} <span class="redColor">*</span></label>
+                        <div id="Xe">
+                            <select id="timeZone" name="timeZone"
+                                    ng-model="userDetail.Timezone" ng-change="SetCountryPhoneCodeIssue(userDetail.Timezone)"
+                                    ng-options="TimeZone.OffsetShort + ' - ' + TimeZone.Name  for TimeZone in timezones | orderBy:'Offset' track by TimeZone.TimezoneId"
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'TimeZoneSelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.timeZone.$invalid && (UserForm.timeZone.$dirty || submitted)">
+                                {{'TimeZoneValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.fraytePosition.$invalid &&
+                                                      (UserForm.fraytePosition.$dirty || submitted) }">
+                        <div>
+                            <label class="control-label" for="fraytePosition">{{'Position' | translate}} <span class="redColor">*</span></label>
+                        </div>
+                        <div>
+                            <input capitalize:first type="text" id="fraytePosition" name="fraytePosition" ng-model="userDetail.Position"
+                                   class="form-control fontsize12" placeholder="{{'PositionPlaceHolder' | translate}}" required />
+                        </div>
+                        <div class="clearfix"></div>
+                        <span class="help-block has-error"
+                              ng-show="UserForm.fraytePosition.$invalid &&
+                        (UserForm.fraytePosition.$dirty || submitted)">
+                            {{'PositionValidError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--Associate Frayte User-->
+        <div class="panel panel-default">
+            <div class="panel-heading pointer" ng-click="ShowHideFrayteuserPanel()">
+                <div class="floatLeft"><span><i ng-class="{'fa fa-plus-square-o' : !ShowFrayteuserPanel, 'fa fa-minus-square-o' : ShowFrayteuserPanel}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;"></i></span><span>{{'Manager' | translate}} {{'Detail' | translate}}</span></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" ng-if="ShowFrayteuserPanel">
+                <div class="associateFrayteTable">
+                    <div>
+                        <div class="colHeader width18-4">{{'Type' | translate}}</div>
+                        <div class="colHeader width18-4">{{'Name' | translate}}</div>
+                        <div class="colHeader width18-4">{{'Email' | translate}}</div>
+                        <div class="colHeader width18-4">{{'TelephoneNo' | translate}}</div>
+                        <div class="colHeader width18-4">{{'WorkingHrs' | translate}}</div>
+                        <div class="colHeader width8">{{'Remove' | translate}}</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <div class="colCell  width18-4"><input type="text" placeholder="{{'Manager' | translate}}" readonly /></div>
+                            <div class="colCell  width18-4 container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="text" ng-model="userDetail.ManagerUser" placeholder="{{'LineManagerPlaceHolder' | translate}}"
+                                               uib-typeahead="frayteUser as frayteUser.ContactName for frayteUser in GetUsers($viewValue)"
+                                               uib-typeahead-min-length="3" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="colCell width18-4"><input type="text" ng-model="userDetail.ManagerUser.Email" placeholder="{{'Email' | translate}}" readonly /></div>
+                            <div class="colCell width18-4"><input type="text" ng-model="userDetail.ManagerUser.TelephoneNo" placeholder="{{'TelephoneNo' | translate}}" readonly /></div>
+                            <div class="colCell width18-4"><input type="text" ng-model="userDetail.ManagerUser.WorkingHours" placeholder="{{'WorkingHrs' | translate}}" readonly /></div>
+                            <div class="colCell width8" style="padding: 7px 25px !important;"><!--<button ng-disabled="userDetail.ManagerUser === null || userDetail.ManagerUser.UserId === null || userDetail.ManagerUser.UserId === 0" type="button" class="btn-simple btn-sm btn-danger" ng-click="ManagerDetailEmpty(userDetail.ManagerUser)">--><i class="fa fa-bitbucket redColor pointer" ng-disabled="userDetail.ManagerUser === null || userDetail.ManagerUser.UserId === null || userDetail.ManagerUser.UserId === 0" ng-click="ManagerDetailEmpty(userDetail.ManagerUser)" aria-hidden="true" style="font-size:20px !important;"></i> <!--{{'Remove' | translate}}--><!--</button>--></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--OfficeAddress-->
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'Office' | translate}} {{'Address' | translate}}</div>
+            <div class="panel-body">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.address.$invalid &&
+                                                         (UserForm.address.$dirty || submitted) }">
+                        <label class="control-label" for="address">{{'Address_1' | translate}}<span class="redColor">*</span></label>
+                        <div>
+                            <textarea cols="1" rows="2" id="address" name="address" capitalize-first ng-model="userDetail.UserAddress.Address" class="form-control fontsize12"
+                                      placeholder="{{'AddressPlaceholder' | translate}}" required></textarea>
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.address.$invalid &&
+                                            (UserForm.address.$dirty || submitted)">
+                                {{'AddressValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="address2">{{'Address_2' | translate}}</label>
+                        <div>
+                            <textarea cols="1" rows="2" id="address2" name="address2"
+                                      capitalize-first ng-model="userDetail.UserAddress.Address2"
+                                      class="form-control fontsize12" placeholder="{{'Address2' | translate}}"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="address3">{{'Address3' | translate}}</label>
+                        <div>
+                            <textarea cols="1" rows="2" id="address3" name="address3" capitalize-first
+                                      ng-model="userDetail.UserAddress.Address3"
+                                      class="form-control fontsize12" placeholder="{{'Address3' | translate}}"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.city.$invalid &&
+                                                         (UserForm.city.$dirty || submitted) }">
+                        <label class="control-label" for="city">{{'City' | translate}} <span class="redColor">*</span></label>
+                        <div>
+                            <input type="text" id="city" name="city" ng-model="userDetail.UserAddress.City"
+                                   only-alphabets capitalize-first
+                                   class="form-control fontsize12" placeholder="{{'CityPlaceholder' | translate}}" required />
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.city.$invalid &&
+                                            (UserForm.city.$dirty || submitted)">
+                                {{'CityValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="suburb">{{'Suburb' | translate}}</label>
+                        <div>
+                            <input type="text" id="suburb" name="suburb" capitalize-first
+                                   ng-model="userDetail.UserAddress.Suburb"
+                                   class="form-control fontsize12" placeholder="{{'Suburb' | translate}}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" ng-if="customerOptionalField('State')">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.state.$invalid &&
+                                                         (UserForm.state.$dirty || submitted) }">
+                        <label class="control-label" for="state">{{'State' | translate}} <span class="redColor">*</span></label>
+                        <div>
+                            <input type="text" id="state" name="state" ng-disabled="setStateDisable" ng-model="userDetail.UserAddress.State" class="form-control fontsize12"
+                                   only-alphabets
+                                   placeholder="{{'StatePlaceholder' | translate}}" ng-required="!setStateDisable" />
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.state.$invalid &&
+                                            (UserForm.state.$dirty || submitted)">
+                                {{'StateValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" ng-if="customerOptionalField('PostCode')">
+                    <div class="form-group" ng-class="{ 'has-error': UserForm.postalCode.$invalid &&
+                                                         (UserForm.postalCode.$dirty || submitted) }">
+                        <label class="control-label" for="postalCode">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+                        <div>
+                            <input type="text" id="postalCode" name="postalCode" ng-model="userDetail.UserAddress.Zip" class="form-control fontsize12" ng-disabled="setZipDisable"
+                                   placeholder="{{'PostalCodePlaceholder' | translate}}" ng-required="!setZipDisable" />
+                            <span class="help-block has-error"
+                                  ng-show="UserForm.postalCode.$invalid &&
+                                            (UserForm.postalCode.$dirty || submitted)">
+                                {{'PostalCodeValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--Special Permission-->
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'Special_Permission' | translate}}</div>
+            <div class="panel-body">
+                <div class="col-sm-12 paddingboth">
+                    <div class="col-sm-4">
+                        <div class="checkbox">
+                            <label>
+                                <input name="fuelupdate" type="checkbox" ng-model="userDetail.IsFuelSurCharge"> {{'FuelSur_Update' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="checkbox">
+                            <label>
+                                <input name="currencyupdate" type="checkbox" ng-model="userDetail.IsCurrency"> {{'Currency_Update' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="userDetail.RoleId === 19">
+            <div class="form-group"></div>
+            <!--Special Permission-->
+            <div class="panel panel-default margin-bottom-none">
+                <div class="panel-heading">{{'Service_Options' | translate}}</div>
+                <div class="panel-body">
+                    <div class="col-sm-12 paddingboth">
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="fuelupdate" type="checkbox" ng-model="userDetail.IsDirectBooking"> 
+                                  {{'Direct_Booking' | translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="currencyupdate" type="checkbox" ng-model="userDetail.IsTradelaneBooking"> 
+                                    {{'Tradelane_Booking' | translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="currencyupdate" type="checkbox" ng-model="userDetail.IsBreakBulk">
+                                    {{'Breakbulk' | translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="currencyupdate" type="checkbox" ng-model="userDetail.IsExpressBooking">
+                                    {{'Express_Booking' | translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="currencyupdate" type="checkbox" ng-model="userDetail.IsECommerce">
+                                    {{'ECommerce_Booking' | translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="currencyupdate" type="checkbox" ng-model="userDetail.IsWarehouseTransport">
+                                    {{'Warehouse_Supprt' | translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div>
+            <span class="floatLeft">
+                <a href="" ng-click="UserGoBack()" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</a>
+            </span>
+            <div class="floatRight">
+                <button type="submit" ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,341 @@
+﻿<div ng-hide="sessionExpired" >
+    <!--<div ng-show="mawbUplaoded" class="panel-body" style="background: white;margin-top: 1px;">-->
+    <div ng-show="mawbUplaoded" class="panel-body marginTB-5" id="mawb-completed">
+        <div>
+            {{'Already_Uploaded_MAWB' | translate}}
+            {{'Please_Click' | translate}} <a href="{{'http://' + url}}" target="_blank">{{url}}</a> {{'Queries_Regarding_Shipment' | translate}}
+        </div>
+    </div>
+    <div class="panel-body marginTB-5" style="background: white;margin-top: 1px;">
+    <form name="MawbForm" ng-submit="SaveMawbAllocation(MawbForm.$valid)" novalidate>
+        <div class="modal-body">
+            <div class="col-sm-12 paddingboth form-group">     
+                <div>
+                    <!--frayte ref no. code-->
+                    <div>
+                        <h3 class="control-label">
+                            {{'Frayte_ShipmentNo' | translate}}: {{MawbMainObj.FrayteNumber}}
+                        </h3>
+                        <hr />
+                    </div>
+                    <!--end-->
+                    <div class="clearfix"></div>
+                    <!--MAWB and Agent code-->
+                    <div>
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-class="{ 'has-error': MawbForm.mawb.$invalid &&
+                                                         (MawbForm.mawb.$dirty || submitted) }">
+                                <label class="control-label col-sm-3 paddingboth lineheight34" for="mawb">{{'MAWB_' | translate}} <span class="redColor">*</span></label>
+                                <div class="col-sm-8 paddingboth" ng-class="{'airline-three-digit-code':AirlineCode, '':!AirlineCode}">
+                                    <!--start airline code in input-->
+                                    <div ng-class="{'display-none': !AirlineCode , 'display-block': AirlineCode }"><div class="width150">{{AirlineCode}}</div></div>
+                                    <!--end-->
+                                      <input type="text" ng-readonly="mawbUplaoded" id="mawb" name="mawb" ng-model="MawbMainObj.MAWB" ui-mask="9999 9999" class="form-control mawb fontsize12" maxlength="9"
+                                           ng-required="!mawbUplaoded" />
+                                    <span class="help-block has-error"
+                                          ng-show="MawbForm.mawb.$invalid &&
+                                            (MawbForm.mawb.$dirty || submitted)">
+                                        {{'MAWB_Required' | translate}}
+                                    </span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!--end-->
+                        <!--upload code-->
+                        <div ng-hide="mawbUplaoded" class="col-sm-6 form-group clearfix paddingboth" ng-class="{ 'has-error': MawbForm.msdsBattery.$invalid &&
+                                                         (MawbForm.msdsBattery.$dirty || submitted) }">
+                                <label for="msdsBattery" id="msdsBatteryLabel" class="control-label col-sm-3 paddingboth lineheight34">{{'MAWB_Document' | translate}} <span class="redColor">*</span></label>
+                            <div class="col-sm-9 paddingboth">
+                                <div class="col-sm-8">
+                                    <input type="text" name="msdsBattery" id="msdsBattery" class="form-control" ng-model="MawbMainObj.MAWBFileName" required readonly />
+                                </div>
+                                <div class="col-sm-4 paddingboth">
+                                    <div class="button col-sm-12 paddingboth"
+                                         ng-model="msBatteryForm"
+                                         name="shipmentmsBatteryForm"
+                                         ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                         accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                          ngf-max-size="20MB"
+                                         ngf-select="WhileAddingMAWBDoc($files, $file, $event)">
+                                        <button type="button" class="btn-simple btn-save fontsize12 col-sm-12">
+                                            {{'Upload_MAWB' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class="help-block has-error col-sm-12"
+                                      ng-show="MawbForm.msdsBattery.$invalid &&
+                                            (MawbForm.msdsBattery.$dirty || submitted)">
+                                    {{'MAWB_Form_Required' | translate}}
+                                </span>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end-->
+                    </div>
+                    <div class="clearfix"></div>
+                    <div ng-repeat="Ary in MawbMainObj.List |orderBy : 'TradelaneShipmentAllocationId' track by $index" ng-init="packageform='tag'+$index">
+                        <div class="clearfix" ng-class="{ 'col-sm-12': ShipmentHandlerMethodId===1, 'col-sm-6':ShipmentHandlerMethodId===2 || ShipmentHandlerMethodId===4}">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{'Flight_Detail' | translate}}</div>
+                                <div class="panel-body">
+                                    <div class="col-sm-12 paddingboth clearfix">
+                                        <ng-form name="{{packageform}}">
+                                            <div class="col-sm-6">
+                                                <div ng-class="{ 'has-error': MawbForm[packageform].flight.$invalid &&
+                                                         (MawbForm[packageform].flight.$dirty || submitted) }">
+                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="mawb">{{'FlightNumber' | translate}} <span class="redColor">*</span></label>
+                                                    <div class="col-sm-8 paddingboth" ng-class="{'airline-three-digit-code': Ary.AirlineCode2 !== undefined && Ary.AirlineCode2 !== null &&  Ary.AirlineCode2 !== ''}">
+                                                        <!--start airline code in input-->
+                                                        <div ng-class="{'display-none': Ary.AirlineCode2 === undefined || Ary.AirlineCode2 === null ||  Ary.AirlineCode2 === '', 'display-block': Ary.AirlineCode2 !== undefined && Ary.AirlineCode2 !== null &&  Ary.AirlineCode2 !== ''}"><div class="width150">{{Ary.AirlineCode2}}</div></div>
+                                                        <!--end-->
+                                                        <input type="text" alpha-numeric id="flight" name="flight" ng-model="Ary.FlightNumber" ng-readonly="mawbUplaoded" class="form-control fontsize12 fix-input" maxlength="10"
+                                                               placeholder="{{'FlightNumber' | translate}} ({{'Required' | translate}})" required />
+                                                        <span class="help-block has-error"
+                                                              ng-show="MawbForm[packageform].flight.$invalid &&
+                                            (MawbForm[packageform].flight.$dirty || submitted)">
+                                                            {{'FlightNumber_Required' | translate}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div ng-class="{ 'has-error': MawbForm[packageform].airline.$invalid &&
+                                        (MawbForm[packageform].airline.$dirty || submitted) }">
+                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="agent">{{'Airline' | translate}} <span class="redColor">*</span></label>
+                                                    <div class="col-sm-8 paddingboth" id="Xe">
+                                                        <select id="airline" name="airline"  ng-change="ChangeAirlineCode(Ary, $index)"
+                                                                ng-model="Ary.AirlineId"  ng-disabled="mawbUplaoded"
+                                                                ng-options="Ar.AirlineId as Ar.AirLineName + ' - ' + Ar.AilineCode disable when Ar.Disabled === true for Ar in AirlineList"
+                                                                class="form-control fontsize12" required>
+                                                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Airline' | translate}} ({{'Required' | translate}})</option>
+                                                        </select>
+                                                        <span class="help-block has-error"
+                                                              ng-show="MawbForm[packageform].airline.$invalid &&
+                                  (MawbForm[packageform].airline.$dirty || submitted)">
+                                                            {{'Airline_Required' | translate}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div> 
+                                            <div class="col-sm-12 paddingboth"><hr /></div>
+                                            <div class="col-sm-12 paddingboth form-group">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group" ng-class="{ 'has-error': MawbForm[packageform].timeZone.$invalid &&
+                                                              (MawbForm[packageform].timeZone.$dirty || submitted) }">
+                                                        <label class="control-label col-sm-4 paddingboth margintop7" for="timeZone">{{'TimeZone' | translate}} <span class="redColor">*</span></label>
+                                                        <div class="col-sm-8 paddingboth">
+                                                            <div class="col-sm-12 paddingboth" id="Xe">
+                                                                <select id="timeZone" name="timeZone" ng-disabled="mawbUplaoded"
+                                                                        ng-model="Ary.Timezone"
+                                                                        ng-options="TimeZone as TimeZone.OffsetShort + ' - ' + TimeZone.Name  for TimeZone in timezones | orderBy:'Offset' track by TimeZone.TimezoneId"
+                                                                        class="form-control fontsize12" required>
+                                                                    <option value="" disabled selected class="display-none">{{'TimeZoneSelectedOption' | translate}}</option>
+                                                                </select>
+                                                                <span class="help-block has-error"
+                                                                      ng-show="MawbForm[packageform].timeZone.$invalid &&
+                           (MawbForm[packageform].timeZone.$dirty || submitted)">
+                                                                    {{'TimeZoneValidationError' | translate}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="col-sm-12 paddingboth">
+                                                        <div class="form-group">
+                                                            <span class="visibility">hidden</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group" ng-class="{ 'has-error': MawbForm[packageform].etaDate.$invalid &&
+                                        (MawbForm[packageform].etaDate.$dirty || submitted) }">
+                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etaDate"><span class="redColor">(</span>{{'ETA_' | translate}}<span class="redColor">)</span> <span class="redColor">*</span></label>
+                                                    <div class="col-sm-8 paddingboth">
+                                                        <div class="input-group co-sm-12">
+                                                            <input type="text" id="etaDate" name="etaDate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                                   ng-model="Ary.ETA" is-open="Ary.ETAopened"
+                                                                   min-date="mindate" max-date="maxdate"
+                                                                   datepicker-options="Ary.dateOptions" readonly
+                                                                   close-text="Close" ng-click="OpenCalender($event)" required placeholder="{{'ETA_' | translate}} ({{'Required' | translate}})" />
+                                                            <span class="input-group-btn">
+                                                                <button ng-disabled="mawbUplaoded" type="button" class="btn btn-default" ng-click="OpenCalender($event, $index, Ary.ETAopened)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                        <span class="help-block has-error"
+                                                              ng-show="MawbForm[packageform].etaDate.$invalid &&
+                                  (MawbForm[packageform].etaDate.$dirty || submitted)">
+                                                            {{'ETA_Required' | translate}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group" ng-class="{ 'has-error': (MawbForm[packageform].etatime.$invalid || MawbForm[packageform].etatime.$error.pattern) &&
+                                                     (MawbForm[packageform].etatime.$dirty || submitted) }">
+                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etatime"><span class="redColor">(</span>{{'ETA_' | translate}}<span class="redColor">)</span> {{'Time' | translate}} <span class="redColor">*</span></label>
+                                                    <div class="col-sm-8 paddingboth">
+                                                        <div class="col-sm-2 paddingboth">
+                                                            <input type="text"
+                                                                   class="form-control input-sm fontsize12"
+                                                                   placeholder="{{'TimePlaceholder' | translate}}"
+                                                                   name="etatime" ng-readonly="mawbUplaoded"
+                                                                   ng-model="Ary.ETATime"
+                                                                   ui-mask="99:99"
+                                                                   ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/"
+                                                                   required style="width: 60px;" />
+                                                        </div>
+                                                        <div class="col-sm-8 lineheight34"><b>{{'Hours24' | translate}}</b></div>
+                                                        <div class="clearfix"></div>
+                                                        <span class="help-block has-error"
+                                                              ng-show="MawbForm[packageform].etatime.$invalid && !MawbForm[packageform].etatime.$error.pattern && (MawbForm[packageform].etatime.$dirty || submitted)">
+                                                            {{'TimeValidationError' | translate}}
+                                                        </span>
+                                                        <span class="help-block has-error"
+                                                              ng-show="MawbForm[packageform].etatime.$error.pattern &&
+                                                (MawbForm[packageform].etatime.$dirty || submitted)">
+                                                            {{'TimeNotValid' | translate}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group" ng-class="{ 'has-error': MawbForm[packageform].etdDate.$invalid &&
+                                        (MawbForm[packageform].etdDate.$dirty || submitted) }">
+                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etdDate"><span class="redColor">(</span>{{'ETD_' | translate}}<span class="redColor">)</span> <span class="redColor">*</span></label>
+                                                    <div class="col-sm-8 paddingboth">
+                                                        <div class="input-group col-sm-12">
+                                                            <input type="text" id="etdDate" name="etdDate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                                   ng-model="Ary.ETD" is-open="Ary.ETDopened"
+                                                                   min-date="mindate" max-date="maxdate"
+                                                                   datepicker-options="Ary.dateOptions1" readonly
+                                                                   close-text="Close" ng-click="OpenCalender1($event)" required placeholder="{{'ETD_' | translate}} ({{'Required' | translate}})" />
+                                                            <span class="input-group-btn">
+                                                                <button type="button" ng-disabled="mawbUplaoded" class="btn btn-default" ng-click="OpenCalender1($event, $index, Ary.ETDopened)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                        <span class="help-block has-error"
+                                                              ng-show="MawbForm[packageform].etdDate.$invalid &&
+                                  (MawbForm[packageform].etdDate.$dirty || submitted)">
+                                                            {{'ETD_Required' | translate}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group" ng-class="{ 'has-error': (MawbForm[packageform].etdtime.$invalid || MawbForm[packageform].etdtime.$error.pattern) &&
+                                                     (MawbForm[packageform].etdtime.$dirty || submitted) }">
+                                                    <label class="control-label col-sm-4 paddingboth margintop7" for="etatime"><span class="redColor">(</span>{{'ETD_' | translate}}<span class="redColor">)</span> {{'Time' | translate}} <span class="redColor">*</span></label>
+                                                    <div class="col-sm-8 paddingboth">
+                                                        <div class="col-sm-2 paddingboth">
+                                                            <input type="text"
+                                                                   class="form-control input-sm fontsize12"
+                                                                   placeholder="{{'TimePlaceholder' | translate}}"
+                                                                   name="etdtime" ng-readonly="mawbUplaoded"
+                                                                   ng-model="Ary.ETDTime"
+                                                                   ui-mask="99:99"
+                                                                   ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                                        </div>
+                                                        <div class="col-sm-8 lineheight34"><b>{{'Hours24' | translate}}</b></div>
+                                                        <div class="clearfix"></div>
+                                                        <span class="help-block has-error"
+                                                              ng-show="MawbForm[packageform].etdtime.$invalid && !MawbForm[packageform].etdtime.$error.pattern && (MawbForm[packageform].etdtime.$dirty || submitted)">
+                                                            {{'TimeValidationError' | translate}}
+                                                        </span>
+                                                        <span class="help-block has-error"
+                                                              ng-show="MawbForm[packageform].etdtime.$error.pattern &&
+                                                (MawbForm[packageform].etdtime.$dirty || submitted)">
+                                                            {{'TimeNotValid' | translate}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </ng-form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'HAWB_SO_Assignment' | translate}}</div>
+                <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading padding0">
+                    <div class="row">
+                        <div class="col-sm-6 border-right-ddd">
+                    <div class="col-sm-6 padding-10">
+                {{'HAWB' | translate}}
+                    </div>
+                    <div class="col-sm-6 padding-10">
+                        {{'Assign_SO_No' | translate}}
+                    </div>
+                        </div>
+                        <div class="col-sm-6" ng-show="MawbMainObj.HAWBPackages.length > 1">
+                            <div class="col-sm-6 padding-10">
+                                {{'HAWB' | translate}}
+                            </div>
+                            <div class="col-sm-6 padding-10">
+                                {{'Assign_SO_No' | translate}}
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel-body padding0 clearfix">
+                    <div class="row">
+                    <div class="col-sm-6 border-right-ddd" ng-repeat="hawb in MawbMainObj.HAWBPackages">
+                        <div class="col-sm-12 padding-10 paddingboth flex pointer text-center clearfix">
+                            <div class="col-sm-6 paddingboth border-bottom">
+                                <div class="padding-5 text-left" name="hawb">{{hawb.HAWB}}</div>
+                            </div>
+                            <div class="col-sm-6 paddingboth clearfix flex">
+                                <div class="col-sm-12 paddingboth border-bottom">
+                                    <input type="text"  class="form-control" ng-readonly="mawbUplaoded" ng-model="hawb.SONumber" />
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <p class="redColor">({{'ETA_' | translate}}) : <span>{{'Estimated_Date_Arrival' | translate}}</span></p>
+                <p class="redColor">({{'ETD_' | translate}}) : <span>{{'Estimated_Date_Delivery' | translate}}</span></p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12 paddingboth" ng-hide="mawbUplaoded">
+                <button type="submit" ng-click="submitted=true" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+<div ng-show="sessionExpired" class="panel-body marginTB-5" id="mawb-completed">
+   <div>
+       {{'Session_Expired_For_MAWB_Allocation' | translate}}
+       {{'Please_Click' | translate}} <a href="{{'http://' + url}}" target="_blank">{{url}}</a> {{'Queries_Regarding_Shipment' | translate}}
+   </div>
+</div>

@@ -1,0 +1,62 @@
+﻿
+
+<section class="ecommerce">
+    <div class="modal-header" ng-show="eCommerceBookingDetail.ShipmentStatusId !== 19">
+        <button type="button" class="close" ng-click="closePage()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">
+            {{eCommerceBookingDetail.LogisticDetail.LogisticServiceDisplay}} -
+            <span ng-if="BookingApp !== eCommerceShipemntType.eCommerceWS">
+                <a target="_blank" ui-sref="home.tracking-hub({carrierType:TrackingType,trackingId:eCommerceBookingDetail.Packages[0].TrackingNo})" class="color-333">
+                    {{eCommerceBookingDetail.Packages[0].TrackingNo}}
+                </a>
+            </span>
+            <span ng-if="BookingApp === eCommerceShipemntType.eCommerceWS">
+                {{eCommerceBookingDetail.Packages[0].TrackingNo}}
+            </span>
+        </h4>
+    </div>
+    <div class="modal-header paddingbottom25 background-white" ng-show="eCommerceBookingDetail.ShipmentStatusId == 19">
+            <button type="button" class="close" ng-click="closePage()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title"></h4>
+    </div>
+
+    <br/>
+    <!--ecommerce online tab code here-->
+    <div id="EcommerceTab-Set" class="col-sm-12">
+    <div class="paddingleft">
+        <uib-tabset>
+            <uib-tab class="borderleft2f5f5f5">
+                <uib-tab-heading>
+                   {{'shipment_detail' | translate}} &nbsp;&nbsp;
+                </uib-tab-heading>
+                <div class="row">
+                    <div ng-include="'eCommerceBooking/eCommerceBookingDetail/eCommerceViewShipment.tpl.html'"></div>
+                </div>
+            </uib-tab>
+            <uib-tab class="borderleft2f5f5f5" ng-if="eCommerceBookingDetail.ShipmentStatusId !== 19">
+                <uib-tab-heading >
+                 {{'Invoice_Accounting' | translate}}  &nbsp;&nbsp;
+                </uib-tab-heading>
+                <div class="row">
+                    <div ng-include="'eCommerceBooking/eCommerceBookingDetail/eCommerceInvoiceAndAccounting.tpl.html'"></div>
+                </div>
+            </uib-tab>
+            <uib-tab class="tabBorder"  ng-if="RoleId !==3 && eCommerceBookingDetail.ShipmentStatusId !== 19">
+                <uib-tab-heading>
+                    {{'Communication' | translate}}
+                </uib-tab-heading>
+                <div class="row">
+                <div ng-include="'eCommerceBooking/eCommerceBookingDetail/eCommerceCommunication.tpl.html'"></div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    </div>
+<!--end code-->
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="text-left">
+            <button type="button" ng-click="submit()" class="btn btn-cancel fontsize12" style="padding:6px 12px 6px !important;"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+        </div>
+    </div>
+</section>

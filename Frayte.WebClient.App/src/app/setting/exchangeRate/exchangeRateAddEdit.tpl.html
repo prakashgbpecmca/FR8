@@ -1,0 +1,25 @@
+﻿<div>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'AddMore_CurrencyRate' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-sm-11 col-sm-offset-1" style="margin-left:29px;padding-bottom:5px;">
+            <div class="right-inner-addon">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input capitalize:first type="search" ng-change="refreshData()" ng-model="searchText" class="form-control fontsize12" placeholder="{{'Search' | translate}}" style="padding-left:30px;" autofocus>
+            </div>
+        </div>
+        <div class="col-sm-12 overflow">
+            <div class="col-sm-12">
+                <div ng-repeat="Currency in CurrencyTypes" class="col-sm-6">
+                    <label><input type="checkbox" ng-model="Currency.IsSelected" ng-change="AddCurrenyToExchangeRate(Currency)" name="aud" style="position:relative; top:2px;" /> {{Currency.CurrencyCode}} - {{Currency.CurrencyDescription}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="clearfix"></div>
+    <div class="modal-footer">
+        <button class="btn btn-md btn-theme-org fontsize12" style="color:#fff;" ng-click="submit()"><i class="fa fa-check" aria-hidden="true"></i> {{'OK' | translate}}</button>
+    </div>
+</div>

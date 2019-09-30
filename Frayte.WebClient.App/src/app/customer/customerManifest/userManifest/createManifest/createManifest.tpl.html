@@ -1,0 +1,60 @@
+﻿
+<section>
+    <div class="modal-content fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Manifest' | translate}} {{'Generator' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-12 paddingboth form-group">
+                <!--Customer code here-->
+                <div class="col-sm-12 paddingboth">
+                <div ng-if="RoleId === 6 || RoleId === 1" class="col-sm-12">
+                    <label for="customers" class="col-sm-2 paddingboth top5">{{'Customer' | translate}} <span class="redColor">*</span></label>
+                    <div class="col-sm-10 paddingboth">
+                        <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                ng-model="CustomerDetail" ng-change="getCustomerDetail(CustomerDetail)"
+                                ng-options="Customer as Customer.CompanyName for Customer in ManifestCustomers | filter : FilterCountry track by Customer.CustomerId"
+                                class="form-control fontsize12" ng-required="paymentAccount">
+                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                </div>
+            <!--end-->
+
+                <!--eCommerce shipment type code here-->
+                <div ng-show="FrayteManifestShipment.ModuleType === 'eCommerce'">
+                <div class="col-sm-12"><hr style="margin:10px 0px;" /></div>
+                <div class="col-sm-6">
+                    <label for="customers" class="col-sm-5 paddingboth top5">{{'eCommerce_Shipment_Type' | translate}}</label>
+                    <div class="col-sm-7">
+                        <select id="eCommerceShipmentType" name="eCommerceShipmentType"
+                                ng-model="FrayteManifestShipment.SubModuleType" ng-change="seachManifest()"
+                                ng-options="shipment.value as shipment.display for shipment in eCommerceShipmentTypes"
+                                class="form-control fontsize12"></select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                </div>
+            <div class="col-sm-12 form-group">
+                <div data-ui-grid="gridOptions" ui-grid-selection class="myGridFull fontsize12 clearfix" style="min-height: {{gridheight}}px;"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn-simple btn-success fontsize12 pull-right bottom2" ng-click="CreateManifest()" id="create" name="create" value="Create Manifest"><i class="fa fa-list-ol" aria-hidden="true"></i> {{'Create_Manifest' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

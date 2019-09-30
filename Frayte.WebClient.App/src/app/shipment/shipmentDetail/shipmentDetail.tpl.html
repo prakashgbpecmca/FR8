@@ -1,0 +1,214 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'confirmShp_ShipmentDetail' | translate}}</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'Ship_From' | translate}}</div>
+                <div class="panel-body">
+                    <div style="padding:5px 0;">
+                        <div>{{shipmentDetail.Shipper.ContactName}}<br /></div>
+                        <div>{{shipmentDetail.Shipper.CompanyName}}<br /></div>
+                        <div>{{shipmentDetail.ShipperAddress.Address}}<br /></div>
+                        <div>{{shipmentDetail.ShipperAddress.Address2}}<br /></div>
+                        <div>{{shipmentDetail.ShipperAddress.Address3}}<br /></div>
+                        <div>{{shipmentDetail.ShipperAddress.City}}, {{shipmentDetail.ShipperAddress.State}}<br /></div>
+                        <div>{{shipmentDetail.ShipperAddress.Country.Name}} - {{shipmentDetail.ShipperAddress.Zip}}<br /></div>
+                    </div>
+                    <div style="padding:5px 0;color:#94a4bd;">
+                        <div>{{'T' | translate}} <span> {{shipmentDetail.Shipper.TelephoneNo}}</span><br /></div>
+                        <div>{{'E' | translate}} <span> {{shipmentDetail.Shipper.Email}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'Ship_To' | translate}}</div>
+                <div class="panel-body">
+                    <div style="padding:5px 0;">
+                        <div>{{shipmentDetail.Receiver.ContactName}}<br /></div>
+                        <div>{{shipmentDetail.Receiver.CompanyName}}<br /></div>
+                        <div>{{shipmentDetail.ReceiverAddress.Address}}<br /></div>
+                        <div>{{shipmentDetail.ReceiverAddress.Address2}}<br /></div>
+                        <div>{{shipmentDetail.ReceiverAddress.Address3}}<br /></div>
+                        <div>{{shipmentDetail.ReceiverAddress.City}}, {{shipmentDetail.ReceiverAddress.State}}<br /></div>
+                        <div>{{shipmentDetail.ReceiverAddress.Country.Name}} - {{shipmentDetail.ReceiverAddress.Zip}}<br /></div>
+                    </div>
+                    <div style="padding:5px 0;color:#94a4bd;">
+                        <div>{{'T' | translate}} <span> {{shipmentDetail.Receiver.TelephoneNo}}</span><br /></div>
+                        <div>{{'E' | translate}} <span> {{shipmentDetail.Receiver.Email}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'confirmShp_ShipmentDetail' | translate}}</div>
+                <div class="panel-body">
+                    <section class="row">
+                        <div class="col-sm-6">
+                            <div>
+                                <div class="left-part width50"> {{'ShipmentMethod' | translate}}</div>
+                                <label class="left-part width50">{{shipmentDetail.DeliveredBy.Name}}</label>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div ng-if="shipmentDetail.DeliveredBy.CourierType==='Air' || shipmentDetail.DeliveredBy.CourierType==='Sea'">
+                                <div class="left-part width50"> {{'shipment_ShipmentTerm' | translate}}</div>
+                                <label class="left-part width50">{{shipmentDetail.ShipmentTerm.Code}} ({{shipmentDetail.ShipmentTerm.Detail}}) </label>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div ng-if="shipmentDetail.DeliveredBy.CourierType==='Air' || shipmentDetail.DeliveredBy.CourierType==='Sea'">
+                                <div class="left-part width50"> {{'shipment_PackagingType' | translate}}</div>
+                                <label class="left-part width50">{{shipmentDetail.PackagingType.Name}}</label>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div ng-if="shipmentDetail.SpecialDelivery.specialdeliveryid >0 ">
+                                <div class="left-part width50"> {{'shipment_SpecialDeliveryNeeded' | translate}}</div>
+                                <label class="left-part width50">{{shipmentDetail.SpecialDelivery.Detail}}</label>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </section>
+                    <hr />
+                    <section>
+                        <h4> {{'serviceoptn_SchedulePickup' | translate}}</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div><div class="left-part width50"> {{'Contact' | translate}}</div><div class="left-part width50"><label>{{shipmentDetail.ShipmentPickupContactName}}</label></div><div class="clearfix"></div></div>
+                                <div><div class="left-part width50"> {{'serviceoptn_LocationType' | translate}}</div><div class="left-part width50"><label>{{shipmentDetail.LocationType}}</label></div><div class="clearfix"></div></div>
+                                <div ng-if="shipmentDetail.Timezone !== null"><div class="left-part width50"> {{'TimeZone' | translate}}</div><div class="left-part width50"><label>{{shipmentDetail.Timezone.OffsetShort}}</label></div><div class="clearfix"></div></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div><div class="left-part width50"> {{'serviceoptn_SpecialInstracutions' | translate}}</div><div class="left-part width50 "><label>{{shipmentDetail.SpecialInstruction}}</label></div><div class="clearfix"></div></div>
+                                <div ng-if="shipmentDetail.PickupDate !== null"><div class="left-part width50"> {{'serviceoptn_PickupDate' | translate}}</div><div class="left-part width50"><label>{{shipmentDetail.PickupDate | dateFilter}} - {{shipmentDetail.ShipmentReadyBy | shortTimeFilter}}</label></div><div class="clearfix"></div></div>
+                                <div ng-if="shipmentDetail.ExportType==='Export'"><div class="left-part width50"> {{'serviceoptn_TransportWarehouse' | translate}}</div><div class="left-part width50"><label>{{shipmentDetail.TransportToWarehouse.Name}}</label></div><div class="clearfix"></div></div>
+                                <div ng-if="shipmentDetail.ExportType==='Export'"><div class="left-part width50"> {{'Warehouse' | translate}}</div><div class="left-part width50"><label>{{shipmentDetail.Warehouse.WarehouseName}}</label></div><div class="clearfix"></div></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </section>
+                    <hr />
+                    <section>
+                        <div class="piecesDetailTable">
+                            <h4 class="padding-tb-5">{{'shipment_PieceDetailsHeading' | translate}}</h4>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="colHeader" style="width:8%">{{'shipment_PieceDetailsJobNumber' | translate}}</div>
+                                    <div class="colHeader" style="width:13%">{{'shipment_PieceDetailsStyleNumber' | translate}}</div>
+                                    <div class="colHeader" style="width:10%">{{'shipment_PieceDetailsHSCode' | translate}}</div>
+                                    <div class="colHeader" style="width:12%">{{'shipment_PieceDetailsCartonQty' | translate}}</div>
+                                    <div class="colHeader" style="width:7%">{{'shipment_PieceDetailsPieces' | translate}}</div>
+                                    <div class="colHeader" style="width:14%">{{'shipment_PieceDetailsWeightsKg' | translate}}</div>
+                                    <div class="colHeader" style="width:7%">{{'shipment_PieceDetailsLcms' | translate}}</div>
+                                    <div class="colHeader" style="width:8%">{{'shipment_PieceDetailsWcms' | translate}}</div>
+                                    <div class="colHeader" style="width:7%">{{'shipment_PieceDetailsHcms' | translate}}</div>
+                                    <div class="colHeader" style="width:14%">{{'shipment_PieceDetailsProductDesc' | translate}}</div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body">
+                                    <div ng-repeat="shippingDetail in shipmentDetail.ShipmentDetails">
+                                        <div class="colHeader" style="width:8%"><label>{{shippingDetail.JobNumber}}</label></div>
+                                        <div class="colHeader" style="width:13%"><label>{{shippingDetail.JobStyle}}</label></div>
+                                        <div class="colHeader" style="width:10%"><label>{{shippingDetail.HSCode}}</label></div>
+                                        <div class="colHeader" style="width:12%"><label>{{shippingDetail.CartonQty}}</label></div>
+                                        <div class="colHeader" style="width:7%"><label>{{shippingDetail.Pieces}}</label></div>
+                                        <div class="colHeader" style="width:14%"><label>{{shippingDetail.WeightKg}}</label></div>
+                                        <div class="colHeader" style="width:7%"><label>{{shippingDetail.Lcms}}</label></div>
+                                        <div class="colHeader" style="width:8%"><label>{{shippingDetail.Wcms}}</label></div>
+                                        <div class="colHeader" style="width:7%"><label>{{shippingDetail.Hcms}}</label></div>
+                                        <div class="colHeader" style="width:14%">{{shippingDetail.PiecesContent}}</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="colFooter">
+                                        <div>{{'shipment_TotalNoPieces' | translate}}: <span>{{getTotalPieces()}}</span></div>
+                                    </div>
+                                    <div class="colFooter">
+                                        <div>{{'TotalWeight' | translate}}: <span>{{getTotalKgs()}}</span> ({{'shipment_Kgs' | translate}})</div>
+                                    </div>
+                                    <div class="colFooter">
+                                        <div>{{'TotalDimWeight' | translate}}: <span>{{getTotalVolWeight()}}</span> ({{'shipment_Kgs' | translate}})</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="row">
+                        <div class="col-lg-12">
+                            <h4> {{'shipment_ShipmentDetailsHeading' | translate}}</h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <div>
+                                {{'shipment_ShipmentDetailsDescription' | translate}}<br />
+                                <label>{{shipmentDetail.ContentDescription}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div>
+                                <div class="left-part width50"> {{'shipment_ShipmentDetailsShipmentType' | translate}}</div>
+                                <label class="left-part width50"><label>{{shipmentDetail.ShipmentDuitable.Description}}</label></label>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div>
+                                <div class="left-part width50"> {{'shipment_ShipmentDetailsShippingReference' | translate}}</div>
+                                <label class="left-part width50">{{shipmentDetail.PurchaseOrderNo}}</label>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div>
+                                <div class="left-part width50">{{'Shipping' | translate}} {{'Date' | translate}}</div>
+                                <label class="left-part width50">{{shipmentDetail.ShippingDate  | dateFilter}}</label>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </section>
+                    <section class="row padding-tb-10">
+                        <div class="col-lg-6">
+                            <h4> {{'shipment_ShipmentDetailsPaymentParty' | translate}}</h4>
+                            <div>
+                                {{'shipment_ShipmentDetailsPaymentPartySubHead' | translate}} <br />
+                                <label>{{shipmentDetail.PaymentParty}}</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4> {{'shipment_CustomsInformation' | translate}}</h4>
+                            <div>
+                                <div class="left-part width50"> {{'shipment_DeclaredValue' | translate}}</div>
+                                <label class="left-part width50">{{shipmentDetail.DeclaredValue}}</label>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div>
+                                <div class="left-part width50"> {{'shipment_Currency' | translate}}</div>
+                                <label class="left-part width50">{{shipmentDetail.DeclaredCurrency.CurrencyCode}}</label>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-right">
+        <div class="col-sm-12">
+            <a class="btn-addPopup" style="padding: 8px;" href="{{shipmentDetail.ShipmentPDF}}" target="_blank">{{'Download' | translate}} {{'PDF' | translate}}</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="text-left">
+        <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-save"> {{'Ok' | translate}}</button>
+    </div>
+</div>

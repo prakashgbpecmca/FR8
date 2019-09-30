@@ -1,0 +1,90 @@
+﻿<section id="eCommSetting">
+    <section>
+        <div class="panel panel-default fontsize12 form-group" style="border-color: #DBE2EC !important;">
+            <div class="panel-heading">{{'HSCode' | translate}} {{'Setting' | translate}}</div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromCountry.$invalid &&
+                                                         (DirectBookingForm.shipFromCountry.$dirty || submitted) }">
+                            <label for="shipFromCountry" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Country' | translate}} <span class="redColor">*</span></label>
+                            <div class="col-sm-6 paddingboth" id="Xe">
+                                <select id="shipFromCountry" name="shipFromCountry" ng-change="HSCodeRecords()"
+                                        ng-model="Country"
+                                        ng-options="Country as Country.CountryName for Country in CountryList"
+                                        class="form-control fontsize12" required>
+                                    <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error"
+                                      ng-show="DirectBookingForm.shipFromCountry.$invalid &&
+                                            (DirectBookingForm.shipFromCountry.$dirty || submitted)">
+                                    {{'CountryValidationError' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-sm-1 paddingboth country">
+                                <a href="" class="padding7px" popover-placement="auto" uib-popover-html="CountryPopOver" popover-trigger="'outsideClick'">
+                                    <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="pull-right">
+                            <button ng-click="AddEditHSCode()" type="button" class="btn border-radius2 btn-save fontsize12" style="padding: 7px 34px 7px;"><span><i class="fa fa-address-card-o" aria-hidden="true"></i> {{'Add' | translate}} {{'HSCode' | translate}}</span></button>&nbsp;&nbsp;
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <div class="panel panel-default">
+        <div class="width100 flex grid-background">
+            <div class="width986 flex">
+                <div class="width20 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'HSCode' | translate}}</span></div>
+                <div class="width50 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'Description' | translate}}</span></div>
+                <div class="width10 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'Duty' | translate}} <span class="redColor">{{'Hash' | translate}}</span></span></div>
+                <div class="width10 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'Vat' | translate}}</span></div>
+                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+            <div class="panel-body padding0">
+                <ul class="list-unstyled change margin-bottom-none">
+                    <li>
+                        <div ng-repeat="HSCode in HSCodeList" class="width100 pointer">
+                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class={'demoClass':gridDirectBooking.IsSelected}>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span>{{HSCode.HSCode1}}</span></div>
+                                <div class="width50 quotation-table-body word-wrap padding-5"><span>{{HSCode.Description}}</span></div>
+                                <div class="width10 quotation-table-body word-wrap padding-5"><span>{{HSCode.Vat}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/Kg</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                <div class="width10 quotation-table-body word-wrap padding-5"><span>{{HSCode.Duty}}</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="AddEditHSCode(HSCode)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="DeleteHSCode(HSCode)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

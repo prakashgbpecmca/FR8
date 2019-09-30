@@ -1,0 +1,16 @@
+E:\IRA\FrayteSchedular\Fraye.Schedular\Fraye.Schedular\bin\Debug\Fraye.Schedular.exe.config
+E:\IRA\FrayteSchedular\Fraye.Schedular\Fraye.Schedular\bin\Debug\Fraye.Schedular.exe
+E:\IRA\FrayteSchedular\Fraye.Schedular\Fraye.Schedular\bin\Debug\Fraye.Schedular.pdb
+E:\IRA\FrayteSchedular\Fraye.Schedular\Fraye.Schedular\bin\Debug\Newtonsoft.Json.dll
+E:\IRA\FrayteSchedular\Fraye.Schedular\Fraye.Schedular\bin\Debug\Newtonsoft.Json.xml
+E:\IRA\FrayteSchedular\Fraye.Schedular\Fraye.Schedular\obj\Debug\Fraye.Schedular.csprojResolveAssemblyReference.cache
+E:\IRA\FrayteSchedular\Fraye.Schedular\Fraye.Schedular\obj\Debug\Fraye.Schedular.exe
+E:\IRA\FrayteSchedular\Fraye.Schedular\Fraye.Schedular\obj\Debug\Fraye.Schedular.pdb
+E:\IRA\FrayteLogistic\Fraye.Schedular\Fraye.Schedular\bin\Debug\Fraye.Schedular.exe.config
+E:\IRA\FrayteLogistic\Fraye.Schedular\Fraye.Schedular\obj\Debug\Fraye.Schedular.exe
+E:\IRA\FrayteLogistic\Fraye.Schedular\Fraye.Schedular\obj\Debug\Fraye.Schedular.pdb
+E:\IRA\FrayteLogistic\Fraye.Schedular\Fraye.Schedular\bin\Debug\Fraye.Schedular.exe
+E:\IRA\FrayteLogistic\Fraye.Schedular\Fraye.Schedular\bin\Debug\Fraye.Schedular.pdb
+E:\IRA\FrayteLogistic\Fraye.Schedular\Fraye.Schedular\bin\Debug\Newtonsoft.Json.dll
+E:\IRA\FrayteLogistic\Fraye.Schedular\Fraye.Schedular\bin\Debug\Newtonsoft.Json.xml
+E:\IRA\FrayteLogistic\Fraye.Schedular\Fraye.Schedular\obj\Debug\Fraye.Schedular.csprojResolveAssemblyReference.cache

@@ -1,0 +1,115 @@
+﻿<!--modal start here-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$close()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{Mode}} {{'AddEdit_ShipmentAccount' | translate}}</h4>
+</div>
+<form ng-submit="submit(courierAccountAddEdit.$valid,CourierAccount)" name="courierAccountAddEdit" novalidate>
+    <div class="modal-body">
+        <!--<div class="col-sm-12 paddingboth">-->
+            <div class="col-sm-12 paddingboth form-group" style="margin-bottom:0px !important;">
+                <div class="col-sm-4 form-group" style="line-height:30px;"><label for="operationZone">{{'BusinessUnit_Zone' | translate}}</label></div>
+                <div class="col-sm-8 form-group">
+                    <select ng-change="CourierAccountByOperationZone()"
+                            ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId"
+                            class="form-control fontsize12" ng-model="CourierAccount.OperationZone">
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-sm-12 form-group paddingboth" style="margin-bottom:0px !important;">
+                <div class="col-sm-4  form-group" style="line-height:30px;"><label for="operationZone">{{'Logistic_Type' | translate}}</label></div>
+                <div class="col-sm-8 form-group">
+                    <select ng-change="ZoneCountryByLogisticType()" ng-options="LogisticType as LogisticType.Display for LogisticType  in LogisticTypes" class="form-control fontsize12" ng-model="LogisticType1">
+                    </select>
+                </div>
+            </div>
+        <!--</div>-->
+        <!--<div class="col-sm-12 paddingboth form-group">-->
+            <div class="col-sm-12 paddingboth form-group" style="margin-bottom:0px !important;">
+                <div class="col-sm-4" style="line-height:30px;"><label for="operationZone">{{"CourierCompany" | translate}}</label></div>
+                <div class="col-sm-8 form-group">                   
+                    <select ng-change="ZoneCountryByCourierCompany()"
+                            ng-options="LogisticCompany as LogisticCompany.Display for LogisticCompany in LogisticCompanies"
+                            class="form-control fontsize12" ng-model="CourierCompany">
+                    </select>
+                </div>
+            </div>
+            <div ng-if="CourierCompany.Value !== 'UKMail' && CourierCompany.Value !== 'Yodel' && CourierCompany.Value !== 'Hermes'" class="col-sm-12 form-group paddingboth" style="margin-bottom:0px !important;">
+                <div class="col-sm-4" style="line-height:30px;"><label for="operationZone">{{"Rate" | translate}} {{"Type" | translate}}</label></div>
+                <div class="col-sm-8 form-group">
+                    <select ng-change="ZoneCountryByRateType()"
+                            ng-options="LogisticRateType as LogisticRateType.Display for LogisticRateType in LogisticRateTypes"
+                            class="form-control fontsize12" ng-model="RateType1">
+                    </select>
+                </div>
+            </div>
+        <!--</div>-->
+
+         <div class="col-sm-12 paddingboth form-group">
+             <span ng-if="CourierAccount.LogisticService.LogisticCompany.Value === 'UKMail' || CourierAccount.LogisticService.LogisticCompany.Value === 'Yodel' || CourierAccount.LogisticService.LogisticCompany.Value === 'Hermes'">
+             <label  for="easyPostCourierId" class="col-sm-4 control-label lineheight24">{{'Service_Provider_Id' | translate}}</label>
+             </span>
+             <span ng-if="CourierAccount.LogisticService.LogisticCompany.Value !== 'UKMail' && CourierAccount.LogisticService.LogisticCompany.Value !== 'Yodel' && CourierAccount.LogisticService.LogisticCompany.Value !== 'Hermes'">
+                 <label  for="easyPostCourierId" class="col-sm-4 control-label lineheight24">{{'EasyPost_CourierId' | translate}}</label>
+             </span>
+                 <div class="col-sm-8">
+                <input type="text" ng-model="CourierAccount.IntegrationAccountId" class="form-control fontsize12" name="easyPostCourierId" placeholder="{{'EasyPost_CourierId' | translate}}" />
+                
+            </div>
+        </div>
+        <div class="col-sm-12 paddingboth form-group" ng-class="{ 'has-error': courierAccountAddEdit.accountNumber.$invalid &&
+                                            (courierAccountAddEdit.accountNumber.$dirty || submitted) }">
+            <label ng-if="IsParcel" for="accountNumber" class="col-sm-4 control-label lineheight24">{{'Service_Id' | translate}} <span class="redColor">*</span></label>
+            <label ng-if="!IsParcel" for="accountNumber" class="col-sm-4 control-label lineheight24">{{'CourierAccount_Number' | translate}} <span class="redColor">*</span></label>
+            <div class="col-sm-8">
+                <input type="text" ng-model="CourierAccount.AccountNo" class="form-control fontsize12" name="accountNumber" placeholder="{{'CourierAccount_Number' | translate}} ({{'Required' | translate}})" required />
+                <span class="help-block has-error" ng-show="courierAccountAddEdit.accountNumber.$invalid &&
+                                            (courierAccountAddEdit.accountNumber.$dirty || submitted)">
+                  {{'CourierAccount_Number' | translate}} {{'is' | translate}} {{'Required' | translate}}.
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-12 paddingboth form-group" ng-class="{'has-error': courierAccountAddEdit.countryCode.$invalid && (courierAcountAddEdit.countryCode.$dirty || submitted)}">
+            <label ng-if="IsParcel" for="countryCode" class="col-sm-4 control-label lineheight24">{{'Service_Provider' | translate}} <span class="redColor">*</span></label>
+            <label ng-if="!IsParcel" for="countryCode" class="col-sm-4 control-label lineheight24">{{'Country_Code' | translate}} <span class="redColor">*</span></label>
+            <div class="col-sm-8">
+                <input type="text" ng-model="CourierAccount.AccountCountryCode" class="form-control fontsize12" name="countryCode" placeholder="{{'Country_Code' | translate}} ({{'Required' | translate}})" required />
+                <span class="help-block has-error" ng-show="courierAccountAddEdit.countryCode.$invalid && (courierAccountAddEdit.countryCode.$dirty || submitted)">
+                   {{'Country_Code' | translate}} {{'is' | translate}} {{'Required' | translate}}.
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-12 paddingboth form-group">
+            <label for="operationZone" class="col-sm-4 control-label lineheight24" name="description">{{'Courier_Description' | translate}}</label>
+            <div class="col-sm-8">
+                <input capitalize:first type="text" ng-model="CourierAccount.Description" class="form-control fontsize12" name="description" placeholder="{{'Courier_Description' | translate}}" />
+            </div>
+        </div>
+        <div class="col-sm-12 paddingboth form-group" ng-class="{ 'has-error': courierAccountAddEdit.colorPicker.$invalid &&
+                                            (courierAccountAddEdit.colorPicker.$dirty || submitted) }">
+            <label for="colorPicker" class="col-sm-4 control-label lineheight24">{{'Choose_Colour_Code' | translate}} <span class="redColor">*</span></label>
+            <div class="col-sm-8">
+                <div class="col-sm-8 paddingleft"><input name="colorPicker" ng-style="{'background-color':CourierAccount.ColorCode}" readonly class="form-control" ng-model="CourierAccount.ColorCode" type="text" placeholder="{{'Colour' | translate}} ({{'Required' | translate}})" required /></div>
+                <div class="col-sm-4 paddingboth"><button colorpicker type="button" colorpicker-position="top" class="btn-simple btn-success col-sm-12 paddingboth" ng-model="CourierAccount.ColorCode">{{'Change_Colour' | translate}}</button></div>
+                <span class="help-block has-error" ng-show="courierAccountAddEdit.colorPicker.$invalid && (courierAccountAddEdit.colorPicker.$dirty || submitted)">
+                   {{'Colour_Required' | translate}}.
+                </span>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <a class="btn btn-cancel fontsize12" ng-click="CourierAccGoBack()"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</a>
+            </div>
+            <div class="pull-right">
+                <button ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</form>

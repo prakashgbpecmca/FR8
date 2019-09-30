@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Interim Receipts</title>
+    <link href="@Model.PageStyleSheet" rel="stylesheet" />
+    <link href="@Model.BootStrapStyleSheet" rel="stylesheet" />
+    <style>
+        .center {
+            /*width: 130px;*/
+            text-align: left;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+    <header>
+        <img src="@Model.pdfLogo" style="width:100%;" />
+    </header>
+   <!--  <div class="container"> -->
+   </br>
+        <div>
+            <div class="subHeadLeft" style="text-align:center;">Report: POD Report for FRAYTE LOGISTICS LTD</div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div style="margin-top:10px;">
+            <div style="width:100%; margin:0 auto; border:1px solid #ddd;">
+                <table width="100%">
+                    <tr style="border:1px solid #ddd; background: #0B3D5A; color:#fff; padding:10px; ">
+                        <th class="center" style="width:30%;">Destination</th>
+                        <th class="center" style="width:10%;">Country</th>
+                        <th class="center" style="width:10%; padding-right:2px;">Booked By</th>
+                        <th class="center" style="width:17%;">Consignee</th>
+                        <th class="center" style="width:12%;">Delivery Date</th>
+                        <th class="center" style="width:12%;">POD Signature</th>
+                    </tr>
+                    @if (Model.ShipmentReportDetail.Count > 0)
+                    {
+                        foreach (var rr in Model.ShipmentReportDetail)
+                        {
+                            <tr>
+                                <td class="center" style="width:30%;">@rr.Destination</td>
+                                <td class="center" style="width:10%;">@rr.Country</td>
+                                <td class="center" style="width:10%; padding-right:2px;">@rr.Booked_By</td>
+                                <td class="center" style="width:17%;">@rr.Consignee</td>
+                                <td class="center" style="width:12%;">@rr.Delivery</td>
+                                <td class="center" style="width:12%;">@rr.PODSign</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    <!-- </div> -->
+    <br />
+    <div class="fillFullPart text-center border1">
+        END OF DOCUMENT
+    </div>
+    <br />
+    <footer>
+        <!-- <span class="footerText">p</span><span> +852 2497 9797</span>confirm -->
+        <span class="footerLogo" style="wid:100%; font-size:20px; padding-left:5px;">WWW.frayte.com</span>
+        <!-- <span class="footerText">f</span><span> +852 2505 2466</span> -->
+    </footer>
+	</div>
+</body>
+</html>

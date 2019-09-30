@@ -1,0 +1,23 @@
+﻿<div>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'TermsAndCondition' | translate}}</h4>
+    </div>
+    <form ng-hide="ViewValue===true" name="TermsConditionForm" ng-submit="SaveTermAndCondition(TermsConditionForm.$valid, termAndConditionDetail)" novalidate>
+        <div class="modal-body">
+            <div text-angular="text-angular" name="editTermAndCondition" ng-model="termAndConditionDetail.Detail" ta-disabled='disabled'></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+                <div class="pull-left">
+                    <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}} </button> &nbsp;&nbsp;
+                </div>
+                <div class="pull-right">
+                    <button type="submit" ng-hide="ViewValue===true" ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+                </div>     
+        </div>
+    </form>
+    <div class="modal-body" ng-show="ViewValue===true">
+        <div  ng-bind-html="termAndConditionDetail.Detail"></div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+﻿
+<section>
+    <section>
+        <div class="panel panel-default fontsize12" style="margin-bottom: 0px; border-color: #DBE2EC !important;">
+            <div class="panel-heading">{{'AdvanceFilter' | translate}}</div>
+            <div class="panel-body">
+                <div class="col-sm-12 paddingboth">
+                    <!--Customer Name-->
+                    <div ng-if="RoleId === 6 || RoleId === 1" class="col-sm-12">
+                        <label for="customers" class="width20 top5">{{'Customer' | translate}}</label>
+                        <div class="width80" style="padding: 0px 0px 0px 15px;">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="CustomerDetail" ng-change="getCustomerDetail(CustomerDetail)"
+                                    ng-options="Customer as Customer.CompanyName for Customer in ManifestCustomers | filter : FilterCountry track by Customer.CustomerId"
+                                    class="form-control fontsize12" ng-required="paymentAccount">
+                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 paddingboth"><hr style="margin:10px 0px;" /></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--<div class="col-sm-6 paddingboth">
+                        <label for="customers" class="col-sm-5 top5">{{'Shipment_Types' | translate}}</label>
+                        <div class="col-sm-7 form-group">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="TrackManifest.ModuleType" ng-change="getDetails()" ng-disabled="IsDisable"
+                                    ng-options="shipment.BookingType as shipment.BookingTypeDisplay for shipment in fryateShipmentTypes"
+                                    class="form-control fontsize12">
+                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'shipment_ShipmentDetailsShipmentType' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="col-sm-6 paddingboth">
+                        <label for="customers" class="col-sm-5 top5">{{'Manifest' | translate}} {{'Number' | translate}}</label>
+                        <div class="col-sm-7 form-group">
+                            <input type="text" placeholder="{{'Manifest' | translate}} {{'Number' | translate}}" name="manifestName" ng-model="TrackManifest.ManifestName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 paddingboth" ng-show="TrackManifest.ModuleType === 'eCommerce'">
+                        <label for="customers" class="col-sm-5 top5">{{'eCommerce_Shipment_Type' | translate}}</label>
+                        <div class="col-sm-7 form-group">
+                            <select id="eCommerceShipmentType" name="eCommerceShipmentType"
+                                    ng-model="TrackManifest.subModuleType" ng-change="seachManifest()"
+                                    ng-options="shipment.value as shipment.display for shipment in eCommerceShipmentTypes"
+                                    class="form-control fontsize12"></select>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6 paddingboth">
+                        <div>
+                            <label for="fromdate" class="col-sm-5 top5">{{'From_Date' | translate}}</label>
+                            <div class="col-sm-6 paddingright form-group">
+                                <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                       uib-datepicker-popup="dd/MM/yyyy" ng-model="TrackManifest.FromDate" is-open="status.opened"
+                                       datepicker-options="dateOptions"
+                                       close-text="Close" ng-click="openCalender($event)" readonly
+                                       ng-change="ChangeFromdate(TrackManifest.FromDate)" placeholder="{{'From_Date' | translate}}" style="padding-left: 7px !important;" />
+                            </div>
+                            <div class="col-sm-1 paddingboth dated-fix3">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 paddingboth">
+                        <div>
+                            <label for="todate" class="col-sm-5 top5">{{'To_Date' | translate}}</label>
+                            <div class="col-sm-6 form-group">
+                                <input type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                       ng-model="TrackManifest.ToDate" is-open="status1.opened" readonly
+                                       datepicker-options="dateOptions1"
+                                       close-text="Close" ng-click="openCalender1($event)" ng-change="ChangeTodate(TrackManifest.ToDate)"
+                                       placeholder="{{'To_Date' | translate}}" />
+                            </div>
+                            <div class="col-sm-1 paddingboth dated-fix3">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <div class="form-group pull-left">
+                            <!--<div><button ng-click="CustomerCreateManifest ()" class="btn-simple btn-success fontsize12" style="padding:6px 6px !important;"><i class="fa fa-list-ol" aria-hidden="true"></i> {{'Create_Manifest' | translate}}</button></div>-->
+                        </div>
+                    </div>
+                    <div class="col-sm-6 paddingboth">
+                        <div class="pull-right form-group">
+                            <button class="btn-simple btn-primary fontsize12 right-19" ng-click="GetManifest('Search')"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <br />
+    <div>
+        <div ng-if="gridOptions.data.length > 0">
+            <div data-ui-grid="gridOptions" ui-grid-selection class="myGrid fontsize12 overflow-y" style="min-height: {{gridheight}}px;"></div>
+        </div>
+        <!--<div ng-show="gridOptions.data.length > 0" data-ui-grid="gridOptions" ui-grid-edit ui-grid-selection ui-grid-cellnav class="myGridFull fontsize12 overflow-y flex" style="min-height: {{gridheight}}px;"></div>-->
+        <div class="clearfix"></div>
+        <div ng-show="gridOptions.data.length === 0" class="col-sm-12 paddingboth imp-white">
+            <div class="no-address-exist"><h4 class="redColor ng-binding">{{'ManifestNot_Available' | translate}}</h4></div>
+        </div>
+        <div style="margin-left:-15px;">
+            <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="TrackManifest.CurrentPage" items-per-page="TrackManifest.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>

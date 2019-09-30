@@ -1,0 +1,140 @@
+﻿<section id="customer-address-book">
+    <div>
+        <form name="trackingConfigurationForm" ng-submit="SaveTrackingConfiguration(trackingConfigurationForm.$valid, TrackingConfigurationJson)" novalidate>
+            <div id="prealert" class="col-sm-12 paddingboth flex clearfix border">
+                <div class="col-sm-4 padding-top15">
+                    <div class="col-sm-12 paddingboth top7">
+                        {{TrackingconfigurationJson.PreAlert.OtherMethod}}
+                    </div>
+                </div>
+                <div class="col-sm-8 paddingboth bordered-left">
+                    <div class="padding-top15 col-sm-12 paddingboth">
+                        <div ng-repeat="ConDt in TrackingconfigurationJson.PreAlert.ConfigurationDetail" ng-init="packageform='tag'+$index">
+                            <div class="width96">
+                                <ng-form name="{{packageform}}">
+                                    <div class="col-sm-6 paddingboth" ng-class="{ 'has-error':trackingConfigurationForm[packageform].prealertname.$invalid &&
+                                                         (trackingConfigurationForm[packageform].prealertname.$dirty || submitted) }">
+                                        <label for="prealertname" name="prealertname" class="control-label col-sm-3 paddingright lineheight34">{{'Name' | translate}} <span class="redColor">*</span>:</label>
+                                        <div class="col-sm-9 paddingleft">
+                                            <input type="text" only-alphdash class="form-control form-group" ng-model="ConDt.Name" name="prealertname" id="prealertname" required>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-sm-6 paddingboth" ng-class="{ 'has-error':trackingConfigurationForm[packageform].prealertemail.$invalid &&
+                                                         (trackingConfigurationForm[packageform].prealertemail.$dirty || submitted) }">
+                                        <label for="prealertemail" name="prealertemail" class="control-label col-sm-3 paddingboth lineheight34">{{'Email' | translate}} <span class="redColor">*</span>:</label>
+                                        <div class="col-sm-9 paddingboth">
+                                            <input type="email" ng-disabled="" ng-pattern="emailFormat" class="form-control form-group" ng-model="ConDt.Email" name="prealertemail" id="prealertemail" required>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ng-form>
+                            </div>
+                            <div class="width4">
+                                <div ng-show="ConDt.pacVal === false" class="text-center shipmentContent lineheight34">
+                                    <a href="" a-disabled="directBooking.CustomerRateCard.LogisticServiceId >0" ng-click="RemovePackage(TrackingconfigurationJson.PreAlert, ConDt)"><i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i></a>
+                                </div>
+                                <div ng-show="ConDt.pacVal === true" class="text-center">
+                                    <div class="shipmentContent"><a href="" ng-click="RemovePackage(TrackingconfigurationJson.PreAlert, ConDt)"><i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i></a></div>
+                                    <div><a href="" ng-click="AddPackage(TrackingconfigurationJson.PreAlert)"><i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                </div>
+                                <div ng-show="ConDt.pacVal === 'FirstPlus'" class="text-center">
+                                    <div><a href="" ng-click="AddPackage(TrackingconfigurationJson.PreAlert)"><i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <!--shipment handler method code-->
+            <div class="col-sm-12 clearfix paddingboth shipment-handler-method">
+                <label for="shipmentHandlerMethod" class="col-sm-4 control-label" style="font-size:22px">{{'ShipmentHandlerMethod' | translate}}</label>
+                <div class="col-sm-5 paddingboth">
+                    <div>
+                        <select ng-change="ChangeTrackingConfig()" ng-options="drpdwn as drpdwn.ShipmentHandlerMethodDisplay for drpdwn in ShipmentHandlerList" ng-model="ShipmentHandlerMethod" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end-->
+            <!--only border code-->
+            <div ng-show="!Flag2" id="milestone" class="col-sm-12 paddingboth form-group" ng-repeat="TrckMile in TrackingconfigurationJson.TrackingMileStone" ng-init="trackForm='TracTags'+$index">
+                <div class="col-sm-12 clearfix border">
+                    <div class="col-sm-4 padding-top15">
+                        <div class="col-sm-12 paddingboth clearfix checkbox margin0 lineheight32">
+                            <input class="top5" type="checkbox" ng-model="TrckMile.IsEmailSend" name="emailsend" id="emailsend"><div>{{TrckMile.Description}} - {{TrckMile.MileStoneKey}}</div>
+                        </div>
+                    </div>
+                    <ng-form name="{{trackForm}}">
+                        <div class="col-sm-8 bordered-left paddingright">
+                            <div class="padding-top15 row">
+                                <div ng-repeat="ConfigDtl in TrckMile.ConfigurationDetail" ng-init="packageForm='tags'+$index">
+                                    <ng-form name="{{packageForm}}">
+                                        <div class="width96">
+                                            <div class="col-sm-6 paddingboth" ng-class="{ 'has-error':trackingConfigurationForm[trackForm][packageForm].milename.$invalid &&
+                                                 (trackingConfigurationForm[trackForm][packageForm].milename.$dirty || submitted) && TrckMile.IsEmailSend }">
+                                                <label for="milename" name="milename" class="control-label col-sm-3 paddingright lineheight34">{{'Name' | translate}} <span class="redColor">*</span>:</label>
+                                                <div class="col-sm-9 paddingleft right-3">
+                                                    <input type="text" ng-disabled="!TrckMile.IsEmailSend" only-alphdash class="form-control form-group" ng-model="ConfigDtl.Name" name="milename" id="milename" ng-required="TrckMile.IsEmailSend">
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-sm-6 paddingboth" ng-class="{ 'has-error':trackingConfigurationForm[trackForm][packageForm].mileemail.$invalid &&
+                                                 (trackingConfigurationForm[trackForm][packageForm].mileemail.$dirty || submitted)&& TrckMile.IsEmailSend }">
+                                                <label for="milename" name="milename" class="control-label col-sm-3 paddingboth lineheight34">{{'Email' | translate}} <span class="redColor">*</span>:</label>
+                                                <div class="col-sm-9 paddingboth right-2">
+                                                    <input class="form-control form-group" ng-disabled="!TrckMile.IsEmailSend" type="email" ng-pattern="emailFormat" ng-model="ConfigDtl.Email" name="mileemail" id="mileemail" ng-required="TrckMile.IsEmailSend">
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ng-form>
+                                    <div class="width4" ng-class="{'no-drop': !TrckMile.IsEmailSend}">
+                                        <div ng-show="ConfigDtl.pacVal === false" class="text-center shipmentContent top7 " ng-class="{'disabledanchor': !TrckMile.IsEmailSend}">
+                                            <a href="" ng-click="RemovePackage(TrckMile, ConfigDtl)"><i class="fa fa-minus color-red " aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i></a>
+                                        </div>
+                                        <div ng-show="ConfigDtl.pacVal === true" class="text-center" ng-class="{'disabledanchor': !TrckMile.IsEmailSend}">
+                                            <a href="" ng-click="RemovePackage(TrckMile, ConfigDtl)"><i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i></a>
+                                            <div><a href="" ng-click="AddPackage(TrckMile)"><i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                        </div>
+                                        <div ng-show="ConfigDtl.pacVal === 'FirstPlus'" class="text-center">
+                                            <div><a href="" ng-click="AddPackage(TrackingconfigurationJson.PreAlert)"><i class="fa fa-plus color-green no-drop" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-form>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--end-->
+
+            <div class="clearfix"></div>
+            <div ng-show="Flag2">
+                <div class="col-sm-12 form-group border paddingTB60">
+                    <div class="text-center">
+                        <h4 class="redColor">{{'No_Record_Found' | translate}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <button type="submit"
+                        ng-click="submitted=true;"
+                        class="pull-right btn-BigPrimary">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                    {{'Save' | translate}}
+                </button>
+            </div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+
+</section>

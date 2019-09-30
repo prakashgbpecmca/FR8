@@ -1,0 +1,152 @@
+﻿
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Manifest_Generator' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-sm-12 paddingboth">
+            <!--customer code here-->
+            <div class="col-sm-12 paddingboth">
+                <div ng-if="RoleId === 6 || RoleId === 1 || RoleId === 20" class="col-sm-12">
+                    <label for="customers" class="width20 top5">{{'Customer' | translate}} <span class="redColor">*</span></label>
+                    <div class="width80" style="padding: 0px 0px 0px 15px;">
+                        <select id="customers" name="customers"
+                                ng-model="CustomerDetail" ng-change="GetBagDetails(CustomerDetail, 'Customer')"
+                                ng-options="Customer as Customer.CompanyName for Customer in ManifestCustomers track by Customer.CustomerId"
+                                class="form-control fontsize12">
+                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 paddingboth"><hr style="margin:10px 0px;" /></div>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label for="hub" class="width20 top5">{{'Hub_' | translate}} <span class="redColor">*</span></label>
+                    <div class="width80" style="padding: 0px 0px 0px 15px;">
+                        <select id="hub" name="hub"
+                                ng-model="Hub" ng-change="GetBagDetails(Hub, 'Hub')"
+                                ng-options="hub as hub.Name + ' - ' + hub.Code for hub in HubList"
+                                class="form-control fontsize12">
+                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Hub' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <span><span class="redColor">*</span> {{'Timezone_Depend_On_Customer_Timezone' | translate}}</span>
+                </div>
+                <!--express manifest generator grid for admin-->
+                <div class="panel panel-default" ng-show="RoleId === 6 || RoleId === 1 || RoleId === 20">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex">
+                            <div class="width4 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding"><!--<input type="checkbox" />--></span></div>
+                            <div class="width26 bold quotation-table-padding padding-10-5">{{'Customer' | translate}}</div>
+                            <div class="width20 bold quotation-table-padding padding-10-5">{{'Bag_Number' | translate}}</div>
+                            <div class="width150 bold quotation-table-padding padding-10-5">{{'Carrier' | translate}}</div>
+                            <div class="width150 bold quotation-table-padding padding-10-5">{{'Created_On' | translate}} <span class="redColor">*</span></div>
+                            <div class="width10 bold quotation-table-padding padding-10-5">{{'Package_Gross_Weight' | translate}} ({{'Kgs' | translate}})</div>
+                            <div class="width10 bold quotation-table-padding padding-10-5 border-right-none">{{'Total_No_Shipments' | translate}}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <div class="change">
+                                <ul class="list-unstyled margin-bottom-none grid-hover">
+                                    <li class="col-sm-12 paddingboth manifest">
+                                        <div class="action-font-family height30 flex change" ng-repeat="MD in BagData.ManifestedList">
+                                            <div class="width4 bold quotation-table-padding">
+                                            <span class="quotation-table-body padding-5">
+                                                <input type="checkbox" ng-model="MD.IsChecked" ng-change="CreateManifestJson(MD)" name="Isbaged"/>
+                                            </span>
+                                            </div>
+                                            <div class="width26 quotation-table-padding padding-5 transparent border-right-none word-wrap"> {{MD.Customer}}</div>
+                                            <div class="width20 quotation-table-padding padding-5 transparent border-right-none word-wrap">
+                                                <a ng-click="GetShipments(MD.BagId)" class="pointer">
+                                                    {{MD.BagNumber}}
+                                                </a>
+                                            </div>
+                                            <div class="width150 quotation-table-padding padding-5 transparent border-right-none word-wrap">{{MD.Carrier}}</div>
+                                            <div class="width150 quotation-table-padding padding-5 transparent border-right-none word-wrap">{{MD.CreatedOn}}</div>
+                                            <div class="width10 quotation-table-padding padding-5 transparent border-right-none word-wrap">{{MD.TotalWeight}}</div>
+                                            <div class="width10 quotation-table-padding padding-5 transparent border-right-none word-wrap">{{MD.TotalShipments}}</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div ng-if="BagData.ManifestedList.length==0" class="background-white">
+                                            <div class="redColor text-center fontsize18 padding-tb-138">
+                                                {{'No_Record_Found' | translate}}
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--express manifest generator grid for customer-->
+                <div class="panel panel-default" ng-show="RoleId === 3">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex">
+                            <div class="width4 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding"><!--<input type="checkbox" />--></span></div>
+                            <div class="width26 bold quotation-table-padding padding-10-5">{{'Bag_Number' | translate}}</div>
+                            <div class="width20 bold quotation-table-padding padding-10-5">{{'Carrier' | translate}}</div>
+                            <div class="width20 bold quotation-table-padding padding-10-5">{{'Created_On' | translate}} <span class="redColor">*</span></div>
+                            <div class="width150 bold quotation-table-padding padding-10-5">{{'Package_Gross_Weight' | translate}} ({{'Kgs' | translate}})</div>
+                            <div class="width150 bold quotation-table-padding padding-10-5 border-right-none">{{'Total_No_Shipments' | translate}}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <div>
+                                <ul class="list-unstyled margin-bottom-none grid-hover">
+                                    <li class="col-sm-12 paddingboth manifest">
+                                        <div class="action-font-family height30 flex change" ng-repeat="MD in BagData.ManifestedList">
+                                            <div class="width4 bold quotation-table-padding">
+                                                <span class="quotation-table-body padding-5">
+                                                    <input type="checkbox" ng-model="MD.IsChecked" ng-change="CreateManifestJson(MD)" name="Isbaged" />
+                                                </span>
+                                            </div>
+                                            <div class="width26 quotation-table-padding padding-5 transparent border-right-none word-wrap">
+                                                <a ng-click="GetShipments(MD.BagId)" class="pointer">
+                                                    {{MD.BagNumber}}
+                                                </a>
+                                            </div>
+                                            <div class="width20 quotation-table-padding padding-5 transparent border-right-none word-wrap">{{MD.Carrier}}</div>
+                                            <div class="width20 quotation-table-padding padding-5 transparent border-right-none word-wrap">{{MD.CreatedOn}}</div>
+                                            <div class="width150  quotation-table-padding padding-5 transparent border-right-none word-wrap">{{MD.TotalWeight}}</div>
+                                            <div class="width150  quotation-table-padding padding-5 transparent border-right-none word-wrap">{{MD.TotalShipments}}</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div ng-if="BagData.ManifestedList.length==0" class="background-white">
+                                            <div class="redColor text-center fontsize18 padding-tb-138">
+                                                {{'No_Record_Found' | translate}}
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end code-->
+            </div>
+            <!--end-->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            <button type="button" ng-click="expressCreateShipment()" class="btn-simple btn-success fontsize12 pull-right"><i class="fa fa fa-list-ol" aria-hidden="true"></i> {{'Create_Manifest' | translate}}</button>
+        </div>
+    </div>
+</div>

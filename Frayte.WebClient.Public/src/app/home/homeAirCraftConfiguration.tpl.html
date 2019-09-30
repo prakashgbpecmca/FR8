@@ -1,0 +1,160 @@
+﻿
+
+<section>
+<div class="container grid-font" id="mobile">
+    <!--start filter code here-->
+    <!--start filter code here-->
+    <section class="affix" data-offset-top="60">
+        <div class="fixe">
+            <div style="margin-bottom:15px;">
+                <div class="col-sm-9 paddingboth col-xs-12"><h2><span class="border-bottom-black2">{{'Air_Craft_Configuration' | translate}}</span></h2></div>
+                <div class="col-sm-3 paddingboth col-xs-12">
+                    <div class="col-sm-12 paddingboth top-2-4rem form-group">
+                        <i class="fa fa-search search-icon-fix" aria-hidden="true"></i>
+                        <input class="form-control padding-left25" placeholder="{{'Search_Aircraft' | translate}}" type="text" ng-model="search" autofocus />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <!--end filter code-->
+    <section>
+        <div class="col-sm-12 paddingboth form-group">
+            <div class="width100">
+                <ul class="list-unstyled margin-bottom-none">
+                <li>
+                    <div class="col-sm-12 paddingboth form-group" ng-repeat="aircraft in airCraft.airline | filter: {standard: search }">
+                        <div class="col-sm-12 paddingboth" id="round-orange-circle"><div class="col-sm-3 color">{{aircraft.modelno}}</div><div class="clearfix"></div></div>
+                        <div class="clearfix"></div>
+                        <br/>
+                        <div class="flex boxshadow-all">
+                        <div class="col-sm-6 paddingboth">
+                            <div class="flex">
+                            <div class="col-sm-4 paddingboth panel-background padding-5 border-BR">
+                                <div class="padding-5">{{'Standard_ULD_configuration' | translate}}</div>
+                            </div>
+                            <div class="col-sm-8 paddingboth padding-5 border-BR">
+                                <div class="padding-5">{{aircraft.standard}}</div>
+                            </div>
+                            <div class="clearfix"></div>
+                            </div>
+                            <div class="flex">
+                                <div class="col-sm-4 paddingboth panel-background padding-5 border-BR">
+                                    <div class="padding-5">{{'Forward_hold' | translate}}</div>
+                                </div>
+                                <div class="col-sm-8 paddingboth padding-5 border-BR">
+                                    <div class="padding-5">{{aircraft.forward_hold}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="flex">
+                                <div class="col-sm-4 paddingboth panel-background padding-5 border-BR">
+                                    <div class="padding-5">{{' Aft_hold' | translate}}</div>
+                                </div>
+                                <div class="col-sm-8 paddingboth padding-5 border-BR">
+                                    <div class="padding-5">{{aircraft.aft_hold}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="flex">
+                                <div class="col-sm-4 paddingboth panel-background padding-5 border-BR">
+                                    <div class="padding-5">{{'Cargo_Volume' | translate}}</div>
+                                </div>
+                                <div class="col-sm-8 paddingboth padding-5 border-BR">
+                                    <div class="padding-5">{{aircraft.cargo_volume}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="flex">
+                                <div class="col-sm-4 paddingboth panel-background padding-5 border-BR">
+                                    <div class="padding-5">{{'ULD_Combination_Permitted' | translate}}</div>
+                                </div>
+                                <div class="col-sm-8 paddingboth padding-5 border-BR">
+                                    <div class="padding-5">{{aircraft.uld_combination}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="flex">
+                                <div class="col-sm-4 paddingboth panel-background padding-5 border-BR">
+                                    <div class="padding-5">{{'Door_sizes' | translate}}</div>
+                                </div>
+                                <div class="col-sm-8 paddingboth padding-5 border-BR">
+                                    <div class="padding-5">
+                                        <div class="panel panel-default margin-bottom-none">
+                                            <div class="panel-heading padding0">
+                                                <div>
+                                                    <div class="col-sm-4 paddingboth padding-0-15 border-right-ddd"><div class="padding-5">{{'Description' | translate}}</div></div>
+                                                    <div class="col-sm-3 paddingboth padding-0-15 border-right-ddd"><div class="padding-5">{{'Inches' | translate}}</div></div>
+                                                    <div class="col-sm-5 paddingboth padding-0-15"><div class="padding-5">{{'Centimetres' | translate}}</div></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body padding0">
+                                                <div class="border-bottom-ddd flex" ng-repeat="door in aircraft.doorsizes">
+                                                    <div class="col-sm-4 paddingboth padding-0-15 border-right-ddd"><div class="padding-5">{{door.description}}</div></div>
+                                                    <div class="col-sm-3 paddingboth padding-0-15 border-right-ddd"><div class="padding-5">{{door.inches}}</div></div>
+                                                    <div class="col-sm-5 paddingboth padding-0-15"><div class="padding-5">{{door.centimetres}}</div></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <!--<div class="border-bottom-ddd flex">
+                                                    <div class="col-sm-4 paddingboth padding-0-15 border-right-ddd"><div class="padding-5">{{'Aft_hold' | translate}}</div></div>
+                                                    <div class="col-sm-3 paddingboth padding-0-15 border-right-ddd"><div class="padding-5">67"x109"</div></div>
+                                                    <div class="col-sm-5 paddingboth padding-0-15"><div class="padding-5">172 cm x 279 cm</div></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="border-bottom-ddd flex">
+                                                    <div class="col-sm-4 paddingboth padding-0-15 border-right-ddd"><div class="padding-5">{{'Bulk' | translate}}</div></div>
+                                                    <div class="col-sm-3 paddingboth padding-0-15 border-right-ddd"><div class="padding-5">44"x55"</div></div>
+                                                    <div class="col-sm-5 paddingboth padding-0-15"><div class="padding-5">113 cm x 140 cm</div></div>
+                                                    <div class="clearfix"></div>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="flex">
+                                <div class="col-sm-4 paddingboth panel-background padding-5 border-BR">
+                                    <div class="padding-5">{{'Cargo_Tonnage' | translate}}</div>
+                                </div>
+                                <div class="col-sm-8 paddingboth padding-5 border-BR">
+                                    <div class="padding-5">{{aircraft.cargo_tonnage}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="flex">
+                                <div class="col-sm-4 paddingboth panel-background padding-5 border-BR">
+                                    <div class="padding-5">{{'Maximum_Permitted_Height' | translate}}</div>
+                                </div>
+                                <div class="col-sm-8 paddingboth padding-5 border-BR">
+                                    <div class="padding-5">{{aircraft.maximum_permitted_height}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 paddingboth flex">
+                            <img bn-lazy-src="{{ImagePath + aircraft.image}}" class="aircraft-image"/>
+                        </div>
+                        <span class="clearfix"></span>
+                        </div>
+                    </div>
+                    <div ng-if="toggleAirCraft()">
+                        <div class="col-sm-12 paddingboth coming-soon-center form-group text-center redColor">
+                            <h3>{{'No_Aircraft_Configuration_Found' | translate}}</h3>
+                        </div>
+                    </div>
+                    <br />
+                </li>
+                </ul>
+            </div>
+        </div>
+      
+        <div class="clearfix"></div>
+    </section>
+</div>
+<br />
+<div class="clearfix"></div>
+</section>
+

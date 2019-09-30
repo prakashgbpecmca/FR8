@@ -1,0 +1,284 @@
+﻿
+
+<section class="row">
+    <!--tab code here-->
+    <section>
+    <div class="row paddingboth" style="margin-right: 15px; margin-left: 15px;">
+        <div id="metaltop-teal" style="padding: 0px 0px 0px; overflow: hidden;">
+            <ul>
+                <li class="first">
+                    <button class="btn btn-lg borderradius active" ng-class="{'active': activeRate(tab)}" ng-click="changeState(tab)">
+                        Manifest
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    </section>
+    <!--end-->
+    <div class="col-sm-12">
+        <div style="border:1px solid #DBE2EC; padding:15px;" data-ui-view="" class="ng-scope">
+            <section class="ng-scope">
+                <!--filtering code here-->
+                <section>
+                    <div class="panel panel-default fontsize12" style="margin-bottom: 0px; border-color: #DBE2EC !important;">
+                        <div class="panel-heading">Advance Search</div>
+                        <div class="panel-body">
+                            <div class="col-sm-12 paddingboth">
+                                <!--customer code-->
+                                <div class="col-sm-12">
+                                    <label for="customers" class="width20 top5">Customer</label>
+                                    <div class="width80" style="padding: 0px 0px 0px 15px;">
+                                        <select id="customers" name="customers" class="form-control fontsize12" required>
+                                            <option value="" disabled="" selected="selected" class="display-none">Select Customer</option>
+                                            <option label="SERIOUS STUFF LIMITED - 929-313-261" value="80" selected="selected">SERIOUS STUFF LIMITED - 929-313-261</option>
+                                            <option label="IND (INDIA) Ltd - 929-313-261" value="5">IND (INDIA) Ltd - 929-313-261</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 paddingboth"><hr style="margin:10px 0px;"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <!--end-->
+                                <!--manifest number code-->
+                                <div class="col-sm-6 paddingboth">
+                                    <label for="manifestNumber" class="col-sm-5 top5">Manifest Number</label>
+                                    <div class="col-sm-7 form-group">
+                                        <input type="text" placeholder="Manifest Number" name="manifestNumber" id="manifestNumber" class="form-control">
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <!--MAWB code-->
+                                <div class="col-sm-6 paddingboth">
+                                    <label for="customers" class="col-sm-5 top5">MAWB#</label>
+                                    <div class="col-sm-7 form-group">
+                                        <input type="text" placeholder="MAWB" name="MAWB" class="form-control" required>
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <div class="clearfix">
+                                    <!--factory code-->
+                                    <div class="col-sm-6 paddingboth">
+                                        <label for="factory" class="col-sm-5 top5">Factory</label>
+                                        <div class="col-sm-7 form-group">
+                                            <select name="factory" id="factory" class="form-control" required>
+                                                <option value="">Select</option>
+                                                <option value="phone">Phone</option>
+                                                <option value="watch">Watch</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--end-->
+                                    <!--country code-->
+                                    <div class="col-sm-6 paddingboth">
+                                        <label for="country" class="col-sm-5 top5">Country</label>
+                                        <div class="col-sm-7 form-group">
+                                            <select name="country" id="country" class="form-control" required>
+                                                <option value="">Select</option>
+                                                <option value="uk">United Kingdom</option>
+                                                <option value="ind">India</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                                <!--date from code-->
+                                <div class="col-sm-6">
+                                    <div class="form-group clearfix">
+                                        <label for="fromdate" class="col-sm-5 paddingboth top5">Manifest Date From</label>
+                                        <div class="col-sm-7 paddingright">
+                                            <div class="input-group">
+                                                <input type="text" readonly class="form-control" placeholder="Date From" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <!--date to code-->
+                                <div class="col-sm-6">
+                                    <div class="col-sm-12 form-group paddingright">
+                                        <label for="todate" class="col-sm-5 paddingboth top5 right15">Manifest Date To</label>
+                                        <div class="col-sm-7">
+                                            <div class="input-group row">
+                                                <input type="text" readonly class="form-control" style="margin: 0px 5px;" placeholder="Date To" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group pull-left"></div>
+                                </div>
+                                <div class="col-sm-6 paddingboth">
+                                    <div class="pull-right form-group">
+                                        <button class="btn-simple btn-primary fontsize12 right-19" ng-click="GetManifest('Search')"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </section>
+                <!--end-->
+                <br>
+                <div>
+                 <!--custom grid code here-->
+                    <section>
+                        <div class="panel-body">
+                            <section class="row">
+                                <div>
+                                    <!--breakbulk shipment custom grid-->
+                                    <div class="panel panel-default">
+                                        <div class="width100 flex grid-background">
+                                            <div class="width986 flex">
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Manifest Number</span></div>
+                                                <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Customer</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Dispatch Factory</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">MAWB#</span></div>
+                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Total Weight /No. of Shipments</span></div>
+                                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Manifest Date</span> </div>
+                                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                            <div class="panel-body padding0">
+                                                <ul class="list-unstyled margin-bottom-none">
+                                                    <li class="change clearfix" ng-repeat="breakbulkManifest in breakbulkManifests">
+                                                        <div class="width100 pointer">
+                                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                                <div class="width150 quotation-table-body word-wrap padding-5">{{breakbulkManifest.manifestNo}}</div>
+                                                                <div class="width20 quotation-table-body word-wrap padding-5"><span>{{breakbulkManifest.customer}}</span></div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{breakbulkManifest.dispatchFactory}}</span></div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{breakbulkManifest.mawb}}</span></div>
+                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span class="pointer">{{breakbulkManifest.totalWeightShipment}}</span></div>
+                                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="pointer">{{breakbulkManifest.manifestDate}}</span></div>
+                                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+                                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                            <!--<li>
+                        <a href="" ng-click="breakbulkViewManifest()">
+                            <span class="padEdit"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            <span class="ng-binding">View</span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="" ng-click="breakbulkAddManifest()">
+                        <span class="padEdit"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="ng-binding">Update MAWB Detail</span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="" ng-click="grid.appScope.DownloadmanifestReport(row.entity)">
+                            <span class="padEdit"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+                            <span class="ng-binding">Download PDF</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" ng-click="grid.appScope.DownloadmanifestExcel(row.entity)">
+                            <span class="padEdit"><i class="fa fa-file-excel-o" aria-hidden="true"></i></span>
+                            <span class="ng-binding">Download Excel</span>
+                        </a>
+                    </li>
+                    <li ng-show="row.entity.ModuleType === 'eCommerce'" class="ng-hide">
+                        <a href="" ng-click="grid.appScope.ManifestTrackingPopup(row.entity)">
+                            <span class="padEdit"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+                            <span class="ng-binding">Manifest Tracking</span>
+                        </a>
+                    </li>-->
+                                                                            <li>
+                                                                                <a href="">
+                                                                                    <span class="padEdit"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                                                                    <span class="ng-binding">PO View Detail</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="breakbulkViewManifest()">
+                                                                                    <span class="padEdit"><i class="fa fa-edit" aria-hidden="true"></i></span>
+                                                                                    <span class="ng-binding">Update MAWB Detail</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="breakbulkViewManifest()">
+                                                                                    <span class="padEdit"><i class="fa fa-download" aria-hidden="true"></i></span>
+                                                                                    <span class="ng-binding">Download Origin Manifest</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="breakbulkViewManifest()">
+                                                                                    <span class="padEdit"><i class="fa fa-download" aria-hidden="true"></i></span>
+                                                                                    <span class="ng-binding">Download Destination Manifest</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="breakbulkViewManifest()">
+                                                                                    <span class="padEdit"><i class="fa fa-download" aria-hidden="true"></i></span>
+                                                                                    <span class="ng-binding">Download Custom Manifest</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="" ng-click="breakbulkViewManifest()">
+                                                                                    <span class="padEdit"><i class="fa fa-download" aria-hidden="true"></i></span>
+                                                                                    <span class="ng-binding">Dowload Cartage Advice</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>    
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end code-->
+                                </div>
+
+                                <!--pagination code-->
+                                <section>
+                                    <div class="col-sm-12 paddingboth">
+                                        <div style="margin-left:-15px;top:-8px;position:relative;" class="pull-left">
+                                            <ul uib-pagination="" boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm ng-pristine ng-untouched ng-valid ng-isolate-scope pagination ng-not-empty" previous-text="‹" next-text="›" first-text="«" last-text="»">
+                                                <li class="pagination-first disabled"><a href="" ng-click="selectPage(1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" class="ng-binding" disabled="disabled" tabindex="-1">«</a></li>
+                                                <li class="pagination-prev disabled"><a href="" ng-click="selectPage(page - 1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle="" class="ng-binding" disabled="disabled" tabindex="-1">‹</a></li>
+                                                <li class="pagination-page active"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="" class="ng-binding">1</a></li>
+                                                <li class="pagination-page"><a href="" ng-click="selectPage(page.number, $event)" ng-disabled="ngDisabled&amp;&amp;!page.active" uib-tabindex-toggle="" class="ng-binding">2</a></li>
+                                                <li class="pagination-next"><a href="" ng-click="selectPage(page + 1, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="" class="ng-binding">›</a></li>
+                                                <li class="pagination-last"><a href="" ng-click="selectPage(totalPages, $event)" ng-disabled="noNext()||ngDisabled" uib-tabindex-toggle="" class="ng-binding">»</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="pull-right">
+                                            <label for="customers" class="col-sm-6 top5">Paging</label>
+                                            <div class="col-sm-4">
+                                                <select id="shipmentPaymentAccount" name="shipmentPaymentAccount" class="form-control fontsize12 ng-pristine ng-untouched ng-valid ng-not-empty" style="width:77px"><option label="20" value="number:20">20</option><option label="50" value="number:50" selected="selected">50</option><option label="100" value="number:100">100</option><option label="200" value="number:200">200</option></select>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </section>
+                                <!--end-->
+                              
+                            </section>
+                        </div>
+                    </section>
+                    <!--end-->
+                    <div class="clearfix"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</section>

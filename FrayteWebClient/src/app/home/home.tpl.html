@@ -1,0 +1,491 @@
+﻿<div id="wrapper" style="background:#fff !important;">
+    <div class="small-menu">
+        <div>
+            <div class="container">
+                <div class="col-md-12 paddingboth">
+                    <div class="col-sm-9 paddingboth">
+                        <a data-ui-sref="home.welcome"><img ng-src="{{ImagePath + 'FrayteLogo1.png'}}" style="width: 10em; padding: 3px 0;" /></a>
+                    </div>
+                    <div class="col-sm-3 text-right paddingboth">
+                        <a href="" class="menu-button"><i class="fa fa-bars fa-2x" style="padding: 10px 0;"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-sm-6 mobile-handset">
+                    <div class="width10"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" /></div>
+                    <div ng-if="FrayteWebSite==='COM'" class="width40 top-phone-number phone-color">(+852) 2148 4880</div>
+                    <div ng-if="FrayteWebSite==='CO.UK'" class="width40 top-phone-number phone-color">(+44) 01792 678017</div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="large-menu">
+        <div class="top-header">
+            <div class="container">
+                <div class="col-sm-6 mobile-handset">
+                    <div ng-if="FrayteWebSite==='COM'">
+                        <div class="width10"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" /></div>
+                        <div class="width40 top-phone-number phone-color">
+                            (+852) 2148 4880
+                            <p class="margin-bottom-none">09:00 - 18:00 (Monday - Friday)</p>
+                            <p class="margin-bottom-none">09:00 - 12:00 (Saturday)</p>
+                        </div>
+                    </div>
+                    <div ng-if="FrayteWebSite==='CO.UK'">
+                        <div class="width10"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" style="top:4.3rem !important;"/></div>
+                        <div class="width40 top-phone-number phone-color" style="top:5.2rem !important;">
+                            (+44) 01792 678017
+                            <p class="margin-bottom-none">09:00 - 17:00 (Monday - Friday)</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <ul>
+                        <li ng-if="IsStatic !=='True'" ng-class="{active: isCurrentPath('home.login')}"><a href="" ng-click="open('sm')" class="style">{{'Login' | translate}}</a></li>
+                        <li ng-if="IsStatic !=='True'" ng-class="{active: isCurrentPath('payment')}"><a data-ui-sref="payment">{{'Payment' | translate}}</a></li>
+                        <li>
+                            <select ng-model="Data.selectOption" style="border: none; background: none !important; color: #EB8633;outline:0;" ng-change="changeLanguage(Data.selectOption)">
+                                <option value="en" style="padding:2px 4px;">{{'BUTTON_LANG_EN' | translate}}</option>
+                                <option value="chSim" style="padding:2px 4px;">{{'BUTTON_LANG_CH' | translate}}(Simplified) </option>
+                                <option value="chTrad" style="padding:2px 4px;">{{'BUTTON_LANG_CH' | translate}}(Traditional) </option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#frayteMenu">
+                        <span class="sr-only">MENU</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a data-ui-sref="home.welcome" class="navbar-brand"><img ng-src="{{ImagePath + 'FrayteLogo1.png'}}" class="responsiveLogo bottom23" /></a>
+                </div>
+                <div class="collapse navbar-collapse fontsize12" id="frayteMenu">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--<li ng-class="{active: isCurrentPath('home.welcome')}"><a data-ui-sref="home.welcome">{{'Our' | translate}} {{'Company' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.service')}"><a data-ui-sref="home.service">{{'Services' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.client')}"><a data-ui-sref="home.client">{{'Client' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.fuelSurcharge')}"><a data-ui-sref="home.fuelSurcharge">{{'Fuel_Surcharge' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.contact')}"><a data-ui-sref="home.contact">{{'ContactMenu' | translate}}</a></li>
+                        <li class="dropdown menu">
+                            <a class="pointer" data-toggle="dropdown" style="background:transparent !important;"> {{'More_' | translate}} &nbsp;<span class="caret"></span></a>
+                            <ul class="dropdown-menu top9-6">
+                                <li ng-class="{active: isCurrentPath('home.learnMore')}"><a data-ui-sref="home.learnMore">{{'HOW_IT_WORKS' | translate}}</a></li>
+                                <li ng-class="{active: isCurrentPath('home.download')}"><a data-ui-sref="home.download">{{'Download' | translate}}</a></li>
+                                <li ng-class="{active: isCurrentPath('home.impguide')}"><a data-ui-sref="home.impguide">{{'ImpGuide' | translate}}</a></li>
+                            </ul>
+                        </li>-->
+                        <li ng-class="{active: isCurrentPath('home.e-commerce')}"><a ng-click="setScroll('top')" data-ui-sref="home.e-commerce">{{'E_Commerce' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.frayteForwording')}"><a ng-click="setScroll('top')" data-ui-sref="home.frayteForwording">{{'FRAYTE_Forwarding' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.courier')}"><a ng-click="setScroll('top')" data-ui-sref="home.courier">{{'Courier' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.contact')}"><a ng-click="setScroll('top')" data-ui-sref="home.contact">{{'ContactMenu' | translate}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="clearfix"></div>
+    <!--cathey pacific collapse start here-->
+    <div ng-if="reslength === false" class="panel-group" id="home-collapse">
+        <div class="panel panel-default fontsize12" style="padding:0px !important;">
+            <div class="cathey-collapse">
+                <a class="panel-title pointer show-opacity">
+                    <div ng-click="val = !val" style="border-bottom: 1px solid #ddd;height:37px;">
+                        <!--<span style="height:40px;position:relative;top:9px;">  <i ng-hide="val === true" class="fa fa-exclamation error-icon" aria-hidden="true"></i>{{Count}} System Alerts <span ng-hide="val === true" class="pull-right system-error-down">  {{PublicPageDate}} <i class="fa fa-chevron-down" aria-hidden="true"></i></span> <i class="fa fa-chevron-up pull-right" aria-hidden="true" style="position: relative;top: 3px;"></i></span>-->
+                        <div>
+                            <span ng-hide="!Count">
+                                <span class="error-icon-yellow"><i ng-hide="val === true" class="fa fa-exclamation error-icon full-opacity" style="opacity:0.8;" aria-hidden="true"></i></span>
+                                <span class="fontsize12 middle">{{Count}} {{'System_Alert' | translate}}</span>
+
+                            </span>
+                            <span ng-hide="val === true" class="system-error-down fontsize12 middle" id="date-collapse">
+                                {{PublicPageDate}} <span>({{GMT}}) </span>
+
+                            </span>
+                            <!--<span ng-show="showval === true" ng-click="showval = !showval" ng-hide="showval === false" style="position:relative;top:9px;">
+                                {{Count}} System Alerts
+                            </span>-->
+                            <span>
+                                <i ng-show="val === false" class="fa fa-chevron-down pull-right full-opacity top9" aria-hidden="true" style="opacity:0.8;"></i>
+                                <i ng-show="val === true" class="fa fa-chevron-up pull-right full-opacity top9" aria-hidden="true" style="opacity:0.8;"></i>
+                            </span>
+
+                        </div>
+                    </div>
+                </a>
+                <div ng-show="val === true" ng-repeat="result in result" class="panel-heading padding3x0 cathey-collapse" style="background:transparent !important;border-bottom:1px solid #ddd;height:37px;">
+                    <div style="width:100%;">
+                        <div class="width70 show-opacity">
+                            <a ui-sref="public.systemAlertDetail({Heading:result.Heading})" target="_blank" class="panel-title">
+                                <span>
+                                    <span class="error-icon-yellow"><i class="fa fa-exclamation error-icon full-opacity fontsize12" aria-hidden="true" style="opacity:0.8; top: 0px !important;"></i></span> <span class="fontsize12 middle-sub">{{result.Heading}}</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="pull-right">
+                            <span class="middle fontsize12">
+                                {{result.Date}}<span> ({{result.TimeZoneDetail.OffsetShort}})</span>&nbsp;&nbsp;
+                                <!--<span><a href=""><i class="fa fa-chevron-down" aria-hidden="true"></i></a></span>-->
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--cathey pacific collapse end here-->
+    <div class="clearfix"></div>
+    <div id="content" class="contentPaddingTop">
+        <div ui-view></div>
+    </div>
+    <div class="container" style="margin-bottom: 30px;">
+        <toaster-container></toaster-container>
+        <div>
+            <section class="track-shipment" ng-if="publicAndTrackPages()" style="padding-left:15px; padding-right:15px;">
+
+                <form name="TrackingForm" ng-submit="trackingDetail(TrackingForm.$valid,easyPostDetail)" novalidate>
+                    <div class="row">
+                        <div class="col-md-3 mobile-handset-padding-left paddingleft4"><h2> {{'Track' | translate}} {{'Your' | translate}} {{'Shipment' | translate}} </h2></div>
+                        <div class="col-md-2 mobile-handset-padding-left paddingleft4">
+                            <div class="form-group" ng-class="{ 'has-error': TrackingForm.shippingMethod.$invalid &&
+                                                         (TrackingForm.shippingMethod.$dirty || submitted) }">
+                                <select id="shippingMethod" name="shippingMethod"
+                                        ng-model="easyPostDetail.CarrierName"
+                                        ng-options="DeliveredBy.Name as DeliveredBy.Name for DeliveredBy in carriers track by DeliveredBy.CourierId" class="form-control fontsize12" required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Carrier' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error" ng-show="TrackingForm.shippingMethod.$invalid &&
+                                            (TrackingForm.shippingMethod.$dirty || submitted)">
+                                    {{'Carrier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-3  paddingleft4">
+                            <div class="form-group" ng-class="{ 'has-error': TrackingForm.tracking.$invalid &&
+                                                         (TrackingForm.tracking.$dirty || submitted) }">
+                                <input type="text" id="tracking" name="tracking" class="form-control fontsize12" ng-model="easyPostDetail.TrackingNumber" placeholder="{{'TrackingNumber' | translate}}" required />
+                                <span class="help-block has-error track-shipment-padding" ng-show="TrackingForm.tracking.$invalid &&
+                                            (TrackingForm.tracking.$dirty || submitted)">
+                                    {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 lineheight47">
+                            <button type="submit" ng-click="submitted=true" class="btnTrack width100 form-group">{{'Track' | translate}} {{'Now' | translate}}</button>
+                        </div>
+                        <div class="col-md-2 lineheight47  paddingleft4">
+                            <button type="submit" ng-click="goToBulkTracking()" class="btnTrack width100 form-group">{{'Bulk' | translate}} {{'Tracking' | translate}}</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+
+            </section>
+        </div>
+    </div>
+    <div class="pre-footer" ng-if="publicContentPages()">
+        <div class="container">
+            <div ng-if="IsSiteCountry==='COM'" class="row">
+                <!-- ABOUT & Address -->
+                <div class="col-md-4 BlockMarginBottom">
+                    <div class="about-foot">
+                        <h6>{{'Head' | translate}} {{'Office' | translate}} {{'Address' | translate}}</h6>
+                        <ul>
+                            <li><p><i class="fa fa-map-marker"></i>&nbsp; FRAYTE Logistics Ltd.</p></li>
+                            <li><p>Unit 501 Kwong Loong Tai Building,</p></li>
+                            <li><p>1016-1018 Tai Nan West Street,</p></li>
+                            <li><p>Cheung Sha Wan,</p></li>
+                            <li><p>Kowloon, Hong Kong</p></li>
+                            <li><p>香港九龍長沙灣大南西街1016-1018號廣隆泰大廈501室</p></li>
+                        </ul>
+                    </div>
+                    <br />
+                    <div class="about-foot">
+                        <h6>{{'Warehouse' | translate}} {{'Address' | translate}}</h6>
+                        <ul>
+                            <li><p><i class="fa fa-map-marker"></i>&nbsp; FRAYTE Logistics Ltd.</p></li>
+                            <li><p>Unit K, 1/F, North Tower,</p></li>
+                            <li><p>Kwai Shun Industrial Centre,</p></li>
+                            <li><p>51-63 Container Port Road,</p></li>
+                            <li><p>Kwai Chung, New Territories, Hong Kong.</p></li>
+                            <li><p>葵涌貨櫃碼頭路51-63號葵順工業中心北座1樓k室</p></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Address Chinese -->
+                <div class="col-md-4 BlockMarginBottom">
+                    <div>
+                        <h6>{{'OperatingTimes' | translate}}</h6>
+                        <ul class="openingTime">
+                            <li>09:00 - 18:00 ({{'Monday' | translate}} - {{'Friday' | translate}})</li>
+                            <li>09:00 - 12:00 ({{'Saturday' | translate}})</li>
+                        </ul>
+                    </div>
+                    <div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'ContactUs' | translate}}</h6>
+                        <ul>
+                            <li class="mobile-width100">
+                                <p><span class="phone"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150" /></span> <span class="mobile-right5">(+852) 2148 4880</span></p>
+                            </li>
+                            <li class="mobile-width100">
+                                <p><span class="phone"><img ng-src="{{ImagePath + 'fax.png'}}" alt="fax" class="img-responsive width13" /></span>  (+852) 2505 2466</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'SalesInquires' | translate}}</h6>
+                        <ul>
+                            <li>
+                                <h4><span class="phone"><img ng-src="{{ImagePath + 'Email.png'}}" alt="email" class="img-responsive width150 bottom3" /></span>  <span class="mobile-sales-font-size mobile-right5">sales@frayte.com</span></h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Warehouse Map-->
+                <div class="col-md-4">
+                    <h6>{{'Head' | translate}} {{'Office' | translate}}  {{'Address' | translate}}</h6>
+                    <div>
+                        <div style="width: 100%; overflow: hidden; height: 320px;">
+                            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                    src="https://maps.google.com/maps?hl=en&q=502 Kwong Loong Tia Building,  1016-1018 Tia Nan West Street  Cheung Sha Wan, Hong Kong&ie=UTF8&t=m&z=16&iwloc=B&output=embed" style="width: 100%; height: 440px; margin-top: -150px;">
+                                <div><small><a href="http://embedgooglemaps.com">embed google map</a></small></div>
+                                <div><small><a href="https://googlemapsgenerator.com">embed google maps</a></small></div>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-if="IsSiteCountry==='COM'" class="bottom-line" style="width:100% !important;margin-top:-10px;"></div>
+            <div class="row">
+                <div class="col-md-4 BlockMarginBottom">
+                    <div class="about-foot">
+                        <h6>{{'United' | translate}} {{'Kingdom' | translate}} {{'Address' | translate}}</h6>
+                        <ul>
+                            <li><p><i class="fa fa-map-marker"></i>&nbsp;  FRAYTE Logistics Ltd,</p></li>
+                            <li><p>34 North Street,</p></li>
+                            <li><p>Bridgwater, Somerset,</p></li>
+                            <li><p>TA6 3YD,</p></li>
+                            <li><p>United Kingdom</p></li>
+                            <li><p>(+44) 01792 678017</p></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Address United Kingdom-->
+                <div class="col-md-4 BlockMarginBottom">
+                    <div>
+                        <h6>{{'OperatingTimes' | translate}}</h6>
+                        <ul class="openingTime">
+                            <li>09:00 - 17:00 ({{'Monday' | translate}} - {{'Friday' | translate}})</li>
+                            <!--<li>09:00 - 12:00 ({{'Saturday' | translate}})</li>-->
+                        </ul>
+                    </div>
+                    <div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'ContactUs' | translate}}</h6>
+                        <ul>
+                            <li><p><span class="phone"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150" /></span> <span class="mobile-right5">(+44) 01792 678017</span></p></li>
+                        </ul>
+                    </div>
+                    <div class="bottom-line"></div>
+                    <div>
+                        <h6>{{'SalesInquires' | translate}}</h6>
+                        <ul>
+                            <li><h4><span class="phone"><img ng-src="{{ImagePath + 'Email.png'}}" alt="email" class="img-responsive width150 bottom3" /></span> <span class="mobile-right5">sales@frayte.co.uk</span></h4></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--End-->
+                <div class="col-md-4">
+                    <div style="width: 100%; overflow: hidden; height: 320px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40063.987806073164!2d-3.045789461789064!3d51.12692208883762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486df0a7aefb4cd9%3A0xb8c06f4dc2f4fe23!2sBridgwater%2C+Somerset%2C+UK!5e0!3m2!1sen!2sin!4v1463394387663" style="width: 100%; height: 440px; margin-top: -150px;" id="bordernone"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<footer class="pre-footer-top-border">
+    <div class="container">
+        <div class="row prefer-footer" style="background:transparent; font-size:14px !important; font-weight: 600;">
+            <div class="call-footer width100">
+                <div ng-if="FrayteWebSite==='COM'" class="col-sm-12">
+                    <div class="col-sm-4 col-sm-offset-2 mobile-width100 fontsize14 paddingboth">
+                        <span class="mobile-middle"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive" /> <span>{{'Call' | translate}}:</span> <span class="frayte-blue">(+852) 2148 4880</span></span>
+                    </div>
+                    <div class="col-sm-4 paddingboth mobile-width100 fontsize14 paddingboth">
+                        <span class="mobile-middle"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive " /> <span>{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Com' | translate}}</span></span>
+                    </div>
+                </div>
+                <div ng-if="FrayteWebSite==='CO.UK'" class="col-sm-12">
+                    <div class="col-sm-4 col-sm-offset-2 mobile-width100 fontsize14 paddingboth">
+                        <span class="mobile-middle"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive" /> <span>{{'Call' | translate}}:</span> <span class="frayte-blue">(+44) 01792 678017</span></span>
+                    </div>
+                    <div class="col-sm-4 paddingboth mobile-width100 fontsize14 paddingboth">
+                        <span class="mobile-middle"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive " />  <span>{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Uk' | translate}}</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 ">
+                <div class="width150 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'About_FRAYTE' | translate}}</h6>
+                        <ul class="list-unstyled fontsize12">
+                            <!--<li><p>{{'General' | translate}}</p></li>-->
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.welcome">{{'Home' | translate}}</a></p></li>
+                            <li><p>{{'About_us' | translate}}</p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.fuelSurcharge">{{'FuelSurcharge' | translate}}</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="width150 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Send_Consignment' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p>{{'Packaging' | translate}}</p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.paperwork">{{'Paperwork' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.download">{{'Download_Forms' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.transitTime">{{'Transit_Times' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.learnMore">{{'Restricted_ItemsAndProhibited_Items' | translate}}</a></p></li>
+                            <!--<li><p>{{'Prohibited_Items' | translate}}</p></li>-->
+                            <li><p>{{'Shipping_Lithium_Batteries' | translate}}</p></li>
+                            <!--<li><p>{{'Volumetric_Calculator' | translate}}</p></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Using_FRAYTE' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.bookingConsignment">{{'Booking_Consignment' | translate}}</a></p></li>
+                            <!--<li><p>{{'Online_Booking_Guide' | translate}} ({{'Download' | translate}})</p></li>-->
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.trackingYourConsignment">{{'Tracking_Your_Consignment' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.proofofdelivery">{{'POD' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="payment">{{'Payment' | translate}}</a></p></li>
+                            <!--<li><p>{{'TermsAndCondition' | translate}} ({{'Download' | translate}})</p></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="width150 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Termsof_Use' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a ng-click="setScroll('top')" ui-sref='public.term-and-condition' >{{'TermsAndCondition' | translate}}</a></p></li>
+                            <li><p><a href="" >{{'Privacy_Policy' | translate}}</a></p></li>
+                            <!--<li><p>{{'Refund_Policy' | translate}}</p></li>
+                            <li><p>{{'Payment_Security' | translate}}</p></li>
+                            <li><p>{{'Payment_Methods' | translate}}</p></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6 class="text-center">{{'Customers' | translate}}</h6>
+                        <div id="carousel-hide">
+                            <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                                <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                                    <img ng-src="{{slide.image}}" class="img-responsive customer-image">
+                                    <div class="carousel-caption">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="width150 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6 style="margin-left: 10px;">{{'ContactUs' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a href="mailto:{{saleslink}}"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Email_Us' | translate}}</span></a></p><div class="clearfix"></div></li>
+                            <li class="enter pointer">
+                            <p class="call pointer"><a href=""><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Call_Us' | translate}}</span></a></p>
+                                 <span class="phone-number frayte-blue">(+852) 2148 4880</span><div class="clearfix"></div>
+                           </li>
+                            <li><p><img ng-src="{{ImagePath + 'Chat.png'}}" alt="Live Chat" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Chat_Us' | translate}}</span></p><div class="clearfix"></div></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="clearfix"></div>
+                <div class="col-sm-4 col-xs-12 xs-footerCenter paddingboth">
+                    <div ng-if="FrayteWebSite==='CO.UK'" class="copyText"><img ng-src="{{ImagePath + 'RHA_Logo.png'}}" class="rha-image" /></div>
+                </div>
+                <div class="col-sm-5 col-xs-12  xs-footerCenter">
+                    <div ng-if="FrayteWebSite==='CO.UK'">
+                        <ul class="list-unstyled top12">
+                            <li class="copyText" style="margin-right:5px;"><span class="frayte-orange bold">Company No.:</span> 081287817</li>
+                            <li class="copyText" style="margin-right:5px;"><span class="frayte-orange bold">VAT NO.:</span> 247 3559 82</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-12 paddingboth textAlignR xs-footercenter text-center">
+                    <div class="text-right">
+                        <!--<div class="col-sm-3 paddingboth top5 col-xs-3 text-left">
+                            <span class="top5 fontsize12 we-accept"> We Accept </span>
+                        </div>-->
+                        <div class="col-sm-12 paddingboth col-xs-12">
+                            <p>
+                            <ul class="list-unstyled fix-image-card margin-bottom-none  mobile-left">
+                                <li><span class="fontsize12 we-accept"> We Accept &nbsp;&nbsp;</span></li>
+                                <li><a href=""><img ng-src="{{ImagePath + 'visa-card.png'}}"  /></a></li>
+                                <li><a href=""><img ng-src="{{ImagePath + 'amex-card.png'}}"  /></a></li>
+                                <li><a href=""><img ng-src="{{ImagePath + 'mastercard.png'}}"  /></a> </li>
+                                <li><a href=""><img ng-src="{{ImagePath + 'paypal-card.png'}}"  /></a></li>
+                            </ul></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-4 col-xs-12 xs-footerCenter top3 paddingright padding-tb-10">
+                <div class="copyText col-xs-12 width100 flex paddingboth">
+                    <!--<div class="width6"><a href=""><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /></a></div>-->
+                    <p class="mobile-left"><a href=""><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /></a> <span class="word-break">&copy; 2017 {{'Frayte' | translate}} {{'LogisticLTD' | translate}}. {{'AllRightsReserved' | translate}}.</span></p>
+                <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-sm-5 col-xs-12  xs-footerCenter padding-tb-10 mobile-left">
+                <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+                <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}}(Simplified) </button>
+                <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}}(Traditional) </button>
+            </div>
+            <!--hide in mobile browser-->
+            <div class="col-sm-3 col-xs-12 textAlignR xs-footercenter text-center mobile-handset">
+                <ul class="pull-right margin-bottom-none">
+                    <li><a class="social-icon facebookIcon pointer" href="" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /><!--<i class="fa fa-facebook" aria-hidden="true"></i>--></a></li>
+                    <li><a class="social-icon twitterIcon pointer" href="" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /><!--<i class="fa fa-twitter" aria-hidden="true"></i>--></a></li>
+                    <li><a class="social-icon instagramIcon pointer" href="" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /><!--<i class="fa fa-instagram" aria-hidden="true"></i>--></a></li>
+                </ul>
+            </div>
+            <!--end code-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</footer>

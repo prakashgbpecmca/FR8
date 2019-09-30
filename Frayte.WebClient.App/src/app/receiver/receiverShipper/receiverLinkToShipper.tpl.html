@@ -1,0 +1,58 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Receiver' | translate}} {{'Detail' | translate}}</h4>
+</div>
+<form name="ReceiverDetailForm" ng-submit="submit(ReceiverDetailForm.$valid, receiverDetail)" novalidate>
+    <div class="modal-body">
+        <div class="row1 vdividerLeft form-group topSearchDiv">
+            <div class="col-sm-6">
+                <div style="position:relative">
+                    <input type="search" class="form-control searchBox" ng-model="shipperSearch" ng-keyup="SearchShippers(shipperSearch)" placeholder="Search Shipper" />
+                    <span class="glyphicon glyphicon-search" style="position: absolute; top: 10px; left: 10px; cursor: pointer;"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h4>{{'Assigned' | translate}} {{'Shipper' | translate}}</h4>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="row1 vdividerLeft">
+            <div class="col-sm-6">
+                <div class="boxHeight">
+                    <div ng-if="searchShippers.length === 0">
+                        {{'SearchShipperAssignment' | translate}}.
+                    </div>
+                    <div ng-if="searchShippers.length > 0" ng-repeat="shipper in searchShippers">
+                        <div class="form-group">
+                            <div class="floatLeft">
+                                <label>{{shipper.Name}}</label>
+                            </div>
+                            <div class="floatRight padRight10">
+                                <button type="button" ng-click="AddShipper(shipper)" class="btn-addPopup">{{'Add' | translate}}</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="boxHeight">
+                    <div ng-repeat="shipper in assignedShippers">
+                        <div class="divHeight45">
+                            <div class="floatLeft">
+                                <label>{{shipper.Name}}</label>
+                            </div>
+                            <div class="floatRight padRight10">
+                                <button type="button" ng-click="RemoveShipper(shipper)" class="btn-addPopup">{{'Remove' | translate}}</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <br />
+</form>

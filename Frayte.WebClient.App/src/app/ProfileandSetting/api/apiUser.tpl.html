@@ -1,0 +1,370 @@
+﻿
+
+<section>
+    <div class="PB-300">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'Customer_Account_Detail' | translate}}</div>
+            <div class="panel-body">
+                <div class="form-group"><label class="control-label col-sm-2 paddingboth bold">{{'Name' | translate}}:</label> 
+                <div class="col-sm-10">{{CustomerApi.CustomerName}}</div><div class="clearfix"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2 paddingboth bold">{{'Account_No' | translate}}:</label>
+                     <div class="col-sm-10">{{CustomerApi.AccountNo}}</div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2 paddingboth bold">{{'API_Key' | translate}}: </label>
+                     <div class="col-sm-10">{{CustomerApi.APIKey}}</div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <!--<div ng-show="true">-->
+        <!--html code here-->
+        <!--<div>
+        <h3>Yodel - UK Domestic</h3>-->
+        <!--address book custom grid-->
+        <!--<div class="panel panel-default">
+            <div class="width100 flex grid-background">
+                <div class="width986 flex">
+                    <div class="col-sm-8 paddingboth bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Service</span></div>
+                    <div class="col-sm-4 paddingboth bold quotation-table-padding" style="border:none !important"><span class="quotation-table-body padding-10-5">Service Code</span></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="get-service-scroll" id="fix-get-service-alternate-color" style="height:auto !important">
+                <div class="panel-body padding0">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Express 24</span></div>
+                                    <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13001</span></div>
+                                    <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Express 48</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13002</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Express (Northern Island)</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13003</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Home 72</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13004</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Home 72 (Northern Island)</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13005</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Priority 12:00 Mon-Fri</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13006</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Saturday Priority 12:00</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13007</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Express Saturday</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13008</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Express 72</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13009</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Express Isle (Scottish Highlands)</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13010</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Domestic Non Specific (Channel Isles)</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13011</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Rep of Ireland (48)</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13012</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Rep of Ireland (72)</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>13013</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>-->
+        <!--end code-->
+        <!--</div>
+        <br/>
+        <div>-->
+        <!--html code here-->
+        <!--<h3>DHL - Import - Express</h3>-->
+        <!--address book custom grid-->
+        <!--<div class="panel panel-default">
+            <div class="width100 flex grid-background">
+                <div class="width986 flex">
+                    <div class="col-sm-8 paddingboth bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Service</span></div>
+                    <div class="col-sm-4 paddingboth bold quotation-table-padding" style="border:none !important"><span class="quotation-table-body padding-10-5">Service Code</span></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="get-service-scroll" id="fix-get-service-alternate-color" style="height:auto !important">
+                <div class="panel-body padding0">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Doc</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>10001</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Nondoc</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>10002</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Doc & Nondoc</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>10003</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="width100 pointer">
+                                <div class="flex">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Heavy Weight</span></div>
+                                        <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>10004</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>-->
+        <!--end code-->
+        <!--</div>
+        <br/>
+        <div>-->
+            <!--html code here-->
+            <!--<h3>UPS - Import - Saver Lane</h3>-->
+            <!--address book custom grid-->
+            <!--<div class="panel panel-default">
+                <div class="width100 flex grid-background">
+                    <div class="width986 flex">
+                        <div class="col-sm-8 paddingboth bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Service</span></div>
+                        <div class="col-sm-4 paddingboth bold quotation-table-padding" style="border:none !important"><span class="quotation-table-body padding-10-5">Service Code</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll" id="fix-get-service-alternate-color" style="height:auto !important">
+                    <div class="panel-body padding0">
+                        <ul class="list-unstyled change margin-bottom-none">
+                            <li>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Nondoc</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>37001</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Heavy Weight</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>37002</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+            <!--end code-->
+        <!--</div>
+        <br />
+        <div>-->
+            <!--html code here-->
+            <!--<h3>UK Mail - UK Domestic</h3>-->
+            <!--address book custom grid-->
+            <!--<div class="panel panel-default">
+                <div class="width100 flex grid-background">
+                    <div class="width986 flex">
+                        <div class="col-sm-8 paddingboth bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Service</span></div>
+                        <div class="col-sm-4 paddingboth bold quotation-table-padding" style="border:none !important"><span class="quotation-table-body padding-10-5">Service Code</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll" id="fix-get-service-alternate-color" style="height:auto !important">
+                    <div class="panel-body padding0">
+                        <ul class="list-unstyled change margin-bottom-none">
+                            <li>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Next Working Day</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>12001</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Next Working Day by Noon</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>12002</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Next Working Day by 10:30 AM</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>12003</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Next Working Day by 9:00 AM</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>12004</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Saturday</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>12005</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Saturday by 10:30 AM</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>12006</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Saturday by 9:00 AM</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>12007</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width100 pointer">
+                                    <div class="flex">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-8 quotation-table-body word-wrap padding-5"><span>Saturday Surcharge Per Pack</span></div>
+                                            <div class="col-sm-4 quotation-table-body word-wrap padding-5"><span>12008</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+            <!--end code-->
+        <!--</div>
+    </div>-->
+</section>

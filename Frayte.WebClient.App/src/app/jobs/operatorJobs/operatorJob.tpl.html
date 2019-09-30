@@ -1,0 +1,92 @@
+﻿
+
+<section>
+    <div class="modal-content fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+        <!--header code-->
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Operator_Jobs' | translate}}</h4>
+        </div>
+        <!--end-->
+        <!--body code-->
+        <div class="modal-body">
+            <div class="col-sm-12">
+                <!--start header code-->
+                <div class="widht100 jobinprogress-header flex">
+                    <div class="width986 flex">
+                        <div class="width4 padding-5"><span class="visibility">hidden</span></div>
+                        <div class="width13-71 padding-5 padding10 quotation-table-body bold">{{'Frayte_ShipmentNo' | translate}}</div>
+                        <div class="width13-71 padding-5 padding10 quotation-table-body bold">{{'Origin' | translate}}</div>
+                        <div class="width13-71 padding-5 padding10 quotation-table-body bold">{{'Destination' | translate}}</div>
+                        <div class="width13-71 padding-5 padding10 quotation-table-body bold">{{'TrackingNumberr' | translate}}</div>
+                        <div class="width13-71 padding-5 padding10 quotation-table-body bold">{{'Description_Of_Goods' | translate}}</div>
+                        <div class="width13-71 padding-5 padding10 quotation-table-body bold">{{'Estimated_Date_of_Departure' | translate}}</div>
+                        <div class="width13-71 padding-5 padding10 quotation-table-body bold">{{'Estimated_Time_of_Departure' | translate}}</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <div class="clearfix"></div>
+                <!--body code-->
+                <div class="modal-body quotation-overflow padding0 border-LB grid-hover">
+                    <ul class="list-unstyled margin-bottom-none">
+                        <li ng-repeat="item in jobs" class="alternate" ng-show="jobs.length">
+                            <!--start header body code-->
+                            <div class="width100" ng-class="{'demoClass':item.IsSelected}">
+                                <div class="width4 padding-5 text-center">
+                                    <i ng-show="item.IsHsCodeSet" class="fa fa-thumbs-o-up greenClass fa-14" aria-hidden="true"></i>
+                                    <i ng-show="!item.IsHsCodeSet" class="fa fa-thumbs-up fa-14" aria-hidden="true"></i>
+                                </div>
+                                <div class="width13-71 padding-5 padding10 quotation-table-body">{{item.FrayteNumber}}</div>
+                                <div class="width13-71 padding-5 padding10 quotation-table-body">{{item.FromCountry}}</div>
+                                <div class="width13-71 padding-5 padding10 quotation-table-body">{{item.ToCountry}}</div>
+                                <div class="width13-71 padding-5 padding10 quotation-table-body">{{item.TrackingNo}}</div>
+                                <div class="width13-71 padding-5 padding10 quotation-table-body">{{item.ShipmentDescription}}</div>
+                                <div class="width13-71 padding-5 padding10 quotation-table-body">{{GetCorrectFormattedDatePanel(item.EstimatedDateOfDeparture)}}</div>
+                                <div class="width13-71 padding-5 padding10 quotation-table-body">{{GetCorrectFormattedTime(item.EstimatedTimeOfDeparture)}}</div>
+                                 <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div ng-if="jobs=== null || jobs.length === 0" class="text-center red error-middle fontsize20">
+                               {{'No_jobs_Available' | translate}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--end-->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <!--end-->
+        <!--pagination code start-->
+        <div class="col-sm-12" ng-show="jobs.length">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-8 paddingboth"><ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm padding0" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul></div>
+                <div class="col-sm-4 top9">
+                    <label class="col-sm-8 top9 paddingboth"><label class="text-right">{{'Show_Jobs_In_Progress_Per_Page' | translate}}</label></label>
+                    <div class="col-sm-4 paddingboth">
+                        <select ng-model="track.TakeRows" class="form-control" ng-options="num as num for num in numbers" ng-change="changePagination()"></select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        <!--<div ng-hide="jobs.length">
+            No jobs Available.
+        </div>-->
+        <div class="clearfix"></div>
+        <!--footer code-->
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+    </div>
+</section>

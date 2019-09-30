@@ -1,0 +1,201 @@
+﻿<section class="title-bar img-blog transparent-bg-secondary">
+    <div class="transparent-bg-secondary-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>{{'Download' | translate}} {{'Forms' | translate}}</h1>
+                </div>
+            </div>
+        </div>
+    </div><div class="transparent-bg-secondary-layer"></div>
+</section>
+<div class="clearfix"></div>
+<div class="fullwidthNoBackground">
+    <br />
+    <div class="container downloadFile">
+        <h1>{{'Download_The_Following_Forms' | translate}}</h1>
+        <br />
+        <div class="row">
+            <div class="marginBottom">
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i> </div>
+                        </div>
+                        <div class="media-body downloadText">
+                            {{'Company' | translate}} {{'Profile' | translate}}
+                            <span class="downloadExcelPdf">                                
+                                <a href="downloadForm/Company%20Profile.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i></div>
+                        </div>
+                        <div class="media-body downloadText ">
+                            {{'COMMERCIAL_INVOICE_TEMPLATE' | translate}} 
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Commerical%20Invoice%20Template.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Commerical%20Invoice%20Template.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="marginBottom">
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i> </div>
+                        </div>
+                        <div class="media-body downloadText">
+                            {{'BOOKING_FORM_SEA' | translate}}                           
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Booking%20Form%20Sea.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Booking%20Form%20Sea.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i></div>
+                        </div>
+                        <div class="media-body downloadText ">
+                            {{'BOOKING_FORM_EXPRYES' | translate}}                            
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Booking%20Form%20Expryes.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Booking%20Form%20Expryes.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="marginBottom">
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i> </div>
+                        </div>
+                        <div class="media-body downloadText">
+                            {{'BOOKING_FORM_COURIER' | translate}}                           
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Booking%20Form%20Courier.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Booking%20Form%20Courier.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i></div>
+                        </div>
+                        <div class="media-body downloadText ">
+                            {{'BOOKING_FORM_AIR' | translate}}
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Booking%20Form%20Air.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Booking%20Form%20Air.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="marginBottom">
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i> </div>
+                        </div>
+                        <div class="media-body downloadText">
+                            {{'TRANSPORT_DELIVERY_ORDER' | translate}}
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Frayte%20Transport%20Delivery%20Order.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Frayte%20Transport%20Delivery%20Order.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i></div>
+                        </div>
+                        <div class="media-body downloadText ">
+                            {{'STOCK_REQUEST' | translate}}
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Stock%20Draw%20Down%20Request.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Stock%20Draw%20Down%20Request.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="marginBottom">
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i> </div>
+                        </div>
+                        <div class="media-body downloadText">
+                            {{'PACKING_LIST_TEMPLATE' | translate}}
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Packing%20List%20Template.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Packing%20List%20Template.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="downloadIcon"><i class="fa fa-download"></i></div>
+                        </div>
+                        <div class="media-body downloadText ">
+                            {{'KNOWN_CONSIGNOR_FORM' | translate}}
+                            <span class="downloadExcelPdf">                                
+                                <a href="downloadForm/2017-Known%20Consignor%20Form.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Known%20Consignor%20Form.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="marginBottom">
+                <div class="col-sm-6">
+                    <div class="media">
+                        <div class="media-left"><div class="downloadIcon"><i class="fa fa-download"></i></div></div>
+                        <div class="media-body downloadText pos-rel">
+                            {{'AIRWAY_BILL' | translate}}
+                            <span class="downloadExcelPdf">
+                                <a href="downloadForm/2017-Airway%20Bill.xlsx" target="_blank"><img ng-src="{{ImagePath + 'Excel1.png'}}" style="width:27px; border-radius: 2px;" /></a>
+                                &nbsp;&nbsp;
+                                <a href="downloadForm/2017-Airway%20Bill.pdf" target="_blank"><img ng-src="{{ImagePath + 'pdf.png'}}" style="width:30px;" /></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+</div>

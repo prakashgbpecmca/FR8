@@ -1,0 +1,119 @@
+﻿<div class="content padding-15">
+    <div class="col-sm-12">
+        <div class="text-center padding-tb-15"><h4>{{'ChooseNewAgent' | translate}}</h4></div>
+        <form name="ReselectAgentForm" ng-submit="submit(ReselectAgentForm.$valid, agentReselect)" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperInfo.ContactName}}</div>
+                                <div>{{ShipperInfo.CompanyName}}</div>
+                                <div>{{ShipperAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ShipperInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverInfo.ContactName}}</div>
+                                <div>{{ReceiverInfo.CompanyName}}</div>
+                                <div>{{ReceiverAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ReceiverInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            
+            <div class="form-group col-sm-6" style="padding-left:0px;">
+                <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                <div>
+                    <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group col-sm-6" style="padding-right:0px;" ng-class="{ 'has-error': ReselectAgentForm.customer.$invalid &&
+                                            (ReselectAgentForm.customer.$dirty || submitted) }">
+                <label class="control-label" for="customer">{{'Customer' | translate}}:</label>
+                <div>
+                    <input type="text" id="customer" name="customer" ng-model="agentReselect.CustomerName" class="form-control" readonly />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        
+           
+            <div class="form-group col-sm-6" style="padding-left:0px;" ng-class="{ 'has-error': ReselectAgentForm.shippingBy.$invalid &&
+                                            (ReselectAgentForm.shippingBy.$dirty || submitted) }">
+                <label class="control-label" for="shippingBy">{{'Shipping' | translate}} {{'By' | translate}}:</label>
+                <div>
+                    <input type="text" id="shippingBy" name="shippingBy" ng-model="agentReselect.ShippingMethod" class="form-control" readonly />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group col-sm-6" style="padding-right:0px;" ng-class="{ 'has-error': ReselectAgentForm.destCountry.$invalid &&
+                                        (ReselectAgentForm.destCountry.$dirty || submitted) }">
+                <label class="control-label" for="destCountry">{{'Originating' | translate}} {{'Country' | translate}}:</label>
+                <div class="defaultCursor">
+                    <select id="destCountry" name="destCountry" ng-model="agentReselect.Country"
+                            ng-change="GetCountryAgents(agentReselect.Country)"
+                            ng-options="Country.Name for Country in countries | orderBy:'Name' track by Country.CountryId" class="form-control" required disabled>
+                        <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="ReselectAgentForm.destCountry.$invalid &&
+                        (ReselectAgentForm.destCountry.$dirty || submitted)">
+                        {{'CountryValidationError' | translate}}
+                    </span>
+                </div>
+            </div>
+      
+            <div class="form-group col-sm-6" style="padding-left:0px;" ng-class="{ 'has-error': ReselectAgentForm.agentList.$invalid &&
+                                                         (ReselectAgentForm.agentList.$dirty || submitted) }">
+                <div>
+                    <label class="control-label" for="agentList">{{'Agent' | translate}} {{'List' | translate}}:</label>
+                </div>
+                <div>
+                    <select id="agentList" name="agentList" class="form-control"
+                            ng-model="agentReselect.Agent"
+                            ng-options="agent.Name for agent in AgentList" required>
+                        <option value="" disabled selected class="display-none">{{'carrier_SelectType' | translate}}</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="ReselectAgentForm.agentList.$error.required &&
+                           (ReselectAgentForm.agentList.$dirty || submitted)">
+                        {{'AgentValidError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-sm-6" style="padding-right:0px;">
+                <div class="floatRight form-group">
+                    <div class="padding-tb-15"><button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Submit' | translate}}</button></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

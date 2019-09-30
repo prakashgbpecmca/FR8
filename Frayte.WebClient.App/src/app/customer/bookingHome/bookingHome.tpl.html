@@ -1,0 +1,69 @@
+﻿
+
+<section>
+<div class="panel panel-body box-shadow-none">
+    <div class="paddingTB60">
+        <div id="largebutton" class="text-center" ng-if="showBooking">
+            <div class="form-group center-width33-inline" ng-class="{'center-width45-inline': FourIcon()}" ng-if="CustomerModules.IsDirectBooking">
+                <div id="directbooking" class="directbooking">
+                    <a class="btn box-shadow-none" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsDirectBooking }" ng-hide="!CustomerModules.IsDirectBooking" ng-click="goToBooking('DirectBooking')">
+                        <img ng-src="{{buildURL}}directbooking.png" class="img-responsive " />
+                        <h3 class="uppercase pointer text-center marginTop-zero frayte-blue bold">{{'Direct_Booking' | translate}}<br/><br/></h3>
+                    </a>
+                    <span ng-class="{'disable' : DirectBookingDisable(CustomerModules.IsDirectBooking)}" ng-click="goToBooking('DirectBooking')" class="directbooking-hover">{{'Direct_Booking_Hover' | translate}}</span>
+                </div>
+            </div>
+            <div class="form-group center-width33-inline" ng-class="{'center-width45-inline': FourIcon()}" ng-if="CustomerModules.IsTradeLaneBooking">
+                <div id="tradelane" class="directbooking">
+                    <a class="btn box-shadow-none" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsTradeLaneBooking }" ng-disabled="CustomerModules.IsTradeLaneBooking">
+                        <span><img ng-src="{{buildURL}}tradelane.png" class="img-responsive " /></span>
+                        <h3 class="uppercase pointer text-center marginTop-zero frayte-blue bold">{{'Tradelane' | translate}}<br /><br /></h3>
+                    </a>
+                    <span ng-class="{'disable' : CustomerModules.IsTradeLaneBooking}" class="tradeLane-hover">{{'Direct_Booking_Tradelane' | translate}}</span>
+                </div>
+            </div>
+          <div class="form-group center-width33-inline" ng-class="{'center-width45-inline': FourIcon()}" ng-if="CustomerModules.IsBreakBulkBooking">
+                <div id="breakbulk" class="directbooking">
+                    <a class="btn box-shadow-none" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsBreakBulkBooking }" ng-disabled="CustomerModules.IsBreakBulkBooking">
+                        <span><img ng-src="{{buildURL}}breakbulk.png" class="img-responsive " /></span>
+                        <h3 class="uppercase pointer text-center pointer marginTop-zero frayte-blue bold ">{{'Breakbulk' | translate}}<br/><br/></h3>
+                    </a>
+                    <span ng-class="{'disable' : CustomerModules.IsBreakBulkBooking}" class="breakBulk-hover">{{'Direct_Booking_Breakbulk' | translate}}</span>
+                </div>
+            </div>
+              <div class="form-group center-width33-inline" ng-class="{'center-width45-inline': FourIcon()}" ng-if="CustomerModules.IseCommerceBooking">
+                <div id="ecommerce" class="directbooking">
+                    <a class="btn box-shadow-none" ng-class="{ 'moduleNotAvailable': !CustomerModules.IseCommerceBooking}" ng-disabled="!CustomerModules.IseCommerceBooking || (RoleId !== 3 && RoleId !==6 && RoleId !==1)" ng-click="goToBooking('eCommerce')">
+                        <span><img ng-src="{{buildURL}}ecommerce.png" class="img-responsive " /></span>
+                        <h3 class="pointer text-center marginTop-zero frayte-blue bold ">{{'Ecommerce' | translate}}<br /><br /></h3>
+                    </a>
+                    <span ng-class="{'disable' : DirectBookingDisable(CustomerModules.IseCommerceBooking) || (RoleId !== 3 && RoleId !== 6 && RoleId !== 1)}" ng-click="goToBooking('eCommerce')" class="eCommerce-hover">{{'Direct_Booking_Ecommerce' | translate}}</span>
+                </div>
+            </div>
+           <div class="form-group center-width33-inline"  ng-class="{'center-width45-inline': FourIcon()}" ng-if="CustomerModules.IsWarehouseAndTransport" >
+                <div id="warehousing" class="directbooking">
+                    <a class="btn box-shadow-none" style="top: 13px;position: relative;"  ng-class="{ 'moduleNotAvailable': !CustomerModules.IsWarehouseAndTransport}" ng-disabled="true">
+                        <span><img ng-src="{{buildURL}}warehousing.png" class="img-responsive"/></span>
+                        <h3 class="uppercase pointer text-center marginTop-zero frayte-blue bold">{{'Warehouse' | translate}}<br />{{'And' | translate}}<br />{{'Transport' | translate}}</h3>
+                    </a>
+                    <span ng-class="{'disable' : true}" class="warehouse-hover">{{'Direct_Booking_Warehousing' | translate}}<br /></span>
+                </div>
+            </div>
+             <div class="form-group center-width33-inline" ng-class="{'center-width45-inline': FourIcon()}" ng-if="CustomerModules.IsExpresSolutions">
+                <div id="expressair" class="directbooking">
+                    <a class="btn box-shadow-none" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsExpresSolutions}" ng-disabled="true">
+                        <span><img ng-src="{{buildURL}}expressair.png" class="img-responsive " /></span>
+                        <h3 class="uppercase pointer text-center marginTop-zero frayte-blue bold ">{{'Express' | translate}}<br />{{'Solutions' | translate}}</h3>
+                    </a>
+                    <span ng-class="{'disable' : true}" class="expres-hover">{{'Direct_Booking_Express_Air' | translate}}</span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <br />
+</div>
+</section>
+
+

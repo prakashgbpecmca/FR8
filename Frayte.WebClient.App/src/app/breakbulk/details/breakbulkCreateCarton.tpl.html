@@ -1,0 +1,231 @@
+﻿
+
+
+
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">Create Carton</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="col-sm-12 paddingboth form-group">
+                    <div class="col-sm-12">
+                        <!--button code-->
+                        <div class="form-group row clearfix">
+                            <div class="col-sm-4">
+                                <div>
+                                    <select class="form-control">
+                                        <option value="0">Select</option>
+                                        <option value="1">Value 1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="col-sm-12 paddingboth clearfix">
+                                    <div class="pull-left">
+                                        <div class="btn-toolbar">
+                                            <button type="button" class="btn-simple btn-save" ng-click="createCartonSize()"><i class="fa fa-plus"></i> Create Carton Size</button>
+                                            <button type="button" class="btn-simple btn-save" ng-click="productCatalog()"><i class="fa fa-plus"></i> Add Product Catalog</button>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button type="button" class="btn-simple btn-save" ng-click="breakbulkAddEditPo()"><i class="fa fa-plus"></i> Add PO</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                        <!--start grid code here-->
+                        <div class="col-sm-12 paddingboth form-group clearfix">
+                            <div class="clearfix"></div>
+                            <div class="panel-default margin-bottom-none">
+                                <div class="panel-heading" style="padding:10px 0px 64px;">
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4 borderRight margin-10 height77 text-center word-break" style="border-right:2px solid #ddd !important;"><p style="margin:9px 0px 0px;"><b>PO No.</b><br><small></small></p></div>
+                                            <div class="col-sm-4 borderRight margin-10 height77 text-center word-break" style="border-right:2px solid #ddd !important;"><p style="margin:9px 0px 0px;"><b>Job No.</b><br><small></small></p></div>
+                                            <div class="col-sm-4 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Carton</b><br><small>(QTY)</small></p></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="text-center"><b>Dimensions (cm)</b><br /><small>(Length, Width, Height)</small></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 borderRight border-left margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Weight</b><br><small>(Kg)</small></p></div>
+                                    <div class="col-sm-1 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Gross/Net Weight</b><br><small></small></p></div>
+                                    <div class="col-sm-2 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Description</b><br><small></small></p></div>
+                                    <div class="col-sm-1 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Map</b><br><small></small></p></div>
+                                    <div class="col-sm-1 text-center margin-10 paddingT5"><a href="" a-disabled="directBooking.CustomerRateCard.LogisticServiceId >0" ng-click="AddPackage()"><p style="margin: 6px 0px 1px;"><b><span><span style="color:#4d5663 !important;">Add<br>More<br></span><i class="fa fa-plus" aria-hidden="true"></i></span></b></p></a></div>
+                                </div>
+                                <div class="panel-body padding0 margin-bottom-none">
+                                    <ul class="list-unstyled">
+                                        <li class="alternate">
+                                            <ng-form>
+                                                <div class="directbooking-textarea text-center" style="padding:10px 0px 0px !important;">
+                                                    <div class="col-sm-3">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54 text-center" style="border-right:2px solid #ddd !important;">
+                                                            <a class="pointer" href="">012301</a>
+                                                            </div>
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54 text-center" style="border-right:2px solid #ddd !important;">
+                                                                <a class="pointer" href="">012347</a>
+                                                            </div>
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom" style="border-right:2px solid #ddd !important;">
+                                                                <input type="text" name="cartton" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54">
+                                                                2
+                                                            </div>
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54">
+                                                                2
+                                                            </div>
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54">
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                        <input type="text" name="weight" class="form-control" value="2" style="width: 100%; margin:10px 0px 10px;" maxlength="5" required>
+                                                    </div>
+                                                    <div class="col-sm-1 borderRight margin-10 border-bottom lineheight54">
+                                                        2
+                                                    </div>
+                                                    <div class="col-sm-2 borderRight margin-10 border-bottom lineheight54">
+                                                        Bag
+                                                    </div>
+                                                    <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                        <button type="button" class="btn-simple btn-success col-sm-12" ng-click="mapProductCatalog()" style="margin:10px 0px 10px;">Map</button>
+                                                    </div>
+                                                    <div class="col-sm-1 border-bottom text-center directbooking-plus-minus-icon">
+                                                        <div class="shipmentContent">
+                                                            <a href="">
+                                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div style="border-top:1px solid #ddd;"><a href=""><i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </ng-form>
+                                        </li>
+                                        <li class="alternate">
+                                            <ng-form>
+                                                <div class="directbooking-textarea text-center" style="padding:10px 0px 0px !important;">
+                                                    <div class="col-sm-3">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54 text-center" style="border-right:2px solid #ddd !important;">
+                                                                <a class="pointer" href="">012302</a>
+                                                            </div>
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54 text-center" style="border-right:2px solid #ddd !important;">
+                                                                <a class="pointer" href="">012348</a>
+                                                            </div>
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom" style="border-right:2px solid #ddd !important;">
+                                                                <input type="text" name="cartton" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="row">
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54">
+                                                                2
+                                                            </div>
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54">
+                                                                2
+                                                            </div>
+                                                            <div class="col-sm-4 borderRight margin-10 border-bottom lineheight54">
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                        <input type="text" name="weight" class="form-control" value="2" style="width: 100%; margin:10px 0px 10px;" maxlength="5" required>
+                                                    </div>
+                                                    <div class="col-sm-1 borderRight margin-10 border-bottom lineheight54">
+                                                        2
+                                                    </div>
+                                                    <div class="col-sm-2 borderRight margin-10 border-bottom lineheight54">
+                                                        Laptop
+                                                    </div>
+                                                    <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                        <button type="button" class="btn-simple btn-success col-sm-12" ng-click="mapProductCatalog()" style="margin:10px 0px 10px;">Map</button>
+                                                    </div>
+                                                    <div class="col-sm-1 border-bottom text-center directbooking-plus-minus-icon">
+                                                        <div class="shipmentContent">
+                                                            <a href="">
+                                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div style="border-top:1px solid #ddd;"><a href=""><i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </ng-form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--end-->
+                        <!--end-->
+                        <!--total carton code-->
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="clearfix row">
+                                    <div class="col-sm-3">
+                                        <div class="clearfix">
+                                            <label for="totalCarton" class="control-label top5 paddingboth">Total Carton: <span>4 pcs</span></label>
+                                            <!--<div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Total Carton" required />
+            </div>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="clearfix">
+                                            <label for="totalCarton" class="control-label top5 paddingboth">Total Gross Weight: <span>4 kgs</span></label>
+                                            <!--<div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Gross Weight" required />
+            </div>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="clearfix">
+                                            <label for="totalCarton" class="control-label top5 paddingboth">Total Net Weight: <span>4 kgs</span></label>
+                                            <!--<div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Net Weight" required />
+            </div>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="clearfix">
+                                            <label for="totalCarton" class="control-label top5 paddingboth">CBM: <span>16</span></label>
+                                            <!--<div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Net Weight" required />
+            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+                <button type="button" ng-click="$dismiss()" class="btn-simple btn-success fontsize12 pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Create Carton</button>
+            </div>
+        </div>
+    </div>
+</section>

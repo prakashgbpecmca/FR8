@@ -1,0 +1,542 @@
+﻿
+
+
+
+
+
+<div class="col-xs-12 paddingboth" style="min-height: 506px;max-height:506px;overflow-x: hidden;overflow-y: auto;">
+    <div class="form-group bb">
+        <div class="pull-left icon-set"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></div>
+        <div class="text-center">
+            <h3>
+                <span ng-if="isActive">Scan Driver Manifest</span>
+                <span ng-if="isScanBag">Scan Bag</span>
+                <span ng-if="isTakePicture">Take Picture</span>
+                <span ng-if="isScanAWB">Scan AWB</span>
+                <span ng-if="isSignature">Signature</span>
+            </h3>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-xs-12">
+        <!--isActive-->
+        <div ng-if="isActive" class="text-center">
+
+        </div>
+        <!--end-->
+        <!--scan bag-->
+        <div ng-if="isScanBag">
+            <div>
+            <div class="clearfix lineheight28 fontsize18 bold">
+                DHL
+            </div>
+                <div class="panel-body">
+                    <div class="clearfix form-group">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="clearfix form-group">
+                                    <span class="col-xs-4">Bag 1</span>
+                                    <spanc class="col-xs-2">(4)</spanc>
+                                    <span class="col-xs-2"><img ng-src="{{ImagePath + 'avtar.png'}}" style="width:30px;"/></span>
+                                    <span class="col-xs-4 paddingboth text-right"><a class="pointer" ng-click="takePicture()"><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i> Uploading</a></span>
+                                </div>
+                                <div class="clearfix form-group">
+                                    <span class="col-xs-4">Bag 2</span>
+                                    <spanc class="col-xs-2">(3)</spanc>
+                                    <span class="col-xs-2">Null</span>
+                                    <span class="col-xs-4 paddingboth text-right"><a class="pointer" ng-click="takePicture()">Edit</a></span>
+                                </div>
+                                <div class="clearfix form-group">
+                                    <span class="col-xs-4">Bag 3</span>
+                                    <spanc class="col-xs-2">(4)</spanc>
+                                    <span class="col-xs-2"><img ng-src="{{ImagePath + 'avtar.png'}}" style="width:30px;" /></span>
+                                    <span class="col-xs-4 paddingboth text-right"><a class="pointer" ng-click="takePicture()">Edit</a></span>
+                                </div>
+                                <div class="clearfix form-group">
+                                    <span class="col-xs-4">Bag 4</span>
+                                    <spanc class="col-xs-2">(3)</spanc>
+                                    <span class="col-xs-2"><img ng-src="{{ImagePath + 'avtar.png'}}" style="width:30px;" /></span>
+                                    <span class="col-xs-4 paddingboth text-right"><a class="pointer" ng-click="takePicture()">Edit</a></span>
+                                </div>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--end-->
+        <!--take picture-->
+        <div ng-if="isTakePicture">
+                <div class="text-left">
+                    <h3>Bag 1</h3>
+                </div>
+                <div class="text-center form-group" style="width: 347px;border: 1px solid #ddd;padding: 20px 10px;">
+                    <img src="{{ImagePath + 'avtar.png'}}" class="text-center" style="width: 150px;margin: 0 auto;" />
+                    <div class="center-click">
+                        <button type="button" class="btn btn-success" ng-click="scanBag()">Click</button>
+                        <button type="button" class="btn btn-warning pull-right" ng-click="scanBag()">Skip</button>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+                <div class="clearfix lineheight28 fontsize18 bold form-group">
+                   DHL
+                </div>
+                <div class="panel-body">
+                    <div class="clearfix form-group">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="clearfix form-group">
+                                    <span class="col-xs-4"><i class="fa fa-plus-square-o pointer"></i> Bag 1</span>
+                                    <spanc class="col-xs-2">(4)</spanc>
+                                    <span class="col-xs-2"><img ng-src="{{ImagePath + 'avtar.png'}}" style="width:30px;" /></span>
+                                    <span class="col-xs-4 paddingboth text-right" ng-click="scanBag()"><a class="pointer">Edit</a></span>
+                                </div>
+                                <div class="clearfix form-group">
+                                    <span class="col-xs-4"><i class="fa fa-plus-square-o pointer"></i> Bag 2</span>
+                                    <spanc class="col-xs-2">(3)</spanc>
+                                    <span class="col-xs-2">Null</span>
+                                    <span class="col-xs-4 paddingboth text-right" ng-click="scanBag()"><a class="pointer">Edit</a></span>
+                                </div>
+                                <div class="clearfix form-group">
+                                    <span class="col-xs-4"><i class="fa fa-plus-square-o pointer"></i> Bag 3</span>
+                                    <spanc class="col-xs-2">(4)</spanc>
+                                    <span class="col-xs-2"><img ng-src="{{ImagePath + 'avtar.png'}}" style="width:30px;" /></span>
+                                    <span class="col-xs-4 paddingboth text-right" ng-click="scanBag()"><a class="pointer">Edit</a></span>
+                                </div>
+                                <div class="clearfix form-group">
+                                    <span class="col-xs-4"><i class="fa fa-plus-square-o pointer"></i> Bag 4</span>
+                                    <spanc class="col-xs-2">(3)</spanc>
+                                    <span class="col-xs-2"><img ng-src="{{ImagePath + 'avtar.png'}}" style="width:30px;" /></span>
+                                    <span class="col-xs-4 paddingboth text-right" ng-click="scanBag()"><a class="pointer">Edit</a></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <!--end-->
+        <!--scanning-->
+        <div ng-if="isScanning">
+
+        </div>
+        <!--end-->
+        <!--scan awb-->
+        <div ng-if="isScanAWB">
+            <div>
+                <div class="clearfix lineheight28 fontsize18 bold form-group">
+                    DHL
+                </div>
+                <!--bag 1 code here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix row">
+                            <span class="col-xs-6"><i ng-click="scanBagClick()" class="fa pointer" ng-class="{'fa-minus-square-o':collapse,'fa-plus-square-o':!collapse}"></i> Bag 1</span>
+                            <span class="col-xs-2">(2/4)</span>
+                            <span class="col-xs-4 text-center">Pending</span>
+                        </div>
+                    </div>
+                <div class="panel-body" ng-if="collapse">
+                    <div class="clearfix">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="clearfix form-group row">
+                                    <span class="col-xs-6">AWB 1</span>
+                                    <span class="col-xs-2"></span>
+                                    <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                </div>
+                                <div class="clearfix form-group row">
+                                    <span class="col-xs-6">AWB 2</span>
+                                    <span class="col-xs-2"></span>
+                                    <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                </div>
+                                <div class="clearfix form-group row">
+                                    <span class="col-xs-6">AWB 3</span>
+                                    <span class="col-xs-2"></span>
+                                    <span class="col-xs-4 text-center"></span>
+                                </div>
+                                <div class="clearfix row">
+                                    <span class="col-xs-6">AWB 4</span>
+                                    <span class="col-xs-2"></span>
+                                    <span class="col-xs-4 text-center"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+                <!--end-->
+                <!--bag 1 code here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix row">
+                            <span class="col-xs-6"><i ng-click="scanBagClick1()" class="fa pointer" ng-class="{'fa-minus-square-o':collapse1,'fa-plus-square-o':!collapse1}"></i> Bag 2</span>
+                            <span class="col-xs-2">(2/3)</span>
+                            <span class="col-xs-4 text-center">Pending</span>
+                        </div>
+                    </div>
+                    <div class="panel-body" ng-if="collapse1">
+                        <div class="clearfix">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 1</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 2</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix row">
+                                        <span class="col-xs-6">AWB 3</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--bag 2 code here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix row">
+                            <span class="col-xs-6"><i ng-click="scanBagClick2()" class="fa pointer" ng-class="{'fa-minus-square-o':collapse2,'fa-plus-square-o':!collapse2}"></i> Bag 3</span>
+                            <span class="col-xs-2">(2/4)</span>
+                            <span class="col-xs-4 text-center">Pending</span>
+                        </div>
+                    </div>
+                    <div class="panel-body" ng-if="collapse2">
+                        <div class="clearfix">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 1</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 2</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 3</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"></span>
+                                    </div>
+                                    <div class="clearfix row">
+                                        <span class="col-xs-6">AWB 4</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--bag 3 code here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix row">
+                            <span class="col-xs-6"><i ng-click="scanBagClick3()" class="fa pointer" ng-class="{'fa-minus-square-o':collapse3,'fa-plus-square-o':!collapse3}"></i> Bag 4</span>
+                            <span class="col-xs-2">(1/3)</span>
+                            <span class="col-xs-4 text-center">Pending</span>
+                        </div>
+                    </div>
+                    <div class="panel-body" ng-if="collapse3">
+                        <div class="clearfix">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 1</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 2</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"></span>
+                                    </div>
+                                    <div class="clearfix row">
+                                        <span class="col-xs-6">AWB 3</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+            </div>
+        </div>
+        <!--end-->
+        <!--signature-->
+        <div ng-if="isSignature">
+            <div>
+                <div class="clearfix lineheight28 fontsize18 bold form-group">
+                    DHL
+                </div>
+                <!--bag 1 code here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix row">
+                            <span class="col-xs-6"><i ng-click="scanBagClick()" class="fa pointer" ng-class="{'fa-minus-square-o':collapse,'fa-plus-square-o':!collapse}"></i> Bag 1</span>
+                            <span class="col-xs-2">(4/4)</span>
+                            <span class="col-xs-4 text-center">Scanned</span>
+                        </div>
+                    </div>
+                    <div class="panel-body" ng-if="collapse">
+                        <div class="clearfix">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 1</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 2</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 3</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix row">
+                                        <span class="col-xs-6">AWB 4</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--bag 2 code here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix row">
+                            <span class="col-xs-6"><i ng-click="scanBagClick1()" class="fa pointer" ng-class="{'fa-minus-square-o':collapse1,'fa-plus-square-o':!collapse1}"></i> Bag 2</span>
+                            <span class="col-xs-2">(2/3)</span>
+                            <span class="col-xs-4 text-center">Pending</span>
+                        </div>
+                    </div>
+                    <div class="panel-body" ng-if="collapse1">
+                        <div class="clearfix">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 1</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 2</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix row">
+                                        <span class="col-xs-6">AWB 3</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--bag 3 code here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix row">
+                            <span class="col-xs-6"><i ng-click="scanBagClick2()" class="fa pointer" ng-class="{'fa-minus-square-o':collapse2,'fa-plus-square-o':!collapse2}"></i> Bag 3</span>
+                            <span class="col-xs-2">(3/4)</span>
+                            <span class="col-xs-4 text-center">Pending</span>
+                        </div>
+                    </div>
+                    <div class="panel-body" ng-if="collapse2">
+                        <div class="clearfix">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 1</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 2</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 3</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"></span>
+                                    </div>
+                                    <div class="clearfix row">
+                                        <span class="col-xs-6">AWB 4</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--bag 4 code here-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix row">
+                            <span class="col-xs-6"><i ng-click="scanBagClick3()" class="fa pointer" ng-class="{'fa-minus-square-o':collapse3,'fa-plus-square-o':!collapse3}"></i> Bag 4</span>
+                            <span class="col-xs-2">(3/3)</span>
+                            <span class="col-xs-4 text-center">Scanned</span>
+                        </div>
+                    </div>
+                    <div class="panel-body" ng-if="collapse3">
+                        <div class="clearfix">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 1</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix form-group row">
+                                        <span class="col-xs-6">AWB 2</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                    <div class="clearfix row">
+                                        <span class="col-xs-6">AWB 3</span>
+                                        <span class="col-xs-2"></span>
+                                        <span class="col-xs-4 text-center"><i class="fa fa-check"></i></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--signature code here-->
+                <div class="form-group row b p30 l4 text-center">
+                    <h3><i>Signature</i></h3>
+                </div>
+                <!--end-->
+            </div>
+        </div>
+        <!--end-->
+    </div>
+</div>
+
+
+
+<div class="col-xs-12 fix-done" ng-if="isScanBag">
+    <div class="b5rem">
+        <div class="form-group">
+            <button type="submit" class="form-control btn-danger btn-danger" ng-click="cancel()">Cancel</button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanAWB()">3/4 Scanning</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done" ng-if="isTakePicture">
+    <div class="b5rem">
+        <div class="form-group">
+            <button type="submit" class="form-control btn-danger btn-danger" ng-click="cancel()">Cancel</button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanAWB()">3/4 Scanning</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done" ng-if="isScanAWB">
+    <div class="b5rem">
+        <div class="form-group">
+            <button type="submit" class="form-control btn-danger btn-danger" ng-click="cancel()">Cancel</button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-primary" ng-click="signature()">Accept & Signature</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done" ng-if="isSignature">
+    <div class="b5rem">
+        <div class="form-group">
+            <button type="submit" class="form-control btn-danger btn-danger" ng-click="scanAWB()">Back</button>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="form-control btn-simple btn-success" ng-click="confirm()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done-button">
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanDriverManifest()">Scan Driver Manifest</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="When driver click on Handover, then this screen will display." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanBag()">Scan Bag</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="After scanning of driver manifest, scan bag screen open. Here user scan bag & take picture sequentially." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="takePicture()">Take Picture</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="After scanning of a bag take picture screen with display with an option to skip take picutre screen." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanBag()">Uploading</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="After the click of the picture system will take some time to upload the picture meanwhile 'Edit text' will change into 'Uploading'." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="takePicture()">3/4 Scanning</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="If mobile user click the scanning button before completion of scanning bag, redirected to further process. 3/4 bags are scanned are you sure you want to confirm?" popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanAWB()">Scan AWB</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Here is the list of the bags belongs to the driver manifest. Now user will scan all AWB's one by one." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="signature()">Accept & Signature</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="After scanning of all AWB now user will move to signature screen. Here user will take digital signature then click on 'Confirm' handover the shiments." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-danger" ng-click="cancel()">Cancel</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Click on cancel redirected 'Scan Driver Manifest' screen.." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-success" ng-click="confirm()">Confirm</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="After when mobile user gets the signature after that user will click on 'Confirm' button and then go for handover." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

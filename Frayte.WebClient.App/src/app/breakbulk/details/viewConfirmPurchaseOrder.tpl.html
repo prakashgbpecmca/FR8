@@ -1,0 +1,367 @@
+﻿
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">View Purchase Order Details</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-12">
+                <div class="border-bottom-ddd form-group">
+                    <h3>View your successfully purchase order detail below:</h3>
+                </div>
+
+                <!--purchase order detail code-->
+                <div class="form-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Purchase Order Detail:</div>
+                        <div class="panel-body padding-bottom-none">
+                            <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6" for="country"><b>PO Number</b></label>
+                                            <div class="col-sm-6">PO0123456785:</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6"><b>Parcel Type:</b></label>
+                                            <div class="col-sm-6">Parcel</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6"><b>Courier:</b></label>
+                                        <div class="col-sm-6">UK Mail</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6"><b>Declare Value Currency:</b></label>
+                                        <div class="col-sm-6">AUD - Australian Dollar</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6"><b>Shipment Reference:</b></label>
+                                        <div class="col-sm-6">POREF0123456789</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6"><b>Send Alert Email:</b></label>
+                                            <div class="col-sm-6">alexanderflaming@gmail.com</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6"><b>Shipment Description:</b></label>
+                                        <div class="col-sm-6">8 Laptops</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+
+                <!--shipment detail code-->
+                <div class="form-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Shipment Details</div>
+                        <div class="panel-body padding-bottom-none">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6"><b>Courier Tracking No.#:</b></div>
+                                        <div class="col-sm-6 underline">
+                                            <span><a target="_blank" class="pointer">TRREF0123456789</a></span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6"><b>Shipment Ref No.#:</b></div>
+                                        <div class="col-sm-6 underline">POREF0123456789</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6"><b>Delivery Date:</b></div>
+                                        <div class="col-sm-6 underline">13-Oct-2018</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6"><b>Delivery Time:</b></div>
+                                        <div class="col-sm-6 underline">17:30 13-Oct-2018</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-6"><b>Signed By:</b></div>
+                                        <div class="col-sm-6 underline">Manish Jadli</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+
+                <!--view purchase order grid-->
+                <!--<div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="padding:10px 0px 64px;">
+                            <div class="width11 borderRight margin-10 height77 text-center word-break" style="border-right:2px solid #ddd !important;">
+                                <p style="margin:9px 0px 0px;">
+                                    <b class="ng-binding">Carton</b>
+                                    <b class="ng-binding ng-hide">QTY</b>
+                                    <br><small></small>
+                                </p>
+                            </div>
+                            <div class="width11 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b class="ng-binding">Length</b><br><small class="ng-binding">(cm)</small></p></div>
+                            <div class="width11 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b class="ng-binding">Width</b><br><small class="ng-binding">(cm)</small></p></div>
+                            <div class="width11 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b class="ng-binding">Height</b><br><small class="ng-binding">(cm)</small></p></div>
+                            <div class="width11 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b class="ng-binding">Weight</b><br><small class="ng-binding">(kg)</small></p></div>
+                            <div class="width45 borderRight margin-10 height77 text-center word-break">
+                                <p style="margin:9px 0px 0px;">
+                                    <b class="ng-binding">Shipment Contents</b><br><a href="" class="padding7px" popover-placement="auto" uib-popover="Please fill a short description of the Contents of the Package." popover-trigger="'outsideClick'" style="bottom:4PX;position:relative;">
+                                        <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="panel-body padding0 margin-bottom-none list-unstyled">
+                            <li class="alternate ng-scope" style="">
+                                <ng-form name="tags0" class="ng-pristine ng-invalid ng-invalid-required ">
+                                    <div class="directbooking-textarea border-bottom " style="padding:10px 0px 0px !important;">
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center" style="border-right:2px solid #ddd !important;">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width45 borderRight margin-10 padding-2 lineheight30 text-center" style="padding: 1px 6px 3px !important;">
+                                            <span>HP Laptops</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ng-form>
+                            </li>
+                            <li class="alternate ng-scope" style="">
+                                <ng-form name="tags0" class="ng-pristine ng-invalid ng-invalid-required ">
+                                    <div class="directbooking-textarea border-bottom " style="padding:10px 0px 0px !important;">
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center" style="border-right:2px solid #ddd !important;">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width45 borderRight margin-10 padding-2 lineheight30 text-center" style="padding: 1px 6px 3px !important;">
+                                            <span>Dell Laptops</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ng-form>
+                            </li>
+                            <li class="alternate ng-scope" style="">
+                                <ng-form name="tags0" class="ng-pristine ng-invalid ng-invalid-required ">
+                                    <div class="directbooking-textarea border-bottom" style="padding:10px 0px 0px !important;">
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center" style="border-right:2px solid #ddd !important;">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width45 borderRight margin-10 padding-2 lineheight30 text-center" style="padding: 1px 6px 3px !important;">
+                                            <span>Sony Laptops</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ng-form>
+                            </li>
+                            <li class="alternate ng-scope" style="">
+                                <ng-form name="tags0" class="ng-pristine ng-invalid ng-invalid-required ">
+                                    <div class="directbooking-textarea border-bottom" style="padding:10px 0px 0px !important;">
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center" style="border-right:2px solid #ddd !important;">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width11 borderRight margin-10 padding-2 lineheight30 text-center">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="width45 borderRight margin-10 padding-2 lineheight30 text-center" style="padding: 1px 6px 3px !important;">
+                                            <span>Lenovo Laptops</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ng-form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+
+                <section>
+                    <div class="col-sm-12 paddingboth">
+                        <div class="col-sm-6 paddingboth">
+                            <h4 class="padding-tb-5 ng-binding">Shipment and Package Details</h4>
+                        </div>
+                        <div class="col-sm-6 paddingboth">
+                            <p class="text-right red" style="margin:15px 0px 0px !important;">If the Print Labels column is in RED then it is already downloaded/printed. </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="piecesDetailTable">
+                        <div class="panel panel-default margin-bottom-none">
+                            <div class="panel-heading">
+                                <div class="flex">
+                                    <div class="colHeader width6"><span>Carton <small class="ng-binding">(QTY)</small></span></div>
+                                    <div class="colHeader width6"><span>Length<br><small class="ng-binding">(cm)</small></span></div>
+                                    <div class="colHeader width6"><span>Width<br><small class="ng-binding">(cm)</small></span></div>
+                                    <div class="colHeader width6" style="border-right: 2px solid #ddd;"><span>Height<br><small class="ng-binding">(cm)</small></span></div>
+                                    <div class="colHeader width6" style="border-right: 2px solid #ddd;"><span>Weight<br><small class="ng-binding">(kg)</small></span></div>
+                                    <div class="colHeader width32" style="border-right:none;"><span>Shipment Contents<br><small></small></span></div>
+                                    <div class="colHeader width10" style="border-left:1px solid #ddd !important;"><div><span>Print Labels<br><span style="font-size:10px;">(Click Link Below)</span></span></div></div>
+                                    <div class="colHeader width20"><span class="ng-binding">Tracking No.# <br><span style="font-size:10px;">(Click Link Below)</span></span></div>
+                                    <div class="colHeader width8 border-right-none"><span><br><span style="font-size:10px;"></span></span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <ul class="panel-body list-unstyled margin-bottom-none grid-hover">
+                                <li class="alternate ng-scope">
+                                    <div>
+                                        <div class="flex">
+                                            <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label>0</label></div>
+                                            <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label>0</label></div>
+                                            <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label>0</label></div>
+                                            <div class="colHeader width6 height43" style="border-right: 2px solid #ddd;" ng-class="{'demoClass':Pakage.IsSelected}"><label>0</label></div>
+                                            <div class="colHeader width6 height43" style="border-right: 2px solid #ddd;" ng-class="{'demoClass':Pakage.IsSelected}"><label>0.0</label></div>
+                                            <div class="colHeader width32 height43" ng-class="{'width70': directBookingDetail.ShipmentStatusId === 14, 'demoClass':Pakage.IsSelected}"><label></label></div>
+                                            <div class="width10 text-center padding4255px height43" ng-class="{'demoClass':Pakage.IsSelected}">
+                                                <a ng-class="{'disabledanchor':Pakage.LabelName ===null || Pakage.LabelName ===''}" a-disabled="Pakage.LabelName ===null || Pakage.LabelName ===''" href="" target="_blank" download="" class="disabledanchor disabled">
+                                                    <img ng-show="Pakage.LabelName !==null &amp;&amp; Pakage.LabelName !==''" ng-src="{{ImagePathRoot + 'Red%20Label.png'}}" ng-click="setPrintLabel(Pakage)" class="img-responsive ng-hide" style="width:31px; height:32px;margin-left:10px;">
+                                                    <span ng-show="Pakage.LabelName !==null &amp;&amp; Pakage.LabelName !==''" ng-class="{'overlayRed':IsPrinted(Pakage),'overlayGrey':!IsPrinted(Pakage) }" class="ng-hide overlayGrey"></span>
+                                                </a>
+                                            </div>
+                                            <div class="colHeader width20 height43 underline" ng-class="{'demoClass':Pakage.IsSelected}">
+                                                <a target="_blank" class="pointer ng-binding" ng-click="TrackingPage(directBookingDetail)"></a>
+                                            </div>
+                                            <div ng-class="{'demoClass':Pakage.IsSelected}" class="width8 height43">
+                                                <div>
+                                                    <a target="_blank" id="drop1" href="" download="" role="button" class="pull-right print-label btn-simple btn-success ng-binding">
+                                                        <i class="fa fa-print pointer" aria-hidden="true"></i> Print
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                            <div class="panel-footer">
+                                <div class="colFoot" style="padding: 18px 10px !important;">
+                                    <div class="bottom10">Total:  </div>
+                                </div>
+                                <div class="colHeader colFoot5-86" style="border:none;"><span>0 <br><small>(Cartons)</small></span></div>
+                                <div class="colHeader colFoot6 padding8x0x12" style="width:6.2% !important;border-left: 2px solid #ddd;"><span>0.0 <br><small>(kgs)</small></span></div>
+                                <div>
+                                    <div class="pull-right" style="position: relative;margin: 10px 10px 0px;">
+                                        <a target="_blank" href="" a-disabled="!IsDownloaded" download="" class="btn btn-success fontsize12 ng-binding disabled" style="border-radius:2px !important;"><i class="fa fa-print" aria-hidden="true"></i> Print all Label</a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-footer" style="border-top: 2px solid #333 !important;">
+                                <div class="col-sm-5 direct-booking-detail-background bold padding11x10">
+                                    <div class="col-sm-8 paddingboth">Total Estimated Volumetric Weight <span class="red">#</span>: </div>
+                                    <div class="col-sm-4 paddingboth pull-right padding0 text-right" style="border-right:none !important;"><span>0.0  <small>(kgs)</small></span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <p> <span class="red">#: </span>This is an estimated weight and may not reflect the final billing weight.</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 paddingboth form-group">
+                        <div>
+                            <form name="SendMail"  novalidate="" class="ng-pristine ng-valid ng-valid-required ng-valid-email">
+                                <div class="col-sm-4 paddingboth" ng-class="{'textRed': SendMail.toMail.$invalid &amp;&amp; (SendMail.toMail.$dirty || sendMail)}">
+                                    <input name="toMail" type="email" class="form-control fontsize12" placeholder="Email Address" style="outline: none !important; border-color: rgb(204, 204, 204) !important;">
+                                </div>
+                                <div class="col-sm-2">
+                                    <button ng-click="sendMail=true" type="submit" class="btn-simple btn-success fontsize12 ng-binding"><i class="fa fa-envelope-o" aria-hidden="true"></i> Send Label</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </section>
+
+                <!--end-->
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</section>

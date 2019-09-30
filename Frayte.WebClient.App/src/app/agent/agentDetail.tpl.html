@@ -1,0 +1,429 @@
+﻿<form name="AgentForm" ng-submit="AgentSave(AgentForm.$valid, agentDetail)" novalidate>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'BasicDetail' | translate}}</div>
+        <div class="panel-body">
+            <div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AgentForm.companyName.$invalid &&
+                                                         (AgentForm.companyName.$dirty || submitted) }">
+                        <label class="control-label" for="companyName">{{'Company' | translate}} {{'Name' | translate}}</label>
+                        <div>
+                            <input type="text" id="companyName" name="companyName" ng-model="agentDetail.CompanyName" class="form-control"
+                                   placeholder="{{'Company' | translate}} {{'NamePlaceholder' | translate}}" required />
+                            <span class="help-block has-error"
+                                  ng-show="AgentForm.companyName.$invalid &&
+                                            (AgentForm.companyName.$dirty || submitted)">
+                                {{'Company' | translate}} {{'NameValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AgentForm.contact.$invalid &&
+                                            (AgentForm.contact.$dirty || submitted) }">
+                        <label class="control-label " for="contact">{{'Contact' | translate}}</label>
+                        <div>
+                            <input type="text" id="contact" name="contact" ng-model="agentDetail.ContactName" class="form-control"
+                                   placeholder="{{'ContactPlaceholder' | translate}}" required />
+                            <span class="help-block has-error"
+                                  ng-show="AgentForm.contact.$invalid &&
+                                            (AgentForm.contact.$dirty || submitted)">
+                                {{'ContactValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AgentForm.nickName.$invalid &&
+                                        (AgentForm.nickName.$dirty || submitted) }">
+                        <label class="control-label " for="nickName">{{'NickName' | translate}}</label>
+                        <div>
+                            <input type="text" id="nickName" name="nickName" ng-model="agentDetail.ShortName"
+                                   placeholder="{{'NickNamePlaceholder' | translate}}" class="form-control" required />
+                            <span class="help-block has-error"
+                                  ng-show="AgentForm.nickName.$invalid &&
+                                            (AgentForm.nickName.$dirty || submitted)">
+                                {{'NickNameValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AgentForm.email.$invalid &&
+                                                         (AgentForm.email.$dirty || submitted) }">
+                        <label class="control-label " for="email">{{'Email' | translate}}</label>
+                        <div>
+                            <input type="email" id="email" name="email" ng-model="agentDetail.Email"
+                                   class="form-control" placeholder="{{'EmailPlaceholder' | translate}}" required />
+                            <span class="help-block has-error"
+                                  ng-show="AgentForm.email.$error.required &&
+                                            (AgentForm.email.$dirty || submitted)">
+                                {{'EmailValidationError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="AgentForm.email.$error.email &&
+                                            (AgentForm.email.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AgentForm.telephone.$invalid && (AgentForm.telephone.$dirty || submitted) ||
+                                                                   (!AgentForm.telephone.$invalid && AgentForm.telephoneCode.$invalid &&
+                                                                    (AgentForm.telephoneCode.$dirty || submitted))}">
+                        <label class="control-label " for="telephoneCode">{{'Telephone' | translate}}</label>
+                        <div>
+                            <div class="countryCodeLeft">
+                                <select id="telephoneCode" name="telephoneCode"
+                                        ng-model="agentDetail.TelephoneCode" ng-change="InitailDetailOfCountry(data,agentDetail.TelephoneCode,countries)"
+                                        ng-options="countryPhoneCode.Name + ' - (+' + countryPhoneCode.PhoneCode + ')' for countryPhoneCode in countryPhoneCodes | orderBy:'Name' track by '(+' + countryPhoneCode.PhoneCode + ')'"
+                                        class="form-control" required>
+                                    <option value="" selected disabled class="display-none">{{'CountryCodePlaceholder' | translate}}</option>
+                                </select>
+                            </div>
+                            <div class="countryCodeRight">
+                                <input type="text" id="telephone" name="telephone" ng-model="agentDetail.TelephoneNo" class="form-control" only-numeric
+                                       placeholder="{{'TelephonePlaceholder' | translate}}" required />
+                            </div>
+                            <div class="clearfix"></div>
+                            <span class="help-block has-error"
+                                  ng-show="AgentForm.telephone.$invalid &&
+                                            (AgentForm.telephone.$dirty || submitted)">
+                                {{'TelephoneValidationError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="!AgentForm.telephone.$invalid && AgentForm.telephoneCode.$invalid &&
+                                            (AgentForm.telephoneCode.$dirty || submitted)">
+                                {{'CountryCodeValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label " for="mobileCode">{{'Mobile' | translate}}</label>
+                        <div>
+                            <div class="countryCodeLeft">
+                                <select id="mobileCode" name="mobileCode"
+                                        ng-model="agentDetail.MobileCode" ng-change="InitailDetailOfCountry(data,agentDetail.MobileCode,countries)"
+                                        ng-options="countryPhoneCode.Name + ' - (+' + countryPhoneCode.PhoneCode + ')' for countryPhoneCode in countryPhoneCodes | orderBy:'Name' track by '(+' + countryPhoneCode.PhoneCode + ')'"
+                                        class="form-control">
+                                    <option value="" selected disabled class="display-none">{{'CountryCodePlaceholder' | translate}}</option>
+                                </select>
+                            </div>
+                            <div class="countryCodeRight">
+                                <input type="text" id="mobile" name="mobile" ng-model="agentDetail.MobileNo" class="form-control" only-numeric placeholder="{{'MobilePlaceholder' | translate}}" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="row col-sm-6 form-group" ng-class="{ 'has-error': (AgentForm.workingStartTime.$invalid || AgentForm.workingStartTime.$error.pattern) &&
+                                                     (AgentForm.workingStartTime.$dirty || submitted) }">
+                        <label class="control-label" for="workingStartTime">{{'OfficeStartTime' | translate}} <b> {{'Hours24' | translate}}</b></label>
+                        <input type="text"
+                               class="form-control input-sm"
+                               placeholder="{{'TimePlaceholder' | translate}}"
+                               name="workingStartTime"
+                               ng-model="agentDetail.WorkingStartTime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.workingStartTime.$invalid && !AgentForm.workingStartTime.$error.pattern && (AgentForm.workingStartTime.$dirty || submitted)">
+                            {{'TimeValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.workingStartTime.$error.pattern &&
+                                                (AgentForm.workingStartTime.$dirty || submitted)">
+                            {{'TimeNotValid' | translate}}
+                        </span>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (AgentForm.workingEndTime.$invalid || AgentForm.workingEndTime.$error.pattern) &&
+                                                     (AgentForm.workingEndTime.$dirty || submitted) }">
+                        <label class="control-label" for="workingEndTime">{{'OfficeEndTime' | translate}} <b> {{'Hours24' | translate}}</b></label>
+                        <input type="text"
+                               class="form-control input-sm"
+                               placeholder="{{'TimePlaceholder' | translate}}"
+                               name="workingEndTime"
+                               ng-model="agentDetail.WorkingEndTime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.workingEndTime.$invalid && !AgentForm.workingEndTime.$error.pattern && (AgentForm.workingEndTime.$dirty || submitted)">
+                            {{'TimeValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.workingEndTime.$error.pattern &&
+                                                (AgentForm.workingEndTime.$dirty || submitted)">
+                            {{'TimeNotValid' | translate}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label " for="FaxCode">{{'Fax' | translate}}</label>
+                        <div>
+                            <div class="countryCodeLeft">
+                                <select id="FaxCode" name="FaxCode"
+                                        ng-model="agentDetail.FaxCode" ng-change="InitailDetailOfCountry(data,agentDetail.FaxCode,countries)"
+                                        ng-options="countryPhoneCode.Name + ' - (+' + countryPhoneCode.PhoneCode + ')' for countryPhoneCode in countryPhoneCodes | orderBy:'Name' track by '(+' + countryPhoneCode.PhoneCode + ')'"
+                                        class="form-control">
+                                    <option value="" selected disabled class="display-none">{{'CountryCodePlaceholder' | translate}}</option>
+                                </select>
+                            </div>
+                            <div class="countryCodeRight">
+                                <input type="text" id="fax" name="fax" ng-model="agentDetail.FaxNumber" class="form-control" only-numeric placeholder="{{'FaxPlaceholder' | translate}}" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AgentForm.workingWeekDay.$invalid &&
+                                (AgentForm.workingWeekDay.$dirty || submitted) }">
+                        <label class="control-label" for="workingWeekDay">{{'Working' | translate}} {{'Weekdays' | translate}}</label>
+                        <div>
+                            <select id="workingWeekDay" name="workingWeekDay"
+                                    ng-model="agentDetail.WorkingWeekDay"
+                                    ng-options="WorkingWeekDay.Description for WorkingWeekDay in WorkingWeekDays | orderBy:'Description' track by WorkingWeekDay.WorkingWeekDayId"
+                                    class="form-control" required>
+                                <option value="" selected disabled class="display-none">{{'WeekdaysSelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="AgentForm.workingWeekDay.$invalid &&
+				   (AgentForm.workingWeekDay.$dirty || submitted)">
+                                {{'WeekdaysValidError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': AgentForm.timeZone.$invalid &&
+                                                        (AgentForm.timeZone.$dirty || submitted) }">
+                        <label class="control-label " for="timeZone">{{'TimeZone' | translate}}</label>
+                        <div>
+                            <select id="timeZone" name="timeZone"
+                                    ng-model="agentDetail.Timezone"
+                                    ng-options="TimeZone.OffsetShort + ' - ' + TimeZone.Name  for TimeZone in timezones | orderBy:'Offset' track by TimeZone.TimezoneId"
+                                    class="form-control" required>
+                                <option value="" selected disabled class="display-none">{{'TimeZoneSelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="AgentForm.timeZone.$invalid &&
+                                            (AgentForm.timeZone.$dirty || submitted)">
+                                {{'TimeZoneValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="via">{{'ShipmentMethod' | translate}}</label>
+                        <div>
+                            <div class="row">
+                                <div style="margin-top:15px;">
+                                    <div class="col-xs-4">
+                                        <span class="check-Box">
+                                            <input name="viaType" type="checkbox"
+                                                   ng-model="agentDetail.IsAir" value="" />
+                                        </span>
+                                        <span class="check-BoxText">{{'Air' | translate}}</span>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <span class="check-Box">
+                                            <input name="viaType" type="checkbox"
+                                                   ng-model="agentDetail.IsSea" value="" />
+                                        </span>
+                                        <span class="check-BoxText">{{'Sea' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div style="margin-top:15px;">
+                                    <div class="col-xs-8">
+                                        <span class="check-Box">
+                                            <input name="viaType" type="checkbox"
+                                                   ng-model="agentDetail.IsExpryes" value="" />
+                                        </span>
+                                        <span class="check-BoxText">{{'Expryes' | translate}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>                
+            </div>
+        </div>
+    </div>
+
+    <!--Main Address-->
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'MainAddress' | translate}}</div>
+        <div class="panel-body">
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': AgentForm.country.$invalid &&
+                                        (AgentForm.country.$dirty || submitted) }">
+                    <label class="control-label" for="country">{{'Country' | translate}}</label>
+                    <div>
+                        <select id="country" name="country"
+                                ng-model="agentDetail.UserAddress.Country" ng-change="InitailDetailOfCountryCodes(data,countryPhoneCodes,agentDetail.UserAddress.Country)"
+                                ng-options="Country.Name for Country in countries | orderBy:'Name' track by Country.CountryId"
+                                class="form-control" required>
+                            <option value="" selected disabled class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                        </select>
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.country.$invalid &&
+                        (AgentForm.country.$dirty || submitted)">
+                            {{'CountryValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': AgentForm.address.$invalid &&
+                                                         (AgentForm.address.$dirty || submitted) }">
+                    <label class="control-label" for="address">{{'Address' | translate}}</label>
+                    <div>
+                        <input type="text" id="address" name="address" ng-model="agentDetail.UserAddress.Address" class="form-control"
+                               placeholder="{{'AddressPlaceholder' | translate}}" required />
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.address.$invalid &&
+                                            (AgentForm.address.$dirty || submitted)">
+                            {{'AddressValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label" for="address2">{{'Address2' | translate}}</label>
+                    <div>
+                        <input type="text" id="address2" name="address2" ng-model="agentDetail.UserAddress.Address2" class="form-control"
+                               placeholder="{{'Address2' | translate}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label" for="address3">{{'Address3' | translate}}</label>
+                    <div>
+                        <input type="text" id="address3" name="address3" ng-model="agentDetail.UserAddress.Address3" class="form-control"
+                               placeholder="{{'Address3' | translate}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': AgentForm.city.$invalid &&
+                                                         (AgentForm.city.$dirty || submitted) }">
+                    <label class="control-label" for="city">{{'City' | translate}}</label>
+                    <div>
+                        <input type="text" id="city" name="city" ng-model="agentDetail.UserAddress.City" class="form-control"
+                               only-alphabets placeholder="{{'CityPlaceholder' | translate}}" required />
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.city.$invalid &&
+                                            (AgentForm.city.$dirty || submitted)">
+                            {{'CityValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label" for="suburb">{{'Suburb' | translate}}</label>
+                    <div>
+                        <input type="text" id="suburb" name="suburb" ng-model="agentDetail.UserAddress.Suburb" class="form-control"
+                               placeholder="{{'Suburb' | translate}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': AgentForm.state.$invalid &&
+                                                         (AgentForm.state.$dirty || submitted) }">
+                    <label class="control-label" for="state">{{'State' | translate}}</label>
+                    <div>
+                        <input type="text" id="state" name="state" ng-model="agentDetail.UserAddress.State" class="form-control" ng-disabled="setStateDisable"
+                               only-alphabets placeholder="{{'StatePlaceholder' | translate}}" ng-required="setStateAndZip(agentDetail.UserAddress.Country.Code,'state')" />
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.state.$invalid &&
+                                            (AgentForm.state.$dirty || submitted)">
+                            {{'StateValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': AgentForm.postalCode.$invalid &&
+                                                         (AgentForm.postalCode.$dirty || submitted) }">
+                    <label class="control-label" for="postalCode">{{'PostalCode' | translate}}</label>
+                    <div>
+                        <input type="text" id="postalCode" name="postalCode" ng-model="agentDetail.UserAddress.Zip" class="form-control" ng-disabled="setZipDisable"
+                               placeholder="{{'PostalCodePlaceholder' | translate}}" ng-required="setStateAndZip(agentDetail.UserAddress.Country.Code,'zip')" />
+                        <span class="help-block has-error"
+                              ng-show="AgentForm.postalCode.$invalid &&
+                                            (AgentForm.postalCode.$dirty || submitted)">
+                            {{'PostalCodeValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <!--Pickup Address Book-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="floatLeft" ng-click="ShowHideOtherAdressPanel()" style="cursor: pointer;margin-top:9px;"><span><i ng-class="{'fa fa-plus-square-o' : !ShowOtherAddressPanel, 'fa fa-minus-square-o' : ShowOtherAddressPanel}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;"></i></span><span>{{'PickupAddressBook' | translate}}</span></div>
+            <div class="floatRight">
+                <button type="button" ng-click="AddEditAddressBook()" class="btn-addPopup">{{'AddAddress' | translate}}</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body" ng-if="ShowOtherAddressPanel">
+            <div data-ui-grid="gridOptionsAddressBook" data-ui-grid-resize-columns data-ui-grid-move-columns data-ui-grid-pinning data-ui-grid-selection data-ui-grid-exporter data-ui-grid-auto-resize class="myGrid" style="min-height:170px !important;"></div>
+        </div>
+    </div>
+
+    <!--Associate Frayte User-->
+    <div class="panel panel-default">
+        <div class="panel-heading" >
+            <div class="floatLeft" ng-click="ShowHideFrayteuserPanel(row)" style="cursor: pointer;margin-top:9px;"><span><i ng-class="{'fa fa-plus-square-o' : !ShowAssociatedUserPanel, 'fa fa-minus-square-o' : ShowAssociatedUserPanel}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;"></i></span><span>{{'AssociateUser' | translate}}</span></div>
+            <div class="floatRight">
+                <button type="button" ng-click="AddAssociateUser(row)" class="btn-addPopup">{{'AddAssociateUser' | translate}}</button>
+            </div>
+             <div class="clearfix"></div>
+        </div>
+        <div class="panel-body" ng-if="ShowAssociatedUserPanel">
+            <div data-ui-grid="gridOptionsAssociatedUsers" class="myGrid" style="min-height:170px !important;"></div>
+        </div>
+    </div>
+
+    <div>
+        <div class="floatLeft">
+            <a href="" data-ui-sref="admin.agents" class="btn-BigSecondary"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</a>
+        </div>
+        <div class="floatRight">
+            <button type="submit" ng-click="submitted=true" class="btn-BigPrimary"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>   
+</form>

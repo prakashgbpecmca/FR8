@@ -1,0 +1,331 @@
+﻿
+<section>
+    <div class="form-group">
+        <section>
+            <section>
+                <div class="panel panel-default fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+                    <div class="panel-body">
+                        <div class="col-sm-12 paddingboth">
+                            <div class="col-sm-12 paddingboth clearfix">
+                                <div class="col-sm-6 col-sm-offset-6">
+                                    <div class="col-sm-12 paddingboth">
+                                        <label for="shipmentstatus" class="col-sm-4 paddingboth top5">{{'Special_Search' | translate}}</label>
+                                        <div class="col-sm-8 paddingboth">
+                                            <div class="col-sm-10 paddingright">
+                                                <select ng-change="ChangeSpecialSearch(Speacialsearch)" ng-options="SearchList as SearchList.SpecialSearchDisplay for SearchList in SpecialSearchList" ng-model="Speacialsearch" class="form-control"></select>
+                                            </div>
+                                            <div class="col-sm-2 paddingboth country text-right">
+                                                <a href="" class="padding7px" style="position: relative;left: -15px;" ng-click="specialSearchDescription()" popover-placement="auto" uib-popover="Please click to get the special search details." popover-trigger="'mouseenter'">
+                                                    <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-sm-12"><hr style="margin:10px 0px;" /></div>
+                            <div class="col-sm-12" ng-show="$UserRoleId === 1 || $UserRoleId === 6 || $UserRoleId === 20">
+                                <div>
+                                    <label for="customers" class="col-sm-2 paddingboth top5">{{'Customer' | translate}}</label>
+                                    <div class="col-sm-10 paddingleft10">
+                                        <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                                ng-model="Customer"
+                                                ng-options="Customer as Customer.CompanyName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy: 'CustomerName' track by Customer.CustomerId"
+                                                ng-change="GetCustomerName(Customer)"
+                                                class="form-control fontsize12">
+                                            <option value="" selected>{{'All' | translate}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 paddingboth"><hr style="margin:10px 0px;" /></div>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <div class="col-sm-12 paddingboth">
+                                    <label for="shipmentstatus" class="col-sm-4 paddingboth top5">{{'Shipment_Status' | translate}}</label>
+                                    <div class="col-sm-8">
+                                        <div class="track-dropdown">
+                                            <label class="form-control pointer dropdown-toggle" style="padding: 3px 3px !important; margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img ng-src="{{buildURL}}{{CurrentStatus.ImgURL}}"> &nbsp;{{CurrentStatus.DisplayStatusName}}</label>
+                                            <i class="fa fa-caret-down pointer dropdown-toggle track-trace-fa-icon" aria-hidden="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                            <ul class="dropdown-menu dropdown-menu-right fontsize12 directshipmentwidth directbooking-shipment min-width89" style="">
+                                                <li ng-repeat="Status in DirectShipmentStatus" class="pointer fontsize12"><a ng-click="bookingStatus(Status)" style="padding:2px 3px 0px !important;" class="fontsize12"><img ng-src="{{buildURL}}{{Status.ImgURL}}"> &nbsp;{{Status.DisplayStatusName}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <div class="col-sm-12 form-group paddingboth">
+                                    <label for="courierTrackingNo" class="col-sm-4 paddingboth top5">{{'CourierTracking_No#' | translate}}</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="courierTrackingNo" name="courierTrackingNo" class="form-control paddingleft fontsize12" ng-model="track.CourierTrackingNo" maxlength="22"
+                                               placeholder="{{'CourierTracking_No#' | translate}}" style="padding-left: 7px !important;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-6 ">
+                                <div class="col-sm-12 form-group paddingboth">
+                                    <label for="shipmentno" class="col-sm-4 paddingboth top5">{{'AWB_Number' | translate}}</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="frayteno" name="frayteno" class="form-control paddingleft fontsize12" ng-model="track.AWBNumber" maxlength="22"
+                                               placeholder="{{'AWB_Number' | translate}}" style="padding-left: 7px !important;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="col-sm-12 form-group paddingboth">
+                                    <label for="mawb" class="col-sm-4 paddingboth top5">{{'MAWB_' | translate}}</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="mawb" name="mawb" max="13" style="padding-left:7px !important;border-radius:50px;border-color: #EC8C3D !important;" class="form-control paddingleft fontsize12 text-center" maxlength="13"
+                                               ng-change="CheckMawb(track.MAWB)" ng-model="track.MAWB" placeholder="{{'MAWB_' | translate}}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="col-sm-6">
+        <div class="form-group col-sm-12 paddingboth">
+            <div ng-show="$UserRoleId === 1 || $UserRoleId === 6">
+                <label for="customers" class="col-sm-4 paddingboth top5">{{'Customer' | translate}}</label>
+                <div class="col-sm-8">
+                    <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                            ng-model="Customer"
+                            ng-options="Customer as Customer.CompanyName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy: 'CustomerName' track by Customer.CustomerId"
+                            ng-change="GetCustomerName(Customer)"
+                            class="form-control fontsize12">
+                        <option value="" selected>{{'All' | translate}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>-->
+                            <div class="clearfix"></div>
+                            <div class="col-sm-6">
+                                <div class="col-sm-12 form-group paddingright">
+                                    <label for="fromdate" class="col-sm-4 paddingboth top5 right15">{{'From_Date' | translate}}</label>
+                                    <div class="col-sm-7 paddingright" style="left: -10px;">
+                                        <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                               uib-datepicker-popup="dd/MM/yyyy" ng-model="track.FromDate" is-open="status.opened"
+                                               datepicker-options="dateOptions"
+                                               close-text="Close" ng-click="openCalender($event)" ng-change="ChangeFromdate(track.FromDate)"
+                                               placeholder="{{'From_Date' | translate}}" style="padding-left: 7px !important;" readonly />
+                                    </div>
+                                    <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="col-sm-12 form-group paddingright">
+                                    <label for="todate" class="col-sm-4 paddingboth top5 right15">{{'To_Date' | translate}}</label>
+                                    <div class="col-sm-7 paddingright" style="left: -10px;">
+                                        <input type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12"
+                                               uib-datepicker-popup="dd/MM/yyyy" ng-model="track.ToDate" is-open="status1.opened"
+                                               close-text="Close" ng-click="openCalender1($event)" ng-change="ChangeTodate(track.ToDate)"
+                                               datepicker-options="dateOptions1" placeholder="{{'To_Date' | translate}}" readonly />
+                                    </div>
+                                    <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-6">
+                                <!--<div class="col-sm-12">
+            <button type="button" class="btn btn-primary" name="prealertMawb" id="prealertMawb" ng-click="prealertPopup()"><i class="fa fa-check"></i> PreAlert Modal Popup</button>
+        </div>-->
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="col-sm-12">
+                                    <button class="btn-simple btn-primary fontsize12 pull-right" ng-click="SeachDirectShipments()"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="panel-body">
+                    <section class="row">
+                        <div>
+                            <!--express shipment custom grid for admin or staff-->
+                            <div class="panel panel-default" ng-show="$UserRoleId === 1 || $UserRoleId === 6 || $UserRoleId === 20">
+                                <div class="width100 flex grid-background">
+                                    <div class="width986 flex">
+                                        <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Status' | translate}}</span></div>
+                                        <div class="width27 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Client_Name' | translate}}</span></div>
+                                        <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'AWB_Number' | translate}}</span></div>
+                                        <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Bag_Number' | translate}}/ {{'MAWB_' | translate}}#</span></div>
+                                        <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'confirmShp_TotalWeight' | translate}}/{{'Carton' | translate}}</span></div>
+                                        <div class="width10 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Created_On' | translate}}</sapn> </div>
+                                        <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                    <div class="panel-body padding0">
+                                        <ul class="list-unstyled change margin-bottom-none">
+                                            <li>
+                                                <div class="width100 pointer" ng-repeat="Shipment in ExpressShipmentList">
+                                                    <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                        <div class="width150 quotation-table-body padding-2"><img class="margin-right5" ng-src="{{buildURL}}{{currentImgURL(Shipment)}}"><span class="top2">{{Shipment.StatusDisplay}}</span></div>
+                                                        <div class="width27 quotation-table-body word-wrap padding-5"><span>{{Shipment.Customer}}</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span ng-click="ExpressTrackingDetail(Shipment.ExpressShipmentId)"><a class="pointer">{{Shipment.AWBNumber}}</a></span></div>
+                                                        <div class="width150 quotation-table-body word-wrap padding-5"><span ng-click="GetExpressTracking(Shipment)" class="pointer"><a class="pointer">{{Shipment.MAWB}}</a></span></div>
+                                                        <div class="width10 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalWeight}}/{{Shipment.TotalCarton}}</span></div>
+                                                        <div class="width10 quotation-table-body padding-5 word-wrap"><span>{{Shipment.CreatedOn}}</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">{{'Action' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-show="Shipment.Status !== 'Scanned'" ng-click="expressShipmentDetail(Shipment)">
+                                                                        <a href="">
+                                                                            <span class="padEdit i-o-d"><i class="fa fa-eye i-o-d"></i></span>
+                                                                            <span>{{'View_Detail' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li ng-show="Shipment.Status === 'Scanned' || Shipment.Status === 'Draft'" ng-click="expressShipmentClone(Shipment)">
+                                                                        <a href="">
+                                                                            <span class="padEdit i-o-d"><i class="fa fa-plus i-o-d"></i></span>
+                                                                            <span>{{'Create_Shipment' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li ng-show="Shipment.Status === 'ShipmentReturn'" ng-click="expressReturnShipmentClone(Shipment)">
+                                                                        <a href="">
+                                                                            <span class="padEdit i-o-d"><i class="fa fa-plus i-o-d"></i></span>
+                                                                            <span>{{'Recreate_Shipment' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li ng-show="Shipment.Status === 'Scanned' || Shipment.Status === 'Current'|| Shipment.Status === 'Draft'" ng-click="DeleteDraft(Shipment.ExpressShipmentId)"><a href=""><span class="padEdit redColor i-o-d"><i class="fa fa-trash i-o-d" aria-hidden="true"></i></span> <span class="text-center">{{'Delete' | translate}}</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!--square grid error code here-->
+                                            <li ng-if="ExpressShipmentList.length === 0">
+                                                <div class="col-sm-12 paddingboth imp-white">
+                                                    <div class="no-address-exist"><h4 class="redColor">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                                </div>
+                                            </li>
+                                            <!--end-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end-->
+                            <!--express shipment custom grid for customer-->
+                            <div class="panel panel-default" ng-show="$UserRoleId === 3">
+                                <div class="width100 flex grid-background">
+                                    <div class="width986 flex">
+                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Status' | translate}}</span></div>
+                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'AWB_Number' | translate}}</span></div>
+                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Bag_Number' | translate}}/ {{'MAWB_' | translate}}#</span></div>
+                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'confirmShp_TotalWeight' | translate}}/{{'Carton' | translate}}</span> </div>
+                                        <div class="width10 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Created_On' | translate}}</sapn> </div>
+                                        <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                    <div class="panel-body padding0">
+                                        <ul class="list-unstyled change margin-bottom-none">
+                                            <li>
+                                                <div class="width100" ng-repeat="Shipment in ExpressShipmentList">
+                                                    <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                        <div class="width20 quotation-table-body padding-2"><img class="margin-right5" ng-src="{{buildURL}}{{currentImgURL(Shipment)}}">{{Shipment.StatusDisplay}}</div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span ng-click="ExpressTrackingDetail(Shipment.ExpressShipmentId)"><a class="pointer">{{Shipment.AWBNumber}}</a></span></div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span ng-click="GetExpressTracking(Shipment)" class="pointer"><a class="pointer">{{Shipment.MAWB}}</a></span></div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalWeight}}/{{Shipment.TotalCarton}}</span></div>
+                                                        <div class="width10 quotation-table-body padding-5 word-wrap"><span>{{Shipment.CreatedOn}}</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">{{'Action' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-show="Shipment.Status !== 'Scanned'" ng-click="expressShipmentDetail(Shipment)">
+                                                                        <a href="">
+                                                                            <span class="padEdit i-o-d"><i class="fa fa-eye i-o-d"></i></span>
+                                                                            <span>{{'View_Detail' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li ng-show="Shipment.Status === 'Scanned' || Shipment.Status === 'Draft'" ng-click="expressShipmentClone(Shipment)">
+                                                                        <a href="">
+                                                                            <span class="padEdit i-o-d"><i class="fa fa-plus i-o-d"></i></span>
+                                                                            <span>{{'Create_Shipment' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li ng-show="Shipment.Status === 'Scanned' || Shipment.Status === 'Current'|| Shipment.Status === 'Draft'" ng-click="DeleteDraft(Shipment.ExpressShipmentId)">
+                                                                        <a href="">
+                                                                            <span class="padEdit redColor i-o-d"><i class="fa fa-trash i-o-d"></i></span>
+                                                                            <span class="text-center">{{'Delete_Draft' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!--square grid error code here-->
+                                            <li ng-if="ExpressShipmentList.length === 0">
+                                                <div class="col-sm-12 paddingboth imp-white">
+                                                    <div class="no-address-exist"><h4 class="redColor">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                                </div>
+                                            </li>
+                                            <!--end-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end code-->
+                        </div>
+                        <!--pagination code here-->
+                        <div class="col-sm-12 paddingboth">
+                            <!--<div style="margin-left:-15px;top:-8px;position:relative;" class="pull-left">
+                                <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                            </div>-->
+                            <div class="col-sm-6 paddingboth">
+                                <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm padding-none" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                            </div>
+                            <div class="col-sm-6 form-group top9">
+                                <div class="pull-left">
+                                    <div class="uploadfile pull-left download-excel-before-icon">
+                                        <a href="" popover-placement="auto" uib-popover="Clicking this button allows you to generate a detailed overview of all your Shipments Intransit. You can also set a Date and/or Logistics Type filter before downloading the overview." popover-trigger="'outsideClick'">
+                                            <i class="fa fa-question-circle help" aria-hidden="true" style="margin:0px !important"></i>
+                                        </a>
+                                    </div>&nbsp;
+                                    <button class="btn-simple btn-success height44 pull-right" ng-click="DownLoadExpressReport()">{{'DownLoad_Excel' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></button>
+                                </div>
+                                <!--pagination selected code-->
+                                <!--<div class="pull-right">
+                                    <label for="customers" class="col-sm-6 top5">{{'Paging_' | translate}}</label>
+                                    <div class="col-sm-6">
+                                        <select id="shipmentPaymentAccount" name="shipmentPaymentAccount" class="form-control"
+                                                ng-options="pageChanged.pageChangedValue as pageChanged.pageChangedValueDisplay for pageChanged in pageChangedObj"
+                                                ng-model="track.TakeRows"
+                                                ng-change="pageChanged(track)" style="width:77px"></select>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>-->
+                                <!--end-->
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end-->
+                    </section>
+                </div>
+            </section>
+        </section>
+    </div>
+</section>

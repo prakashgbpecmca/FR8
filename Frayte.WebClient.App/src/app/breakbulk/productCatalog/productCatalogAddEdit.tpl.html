@@ -1,0 +1,706 @@
+﻿
+<form name="prouctCatalogForm">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">Product Catalog - {{productcatalog.DestinationHub.Code}}</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="panel-body">
+            <section class="row">
+                <!--destination hub code-->
+                <div class="clearfix row">
+                    <div class="col-sm-12">
+                    <div class="col-sm-12 clearfix" ng-class="{'has-error': (prouctCatalogForm.destinationHub.$invalid) &&
+                            (prouctCatalogForm.destinationHub.$dirty || submitted) }">
+                        <label for="destinationHub" id="destinationHub" class="control-label top5 width20">{{'Destination_Hub' | translate}}</label>
+                        <div class="width80">
+                            <select class="form-control" name="destinationHub" id="destinationHub" ng-model="productcatalog.DestinationHub"
+                                    ng-change="ShowCustomManifestFields(productcatalog.DestinationHub)"
+                                    ng-options="hub as hub.Name + ' - ' + hub.Code for hub in hubs"
+                                    ng-required="destinationHub" readonly disabled>
+                                <option value="" disabled selected class="display-none">{{'Select_Hub' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="(prouctCatalogForm.destinationHub.$invalid) &&
+                                            (prouctCatalogForm.destinationHub.$dirty || submitted)">
+                                {{'Hub_Required' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                        <hr />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="Length" id="Length" class="control-label top5 col-sm-5">{{'Length' | translate}} (cm)</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="Length" id="Length" ng-model="productcatalog.Length" valid-number-nine-nine only-decimal allow-negative="false" placeholder="{{'Length' | translate}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="Width" id="Width" class="control-label top5 col-sm-5">{{'Width' | translate}} (cm)</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" name="Width" id="Width" ng-model="productcatalog.Width" valid-number-nine-nine only-decimal allow-decimal="false" allow-negative="false" placeholder="{{'Width' | translate}}" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6 form-group">
+                        <label for="Height" id="Height" class="control-label top5 col-sm-5">{{'Height' | translate}} (cm)</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" name="Height" id="Height" ng-model="productcatalog.Height" valid-number-nine-nine only-decimal allow-decimal="false" allow-negative="false" placeholder="{{'Height' | translate}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="Weight" id="Weight" class="control-label top5 col-sm-5">{{'Weight' | translate}} (cm)</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" name="Weight" id="Weight" ng-model="productcatalog.Weight" valid-number-nine-nine only-decimal allow-negative="false" placeholder="{{'Weight' | translate}}" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <label for="DeclareValue" id="DeclareValue" class="control-label top5 col-sm-5">{{'Declared_Value' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="DeclareValue" id="DeclareValue" cols="2" class="form-control" ng-model="productcatalog.DeclareValue" only-decimal allow-decimal="false" allow-negative="false" placeholder="{{'Declared_Value' | translate}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.productDescription.$invalid) &&
+                            (prouctCatalogForm.productDescription.$dirty || submitted) }">
+                        <label for="productDescription" id="productDescription" class="control-label top5 col-sm-5">{{'Product_Description' | translate}}</label>
+                        <div class="col-sm-7">
+                            <textarea rows="2" name="productDescription" id="productDescription" cols="2" class="form-control" maxlength="100" ng-model="productcatalog.ProductDescription" placeholder="{{'Product_Description' | translate}} ({{'Required' | translate}})" required></textarea>
+                            <span class="help-block has-error"
+                                  ng-show="prouctCatalogForm.productDescription.$invalid &&
+                                            (prouctCatalogForm.productDescription.$dirty || submitted)">
+                                {{'Product_Description_Required' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <div class="col-sm-12">
+                    <hr />
+                </div>
+                <!--select code-->
+                <section ng-if="HubCode === ''">
+                    <div class="form-group redColor fontsize18 text-center">
+                        Please select first
+                    </div>
+                </section>
+                <!--end-->
+                <!--canada code-->
+                <section ng-if="HubCode === 'YVR' || HubCode === 'YYZ'" class="row">
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Reference.$invalid) && (prouctCatalogForm.Reference.$dirty || submitted) }">
+                            <label for="Reference" class="col-sm-5 top5 control-label"> {{'Reference' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Reference" id="Reference" maxlength="50" ng-model="CanadaProductCatalog.Reference" placeholder="{{'Reference' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Reference.$invalid) && (prouctCatalogForm.Reference.$dirty || submitted)">
+                                    {{'Reference' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.InternalAccountnumber.$invalid) && (prouctCatalogForm.InternalAccountnumber.$dirty || submitted) }">
+                            <label for="InternalAccountnumber" class="col-sm-5 top5 control-label">{{'Internal_Account_Number' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="InternalAccountnumber" id="InternalAccountnumber" maxlength="50" ng-model="CanadaProductCatalog.InternalAccountnumber" placeholder="{{'Internal_Account_Number' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.InternalAccountnumber.$invalid) && (prouctCatalogForm.InternalAccountnumber.$dirty || submitted)">
+                                    {{'Internal_Account_Number' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ProvinceCode.$invalid) && (prouctCatalogForm.ProvinceCode.$dirty || submitted) }">
+                            <label for="ProvinceCode" class="col-sm-5 top5 control-label">{{'Province_Code' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ProvinceCode" id="ProvinceCode" maxlength="50" ng-model="CanadaProductCatalog.ProvinceCode" placeholder="{{'Province_Code' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ProvinceCode.$invalid) && (prouctCatalogForm.ProvinceCode.$dirty || submitted)">
+                                    {{'Province_Code' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Pieces.$invalid) && (prouctCatalogForm.Pieces.$dirty || submitted) }">
+                            <label for="Pieces" class="col-sm-5 top5 control-label">{{'Pieces' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Pieces" id="Pieces" maxlength="50" ng-model="CanadaProductCatalog.Pieces" placeholder="{{'Pieces' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Pieces.$invalid) && (prouctCatalogForm.Pieces.$dirty || submitted)">
+                                    {{'Pieces' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.WeightUOM.$invalid) && (prouctCatalogForm.WeightUOM.$dirty || submitted) }">
+                            <label for="WeightUOM" class="col-sm-5 top5 control-label">{{'Weight_UOM' | translate}}</label>
+                            <div class="col-sm-7">
+                                <select id="WeightUOM" name="WeightUOM"
+                                        ng-model="CanadaProductCatalog.WeightUOM"
+                                        ng-options="WeightUOM as WeightUOM.UnitDisplay for WeightUOM in Units | orderBy:'OrderNumber' track by WeightUOM.UnitValue"
+                                        class="form-control fontsize12" required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Weight_UOM' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.WeightUOM.$invalid) && (prouctCatalogForm.WeightUOM.$dirty || submitted)">
+                                    {{'Weight_UOM' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ItemHSCode.$invalid) && (prouctCatalogForm.ItemHSCode.$dirty || submitted) }">
+                            <label for="ItemHSCode" class="col-sm-5 top5 control-label">{{'Item_HS_Code' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ItemHSCode" id="ItemHSCode" maxlength="50" ng-model="CanadaProductCatalog.ItemHSCode" placeholder="{{'Item_HS_Code' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ItemHSCode.$invalid) && (prouctCatalogForm.ItemHSCode.$dirty || submitted)">
+                                    {{'Item_HS_Code' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Currency.$invalid) && (prouctCatalogForm.Currency.$dirty || submitted) }">
+                            <label for="Currency" class="col-sm-5 top5 control-label">{{'Currency' | translate}}</label>
+                            <div class="col-sm-7" id="Xe">
+                                <select id="Currency" name="Currency"
+                                        ng-model="CanadaProductCatalog.Currency"
+                                        ng-options="Currency.CurrencyCode +' - '+ Currency.CurrencyDescription disable when Currency.Disabled === true for Currency in CurrencyTypes | orderBy:'OrderNumber' track by Currency.CurrencyCode"
+                                        class="form-control fontsize12" required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Currency' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Currency.$invalid) && (prouctCatalogForm.Currency.$dirty || submitted)">
+                                    {{'Currency' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.TotalValue.$invalid) && (prouctCatalogForm.TotalValue.$dirty || submitted) }">
+                            <label for="TotalValue" class="col-sm-5 top5 control-label">{{'Total_Value' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="TotalValue" id="TotalValue" maxlength="50" ng-model="CanadaProductCatalog.TotalValue" placeholder="{{'Total_Value' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.TotalValue.$invalid) && (prouctCatalogForm.TotalValue.$dirty || submitted)">
+                                    {{'Total_Value' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.SKU.$invalid) && (prouctCatalogForm.SKU.$dirty || submitted) }">
+                            <label for="SKU" class="col-sm-5 top5 control-label">{{'SKU' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="SKU" id="SKU" maxlength="50" ng-model="CanadaProductCatalog.SKU" placeholder="{{'SKU' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.SKU.$invalid) && (prouctCatalogForm.SKU.$dirty || submitted)">
+                                    {{'SKU' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--end-->
+                <!--switzerland code-->
+                <section ng-if="HubCode === 'ZRH'" class="row">
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ReferenceInvoiceNR.$invalid) && (prouctCatalogForm.ReferenceInvoiceNR.$dirty || submitted) }">
+                            <label for="ReferenceInvoiceNR" class="col-sm-5 top5 control-label">{{'Reference_Invoice_No' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ReferenceInvoiceNR" id="ReferenceInvoiceNR" maxlength="50" ng-model="SwissProductCatalog.ReferenceInvoiceNR" placeholder="{{'Reference_Invoice_No' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ReferenceInvoiceNR.$invalid) && (prouctCatalogForm.ReferenceInvoiceNR.$dirty || submitted)">
+                                    {{'Reference_Invoice_No' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.VersendLand.$invalid) && (prouctCatalogForm.VersendLand.$dirty || submitted) }">
+                            <label for="VersendLand" class="col-sm-5 top5 control-label">{{'Versend_Land' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="VersendLand" id="VersendLand" maxlength="50" ng-model="SwissProductCatalog.VersendLand" placeholder="{{'Versend_Land' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.VersendLand.$invalid) && (prouctCatalogForm.VersendLand.$dirty || submitted)">
+                                    {{'Versend_Land' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Anzahl.$invalid) && (prouctCatalogForm.Anzahl.$dirty || submitted) }">
+                            <label for="anzahl" class="col-sm-5 top5 control-label">{{'Anzahl' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Anzahl" id="Anzahl" maxlength="50" ng-model="SwissProductCatalog.Anzahl" placeholder="{{'Anzahl' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Anzahl.$invalid) && (prouctCatalogForm.Anzahl.$dirty || submitted)">
+                                    {{'Anzahl' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Pieces.$invalid) && (prouctCatalogForm.Pieces.$dirty || submitted) }">
+                            <label for="Pieces" class="col-sm-5 top5 control-label">{{'Pieces' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Pieces" id="Pieces" maxlength="50" ng-model="SwissProductCatalog.Pieces" placeholder="{{'Pieces' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Pieces.$invalid) && (prouctCatalogForm.Pieces.$dirty || submitted)">
+                                    {{'Pieces' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Netto.$invalid) && (prouctCatalogForm.Netto.$dirty || submitted) }">
+                            <label for="netto" class="col-sm-5 top5 control-label">{{'Netto' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Netto" id="Netto" maxlength="50" ng-model="SwissProductCatalog.Netto" placeholder="{{'Netto' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Netto.$invalid) && (prouctCatalogForm.Netto.$dirty || submitted)">
+                                    {{'Netto' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Brutto.$invalid) && (prouctCatalogForm.Brutto.$dirty || submitted) }">
+                            <label for="Brutto" class="col-sm-5 top5 control-label">{{'Brutto' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Brutto" id="Brutto" maxlength="50" ng-model="SwissProductCatalog.Brutto" placeholder="{{'Brutto' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Brutto.$invalid) && (prouctCatalogForm.Brutto.$dirty || submitted)">
+                                    {{'Brutto' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.TarifCode.$invalid) && (prouctCatalogForm.TarifCode.$dirty || submitted) }">
+                            <label for="TarifCode" class="col-sm-5 top5 control-label">{{'Tarif_Code' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="TarifCode" id="TarifCode" maxlength="50" ng-model="SwissProductCatalog.TarifCode" placeholder="{{'Tarif_Code' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.TarifCode.$invalid) && (prouctCatalogForm.TarifCode.$dirty || submitted)">
+                                    {{'Tarif_Code' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Value.$invalid) && (prouctCatalogForm.Value.$dirty || submitted) }">
+                            <label for="Value" class="col-sm-5 top5 control-label">{{'Value' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Value" id="Value" maxlength="50" ng-model="SwissProductCatalog.Value" placeholder="{{'Value' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Value.$invalid) && (prouctCatalogForm.Value.$dirty || submitted)">
+                                    {{'Value' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Currency.$invalid) && (prouctCatalogForm.Currency.$dirty || submitted) }">
+                            <label for="Currency" class="col-sm-5 top5 control-label">{{'Currency' | translate}}</label>
+                            <div class="col-sm-7" id="Xe">
+                                <select id="Currency" name="Currency"
+                                        ng-model="SwissProductCatalog.Currency"
+                                        ng-options="Currency.CurrencyCode +' - '+ Currency.CurrencyDescription disable when Currency.Disabled === true for Currency in CurrencyTypes | orderBy:'OrderNumber' track by Currency.CurrencyCode"
+                                        class="form-control fontsize12" ng-required="currencyRequired" required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Currency' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Currency.$invalid) && (prouctCatalogForm.Currency.$dirty || submitted)">
+                                    {{'Currency' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.TotalValue.$invalid) && (prouctCatalogForm.TotalValue.$dirty || submitted) }">
+                            <label for="TotalValue" class="col-sm-5 top5 control-label">{{'Total_Value' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="TotalValue" id="TotalValue" maxlength="50" ng-model="SwissProductCatalog.TotalValue" placeholder="{{'Total_Value' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.TotalValue.$invalid) && (prouctCatalogForm.TotalValue.$dirty || submitted)">
+                                    {{'Total_Value' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.OriginCountry.$invalid) && (prouctCatalogForm.OriginCountry.$dirty || submitted) }">
+                            <label for="originCountry" class="col-sm-5 top5 control-label">{{'Origin_Country' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="OriginCountry" id="OriginCountry" maxlength="50" ng-model="SwissProductCatalog.OriginCountry" placeholder="{{'Origin_Country' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.OriginCountry.$invalid) && (prouctCatalogForm.OriginCountry.$dirty || submitted)">
+                                    {{'Origin_Country' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.PacType.$invalid) && (prouctCatalogForm.PacType.$dirty || submitted) }">
+                            <label for="PacType" class="col-sm-5 top5 control-label">{{'PAC_Type' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="PacType" id="PacType" maxlength="50" ng-model="SwissProductCatalog.PacType" placeholder="{{'PAC_Type' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.PacType.$invalid) && (prouctCatalogForm.PacType.$dirty || submitted)">
+                                    {{'PAC_Type' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.PacQty.$invalid) && (prouctCatalogForm.PacQty.$dirty || submitted) }">
+                            <label for="PacQty" class="col-sm-5 top5 control-label">{{'PAC_QTY' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="PacQty" id="PacQty" maxlength="50" ng-model="SwissProductCatalog.PacQty" placeholder="{{'PAC_QTY' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.PacQty.$invalid) && (prouctCatalogForm.PacQty.$dirty || submitted)">
+                                    {{'PAC_QTY' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ZeichenPackstucke.$invalid) && (prouctCatalogForm.ZeichenPackstucke.$dirty || submitted) }">
+                            <label for="ZeichenPackstucke" class="col-sm-5 top5 control-label">{{'Zeichen_Pack_Stucke' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ZeichenPackstucke" id="ZeichenPackstucke" maxlength="50" ng-model="SwissProductCatalog.ZeichenPackstucke" placeholder="{{'Zeichen_Pack_Stucke' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ZeichenPackstucke.$invalid) && (prouctCatalogForm.ZeichenPackstucke.$dirty || submitted)">
+                                    {{'Zeichen_Pack_Stucke' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ArtVorpapier.$invalid) && (prouctCatalogForm.ArtVorpapier.$dirty || submitted) }">
+                            <label for="avtVarpapier" class="col-sm-5 top5 control-label">{{'Avt_Varpapier' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ArtVorpapier" id="ArtVorpapier" maxlength="50" ng-model="SwissProductCatalog.ArtVorpapier" placeholder="{{'Avt_Varpapier' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ArtVorpapier.$invalid) && (prouctCatalogForm.ArtVorpapier.$dirty || submitted)">
+                                    {{'Avt_Varpapier' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ZeichenVorpapier.$invalid) && (prouctCatalogForm.ZeichenVorpapier.$dirty || submitted) }">
+                            <label for="ZeichenVorpapier" class="col-sm-5 top5 control-label">{{'Zeichen_Vorpapier' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ZeichenVorpapier" id="ZeichenVorpapier" maxlength="50" ng-model="SwissProductCatalog.ZeichenVorpapier" placeholder="{{'Zeichen_Vorpapier' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ZeichenVorpapier.$invalid) && (prouctCatalogForm.ZeichenVorpapier.$dirty || submitted)">
+                                    {{'Zeichen_Vorpapier' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--end-->
+                <!--usa code-->
+                <section ng-if="HubCode === 'JFK' || HubCode === 'ORD' || HubCode === 'SFO'" class="row">
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ECommerceShipmentId.$invalid) && (prouctCatalogForm.ECommerceShipmentId.$dirty || submitted) }">
+                            <label for="ECommerceShipmentId" class="col-sm-5 top5 control-label">{{'Ecommerce_Shipment_Id' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ECommerceShipmentId" id="ECommerceShipmentId" maxlength="50" ng-model="USAProductCatalog.ECommerceShipmentId" placeholder="{{'Ecommerce_Shipment_Id' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ECommerceShipmentId.$invalid) && (prouctCatalogForm.ECommerceShipmentId.$dirty || submitted)">
+                                    {{'Ecommerce_Shipment_Id' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Reference.$invalid) && (prouctCatalogForm.Reference.$dirty || submitted) }">
+                            <label for="Reference" class="col-sm-5 top5 control-label">{{'Reference' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Reference" id="Reference" maxlength="50" ng-model="USAProductCatalog.Reference" placeholder="{{'Reference' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Reference.$invalid) && (prouctCatalogForm.Reference.$dirty || submitted)">
+                                    {{'Reference' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.InternalAccountnumber.$invalid) && (prouctCatalogForm.InternalAccountnumber.$dirty || submitted) }">
+                            <label for="InternalAccountnumber" class="col-sm-5 top5 control-label">{{'Internal_Account_Number' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="InternalAccountnumber" id="InternalAccountnumber" maxlength="50" ng-model="USAProductCatalog.InternalAccountnumber" placeholder="{{'Internal_Account_Number' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.InternalAccountnumber.$invalid) && (prouctCatalogForm.InternalAccountnumber.$dirty || submitted)">
+                                    {{'Internal_Account_Number' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Pieces.$invalid) && (prouctCatalogForm.Pieces.$dirty || submitted) }">
+                            <label for="Pieces" class="col-sm-5 top5 control-label">{{'Pieces' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Pieces" id="Pieces" maxlength="50" ng-model="USAProductCatalog.Pieces" placeholder="{{'Pieces' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Pieces.$invalid) && (prouctCatalogForm.Pieces.$dirty || submitted)">
+                                    {{'Pieces' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.WeightUOM.$invalid) && (prouctCatalogForm.WeightUOM.$dirty || submitted) }">
+                            <label for="WeightUOM" class="col-sm-5 top5 control-label">{{'Weight_UOM' | translate}}</label>
+                            <div class="col-sm-7">
+                                <select id="WeightUOM" name="WeightUOM"
+                                        ng-model="USAProductCatalog.WeightUOM"
+                                        ng-options="WeightUOM as WeightUOM.UnitDisplay for WeightUOM in Units | orderBy:'OrderNumber' track by WeightUOM.UnitValue"
+                                        class="form-control fontsize12" required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Weight_UOM' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.WeightUOM.$invalid) && (prouctCatalogForm.WeightUOM.$dirty || submitted)">
+                                    {{'Weight_UOM' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ItemHSCode.$invalid) && (prouctCatalogForm.ItemHSCode.$dirty || submitted) }">
+                            <label for="ItemHSCode" class="col-sm-5 top5 control-label">{{'Item_HS_Code' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ItemHSCode" id="ItemHSCode" maxlength="50" ng-model="USAProductCatalog.ItemHSCode" placeholder="{{'Item_HS_Code' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ItemHSCode.$invalid) && (prouctCatalogForm.ItemHSCode.$dirty || submitted)">
+                                    {{'Item_HS_Code' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.customCommodityMap.$invalid) && (prouctCatalogForm.customCommodityMap.$dirty || submitted) }">
+                            <label for="customCommodityMap" class="col-sm-5 top5 control-label">{{'Custom_Commodity_Map' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="customCommodityMap" id="customCommodityMap" maxlength="50" ng-model="USAProductCatalog.CustomCommodityMap" placeholder="{{'Custom_Commodity_Map' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.customCommodityMap.$invalid) && (prouctCatalogForm.customCommodityMap.$dirty || submitted)">
+                                    {{'Custom_Commodity_Map' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.ItemValue.$invalid) && (prouctCatalogForm.ItemValue.$dirty || submitted) }">
+                            <label for="itemValue" class="col-sm-5 top5 control-label">{{'Total_Value' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="ItemValue" id="ItemValue" maxlength="50" ng-model="USAProductCatalog.ItemValue" placeholder="{{'Total_Value' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.ItemValue.$invalid) && (prouctCatalogForm.ItemValue.$dirty || submitted)">
+                                    {{'Total_Value' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.CustomEntryType.$invalid) && (prouctCatalogForm.CustomEntryType.$dirty || submitted) }">
+                            <label for="CustomEntryType" class="col-sm-5 top5 control-label">{{'Custom_Entry_Type' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="CustomEntryType" id="CustomEntryType" maxlength="50" ng-model="USAProductCatalog.CustomEntryType" placeholder="{{'Custom_Entry_Type' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.CustomEntryType.$invalid) && (prouctCatalogForm.CustomEntryType.$dirty || submitted)">
+                                    {{'Custom_Entry_Type' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.CustomTotalValue.$invalid) && (prouctCatalogForm.CustomTotalValue.$dirty || submitted) }">
+                            <label for="CustomTotalValue" class="col-sm-5 top5 control-label">{{'Custom_Total_Value' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="CustomTotalValue" id="CustomTotalValue" maxlength="50" ng-model="USAProductCatalog.CustomTotalValue" placeholder="{{'Custom_Total_Value' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.CustomTotalValue.$invalid) && (prouctCatalogForm.CustomTotalValue.$dirty || submitted)">
+                                    {{'Custom_Total_Value' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.CustomTotalVAT.$invalid) && (prouctCatalogForm.CustomTotalVAT.$dirty || submitted) }">
+                            <label for="CustomTotalVAT" class="col-sm-5 top5 control-label">{{'Custom_Total_Vat' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="CustomTotalVAT" id="CustomTotalVAT" maxlength="50" ng-model="USAProductCatalog.CustomTotalVAT" placeholder="{{'Custom_Total_Vat' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.CustomTotalVAT.$invalid) && (prouctCatalogForm.CustomTotalVAT.$dirty || submitted)">
+                                    {{'Custom_Total_Vat' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.CustomDuty.$invalid) && (prouctCatalogForm.CustomDuty.$dirty || submitted) }">
+                            <label for="CustomDuty" class="col-sm-5 top5 control-label">{{'Custom_Duty' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="CustomDuty" id="CustomDuty" maxlength="50" ng-model="USAProductCatalog.CustomDuty" placeholder="{{'Custom_Duty' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.CustomDuty.$invalid) && (prouctCatalogForm.CustomDuty.$dirty || submitted)">
+                                    {{'Custom_Duty' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--end-->
+                <!--frayte global ltd. UK, OSL, SIN code-->
+                <section ng-if="HubCode === 'LHR' || HubCode === 'OSL' || HubCode === 'SIN'" class="row">
+                    <!--<div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Reference.$invalid) && (prouctCatalogForm.Reference.$dirty || submitted) }">
+                            <label for="Reference" class="col-sm-5 top5 control-label">{{'Reference' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Reference" id="Reference" maxlength="50" ng-model="UKProductCatalog.Reference" placeholder="{{'Reference' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Reference.$invalid) && (prouctCatalogForm.Reference.$dirty || submitted)">
+                                    {{'Reference' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.InternalAccountnumber.$invalid) && (prouctCatalogForm.InternalAccountnumber.$dirty || submitted) }">
+                            <label for="InternalAccountnumber" class="col-sm-5 top5 control-label">{{'Internal_Account_Number' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="InternalAccountnumber" id="InternalAccountnumber" maxlength="50" ng-model="UKProductCatalog.InternalAccountnumber" placeholder="{{'Internal_Account_Number' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.InternalAccountnumber.$invalid) && (prouctCatalogForm.InternalAccountnumber.$dirty || submitted)">
+                                    {{'Internal_Account_Number' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Vat.$invalid) && (prouctCatalogForm.Vat.$dirty || submitted) }">
+                            <label for="Vat" class="col-sm-5 top5 control-label">{{'Vat' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" id="Vat" name="Vat" ng-model="UKProductCatalog.Vat" placeholder="{{'Vat' | translate}} ({{'Required' | translate}})" class="form-control fontsize12" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Vat.$invalid) && (prouctCatalogForm.Vat.$dirty || submitted)">
+                                    {{'Vat' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Pce.$invalid) && (prouctCatalogForm.Pce.$dirty || submitted) }">
+                            <label for="Pce" class="col-sm-5 top5 control-label">{{'Pce' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Pce" id="Pce" maxlength="50" ng-model="UKProductCatalog.Pce" placeholder="{{'Pce' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Pce.$invalid) && (prouctCatalogForm.Pce.$dirty || submitted)">
+                                    {{'Pce' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6">
+                            <label for="Number" class="col-sm-5 top5 control-label">{{'Number' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Number" id="Number" maxlength="50" ng-model="UKProductCatalog.Number" placeholder="{{'Number' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.TCode.$invalid) && (prouctCatalogForm.TCode.$dirty || submitted) }">
+                            <label for="TCode" class="col-sm-5 top5 control-label">{{'T Code' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="TCode" id="TCode" maxlength="50" ng-model="UKProductCatalog.TCode" placeholder="{{'T Code' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.TCode.$invalid) && (prouctCatalogForm.TCode.$dirty || submitted)">
+                                    {{'T Code' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Currency.$invalid) && (prouctCatalogForm.Currency.$dirty || submitted) }">
+                            <label for="Currency" class="col-sm-5 top5 control-label">{{'Currency' | translate}}</label>
+                            <div class="col-sm-7" id="Xe">
+                                <select id="Currency" name="Currency"
+                                        ng-model="UKProductCatalog.Currency"
+                                        ng-options="Currency.CurrencyCode +' - '+ Currency.CurrencyDescription disable when Currency.Disabled === true for Currency in CurrencyTypes | orderBy:'OrderNumber' track by Currency.CurrencyCode"
+                                        class="form-control fontsize12" ng-required="currencyRequired" required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Currency' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Currency.$invalid) && (prouctCatalogForm.Currency.$dirty || submitted)">
+                                    {{'Currency' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Value.$invalid) && (prouctCatalogForm.Value.$dirty || submitted) }">
+                            <label for="Value" class="col-sm-5 top5 control-label">{{'Value' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Value" id="Value" maxlength="50" ng-model="UKProductCatalog.Value" placeholder="{{'Value' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Value.$invalid) && (prouctCatalogForm.Value.$dirty || submitted)">
+                                    {{'Value' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Weblink.$invalid) && (prouctCatalogForm.Weblink.$dirty || submitted) }">
+                            <label for="Weblink" class="col-sm-5 top5 control-label">{{'Weblink' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Weblink" id="Weblink" maxlength="50" ng-model="UKProductCatalog.Weblink" placeholder="{{'Weblink' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Weblink.$invalid) && (prouctCatalogForm.Weblink.$dirty || submitted)">
+                                    {{'Weblink' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.CustomDuty.$invalid) && (prouctCatalogForm.CustomDuty.$dirty || submitted) }">
+                            <label for="CustomDuty" class="col-sm-5 top5 control-label">{{'Custom_Duty' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="CustomDuty" name="CustomDuty" maxlength="50" ng-model="UKProductCatalog.CustomDuty" placeholder="{{'Custom_Duty' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.CustomDuty.$invalid) && (prouctCatalogForm.CustomDuty.$dirty || submitted)">
+                                    {{'Custom_Duty' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.CustomTotalVat.$invalid) && (prouctCatalogForm.CustomTotalVat.$dirty || submitted) }">
+                            <label for="CustomTotalVat" class="col-sm-5 top5 control-label">{{'Custom_Total_Vat' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="CustomTotalVat" id="CustomTotalVat" maxlength="50" ng-model="UKProductCatalog.CustomTotalVAT" placeholder="{{'Custom_Total_Vat' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.CustomTotalVat.$invalid) && (prouctCatalogForm.CustomTotalVat.$dirty || submitted)">
+                                    {{'Custom_Total_Vat' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Pieces.$invalid) && (prouctCatalogForm.Pieces.$dirty || submitted) }">
+                            <label for="Pieces" class="col-sm-5 top5 control-label">{{'Pieces' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Pieces" id="Pieces" maxlength="50" ng-model="UKProductCatalog.Pieces" placeholder="{{'Pieces' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Pieces.$invalid) && (prouctCatalogForm.Pieces.$dirty || submitted)">
+                                    {{'Pieces' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>-->
+                </section>
+                <!--end-->
+                <!--japan (NRT) code-->
+                <section ng-if="HubCode === 'NRT'" class="row">
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Number.$invalid) && (prouctCatalogForm.Number.$dirty || submitted) }">
+                            <label for="Number" class="col-sm-5 top5 control-label">{{'Number' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Number" id="Number" maxlength="50" ng-model="JapanProductCatalog.Number" placeholder="{{'Number' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Number.$invalid) && (prouctCatalogForm.Number.$dirty || submitted)">
+                                    {{'Number' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Code.$invalid) && (prouctCatalogForm.Code.$dirty || submitted) }">
+                            <label for="Code" class="col-sm-5 top5 control-label">{{'Code' | translate}}/{{'kGS' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Code" id="Code" maxlength="50" ng-model="JapanProductCatalog.Code" placeholder="{{'Code' | translate}}/{{'kGS' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Code.$invalid) && (prouctCatalogForm.Code.$dirty || submitted)">
+                                    {{'Code' | translate}}/{{'kGS' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.DeclaredValue.$invalid) && (prouctCatalogForm.DeclaredValue.$dirty || submitted) }">
+                            <label for="DeclaredValue" class="col-sm-5 top5 control-label">{{'Declared_Value_Of_Custom' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="DeclaredValue" name="DeclaredValue" maxlength="50" ng-model="JapanProductCatalog.DeclaredValueOfCustom" placeholder="{{'Declared_Value' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.DeclaredValue.$invalid) && (prouctCatalogForm.DeclaredValue.$dirty || submitted)">
+                                    {{'Declared_Value_Of_Custom' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Currency.$invalid) && (prouctCatalogForm.Currency.$dirty || submitted) }">
+                            <label for="Currency" class="col-sm-5 top5 control-label">{{'Currency' | translate}}</label>
+                            <div class="col-sm-7" id="Xe">
+                                <select id="Currency" name="Currency"
+                                        ng-model="JapanProductCatalog.Currency"
+                                        ng-options="Currency.CurrencyCode +' - '+ Currency.CurrencyDescription disable when Currency.Disabled === true for Currency in CurrencyTypes | orderBy:'OrderNumber' track by Currency.CurrencyCode"
+                                        class="form-control fontsize12" ng-required="currencyRequired" required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Currency' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Currency.$invalid) && (prouctCatalogForm.Currency.$dirty || submitted)">
+                                    {{'Currency' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-group">
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.Origin.$invalid) && (prouctCatalogForm.Origin.$dirty || submitted) }">
+                            <label for="Origin" class="col-sm-5 top5 control-label">{{'Origin' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="Origin" id="Origin" maxlength="50" ng-model="JapanProductCatalog.Origin" placeholder="{{'Origin' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.Origin.$invalid) && (prouctCatalogForm.Origin.$dirty || submitted)">
+                                    {{'Origin' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-class="{'has-error': (prouctCatalogForm.OriginCode.$invalid) && (prouctCatalogForm.OriginCode.$dirty || submitted) }">
+                            <label for="OriginCode" class="col-sm-5 top5 control-label">{{'Origin_Code' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="OriginCode" id="OriginCode" maxlength="50" ng-model="JapanProductCatalog.OriginCode" placeholder="{{'Origin_Code' | translate}} ({{'Required' | translate}})" required />
+                                <span class="help-block has-error" ng-show="(prouctCatalogForm.OriginCode.$invalid) && (prouctCatalogForm.OriginCode.$dirty || submitted)">
+                                    {{'Origin_Code' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--end-->
+            </section>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times"></i> {{'Cancel' | translate}}</button>
+            <button type="button" ng-click="SaveProductCatalog(productcatalog.DestinationHub)" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-plus"></i> Add</button>
+        </div>
+    </div>
+</form>

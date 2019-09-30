@@ -1,0 +1,131 @@
+﻿
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'View_Manifest' | translate}} - {{ManifestData.ManifestName}}</h4>
+        </div>
+        <div class="modal-body">
+            <!--express shipment custom grid for admin or staff-->
+            <div class="panel panel-default margin-bottom-none" ng-show="RoleId === 1 || RoleId === 6 || RoleId === 20">
+                <div class="width100 flex grid-background">
+                    <div class="width986 flex">
+                        <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Client_Name' | translate}}</span></div>
+                        <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Bag_Number' | translate}}</span></div>
+                        <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'TrackingNumber' | translate}}</span></div>
+                        <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'AWB_Number' | translate}}</span></div>
+                        <div class="width16 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Carrier' | translate}}</span></div>
+                        <div class="width8 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'confirmShp_TotalWeight' | translate}}</span></div>
+                        <div class="width8 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Carton' | translate}}</span></div>
+                        <div class="width13 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Created_On' | translate}} <span class="redColor">*</span></sapn> </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                    <div class="panel-body padding0">
+                        <ul class="list-unstyled change margin-bottom-none">
+                            <li>
+                                <div class="width100 pointer" ng-repeat="Shipment in ManifestData.ManifestedShipmentList">
+                                    <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                        <div class="width10 quotation-table-body word-wrap padding-5"><span>{{Shipment.Customer}}</span></div>
+                                        <div class="width10 quotation-table-body word-wrap padding-5"><span>{{Shipment.BagBarcodeNo}}</span></div>
+                                        <div class="width120 quotation-table-body word-wrap padding-5"><span ng-click="ExpressTrackingDetail(Shipment.ExpressShipmentId)" class="pointer"><a class="pointer">{{Shipment.TrackingNumber}}</a></span></div>
+                                        <div class="width120 quotation-table-body word-wrap padding-5"><span ng-click="ExpressTrackingDetail(Shipment.ExpressShipmentId)" class="pointer"><a class="pointer">{{Shipment.AWBNumber}}</a></span></div>
+                                        <div class="width16 quotation-table-body word-wrap padding-5"><span>{{Shipment.Carrier}}</span></div>
+                                        <div class="width8 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalWeight}}</span></div>
+                                        <div class="width8 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalCarton}}</span></div>
+                                        <div class="width13 quotation-table-body padding-5 word-wrap"><span>{{Shipment.CreatedOn | date:'dd-MMM-yyyy HH:mm'}}</span></div>
+                                        <div class="width10 quotation-table-body padding0 text-center">
+                                            <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">{{'Action' | translate}} <span class="caret"></span></a>
+                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                    <li>
+                                                        <!--breakbulkViewManifest(MD.ManifestId)-->
+                                                        <a href="" ng-click="DownloadBagLabel(Shipment.BagId)">
+                                                            <span class="padEdit i-o-d"><i class="fa fa-download i-o-d" aria-hidden="true"></i></span>
+                                                            <span>{{'Download_Bag_Label' | translate}}</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--square grid error code here-->
+                            <li ng-if="ManifestData.ManifestedShipmentList.length === 0">
+                                <div class="col-sm-12 paddingboth imp-white">
+                                    <div class="no-address-exist"><h4 class="redColor">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                </div>
+                            </li>
+                            <!--end-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+            <!--express shipment custom grid for customer-->
+            <div class="panel panel-default margin-bottom-none" ng-show="RoleId === 3">
+                <div class="width100 flex grid-background">
+                    <div class="width986 flex">
+                        <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Bag_Number' | translate}}</span></div>
+                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'AWB_Number' | translate}}</span></div>
+                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'confirmShp_TotalWeight' | translate}}</span></div>
+                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Carton' | translate}}</span></div>
+                        <div class="width20 bold quotation-table-padding border-right-none"><sapn class="quotation-table-body padding-10-5">{{'Created_On' | translate}} <span class="redColor">*</span></sapn></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                    <div class="panel-body padding0">
+                        <ul class="list-unstyled change margin-bottom-none">
+                            <li>
+                                <div class="width100" ng-repeat="Shipment in ManifestData.ManifestedShipmentList">
+                                    <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                        <div class="width10 quotation-table-body word-wrap padding-5"><span>{{Shipment.BagBarcodeNo}}</span></div>
+                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>{{Shipment.AWBNumber}}</span></div>
+                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalWeight}}</span></div>
+                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalCarton}}</span></div>
+                                        <div class="width20 quotation-table-body padding-5 word-wrap"><span>{{Shipment.CreatedOn | date:'dd-MMM-yyyy HH:mm'}}</span></div>
+                                        <div class="width10 quotation-table-body padding0 text-center">
+                                            <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">{{'Action' | translate}} <span class="caret"></span></a>
+                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                    <li>
+                                                        <!--breakbulkViewManifest(MD.ManifestId)-->
+                                                        <a href="" ng-click="DownloadBagLabel(Shipment.BagId)">
+                                                            <span class="padEdit i-o-d"><i class="fa fa-download i-o-d" aria-hidden="true"></i></span>
+                                                            <span>{{'Download_Bag_Label' | translate}}</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--square grid error code here-->
+                            <li ng-if="ManifestData.ManifestedShipmentList.length === 0">
+                                <div class="col-sm-12 paddingboth imp-white">
+                                    <div class="no-address-exist"><h4 class="redColor">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                </div>
+                            </li>
+                            <!--end-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--end code-->
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12 paddingboth">
+                <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                <!--<button type="button" class="btn-simple btn-success" ng-click="$dismiss('cancel')"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download PDF </button>-->
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; background: #fff; font-family: calibri, sans-serif;padding:10px 20px;">
+	<header>
+        <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@ViewBag.ImageHeader" />
+        </div>
+    </header>
+	<br/>
+	<table style="border-spacing: 0px;">
+	   <tr><td style="font-family: calibri, sans-serif;"><b>Shipping Order Number : </b> @Model.BookingDetail.DirectShipmentDraftId</td></tr>
+	   <tr><td style="font-family: calibri, sans-serif;"><b>Currency : </b> @Model.BookingDetail.Currency.CurrencyCode</td></tr>
+	   <tr><td style="font-family: calibri, sans-serif;"><b>Parcel Type : </b> @Model.BookingDetail.ParcelType.ParcelDescriptionv
+	   <tr><td style="font-family: calibri, sans-serif;"><b>Tax and Duties : </b> @Model.BookingDetail.PayTaxAndDuties</td></tr>
+	   <tr><td style="font-family: calibri, sans-serif;"><b>Total CTNs : </b> @Model.BookingDetail.Packages.Count</td></tr>
+	   <tr><td style="font-family: calibri, sans-serif;"><b>Estimated Gross Weight : </b> @Model.GrossWeight</td></tr>
+	</table>
+	<br />
+	<table style="border-spacing: 0px;">
+	<tr>
+		<td style="font-family: calibri, sans-serif;">
+			<b>Error Detail</b><br />
+		</td>
+	</tr>
+	</table>
+	<div style="line-height: 20px;">
+		@if(@Model.Error.Address.Count > 0)
+		{
+		   foreach(var err in Model.Error.Address)
+		   {
+			   <div>@err</div><br />
+		   }
+		}
+		@if(@Model.Error.Package.Count > 0)
+		{
+		   foreach(var err in Model.Error.Package)
+		   {
+			   <div>@err</div><br />
+		   }
+		}
+		@if(@Model.Error.Custom.Count > 0)
+		{
+		   foreach(var err in Model.Error.Custom)
+		   {
+			   <div>@err</div><br />
+		   }
+		}
+		@if(@Model.Error.Service.Count > 0)
+		{
+		   foreach(var err in Model.Error.Service)
+		   {
+			   <div>@err</div><br />
+		   }
+		}
+		@if(@Model.Error.Miscellaneous.Count > 0)
+		{
+		   foreach(var err in Model.Error.Miscellaneous)
+		   {
+			   <div>@err</div><br />
+		   }
+		}
+		@if(@Model.Error.ServiceError.Count > 0)
+		{
+		   foreach(var err in Model.Error.ServiceError)
+		   {
+			   <div>@err</div><br />
+		   }
+		}
+	</div>
+	<br />
+	<table style="border-spacing: 0px;">
+		<tr>
+			<td style="font-family: calibri, sans-serif;">
+				<b>Shipper's (Ship From) Address</b><br>
+			</td>
+		</tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Company Name : </b> @Model.BookingDetail.ShipFrom.CompanyName</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Address1 : </b>@Model.BookingDetail.ShipFrom.Address</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Address2 : </b>@Model.BookingDetail.ShipFrom.Address2</td></tr>             
+			<tr><td style="font-family: calibri, sans-serif;"><b>City : </b>@Model.BookingDetail.ShipFrom.City</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>State : </b>@Model.BookingDetail.ShipFrom.State</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Country : </b>@Model.BookingDetail.ShipFrom.Country.Name</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Area : </b>@Model.BookingDetail.ShipFrom.Area</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Post Code : </b>@Model.BookingDetail.ShipFrom.PostCode</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Phone : </b>@Model.BookingDetail.ShipFrom.Phone</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Email : </b>@Model.BookingDetail.ShipFrom.Email</td></tr>
+	</table>
+	<br />
+	<br />
+	<table style="border-spacing: 0px;">
+		<tr>
+			<td style="font-family: calibri, sans-serif;">
+				<b>Consignee's (Ship To) Address</b><br>
+			</td>
+		</tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Company Name:</b>@Model.BookingDetail.ShipTo.CompanyName</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Address1 : </b>@Model.BookingDetail.ShipTo.Address</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Address2 : </b>@Model.BookingDetail.ShipTo.Address2</td></tr>                  
+			<tr><td style="font-family: calibri, sans-serif;"><b>City : </b>@Model.BookingDetail.ShipTo.City</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>State : </b>@Model.BookingDetail.ShipTo.State</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Country : </b>@Model.BookingDetail.ShipTo.Country.Name</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Area : </b>@Model.BookingDetail.ShipTo.Area</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>PostCode : </b>@Model.BookingDetail.ShipTo.PostCode</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Phone : </b>@Model.BookingDetail.ShipTo.Phone</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Email : </b>@Model.BookingDetail.ShipTo.Email</td></tr>
+	</table>
+	<br />
+	<table style="border-spacing: 0px;">
+		<tr>
+			<td style="font-family: calibri, sans-serif;">
+				<b>Package Detail</b><br>
+			</td>
+		</tr>
+	</table>
+		   <table style="border-spacing: 0px;">
+			  <tr>
+				 <th style="font-family: calibri, sans-serif;">Length</th>
+				 <th style="font-family: calibri, sans-serif;">Width</th>
+				 <th style="font-family: calibri, sans-serif;">Height</th>
+				 <th style="font-family: calibri, sans-serif;">Weight</th>
+				 <th style="font-family: calibri, sans-serif;">Value</th>
+				 <th style="font-family: calibri, sans-serif;">Contents</th>
+			  </tr>					  
+			  @foreach(var item in Model.BookingDetail.Packages)
+			  {
+				<tr>
+					<td style="font-family: calibri, sans-serif;">@item.Length</td>
+					<td style="font-family: calibri, sans-serif;">@item.Width</td>
+					<td style="font-family: calibri, sans-serif;">@item.Height</td>
+					<td style=";font-family: calibri, sans-serif;">@item.Weight</td>
+					<td style="font-family: calibri, sans-serif;">@item.Value</td>
+					<td style="font-family: calibri, sans-serif;">@item.Content</td>
+				</tr>
+			  }					  
+		   </table>                    
+	<br />
+	<br />
+	<table style="border-spacing: 0px;">
+		<tr>
+			<td style="font-family: calibri, sans-serif;">
+				<b>Custom Declaration</b><br>
+			</td>
+		</tr>
+	</table>
+		@if(@Model.ShipmentType == "UK/EU - Shipment")
+		{
+			<table style="border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;"><b>Category Of Item : </b>@Model.BookingDetail.CustomInfo.CatagoryOfItem</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Category Of Item Explanation : </b>@Model.BookingDetail.CustomInfo.CatagoryOfItemExplanation</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Commodity Code : </b>@Model.BookingDetail.CustomInfo.CommodityCode</td></tr>
+			</table>
+		}
+		else
+		{
+			<table style="border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;"><b>Contents Type : </b>@Model.BookingDetail.CustomInfo.ContentsType </td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Contents Explanation : </b>@Model.BookingDetail.CustomInfo.ContentsExplanation</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Restriction Type : </b>@Model.BookingDetail.CustomInfo.RestrictionType</td></tr>                   
+			<tr><td style="font-family: calibri, sans-serif;"><b>Restriction Explonation : </b>@Model.BookingDetail.CustomInfo.RestrictionComments</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Non Delivery Option : </b>@Model.BookingDetail.CustomInfo.NonDeliveryOption</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Custom Signature : </b>@Model.BookingDetail.CustomInfo.CustomsSigner</td></tr>
+			</table>
+		}
+	<br />
+	<br />
+	<table style="border-spacing: 0px;">
+		<tr>
+			<td style="font-family: calibri, sans-serif;">
+				<b>Reference Detail</b><br>
+			</td>
+		</tr>			
+			<tr><td style="font-family: calibri, sans-serif;"><b>Reference 1 : </b>@Model.BookingDetail.ReferenceDetail.Reference1</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Reference 2 : </b>@Model.BookingDetail.ReferenceDetail.Reference2</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Special Instruction : </b>@Model.BookingDetail.ReferenceDetail.SpecialInstruction</td></tr>		
+			<tr><td style="font-family: calibri, sans-serif;"><b>Content Description : </b>@Model.BookingDetail.ReferenceDetail.ContentDescription</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Collection Date : </b>@Model.BookingDetail.ReferenceDetail.CollectionDate</td></tr>
+	</table>
+	<br />
+	<br />
+	<table style="border-spacing: 0px;">
+		<tr>
+			<td style="font-family: calibri, sans-serif;">
+				<b>Get Services</b><br>
+			</td>
+		</tr>			
+			<tr><td style="font-family: calibri, sans-serif;"><b>Zone Base Card Id : </b>@Model.BookingDetail.CustomerRateCard.ZoneRateCardId</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Service Type : </b>@Model.BookingDetail.CustomerRateCard.ParcelServiceType</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Apply Courier Account : </b>@Model.BookingDetail.CustomerRateCard.CourierAccountCountryCode</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Courier Name : </b>@Model.BookingDetail.CustomerRateCard.CourierName</td></tr>			
+			<tr><td style="font-family: calibri, sans-serif;"><b>Integration Account Id : </b>@Model.BookingDetail.CustomerRateCard.IntegrationAccountId</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Courier Description : </b>@Model.BookingDetail.CustomerRateCard.CourierDescription</td></tr>	
+	</table>
+    <br/>
+	<footer>
+        <table style="border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;font-size:12px;">FRAYTE GLOBAL All rights reserved.</td></tr>
+        </table>
+    </footer>
+</body>
+</html>

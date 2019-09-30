@@ -1,0 +1,48 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Add' | translate}} {{'Country' | translate}} {{'Documents' | translate}}</h4>
+</div>
+<form name="CountryDocumentForm" ng-submit="SaveContryDocument(CountryDocumentForm.$valid, documentDetail)" novalidate>
+    <div class="modal-body">
+        <div class="form-group" ng-class="{ 'has-error': CountryDocumentForm.ShipmentType.$error.required &&
+                                                         (CountryDocumentForm.ShipmentType.$dirty || submitted) }">
+            <div class="col-xs-4 textName">
+                <label class="control-label" for="ShipmentType">{{'Document' | translate}} {{'Type' | translate}}</label>
+            </div>
+            <div class="col-xs-8">
+                <select id="ShipmentType" name="ShipmentType"
+                        ng-model="documentDetail.ShipmentType"
+                        ng-options="item.name as item.name for item in DocumentTypes" required>
+                    <option value="">-- {{'Select' | translate}} {{'Document' | translate}} {{'Type' | translate}} --</option>
+                </select>
+                <span class="help-block has-error"
+                      ng-show="CountryDocumentForm.ShipmentType.$error.required &&
+                           (CountryDocumentForm.ShipmentType.$dirty || submitted)">
+                    {{'Document' | translate}} {{'TypeValidError' | translate}}
+                </span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div ng-class="{ 'has-error': CountryDocumentForm.DocumentName.$invalid &&
+                                                         (CountryDocumentForm.DocumentName.$dirty || submitted) }">
+            <div class="col-xs-4 textName">
+                <label class="control-label" for="DocumentName">{{'Document' | translate}} {{'Name' | translate}}</label>
+            </div>
+            <div class="col-xs-8">
+                <input type="text" class="form-control" id="DocumentName" name="DocumentName" autofocus ng-model="documentDetail.DocumentName" placeholder="{{'Document' | translate}} {{'Name' | translate}}" required />
+                <span class="help-block has-error"
+                      ng-show="CountryDocumentForm.DocumentName.$invalid &&
+                           (CountryDocumentForm.DocumentName.$dirty || submitted)">
+                    {{'Document' | translate}} {{'NameValidationError' | translate}}
+                </span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-left">
+            <button type="button" ng-click="cancel()" class="btn-simple btn-cancel">{{'Cancel' | translate}}</button> &nbsp;&nbsp;
+            <button type="submit" ng-click="submitted=true" class="btn-simple btn-save">{{'Add' | translate}}</button>
+        </div>
+    </div>
+</form>

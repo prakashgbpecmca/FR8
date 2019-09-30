@@ -1,0 +1,101 @@
+﻿body {font-size:12px;
+font-family:'Blue Highway';
+}
+/* .paddingboth {padding-left:0px !important;
+              padding-right:0px !important;
+}
+ */
+.width8 {width:8.33% !important;
+         float:left;
+}
+.width10 {width:10%;
+         float:left;
+}
+.width20 {width:20%;
+         float:left;
+}
+.width201 {width:10%;
+         float:left;
+}
+.width66 {width:63.66%;
+         float:left;
+		 font-size:14px;
+}
+.width33 {width:36.34%;
+         float:left;
+		 font-size:10px;
+}
+.width80 {width:7%;
+         float:left;
+		 font-size:13px;
+		 font-weight:bold;
+}
+.width615 {width:6.15%;
+         float:left;
+}
+.width6 {width:6.66%;
+         float:left;
+}
+.width76 {width:7.69%;
+          float:left;
+}
+.width16 {width:16.66%;
+         float:left;
+}
+.width83{width:83.34%;
+         float:left;
+}
+.border1 {border:1px solid #000000; 
+}
+/* small {
+    font-size: 70% !important;
+} */
+    table {
+    border-collapse: collapse;
+}
+
+table, td, th { border: 1px solid black; font-size:12px;}
+.border {border:1px solid #000000;   
+}
+.pull-right{text-align:right;
+font-size:10px;
+}
+.height70 {height:155px;padding: 50px 0px 0px;
+}
+/* div.term ul :nth-child(odd)>span {background-color:#c3bebe;
+}
+div.term ul :nth-child(even)>span {background-color:#fff;
+} */
+tr#odd:nth-child(odd) {background-color:#c3bebe;
+}
+tr#odd:nth-child(even) {background-color:#fff;
+}
+.Center{text-align:center;}
+
+ol li {font-size: 12px;
+}
+.padding30 {padding-top:30px; padding-bottom:53px;
+}
+footer {
+    height: 60px;
+    /*background: #0B3D5A;*/
+    color: #000;
+    text-align: center;
+    padding: 12px 0px;
+}
+
+footer .footerLogo {
+        color: #EB8633;
+        padding: 0 6px;
+        font-size:18px;
+        letter-spacing:0.7px;
+        text-transform: uppercase;
+        display: inline-block;
+        font-weight:300;
+    }
+
+
+    footer .footerText {
+        font-size: 25px;
+        color: #EB8633;
+    }

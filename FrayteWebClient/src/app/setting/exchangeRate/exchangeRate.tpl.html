@@ -1,0 +1,118 @@
+﻿<div class="container" style="position: relative; right: 48px; padding: 30px; padding-top: 0px !important; padding-bottom: 0px !important; ">
+    <form ng-submit="submit(ExchangeRateCard.$valid)" name="ExchangeRateCard" novalidate class="fontsize12">
+        <div class="col-sm-12">
+            <div class="col-sm-6 paddingboth">
+                <div class="col-sm-4 lineheight24">{{'BusinessUnit_Zone' | translate}}</div>
+                <div class="col-sm-6" style="position:relative;right:8px;">
+                    <select class="form-control fontsize12" ng-change="GetOperaionExchangeRate()" ng-model="OperationZone" ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId">
+                        <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'BusinessUnit_Zone' | translate}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="metaltop-teal" style="padding: 0px 0px 0px; overflow: hidden;">
+                    <ul>
+                        <li class="first"><a class="btn btn-lg borderradius" ng-click="OperationExchangeType = 'buy'; GetOperaionExchangeRate()" ng-class="{'active': OperationExchangeType === 'buy'}">{{'Buy' | translate}} </a></li>
+                        <li class="first"><a class="btn btn-lg borderradius" ng-click="OperationExchangeType = 'sell'; GetOperaionExchangeRate()" ng-class="{'active': OperationExchangeType === 'sell'}">{{'Sell' | translate}} </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr style="margin-bottom:0px; margin-top:15px !important;" />
+        <div class="col-sm-12 form-group" style="position: relative; margin-bottom: 0px !important;">
+            <div class="col-sm-6 paddingboth" style="position: relative; padding: 10px;">
+                <div class="col-sm-4">
+                    <b>{{'Currency' | translate}}</b>
+                </div>
+                <div class="col-sm-8 paddingboth">
+                    <b class="right5"><span ng-show="OperationExchangeType==='buy'">{{'Buy' | translate}}</span> <span ng-show="OperationExchangeType==='sell'">{{'Sell' | translate}}</span> {{'Exchange_Value' | translate}}</b>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-sm-6" style="border-left: 1px solid #ddd; position: relative; padding: 10px;">
+                <div class="col-sm-4">
+                    <b class="left5">{{'Currency' | translate}}</b>
+                </div>
+                <div class="col-sm-8 paddingboth">
+                    <b class="left5"><span ng-show="OperationExchangeType==='buy'">{{'Buy' | translate}}</span> <span ng-show="OperationExchangeType==='sell'">{{'Sell' | translate}}</span>  {{'Exchange_Value' | translate}}</b>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="clearfix"></div>
+        <hr style="margin-top:0px;margin-bottom:0px;" />
+        <div class="col-sm-12 paddingboth">
+            <div class="col-sm-6 paddingboth" ng-repeat="currencyExchangeRate in OpearationExchangeRates | filter:{ExchangeType:OperationExchangeType}" style="border-right:1px solid #ddd;padding-top:20px;left: 1px !important;position: relative;">
+                <ng-form name="newForm">
+                    <div class="col-sm-12" ng-class="{ 'has-error': newForm.exchangerate.$invalid &&
+                                                         (newForm.exchangerate.$dirty || submitted) }">
+                        <div class="col-sm-4">
+                            <label class="control-label lineheight30" for="GBP">{{currencyExchangeRate.CurrencyDetail.CurrencyCode}}</label>
+                        </div>
+                        <div class="col-sm-8 paddingboth">
+                                <!--error message show below the input item-->
+                            <div class="col-sm-8 paddingboth">
+                            <div class="input-group">
+                                <input type="text" four-Digit-Numeric
+                                       ng-blur="setExchangeRate(currencyExchangeRate)"
+                                       ng-change="setHKDCurrency(currencyExchangeRate)"
+                                       ng-model="currencyExchangeRate.ExchangeRate" class="form-control"
+                                       name="exchangerate" required aria-describedby="basic-addon1"/>
+                                <span class="input-group-addon" id="basic-addon1">%</span>
+                                <div class="clearfix"></div>
+                            
+                            </div>
+                                <span class="help-block has-error"
+                                      ng-show="newForm.exchangerate.$invalid &&
+                                            (newForm.exchangerate.$dirty || submitted)">
+                                    {{'Exchange_Rate_Required' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-sm-4">
+                                <a class="btn btn-sm btn-default col-sm-12 word-wrap" style="padding:7px 10px !important;" ng-click="removeCourierAccount(currencyExchangeRate)"><i class="fa fa-bitbucket red" aria-hidden="true"></i> <span class="bottom1">{{'Remove' | translate}}</span></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <div class="col-sm-12" style="padding-left:29px;padding-right:32px;">
+            <div class="pull-left">
+                <a href="" ng-click="AddEditExchangeRate()" class="btn-simple btn-save fontsize12"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add_More' | translate}}</a>
+            </div> &nbsp;&nbsp;
+            <div class="pull-right">
+                <button ng-click="submitted=true" class="padding6x19 btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+        </div>
+    </form>
+    <div class="clearfix"></div>
+    <!--<hr />-->
+</div>
+
+<div ng-show="gridOptions.data.length" class="container" style="padding: 56px; right: 47px; position: relative; padding-top: 0px !important;">
+    <div class="col-sm-12 paddingboth">
+        <div class="col-sm-6 paddingboth"><strong style="font-size:20px;">{{'Operation' | translate}} <span ng-show="OperationExchangeType==='buy'">{{'Buy' | translate}}</span> <span ng-show="OperationExchangeType==='sell'">{{'Sell' | translate}}</span> {{'Exchange_Rate' | translate}} {{'History' | translate}}</strong></div>
+        <div class="col-sm-3">
+            <select class="form-control fontsize12" ng-change="GetOperaionExchangeRateByYearMonth()" ng-model="CurrentYear" ng-options="Year as Year for Year in Years">
+                <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'Year' | translate}}</option>
+            </select>
+        </div>
+        <div class="col-sm-3 paddingboth">
+            <select class="form-control fontsize12" ng-change="GetOperaionExchangeRateByYearMonth()" ng-model="CurrentMonth" ng-options="Month as Month.MonthName for Month in Months track by Month.MonthId">
+                <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'Month' | translate}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    <div ng-if="showGridHistory">
+        <div data-ui-grid="gridOptions" class="myGrid fontsize12" style="min-height: {{gridheight}}px;"></div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿
+<div>
+    <div class="container">
+        <div class="col-sm-12" style="padding-top:38px;padding-bottom:38px;">
+            <div id="largebutton" class="button-group">
+                <button class="btn btn-lg btn-default" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsDirectBooking }" ng-disabled="!CustomerModules.IsDirectBooking" style="margin: 10px; border: 1px solid #e5e5e5; background: #45aa50; padding: 90px 76px;" data-ui-sref="customer.booking-home.direct-booking({directShipmentId: 0})">
+                    <span class="backimg"> <i class="fa fa-plane size77" aria-hidden="true"></i></span> <span class="relative">Direct Booking</span>
+                </button>
+                <button class="btn btn-lg btn-default" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsTradeLaneBooking }" ng-disabled="!CustomerModules.IsTradeLaneBooking" style="margin: 10px; border: 1px solid #e5e5e5; background: #deb662; padding: 90px 57px;">
+                    <span class="backimg"><i class="fa fa-paper-plane-o size77" aria-hidden="true"></i></span> <span class="relative">Trade Lane Booking</span>
+                </button>
+                <button class="btn btn-lg btn-default" ng-class="{ 'moduleNotAvailable': !CustomerModules.IsBreakBulkBooking }" ng-disabled="!CustomerModules.IsBreakBulkBooking" style="margin: 10px; border: 1px solid #e5e5e5; background: #468da8; padding: 90px 57px;">
+                    <span class="backimg"><i class="fa fa-cubes size77" aria-hidden="true"></i></span> <span class="relative">Break Bulk Booking</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="clearfix"></div>
+
+</div>
+     
+ 

@@ -1,0 +1,157 @@
+﻿
+<section>
+    <div>
+        <form name="fuelform" ng-submit="GenerateFuelSurCharge(fuelform.$valid, fuelDetail)">
+            <div class="col-sm-12 paddingboth">
+                <!--<div class="col-sm-5 paddingboth margin-bottom-none">
+                    <div class="col-sm-4 paddingboth top5"><label for="operationZone">{{'BusinessUnit_Zone' | translate}}</label></div>
+                    <div class="col-sm-8">
+                        <select ng-change="fuelSurChargeByOperationZone(OperationZone)"
+                                ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId"
+                                class="form-control fontsize12 form-group" ng-model="OperationZone">
+                            <option value="" selected disabled class="display-none"></option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>-->
+                <!--<div class="col-sm-4 paddingboth margin-bottom-none">
+                    <div class="col-sm-5 paddingboth top5"><label for="operationZone">{{'Logistics_Company' | translate}}</label></div>
+                    <div class="col-sm-7">
+                        <select ng-change="GetfuelSurCharge()"
+                                ng-options="LogisticComp.LogisticCompany as LogisticComp.LogisticCompanyDisplay for LogisticComp in LogisticCompanies"
+                                class="form-control fontsize12 form-group" ng-model="LogisticCompany">
+                            <option value="" selected disabled class="display-none"></option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>-->
+                <div class="col-sm-5 paddingboth margin-bottom-none">
+                    <div class="col-sm-4 top5"><label for="operationZoneYear">{{'Year' | translate}}</label></div>
+                    <div class="col-sm-8 paddingboth">
+                        <select class="form-control fontsize12 form-group"
+                                ng-change="myfunction()"
+                                ng-options="year as year for year in Years"
+                                ng-model="Year">
+                            <option value="" selected disabled class="display-none"></option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--add fuel surcharges-->
+                <div class="col-sm-7 paddingboth form-group text-right">
+                    <button type="button" class="btn-simple btn-primary" ng-click="getFuelService()"><span><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</span></button>
+                </div>
+                <!--end-->
+                <div class="clearfix"></div>
+            </div>
+            <div ng-if="FuelSurCharges.length < 1" class="panel-body padding0">
+                <div class="col-sm-12 text-center" style="padding-top:150px; border: 1px solid #ddd; height:800px;">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-md btn-success" ng-click="GenerateFuelSurCharge()" style="padding: 20px 110px;border-radius:0 !important;" ng-disabled="IsDisable"><span style="font-size:30px;" ng-disabled="IsDisable"><i class="fa fa-truck" aria-hidden="true" style="font-size:35px;"></i> {{'Generate_Fuel_Surcharge' | translate}}</span></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="clearfix"></div>
+    </div>
+    <!-- Start OperationZone.OperationZoneId===1 code-->
+    <div ng-if="OperationZone.OperationZoneId === 1">
+        <form name="FuelSurCharge" ng-submit="updateFuelSurCharge(FuelSurCharge.$valid)" novalidate>
+            <div ng-if="val" class="panel panel-default box-shadow-none border-none">
+                <div class="panel-heading padding0 flex bordered-left bordered-right" id="fuelsurcharge-border">
+                    <div class="width24 padding10x5 bold"><span class="visibility">Hidden</span></div>
+                    <div class="width6 bordered-left bold padding10x5 text-center" style="width:7.08% !important;" ng-repeat="fuelmonth in monthandyear">
+                        {{fuelmonth.Month}}-{{fuelmonth.Year}} (%)
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <ul class="panel-body padding0 list-unstyled form-group bordered-left bordered-right bordered-bottom grid-hover">
+                    <li>
+                        <div ng-repeat="fuelCharge in FuelSurCharges" style="background:#d6d4d4;">
+                            <div class="col-sm-12 paddingboth">
+                                <div class="width100 bordered-bottom lineheight34 background-white">
+                                    <div class="width7 padding-5 bordered-right">{{fuelCharge.LogisticCompany}}</div>
+                                    <div class="width93"><span class="visibility">Hidden</span></div>
+                                </div>
+                                <div class="width100">
+                                    <div ng-repeat="type in fuelCharge.Type" class="width100 bordered-bottom flex">
+                                        <div class="width7 lineheight32 bordered-right"><span class="visibility">Hidden</span></div>
+                                        <div class="width150 lineheight32 top7"><span class="TI-5" style="position:absolute;"><label>{{type.RateType}} {{type.LogisticType}}</label></span></div>
+                                        <div class="width78">
+                                            <div ng-repeat="month in type.MonthYear" class="width705" style="margin: 5px 0.26rem;">
+                                                <input ng-disabled="month.IsDisable" ng-model="month.FrayteFuelPercent" ng-change="month.IsChange=true" type="text" name="height" class="form-control" value="{{month.Price.FrayteFuelPercent}}">
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 paddingboth form-group">
+                    <div class="pull-right">
+                        <button type="button" ng-click="updateFuelSurCharge(FuelSurCharge.$valid)" class="btn-BigPrimary fontsize12" ng-disabled="IsDisable"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Update' | translate}}</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+    <!--Ebd-->
+    <!--Start OperationZone.OperationZoneId===2 code-->
+    <div ng-if="OperationZone.OperationZoneId === 2">
+        <form name="FuelSurCharge" ng-submit="updateFuelSurCharge(FuelSurCharge)" novalidate>
+            <div ng-if="val" class="panel panel-default box-shadow-none border-none">
+                <div class="panel-heading padding0 flex bordered-left bordered-right" id="fuelsurcharge-border">
+                    <div class="width24 padding10x5 bold"><span class="visibility">Hidden</span></div>
+                    <div class="width6 bordered-left bold padding10x5 text-center" style="width:7.08% !important;" ng-repeat="fuelmonth in monthandyear">
+                        {{fuelmonth.Month}}-{{fuelmonth.Year}} (%)
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <ul class="panel-body padding0 list-unstyled form-group bordered-left bordered-right bordered-bottom grid-hover">
+                    <li>
+                        <div ng-repeat="fuelCharge in FuelSurCharges" style="background:#d6d4d4;">
+                            <div class="col-sm-12 paddingboth">
+                                <div class="width100 bordered-bottom lineheight34 background-white">
+                                    <div class="width7 padding-5 bordered-right">{{fuelCharge.LogisticCompany}}</div>
+                                    <div class="width93"><span class="visibility">Hidden</span></div>
+                                </div>
+                                <div class="width100">
+                                    <div ng-repeat="type in fuelCharge.Type" class="width100 bordered-bottom flex">
+                                        <div class="width7 lineheight32 bordered-right"><span class="visibility">Hidden</span></div>
+                                        <div class="width150 lineheight32 top7"><span class="TI-5" style="position:absolute;"><label>{{type.RateType}} {{type.LogisticType}}</label></span></div>
+                                        <div class="width78">
+                                            <div ng-repeat="month in type.MonthYear" class="width705" style="margin: 5px 0.26rem;">
+                                                <input ng-disabled="month.IsDisable" ng-model="month.FrayteFuelPercent" ng-change="month.IsChange=true" type="text" name="height" class="form-control" value="{{month.Price.FrayteFuelPercent}}">
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 paddingboth form-group">
+                    <div class="pull-right">
+                        <button type="button" ng-click="updateFuelSurCharge(FuelSurCharge.$valid, FuelSurCharge.packageForm)" class="btn-BigPrimary fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Update' | translate}}</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+    <!--End-->
+</section>

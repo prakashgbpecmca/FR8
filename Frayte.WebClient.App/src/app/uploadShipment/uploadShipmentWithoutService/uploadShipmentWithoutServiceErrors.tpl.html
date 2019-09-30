@@ -1,0 +1,353 @@
+﻿
+<section>
+    <div id="UploadShipment" ng-repeat="error in ErrorList">
+        <div class="modal-content">
+               <!--header code-->
+                 <div class="modal-header">
+                    <button type="button" class="close" ng-click="Makeshipment1(ShipmentData); $dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+                    <h4 class="modal-title">{{'Upload_Shipment_Errors' | translate}}</h4>
+                </div>
+                <!--end-->
+            <form ng-hide="ErrorFormShow" name="DirectBooking" ng-submit="Shipment1(DirectBooking, ErrorList)" novalidate>
+                <!--body code-->
+                <div class="modal-body padding0 padding-bottom-none">
+                    <div class="col-sm-12 padding-center">
+                        <!--<form ng-hide="ErrorFormShow" name="DirectBooking" ng-submit="Shipment1(DirectBooking, ErrorList)">-->
+                        <div ng-repeat="er in error.RemainedFields" class="col-sm-both form-group paddingboth " ng-class="{'has-error' : DirectBooking.{{er.InputTypeName}}.$invalid && (DirectBooking.{{er.InputTypeName}}.$dirty
+             || submitted) }">
+                            <div>
+                                <div ng-if="er.FileType === 'text' || er.FileType === 'email'" class="col-sm-12 paddingboth">
+                                    <div ng-if="(er.FileType === 'text' || er.FileType === 'email'|| er.FileType === 'textarea') && er.ShowDiv === 'MainObjProperty'">
+                                        <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8 paddingright">
+                                            <input type="{{er.FileType}}" name="{{er.InputTypeName}}" id="{{er.InputTypeName}}" class="form-control fontsize12" ng-model="Shipment[0][er.FieldName]" required />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div ng-if="(er.FileType === 'text' || er.FileType === 'email'|| er.FileType === 'textarea') && er.ShowDiv === 'FromShipper'">
+                                        <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8 paddingright">
+                                            <input type="{{er.FileType}}" ng-change="SetShipFrominfo(Shipment[0].ShipFrom[er.FieldName], er.FieldName)" name="{{er.InputTypeName}}" id="{{er.InputTypeName}}" class="form-control fontsize12" ng-model="Shipment[0].ShipFrom[er.FieldName]" required />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div ng-if="(er.FileType === 'text' || er.FileType === 'email'|| er.FileType === 'textarea') && er.ShowDiv === 'ToShipper'">
+                                        <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8 paddingright">
+                                            <input type="{{er.FileType}}" ng-change="SetShipToInfo(Shipment[0].ShipTo[er.FieldName], er.FieldName)" name="{{er.InputTypeName}}" id="{{er.InputTypeName}}" class="form-control fontsize12" ng-model="Shipment[0].ShipTo[er.FieldName]" required />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!--<div ng-if="(er.FileType === 'text' || er.FileType === 'email'|| er.FileType === 'textarea') && er.ShowDiv === 'CustomInfo'">
+                                    <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-8 paddingright">
+                                        <input type="{{er.FileType}}" name="{{er.InputTypeName}}" id="{{er.InputTypeName}}" class="form-control fontsize12" ng-model="Shipment[0].CustomInfo[er.FieldName]" required />
+                                        <span class="help-block has-error"
+                                              ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                            (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                            {{er.RequiredMessage | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>-->
+                                    <div ng-if="(er.FileType === 'text' || er.FileType === 'email'|| er.FileType === 'textarea') && er.ShowDiv === 'ReferenceDetail'">
+                                        <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8 paddingright">
+                                            <input type="{{er.FileType}}" name="{{er.InputTypeName}}" id="{{er.InputTypeName}}" class="form-control fontsize12" ng-model="Shipment[0].ReferenceDetail[er.FieldName]" required />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div ng-if="(er.FileType === 'text' || er.FileType === 'email'|| er.FileType === 'textarea') && er.ShowDiv === 'CustomInfo'">
+                                        <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8 paddingright">
+                                            <input type="{{er.FileType}}" name="{{er.InputTypeName}}" id="{{er.InputTypeName}}" class="form-control fontsize12" ng-model="Shipment[0].CustomInfo[er.FieldName]" required />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div ng-if="er.FileType === 'DropDown'" class="col-sm-12 paddingboth">
+                                    <div ng-if="er.FileType === 'DropDown' && er.ShowDiv === 'MainObjProperty'">
+                                        <div class="col-sm-4 paddingboth">
+                                            <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="control-label lineheight24">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8 paddingright" id="Xe">
+                                            <select name="{{er.InputTypeName}}" id="{{er.InputTypeName}}"
+                                                    ng-model="Shipment[0][er.FieldName]" ng-change="setPackageParcelType(DirectBooking.ParcelType)"
+                                                    ng-options="{{er.IterationForAs}} as {{er.IterationFor1}} {{er.DashString}} {{er.IterationFor2}} for ParcelType in {{er.GeneralObj}} track by {{er.TrackBYOBJ}}"
+                                                    class="form-control fontsize12" required>
+                                                <option value="" disabled selected class="display-none"></option>
+                                            </select>
+
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage| translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div ng-if="er.FileType === 'DropDown' && er.ShowDiv === 'FromShipper'" ng-class="{'has-error' : DirectBooking.{{er.InputTypeName}}.$invalid && (DirectBooking.{{er.InputTypeName}}.$dirty || submitted) }">
+                                        <div class="col-sm-4 paddingboth">
+                                            <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="control-label lineheight24">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8 paddingright" id="Xe">
+                                            <select name="{{er.InputTypeName}}" id="{{er.InputTypeName}}"
+                                                    ng-model="Shipment[0].ShipFrom[er.FieldName]" ng-change="SetShipFrominfo(Shipment[0].ShipFrom[er.FieldName], er.FieldName)"
+                                                    ng-options="{{er.IterationForAs}} as {{er.IterationFor1}} {{er.DashString}} {{er.IterationFor2}} for ParcelType in {{er.GeneralObj}} track by {{er.TrackBYOBJ}}"
+                                                    class="form-control fontsize12" required>
+                                                <option value="" disabled selected class="display-none"></option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div ng-if="er.FileType === 'DropDown' && er.ShowDiv === 'ToShipper'">
+                                        <div class="col-sm-4 paddingboth">
+                                            <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="control-label lineheight24">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8 paddingright" id="Xe">
+                                            <select name="{{er.InputTypeName}}" id="{{er.InputTypeName}}"
+                                                    ng-model="Shipment[0].ShipTo[er.FieldName]" ng-change="SetShipToInfo(Shipment[0].ShipTo[er.FieldName], er.FieldName)"
+                                                    ng-options="{{er.IterationForAs}} as {{er.IterationFor1}} {{er.DashString}} {{er.IterationFor2}} for ParcelType in {{er.GeneralObj}} track by {{er.TrackBYOBJ}}"
+                                                    class="form-control fontsize12" required>
+                                                <option value="" disabled selected class="display-none"></option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div ng-if="er.FileType === 'DropDown' && er.ShowDiv === 'CustomInfo'">
+                                        <div class="col-sm-4 paddingboth">
+                                            <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="control-label lineheight24">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                        </div>
+                                        <div class="col-sm-8 paddingright" id="Xe">
+                                            <select name="{{er.InputTypeName}}" id="{{er.InputTypeName}}"
+                                                    ng-model="Shipment[0].CustomInfo[er.FieldName]"
+                                                    ng-options="{{er.IterationForAs}} as {{er.IterationFor1}} {{er.DashString}} {{er.IterationFor2}} for ParcelType in {{er.GeneralObj}}"
+                                                    class="form-control fontsize12" required>
+                                                <option value="" disabled selected class="display-none"></option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div ng-if="er.FileType === 'radio'" class="col-sm-12 paddingboth form-group">
+                                    <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{er.FieldLabel | translate}} <span class="redColor">*</span></label>
+                                    <div class="col-sm-8">
+                                        <div ng-repeat="em in er.RadioButtonValues" class="col-sm-6 paddingboth top7 form-group">
+                                            <input type="{{er.FileType}}" name="{{er.InputTypeName}}" id="{{er.InputTypeName}}" class="fontsize12" value="{{em}}" ng-model="Shipment[0][er.FieldName]" required /> {{em}}
+                                        </div>
+                                        <span class="help-block has-error"
+                                              ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                            {{er.RequiredMessage | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div ng-if="er.FileType === 'checkbox' &&  er.ShowDiv === 'CustomInfo'" class="col-sm-12 paddingboth form-group help-block has-error">
+                                    <div class="col-sm-12 paddingboth">
+                                        <input type="{{er.FileType}}" name="{{er.InputTypeName}}" id="{{er.InputTypeName}}" class="fontsize12" ng-model="Shipment[0].CustomInfo[er.FieldName]" required />
+                                        <span class="bottom2">{{er.FieldLabel | translate}}</span>
+                                    </div>
+                                    <span class="help-block has-error"
+                                          ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                        {{er.RequiredMessage | translate}}
+                                    </span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div ng-if="er.FileType === 'Date'" class="col-sm-12 paddingboth form-group">
+                                    <div ng-if="er.FileType === 'Date' && er.ShowDiv === 'MainObjProperty'">
+                                        <label name="{{er.LabelName}}" id="{{er.LabelName}}" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{er.FieldLabel}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group">
+                                                <input type="text" id="{{er.InputTypeName}}" name="{{er.InputTypeName}}" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                       ng-model="Shipment[0][er.FieldName]" is-open="status.opened"
+                                                       min-date="mindate"
+                                                       datepicker-options="dateOptions" readonly
+                                                       close-text="Close" ng-click="OpenCalender($event)" required placeholder="{{'Est_CollectionDate' | translate}} ({{'Required' | translate}})" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="OpenCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-12 paddingboth form-group" ng-if="er.FileType === 'Time'">
+                                    <div ng-if="er.FileType === 'Time' && er.ShowDiv === 'MainObjProperty'">
+                                        <label class="col-sm-4 lineheight24 paddingboth control-label" name="{{er.LabelName}}" id="{{er.LabelName}}">{{er.FieldLabel}}</label>
+                                        <div class="col-sm-8">
+                                            <div>
+                                                <div class="col-sm-4 paddingboth">
+                                                    <input type="text"
+                                                           id="{{er.InputTypeName}}"
+                                                           class="form-control input-sm fontsize12"
+                                                           placeholder="{{'TimePlaceholder' | translate}}"
+                                                           name="{{er.InputTypeName}}"
+                                                           ng-model="Shipment[0][er.FieldName]"
+                                                           ui-mask="99:99"
+                                                           ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" style="width: 70px;" required />
+                                                </div>
+                                                <div class="col-sm-8 paddingboth top7 control-label"><b>{{'Hours24' | translate}}</b></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <!--<div class="col-sm-5 paddingright pad-left5">
+                                        <div collection-date-time datasource="Shipment[0][er.FieldName]">
+                                        </div>
+                                    </div>-->
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBooking.{{er.InputTypeName}}.$invalid &&
+                                (DirectBooking.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{er.RequiredMessage | translate}}
+                                            </span>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingNew.{{er.InputTypeName}}.$error.pattern &&
+                                                (DirectBookingNew.{{er.InputTypeName}}.$dirty || submitted)">
+                                                {{'TimeNotValid' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <!--<div ng-if="er.FileType === 'Date' && er.ShowDiv === 'DirectBookingNew'">
+                            <div class="col-sm-12 form-group paddingboth"
+                                 ng-class="{ 'has-error': DirectBookingNewForm.shipmentCollectionDate.$invalid &&
+                                                 (DirectBookingNewForm.shipmentCollectionDate.$dirty || submitted), 'has-error': (DirectBookingNewForm.collectiontime.$invalid || DirectBookingNewForm.collectioTimeMinutes.$invalid || checkTime(DirectBookingNewForm)) &&
+                                             (DirectBookingNewForm.collectiontime.$dirty || DirectBookingNewForm.collectioTimeMinutes.$dirty || submitted) }" id="collection-date-time">
+                                <div class="col-sm-12 paddingleft">
+                                    <label for="shipmentCollectionDate" id="shipmentCollectionDateLabel" class="form-group frayte-orange">{{'Collection' | translate}} <small>{{'Date_Time' | translate}}</small> <span class="redColor">*</span></label>
+                                    <div class="col-sm-11 paddingboth">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-7 paddingboth">
+                                                <div class="input-group">
+                                                    <input type="text" id="shipmentCollectionDate" name="shipmentCollectionDate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                           ng-model="Shipment[0].ReferenceDetail.CollectionDate" is-open="status.opened"
+                                                           min-date="mindate" max-date="maxdate"
+                                                           datepicker-options="dateOptions1" readonly
+                                                           close-text="Close" ng-click="OpenCalender($event)" ng-required="DirectBookingNew.CustomerRateCard.LogisticServiceId > 0 && DirectBookingNew.CustomerRateCard.CourierName === 'DHL'" required placeholder="{{'Est_CollectionDate' | translate}} ({{'Required' | translate}})" />
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default" ng-click="OpenCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                         {{CollectionTime}}
+                                            <div class="col-sm-5 paddingright pad-left5">
+                                                <div collection-date-time datasource="CollectionTime">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="help-block has-error"
+                                              ng-show="DirectBookingForm.shipmentCollectionDate.$error.required &&
+                                        (DirectBookingForm.shipmentCollectionDate.$dirty || submitted)">
+                                            {{'serviceoptn_PickupDateValidError' | translate}}
+                                        </span>
+                                        <span class="help-block has-error"
+                                              ng-show="DirectBookingForm.shipmentCollectionDate.$invalid && !DirectBookingForm.shipmentCollectionDate.$error.required &&
+                                        (DirectBookingForm.shipmentCollectionDate.$dirty || submitted)">
+                                            {{'serviceoptn_PickupDateInvalid' | translate}}
+                                        </span>
+                                        <span class="help-block has-error" ng-show="(DirectBookingForm.collectiontime.$invalid ||  DirectBookingForm.collectioTimeMinutes.$invalid )&&
+                                                 (DirectBookingForm.collectiontime.$dirty || DirectBookingForm.collectioTimeMinutes.$dirty || submitted)">
+                                            {{'CollectionTime_Required' | translate}}
+                                        </span>
+                                        <span class="help-block has-error"
+                                              ng-show="checkTime(DirectBookingForm)">
+                                            {{'Time_Validation' | translate}}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-1 paddingboth estimatedPickupDate">
+                                        <a href="" class="padding7px" popover-placement="auto" uib-popover='Please note, all collection dates and times requested and booked will be estimates only. FRAYTE Logistics has no control over the ability for individual couriers to achieve the desired collection slot arrangements. Should problems arise as a direct result of the selected courier not making the requested collection, it is advisable to take up a dispute directly with the nominated courier.' popover-trigger="'outsideClick'">
+                                            <i class="fa fa-question-circle help pull-right" aria-hidden="true" style="position:relative;left:15px;"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                            </div>
+                            <!--</div>-->
+                        </div>
+                        <!--<button ng-show="FormName === 'WithoutServiceForm' || FormName ==='WithServiceForm'" type="submit" class="btn-simple btn-save pull-right" ng-click="submitted=true"><i class="fa fa-check" aria-hidden="true"></i> {{'Shipment' | translate}}</button>-->
+                        <!--</form>-->
+
+                    </div>
+                    <!--end-->
+                </div>
+                <div class="clearfix"></div>
+                <!--end-->
+                <!--footer code-->
+                <div class="modal-footer">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn-simple btn-cancel pull-left" ng-click="FormSave(Shipment[0], 'Cancel')"><i class="fa fa-close" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                        <button ng-show="FormName === 'WithoutServiceForm' || FormName ==='WithServiceForm'" type="submit" class="btn-simple btn-save pull-right" ng-click="Shipment1(DirectBooking, ErrorList)"><i class="fa fa-check" aria-hidden="true"></i> {{'Shipment' | translate}}</button>
+                        <button ng-show="FormName === 'DBForm'" type="button" class="btn-simple btn-save pull-right" ng-click="FormSave(Shipment[0], 'Save')"><i class="fa fa-check" aria-hidden="true"></i> {{'Save' | translate}}</button>
+                        <!--<button ng-show="FormName === 'WithoutServiceForm'" type="button" class="btn-simple btn-save pull-right" ng-click="Makeshipment(ShipmentData)"><i class="fa fa-check" aria-hidden="true"></i> {{'Make_Correction' | translate}}</button>
+                <button ng-show="FormName === 'WithServiceForm'" type="button" class="btn-simple btn-save pull-right" ng-click="SaveUploadShipmentWithService(ShipmentData)"><i class="fa fa-check" aria-hidden="true"></i> {{'Make_Correction' | translate}}</button>-->
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end-->
+            </form>
+            <!--error code-->
+            <div ng-show="ErrorFormShow">
+            <div class="modal-body">
+                <h4 class="redColor">{{'Upload_Shipment_Missing_Information' | translate}} <span ng-click="Makeshipment(ShipmentData)"><a class="pointer">{{'Click_Here' | translate}}</a></span> {{'To_Go_From' | translate}}</h4>
+            </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn-simple btn-cancel pull-left" ng-click="$dismiss('cancel')"><i class="fa fa-close" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                    </div>
+                  
+                </div>
+            </div>
+            <!--end-->
+        </div>
+        
+    </div>
+</section>

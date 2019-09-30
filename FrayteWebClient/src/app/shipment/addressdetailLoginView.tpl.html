@@ -1,0 +1,133 @@
+﻿<br /><br />
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div style="margin-left:-15px;margin-right:-15px;">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div style="border: 1px solid #ddd; padding: 15px; height: 210px;">
+            <div style="padding:5px 0;">
+                <div class="col-xs-12" style="padding:0px;">
+                    <div class=" col-xs-6 text-left" style="padding-left:0px;">{{shipment.Shipper.ContactName}}</div>
+                    <div class="col-xs-6 text-right" style="padding-right:0px;" title="Edit Address"> <a ng-click="AddEditShipperReceiverAddress('SHIPPER', shipment.Shipper.UserId,shipment.ShipperAddress)"><i class=" fa fa-pencil-square-o" aria-hidden="true" style="font-size:30px;"></i></a></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div>{{shipment.Shipper.CompanyName}}</div>
+                <div>{{shipment.ShipperAddress.Address}}</div>
+                <div ng-if="!shipment.ShipperAddress.Address2">
+                    {{shipment.ShipperAddress.Address2}}
+                </div>
+                <div ng-if="!shipment.ShipperAddress.Address3">
+                    {{shipment.ShipperAddress.Address3}}
+                </div>
+                <div>{{shipment.ShipperAddress.City}}</div>
+                <div>{{shipment.ShipperAddress.State}} - {{shipment.ShipperAddress.Zip}}</div>
+                <div>{{shipment.ShipperAddress.Country.Name}}</div>
+            </div>
+            <div style="padding:5px 0;color:#94a4bd;">
+                <div>T: <span> {{shipment.Shipper.TelephoneNo}}</span></div>
+                <div>E: <span> {{shipment.Shipper.Email}}</span></div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 padding-tb-10">
+            <h4 style="margin-left:-15px;">{{'Ship_From' | translate}}</h4>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-6 padding-tb-10">
+                <button style="margin-left:-30px;" type="button" class="btn-addPopup" ng-click="OtherAddressFrom('SHIPPER', shipment.Shipper.UserId)">{{'Select' | translate}} {{'OtherAddress' | translate}}</button>
+            </div>
+            <div class="col-sm-6 text-right addButtonTop ng-scope" style="margin-top:5px;">
+                <button style="margin-right:-15px;" type="button" class="btn-addPopup" ng-click="AddToAddressBook('SHIPPER', shipment.Shipper.UserId)">{{'Add' | translate}} {{'Shipment' | translate}} {{'Address' | translate}}</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div>
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6 text-right"></div>
+                <div class="clearfix"></div>
+            </div>
+            <div style="border: 1px solid #ddd; padding: 15px; height: 210px;">
+                <div style="padding:5px 0;" ng-if="shipment.Receiver.UserId">
+                    <div class="col-xs-12" style="padding:0px;">
+                        <div class=" col-xs-6 text-left" style="padding-left:0px;">{{shipment.Receiver.ContactName}}</div>
+                        <div class="col-xs-6 text-right" style="padding-right:0px;"><a ng-click="AddEditShipperReceiverAddress('RECEIVER', ReceiverDetail.UserId,shipment.ReceiverAddress)"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:30px;" title="Edit Address"></i></a></div>
+                        <div class="clearfix"></div>
+                    </div>
+                   
+                    <div>{{shipment.Receiver.CompanyName}}</div>
+                    <div>{{shipment.ReceiverAddress.Address}}</div>
+                    <div ng-if="!shipment.ReceiverAddress.Address2">
+                        {{shipment.ReceiverAddress.Address2}}
+                    </div>
+                    <div ng-if="!shipment.ReceiverAddress.Address3">
+                        {{shipment.ReceiverAddress.Address3}}
+                    </div>
+                    <div>{{shipment.ReceiverAddress.City}}</div>
+                    <div>{{shipment.ReceiverAddress.State}} - {{shipment.ReceiverAddress.Zip}}</div>
+                    <div>{{shipment.ReceiverAddress.Country.Name}}</div>
+                </div>
+                <div style="padding:5px 0;color:#94a4bd;" ng-if="shipment.Receiver.UserId > 0">
+                    <div>T: <span> {{shipment.Receiver.TelephoneNo}}</span></div>
+                    <div>E: <span> {{shipment.Receiver.Email}}</span></div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-sm-6 padding-tb-10">
+            <h4 style="margin-left:-15px;">{{'Ship_To' | translate}}</h4>
+        </div>
+        <div class="col-sm-12  ">
+            <div style="margin-left:-15px;margin-right:-15px;">
+
+                <div class="col-sm-6">
+                    <div style="margin-top: 9px; margin-bottom: 22px;">
+                        <div class="form-group" ng-class="{ 'has-error': ShipmentForm.shipTo.$invalid &&
+                                                         (ShipmentForm.shipTo.$dirty || submitted) }">
+                            <select style="margin-left:-15px;" id="shipTo" name="shipTo"
+                                    ng-model="ReceiverDetail" ng-change="GetReceiverAddress(ReceiverDetail)"
+                                    ng-options="receiver.Name for receiver in ShipperReceivers" class="form-control" required>
+                                <option value="" disabled selected>{{'Select' | translate}} {{'Receiver' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="ShipmentForm.shipTo.$invalid &&
+                                            (ShipmentForm.shipTo.$dirty || submitted)">
+                                {{'ReceiverValidError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <div class="addButtonTop ng-scope">
+                        <button style="margin-right:-15px;" type="button" class="btn-addPopup" ng-disabled="disableAddEditReceiver" ng-click="AddToAddressBook('RECEIVER', ReceiverDetail.UserId)">{{'Add' | translate}} {{'Receiver' | translate}} {{'Address' | translate}}</button>
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-6 padding-tb-10">
+                <button style="margin-left:-30px;" type="button" class="btn-addPopup" ng-click="OtherAddressFrom('RECEIVER', ReceiverDetail.UserId)">{{'Select' | translate}} {{'OtherAddress' | translate}}</button>
+            </div>
+            <div class="col-sm-6 text-right  padding-tb-10">
+                <button style="margin-right:-30px;" type="button" class="btn-addPopup" ng-click="AddEditReceiver()">{{'Add' | translate}} {{'Receiver' | translate}}</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

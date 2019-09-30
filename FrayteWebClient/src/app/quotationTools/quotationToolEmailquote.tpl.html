@@ -1,0 +1,132 @@
+﻿<form name="QuotationMail" novalidate ng-submit="sendQuotationMail(QuotationMail.$valid, QuotationEmail)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <!--<h4 class="modal-title">{{'Send' | translate}} {{'Quotation' | translate}} {{'Email' | translate}}</h4>-->
+            <h4 class="modal-title">{{ Header | translate}}</h4>
+            
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-12 paddingboth">
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': QuotationMail.emailaddress.$invalid &&
+                                                         (QuotationMail.emailaddress.$dirty || submitted) }">
+
+                    <label class="col-sm-4 control-label top5 paddingboth" for="emailaddress">{{'Customer' | translate}} {{'Email' | translate}} <span class="redColor">*</span></label>
+                    <div class="col-sm-8 paddingboth form-group">
+                        <input type="email" placeholder="{{'Customer' | translate}} {{'Email' | translate}} ({{'Required' | translate}})" name="emailaddress" id="emailaddress" ng-model="QuotationEmail.Email" required class="form-control" />
+                        <span class="help-block has-error"
+                              ng-show="QuotationMail.emailaddress.$error.email &&
+                                            (QuotationMail.emailaddress.$dirty || submitted)">
+                            {{'EmailNotValid' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="QuotationMail.emailaddress.$error.required &&
+                                            (QuotationMail.emailaddress.$dirty || submitted)">
+                            {{'Customer' | translate}} {{'EmailValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label top5 paddingboth" for="toccemailaddress">{{'ToCc_Email' | translate}}</label>
+                    <div class="col-sm-8 paddingboth form-group">
+                        <input type="email" placeholder="{{'ToCc_Email' | translate}}" name="toccemailaddress" id="toccemailaddress" ng-model="QuotationEmail.ToCCEmail" class="form-control" />
+                        <!--<span class="help-block has-error"
+                              ng-show="QuotationMail.toccemailaddress.$error.email &&
+                                            (QuotationMail.toccemailaddress.$dirty || submitted)">
+                            {{'ToCc_' | translate}} {{'EmailNotValid' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="QuotationMail.toccemailaddress.$error.required &&
+                                            (QuotationMail.toccemailaddress.$dirty || submitted)">
+                            {{'ToCc_' | translate}} {{'EmailValidationError' | translate}}
+                        </span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': QuotationMail.emailname.$invalid &&
+                                                      (QuotationMail.emailname.$dirty || submitted) }">
+                    <label class="col-sm-4 control-label top5 paddingboth" for="emailname">{{'Customer' | translate}} {{'Name' | translate}} <span class="redColor">*</span></label>
+                    <div class="col-sm-8 paddingboth form-group">
+                        <input type="text" placeholder="{{'Customer' | translate}} {{'Name' | translate}} ({{'Required' | translate}})" name="emailname" id="emailname" ng-model="QuotationEmail.CustomerName" required class="form-control" />
+                        <span class="help-block has-error"
+                              ng-show="QuotationMail.emailname.$invalid &&
+                                            (QuotationMail.emailname.$dirty || submitted)">
+                            {{'Customer' | translate}} {{'NameValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label top5 paddingboth" for="tobccemailaddress">{{'ToBCc_Email' | translate}}</label>
+                    <div class="col-sm-8 paddingboth form-group">
+                        <input type="email" placeholder="{{'ToBCc_Email' | translate}}" name="tobccemailaddress" id="toccemailaddress" ng-model="QuotationEmail.ToBCCEmail" class="form-control" />
+                    </div>
+                </div>
+            </div>
+           </div>
+       <div class="col-sm-12"> 
+            <div class="form-group">
+                <!--<h3>
+                    Dear {{CustomerName}},<br/><br/>
+                    Thank you for your enquiry at FRAYTE Logistics Ltd.
+                    Please find your Quotation included in this Email.
+
+                </h3>-->
+            </div>
+           <div>
+               <div class="form-group" ng-class="{ 'has-error': QuotationMail.AddtionalText.$invalid &&
+                                                         (QuotationMail.AddtionalText.$dirty || submitted) }">
+                   <!--<label class="control-label" for="AddtionalText">{{'Email' | translate}} {{'Description' | translate}}</label>-->
+                   <p><span>{{'Dear' | translate}}</span> <span class="redColor bold">{{CustomerName}}</span>,</p>
+
+                   <div>
+                       <textarea class="form-group form-control" type="text" placeholder="{{'Email' | translate}} {{'Description' | translate}}" name="AddtionalText" id="AddtionalText" ng-model="QuotationEmail.MailContent" required rows="6" cols="6"></textarea>
+                   </div>
+               </div>
+               <span class="help-block has-error"
+                     ng-show="QuotationMail.AddtionalText.$invalid &&
+                                            (QuotationMail.AddtionalText.$dirty || submitted)">
+                   {{'Email' | translate}} {{'DescriptionValidationError' | translate}}
+               </span>
+           </div>
+         
+           <div>
+               <p class="bold">{{'Notes_Condition' | translate}}</p>
+               <ol class="list-unstyled form-group">
+                   <li>{{'Special_Offer_Valid' | translate}}</li>
+                   <li>{{'Payment_Within_Agree_Terms' | translate}}</li>
+                   <li>{{'Not_Responing_Taxes_Duties' | translate}}</li>
+                   <li>{{'Shipment_Charges_Volumetric_Weight' | translate}}</li>
+                   <li>{{'Only_General_Cargo_Quote' | translate}}</li>
+               </ol>
+               <div class="clearfix"></div>
+               <br/>
+               <br/>
+               <div class="form-group">
+                   <p>{{'Kindly_Regards' | translate}},</p>
+                   <br/>
+                   <ul class="list-unstyled">
+                   <li class="redColor bold">{{SalesRepresentativedata.Name}}</li>
+                   <li class="bold">{{'FRAYTE_Logistics_Ltd' | translate}}</li>
+                   <li><a href="www.FRAYTE.com">{{Websitefrayte}}</a></li>
+                   <li><span class="bold">{{'Phone' | translate}}:</span> +852 2148 4880</li>
+                   <li><span class="bold">{{'Email' | translate}}:</span> <span class="redColor bold">{{SalesRepresentativedata.Email}}</span></li>  
+                   </ul>     
+               </div>
+           </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button class="btn btn-simple btn-cancel fontsize12" type="button" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-simple btn-primary fontsize12" type="submit" ng-click="submitted=true;" name="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Send' | translate}} {{'Email' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

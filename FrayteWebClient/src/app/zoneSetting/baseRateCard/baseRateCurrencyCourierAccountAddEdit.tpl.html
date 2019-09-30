@@ -1,0 +1,85 @@
+﻿<!--modal start here-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Edit' | translate}} {{'Customer_RateCard' | translate}}</h4>
+</div>
+<form ng-submit="submit(rateCurrencyCourierAccount.$valid)" name="rateCurrencyCourierAccount" novalidate>
+    <div class="modal-body">
+        <div class="col-sm-12 paddingboth">
+            <div class="col-sm-12">
+                <div class="col-sm-6 paddingleft">
+
+                    <label for="rateCountry">{{'shipment_ShipmentDetailsShipmentType' | translate}}: {{RateCard.shipmentType.LogisticDescriptionDisplay}}</label>
+                </div>
+                <div class="col-sm-6">
+                    <label for="rateCountry"> {{'Weight' | translate}}:<span ng-if="RateCard.LogisticWeight.WeightTo === 999"> {{'Over' | translate}}</span> {{RateCard.LogisticWeight.WeightFrom}} <span ng-if="RateCard.LogisticWeight.WeightTo !== 999">- {{RateCard.LogisticWeight.WeightTo}}</span> {{RateCard.LogisticWeight.WeightUnit}}</label>
+                </div>
+                <div class="clearfix"></div>
+
+                <hr style="margin-top:10px !important; margin-bottom:10px !important;" />
+            </div>
+            <div class="col-sm-12 paddingboth" style="padding-top:5px;">
+                <div class="col-sm-12 paddingboth">
+                    <div class="form-group">
+                        <div class="col-sm-1 paddingright">
+                            <label for="currency" class="control-label lineheight24">{{'Rate' | translate}} <span class="redColor">*</span></label>
+                        </div>
+                        <div class="col-sm-3 paddingboth form-group" ng-class="{ 'has-error': rateCurrencyCourierAccount.rate.$invalid &&
+                                            (rateCurrencyCourierAccount.rate.$dirty || submitted) }">
+                            <input type="text" ng-model="RateCard.Rate" class="form-control fontsize12" name="rate" required />
+                            <span class="help-block has-error" ng-show="rateCurrencyCourierAccount.rate.$invalid &&
+                                            (rateCurrencyCourierAccount.rate.$dirty || submitted)">
+                                {{'Rate' | translate}} {{'Is' | translate}} {{'Required' | translate}}.
+                            </span>
+                        </div>
+                        <div class="col-sm-3 paddingright form-group">
+                            <select class="form-control fontsize12" ng-model="RateCard.CurrencyCode" ng-options="Currency.CurrencyCode as  Currency.CurrencyCode for Currency in  CurrencyCodes" name="currency"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-12">
+                    <div class="col-sm-12 paddingboth" style="margin-bottom:8px;">
+                        <div class="pull-left">
+                            <label style="line-height: 34px;">{{'Courier_Account' | translate}}</label>
+                        </div>
+                        <div class="pull-right right-inner-addon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <input type="text" class="form-control fontsize12" placeholder="{{'Search' | translate}} {{'Courier_Account' | translate}}" ng-model="searchText" ng-change="refreshData()" />
+                        </div>
+                    </div>
+                    <div id="fix" class="col-sm-12 paddingboth overflow border" style="height:285px !important;">
+                        <div style="padding:10px;">
+                            <div ng-repeat="CourierAccount in CourierAccounts">
+                                <div ng-click="SetCourierAccountForBaseRate(CourierAccount)" ng-class="{'courierAccountSelected':CourierAccount.IsSelected}" class="col-sm-4 paddingboth border2 pointer" style="padding:5px 7px 0px; border: 1px solid #f5f5f5;">
+                                    <div class="col-sm-9 paddingright">
+                                        <label class="pointer" for="name" style="margin:6px 0px 0px;">{{CourierAccount.LogisticService.LogisticCompany}} {{CourierAccount.LogisticService.RateType}}- {{CourierAccount.AccountNo }}</label>
+                                    </div>
+                                    <div class="col-sm-3 paddingleft baseRateCss" style="cursor:pointer!important;">
+                                        <span><label class="pointer"><i class="fa fa-check" style="opacity: 0; margin: 2px 10px 0px; position: absolute; font-size: 30px; color: #fff; " aria-hidden="true"></i><span style="width:50px;" ng-style="{'background-color':CourierAccount.ColorCode}" class="form-control" name="coloredTextBox" readonly></span></label></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <a class="btn btn-cancel fontsize12" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</a>
+            </div>
+            <div class="pull-right">
+                <button ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</form>

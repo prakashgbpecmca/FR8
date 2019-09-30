@@ -1,0 +1,75 @@
+﻿<div id="wrapper">
+    <header>
+        <div class="container">
+            <div class="col-xs-6 col-sm-6 col-md-6 paddingboth">
+                <a class="pointer" ng-click="rootStateHeader()">
+                    <span ng-if="IsSiteCountry==='COM'"><img ng-src="{{ImagePath + 'FrayteHK.png'}}" class="logo" /></span>
+                    <span ng-if="IsSiteCountry==='CO.UK'"><img ng-src="{{ImagePath + 'FrayteUK.png'}}" class="logo" /></span>
+                </a>
+            </div>
+            <div ng-include="'loginView/offline.tpl.html'" ng-show="!online"></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 paddingboth" style="margin-top: 15px;">
+                <div class="usr-setting text-right">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </header>
+    <div class="clearfix"></div>
+    <div id="content">
+        <div class="content2">
+            <section class="container admin">
+                <div class="content-admin">
+                    <div class="col-sm-12 paddingboth flex" style="padding: 20rem 0px;">
+                        <div class="col-sm-5 padding-10"><img class="img-responsive" ng-src="{{ImagePath + 'error_image.png'}}" /></div>
+                        <div class="col-sm-7">
+                            <div class="padding-10 fontsize34"><label class="bold">{{'404' | translate}}</label> <label>{{'Not_Found' | translate}}</label></div>
+                            <div class="padding-10">
+                                <p>{{'ErrorPageMessage' | translate}}</p>
+                            </div>
+                            <div class="fontsize16 padding-10">
+                                <a href="javascript: history.back()" ng-click="rootState()" class="btn btn-simple btn-cancel"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{'GoBack' | translate}}</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <toaster-container></toaster-container>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<footer class="pre-footer-top-border">
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="pull-left lineheight24 xs-footerCenter top7 left-30rem">
+                    <div>
+                        <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+                        <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}}(Simplified) </button>
+                        <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}}(Traditional) </button>
+                        <button ng-click="changeLanguage('th')" class="btn btn-link fontsize12" ng-disabled="isDisabled4" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'th.jpg'}}" style="margin-right:5px;" />Thai </button>
+                    </div>
+                </div>
+                <div>
+                    <ul class="text-right">
+                        <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                        <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                        <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                        <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="pull-left xs-footerCenter top2">
+                    <div class="copyText"><span class="mobile-left"><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /> <span class="word-break">&copy; {{'2018' | translate}} <span ng-if="IsSiteCountry==='COM'">{{'FRAYTE_HK' | translate}}</span><span ng-if="IsSiteCountry==='CO.UK'">{{'FRAYTE_UK' | translate}}</span>. {{'AllRightsReserved' | translate}}.</span></span></div>
+                </div>
+                <div class="pull-right textAlignR xs-footercenter top2 text-right">
+                    <a ng-click="setScroll('top')" ui-sref='helpSupport' target="_blank" class="fontsize12">{{'Help_Support' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.privacyPolicy' target="_blank" class="fontsize12">{{'Privacy_Policy' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.term-and-condition' target="_blank" class="fontsize12">{{'TermsAndCondition' | translate}}</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</footer>

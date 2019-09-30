@@ -1,0 +1,55 @@
+﻿<div>
+    <div class="form-group">
+        <div class="fontsize12">
+            <div class="row">
+                <div class="col-sm-12 paddingboth">
+                    <!--<div class="col-sm-6 paddingboth form-group">
+                        <div class="col-sm-4 paddingboth lineheight30"><label for="operationZone">{{'BusinessUnit_Zone' | translate}}</label></div>
+                        <div class="col-sm-8">
+                            <select ng-change="ZoneCountryByOperationZone()"
+                                    ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId"
+                                    class="form-control fontsize12" ng-model="CourierAccount.OperationZone">
+                            </select>
+                        </div>                       
+                    </div>-->
+                    <div class="col-sm-6 form-group">
+                        <div class="col-sm-4 paddingboth lineheight30"><label for="operationZone">{{'Logistic_Type' | translate}}</label></div>
+                        <div class="col-sm-8 paddingboth">
+                            <select ng-change="ZoneCountryByLogisticType()" ng-options="LogisticType as LogisticType.Display for LogisticType  in LogisticTypes" class="form-control fontsize12" ng-model="LogisticType">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <div class="col-sm-4 paddingboth lineheight30"><label for="operationZone">{{"CourierCompany" | translate}}</label></div>
+                        <div class="col-sm-8 paddingboth">
+                            <select ng-change="ZoneCountryByCourierCompany()"
+                                    ng-options="LogisticCompany as LogisticCompany.Value for LogisticCompany in CourierCompanies"
+                                    class="form-control fontsize12" ng-model="CourierCompany">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-show="RateTypes.length">
+                        <div class="col-sm-4 paddingboth lineheight30"><label for="operationZone">{{"Rate" | translate}} {{"Type" | translate}}</label></div>
+                        <div class="col-sm-8 paddingboth">
+                            <select ng-change="ZoneCountryByRateType()"
+                                    ng-options="LogisticRateType as LogisticRateType.Value for LogisticRateType in RateTypes"
+                                    class="form-control fontsize12" ng-model="RateType">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 paddingboth form-group pull-right">
+                        <button class="btn-simple btn-primary pull-right fontsize12 courier-search-fix" ng-click="SearchZoneCountry(CourierAccount.OperationZone, CourierAccount.LogisticService.LogisticType, CourierAccount.LogisticService.LogisticCompany, CourierAccount.LogisticService.LogisticRateType, ModuleType)"><i class="fa fa-search" aria-hidden="true"></i> {{'Search'| translate}}</button>
+                    </div>
+                </div>            
+            </div>
+            <div class="row fontsize12">
+                <div class="col-sm-12">
+                <button class="btn-simple btn-save fontsize12 height44 pull-right fontsize12" ng-click="AddEditCourierAccount()"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add' | translate}} {{'Account' | translate}}</button></div>
+            </div>
+         </div>
+    </div>
+    <div class="clearfix"></div>
+    <!--Grid Code here-->
+    <div ng-hide="EasyPostflag === true" data-ui-grid="gridOptions" ui-grid-selection class="myGrid fontsize12" style="min-height: {{gridheight}}px;"></div>
+    <div ng-show="EasyPostflag === true"   class="border paddingTB182 text-center"><h4 class="redColor">{{'CourierAccountNot_Available' | translate}}</h4></div>
+</div>

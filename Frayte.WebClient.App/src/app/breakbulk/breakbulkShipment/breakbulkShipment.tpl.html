@@ -1,0 +1,470 @@
+﻿
+<section>
+    <div class="form-group">
+        <section>
+            <div class="form-group clearfix"></div>
+            <div class="form-group clearfix"></div>
+            <div style="border-radius: 3px; background: rgb(255, 255, 255); bottom: 3.15rem; position: relative; height: auto !important;" ui-view>
+
+                <section class="row">
+                    <!--tab code-->
+                    <div>
+                        <div class="col-sm-12">
+                            <div id="metaltop-teal" style="padding: 0px 0px 0px; overflow: hidden;">
+                                <ul>
+                                    <li class="first">
+                                        <button class="btn btn-lg borderradius active" ng-class="{'active': poview}" ng-click="poviewClick()">
+                                            PO View
+                                        </button>
+                                    </li>
+                                    <li class="second">
+                                        <button class="btn btn-lg borderradius" ng-class="{'active': jobview}" ng-click="jobviewClick(); jobviewClicktab()">
+                                            Job View
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--end-->
+                    <div class="col-sm-12">
+                        <div style="border:1px solid #DBE2EC; padding:15px;">
+                            <section>
+                                <section>
+                                    <!--filter code-->
+                                    <section>
+                                        <div class="panel panel-default fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+                                            <div class="panel-body">
+                                                <div class="col-sm-12 paddingboth">
+                                                    <!--customer code-->
+                                                    <div class="form-group clearfix">
+                                                        <label for="customer" class="top7 col-sm-2">Customer</label>
+                                                        <div class="col-sm-10">
+                                                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                                                    ng-model="Customer"
+                                                                    ng-options="Customer as Customer.CompanyName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy: 'CustomerName' track by Customer.CustomerId"
+                                                                    ng-change="GetCustomerName(Customer)"
+                                                                    class="form-control fontsize12">
+                                                                <option value="" selected>{{'All' | translate}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--frayte tracking code-->
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="jobNo" class="top7 col-sm-4 paddingboth">Frayte Number</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" name="jobNo" id="jobNo" ng-model="track.FrayteNumber" class="form-control" placeholder="Frayte Number" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--mawb trcking code-->
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-12 form-group paddingboth">
+                                                            <label for="mawb" class="col-sm-4 paddingboth top7">MAWB</label>
+                                                            <div class="col-sm-8 paddingboth">
+                                                                <input type="text" id="mawb" ng-model="track.MAWB" name="mawb" max="13" style="border-radius: 50px; padding-left: 7px !important; border-color: rgb(236, 140, 61) !important;" class="form-control paddingleft fontsize12 text-center" maxlength="13" placeholder="MAWB">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--po number code-->
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="poNo" class="top7 col-sm-4 paddingboth">PO No.</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" name="poNo" ng-model="track.PONo" id="poNo" class="form-control" placeholder="PO No." required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--job number code-->
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="jobNo" class="top7 col-sm-4 paddingboth">Job No.</label>
+                                                            <div class="col-sm-8 paddingboth">
+                                                                <input type="text" name="jobNo" id="jobNo" ng-model="track.JobNo" class="form-control" placeholder="Job No." required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--status code-->
+                                                    <div class="col-sm-6">
+                                                        <div>
+                                                            <label for="shipmentstatus" class="col-sm-4 paddingboth top7">Status</label>
+                                                            <div class="col-sm-8">
+
+                                                                <!--<select  class="form-control">
+
+                                                                    <optgroup ng-repeat="Status in DirectShipmentStatus"  label="{{Status.BBKStatus}}">
+                                                                        <option ng-repeat="View in Status.Status" ng-click="bookingStatus(View)" ng-model="Shipment">{{View.DisplayStatusName}} </option>
+
+                                                                    </optgroup>
+
+
+                                                                </select>-->
+                                                                <select name="select" ng-model="ShipmentStatusId" class="form-control" ng-change="bookingStatus(ShipmentStatusId)"
+                                                                        ng-options="shipment.ShipmentStatusId as shipment.DisplayStatusName group by shipment.BBKStatus for shipment in DirectShipmentStatus track by shipment.ShipmentStatusId">
+                                                                    <option value="" selected ng-show="false">All</option>
+
+
+
+                                                                </select>
+
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--<div class="col-sm-6 ">
+                                                        <div class="col-sm-12 paddingboth">
+                                                            <label for="shipmentstatus" class="col-sm-4 paddingboth top5">{{'Shipment_Status' | translate}}</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="track-dropdown">
+                                                                    <pre>{{DirectShipmentStatus}}</pre>
+                                                                    <label class="form-control pointer dropdown-toggle" style="padding: 3px 3px !important; margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img ng-src="{{buildURL}}{{CurrentStatus.ImgURL}}"> &nbsp;{{CurrentStatus.DisplayStatusName}}</label>
+                                                                    <i class="fa fa-caret-down pointer dropdown-toggle track-trace-fa-icon" aria-hidden="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                                                    <ul class="dropdown-menu dropdown-menu-right fontsize12 directshipmentwidth directbooking-shipment min-width89" style="">
+                                                                    <li ng-repeat="Status in DirectShipmentStatus[i].Status[j]" class="pointer fontsize12"><a ng-click="bookingStatus(Status)" style="padding:2px 3px 0px !important;" class="fontsize12"><img ng-src="{{buildURL}}{{Status.ImgURL}}"> &nbsp;{{Status.DisplayStatusName}}</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>-->
+                                                    <!--tracking number-->
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="trackingNo" class="col-sm-4 paddingboth top7">Tracking No.</label>
+                                                            <div class="col-sm-8 paddingboth">
+                                                                <input type="text" id="trackingNo" name="trackingNo" ng-model="track.TrackingNo" class="form-control fontsize12" placeholder="Tracking No.">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--style number-->
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="styleNo" class="col-sm-4 paddingboth top7">Style No.</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" id="styleNo" trackingNo="styleNo" ng-model="track.StyleNo" class="form-control fontsize12" placeholder="Style No.">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--custom field-->
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="customfield" class="col-sm-4 paddingboth top7">Custom Field</label>
+                                                            <div class="col-sm-8 paddingboth">
+                                                                <input type="text" id="customfield" ng-model="track.CustomField" trackingNo="styleNo" class="form-control fontsize12" placeholder="Custom Field">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <div class="clearfix"></div>
+                                                    <!--ex-factory date from code-->
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group clearfix">
+                                                            <label for="fromdate" class="col-sm-4 paddingboth top7">Ex-Factory Date From</label>
+                                                            <div class="col-sm-8">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control" readonly placeholder="Date From" ng-model="track.FromDate" uib-datepicker-popup="{{format}}"
+                                                                           ng-model="dt" ng-change="ChangeFromdate(track.FromDate)" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <!--ex-factory date to code-->
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-12 form-group paddingright">
+                                                            <label for="todate" class="col-sm-4 paddingboth top7 right15">Ex-Factory Date To</label>
+                                                            <div class="col-sm-8 paddingleft">
+                                                                <div class="input-group row">
+                                                                    <input type="text" class="form-control" readonly style="margin: 0px 5px;" placeholder="Date To" ng-model="track.ToDate" uib-datepicker-popup="{{format}}"
+                                                                           ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end-->
+                                                    <div class="clearfix"></div>
+                                                    <div class="col-sm-6">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button class="btn-simple btn-primary fontsize12 pull-right" ng-click="SeachDirectShipments()"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!--end-->
+                                    <!--data code-->
+                                    <!--if po view is show-->
+                                    <section ng-if="poview">
+                                        <div class="panel-body">
+                                            <section class="row">
+                                                <div>
+                                                    <!--breakbulk shipment custom grid-->
+                                                    <div class="panel panel-default">
+                                                        <div class="width100 flex grid-background">
+                                                            <div class="width986 flex">
+                                                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">PO No.</span></div>
+                                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Style No.</span></div>
+                                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Style Name</span></div>
+                                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Status</span></div>
+                                                                <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">From/To</span></div>
+                                                                <div class="width10 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">PO Created On</sapn></div>
+                                                                <div class="width10 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">Ex-FYT Date</sapn></div>
+                                                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                                            <div class="panel-body padding0">
+                                                                <ul class="list-unstyled change margin-bottom-none">
+                                                                    <!-- breakbulk shipment code here -->
+                                                                    <li>
+                                                                        <div class="width100 pointer" ng-repeat="breakbulkShipment in breakbulkShipments track by $index">
+                                                                            <div class="flex height30">
+                                                                                <div class="width10 quotation-table-body word-wrap padding-5" ng-click="breakbulkCollapse($index)"><span class="pointer"><span class="pointer"><i class="fa" ng-class="{'fa-plus-square-o':isBreakbulk!==$index,'fa-minus-square-o':isBreakbulk==$index}"></i></span> <a>{{breakbulkShipment.PONumber}}</a></span></div>
+                                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{breakbulkShipment.StyleNumber}}</span></div>
+                                                                                <div class="width150 quotation-table-body word-wrap padding-5"><span ng-click="BreakBulkTrackingDetail()" class="pointer">{{breakbulkShipment.StyleName}}</span></div>
+                                                                                <div class="width20 quotation-table-body padding-2"><img class="margin-right5" ng-src="{{buildURL}}{{currentImgURL(breakbulkShipment)}}">{{breakbulkShipment.POStatus}}</div>
+                                                                                <div class="width150 quotation-table-body padding-5 word-wrap"><span>{{breakbulkShipment.fromTo}}</span></div>
+                                                                                <div class="width10 quotation-table-body padding-5 word-wrap"><span>{{breakbulkShipment.CreatedOnUtc}}</span></div>
+                                                                                <div class="width10 quotation-table-body padding-5 word-wrap"><span>{{breakbulkShipment.ExFactoryDate}}</span></div>
+                                                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+                                                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                                            <li ng-click="breakbulkShipmentDetail()">
+                                                                                                <a href="">
+                                                                                                    <span class="padEdit"><i class="fa fa-eye"></i></span>
+                                                                                                    <span>View Detail</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                            <li ng-click="editpo(breakbulkShipment)">
+                                                                                                <a href="">
+                                                                                                    <span class="padEdit"><i class="fa fa-edit Shipment"></i></span>
+                                                                                                    <span>Edit PO</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                            <li ng-click="breakbulkCreateCarton()">
+                                                                                                <a href="">
+                                                                                                    <span class="padEdit"><i class="fa fa-plus Shipment"></i></span>
+                                                                                                    <span>Create Carton</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                            <li ng-click="breakbulkGenerateLabel()">
+                                                                                                <a href="">
+                                                                                                    <span class="padEdit"><i class="fa fa-glide-g Shipment"></i></span>
+                                                                                                    <span>Generate Label</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                            <li>
+                                                                                                <a href="">
+                                                                                                    <span class="padEdit"><i class="fa fa-download Shipment"></i></span>
+                                                                                                    <span>Download Carton Label</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div ng-if="isBreakbulk==$index">
+                                                                                <div class="panel panel-default padding-15 margin-bottom-none">
+                                                                                    <div class="width100 flex grid-background clearfix">
+                                                                                        <div class="width100 flex">
+                                                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Job No.</span></div>
+                                                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Job Name</span></div>
+                                                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Status</span></div>
+                                                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Order QTY <span class="text-right">(pcs)</span></span></div>
+                                                                                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Tracking No.</span></div>
+                                                                                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Courier</span></div>
+                                                                                            <div class="clearfix"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="panel-body padding0">
+                                                                                        <ul class="list-unstyled margin-bottom-none">
+                                                                                            <li class="change clearfix" ng-repeat="collapseBreakbulk in breakbulkShipment.jobs">
+                                                                                                <div class="width100 pointer">
+                                                                                                    <div class="flex height30">
+                                                                                                        <div class="width150 quotation-table-body word-wrap padding-5"><span class="pointer"><a>{{collapseBreakbulk.JobNo}}</a></span></div>
+                                                                                                        <div class="width150 quotation-table-body word-wrap padding-5"><span>{{collapseBreakbulk.JobName}}</span></div>
+                                                                                                        <div class="width150 quotation-table-body word-wrap padding-5"><span>{{collapseBreakbulk.JobStatus}}</span></div>
+                                                                                                        <div class="width150 quotation-table-body word-wrap padding-5"><span>{{collapseBreakbulk.OrderQTY}}</span></div>
+                                                                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span class="pointer"><a>{{collapseBreakbulk.TrackingNo}}</a></span></div>
+                                                                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>{{collapseBreakbulk.Carrier}}</span></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <!--end-->
+                                                                    <li ng-if="breakbulkShipments.length == 0">
+                                                                        <div class="col-sm-12 paddingboth imp-white">
+                                                                            <div class="no-address-exist"><h4 class="redColor ng-binding">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end code-->
+                                                </div>
+                                                <!--pagination code-->
+                                                <div class="col-sm-12 paddingboth">
+                                                    <div style="margin-left:-15px;top:-8px;position:relative;" class="pull-left">
+                                                        <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <label for="customers" class="col-sm-6 top5">{{'Paging_' | translate}}</label>
+                                                        <div class="col-sm-4">
+                                                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                                                    ng-model="track.TakeRows"
+                                                                    ng-options="pageChanged.pageChangedValue as pageChanged.pageChangedValueDisplay for pageChanged in pageChangedObj"
+                                                                    ng-change="pageChanged(track)"
+                                                                    class="form-control fontsize12" style="width:77px"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <!--end-->
+                                                <div class="clearfix"></div>
+                                            </section>
+                                        </div>
+                                    </section>
+                                    <!--end-->
+                                    <span class="clearfix"></span>
+
+                                    <!--if job view is show-->
+                                    <section ng-if="jobview">
+                                        <div>
+                                            <div>
+                                                <div class="form-group clearfix"></div>
+                                                <div class="panel panel-default">
+                                                    <div class="width100 flex grid-background clearfix">
+                                                        <div class="width100 flex">
+                                                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Job No.</span></div>
+                                                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">PO No.</span></div>
+                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Style No.</span></div>
+                                                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Order QTY <span class="text-right">(pcs)</span></span></div>
+                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Status</span></div>
+                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Tracking No.</span></div>
+                                                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">Courier</span></div>
+                                                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">&nbsp;</span></div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                                        <div class="panel-body padding0">
+                                                            <ul class="list-unstyled change margin-bottom-none">
+                                                                <li>
+                                                                    <div class="width100 pointer" ng-repeat="breakbulkjobShipment in breakbulkjobShipments track by $index">
+                                                                        <div class="flex height30">
+                                                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{breakbulkjobShipment.JobNo}}</span></div>
+                                                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{breakbulkjobShipment.PONumber}}</span></div>
+                                                                            <div class="width150 quotation-table-body word-wrap padding-5"><span>{{breakbulkjobShipment.StyleNumber}}</span></div>
+                                                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{breakbulkjobShipment.OrderQTY}}</span></div>
+                                                                            <div class="width20 quotation-table-body padding-2">{{breakbulkjobShipment.JobStatus}}</div>
+                                                                            <div class="width150 quotation-table-body word-wrap padding-5"><span class="pointer"><a>{{breakbulkjobShipment.TrackingNo}}</a></span></div>
+                                                                            <div class="width150 quotation-table-body word-wrap padding-5"><span>{{breakbulkjobShipment.Carrier}}</span></div>
+                                                                            <div class="width10 quotation-table-body padding0 text-center">
+                                                                                <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+                                                                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                                        <li ng-click="breakbulkShipmentDetail()">
+                                                                                            <a href="">
+                                                                                                <span class="padEdit"><i class="fa fa-eye"></i></span>
+                                                                                                <span>View Detail</span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li   ng-click="editjob(breakbulkjobShipment)">
+                                                                                            <a href="">
+                                                                                                <span class="padEdit"><i class="fa fa-edit Shipment"></i></span>
+                                                                                                <span>Edit PO</span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li ng-click="breakbulkCreateCarton()">
+                                                                                            <a href="">
+                                                                                                <span class="padEdit"><i class="fa fa-plus Shipment"></i></span>
+                                                                                                <span>Create Carton</span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li ng-click="breakbulkGenerateLabel()">
+                                                                                            <a href="">
+                                                                                                <span class="padEdit"><i class="fa fa-glide-g Shipment"></i></span>
+                                                                                                <span>Generate Label</span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="">
+                                                                                                <span class="padEdit"><i class="fa fa-download Shipment"></i></span>
+                                                                                                <span>Download Carton Label</span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li ng-if="breakbulkjobShipments.length == 0">
+                                                                    <div class="col-sm-12 paddingboth imp-white">
+                                                                        <div class="no-address-exist"><h4 class="redColor ng-binding">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--pagination code-->
+                                        <div class="col-sm-12 paddingboth">
+                                            <div style="margin-left:-15px;top:-8px;position:relative;" class="pull-left">
+                                                <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                                            </div>
+                                            <div class="pull-right">
+                                                <label for="customers" class="col-sm-6 top5">{{'Paging_' | translate}}</label>
+                                                <div class="col-sm-4">
+                                                    <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                                            ng-model="track.TakeRows"
+                                                            ng-options="pageChanged.pageChangedValue as pageChanged.pageChangedValueDisplay for pageChanged in pageChangedObj"
+                                                            ng-change="pageChanged(track)"
+                                                            class="form-control fontsize12" style="width:77px"></select>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <!--end-->
+                                        <div class="clearfix"></div>
+                                    </section>
+                                    <!--end-->
+                                </section>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+</section>

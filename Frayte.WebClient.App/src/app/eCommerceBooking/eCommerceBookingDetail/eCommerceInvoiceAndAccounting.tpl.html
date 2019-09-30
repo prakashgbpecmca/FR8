@@ -1,0 +1,216 @@
+﻿
+<br />
+<div ng-controller="eCommerceInvoiceAndAcountingController">
+    <div class="col-sm-12" id="ecommerceAccounting">
+        <section>
+            <div class="redColor paddingTB60 border fontsize18 text-center form-group" ng-if="InVoiceAndAcountingDetail.InvoiceReport === null">
+                <!--{{'Ecommerce_Invoice_Accounting_Error' | translate}}-->
+                <div class="form-group">{{'Sorry_NoInvoiceAvailable' | translate}}</div>
+                <div>{{'Ecommerce_Errror_Invoice_Message' | translate}}</div>
+            </div>
+        </section>
+        <section ng-if="InVoiceAndAcountingDetail.InvoiceReport !== null">
+            <div class="panel panel-default form-group">
+                <div class="panel-heading bold">{{'Invoice' | translate}}</div>
+                <div class="panel-body padding0">
+                    <div class="col-sm-12 text-center border">
+                        <div class="width20 padding-5 bold">{{'Invoice_No' | translate}}</div>
+                        <div class="width20 padding-5 borderleft-ddd bold">{{'Invoice_Amount_Due' | translate}} (USD)</div>
+                        <div class="width20 padding-5 borderleft-ddd bold">{{'Invoice_Due_Date' | translate}}</div>
+                        <div class="width20 padding-5 borderleft-ddd bold">{{'Status' | translate}}</div>
+                        <div class="width20 padding-5 borderleft-ddd bold">{{'Option_' | translate}}</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 border text-right flex">
+                        <div class="width20 padding-5 text-center">{{InVoiceAndAcountingDetail.InvoiceReport.InvoiceRef}}</div>
+                        <div class="width20 padding-5 text-center borderleft-ddd">{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.NettCharge}}</div>
+                        <div class="width20 padding-5 borderleft-ddd text-center">{{GetForMattedDate(InVoiceAndAcountingDetail.InvoiceReport.DueDate)}}</div>
+                        <div class="width20 padding-5 borderleft-ddd text-center">{{InVoiceAndAcountingDetail.InvoiceReport.Status}}</div>
+                        <div class="width20 padding-5 borderleft-ddd"><a href="{{InVoiceAndAcountingDetail.InvoiceFile.FilePath}}" download="{{InVoiceAndAcountingDetail.InvoiceFile.FileName}}">{{'Download_Invoice_PDF' | translate}}</a></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <button ng-show="RoleId === 6 || RoleId === 1" ng-click="addCreditNote()" type="button" class="btn-simple btn-save pull-right marginTB-5"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add_Credit_Note' | translate}}</button>
+            <div class="clearfix"></div>
+            <div class="panel panel-default form-group">
+                <div class="panel-heading bold">{{'Credit_Note' | translate}}</div>
+                <div ng-if="InVoiceAndAcountingDetail.UserCreditNote.length===0" class="panel-body paddingTB60 text-center redColor fontsize18">{{'No_Credit_Note_Available' | translate}}</div>
+                <div class="panel-body padding0" ng-if="InVoiceAndAcountingDetail.UserCreditNote.length">
+                    <div class="col-sm-12 text-center border">
+                        <div class="width20 padding-5 bold">{{'Credit_NoteNo' | translate}}</div>
+                        <div class="width20 padding-5 borderleft-ddd bold">{{'Amount' | translate}} (USD)</div>
+                        <div class="width20 padding-5 borderleft-ddd bold">{{'IssueDate' | translate}}</div>
+                        <div class="width20 padding-5 borderleft-ddd bold">{{'Status' | translate}}</div>
+                        <div class="width20 padding-5 borderleft-ddd bold">{{'Option' | translate}}</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div ng-repeat="creditNote in  InVoiceAndAcountingDetail.UserCreditNote" class="col-sm-12 text-right border flex">
+                        <div class="width20 padding-5 text-center">{{creditNote.CreditNoteRef}}</div>
+                        <div class="width20 padding-5 text-center borderleft-ddd">{{creditNote.CurrencyCode}} {{creditNote.Amount.toFixed(2)}} </div>
+                        <div class="width20 padding-5 borderleft-ddd text-center">{{GetForMattedDate(creditNote.IssuedDate)}}</div>
+                        <div class="width20 padding-5 borderleft-ddd text-center">{{creditNote.Status}}</div>
+                        <div class="width20 padding-5 borderleft-ddd text-center"><a>{{'Download_PDF' | translate}}</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section ng-if="InVoiceAndAcountingDetail.InvoiceReport !== null">
+            <div class="panel panel-default">
+                <div class="panel-heading bold">{{'Invoice_Summary' | translate}}</div>
+                <div class="panel-body">
+                    <!--custom charge type code-->
+                    <div class="panel panel-default form-group">
+                        <div class="panel-heading padding0 flex text-center bold">
+                            <div class="width12-5 padding-5"><span class="padding-5">{{'Custom_Charge_Type' | translate}}</span></div>
+                            <div class="width12-5 padding-5 borderleft-ddd"><span class="padding-5">{{'ShipmentNo' | translate}}</span></div>
+                            <div class="width12-5 padding-5 borderleft-ddd"><span class="padding-5">{{'From_' | translate}}</span></div>
+                            <div class="width12-5 padding-5 borderleft-ddd"><span class="padding-5">{{'Number_Of_Declaration' | translate}}</span></div>
+                            <div class="width12-5 padding-5 borderleft-ddd"><span class="padding-5">{{'Total_Customs_Charges' | translate}}</span></div>
+                            <div class="width12-5 padding-5 borderleft-ddd"><span class="padding-5">{{'Total_Extra_Charges' | translate}}</span></div>
+                            <div class="width12-5 padding-5 borderleft-ddd"><span class="padding-5">{{'VAT' | translate}}</span></div>
+                            <div class="width12-5 padding-5 borderleft-ddd"><span class="padding-5">{{'Nett_Charge' | translate}}</span></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body padding0">
+                            <div class="col-sm-12 text-center paddingboth invoice-pdf-summary">
+                                <div class="width12-5 bold">
+                                    <div class="border-bottom-ddd padding-5 padding-left-20">{{'Duty' | translate}}</div>
+                                    <div class="border-bottom-ddd padding-5 padding-left-20">{{'VAT' | translate}}</div>
+                                    <div class="border-bottom-ddd padding-5 padding-left-20">{{'Other_Levy' | translate}}</div>
+                                    <div class="padding-5 border-bottom-ddd padding-left-20">{{'Total' | translate}}</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="width12-5 borderleft-ddd height31">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div class="bold black-background"></div>
+                                    </div>
+                                    <div class="width12-5 borderleft-ddd height31">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div class="bold black-background"></div>
+                                    </div>
+                                    <div class="width12-5 borderleft-ddd height31 text-center">
+                                        <div>{{InVoiceAndAcountingDetail.InvoiceReport.TotalDeclaration}}</div>
+                                        <div>{{InVoiceAndAcountingDetail.InvoiceReport.TotalDeclaration}}</div>
+                                        <div>{{InVoiceAndAcountingDetail.InvoiceReport.TotalDeclaration}}</div>
+                                        <div class="bold">{{InVoiceAndAcountingDetail.InvoiceReport.TotalDeclaration}}</div>
+                                    </div>
+                                    <div class="width12-5 borderleft-ddd height31">
+                                        <div>{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.TotalDuty.toFixed(2)}}</div>
+                                        <div>{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.TotalVAT.toFixed(2)}}</div>
+                                        <div>{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.TotalOtherLevy.toFixed(2)}}</div>
+                                        <div class="bold">{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.TotalCustomCharge.toFixed(2)}}</div>
+                                    </div>
+                                    <div class="width12-5 borderleft-ddd height31">
+                                        <div>{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.TotalAdminCharge.toFixed(2)}}</div>
+                                        <div></div>
+                                        <div></div>
+                                        <div class="bold">{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.TotalAdminCharge.toFixed(2)}}</div>
+                                    </div>
+                                    <div class="width12-5 borderleft-ddd height31">
+                                        <div>{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.TotalAdminVAT.toFixed(2)}}</div>
+                                        <div></div>
+                                        <div></div>
+                                        <div class="bold">{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.TotalAdminVAT.toFixed(2)}}</div>
+                                    </div>
+                                    <div class="width12-5 borderleft-ddd height31">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div class="bold">{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} {{InVoiceAndAcountingDetail.InvoiceReport.NettCharge.toFixed(2)}}</div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <!--analysis of extra charges-->
+                    <section>
+                        <div class="width70 form-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading padding0 flex text-center bold">
+                                    <div class="width33-33 padding-5 text-center padding-tb-10"><span class="padding10">{{'Analysis_Extra_Charges' | translate}}</span></div>
+                                    <div class="width33-33 padding-5 center-ddd padding-tb-10"><span class="padding10">{{'Total' | translate}}</span></div>
+                                    <div class="width33-33 padding-5 borderleft-ddd padding-tb-10"><span class="padding10"></span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body padding0">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div ng-repeat="adminCharge in InVoiceAndAcountingDetail.InvoiceReport.AdminCharges" class="col-sm-12 paddingboth">
+                                           <div class="col-sm-12 paddingboth flex">
+                                             <div class="borderleft-ddd col-sm-8 paddingboth">
+                                                <div class="col-sm-12 paddingboth text-center flex">
+                                                    <div class="border-bottom-ddd padding-5 width50">{{adminCharge.ChargeDescription}}</div>
+                                                    <div class="width50 borderleft-ddd text-right border-bottom-ddd padding-5 bordered-right height31">{{adminCharge.CurrencyCode}} {{adminCharge.Amount.toFixed(2)}}</div>
+                                                    <div></div>
+                                                    <div class="clearfix"></div>
+                                                </div>                                           
+                                            </div>
+                                            <div class="col-sm-4 paddingboth border-bottom-ddd">
+                                                <div class="col-sm-12 paddingboth flex">
+                                                <div></div>
+                                                <div></div>
+                                                <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-12 paddingboth borderleft-ddd text-center flex">
+                                            <div class="col-sm-12 paddingboth flex">
+                                                <div class="col-sm-8 paddingboth">
+                                                    <div class="col-sm-12 paddingboth text-center flex">
+                                                        <div class="border-bottom-ddd padding-5 width50 bold">{{'Total_Extra_Charge' | translate}}</div>
+                                                        <div class="width50 borderleft-ddd text-right border-bottom-ddd padding-5 bordered-right">
+                                                            <div> &nbsp; &nbsp; {{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}}   {{InVoiceAndAcountingDetail.InvoiceReport.NettCharge.toFixed(2)}}</div>
+                                                        </div>
+                                                        <div></div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 paddingboth border-bottom-ddd flex">
+                                                    <div class="col-sm-6 padding-5"><span>{{'Total' | translate}} {{'VAT' | translate}}:</span></div>
+                                                    <div class="col-sm-6 padding-5 text-right bordered-left"><span>{{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}} </span> {{InVoiceAndAcountingDetail.InvoiceReport.TotalAdminVAT.toFixed(2)}}</div>
+                                                    <div class="clearfix">
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-sm-12 paddingboth">
+                            <div class="col-sm-6 col-sm-offset-6 paddingboth">
+                                <div class="col-sm-12 paddingboth text-right bold fontsize24">
+                                    <label class="col-sm-8 paddingboth text-uppercase">{{'Total_Paid_Amount' | translate}}: </label>
+                                    <div class="col-sm-4 paddingboth text-left">
+                                        <div> &nbsp; &nbsp; {{InVoiceAndAcountingDetail.InvoiceReport.CurrencyCode}}   {{InVoiceAndAcountingDetail.InvoiceReport.NettCharge.toFixed(2)}}</div>
+                                        <div class="col-sm-12"><small>{{'EOE' | translate}}</small></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <br />
+                    </section>
+                    <!--end-->
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

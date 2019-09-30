@@ -1,0 +1,91 @@
+﻿
+
+<form name="CountryZonePostCodeForm" id="CountryZonePostCodeForm" ng-submit="SaveCountryZonePostCode(CountryZonePostCodeForm.$valid, CountryZonePostCodeDetail)" novalidate>
+    <div>
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{mode | translate}} {{'CountrtyZone_Postcode' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': CountryZonePostCodeForm.country.$invalid &&
+                                        (CountryZonePostCodeForm.country.$dirty || submitted) }">
+                    <label class="control-label" for="country">{{'Country' | translate}} <span class="redColor">*</span></label>
+                    <div id="Xe">
+                        <select id="country" name="country"
+                                ng-model="CountryZonePostCodeDetail.Country"
+                                ng-options="Country  as Country.Name +' '+ Country.CurrencyDescription disable when Country.Disabled ===true for Country in Countries | orderBy:'OrderNumber' track by Country.CountryId"
+                                class="form-control fontsize12" required>
+                            <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                        </select>
+                        <span class="help-block has-error"
+                              ng-show="CountryZonePostCodeForm.country.$invalid &&
+                        (CountryZonePostCodeForm.country.$dirty || submitted)">
+                            {{'CountryValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': CountryZonePostCodeForm.fromPostCode.$invalid &&
+                                                         (CountryZonePostCodeForm.fromPostCode.$dirty || submitted) }">
+                    <label class="control-label" for="fromPostCode">{{'From_Postcode' | translate}} <span class="redColor">*</span></label>
+                    <div>
+                        <input type="text" id="fromPostCode" name="fromPostCode" ng-model="CountryZonePostCodeDetail.FromPostCode"
+                               only-numeric
+                               class="form-control fontsize12" placeholder="{{'From_Postcode' | translate}} ({{'Required' | translate}})" required />
+                        <span class="help-block has-error"
+                              ng-show="CountryZonePostCodeForm.fromPostCode.$invalid &&
+                                            (CountryZonePostCodeForm.fromPostCode.$dirty || submitted)">
+                            {{'From_Postcode' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label" for="toPostCode">{{'To_Postcode' | translate}}</label>
+                    <div>
+                        <input type="text" id="toPostCode" name="toPostCode" ng-model="CountryZonePostCodeDetail.ToPostCode"
+                               only-numeric
+                               class="form-control fontsize12" placeholder="{{'To_Postcode' | translate}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': CountryZonePostCodeForm.zone.$invalid &&
+                                        (CountryZonePostCodeForm.zone.$dirty || submitted) }">
+                    <label class="control-label" for="zone">{{'Zone' | translate}} <span class="redColor">*</span></label>
+                    <div>
+                        <select id="zone" name="zone"
+                                ng-model="CountryZonePostCodeDetail.Zone" ng-change="InitailDetailOfCountryCodes(data,countryPhoneCodes,customerDetail.UserAddress.Country)"
+                                ng-options="Zone.ZoneName as Zone.ZoneDisplayName for Zone in Zones "
+                                class="form-control fontsize12" required>
+                            <option value="" disabled selected class="display-none">{{'Zone' | translate}} ({{'Required' | translate}})</option>
+                        </select>
+                        <span class="help-block has-error"
+                              ng-show="CountryZonePostCodeForm.zone.$invalid &&
+                        (CountryZonePostCodeForm.zone.$dirty || submitted)">
+                            {{'Zone' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <br />        
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button type="button" ng-click="$close('cancel')" class="btn btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" ng-click="submitted=true" class="btn btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</form>
+

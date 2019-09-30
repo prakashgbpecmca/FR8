@@ -1,0 +1,52 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{mode}} {{'PublicHoliday' | translate}}</h4>
+</div>
+<form name="publicHolidayForm" ng-submit="submit(publicHolidayForm.$valid, holidayDetail)" novalidate>
+    <div class="modal-body">
+        <div class="col-sm-12">
+            <div class="form-group" ng-class="{ 'has-error': publicHolidayForm.date.$invalid &&
+                                                         (publicHolidayForm.date.$dirty || submitted) }">
+                <label class="control-label textLeft30" for="date">{{'HolidayDate' | translate}}</label>
+                <div class="inputRight70">
+                    <p class="input-group">
+                        <input type="text" id="date" name="date" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy"
+                               ng-model="holidayDetail.PublicHolidayDate" is-open="status.opened"
+                               ng-required="true" close-text="Close" ng-click="openCalender($event)" placeholder="{{'DatePlaceholder' | translate}}" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                    <span class="help-block has-error"
+                          ng-show="publicHolidayForm.date.$error.required &&
+                                                (publicHolidayForm.date.$dirty || submitted)">
+                       {{'HolidayValidError' | translate}}
+                    </span>
+                    <span class="help-block has-error"
+                          ng-show="publicHolidayForm.date.$invalid && !publicHolidayForm.date.$error.required &&
+                                                (publicHolidayForm.date.$dirty || submitted)">
+                        {{'Invalid' | translate}} {{'HolidayDate' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label class="control-label textLeft30" for="description">{{'Description' | translate}}</label>
+                <div class="inputRight70">
+                    <input type="text" id="description" name="description" ng-model="holidayDetail.Description" placeholder="{{'Description' | translate}}" class="form-control" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <div class=" floatLeft">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel">{{'Cancel' | translate}}</button> &nbsp;&nbsp;
+            <button type="submit" ng-click="submitted=true" class="btn btn-save"> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</form>

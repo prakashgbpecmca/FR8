@@ -1,0 +1,133 @@
+﻿
+
+<section>
+ <!--UK Shipment-->
+<div ng-if="!IsChanged && finalArrayList.length" class="col-sm-12 paddingboth">
+    <div ng-if="UkShipmentParcel">
+        <br />
+        <!--Table start here-->
+        <div class="border-ddd">
+            <div class="panel-body paddingboth fontsize12 padding0">
+                <div class="headertable">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="col-4 text-right">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                            <div ng-class="{'baseratcard-overflow':UKShipmentZones}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="UKShipmentZones.length < 10 ? { 'width':'100%' } : { 'width': 10*UKShipmentZones.length + '%' }">
+                                    <div ng-repeat="UKZone in UKShipmentZones">
+                                        <div class="text-center" ng-style="{ 'width' :  100/UKShipmentZones.length + '%' }" style="float:left;">{{UKZone.ZoneDisplayName}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="panel-body paddingboth fontsize12 padding0" style="padding-bottom:0px;">
+                <div class="grey">
+                    <div ng-repeat="BaseRateUK in finalArrayList | orderBy:BaseRateUK.Weight">
+                        <div>
+                            <div class="col-4  marginTop20"><span class="padding010" style="padding-left:10px;">{{BaseRateUK.DocType}}  </span><span style="float:right;left:-4%;position:relative;">{{BaseRateUK.WeightFrom}}-{{BaseRateUK.WeightTo}}</span></div>
+                            <div ng-class="{'baseratcard-overflow':BaseRateUK.Rows}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="BaseRateUK.Rows.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRateUK.Rows.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRateUK.Rows | orderBy : Rate.zone.ZoneId">
+                                        <div ng-class="{'cellHide': !Rate.IsCellShow, 'has-error': Rate.isValue}" class="text-center" ng-style="{ 'width' :  100/UKShipmentZones.length + '%' }" style="float:left;">
+                                            <input id="margin" two-digit-numeric class="form-control text-center height84" ng-change="AdvanceRatechangeSave(Rate)" name="margin" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <!--<br />
+        <div class="panel-body fontsize12 padding0">
+            <div class="panel-body padding0" style="padding-bottom:0px;">
+                <div class="headertable">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="col-4 text-right">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                            <div ng-class="{'baseratcard-overflow':UKShipmentZones}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="UKShipmentZones.length < 10 ? { 'width':'100%' } : { 'width': 10*UKShipmentZones.length + '%' }">
+                                    <div ng-repeat="UKZone in UKShipmentZones">
+                                        <div class="text-center" ng-style="{ 'width' :  100/UKShipmentZones.length + '%' }" style="float:left;">{{UKZone.ZoneDisplayName}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="panel-body padding0 border-ddd">
+                <div class="grey">
+                    <div ng-repeat="BaseRateUK in finalUkShipmentListWithOutCA | orderBy:BaseRateUK.Weight">
+                        <div>
+                            <div class="col-4  marginTop20"><span style="padding-left:10px;">{{BaseRateUK.DocType}}</span>   <span style="float:right;left:-4%;position:relative;"> Over  {{BaseRateUK.WeightFrom}} {{BaseRateUK.WeightUnit}} </span></div>
+                            <div ng-class="{'baseratcard-overflow':BaseRateUK.Rows}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="BaseRateUK.Rows.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRateUK.Rows.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRateUK.Rows | orderBy : Rate.zone.ZoneId">
+                                        <div class="text-center" ng-class="{'has-error': Rate.isValue}" ng-style="{ 'width' :  100/BaseRateUK.Rows.length + '%' }" style="float:left;">
+                                            <input id="margin1" two-digit-numeric class="form-control text-center height84" ng-change="AdvanceRatechangeSave(Rate)" name="margin1" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+
+    <div ng-if="UkShipmentBagit && finalArrayList.length">
+        <br />
+        <div class="panel-body fontsize12 padding0">
+            <div class="panel-body paddingboth padding0">
+                <div class="headertable" style="border:1px solid #f5f5f5;">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="col-4" style="text-align:right;">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                            <div ng-class="{'baseratcard-overflow':UKShipmentZones}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="UKShipmentZones.length < 10 ? { 'width':'100%' } : { 'width': 10*UKShipmentZones.length + '%' }">
+                                    <div ng-repeat="UKZone in UKShipmentZones">
+                                        <div class="text-center" ng-style="{ 'width' :  100/UKShipmentZones.length + '%' }" style="float:left;">{{UKZone.ZoneDisplayName}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="panel-body padding0 border-ddd">
+                <div class="grey">
+                    <div ng-repeat="BaseRateUK in finalArrayList | orderBy:BaseRateUK.Weight">
+                        <div ng-if="BaseRateUK.IsRowShow">
+                            <div class="col-4  marginTop20"><span class="padding010" style="padding-left:10px;">{{BaseRateUK.DocType}}  </span><span style="float:right;left:-4%;position:relative;"><span ng-if="BaseRateUK.WeightTo === 999">Over</span> {{BaseRateUK.WeightFrom}}<span ng-if="BaseRateUK.WeightTo !== 999">-{{BaseRateUK.WeightTo}}</span></span></div>
+                            <div ng-class="{'baseratcard-overflow':BaseRateUK.Rows}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="BaseRateUK.Rows.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRateUK.Rows.length + '%' }">
+                            <div ng-repeat="Rate in BaseRateUK.Rows | orderBy : Rate.zone.ZoneId">
+                                <div ng-class="{'cellHide': !Rate.IsCellShow, 'has-error': Rate.isValue}" class="text-center" ng-style="{ 'width' :  100/BaseRateUK.Rows.length + '%' }" style="float:left;">
+                                    <input id="margin3" two-digit-numeric class="form-control text-center height84" ng-change="AdvanceRatechangeSave(Rate)" name="margin3" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    <div class="col-sm-12 paddingboth">
+        <button type="submit" ng-click="SaveAdvanceRateCard()" id="AdvanceRateCard" class="btn-BigPrimary pull-right fontsize12 ng-binding"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Update' | translate}}&nbsp;</button>
+    </div>
+</div>
+</section>

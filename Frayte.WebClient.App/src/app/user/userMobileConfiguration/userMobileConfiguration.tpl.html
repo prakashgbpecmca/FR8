@@ -1,0 +1,311 @@
+<section>
+    <form name="MobileConfiguration" ng-submit="save()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa pointer fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+                <h4 class="modal-title">{{userDetail.ContactName}} - {{'Mobile_User_Configuration' | translate}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <section>
+                        <!--check module code here-->
+                        <!--error message-->
+                        <div class="col-sm-12 form-group clearfix" ng-if="!check">
+                            <div class="col-sm-12">
+                                <div class="paddingTB60 text-center fontsize18 redColor border">{{'Mobile_User_Configuration_No_Service' | translate}}</div>
+                            </div>
+                        </div>
+                        <!--end-->
+                        <!--end-->
+                        <!--module tab code here-->
+                        <section class="col-sm-12" id="mobile-configuration" ng-if="check">
+                            <div class="paddingleft">
+                                <uib-tabset active="active">
+                                    <!--breakbulk code here-->
+                                    <uib-tab index="0" class="borderleft2f5f5f5 tabBorder fontsize12" ng-show="userMobileConfiguration.BreakBulkConfiguration">
+                                        <uib-tab-heading class="fontsize10">
+                                            <span class="uppercase">{{'Breakbulk' | translate}}</span>
+                                        </uib-tab-heading>
+                                        <div> 
+                                            <div class="paddingTB60 text-center fontsize18 redColor">{{'No_Record_Found' | translate}}</div>
+                                        </div>
+                                    </uib-tab>
+                                    <!--end-->
+                                    <!--direct booking code here-->
+                                    <uib-tab index="1" class="borderleft2f5f5f5 fontsize12" ng-show="userMobileConfiguration.DirectBookingConfiguration">
+                                        <uib-tab-heading class="fontsize10">
+                                            <span class="uppercase">{{'Direct_Booking' | translate}}</span>
+                                        </uib-tab-heading>
+                                        <div>
+                                            <div class="form-group"></div>
+                                            <div class="col-sm-12">
+                                                <div class="paddingTB60 text-center fontsize18 redColor">{{'No_Record_Found' | translate}}</div>
+                                            </div>
+                                        </div>
+                                    </uib-tab>
+                                    <!--end-->
+                                    <!--ecommerce code here-->
+                                    <uib-tab index="2" class="borderleft2f5f5f5 fontsize12" ng-show="userMobileConfiguration.ECommerceConfiguration">
+                                        <uib-tab-heading class="fontsize10">
+                                            <span class="uppercase">{{'Ecommerce' | translate}}</span>
+                                        </uib-tab-heading>
+                                        <div>
+                                            <div class="form-group"></div>
+                                            <div class="col-sm-12">
+                                                <div class="paddingTB60 text-center fontsize18 redColor">{{'No_Record_Found' | translate}}</div>
+                                            </div>
+                                        </div>
+                                    </uib-tab>
+                                    <!--end-->
+                                    <!--express solutions code here-->
+                                    <uib-tab index="3" class="borderleft2f5f5f5 fontsize12" ng-show="userMobileConfiguration.ExpressConfiguration.length">
+                                        <uib-tab-heading class="fontsize10">
+                                            <span class="uppercase">{{'Express_Solutions' | translate}}</span>
+                                        </uib-tab-heading>
+                                        <div>
+                                            <div class="form-group"></div>
+                                            <div class="col-sm-12">
+                                                <!--mawb code here-->
+                                                <div class="panel panel-default" ng-repeat="config in userMobileConfiguration.ExpressConfiguration">
+                                                    <div class="panel-heading clearfix">
+                                                        <div style="float:left;"><i class="fa pointer fa-14" ng-class="{'fa-minus-square-o':config.isMawb, 'fa-plus-square-o':!config.isMawb}" ng-click="config.isMawb = !config.isMawb"></i></div> &nbsp;
+                                                        <div class="col-sm-11 paddingboth">
+                                                            <div class="checkbox margin0">
+                                                                <label>{{ config.EventDisplay }}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="panel-body" ng-if="config.isMawb">
+                                                        <div class="clearfix row">
+                                                            <ul class="list-unstyled col-sm-12 remove">
+                                                                <li class="col-sm-12 clearfix border-b" id="remove-last-hr">
+                                                                    <div class="col-sm-6 form-group first-br" ng-repeat="data in config.TrackingDetail">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                        <div>
+                                                                            <div class="checkbox clearfix">
+                                                                                <label>
+                                                                                    <input type="checkbox" name="mawb1" ng-model="data.IsActive">  <b>{{data.EventDisplay}}</b>
+                                                                                </label>
+                                                                            </div>
+                                                                            <div>
+                                                                                <textarea cols="3" rows="3" class="form-control" ng-model="data.Message" ng-change="data.IsExternal = changeMessage(data.Message)" placeholder="{{'Please_Enter_Message' | translate}}" ng-maxlength="100"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <div class="checkbox text-right">
+                                                                                <label>
+                                                                                    <input type="checkbox" name="isExternal" ng-model="data.IsExternal" ng-disabled="data.Message == '' || data.Message == null"> {{'External' | translate}}
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                    <div class="form-group"></div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </uib-tab>
+                                    <!--end-->
+                                    <!--tradelane code here-->
+                                    <uib-tab index="4" class="borderleft2f5f5f5 fontsize12" ng-show="userMobileConfiguration.TradelaneConfiguration">
+                                        <uib-tab-heading class="fontsize10">
+                                            <span class="uppercase">{{'Tradelane' | translate}}</span>
+                                        </uib-tab-heading>
+                                        <div>
+                                            <div class="form-group"></div>
+                                            <div class="col-sm-12">
+                                                <!--carton scan code here-->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading clearfix">
+                                                        <div style="float:left;"><i class="fa pointer fa-14" ng-class="{'fa-minus-square-o':isTradelane, 'fa-plus-square-o':!isTradelane}" ng-click="tradelane()"></i></div> &nbsp;
+                                                        <div class="col-sm-11 paddingboth">
+                                                            <div class="checkbox margin0">
+                                                                <label>{{'Carton_Scan' | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="panel-body" ng-if="isTradelane">
+                                                        <div class="clearfix row">
+                                                            <div class="col-sm-6">
+                                                                <div class="col-sm-12 border">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"><label><input type="radio" name="checkbox"> {{'Scan_On_Origin' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"><label><input type="radio" name="checkbox"> {{'Scan_On_Destination' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="col-sm-12 border">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"><label><input type="radio" name="checkbox1"> {{'Print_Allow' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"> <label><input type="radio" name="checkbox1"> {{'Print_Not_Allow' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end-->
+                                                <!--mawb scan code here-->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading clearfix">
+                                                        <div style="float:left;"><i class="fa pointer fa-14" ng-class="{'fa-minus-square-o':isMawb, 'fa-plus-square-o':!isMawb}" ng-click="mawb()"></i></div> &nbsp;
+                                                        <div class="col-sm-11">
+                                                            <div class="checkbox margin0">
+                                                                <label>{{'MAWB_Scan' | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="panel-body" ng-if="isMawb">
+                                                        <div class="clearfix row form-group">
+                                                            <div class="col-sm-6"></div>
+                                                            <div class="col-sm-6">
+                                                                <div class="col-sm-12 border">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"><label><input type="radio" name="internal"> {{'Internal' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"> <label><input type="radio" name="internal"> {{'External' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <textarea cols="5" rows="5" class="form-control" placeholder="{{'Please_Enter_Message' | translate}}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end-->
+                                                <!--tradelane scanned status code here-->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading clearfix">
+                                                        <div style="float:left;"><i class="fa fa-14 fa-plus-square-o" disabled></i></div> &nbsp;
+                                                        <div class="col-sm-11">
+                                                            <div class="checkbox margin0">
+                                                                <label>{{'Tradelane_Scanned_Status' | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end-->
+                                                <!--tradelane update status code here-->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading clearfix">
+                                                        <div style="float:left;"><i class="fa pointer fa-14" ng-class="{'fa-minus-square-o':isActive, 'fa-plus-square-o':!isActive}" ng-click="updatetTadelane()"></i></div> &nbsp;
+                                                        <div class="col-sm-11">
+                                                            <div class="checkbox margin0">
+                                                                <label>{{'Tradelane_Update_Status' | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="panel-body" ng-if="isActive">
+                                                        <div class="clearfix row form-group">
+                                                            <div class="col-sm-6"></div>
+                                                            <div class="col-sm-6">
+                                                                <div class="col-sm-12 border">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"><label><input type="radio" name="external"> {{'Internal' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"> <label><input type="radio" name="external"> {{'External' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <textarea cols="5" rows="5" class="form-control" placeholder="{{'Please_Enter_Message' | translate}}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end-->
+                                                <!--HAWB tracking code here-->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading clearfix">
+                                                        <div style="float:left;"><i class="fa pointer fa-14" ng-class="{'fa-minus-square-o':isHawb, 'fa-plus-square-o':!isHawb}" ng-click="hawb()"></i></div> &nbsp;
+                                                        <div class="col-sm-11">
+                                                            <div class="checkbox margin0">
+                                                                <label>{{'HAWBs_Tracking' | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="panel-body" ng-if="isHawb">
+                                                        <div class="clearfix row form-group">
+                                                            <div class="col-sm-6">
+                                                                <div class="col-sm-12 border">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"><label><input type="radio" name="hawb"> {{'Scan_On_Warehouse' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"> <label><input type="radio" name="hawb"> {{'Scan_On_Origin' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"> <label><input type="radio" name="hawb"> {{'Scan_On_Destination' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="col-sm-12 border">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"><label><input type="radio" name="hawbInternal"> {{'Internal' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="radio"> <label><input type="radio" name="hawbInternal"> {{'External' | translate}}</label></div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <textarea cols="5" rows="5" class="form-control" placeholder="{{'Please_Enter_Message' | translate}}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end-->
+                                            </div>
+                                        </div>
+                                    </uib-tab>
+                                    <!--end-->
+                                </uib-tabset>
+                            </div>
+                        </section>
+                        <!--end--> 
+                    </section>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div class="col-sm-12">
+                    <button type="button" class="btn-simple btn-cancel pull-left" ng-click="$dismiss()"><i class="fa pointer fa-times"></i> {{'Cancel' | translate}} </button>
+                    <button type="submit" class="btn-simple btn-save pull-right"><i class="fa pointer fa-save"></i> {{'Save' | translate}} </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

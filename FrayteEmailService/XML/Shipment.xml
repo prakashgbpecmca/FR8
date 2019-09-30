@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UniversalShipment xmlns:x="http://www.cargowise.com/Schemas/Universal/2011/11" version="1.1">
+	<Shipment>
+		<DataContext>
+			<DataTargetCollection>
+				<DataTarget>
+					<Type>ForwardingShipment</Type>
+				</DataTarget>
+			</DataTargetCollection>
+			<DataProvider>ZSOSYDUSA</DataProvider>
+		</DataContext>
+		<BookingConfirmationReference>SHIPPER REF</BookingConfirmationReference>
+		<ContainerMode>
+			<Code>LSE</Code>
+			<Description>Loose</Description>
+		</ContainerMode>
+		<GoodsDescription>TEST SHIPMENT for IVO</GoodsDescription>
+		<GoodsValue>0.0000</GoodsValue>
+		<GoodsValueCurrency>
+			<Code>HKD</Code>
+			<Description>Hong Kong Dollar</Description>
+		</GoodsValueCurrency>
+		<InsuranceValue>0.0000</InsuranceValue>
+		<InsuranceValueCurrency>
+			<Code>HKD</Code>
+			<Description>Hong Kong Dollar</Description>
+		</InsuranceValueCurrency>
+		<ServiceLevel>
+			<Code>STD</Code>
+			<Description>Standard</Description>
+		</ServiceLevel>
+		<ShipmentIncoTerm>
+			<Code>FOB</Code>
+			<Description>Free On Board</Description>
+		</ShipmentIncoTerm>
+		<TransportMode>
+			<Code>AIR</Code>
+			<Description>Air Freight</Description>
+		</TransportMode>
+		<LocalProcessing>
+			<PickupRequiredBy />
+			<OrderNumberCollection>
+				<OrderNumber>
+					<OrderReference>08022016A</OrderReference>
+					<Sequence>1</Sequence>
+				</OrderNumber>
+			</OrderNumberCollection>
+		</LocalProcessing>
+		<CustomizedFieldCollection>
+			<CustomizedField>
+				<Key>Dutiable</Key>
+				<DataType>Boolean</DataType>
+				<Value>false</Value>
+			</CustomizedField>
+			<CustomizedField>
+				<Key>Dutiable</Key>
+				<DataType>Boolean</DataType>
+				<Value>false</Value>
+			</CustomizedField>
+		</CustomizedFieldCollection>
+		<NoteCollection Content="Partial">
+			<Note>
+				<Description>Marks &amp;amp; Numbers</Description>
+				<IsCustomDescription>false</IsCustomDescription>
+				<NoteText>Marks and numbers of goods</NoteText>
+				<NoteContext>
+					<Code>AAA</Code>
+					<Description>Module: A - All, Direction: A - All, Freight: A - All</Description>
+				</NoteContext>
+				<Visibility>
+					<Code>PUB</Code>
+					<Description>CLIENT-VISIBLE</Description>
+				</Visibility>
+			</Note>
+		</NoteCollection>
+		<OrganizationAddressCollection>
+			<OrganizationAddress>
+				<AddressType>ConsigneeDocumentaryAddress</AddressType>
+				<Address1>111 Demo St</Address1>
+				<Address2 />
+				<AddressOverride>false</AddressOverride>
+				<AddressShortCode>OFC: 111 Demo St</AddressShortCode>
+				<City>Demoville</City>
+				<CompanyName>Demo Organisation</CompanyName>
+				<Country>
+					<Code>AU</Code>
+					<Name>Australia</Name>
+				</Country>
+				<Email />
+				<Fax />
+				<OrganizationCode>DEMORG</OrganizationCode>
+				<Phone />
+				<Port>
+					<Code>AUSYD</Code>
+					<Name>Sydney</Name>
+				</Port>
+				<Postcode>2000</Postcode>
+				<ScreeningStatus>
+					<Code>UNK</Code>
+					<Description>Unknown</Description>
+				</ScreeningStatus>
+				<State>NSW</State>
+				<RegistrationNumberCollection>
+					<RegistrationNumber>
+						<Type>
+							<Code>GTX</Code>
+							<Description>Government Tax File Code</Description>
+						</Type>
+						<Value>1234657</Value>
+					</RegistrationNumber>
+				</RegistrationNumberCollection>
+			</OrganizationAddress>
+			<OrganizationAddress>
+				<AddressType>ConsigneePickupDeliveryAddress</AddressType>
+				<Address1>111 Demo St</Address1>
+				<Address2 />
+				<AddressOverride>false</AddressOverride>
+				<AddressShortCode>OFC: 111 Demo St</AddressShortCode>
+				<City>Demoville</City>
+				<CompanyName>Demo Organisation</CompanyName>
+				<Country>
+					<Code>AU</Code>
+					<Name>Australia</Name>
+				</Country>
+				<Email />
+				<Fax />
+				<OrganizationCode>DEMORG</OrganizationCode>
+				<Phone />
+				<Port>
+					<Code>AUSYD</Code>
+					<Name>Sydney</Name>
+				</Port>
+				<Postcode>2000</Postcode>
+				<ScreeningStatus>
+					<Code>UNK</Code>
+					<Description>Unknown</Description>
+				</ScreeningStatus>
+				<State>NSW</State>
+				<RegistrationNumberCollection>
+					<RegistrationNumber>
+						<Type>
+							<Code>GTX</Code>
+							<Description>Government Tax File Code</Description>
+						</Type>
+						<CountryOfIssue>
+							<Code>HK</Code>
+							<Description>Hong Kong</Description>
+						</CountryOfIssue>
+						<Value>1234657</Value>
+					</RegistrationNumber>
+				</RegistrationNumberCollection>
+			</OrganizationAddress>
+			<OrganizationAddress>
+				<AddressType>ConsignorDocumentaryAddress</AddressType>
+				<Address1>Unit 502, 5/F Kwong Loong Tai Building</Address1>
+				<Address2>1016-1018 Tai Nan West Street, Cheung Sha Wan</Address2>
+				<AddressOverride>false</AddressOverride>
+				<AddressShortCode>Unit 502, 5/F Kwong Loong</AddressShortCode>
+				<City>Hong Kong</City>
+				<CompanyName>FRAYTE LOGISTICS LIMITED</CompanyName>
+				<Country>
+					<Code>HK</Code>
+					<Name>Hong Kong</Name>
+				</Country>
+				<Email>accounts@frayte.com</Email>
+				<Fax>+85221484881</Fax>
+				<OrganizationCode>FRALOGHKG</OrganizationCode>
+				<Phone>+85221484881</Phone>
+				<Port>
+					<Code>HKHKG</Code>
+					<Name>Hong Kong</Name>
+				</Port>
+				<Postcode />
+				<ScreeningStatus>
+					<Code>UNK</Code>
+					<Description>Unknown</Description>
+				</ScreeningStatus>
+				<State />
+				<RegistrationNumberCollection>
+					<RegistrationNumber>
+						<Type>
+							<Code>GTX</Code>
+							<Description>Government Tax File Code</Description>
+						</Type>
+						<CountryOfIssue>
+							<Code>HK</Code>
+							<Description>Hong Kong</Description>
+						</CountryOfIssue>
+						<Value>1234657</Value>
+					</RegistrationNumber>
+				</RegistrationNumberCollection>
+			</OrganizationAddress>
+			<OrganizationAddress>
+				<AddressType>ConsignorPickupDeliveryAddress</AddressType>
+				<Address1>Unit 502, 5/F Kwong Loong Tai Building</Address1>
+				<Address2>1016-1018 Tai Nan West Street, Cheung Sha Wan</Address2>
+				<AddressOverride>false</AddressOverride>
+				<AddressShortCode>Unit 502, 5/F Kwong Loong</AddressShortCode>
+				<City>Hong Kong</City>
+				<CompanyName>FRAYTE LOGISTICS LIMITED</CompanyName>
+				<Country>
+					<Code>HK</Code>
+					<Name>Hong Kong</Name>
+				</Country>
+				<Email>accounts@frayte.com</Email>
+				<Fax>+85221484881</Fax>
+				<OrganizationCode>FRALOGHKG</OrganizationCode>
+				<Phone>+85221484881</Phone>
+				<Port>
+					<Code>HKHKG</Code>
+					<Name>Hong Kong</Name>
+				</Port>
+				<Postcode />
+				<ScreeningStatus>
+					<Code>UNK</Code>
+					<Description>Unknown</Description>
+				</ScreeningStatus>
+				<State />
+			</OrganizationAddress>
+		</OrganizationAddressCollection>
+		<PackingLineCollection>
+			<PackingLine>
+				<Commodity>
+					<Code>GEN</Code>
+					<Description>General</Description>
+				</Commodity>
+				<ContainerPackingOrder />
+				<CountryOfOrigin>
+					<Code />
+				</CountryOfOrigin>
+				<DetailedDescription />
+				<EndItemNo>0</EndItemNo>
+				<ExportReferenceNumber />
+				<GoodsDescription>TEST shipment</GoodsDescription>
+				<HarmonisedCode />
+				<Height>0.000</Height>
+				<ItemNo>0</ItemNo>
+				<Length>0.000</Length>
+				<LengthUnit>
+					<Code>M</Code>
+					<Description>Metres</Description>
+				</LengthUnit>
+				<LinePrice>0.000</LinePrice>
+				<LoadingMeters>0.000</LoadingMeters>
+				<MarksAndNos />
+				<OutturnComment />
+				<OutturnDamagedQty>0</OutturnDamagedQty>
+				<OutturnedHeight>0.000</OutturnedHeight>
+				<OutturnedLength>0.000</OutturnedLength>
+				<OutturnedVolume>0.000</OutturnedVolume>
+				<OutturnedWeight>0.000</OutturnedWeight>
+				<OutturnedWidth>0.000</OutturnedWidth>
+				<OutturnPillagedQty>0</OutturnPillagedQty>
+				<OutturnQty>0</OutturnQty>
+				<PackQty>0</PackQty>
+				<PackType>
+					<Code>PLT</Code>
+					<Description>Pallet</Description>
+				</PackType>
+				<ReferenceNumber />
+				<Volume>0.000</Volume>
+				<VolumeUnit>
+					<Code>M3</Code>
+					<Description>Cubic Metres</Description>
+				</VolumeUnit>
+				<Weight>5.000</Weight>
+				<WeightUnit>
+					<Code>KG</Code>
+					<Description>Kilograms</Description>
+				</WeightUnit>
+				<Width>0.000</Width>
+				<PackedItemCollection>
+					<PackedItem>
+						<PackedQuantity>0.000</PackedQuantity>
+						<Product>
+							<Code>PROD.CODE1</Code>
+						</Product>
+						<UnitOfQuantity>
+							<Code>PROD.CODE1</Code>
+						</UnitOfQuantity>
+					</PackedItem>
+				</PackedItemCollection>
+			</PackingLine>
+			<PackingLine>
+				<Commodity>
+					<Code>GEN</Code>
+					<Description>General</Description>
+				</Commodity>
+				<ContainerPackingOrder />
+				<CountryOfOrigin>
+					<Code />
+				</CountryOfOrigin>
+				<DetailedDescription />
+				<EndItemNo>0</EndItemNo>
+				<ExportReferenceNumber />
+				<GoodsDescription>TEST shipment</GoodsDescription>
+				<HarmonisedCode />
+				<Height>0.000</Height>
+				<ItemNo>0</ItemNo>
+				<Length>0.000</Length>
+				<LengthUnit>
+					<Code>M</Code>
+					<Description>Metres</Description>
+				</LengthUnit>
+				<LinePrice>0.000</LinePrice>
+				<LoadingMeters>0.000</LoadingMeters>
+				<MarksAndNos />
+				<OutturnComment />
+				<OutturnDamagedQty>0</OutturnDamagedQty>
+				<OutturnedHeight>0.000</OutturnedHeight>
+				<OutturnedLength>0.000</OutturnedLength>
+				<OutturnedVolume>0.000</OutturnedVolume>
+				<OutturnedWeight>0.000</OutturnedWeight>
+				<OutturnedWidth>0.000</OutturnedWidth>
+				<OutturnPillagedQty>0</OutturnPillagedQty>
+				<OutturnQty>0</OutturnQty>
+				<PackQty>0</PackQty>
+				<PackType>
+					<Code>PLT</Code>
+					<Description>Pallet</Description>
+				</PackType>
+				<ReferenceNumber />
+				<Volume>0.000</Volume>
+				<VolumeUnit>
+					<Code>M3</Code>
+					<Description>Cubic Metres</Description>
+				</VolumeUnit>
+				<Weight>5.000</Weight>
+				<WeightUnit>
+					<Code>KG</Code>
+					<Description>Kilograms</Description>
+				</WeightUnit>
+				<Width>0.000</Width>
+				<PackedItemCollection>
+					<PackedItem>
+						<PackedQuantity>0.000</PackedQuantity>
+						<Product>
+							<Code>PROD.CODE1</Code>
+						</Product>
+						<UnitOfQuantity>
+							<Code>PROD.CODE1</Code>
+						</UnitOfQuantity>
+					</PackedItem>
+				</PackedItemCollection>
+			</PackingLine>
+		</PackingLineCollection>
+	</Shipment>
+</UniversalShipment>

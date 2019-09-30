@@ -1,0 +1,126 @@
+﻿<!--start header area-->
+<div class="large-menu">
+    <div class="top-header">
+        <div class="container">
+            <div class="col-sm-9 paddingboth">
+                <a data-ui-sref="home.login">
+                    <span ng-if="IsSiteCountry==='COM'"><img ng-src="{{ImagePath + 'FrayteHK.png'}}" style="top: 1.5rem;position: relative;width: 214px;" /></span>
+                    <span ng-if="IsSiteCountry==='CO.UK'"><img ng-src="{{ImagePath + 'FrayteUK.png'}}" style="top: 1.5rem;position: relative;width: 214px;" /></span>
+                </a>
+            </div>
+            <div class="col-sm-6 pull-right" style="position: relative;bottom: 3.5rem;">
+                <ul style="line-height: 0px;margin: 0 0;">
+                    <li>
+                        <select ng-model="Data.selectOption" style="border: none; background: none !important; color: #EB8633;outline:0;" ng-change="changeLanguage(Data.selectOption)">
+                            <option value="en" style="padding:2px 4px;">{{'BUTTON_LANG_EN' | translate}}</option>
+                            <option value="chSim" style="padding:2px 4px;">{{'BUTTON_LANG_CH' | translate}} </option>
+                            <option value="chTrad" style="padding:2px 4px;">{{'BUTTON_LANG_TD' | translate}} </option>
+                            <option value="th" style="padding:2px 4px;">{{'BUTTON_LANG_TH' | translate}} </option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--end header-->
+<!--start content area-->
+<br />
+<div class="container top100" style="padding-bottom: 12rem;">
+    <div class="panel panel-default">
+        <div class="panel-body" id="help-support">
+            <div class="padding-tb-15">
+                <h2><span class="border-bottom-black2">{{'Help_Support' | translate}}</span></h2>
+            </div>
+            <div>
+                <div class="padding-15">
+                    <div class="panel-body padding0">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="pull-left pointer lineheight32">{{'HowBookShipment' | translate}}</span> <span class="pull-right"><a href="downloadform/How_to_Book_a_shipment.pdf" target="_blank" title="PDF" class="color-white"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a> &nbsp;&nbsp; <a href="downloadform/How_to_book_a_shipment.ppsx" title="PPS" target="_blank" class="color-white"><i class="fa fa-file-powerpoint-o fa-2x" aria-hidden="true"></i></a></span><span class="clearfix"></span>
+                            </div>
+                            <div class="panel-body">
+                                <p class="form-group">{{'HowBookShipment_Heading' | translate}}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="pull-left pointer lineheight32">{{'HowDownloadRatecard' | translate}}</span> <span class="pull-right"><a href="downloadform/How_to_download_a_rate_card.pdf" target="_blank" title="PDF" class="color-white"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a> &nbsp;&nbsp; <a href="downloadform/How_to_download_a_rate_card.ppsx" title="PPS" target="_blank" class="color-white"><i class="fa fa-file-powerpoint-o fa-2x" aria-hidden="true"></i></a></span><span class="clearfix"></span>
+                            </div>
+                            <div class="panel-body">
+                                <p class="form-group">{{'HowDownloadRatecard_Heading' | translate}}</p>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="pull-left pointer lineheight32">{{'HowGetQuote' | translate}}</span> <span class="pull-right"><a href="downloadform/How_to_get_a_quote.pdf" title="PDF" target="_blank" class="color-white"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a> &nbsp;&nbsp; <a href="downloadform/How_to_get_a_quote.ppsx" title="PPS" target="_blank" class="color-white"><i class="fa fa-file-powerpoint-o fa-2x" aria-hidden="true"></i></a></span><span class="clearfix"></span>
+                            </div>
+                            <div class="panel-body">
+                                <p class="form-group">{{'HowGetQuote_Heading' | translate}}</p>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="pull-left pointer lineheight32">{{'HowTrackShipment' | translate}}</span> <span class="pull-right"><a href="downloadform/How_to_track_a_shipment.pdf" target="_blank" title="PDF" class="color-white"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a> &nbsp;&nbsp; <a href="downloadform/How_to_track_a_shipment.ppsx" title="PPS" target="_blank" class="color-white"><i class="fa fa-file-powerpoint-o fa-2x" aria-hidden="true"></i></a></span><span class="clearfix"></span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <p>{{'HowTrackShipment_Heading_First' | translate}}</p>
+                                    <p>{{'HowTrackShipment_Heading_Second' | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="pull-left pointer lineheight32">{{'HowInstallPrinter' | translate}}</span> <span class="pull-right"><a href="downloadform/How_to_install_a_Zebra_Printer_(GC420T).pdf" title="PDF" target="_blank" class="color-white"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a> &nbsp;&nbsp; <a href="downloadform/How_to_install_a_label_printer.ppsx" title="PPS" target="_blank" class="color-white"><i class="fa fa-file-powerpoint-o fa-2x" aria-hidden="true"></i></a></span><span class="clearfix"></span>
+                            </div>
+                            <div class="panel-body">
+                                <p class="form-group">{{'HowInstallPrinter_Heading' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!--end content-->
+<!--start footer code-->
+<footer class="pre-footer-top-border">
+    <div class="container">
+        <div class="col-sm-12 paddingboth">
+            <div>
+                <div class="pull-left lineheight24 xs-footerCenter top7 left-40rem">
+                    <div>
+                        <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+                        <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}} </button>
+                        <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'hkong.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TD' | translate}} </button>
+                        <button ng-click="changeLanguage('th')" class="btn btn-link fontsize12" ng-disabled="isDisabled4" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'th.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TH' | translate}}</button>
+                    </div>
+                </div>
+                <div>
+                    <ul class="text-right">
+                        <li><a class="social-icon facebookIcon pointer" href="https://www.facebook.com/pages/Frayte-Logistics-CoLtd/773973132625510" target="_blank" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /></a></li>
+                        <li><a class="social-icon twitterIcon pointer" href="https://twitter.com/Frayte1" target="_blank" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /></a></li>
+                        <li><a class="social-icon instagramIcon pointer" href="https://www.instagram.com/?hl=en" target="_blank" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /></a></li>
+                        <li><a class="social-icon linkedinIcon pointer" href="https://www.linkedin.com/company/frayte-logistics-ltd-" target="_blank" title="linkedin"><img ng-src="{{ImagePath + 'linkedin.png'}}" alt="linkdedin" class="img-responsive" /></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="pull-left xs-footerCenter top2">
+                    <div class="copyText"><span class="mobile-left"><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /> <span class="word-break">&copy; {{'2018' | translate}} <span ng-if="IsSiteCountry==='COM'">{{'FRAYTE_HK' | translate}}</span><span ng-if="IsSiteCountry==='CO.UK'">{{'FRAYTE_UK' | translate}}</span>. {{'AllRightsReserved' | translate}}.</span></span></div>
+                </div>
+                <div class="pull-right textAlignR xs-footercenter top2 text-right">
+                    <a ng-click="setScroll('top')" ui-sref='helpSupport' target="_blank" class="fontsize12">{{'Help_Support' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.privacyPolicy' target="_blank" class="fontsize12">{{'Privacy_Policy' | translate}}</a> &nbsp;|&nbsp;<a ng-click="setScroll('top')" ui-sref='public.term-and-condition' target="_blank" class="fontsize12">{{'TermsAndCondition' | translate}}</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--end footer-->

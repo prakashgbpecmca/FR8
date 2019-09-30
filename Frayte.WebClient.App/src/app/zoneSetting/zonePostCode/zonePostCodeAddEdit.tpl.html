@@ -1,0 +1,108 @@
+﻿
+
+
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Edit' | translate}} {{'Zone' | translate}} {{'PostalCode' | translate}}</h4>
+</div>
+<div class="modal-body">
+    <div class="col-sm-12">
+        <div>
+        <div class="col-sm-12 form-group paddingboth">
+            <div class="form-group">
+            <div class="col-sm-6 paddingboth fontsize14"><span class="bold">{{'Zone' | translate}}:</span> <span>{{ZonePostCode.ZoneDisplayName}}</span></div>
+            <div class="col-sm-6 paddingright fontsize14"><span class="bold">{{'CourierCompany' | translate}}:</span> <span>{{ZonePostCodeCourierCompany.Display}}</span></div>
+                <div class="clearfix"></div>
+            </div>
+           <div class="form-group">
+               <div class="col-sm-6 paddingboth fontsize14">
+               <span class="bold col-sm-4 paddingboth lineheight24">{{'Transit_Time_' | translate}}:</span>&nbsp;
+               <span class="col-sm-3"><input type="text" ng-model="TransitTime" class="form-control" style="width:60px"/></span>
+               <span class="col-sm-3 bold lineheight24 paddingboth">{{ShowTransitTime(TransitTime)}}</span>
+               <span class="clearfix"></span></div>
+           </div>
+        </div>
+        <div class="clearfix"></div>
+        </div>
+    <div>
+        <div class="col-sm-6 paddingleft">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'Assign' | translate}} {{'PostalCode' | translate}}</div>
+                <div class="panel-body padding0">
+                    <div class="col-sm-12 paddingboth bold" style="border-bottom:1px solid #ddd;">
+                        <div class="col-sm-6 paddingright padding-10">
+                            <span class="col-sm-6 paddingboth"><small class="paddingleft5">{{'PostalCode' | translate}}</small></span>
+                            <span class="col-sm-6 paddingboth"><small class="pull-right" style="padding: 4px 6px 0px;">{{'Delete' | translate}}</small></span>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-sm-6 paddingright padding-10">
+                            <span class="col-sm-6 paddingboth"><small class="paddingleft5">{{'PostalCode' | translate}}</small></span>
+                            <span class="col-sm-6 paddingboth"><small class="pull-right" style="padding: 4px 6px 0px;">{{'Delete' | translate}}</small></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingboth">
+                        <div class="overflow" style="height:255px !important;">
+                            <div style="margin-top:2px;">
+                                <div ng-repeat="ZonePost in ZonePostCode.Row" class="col-sm-6 paddingright center">
+                                    <div class="paddingTB3">
+                                        <div class="col-sm-10 paddingboth text-left">{{ZonePost.PostCode}}</div>
+                                        <div ng-click="RemovePostCodeFromZone(ZonePost)" class="col-sm-2 paddingboth pointer" style="position:relative;right:10px;"><a><i class="fa fa-bitbucket red" aria-hidden="true"></i></a></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul uib-pagination boundary-links="true" total-items="ZonePostCode.totalItemCount" ng-change="pageChanged(ZonePostCode)" ng-model="ZonePostCode.currentPage" items-per-page="ZonePostCode.itemsPerPage" max-size="ZonePostCode.maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 paddingright">
+            <div class="panel  panel-default">
+                <div class="panel-heading">{{'Add' | translate}} {{'New' | translate}} {{'PostalCode' | translate}}</div>
+                <div class="panel-body padding0">
+                    <div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 paddingTB5">
+                        <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding:10px 8px;"></i>
+                        <input type="text" class="form-control" placeholder="{{'Search' | translate}} {{'PostalCode' | translate}}" ng-model="searchText" ng-change="refreshData()" style="padding-left:25px" />
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 paddingboth">
+                        <div>
+                            <div class="overflow" style="height:252px !important;">
+                                <div class="col-sm-12" style="margin-top:3px;">
+                                    <div class="col-sm-6" ng-repeat="UkPost in UKPostCodeJson.slice(((currentPage1-1)*itemsPerPage1), ((currentPage1)*itemsPerPage1))">
+                                        <div class="col-sm-2 paddingboth"><input ng-change="SetPostCodeToZone(UkPost)" ng-model="IsSelected" type="checkbox" class="pointer" /></div>
+                                        <div class="col-sm-10">{{UkPost.PostCode}}</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <ul uib-pagination boundary-links="true" total-items="UKPostCodeJson.length" ng-model="currentPage1" items-per-page="itemsPerPage1" max-size="maxSize1" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="modal-footer">
+    <div class="col-sm-12">
+        <div class="pull-left">
+            <button class="btn btn-cancel fontsize12" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+        </div>
+        <div class="pull-right">
+            <button ng-click="submit()" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+

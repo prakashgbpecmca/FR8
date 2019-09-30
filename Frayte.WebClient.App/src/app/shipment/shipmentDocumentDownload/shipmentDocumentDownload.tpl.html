@@ -1,0 +1,12 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Download' | translate}} {{'Documents' | translate}}</h4>
+</div>
+<div class="modal-body">
+    <div data-ui-grid="gridOptions" data-ui-grid-resize-columns data-ui-grid-move-columns data-ui-grid-pinning data-ui-grid-selection data-ui-grid-exporter data-ui-grid-auto-resize class="myGrid" style="min-height:300px;"></div>
+</div>
+<div class="modal-footer">
+    <div class="text-left">
+        <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel">{{'Cancel' | translate}}</button>
+    </div>
+</div>

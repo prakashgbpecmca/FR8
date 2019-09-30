@@ -1,0 +1,91 @@
+﻿<!--modal start here-->
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'AddEdit_BaseRateCard_Without_A/C' | translate}}</h4>
+</div>
+<form ng-submit="submit(rateCurrencyCourierAccount.$valid)" name="rateCurrencyCourierAccount" novalidate>
+    <div class="modal-body">
+        <div class="col-sm-12">
+            <div ng-if="RateLimitType==='Weight'" class="col-sm-12 paddingboth">
+                <div class="pull-left">
+                    {{'From' | translate}} {{'Weight' | translate}}: {{RateLimit.OverWeightLimit}} {{RateLimit.UnitOfMeasurement}}
+                </div>
+                <div class="pull-right">
+                    {{'To' | translate}} {{'Weight' | translate}}: {{RateLimit.OverWeightTo}} {{RateLimit.UnitOfMeasurement}}
+                </div>
+                <div class="clearfix"></div>
+
+                <hr style="margin-top:10px !important; margin-bottom:0px !important;" />
+            </div>
+            <div ng-if="RateLimitType==='Dimension'" class="col-sm-12 paddingboth">
+                <div class="pull-left">
+                   {{'From' | translate}} {{'Length' | translate}}: {{RateLimit.DimensionFrom}} {{RateLimit.DimensionUnit}}
+                </div>
+                <div class="pull-right">
+                   {{'To' | translate}} {{'Length' | translate}}: {{RateLimit.DimensionTo}} {{RateLimit.DimensionUnit}}
+                </div>
+                <div class="clearfix"></div>
+
+                <hr style="margin-top:10px !important; margin-bottom:0px !important;" />
+            </div>
+            <div ng-if="RateLimitType==='Weight'" class="col-sm-12 paddingboth">
+                <div class="col-sm-12 paddingboth">
+                    <div>
+                        <div class="form-group" ng-class="{ 'has-error': rateCurrencyCourierAccount.rate.$invalid &&
+                                            (rateCurrencyCourierAccount.rate.$dirty || submitted) }">
+                            <div class="width20">
+                                <label for="currency" class="control-label lineheight24">{{'Rate' | translate}}  <span class="redColor">*</span></label>
+                            </div>
+                            <div class="width20">
+                                <input type="text" ng-model="RateLimit.OverWeightLimitRate" class="form-control fontsize12" name="rate" required />
+                                <span class="help-block has-error" ng-show="rateCurrencyCourierAccount.rate.$invalid &&
+                                            (rateCurrencyCourierAccount.rate.$dirty || submitted)">
+                                   {{'Rate' | translate}} {{'Is' | translate}} {{'Required' | translate}}.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2 paddingright form-group">
+                            <select class="form-control fontsize12" ng-model="RateLimit.Currency" ng-options="Currency.CurrencyCode as  Currency.CurrencyCode for Currency in  CurrencyCodes" name="currency"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="RateLimitType==='Dimension'" class="col-sm-12 paddingboth">
+                <div class="col-sm-12 paddingboth">
+                    <div>
+                        <div class="form-group" ng-class="{ 'has-error': rateCurrencyCourierAccount.rate.$invalid &&
+                                            (rateCurrencyCourierAccount.rate.$dirty || submitted) }">
+                            <div class="width20">
+                                <label for="currency" class="control-label lineheight24">{{'Rate' | translate}}  <span class="redColor">*</span></label>
+                            </div>
+                            <div class="width20">
+                                <input type="text" ng-model="RateLimit.DimensionRate" class="form-control fontsize12" name="rate" required />
+                                <span class="help-block has-error" ng-show="rateCurrencyCourierAccount.rate.$invalid &&
+                                            (rateCurrencyCourierAccount.rate.$dirty || submitted)">
+                                    {{'Rate' | translate}} {{'Is' | translate}} {{'Required' | translate}}.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2 paddingright form-group">
+                            <select class="form-control fontsize12" ng-model="RateLimit.Currency" ng-options="Currency.CurrencyCode as  Currency.CurrencyCode for Currency in  CurrencyCodes" name="currency"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <a class="btn btn-cancel fontsize12" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</a>
+            </div>
+            <div class="pull-right">
+                <button ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</form>

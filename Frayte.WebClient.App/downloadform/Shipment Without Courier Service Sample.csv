@@ -1,0 +1,6 @@
+FromCountryCode,FromPostCode,FromContactFirstName,FromContactLastName,FromCompanyName,FromAddress1,FromAddress2,FromCity,FromTelephoneNo,FromEmail,ToCountryCode,ToPostCode,ToContactFirstName,ToContactLastName,ToCompanyName,ToAddress1,ToAddress2,ToCity,ToTelephoneNo,ToEmail,PackageCalculationType,ParcelType,Currency,ShipmentReference,ShipmentDescription,TrackingNo,CourierCompany,CartonValue,Length,Width,Height,Weight,DeclaredValue,ShipmentContents
+FromCountryCode,FromPostCode,FromContactFirstName,FromContactLastName,FromCompanyName,FromAddress1,FromAddress2,FromCity,FromTelephoneNo,FromEmail,ToCountryCode,ToPostCode,ToContactFirstName,ToContactLastName,ToCompanyName,ToAddress1,ToAddress2,ToCity,ToTelephoneNo,ToEmail,PackageCalculationType,ParcelType,Currency,ShipmentReference,ShipmentDescription,TrackingNo,CourierCompany,CartonValue,Length,Width,Height,Weight,DeclaredValue,ShipmentContents
+,,,,,,,,,,,,,,,,,,,,,,,,,,,CartonValue,Length,Width,Height,Weight,DeclaredValue,ShipmentContents
+,,,,,,,,,,,,,,,,,,,,,,,,,,,CartonValue,Length,Width,Height,Weight,DeclaredValue,ShipmentContents
+,,,,,,,,,,,,,,,,,,,,,,,,,,,CartonValue,Length,Width,Height,Weight,DeclaredValue,ShipmentContents
+,,,,,,,,,,,,,,,,,,,,,,,,,,,CartonValue,Length,Width,Height,Weight,DeclaredValue,ShipmentContents

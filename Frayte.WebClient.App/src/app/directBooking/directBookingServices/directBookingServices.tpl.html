@@ -1,0 +1,17 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Select' | translate}} {{'Services' | translate}}</h4>
+</div>
+<div class="modal-body">
+    <div data-ui-grid="gridDirectBookingServices" ui-grid-selection class="grid"></div>
+</div>
+
+<div class="clearfix"></div>
+<div class="modal-footer">
+    <div class="pull-left">
+        <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>  &nbsp;&nbsp;
+    </div>
+    <div class="pull-right">
+        <button type="submit" ng-click="SelectService(SelectedService.CourierService)" class="btn-simple btn-save fontsize12"><i class="fa fa-check" aria-hidden="true"></i> {{'Ok' | translate}}</button>
+    </div>
+</div>

@@ -1,0 +1,283 @@
+﻿<section class="title-bar img-blog transparent-bg-secondary bottom8">
+    <div class="transparent-bg-secondary-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-sm-10 col-lg-10 col-xs-12">
+                    <h1>{{'CONTACT_US' | translate}}</h1>
+                </div>
+            </div>
+        </div>
+    </div><div class="transparent-bg-secondary-layer"></div>
+</section>
+<div class="clearfix"></div>
+<div class="fullwidthNoBackground">
+    <br /><br />
+    <div class="container contact">
+        <div class="getInTouch">
+            <h2>{{'FeelFreeToContact' | translate}}</h2>
+        </div>
+        <br /><br />
+        <div ng-if="FrayteWebSite==='COM'" class="row">
+            <div>
+            <!--head office address code-->
+            <!--head office Map code-->
+            <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
+                <div>
+                    <div style="width: 100%; overflow: hidden; height: 320px;">
+                        <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.4101631430995!2d114.14486290121461!3d22.338136497091554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404075453057db3%3A0xbae9d59e0255ad90!2sTrendy+Centre%2C+682+Castle+Peak+Rd%2C+Cheung+Sha+Wan%2C+Hong+Kong!5e0!3m2!1sen!2sin!4v1528178736035" style="width: 100%; height: 440px; margin-top: -150px;" id="bordernone" allowfullscreen></iframe>-->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.3741679971185!2d114.14671651552469!3d22.33949648530327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340407541a651e85%3A0x20967e525cc82b86!2sKwong+Loong+Tai+Building%2C+1016-1018+Tai+Nan+W+St%2C+Cheung+Sha+Wan%2C+Hong+Kong!5e0!3m2!1sen!2sin!4v1530782476858" style="width: 100%; height: 440px; margin-top: -150px;" id="bordernone" allowfullscreen></iframe>
+                     </div>
+                </div>
+            </div>
+            <!--end-->
+            <!--head office address code-->
+            <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 BlockMarginBottom">
+                <!--headOffice address code-->
+                <div class="about-foot">
+                    <h6>{{'Head' | translate}} {{'Office' | translate}} {{'Address' | translate}}</h6>
+                    <ul class="list-unstyled">
+                        <li><p><i class="fa fa-map-marker"></i>&nbsp; FRAYTE Logistics Ltd.</p></li>
+                        <li><p>Unit 501 Kwong Loong Tai Building,</p></li>
+                        <li><p>1016-1018 Tai Nan West Street,</p></li>
+                        <li><p>Cheung Sha Wan,</p></li>
+                        <li><p>Kowloon, Hong Kong</p></li>
+                        <li><p>香港九龍長沙灣大南西街1016-1018號廣隆泰大廈501室</p></li>
+                    </ul>
+                    <div class="bottom-line form-group"></div>
+                    <div>
+                        <!--<h6>{{'ContactUs' | translate}}</h6>-->
+                        <ul class="list-unstyled">
+                            <li class="mobile-width100 clearfix">
+                                <p><span class="phone"><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150 pull-left" /></span> <span class="mobile-right5">(+852) 2148 4880</span></p>
+                            </li>
+                            <li class="mobile-width100 clearfix">
+                                <p><span class="phone"><img bn-lazy-src="{{ImagePath + 'fax.png'}}" alt="fax" class="img-responsive width13 pull-left" /></span> <span class="margin-left7">(+852) 2505 2466</span></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end-->
+                <br />
+            </div>
+            <!--head office contact no. code -->
+            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 BlockMarginBottom">
+                <div>
+                    <h6>{{'OperatingTimes' | translate}}</h6>
+                    <ul class="list-unstyled openingTime">
+                        <li>09:00 - 18:00 ({{'Monday' | translate}} - {{'Friday' | translate}})</li>
+                        <li>09:00 - 12:00 ({{'Saturday' | translate}})</li>
+                    </ul>
+                </div>
+                <!--<div class="bottom-line"></div>-->
+            </div>
+            <!--end-->
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <!--end-->
+            <!--united kingdom code-->
+            <div>
+                <div class="col-md-5  col-sm-5 col-lg-5 col-xs-12">
+                    <div style="width: 100%; overflow: hidden; height: 320px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1238.56799084038!2d-3.9080017793536266!3d51.620718168899195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5ffd1852ded5%3A0x73c91d541da0d196!2sFrayte+Logistics+Ltd!5e0!3m2!1sen!2sin!4v1521786092192" style="width: 100%; height: 440px; margin-top: -115px; border:0" id="bordernone" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                    <h6>{{'United' | translate}} {{'Kingdom' | translate}} {{'Address' | translate}}:</h6>
+                    <ul class="list-unstyled">
+                        <li><p><i class="fa fa-map-marker"></i>&nbsp; FRAYTE Logistics Ltd,</p></li>
+                        <li><p>Unit 11, SA1 Industrial Park,</p></li>
+                        <li><p>Langdon Road,</p></li>
+                        <li><p>Swansea SA1 8QY,</p></li>
+                        <li><p>United Kingdom</p></li>
+                        <li><p><span class="phone"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150" /></span> (+44) 01792 277295</p></li>
+                    </ul>
+                    <br />
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                    <div ng-if="IsSiteCountry==='CO.UK'">
+                        <h6>{{'Domestic_Parcel_Tracking' | translate}}:</h6>
+                        <ul class="list-unstyled">
+                            <li><strong>{{'Email' | translate}}-</strong>  {{'UK_Tracking_Frayte_Dot_Com' | translate}}</li>
+                            <li><strong>{{'Phone_Number' | translate}}-</strong>  (+44) 1909877798</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end-->
+            <br/><br />
+            <!--warehourse address code-->
+            <!--<div>
+                <div class="col-md-5">
+                    <div style="width: 100%; overflow: hidden; height: 320px;">
+                        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                src="https://maps.google.com/maps?hl=en&q=Kwai Shun Industrial Center, 51-63 Container Port Road, Kwai Chung, New Territories, Hong Kong&ie=UTF8&t=m&z=17&iwloc=B&output=embed" style="width: 100%; height: 440px; margin-top: -150px;">
+                            <div><small><a href="http://embedgooglemaps.com">embed google map</a></small></div>
+                            <div><small><a href="https:/www.googlemapsgenerator.com/">generate Google Maps</a></small></div>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h6>{{'Warehouse' | translate}} {{'Address' | translate}}:</h6>
+                    <ul class="list-unstyled">
+                        <li><p>FRAYTE Logistics Ltd,</p></li>
+                        <li><p>Unit 601, 602 / 6th floor , North Tower,</p></li>
+                        <li><p>Kwai Shun Industrial Centre,</p></li>
+                        <li><p>51-63 Container Port Road,</p></li>
+                        <li><p>Kwai Chung, New Territories, Hong Kong.</p></li>
+                        <li><p><span class="phone"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150" /></span> (+852) 2497 9797</p></li>
+                        <li><p><span class="phone"><img ng-src="{{ImagePath + 'fax.png'}}" alt="fax" class="img-responsive width13" /></span>  (+852) 2505 2466</p></li>
+                    </ul>
+                    <br />
+                </div>
+                <div class="col-md-3">
+                    <h6>地址：</h6>
+                    <ul class="list-unstyled">
+                        <li><p>葵涌貨櫃碼頭路51-63號葵順工業中心北座1樓k室</p></li>
+                    </ul>
+                    <hr style="border-bottom:2px solid;" />
+                    <div>
+                        <h6>{{'OperatingTimes' | translate}}:</h6>
+                        <ul class="list-unstyled">
+                            <li>09:30 - 18:30 ({{'Monday' | translate}} - {{'Friday' | translate}})</li>
+                            <li>09:30 - 13:30 ({{'Saturday' | translate}})</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>-->
+            <!--end-->
+        </div>
+        <div class="clearfix"></div>
+        <div ng-if="FrayteWebSite==='CO.UK'" class="row">
+            <div>
+                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
+                    <div style="width: 100%; overflow: hidden; height: 320px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.263157646073!2d-3.9535309840252455!3d51.61838841040273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486ef533157e52e7%3A0xfde69a3d2283d2e5!2s2+Wyndham+St%2C+Swansea+SA1+3HZ%2C+UK!5e0!3m2!1sen!2sin!4v1558593220122!5m2!1sen!2sin" style="width: 100%; height: 440px; margin-top: -115px; border:0" id="bordernone" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                    <h6>{{'United' | translate}} {{'Kingdom' | translate}} {{'Address' | translate}}:</h6>
+                    <ul class="list-unstyled">
+                        <li><p>FRAYTE GLOBAL (GB) Ltd,</p></li>
+                        <li><p>Unit 2</p></li>
+                        <li><p>Wyndham Court</p></li>
+                        <li><p>Clarion Close</p></li>
+                        <li><p>Swansea</p></li>
+                        <li><p>SA6 8RB</p></li>
+                        <li><p><span class="phone"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150" /></span> (+44) 01792 277295</p></li>
+                    </ul>
+                    <br />
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                    <div ng-if="IsSiteCountry==='CO.UK'">
+                        <h6>{{'Domestic_Parcel_Tracking' | translate}}:</h6>
+                        <ul class="list-unstyled">
+                            <li><strong>{{'Email' | translate}}-</strong>  {{'UK_Tracking_Frayte_Dot_Com' | translate}}</li>
+                            <li><strong>{{'Phone_Number' | translate}}-</strong>  (+44) 1909877798</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div ng-if="FrayteWebSite==='CO.TH'" class="row">
+            <div>
+                <!--head office address code-->
+                <!--head office Map code-->
+                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
+                    <div>
+                        <div style="width: 100%; overflow: hidden; height: 320px;">
+                            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.4101631430995!2d114.14486290121461!3d22.338136497091554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404075453057db3%3A0xbae9d59e0255ad90!2sTrendy+Centre%2C+682+Castle+Peak+Rd%2C+Cheung+Sha+Wan%2C+Hong+Kong!5e0!3m2!1sen!2sin!4v1528178736035" style="width: 100%; height: 440px; margin-top: -150px;" id="bordernone" allowfullscreen></iframe>-->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.3741679971185!2d114.14671651552469!3d22.33949648530327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340407541a651e85%3A0x20967e525cc82b86!2sKwong+Loong+Tai+Building%2C+1016-1018+Tai+Nan+W+St%2C+Cheung+Sha+Wan%2C+Hong+Kong!5e0!3m2!1sen!2sin!4v1530782476858" style="width: 100%; height: 440px; margin-top: -150px;" id="bordernone" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--head office address code-->
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 BlockMarginBottom">
+                    <!--headOffice address code-->
+                    <div class="about-foot">
+                        <h6>{{'Head' | translate}} {{'Office' | translate}} {{'Address' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><i class="fa fa-map-marker"></i>&nbsp; FRAYTE Logistics Ltd.</p></li>
+                            <li><p>Unit 501 Kwong Loong Tai Building,</p></li>
+                            <li><p>1016-1018 Tai Nan West Street,</p></li>
+                            <li><p>Cheung Sha Wan,</p></li>
+                            <li><p>Kowloon, Hong Kong</p></li>
+                            <li><p>香港九龍長沙灣大南西街1016-1018號廣隆泰大廈501室</p></li>
+                        </ul>
+                        <div class="bottom-line form-group"></div>
+                        <div>
+                            <!--<h6>{{'ContactUs' | translate}}</h6>-->
+                            <ul class="list-unstyled">
+                                <li class="mobile-width100 clearfix">
+                                    <p><span class="phone"><img bn-lazy-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150 pull-left" /></span> <span class="mobile-right5">(+66) 053 230366</span></p>
+                                </li>
+                                <li class="mobile-width100 clearfix">
+                                    <p><span class="phone"><img bn-lazy-src="{{ImagePath + 'fax.png'}}" alt="fax" class="img-responsive width13 pull-left" /></span> <span class="margin-left7">(+66) 053 230366</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <br />
+                </div>
+                <!--head office contact no. code -->
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 BlockMarginBottom">
+                    <div>
+                        <h6>{{'OperatingTimes' | translate}}</h6>
+                        <ul class="list-unstyled openingTime">
+                            <li>08:30 - 17:30 ({{'Monday' | translate}} - {{'Friday' | translate}})</li>
+                            <!--<li>09:00 - 12:00 ({{'Saturday' | translate}})</li>-->
+                        </ul>
+                    </div>
+                    <!--<div class="bottom-line"></div>-->
+                </div>
+                <!--end-->
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <!--end-->
+            <!--united kingdom code-->
+            <div>
+                <div class="col-md-5  col-sm-5 col-lg-5 col-xs-12">
+                    <div style="width: 100%; overflow: hidden; height: 320px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1238.56799084038!2d-3.9080017793536266!3d51.620718168899195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5ffd1852ded5%3A0x73c91d541da0d196!2sFrayte+Logistics+Ltd!5e0!3m2!1sen!2sin!4v1521786092192" style="width: 100%; height: 440px; margin-top: -115px; border:0" id="bordernone" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                    <h6>{{'United' | translate}} {{'Kingdom' | translate}} {{'Address' | translate}}:</h6>
+                    <ul class="list-unstyled">
+                        <li><p><i class="fa fa-map-marker"></i>&nbsp; FRAYTE Logistics Ltd,</p></li>
+                        <li><p>Unit 11, SA1 Industrial Park,</p></li>
+                        <li><p>Langdon Road,</p></li>
+                        <li><p>Swansea SA1 8QY,</p></li>
+                        <li><p>United Kingdom</p></li>
+                        <li><p><span class="phone"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="phone" class="img-responsive width150" /></span> (+44) 01792 277295</p></li>
+                    </ul>
+                    <br />
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                    <div ng-if="IsSiteCountry==='CO.UK'">
+                        <h6>{{'Domestic_Parcel_Tracking' | translate}}:</h6>
+                        <ul class="list-unstyled">
+                            <li><strong>{{'Email' | translate}}-</strong>  {{'UK_Tracking_Frayte_Dot_Com' | translate}}</li>
+                            <li><strong>{{'Phone_Number' | translate}}-</strong>  (+44) 1909877798</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end-->
+            <br /><br />
+
+        </div>
+ 
+        <br /><br />
+    </div>
+</div>
+<br /><br />

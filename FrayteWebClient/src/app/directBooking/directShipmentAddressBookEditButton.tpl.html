@@ -1,0 +1,28 @@
+﻿<div class="ui-grid-cell-contents fontsize12">
+    <div class="dropdown">
+        &nbsp;<a id="drop1" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            <label class="pointer"><i class="fa fa-caret-down pointer" aria-hidden="true" style="position:relative; top:4px; float:right;"></i> <span class="action-font-family">{{'Actions' | translate}}</span>&nbsp;&nbsp;</label>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li>
+                <a href="" ng-click="grid.appScope.selectAddressBook(row)">
+                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                    <span>{{'Select' | translate}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="grid.appScope.addEditAddressBook(row)">
+                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                    <span>{{'Edit' | translate}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="grid.appScope.DeleteAddressFromAddressBook(row)">
+                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                    <span>{{'Delete' | translate}}</span>
+                </a>
+            </li>
+           
+        </ul>
+    </div>
+</div>

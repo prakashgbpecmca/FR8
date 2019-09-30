@@ -1,0 +1,83 @@
+﻿
+
+<section id="customer-address-book">
+    <section>
+        <div class="panel panel-default fontsize12 marginBottomZero" style="border-color: #DBE2EC !important;">
+            <div class="panel-heading">{{'TrackingMileStone' | translate}}</div>
+            <div class="panel-body">
+                <div class="col-sm-12 paddingboth">
+                    <label for="shipmentHandlerMethod" class="col-sm-2 paddingboth control-label top7">{{'ShipmentHandlerMethod' | translate}}</label>
+                    <div class="col-sm-5"> 
+                        <div class="form-group">
+                            <select ng-change="getTrackingMileStones()" ng-options="drpdwn as drpdwn.ShipmentHandlerMethodDisplay for drpdwn in ShipmentHandlerList" ng-model="ShipmentHandlerMethod" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <button ng-click="MileStoneAddEdit(null)" type="button" class="btn border-radius2 btn-save fontsize12 pull-right" style="padding: 7px 34px 7px;"><span><i class="fa fa-plus" aria-hidden="true"></i> {{'AddMileStone' | translate}}</span></button>&nbsp;&nbsp;
+                    </div>
+                    <div class="clearfix"></div>               
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+    </section>
+    <section>
+        <!--address book custom grid-->
+        <div class="panel panel-default">
+            <div class="width100 flex grid-background">
+                <div class="width986 flex">
+                    <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'OrderNo' | translate}}</span></div>
+                    <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'MileStoneKey' | translate}}</span></div>
+                    <div class="width60 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'MileStoneKeyDescription' | translate}}</span></div>
+                    <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                <div class="panel-body padding0">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div ng-repeat="gridDirectBooking in TrackingMileStones" class="width100 pointer">                               
+                                <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)">
+                                    <div class="width10 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.OrderNumber}}</span></div>
+                                    <div class="width20 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.MileStoneKey}}</span></div>
+                                    <div class="width60 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.Description}}</span></div>
+                                    <div class="width10 quotation-table-body padding0 text-center">
+                                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                            <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                <li ng-click="MileStoneAddEdit(gridDirectBooking)">
+                                                    <a href="">
+                                                        <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                        <span>{{'Edit' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <li ng-click="DeleteTradelaneMileStone(gridDirectBooking.TrackingMileStoneId)">
+                                                    <a href="">
+                                                        <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                        <span>{{'Delete' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!--square grid error code here-->
+                        <li ng-if="TrackingMileStones === undefined || TrackingMileStones.length == 0">
+                            <div class="col-sm-12 paddingboth imp-white">
+                                <div class="no-address-exist"><h4 class="redColor ng-binding">{{'No_Record_Found' | translate}}</h4></div>
+                            </div>
+                        </li>
+                        <!--end-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end code-->
+    </section>
+</section>    

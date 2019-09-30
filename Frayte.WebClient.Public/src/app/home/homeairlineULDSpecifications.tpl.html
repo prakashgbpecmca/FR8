@@ -1,0 +1,102 @@
+﻿
+<div class="container grid-font" id="mobile">
+    <!--start filter code here-->
+    <section class="affix" data-offset-top="60">
+        <div class="fixe">
+            <div style="margin-bottom:15px;">
+                <div class="col-sm-9 paddingboth col-xs-12 moblie-ptb10"><h2><span class="border-bottom-black2">{{'Airline_Unit_Load_Device_ULD_Specifications' | translate}}</span></h2></div>
+                <div class="col-sm-3 paddingboth col-xs-12">
+                    <div class="col-sm-12 paddingboth top-2-4rem">
+                        <i class="fa fa-search search-icon-fix" aria-hidden="true"></i>
+                        <input class="form-control padding-left25" placeholder="{{'Search_ULD_code' | translate}}" type="text" ng-model="search" autofocus />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <section>
+                <div class="airline-scrollbar baseratcard-overflow width100 top10" my-scroller style="top:0px;">
+                    <div class="max-width">
+                        <ul class="list-unstyled change margin-bottom-none">
+                            <li>
+                                <div class="col-sm-12 paddingboth">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="airline-scrollbar baseratcard-overflow width100" style="overflow:hidden;">
+                    <div class="max-width">
+                        <div class="col-sm-12 paddingboth flex panel-background boxshadow-all" style="border-right: 1px solid #cbcbcb;">
+                            <div class="width120 bold">{{'Diagram' | translate}}</div>
+                            <div class="width6 bold">{{'Code' | translate}}</div>
+                            <div class="width4 bold">{{'BaseType' | translate}}</div>
+                            <div class="width10 bold">{{'Classification' | translate}}</div>
+                            <div class="width6 bold">{{'ClassType' | translate}}</div>
+                            <div class="width6 bold">{{'Contour' | translate}}</div>
+                            <div class="width10 bold">{{'Dimension' | translate}} (LxWxH, cm)</div>
+                            <div class="width10 bold">{{'UsableDimensions' | translate}} (LxWxH, cm)</div>
+                            <div class="width8 bold">{{'DoorDimension' | translate}} (LxH, cm)</div>
+                            <div class="width6 bold">{{'Volume' | translate}} (cbm)</div>
+                            <div class="width8 bold">{{'EstimateMaxGrossWeight' | translate}} (Kg)</div>
+                            <div class="width8 bold">{{'EstimateTareWeight' | translate}} (Kg)</div>
+                            <div class="width6 bold">{{'Notes' | translate}}</div>
+                            <span class="clearfix"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <!--end filter code-->
+    <section>
+        <div class="col-sm-12 paddingboth">
+            <div class="airline-scrollbar baseratcard-overflow width100" style="overflow:hidden;">
+                <div class="max-width">
+                            <ul class="list-unstyled change margin-bottom-none">
+                                <li>
+                                    <div class="col-sm-12 paddingboth flex panel-background boxshadow-all" ng-repeat="airline in airlineULD | filter: {code: search }" style="background:#fff;border-right:1px solid #cbcbcb;">
+                                        <div class="width120"><a class="pointer" title="{{airline.code}}" ng-click="adminPopupIn(airline)"><img bn-lazy-src="{{ImagePath + airline.img}}" style="width: 120px; padding: 3px 0;max-width:100%;" /></a></div>
+                                        <div class="width6">{{airline.code}}</div>
+                                        <div class="width4">{{airline.baseType}}</div>
+                                        <div class="width10">{{airline.classification}}</div>
+                                        <div class="width6">{{airline.classType}}</div>
+                                        <div class="width6">{{airline.contour}}</div>
+                                        <div class="width10">{{airline.dimension}}</div>
+                                        <div class="width10">{{airline.usuabledDimension}}</div>
+                                        <div class="width8">{{airline.doorDimension}}</div>
+                                        <div class="width6">{{airline.volume}}</div>
+                                        <div class="width8">{{airline.estimateMaxGross}}</div>
+                                        <div class="width8">{{airline.estimateTareWeight}}</div>
+                                        <div class="width6">{{airline.note}}</div>
+                                        <span class="clearfix"></span>
+                                    </div>
+                                    <div ng-if="toggleULd()">
+                                        <div class="col-sm-12 paddingboth coming-soon-center form-group text-center redColor">
+                                            <h3>{{'No_ULD_Code_Found' | translate}}</h3>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            <div class="airline-scrollbar baseratcard-overflow width100" my-scroller>
+                <div class="max-width">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div class="col-sm-12 paddingboth">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </section>
+    <section>
+        <br />
+        <div class="top7 form-group">{{'Airline_ULD_Specification_Important' | translate}}</div>
+    </section>
+</div>
+<br />
+<div class="clearfix"></div>

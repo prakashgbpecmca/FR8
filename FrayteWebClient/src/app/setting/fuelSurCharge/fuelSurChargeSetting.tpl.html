@@ -1,0 +1,131 @@
+﻿<div>
+    <div>
+        <form name="fuelform" ng-submit="GenerateFuelSurCharge(fuelform.$valid,fuelDetail)">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6 paddingboth" style="margin-bottom:0px !important;">
+                    <div class="col-sm-4 paddingboth top5"><label for="operationZone">{{'BusinessUnit_Zone' | translate}}</label></div>
+                    <div class="col-sm-6">
+                        <select ng-change="fuelSurChargeByOperationZone()"
+                                ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId"
+                                class="form-control fontsize12 form-group" ng-model="OperationZone">
+                            <option value="" selected disabled class="display-none"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-sm-offset-3 paddingboth " style="margin-bottom:0px !important;">
+                    <div class="col-sm-5 top5"><label for="operationZoneYear">{{'Year' | translate}}</label></div>
+                    <div class="col-sm-7 paddingboth">
+                        <select class="form-control fontsize12 form-group"
+                                ng-change="myfunction()"
+                                ng-options="year as year for year in Years"
+                                ng-model="Year">
+                            <option value="" selected disabled class="display-none"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-if="FuelSurCharges.length < 1" class="panel-body" style="padding: 0px !important;">
+                <div class="col-sm-12 text-center" style="padding-top:150px; border: 1px solid #ddd; height:800px;">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-md btn-success" ng-click="GenerateFuelSurCharge()" style="padding: 20px 110px;border-radius:0 !important;"><span style="font-size:30px;"><i class="fa fa-truck" aria-hidden="true" style="font-size:35px;"></i> {{'Generate_Fuel_Surcharge' | translate}}</span></button>
+                    </div>
+                </div>
+            </div>
+            <!--<br />-->
+        </form>
+    </div>
+</div>
+
+<div ng-if="OperationZone.OperationZoneId===1">
+    <form name="FuelSurCharge" ng-submit="updateFuelSurCharge(FuelSurCharge.$valid)" novalidate>
+        <div ng-if="val" class="panel panel-default">
+            <div class="panel-heading padding0">
+                <div class="width25  padding10x5 bold">{{'Business_Unit' | translate}}</div>
+                <div class="width30 bordered-left bold borderRight padding10x5 text-center">{{'Frayte_Fuel_Percent' | translate}} (%)</div>
+                <div class="width30 borderRight bold padding10x5  text-center">{{'Exprye_Fuel_Percent' | translate}} (%)</div>
+                <div class="width150 padding10x5 bold text-center">{{'Fuel_Month_Year' | translate}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" style="padding:0px !important;">
+            <div ng-repeat="fuelCharge in FuelSurCharges">
+                <ng-form name="packageForm">
+                    <div class="panel-body" style="padding:10px 0px 0px !important;border:1px solid #ddd;">
+                        <div class="width25 borderRight margin-10 lineheight40">
+                            <p class="margin0x0x6">{{fuelCharge.OperationZone.OperationZoneName}}</p>
+                        </div>
+                        <div class="width30 borderRight margin-10" ng-class="{ 'has-error': packageForm.length.$invalid &&
+                                                         (packageForm.length.$dirty || submitted) }">
+                            <p class="margin0x0x6"> <input type="text" ng-change="setFuelLength(FuelSurCharge,packageForm.length,fuelCharge.FrayteFuelPercent)" only-decimal name="length" ng-disabled="fuelCharge.IsDisable" class="form-control" style="width: 100%; margin: 6px 0px 0px;" ng-model="fuelCharge.FrayteFuelPercent" required /></p>
+                        </div>
+                        <div class="width30 borderRight margin-10" ng-class="{ 'has-error': packageForm.width.$invalid &&
+                                                           (packageForm.width.$dirty || submitted) }">
+                            <p class="margin0x0x6"><input type="text" ng-change="setFuelLength(FuelSurCharge,packageForm.width,fuelCharge.ExpryeFuelPercent)" ng-disabled="fuelCharge.IsDisable" only-decimal name="width" class="form-control" style="width: 100%; margin: 6px 0px 0px;" ng-model="fuelCharge.ExpryeFuelPercent" required /></p>
+                        </div>
+                        <div class="width150 borderRight margin-10 lineheight40 fuel-month-fixed" style="border-right:none !important;">
+                            {{getFuelMonthYear(fuelCharge.FuelMonthYear)}}   {{fuelcharge.fuelmonthyear}}
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+                <div class="col-sm-12 paddingboth" style="padding: 15px 6px 30px; right: 10px;">
+                    <div class="pull-right">
+                        <button type="button" ng-click="updateFuelSurCharge(FuelSurCharge.$valid)" class="btn-BigPrimary fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save' | translate}}</button>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </form>
+</div>
+<div ng-if="OperationZone.OperationZoneId===2">
+    <form name="FuelSurCharge" ng-submit="updateFuelSurCharge(FuelSurCharge)" novalidate>
+        <div ng-if="val" class="panel panel-default">
+            <div class="panel-heading padding0">
+                <div class="width16-66 padding10x5 bold">{{'Business_Unit' | translate}}</div>
+                <div class="width16-66 borderRight bordered-left padding10x5 bold text-center">{{'Frayte_Fuel_Percent' | translate}} (%)</div>
+                <div class="width16-66 borderRight padding10x5 bold  text-center">{{'Exprye_Fuel_Percent' | translate}} (%)</div>
+                <div class="width16-66 borderRight padding10x5 bold text-center">{{'Fuel_Surcharge_Percent' | translate}} (%)</div>
+                <div class="width16-66 borderRight padding10x5 bold  text-center">{{'Road_Surcharge_Percent' | translate}} (%)</div>
+                <div class="width16-66  padding10x5 bold text-center">{{'Fuel_Month_Year' | translate}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" style="padding:0px !important;">
+                <div ng-repeat="fuelCharge in FuelSurCharges">
+                    <ng-form name="packageForm">
+                        <div class="panel-body" style="padding:10px 0px 0px !important;border:1px solid #ddd;">
+                            <div class="width16-66 borderRight margin-10 lineheight40">
+                                <p class="margin0x0x6">{{fuelCharge.OperationZone.OperationZoneName}}</p>
+                            </div>
+                            <div class="width16-66 borderRight margin-10" ng-class="{'has-error': packageForm.length.$invalid &&
+                                                         (packageForm.length.$dirty || submitted) }">
+                                <p class="margin0x0x6"> <input type="text" ng-change="setFuelLength(FuelSurCharge,packageForm.length,fuelCharge.FrayteFuelPercent)" only-decimal name="length" ng-disabled="fuelCharge.IsDisable" class="form-control" style="width: 100%; margin: 6px 0px 0px;" ng-model="fuelCharge.FrayteFuelPercent" required /></p>
+                            </div>
+                            <div class="width16-66 borderRight margin-10" ng-class="{'has-error': packageForm.width.$invalid &&
+                                                           (packageForm.width.$dirty || submitted) }">
+                                <p class="margin0x0x6"> <input type="text" ng-change="setFuelLength(FuelSurCharge,packageForm.width,fuelCharge.ExpryeFuelPercent)" ng-disabled="fuelCharge.IsDisable" only-decimal name="width" class="form-control" style="width: 100%; margin: 6px 0px 0px;" ng-model="fuelCharge.ExpryeFuelPercent" required /></p>
+                            </div>
+                            <div class="width16-66 borderRight margin-10" ng-class="{'has-error':packageform.height.$invalid &&
+                             (packageform.height.$dirty || submitted) }">
+                                <p class="margin0x0x6"> <input type="text" ng-change="setFuelLength(FuelSurCharge,packageform.height,fuelCharge.ExpryeFuelPercent)" only-decimal ng-disabled="fuelCharge.IsDisable" name="height" class="form-control" style="width:100%; margin: 6px 0px 0px;" ng-model="fuelCharge.DomesticFuelPercent" required /></p>
+                            </div>
+                            <div class="width16-66 borderRight margin-10" ng-class="{'has-error':packageform.height.$invalid &&
+                             (packageform.height.$dirty || submitted) }">
+                                <p class="margin0x0x6"> <input type="text" ng-change="setFuelLength(FuelSurCharge,packageform.height,fuelCharge.ExpryeFuelPercent)" only-decimal ng-disabled="fuelCharge.IsDisable" name="height" class="form-control" style="width:100%; margin: 6px 0px 0px;" ng-model="fuelCharge.RoadFuelPercent" required /></p>
+                            </div>
+                            <div class="width16-66 borderRight margin-10 lineheight40 fuel-month-fixed" style="border-right:none !important;">
+                               
+                                {{getFuelMonthYear(fuelCharge.FuelMonthYear)}}   {{fuelcharge.fuelmonthyear}}
+                            </div>
+                        </div>
+                    </ng-form>
+                </div>
+                <div class="col-sm-12 paddingboth" style="padding: 15px 6px 30px; right: 10px;">
+                    <div class="pull-right">
+                        <button type="button" ng-click="updateFuelSurCharge(FuelSurCharge.$valid,FuelSurCharge.packageForm)" class="btn-BigPrimary fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,170 @@
+﻿@using System.Web.WebPages.Razor;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="margin: 0; padding: 0; background: #eaf0f5; border: 1px solid #ddd; font-family: calibri, sans-serif;">
+    <header>
+        <div style="height: 70px; background: #fff !important; box-shadow: 0px 1px 4px -2px; padding: 0 30px; text-align: left;">
+            <img src="cid:@Model.ImageHeader" style="width: 150px; padding: 20px 0px;" />
+        </div>
+    </header>
+    <div style="background: #fff; margin: 30px 20px; padding: 0 20px; border: 1px solid #ddd; font-size: 14px;">
+        <div style="text-align: center">
+            <h3>Shipper Confirmation Booking Email (E.3.1)</h3>
+        </div>
+        <div style="margin: 30px 0;">
+            <p>Dear @Model.ShipperName</p>
+            <p><b>Date:</b> @Model.MailDateTime.ToString("dd/MM/yyyy hh:mm") - @Model.TimeZoneName</p>            
+            <p>We refer to the booking that you have made in relation to this shipment. Please note that FRAYTE Logistics Ltd client has AMENDED the booking. Please see below the Shipping Order Number together with the warehouse address.</p>
+            <p><b>Shipment Method: </b>@Model.ShipmentMethod</p>
+            <div>
+                <div>
+                    <b>Shipping Order Number:</b> @Model.ShipmentId<br />
+                    <div style="border: 1px solid #ddd;">
+                        <div style="border-bottom: 1px solid #ddd; background: #f7f7f7;">
+                            <div style="padding: 10px;">
+                                <b>Warehouse Address:</b><br>
+                            </div>
+                        </div>
+                        <div style="line-height: 20px; padding: 10px;">
+                            <div>@Model.WAddress </div>
+                            <div>@Model.WAddress2</div>
+                            <div>@Model.WAddress3</div>
+                            <div>@Model.WCity</div>
+                            <div>@Model.WState</div>
+                            <div>@Model.WCountry</div>
+                            <div>@Model.WZip</div>
+                        </div>
+                    </div>
+                    <b>Date of delivery to our warehouse:</b>  @Model.PickupDate.ToString("dd/MM/yyyy hh:mm") - @Model.TimeZoneName
+                </div>
+            </div>
+            <br />
+            <b>Shipper Name:</b> @Model.ShipperName<br />
+            <b>Consignee Name:</b> @Model.ReceiverName
+            <br /><br />
+            <div style="border: 1px solid #ddd;">
+                <div style="border-bottom: 1px solid #ddd; background: #f7f7f7;">
+                     <div style="padding: 10px;">
+                        <b>Pick Up Address:</b><br>
+                    </div>
+                </div>
+                <div style="line-height: 20px; padding: 10px;">
+                    <div>@Model.PAddress </div>
+                    <div>@Model.PAddress2</div>
+                    <div>@Model.PAddress3</div>
+                    <div>@Model.PCity</div>
+                    <div>@Model.PState</div>
+                    <div>@Model.PCountry</div>
+                    <div>@Model.PZip</div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="border: 1px solid #ddd;">
+                <div style="border-bottom: 1px solid #ddd; background: #f7f7f7;">
+                    <div style="padding: 10px;">
+                        <b>Consignee Address:</b><br>
+                    </div>
+                </div>
+                <div style="line-height: 20px; padding: 10px;">
+                    <div>@Model.RAddress </div>
+                    <div>@Model.RAddress2</div>
+                    <div>@Model.RAddress3</div>
+                    <div>@Model.RCity</div>
+                    <div>@Model.RState</div>
+                    <div>@Model.RCountry</div>
+                    <div>@Model.RZip</div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <b>Total CTNs:</b> @Model.TotalCTNs<br />
+                <b>Approx. Total Weight:</b> @Model.TotalWeight<b>&nbsp;kgs</b>
+            </div>
+            <br />
+            <p>Should you have any questions or concerns please feel free to contact us.</p>
+            <p>Please click <a href="@Model.ShipmentLink">here</a> to check the shipping detail and save it to re-confirm it from customer.</p>            
+            <br />
+            Kind Regards.            
+            <br />
+            <br />
+            <div>
+                @Model.UserName<br />
+                @Model.UserPosition<br />
+                <b>FRAYTE Logistics Ltd</b><br />
+                <b>Email:</b>&nbsp;@Model.UserEmail<br />
+                <b>Phone:</b>&nbsp;@Model.UserPhone<br />
+                <b>Skype:</b>&nbsp;@Model.UserSkype<br />
+                <b>Fax:</b>&nbsp;@Model.UserFax<br />
+                <a href="www.FRAYTE.com">www.FRAYTE.com</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div style="height: 50px; border: 1px solid #ddd; background: #dce5ec !important; font-size: 12px; text-align: left; padding: 25px 30px;">
+            <p>FRAYTE GLOBAL All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+@*TITLE OF EMAIL = Shipper Confirmation Booking Email (E.3.1)
+When to send: After the client has amended the booking.
+To: ''Shipper Email''
+CC: ''User Email''+ ''User manager email''
+BCC: booking@frayte.com
+Reply To: ''User Email''+ booking@frayte.com
+Attachment: “Warehouse Map” + “Shipping Delivery Notice”
+Subject:  Booking Confirmation - FRAYTE Logistics Ltd
+
+Dear ''Shipper Name''
+
+Date: ''DD/MM/YYYY (HH:MM)'- Time Zone'
+
+We refer to the booking that you have made in relation to this shipment. Please note that FRAYTE Logistics Ltd client has AMENDED the booking. Please see below the Shipping Order Number together with the warehouse address.
+
+Shipment Method: ''Shipment Method”
+
+Shipping Order Number: ''Auto Generated Number''
+Warehouse Address: 'Warehouse Address''
+Date of delivery to our warehouse: ''DD/MM/YYYY (HH:MM)'- Time Zone”
+
+Shipper Name: “Shipper Name''
+Consignee Name: Consignee Name
+
+Pick Up Address:
+	Address
+	Address
+	City
+	State / Province
+Country
+Zip / Post code
+
+Consignee Address:
+	Address
+	Address
+	City
+	State / Province
+Country
+Zip / Post code
+
+Total CTNs: ''Total CTNs''
+Approx. Total Weight: ''Weight'' kgs
+
+Should you have any questions or concerns please feel free to contact us.
+
+Kind Regards.
+
+''User Name''
+''User Position''
+FRAYTE Logistics Ltd
+Email: ''user email''
+Phone: ''user phone number''
+Skype: ''user Skype''
+Fax:  ''user fax''
+www.FRAYTE.com*@

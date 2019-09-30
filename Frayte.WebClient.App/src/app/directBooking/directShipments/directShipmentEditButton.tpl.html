@@ -1,0 +1,130 @@
+﻿<div class="ui-grid-cell-contents fontsize12" id="dropdown-scrollable-container padding-5">
+    <div class="btn-group action-fixed-grid-center"  uib-dropdown dropdown-append-to-body>
+        &nbsp;<a id="btn-append-to-to-body" href=""  uib-dropdown-toggle>
+            <div class="fix-center-action pointer" ng-click="grid.appScope.showCords($event)"><span class="action-font-family">{{'Actions' | translate}}</span> <i class="fa fa-caret-down pointer" aria-hidden="true"></i>&nbsp;</div>
+        </a>
+              <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+            <li>
+                <a href="" ng-click="grid.appScope.DirectShipmentDetail(row)">
+                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                    <span>{{'Detail' | translate}}</span>
+                </a>
+            </li>
+            <li ng-if="row.entity.Status !== 'Draft' && (row.entity.BookingApp != 'ECOMMERCE_SS' && row.entity.BookingApp != 'ECOMMERCE_WS') ">
+                <a href="" ng-click="grid.appScope.CreateShipment(row,'ShipmentClone')">
+                    <span class="padEdit"><i class="fa fa-clone"></i></span>
+                    <span>{{'Clone' | translate}}</span>
+                </a>
+            </li>
+            <li ng-if="row.entity.Status  === 'Draft' && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                <a href="" ng-click="grid.appScope.CreateShipment(row , 'ShipmentDraft')">
+                    <span class="padDelete"><i class="fa fa-plus"></i></span>
+                    <span>{{'Create_Shipment' | translate}}</span>
+                </a>
+            </li>
+            <li ng-if="row.entity.Status  === 'Draft' && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                <a href="" ng-click="grid.appScope.DeleteDirectShipmentDocuments(row)">
+                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                    <span>{{'Delete_Draft' | translate}}</span>
+                </a>
+            </li>            
+            <li ng-if="row.entity.Status  === 'Draft' && grid.appScope.StaffRoleId === 6 && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                <a href="" ng-click="grid.appScope.MakeDraftShipmentAsPublic(row, 'True')">
+                    <span class="padDelete"><i class="fa fa-share"></i></span>
+                    <span>{{'Share_Public' | translate}}</span>
+                </a>
+            </li>
+            <li ng-if="row.entity.Status !== 'Draft' && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                <a href="" ng-click="grid.appScope.CreateShipment(row , 'ShipmentReturn')">
+                    <span class="padEdit"><i class="fa fa-retweet"></i></span>
+                    <span>{{'Create_Return' | translate}}</span>
+                </a>
+            </li>
+            <li ng-if="grid.appScope.SITECOMPANY === 'FRAYTE' && row.entity.Status  !== 'Draft' && row.entity.Status  !== 'Delay' && row.entity.Status  !== 'Past' && row.entity.Status  !== 'Cancel' && row.entity.ManifestId === 0 && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                <a href="" ng-click="grid.appScope.cancelShipment(row)">
+                    <span class="padDelete"><i class="fa fa-times"></i></span>
+                    <span>{{'Cancel_Shipment' | translate}}</span>
+                </a>
+            </li>
+            <li ng-if="grid.appScope.StaffRoleId === 1 && row.entity.Status !== 'Draft' && row.entity.Status !== 'InTransit' && row.entity.Status !== 'OutForDelivery' && row.entity.Status !== 'Exception' && row.entity.Status !== 'FailedAttempt' && row.entity.Status !== 'Delivered' && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                <a href="" ng-click="grid.appScope.removeshipment(row)">
+                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                    <span>{{'Delete_Shipment' | translate}}</span>
+                </a>
+            </li>
+            <li ng-show="row.entity.Status  !== 'Draft' && row.entity.Status  !== 'Cancel' && grid.appScope.track.BookingMethod !== 'eCommerce'" class="pointer">
+                <a ng-click="grid.appScope.TrackingPage(row.entity)" target="_blank">
+                    <span class="padEdit"><i class="fa fa-fighter-jet"></i></span>
+                    <span>{{'Track_Shipment' | translate}}</span>
+                </a>
+            </li>
+            <li ng-show="row.entity.Status  !== 'Draft' && row.entity.Status  !== 'Cancel' && grid.appScope.track.BookingMethod !== 'eCommerce' && row.entity.LogisticType !== 'UKShipment'" class="pointer">
+                <a ng-click="grid.appScope.DownLoadCommercialInvoice(row)">
+                    <span class="padDelete"><i class="fa fa-file-excel-o"></i></span>
+                    <span>{{'Download_Commercial_Invoice' | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--<div id="dropdown-scrollable-container" class="padding-5">
+    <div id="dropdown-long-content">
+        <div id="dropdown-hidden-container">
+            <div class="btn-group"  uib-dropdown dropdown-append-to-body>
+                <a id="btn-append-to-to-body"   uib-dropdown-toggle><span class="action-button">{{'Actions' | translate}} <span class="caret"></span></span></a>
+                <ul class="dropdown-menu fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                        <li>
+                            <a href="" ng-click="grid.appScope.DirectShipmentDetail(row)">
+                                <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                <span>{{'Detail' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-if="grid.appScope.CurrentStatus.StatusName !== 'Draft'">
+                            <a href="" ng-click="grid.appScope.CreateShipment(row,'ShipmentClone')">
+                                <span class="padEdit"><i class="fa fa-clone"></i></span>
+                                <span>{{'Clone' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-if="grid.appScope.CurrentStatus.StatusName === 'Draft' && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                            <a href="" ng-click="grid.appScope.CreateShipment(row , 'ShipmentDraft')">
+                                <span class="padDelete"><i class="fa fa-plus"></i></span>
+                                <span>{{'Create_Shipment' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-if="grid.appScope.CurrentStatus.StatusName === 'Draft' && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                            <a href="" ng-click="grid.appScope.DeleteDirectShipmentDocuments(row)">
+                                <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                <span>{{'Delete_Draft' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-if="grid.appScope.CurrentStatus.StatusName !== 'Draft' && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                            <a href="" ng-click="grid.appScope.CreateShipment(row , 'ShipmentReturn')">
+                                <span class="padEdit"><i class="fa fa-retweet"></i></span>
+                                <span>{{'Create_Return' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-if="grid.appScope.CurrentStatus.StatusName !== 'Draft' && grid.appScope.CurrentStatus.StatusName !== 'Delay' && grid.appScope.CurrentStatus.StatusName !== 'Past' && grid.appScope.CurrentStatus.StatusName !== 'Cancel' && row.entity.ManifestId === 0 && grid.appScope.track.BookingMethod !== 'eCommerce'">
+
+                            <a href="" ng-click="grid.appScope.cancelShipment(row)">
+                                <span class="padDelete"><i class="fa fa-times"></i></span>
+                                <span>{{'Cancel_Shipment' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-show="grid.appScope.CurrentStatus.StatusName !== 'Draft' && grid.appScope.CurrentStatus.StatusName !== 'Cancel' && grid.appScope.track.BookingMethod !== 'eCommerce'">
+                            <a ng-click="grid.appScope.TrackingPage(row.entity)" target="_blank">
+                                <span class="padEdit"><i class="fa fa-fighter-jet"></i></span>
+                                <span>{{'Track_Shipment' | translate}}</span>
+                            </a>
+                        </li>
+                        <li ng-show="grid.appScope.CurrentStatus.StatusName !== 'Draft' && grid.appScope.CurrentStatus.StatusName !== 'Cancel' && grid.appScope.track.BookingMethod !== 'eCommerce' && row.entity.LogisticType !== 'UKShipment'">
+                            <a ng-click="grid.appScope.DownLoadCommercialInvoice(row)">
+                                <span class="padDelete"><i class="fa fa-file-excel-o"></i></span>
+                                <span>{{'Download_Commercial_Invoice' | translate}}</span>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    </div>-->

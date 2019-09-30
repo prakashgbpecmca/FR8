@@ -1,0 +1,99 @@
+﻿
+
+<section>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="closePopUp()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Collection' | translate}} {{'DateAndTime' | translate}}</h4>
+    </div>
+    <form name="DirectBookingForm" ng-submit="PlaceBooking(DirectBookingForm, DirectBookingForm.$valid, directBooking)" novalidate autocomplete="off">
+        <div class="modal-body" id="arrow-right-fixed">
+            <h4><span class="frayte-orange">{{'Ship_From_Country_Current_Date_and_Time' | translate}} {{CurrentDate}} {{CurrentTime}}</span> {{'Hours24' | translate}}</h4>
+            <div class="checkbox col-sm-12 fix-checkbox-data-time">
+                <input type="checkbox" id="chkOption" name="chkOption" ng-model="IsCollection" /> {{'Set_Pickup_Date_Time' | translate}}
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 form-group paddingboth"
+                 ng-class="{ 'has-error': DirectBookingForm.shipmentCollectionDate.$invalid &&
+                                                         (DirectBookingForm.shipmentCollectionDate.$dirty || submitted), 'has-error': (DirectBookingForm.collectiontime.$invalid || DirectBookingForm.collectioTimeMinutes.$invalid || checkTime(DirectBookingForm)) &&
+                                                     (DirectBookingForm.collectiontime.$dirty || DirectBookingForm.collectioTimeMinutes.$dirty || submitted) }" id="collection-date-time">
+                <div class="col-sm-12 paddingleft">
+                    <div class="form-group">
+                        <!--<label for="shipmentCollectionDate" id="shipmentCollectionDateLabel" class="form-group frayte-orange">{{'Collection' | translate}} <small>{{'Date_Time' | translate}}</small> <span class="redColor">*</span></label>-->
+                        <div class="col-sm-11 paddingboth">
+                            <div class="col-sm-12 paddingboth">
+                                <div class="col-sm-7 paddingboth">
+                                    <div class="input-group">
+                                        <input type="text" id="shipmentCollectionDate" name="shipmentCollectionDate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                               ng-model="CollectionDate" is-open="status.opened" ng-change="GetDateDay(CollectionDate)"
+                                               min-date="mindate" max-date="maxdate" ng-disabled="!IsCollection"
+                                               datepicker-options="dateOptions" readonly
+                                               close-text="Close" ng-click="OpenCalender($event)" ng-required="directBooking.CustomerRateCard.LogisticServiceId > 0 && directBooking.CustomerRateCard.CourierName === 'DHL'" required placeholder="{{'Est_CollectionDate' | translate}} ({{'Required' | translate}})" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="OpenCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5 paddingright pad-left5" ng-class="{'disabledanchor no-drop':!IsCollection}" ng-disabled="!IsCollection">
+                                    <div collection-date-time datasource="CollectionTime"></div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <span class="help-block has-error"
+                                  ng-show="DirectBookingForm.shipmentCollectionDate.$error.required &&
+                                                (DirectBookingForm.shipmentCollectionDate.$dirty || submitted)">
+                                {{'serviceoptn_PickupDateValidError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="DirectBookingForm.shipmentCollectionDate.$invalid && !DirectBookingForm.shipmentCollectionDate.$error.required &&
+                                                (DirectBookingForm.shipmentCollectionDate.$dirty || submitted)">
+                                {{'serviceoptn_PickupDateInvalid' | translate}}
+                            </span>
+                            <!--<span class="help-block has-error" ng-show="(DirectBookingForm.collectiontime.$invalid ||  DirectBookingForm.collectioTimeMinutes.$invalid ) &&
+                                                             (DirectBookingForm.collectiontime.$dirty || DirectBookingForm.collectioTimeMinutes.$dirty || submitted)">
+                                {{'CollectionTime_Required' | translate}}
+                            </span>-->
+                            <span class="help-block has-error"
+                                  ng-show="checkTime(DirectBookingForm)">
+                                {{'Time_Validation' | translate}}
+                            </span>
+                        </div>
+                        <div class="col-sm-1 paddingboth estimatedPickupDate fix-collection-date-time-popup">
+                            <a ng-show="SITECOMPANY === 'FRAYTE'" href="" class="padding7px" popover-placement="auto" uib-popover='Please note, all collection dates and times requested and booked will be estimates only. FRAYTE Logistics has no control over the ability for individual couriers to achieve the desired collection slot arrangements. Should problems arise as a direct result of the selected courier not making the requested collection, it is advisable to take up a dispute directly with the nominated courier.' popover-trigger="'outsideClick'">
+                                <i class="fa fa-question-circle help pull-right" aria-hidden="true" style="position:relative;left:15px;"></i>
+                            </a>
+                            <a ng-show="SITECOMPANY === 'MAXLOGISTIC'" href="" class="padding7px" popover-placement="auto" uib-popover='Please note, all collection dates and times requested and booked will be estimates only. MEX Logistics has no control over the ability for individual couriers to achieve the desired collection slot arrangements. Should problems arise as a direct result of the selected courier not making the requested collection, it is advisable to take up a dispute directly with the nominated courier.' popover-trigger="'outsideClick'">
+                                <i class="fa fa-question-circle help pull-right" aria-hidden="true" style="position:relative;left:15px;"></i>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <ng-form name="tags0">
+                </ng-form>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div>
+                <p><span>{{'Collection_Date_Time_Message' | translate}}</span></p>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-show="Message === true">
+                <p><span class="redColor bold">{{'Note' | translate}}:</span> {{'SaturdayPickupChargeable' | translate}}</p>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-show="IsCollectionDateTime === true">
+                <p><span class="redColor bold">{{'FrayteWarning' | translate}}:</span> {{'CollectionDateTimeWarning' | translate}}</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="panel-footer background-white">
+            <div class="pull-right">
+                <button type="submit" ng-click="submitted=true; BookingType = 'Current'; ButtonValue = 'PlaceBooking'" class="btn btn-simple btn-save"><i class="fa fa-check" aria-hidden="true"></i> {{'OK' | translate}}</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+</section>

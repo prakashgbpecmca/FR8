@@ -1,0 +1,59 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; background: #fff; font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+        <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@ViewBag.ImageHeader" />
+        </div>
+    </header>
+	<br/>
+	<table style="border-spacing: 0px;">
+		<tr><td style="font-family: calibri, sans-serif;">Dear <b>@ViewBag.CustomerName,</b></td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><span>Your shipment @ViewBag.Title was delivered to its destination on @ViewBag.LAST_UPDATE_TIME.</span></td></tr>     
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>View Tracking Details: </b> @ViewBag.TrackingURL</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Courier:</b> @ViewBag.Courier</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Tracking Number:</b> <a href="@ViewBag.TrackingURL">@ViewBag.Trackingnumber</a></td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Shipment Status:</b> <span style="color:orange;">@ViewBag.DetailStatus</span></td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Latest Location:</b> @ViewBag.Location</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Courier Contact:</b> @ViewBag.CourierContactNo</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>If you have questions regarding your shipment(s) status, please contact the courier directly.</b></td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+	</table>
+	<br/>
+	<table style="border-spacing: 0px;">
+		<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+        <tr><td style="font-family: calibri, sans-serif;">@ViewBag.UserName</td></tr>
+        <tr><td style="font-family: calibri, sans-serif;">@ViewBag.UserPosition</td></tr>
+        <tr><td style="font-family: calibri, sans-serif;"><b>FRAYTE GLOBAL</b></td></tr>
+        <tr><td style="font-family: calibri, sans-serif;"><b>Email:</b>&nbsp; @ViewBag.UserEmail</td></tr>
+        <tr><td style="font-family: calibri, sans-serif;"><b>Phone:</b>&nbsp; @ViewBag.UserPhoneNumber</td></tr>
+        <tr><td style="font-family: calibri, sans-serif;"><a href="@ViewBag.SiteAddress">@ViewBag.SiteAddress</a></td></tr>
+	    <tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+	</table>
+    <br/>
+    <footer>
+        <table style="border-spacing: 0px;">
+            <tr><td style="font-size: 12px;font-family: calibri, sans-serif;">FRAYTE GLOBAL All rights reserved.</td></tr>
+        </table>
+    </footer>
+</body>
+</html>
+

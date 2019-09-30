@@ -1,0 +1,30 @@
+﻿@using System.Web.WebPages.Razor;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="margin: 0;padding: 0;background: #eaf0f5;border: 1px solid #ddd;font-family:calibri, sans-serif;">
+    <header>
+        <div style="height: 70px;background: #fff !important;box-shadow: 0px 1px 4px -2px;padding:0 30px;text-align:left;">
+            <img src="cid:@Model.ImageHeader" style="width:150px;padding:20px 0px;" />
+        </div>
+    </header>
+    <div style="background: #fff;margin: 30px 20px;padding: 0 20px;border: 1px solid #ddd;font-size:14px;">
+        <div>
+            <h3>Credentials details for Frayte Management System</h3>
+        </div>
+        <div style="margin: 30px 0;">
+            <p>To login into the Frayte Management System please use below cridentials.</p>            
+            <b>User Name: </b> @Model.UserName <br />
+            <b>Password: </b>  @Model.Password
+        </div>
+    </div>
+    <footer>
+        <div style="height: 50px;border: 1px solid #ddd;background: #dce5ec !important;font-size: 12px;text-align: left;padding:25px 30px;">
+            <p>FRAYTE GLOBAL All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

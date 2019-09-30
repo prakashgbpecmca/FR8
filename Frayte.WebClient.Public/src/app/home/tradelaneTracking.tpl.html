@@ -1,0 +1,794 @@
+﻿
+<section>
+    <div class="form-group"></div>
+    <div class="container">
+        <!--<div class="row">
+            <div class="form-group col-sm-12">
+                <h3 class="border-bottom-black">{{'Track_Your_Shipment' | translate}}</h3>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 paddingboth">
+                    <form name="trackingSearch" id="trackingSearch" ng-submit="SearchTradelaneTracking(trackingSearch.$valid, AirPickDetail)" novalidate>
+                        <div class="col-sm-12 paddingboth">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label" id="mawb" name="mawb" for="apikey">{{'MAWB_' | translate}} <span class="redColor">*</span></label>
+                                <select name="status" id="status" ng-options="AirPick as AirPick.Name for AirPick in TradelaneAirPickType" class="form-control fontsize12"
+                                        ng-model="AirPickDetail.AirPick"
+                                        required>
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'MAWB_' | translate}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6" style="margin-right:0px;" ng-class="{ 'has-error': trackingSearch.airPickType.$invalid &&
+                                            (trackingSearch.airPickType.$dirty) }">
+                                <label class="control-label" id="airPickType" name="airPickType" for="apikey">{{'Number' | translate}} <span class="redColor">*</span></label>
+                                <input type="text" ng-model="AirPickDetail.AirPicktype" ng-change="CheckMawb(AirPickDetail.AirPicktype)" maxlength="13" class="form-control fontsize12" id="airPickType" name="airPickType" placeholder="{{'MawbType' | translate}} ({{'Required' | translate}})" required>
+                                <span class="help-block has-error" ng-show="trackingSearch.airPickType.$invalid &&
+                                            (trackingSearch.airPickType.$dirty)">
+                                    {{'Number' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn-simple btn-primary" ng-click="submitted= true;" id="search" name="search"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button> &nbsp; &nbsp;
+                                <button type="button" class="btn-simple btn-save" ng-click="ClearForm()" id="clear" name="clear"><i class="fa fa-filter" aria-hidden="true"></i> {{'Clear' | translate}}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-8 paddingboth">
+                    <div class="width20 top9" ng-repeat="TA in TrackingArray" style="border: 1px solid #ddd;padding: 10px;text-align: center;">
+                        <div class="form-group">
+                            <div class="form-group">{{TA.NumType}} {{TA.Num}}</div>
+                            <div class="form-group">{{TA.DepartureAirport}} - {{TA.DestinationAirport}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>-->
+        <!--end-->
+        <!--collapse and uncollapse code here-->
+        <!--<div class="col-sm-12 clearfix paddingboth form-group">
+            <button type="button" class="btn-simple btn-save pull-right" ng-click="allCollapse = !allCollapse"><i class="fa f-14" ng-class="{'fa-chevron-up':allCollapse,'fa-chevron-down':!allCollapse}"></i> <span ng-if="!allCollapse">All Collapse</span><span ng-if="allCollapse">All Uncollapse</span></button>
+        </div>-->
+        <div class="clearfix"></div>
+        <!--end-->
+       
+        <!--Public tracking tradelane code-->
+        <div class="panel panel-default" ng-show="TrackingListDetail.length > 0">
+            <div class="panel-heading"><span class="fontsize22"><i ng-click="moduleClick()" class="fa pointer"></i> {{'Tradelane' | translate}}</span></div>
+            <div class="panel-body" ng-if="module" ng-repeat="TL in TrackingListDetail">
+
+                <!--first mail-->
+                <div>
+                    <div class="form-group"></div>
+                    <div class="panel panel-default">
+                        <!--header code-->
+                        <div class="panel-heading">
+                            <div class="col-sm-12 col-xs-12 paddingboth">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div style="width:4%;float:left;">
+                                        <span class="fontsize18"><i ng-click="firstClick(TL)" class="fa pointer" ng-class="{'fa-plus-square-o':!TL.IsCollapsed, 'fa-minus-square-o':TL.IsCollapsed}"></i></span>
+                                    </div>
+                                    <div style="width:96%;float:left;">
+                                        <div><b>{{'Reference_Number' | translate}}: </b>{{TL.ShipmentDetail.FrayteNumber}}</div>
+                                        <div><b>{{'Total_Pcs' | translate}}: </b>{{TL.ShipmentDetail.TotalPieces}}</div>
+                                        <div><b>{{'Status' | translate}}: </b><span class="trackingnew-caps text-transform-none">{{TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].TrackingDescription}}</span></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div><b>{{'Estimate_Weight' | translate}}: </b><span>{{TL.ShipmentDetail.EstimatedWeight}} {{'KGS' | translate}}</span></div>
+                                    <div><b>{{'UpdatedAt' | translate}}: </b><span>{{TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].CreatedOnUtc}}</span></div>
+                                    <div><span class="visibility">hidden</span></div>
+                                 </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end-->
+                        <!--body code-->
+                        <div class="panel-body" ng-if="TL.IsCollapsed">
+                            <div class="clearfix"></div>
+                            <div>
+                                <div class="col-sm-12">
+                                    <div>
+                                        <div class="form-group border padding-10">
+                                            <span class="frayte-orange ng-binding">{{'Shipment_Info' | translate}}: </span><span class="ng-binding">{{'MAWB_' | translate}}# <b class="ng-binding">{{TL.ShipmentDetail.Mawb}}</b> </span><span class="ng-binding">{{'Frayte_ShipmentNo' | translate}} <b class="ng-binding">{{TL.ShipmentDetail.FrayteNumber}}</b></span>
+                                            <span>{{TL.ShipmentDetail.DepartureAirportCode}} - {{TL.ShipmentDetail.DestinationAirportCode}}</span>
+                                            <span class="ng-binding"><b class="ng-binding">{{TL.ShipmentDetail.TotalPieces}}</b> {{'pkgs' | translate}}</span>
+                                            <span class="ng-binding"><b class="ng-binding">{{TL.ShipmentDetail.EstimatedWeight}}</b> {{'Kgs' | translate}}</span>
+                                            <span class="ng-binding"><b class="ng-binding">{{TL.ShipmentDetail.TotalVolume}}</b> {{'CBM' | translate}}</span>
+                                        </div>
+                                        <div class="form-group border-ddd padding-10">
+                                            <span class="frayte-orange ng-binding">{{'Current_Status' | translate}}: </span>
+                                            <span class="ng-binding" ng-show="TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].TrackingDescription !== undefined && TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].TrackingDescription !== null && TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].TrackingDescription !== ''">{{TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].TrackingDescription}}</span>
+                                            <span class="ng-binding" ng-show="TL.ShipmentDetail.TotalPieces !== undefined && TL.ShipmentDetail.TotalPieces !== null && TL.ShipmentDetail.TotalPieces !== ''"><b>{{TL.ShipmentDetail.TotalPieces}}</b> {{'PKG' | translate}}</span>
+                                            <span class="ng-binding" ng-show="TL.ShipmentDetail.EstimatedWeight !== undefined && TL.ShipmentDetail.EstimatedWeight !== null && TL.ShipmentDetail.EstimatedWeight !== ''"><b>{{TL.ShipmentDetail.EstimatedWeight}}</b> {{'Kgs' | translate}}</span>
+                                            <span class="ng-binding" ng-show="TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].CreatedOnUtc !== undefined && TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].CreatedOnUtc !== null && TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].CreatedOnUtc !== ''">{{TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].CreatedOnUtc}}</span>
+                                            <span class="ng-binding" ng-show="TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].AirportCode !== undefined && TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].AirportCode !== null && TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].AirportCode !== ''">at {{TL.TRadelaneTrackingOperationalList[TL.TRadelaneTrackingOperationalList.length - 1].AirportCode}}</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-12 paddingboth clearfix">
+                                            <div class="col-sm-4" ng-class="{'display-none':TSS.AirportCode===null || TSS.AirportCode===''}" ng-show="!IsShowTrackingData" ng-repeat="TSS in TL.TradelaneStatus">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading text-center bold">{{TSS.AirportCode}}</div>
+                                                    <div class="panel-body">
+                                                        <div ng-show="TSS.TrackingStatus !== null && TSS.TrackingStatus.length ==1" class="col-sm-12 text-center">
+                                                            <div class="border-bottom-ddd" style="padding:20px;"><span class="trackingColor">{{TSS.TrackingStatus[0].ShipmentCode}}</span></div>
+                                                            <div class="form-group top9"><b>{{TSS.TrackingStatus[0].Pieces}}</b> {{'Pcs' | translate}}, <b>{{TSS.TrackingStatus[0].TotalWeight}}</b> {{'KGS' | translate}}</div>
+                                                            <div class="form-group">{{TSS.TrackingStatus[0].Date}}</div>
+                                                        </div>
+                                                        <div ng-show="TSS.TrackingStatus !== null && TSS.TrackingStatus.length > 1">
+                                                            <div class="col-sm-6 trackingBorder text-center">
+                                                                <div class="border-bottom-ddd" style="padding:20px;"><span class="trackingColor">{{TSS.TrackingStatus[0].ShipmentCode}}</span></div>
+                                                                <div class="form-group top9"><b>{{TSS.TrackingStatus[0].Pieces}}</b> {{'Pcs' | translate}}, <b>{{TSS.TrackingStatus[0].TotalWeight}}</b> {{'KGS' | translate}}</div>
+                                                                <div class="form-group">{{TSS.TrackingStatus[0].Date}}</div>
+                                                            </div>
+                                                            <div class="col-sm-6 text-center">
+                                                                <div class="border-bottom-ddd" style="padding:20px;"><span class="trackingColor">{{TSS.TrackingStatus[TSS.TrackingStatus.length - 1].ShipmentCode}}</span></div>
+                                                                <div class="form-group top9"><b>{{TSS.TrackingStatus[TSS.TrackingStatus.length - 1].Pieces}}</b> {{'Pcs' | translate}}, <b>{{TSS.TrackingStatus[TSS.TrackingStatus.length - 1].TotalWeight}}</b> {{'KGS' | translate}}</div>
+                                                                <div class="form-group">{{TSS.TrackingStatus[TSS.TrackingStatus.length - 1].Date}}</div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 paddingboth grid-font">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><span class="ng-binding">{{'Tracking_Detail' | translate}}</span></div>
+                                            <div class="panel-body">
+                                                <!--add tracking & add custom tracking button code here-->
+                                                <div class="clearfix"></div>
+                                                <!--end-->
+                                                <!--flight no. code here-->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading padding0">
+                                                        <div class="col-sm-12 paddingboth panel-header clearfix">
+                                                            <div class="width10 bordered-right padding-tb-10 word-wrap"><span class="padding-5 ng-binding">{{'FlightNumber' | translate}}</span></div>
+                                                            <div class="width13 bordered-right padding-tb-10 word-wrap"><span class="padding-5 ng-binding">{{'Departure' | translate}}</span></div>
+                                                            <div class="width13 bordered-right padding-tb-10 word-wrap"><span class="padding-5 ng-binding">{{'Arrival' | translate}}</span></div>
+                                                            <div class="width10 bordered-right padding-tb-10 word-wrap"><span class="padding-5 ng-binding">{{'Segment' | translate}}</span></div>
+                                                            <div class="width8 bordered-right padding-tb-10 word-wrap"><span class="padding-5 ng-binding">{{'Pieces' | translate}}</span></div>
+                                                            <div class="width10 bordered-right padding-tb-10 word-wrap"><span class="padding-5 ng-binding">{{'Weight' | translate}} <span class="text-uppercase">({{'KG' | translate}})</span></span></div>
+                                                            <div class="width10 bordered-right padding-tb-10 word-wrap"><span class="padding-5 ng-binding">{{'Volume' | translate}} <span class="text-uppercase">({{'HC' | translate}})</span></span></div>
+                                                            <div class="width26 padding-tb-10 word-wrap width26"><span class="padding-5 ng-binding">{{'Booking_Status' | translate}}</span></div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="panel-body padding0">
+                                                        <div ng-if="TL.TRadelaneTrackingList.length >0">
+                                                            <div class="col-sm-12 paddingboth flex change" ng-repeat="TRList in TL.TRadelaneTrackingList">
+                                                                <div class="width10 padding-5 bordered-right">{{TRList.FlightNo}}</div>
+                                                                <div class="width13 padding-5 bordered-right">{{TRList.DepartureDate}}</div>
+                                                                <div class="width13 padding-5 bordered-right">{{TRList.ArrivalDate}}</div>
+                                                                <div class="width10 padding-5 bordered-right">{{TRList.DepartureAirportCode}} - {{TRList.DestinationAirportCode}}</div>
+                                                                <div class="width8 padding-5 bordered-right">{{TRList.TotalPeices}}</div>
+                                                                <div class="width10 padding-5 bordered-right">{{TRList.TotalWeight}}</div>
+                                                                <div class="width10 padding-5 bordered-right">{{TRList.Volume}}</div>
+                                                                <div class="width26 padding-5">{{TRList.BookingStatus}}</div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <!--end-->
+                                                <!--operation stauts code here-->
+                                                <div class="col-sm-12 paddingboth">
+                                                    <div class="panel panel-default margin-bottom-none">
+                                                        <div class="panel-heading padding0">
+                                                            <div class="col-sm-12 paddingboth flex">
+                                                                <div class="width150 padding-tb-10 bordered-right"><span class="left5 ng-binding">{{'Operational_Status' | translate}}</span></div>
+                                                                <div class="width150 padding-tb-10 bordered-right"><span class="padding-5 ng-binding">{{'Airport' | translate}}</span></div>
+                                                                <div class="width150 padding-tb-10 bordered-right word-wrap"><span class="padding-5 ng-binding">{{'FlightNumber' | translate}}</span></div>
+                                                                <div class="width150 padding-tb-10 bordered-right"><span class="padding-5 ng-binding">{{'DateAndTime' | translate}}</span></div>
+                                                                <div class="width40 padding-tb-10 width20"><span class="padding-5 ng-binding">{{'Details' | translate}}</span></div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="panel-body padding0">
+                                                            <div ng-if="TL.TRadelaneTrackingOperationalList.length >0">
+                                                                <div class="col-sm-12 paddingboth change" ng-repeat="OpList in TL.TRadelaneTrackingOperationalList">
+                                                                    <div>
+                                                                        <div class="width150 padding-5 bordered-right">{{OpList.TrackingCode}}</div>
+                                                                        <div class="width150 padding-5 bordered-right">{{OpList.AirportCode}}</div>
+                                                                        <div class="width150 padding-5 bordered-right">{{OpList.FlightNo}}</div>
+                                                                        <div class="width150 padding-5 bordered-right">{{OpList.CreatedOnUtc}}</div>
+                                                                        <div class="width40 padding-5">{{OpList.TrackingDescription}}</div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-if="TL.TRadelaneTrackingOperationalList.length === 0">
+                                                                <div class="fontsize18 redColor paddingTB60 text-center">{{'No_Record_Found' | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+                </div>
+                <!--end-->
+            </div>
+        </div>
+        <!--end-->
+       
+        <!--Public tracking express awb code-->
+        <div class="panel panel-default" ng-show="trackingInfosList.length > 0">
+            <div class="panel-heading"><span class="fontsize22"><i ng-click="moduleClick()" class="fa pointer"></i> {{'Express_AWB' | translate}}</span></div>
+            <div class="panel-body">
+                <!--first mail-->
+                <div ng-if="trackingInfosList.length > 0" class="panel panel-default" ng-repeat="tracking in trackingInfosList">
+                    <div ng-repeat="trackingInfo in tracking" class="panel-heading">
+                        <div>
+                            <div class="col-sm-12 col-xs-12 paddingboth" ng-if="trackingInfo.IsHeaderShow">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div style="width:4%;float:left;">
+                                        <span class="fontsize18"><i ng-click="trackingInfo.first = !trackingInfo.first" class="fa pointer" ng-class="{'fa-plus-square-o':!trackingInfo.first, 'fa-minus-square-o':trackingInfo.first}"></i></span>
+                                    </div>
+                                    <div style="width:96%;float:left;">
+                                        <div><b>{{'AWB' | translate}} {{'Number' | translate}}: </b>{{trackingInfo.TrackingNumber}} ({{trackingInfo.Carrier}})</div>
+                                        <div><b>{{'Total_Pcs' | translate}}: </b> {{trackingInfo.NoOfPieces}}</div>
+                                        <div><b>{{'Status' | translate}}: </b><span class="trackingnew-caps text-transform-none">{{GetShipemtStatus(trackingInfo.StatusDisplay)}}</span></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div><b>{{'Carrier' | translate}}: </b><span>{{trackingInfo.Carrier}}</span></div>
+                                    <div><b>{{'Weight' | translate}}: </b><span>{{trackingInfo.EstimatedWeight}} {{'Kgs' | translate}}</span></div>
+                                    <div><b>{{'UpdatedAt' | translate}}: </b><span>{{GetCorrectFormattedDate(trackingInfo.UpdatedAtDate, trackingInfo.UpdatedAtTime)}}</span></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!--start Tracking code-->
+                    <div ng-if="!trackingInfo.first" class="panel-body" ng-repeat="trackingInfo in tracking">
+                        <div id="top">
+                            <div>
+                                <div ng-attr-id="{{trackingInfo.TrackingNumber}}">
+                                    <div class="border-tracking">                                  
+                                        <div class="clearfix"></div>
+                                        <div ng-if="!trackingInfo.IsShowHideDetail" class="panel panel-default margin-bottom-none">
+                                            <div class="col-sm-12" style="height:50px;">
+                                                <div style="width:30px; float:left;">
+                                                    <span class="no-print" ng-click="ShowHidePickupPanel(trackingInfo)">
+                                                        <a href="" style="font-size:24px;"><i ng-class="{'fa fa-plus-square-o' : trackingInfo.IsPanelShow, 'fa fa-minus-square-o' : !trackingInfo.IsPanelShow}" aria-hidden="true"></i></a>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <div class="col-sm-2">
+                                                        <h4 class="bottom2">{{'Date' | translate}}/{{'Time' | translate}}</h4>
+                                                    </div>
+                                                    <div class="col-sm-5"><h4 class="bottom2">{{'Activity' | translate}}</h4></div>
+                                                    <div class="col-sm-4"><h4 class="bottom2">{{'Location' | translate}}</h4></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <div ng-if="!trackingInfo.IsShowHideDetail" ng-repeat="item in trackingInfo.TrackingDetails | orderBy:['-Date'] track by $index" class="panel panel-default margin-bottom-none">
+                                            <div class="panel-heading" style="padding:20px;">
+                                                <div class="col-sm-12">
+                                                    <div style="width:30px;float:left;margin-top: -12px;" ng-click="item.IsCollapsed =!item.IsCollapsed">
+                                                        <span class="no-print">
+                                                            <a><i ng-class="{'fa fa-plus-square-o' : item.IsCollapsed, 'fa fa-minus-square-o' : !item.IsCollapsed}" aria-hidden="true" style="font-size:20px;"></i></a>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-sm-3 paddingboth" style="margin-top:-12px;padding-left:0px;">
+                                                        {{GetCorrectFormattedDatePanel(item.Date)}} - {{getDayName(item.Date)}}
+                                                    </div>
+                                                    <div class="col-sm-6"></div>
+                                                    <div class="col-sm-2"></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+
+                                            <div ng-repeat="detail in item.Detail | orderBy:'-Time'" ng-if="!item.IsCollapsed" class="panel-body" id="tracking-email">
+                                                <div class="col-sm-12">
+                                                    <div>
+                                                        <div class="col-sm-2" style="padding-left:45px;font-size:small">
+                                                            {{detail.Time}}
+                                                        </div>
+                                                        <div class="col-sm-5" style="padding-left:40px ;font-size:small">
+                                                            <div>{{detail.Activity}} <span ng-if="detail.Activity==='Delivered - Signed for by'">{{trackingInfo.SignedBy}}</span></div>
+                                                        </div>
+                                                        <div class="col-sm-4" style="padding-left:45px ; font-size:small">
+                                                            <div>{{detail.Location}} <span ng-if="detail.Location === null || detail.Location === ''">{{'N_A' | translate}}</span></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Shoew Hide and Print Functionality -->
+                                        <div class="col-sm-12 no-display" style="padding:20px;">
+                                            <div>
+                                                <div class="pull-left">
+                                                    <p style="cursor:pointer"><a><i class="fa fa-angle-right" aria-hidden="true"></i> {{ShowHideText(trackingInfo)}} {{'Details' | translate}}</a></p>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <a ng-click="printToCart(trackingInfo.TrackingNumber)" class="btn-simple btn-lg btn-success"><i class="fa fa-print" aria-hidden="true"></i> {{'Print' | translate}}</a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div>
+                                                <p>{{'Dedicated_Service_Team' | translate}} {{'Please_Contat' | translate}} <a href="tracking@{{FrayteWebsite}}">tracking@{{FrayteWebsite}}</a></p>
+                                                <p>{{'Tracking_Date_Time_Check_Point_Location' | translate}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end Tracking code-->
+                    <div class="clearfix"></div>
+                    <!--start Consignment Tracking code-->
+                    <!--end Consignment Tracking-->
+                    <div class="clearfix"></div>
+                </div>
+                <!--<div ng-if="Iserrorshow === true && (trackingInfos === undefined || trackingInfos === null)" class="panel panel-default">
+                        <div class="panel-heading">
+                            <span>{{'Consignment_Tracking' | translate}}</span>
+                        </div>
+                        <div class="panel-body">
+                            <section>
+                                <div class="col-sm-12" ng-show="!TNTError">
+                                    <h3 class="margin-top10">{{'Incorrect_Tracking_Number' | translate}}</h3>
+                                    <div class="col-sm-12 paddingboth">
+                                        <p>{{'NotValid_TrackingCode' | translate}}</p>
+                                    </div>
+                                </div>
+                                <div ng-show="TNTError">
+                                    <div class="col-sm-12">
+                                        <p>{{'Incorrect_Tracking_Number_Detail' | translate}}</p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="clearfix"></div>
+                </div>-->
+                <!--end-->
+            <div class="clearfix"></div>
+            <!--<div ng-show="IsShowTrackingData">
+                <div class="panel-body">
+                    <div class="fontsize18 redColor paddingTB60 text-center">{{'You_Enter_Incorrect_Detail' | translate}}</div>
+                </div>
+            </div>-->
+            </div>
+        </div>
+        <!--end-->
+
+        <!--Public tracking express bag code-->
+        <div class="panel panel-default" ng-show="trackingBagInfosList.length > 0">
+            <div class="panel-heading"><span class="fontsize22"><i ng-click="moduleClick()" class="fa pointer"></i> {{'Express_Bag' | translate}}</span></div>
+
+            <div class="panel-body">
+            <!--first mail-->
+            <div ng-if="trackingBagInfosList.length > 0" class="panel panel-default" ng-repeat="tracking in trackingBagInfosList">
+
+                <div class="panel-heading">
+                    <div ng-repeat="trackingInfo in tracking" class="panel-heading">
+                        <div>
+                            <div class="col-sm-12 col-xs-12 paddingboth" ng-if="trackingInfo.IsHeaderShow">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div style="width:4%;float:left;">
+                                        <span class="fontsize18"><i ng-click="firstClick()" class="fa pointer" ng-class="{'fa-plus-square-o':!trackingInfo.first, 'fa-minus-square-o':trackingInfo.first}"></i></span>
+                                    </div>
+                                    <div style="width:96%;float:left;">
+                                        <div><b>{{'Bag' | translate}} {{'Number' | translate}}: </b>{{trackingInfo.TrackingNumber}} ({{trackingInfo.Carrier}})</div>
+                                        <div><b>{{'Total_Shipments' | translate}}: </b> {{trackingInfo.NoOfPieces}}</div>
+                                        <div><b>{{'Status' | translate}}: </b><span class="trackingnew-caps text-transform-none">{{GetShipemtStatus(trackingInfo.StatusDisplay)}}</span></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div><b>{{'Carrier' | translate}}: </b><span>{{trackingInfo.Carrier}}</span></div>
+                                    <div><b>{{'Weight' | translate}}: </b><span>{{trackingInfo.EstimatedWeight}} {{'Kgs' | translate}}</span></div>
+                                    <div><b>{{'UpdatedAt' | translate}}: </b><span>{{GetCorrectFormattedDate(trackingInfo.UpdatedAtDate, trackingInfo.UpdatedAtTime)}}</span></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--start Tracking code-->
+                <div ng-if="!trackingInfo.first" class="panel-body" ng-repeat="trackingInfo in tracking">
+                    <div id="top">
+                        <div>
+                            <div ng-attr-id="{{trackingInfo.TrackingNumber}}">
+                                <div class="border-tracking">
+                                    <div ng-if="!trackingInfo.IsShowHideDetail" class="panel panel-default margin-bottom-none">
+                                        <div class="col-sm-12" style="height:50px;">
+                                            <div style="width:30px; float:left;">
+                                                <span class="no-print" ng-click="ShowHidePickupPanel(trackingInfo)">
+                                                    <a href="" style="font-size:24px;"><i ng-class="{'fa fa-plus-square-o' : trackingInfo.IsPanelShow, 'fa fa-minus-square-o' : !trackingInfo.IsPanelShow}" aria-hidden="true"></i></a>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="col-sm-2">
+                                                    <h4 class="bottom2">{{'Date' | translate}}/{{'Time' | translate}}</h4>
+                                                </div>
+                                                <div class="col-sm-5"><h4 class="bottom2">{{'Activity' | translate}}</h4></div>
+                                                <div class="col-sm-4"><h4 class="bottom2">{{'Location' | translate}}</h4></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div ng-if="!trackingInfo.IsShowHideDetail" ng-repeat="item in trackingInfo.TrackingDetails | orderBy:['-Date'] track by $index" class="panel panel-default margin-bottom-none">
+                                        <div class="panel-heading" style="padding:20px;">
+                                            <div class="col-sm-12">
+                                                <div style="width:30px;float:left;margin-top: -12px;" ng-click="item.IsCollapsed =!item.IsCollapsed">
+                                                    <span class="no-print">
+                                                        <a><i ng-class="{'fa fa-plus-square-o' : item.IsCollapsed, 'fa fa-minus-square-o' : !item.IsCollapsed}" aria-hidden="true" style="font-size:20px;"></i></a>
+                                                    </span>
+                                                </div>
+                                                <div class="col-sm-3 paddingboth" style="margin-top:-12px;padding-left:0px;">
+                                                    {{GetCorrectFormattedDatePanel(item.Date)}} - {{getDayName(item.Date)}}
+                                                </div>
+                                                <div class="col-sm-6"></div>
+                                                <div class="col-sm-2"></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-repeat="detail in item.Detail | orderBy:'-Time'" ng-if="!item.IsCollapsed" class="panel-body" id="tracking-email">
+                                            <div class="col-sm-12">
+                                                <div>
+                                                    <div class="col-sm-2" style="padding-left:45px;font-size:small">
+                                                        {{detail.Time}}
+                                                    </div>
+                                                    <div class="col-sm-5" style="padding-left:40px ;font-size:small">
+                                                        <div>{{detail.Activity}} <span ng-if="detail.Activity==='Delivered - Signed for by'">{{trackingInfo.SignedBy}}</span></div>
+                                                    </div>
+                                                    <div class="col-sm-4" style="padding-left:45px ; font-size:small">
+                                                        <div>{{detail.Location}} <span ng-if="detail.Location === null || detail.Location === ''">{{'N_A' | translate}}</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Shoew Hide and Print Functionality -->
+                                    <div class="col-sm-12 no-display" style="padding:20px;">
+                                        <div>
+                                            <div class="pull-left">
+                                                <p style="cursor:pointer"><a><i class="fa fa-angle-right" aria-hidden="true"></i> {{ShowHideText(trackingInfo)}} {{'Details' | translate}}</a></p>
+                                            </div>
+                                            <div class="pull-right">
+                                                <a ng-click="printToCart(trackingInfo.TrackingNumber)" class="btn-simple btn-lg btn-success"><i class="fa fa-print" aria-hidden="true"></i> {{'Print' | translate}}</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div>
+                                            <p>{{'Dedicated_Service_Team' | translate}} {{'Please_Contat' | translate}} <a href="tracking@{{FrayteWebsite}}">tracking@{{FrayteWebsite}}</a></p>
+                                            <p>{{'Tracking_Date_Time_Check_Point_Location' | translate}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end Tracking code-->
+                <div class="clearfix"></div>
+                <!--start Consignment Tracking code-->
+                <!--end Consignment Tracking-->
+            </div>
+            <!--<div ng-if="Iserrorshow === true && (trackingInfos === undefined || trackingInfos === null)" class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+                        <h4 class="modal-title">{{'Consignment_Tracking' | translate}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <section>
+                            <div class="col-sm-12" ng-show="!TNTError">
+                                <h3 class="margin-top10">{{'Incorrect_Tracking_Number' | translate}}</h3>
+                                <div class="col-sm-12 paddingboth">
+                                    <p>{{'NotValid_TrackingCode' | translate}}</p>
+                                    {{'Find_Order_Detail' | translate}}
+                                </div>
+                            </div>
+                            <div ng-show="TNTError">
+                                <div class="col-sm-12">
+                                    <p>{{'Incorrect_Tracking_Number_Detail' | translate}}</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal-footer">
+                        <div class="col-sm-12">
+                            <div class="pull-left">
+                                <button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!--end-->
+
+            <!--<div ng-show="IsShowTrackingData">
+                <div class="panel-body">
+                    <div class="fontsize18 redColor paddingTB60 text-center">{{'You_Enter_Incorrect_Detail' | translate}}</div>
+                </div>
+            </div>-->
+            </div>
+        </div>
+        <!--end-->
+
+        <!--Public tracking direct booking code-->
+        <div id="mobile">
+            <div ng-if="trackingDBInfosList.length > 0" class="panel panel-default">
+                <div class="panel-heading"><span class="fontsize22"><i ng-click="moduleClick()" class="fa pointer"></i> {{'Direct_Bookingg' | translate}}</span></div>
+                <div ng-repeat="trackingInfos in trackingDBInfosList">
+                <div ng-repeat="trackingInfo in trackingInfos" id="top" class="panel-body">
+                    <!--<div class="col-sm-12 col-xs-12"><h2>{{'Tracking' | translate}} {{'Number' | translate}} - {{trackingInfo.TrackingNumber}}</h2></div>-->
+                    <div class="col-sm-12 col-xs-12">
+                        <div ng-attr-id="{{trackingInfo.TrackingNumber}}">
+                            <div class="panel panel-default margin-bottom-none">
+                                <div ng-if="trackingInfo.IsHeaderShow" class="panel-heading">
+                                    <div class="clearfix" style="border-bottom:1px solid #e0e0e0;">
+                                        <div class="col-sm-12 col-xs-12 paddingboth">
+                                            <div class="col-sm-6 col-xs-12">
+                                                <div class="width4">
+                                                    <span class="fontsize18 fa pointer" ng-click="trackingInfo.first = !trackingInfo.first"><i ng-class="{ 'fa fa-plus-square-o': trackingInfo.first, 'fa fa-minus-square-o': !trackingInfo.first }"></i></span>
+                                                </div>
+                                                <div class="width96">
+                                                <p><b>{{'Tracking' | translate}} {{'Number' | translate}} : </b>{{trackingInfo.TrackingNumber}}</p>
+                                                <p><b>{{'CreatedAt' | translate}} : </b> {{GetCorrectFormattedDate(trackingInfo.CreatedAtDate)}}<span ng-if="trackingInfo.CreatedAtDate === null">{{'N_A' | translate}}</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 col-xs-12">
+                                                <p ng-show="trackingInfo.EstimatedDeliveryDate !== null"><b> {{'Estimated_Delivery_Date' | translate}} : </b><span ng-if="trackingInfo.EstimatedDeliveryDate !== null">{{GetCorrectFormattedDate(trackingInfo.EstimatedDeliveryDate)}}</span> <span ng-if="trackingInfo.EstimatedDeliveryDate === null">{{'N_A' | translate}}</span></p>
+                                                <!--<p ng-if="ShowDHLWeight">
+                                            <b>{{'Decl_Est_Weight' | translate}}* : </b>{{GetEstimatedWeight(trackingInfo.EstimatedWeight)}} <span ng-if="trackingInfo.EstimatedWeight!== null">{{'Kgs' | translate}}</span> <span ng-if="trackingInfo.EstimatedWeight === null">N/A</span>
+                                        </p>-->
+                                                <!--<p ng-if="ShowDHLWeight">
+                                            <b>{{'Decl_Est_Weight' | translate}}* : </b>
+                                            <span ng-if="trackingInfo.EstimatedWeight">
+                                                {{GetEstimatedWeight(trackingInfo.EstimatedWeight,trackingInfo.Courier)}}
+                                            </span>
+                                            <span ng-if="trackingInfo.EstimatedWeight">
+                                                {{'Kgs' | translate}}
+                                            </span>
+                                            <span ng-if="!trackingInfo.EstimatedWeight">{{'N_A' | translate}}</span>
+                                        </p>-->
+                                            </div>
+                                            <div ng-if="trackingInfo.NoOfPieces>0" class="col-sm-2 col-xs-12">
+                                                <div ng-click="IsPiecesShow =!IsPiecesShow" class="right-2" style="font-size:14px;"><a href="" class="frayte-blue"><i class="no-print frayte-orange" ng-class="{'fa fa-plus-square-o' : IsPiecesShow, 'fa fa-minus-square-o' : !IsPiecesShow}" aria-hidden="true" style="font-size:18px;"></i><span class="bottom2"> {{trackingInfo.NoOfPieces}} {{'Pieces' | translate}}</span></a></div>
+                                                <ul ng-if="!IsPiecesShow" class="list-unstyled">
+                                                    <li ng-repeat="PieceDetail in trackingInfo.TrackingPicesDetail.trackingReferences" style="padding:0px 20px 0px;"><a href="" class="frayte-blue"><span style="font-size:10px;">{{PieceDetail}}</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="row clearfix top5">
+                                        <div class="col-sm-12 col-xs-12">
+                                        <div class="col-sm-6 col-xs-12">
+                                            <p><b>{{'Status' | translate}} : </b><span class="trackingnew-caps">{{GetShipemtStatus(trackingInfo.Status)}}</span></p>
+                                            <p><b>{{'UpdatedAt' | translate}} : </b><span>{{GetCorrectFormattedDate(trackingInfo.UpdatedAtDate, trackingInfo.UpdatedAtTime)}}</span> </p>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <p><b>{{'Carrier' | translate}} : </b>{{'DHL_Express' | translate}}</p>
+                                            <p ng-show="trackingInfo.SignedBy !== null && trackingInfo.SignedBy !== '' "><b>{{'POD' | translate}} : </b>{{trackingInfo.SignedBy}} <span ng-if="trackingInfo.SignedBy === null ||trackingInfo.SignedBy === '' ">{{'N_A' | translate}}</span></p>
+                                        </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-sm-12 col-xs-12 form-group top9">
+                                    <button type="button" class="pull-right btn-simple btn-save" ng-click="ShowHidePickupPanel(trackingInfo)"><i ng-class="{'fa fa-chevron-right' : trackingInfo.IsPanelShow, 'fa fa-chevron-down' : !trackingInfo.IsPanelShow}" aria-hidden="true"></i> <span ng-if="trackingInfo.IsPanelShow">Expand All</span><span ng-if="!trackingInfo.IsPanelShow">Un Expand All</span></button>
+                                </div>
+                                <div class="clearfix"></div>-->
+                                
+                                <div ng-if="trackingInfo.first" class="panel-body clearfix">
+                                <div ng-if="!trackingInfo.IsShowHideDetail" class="panel panel-default panel-background margin-bottom-none mobile-show">
+                                    <div class="col-sm-12" style="height:50px;">
+                                        <div style="width:30px; float:left;">
+                                            <span class="no-print" ng-click="ShowHidePickupPanel(trackingInfo)">
+                                                <a href="" style="font-size:24px;"><i ng-class="{'fa fa-plus-square-o' : trackingInfo.IsPanelShow, 'fa fa-minus-square-o' : !trackingInfo.IsPanelShow}" aria-hidden="true"></i></a>
+                                            </span>
+                                        </div>
+                                        <div ng-if="!parcelHub">
+                                            <div class="col-sm-2">
+                                                <h4 class="bottom2">{{'Date' | translate}}/{{'Time' | translate}}</h4>
+                                            </div>
+                                            <div class="col-sm-5"><h4 class="bottom2">{{'Activity' | translate}}</h4></div>
+                                            <div class="col-sm-4"><h4 class="bottom2">{{'Location' | translate}}</h4></div>
+                                        </div>
+                                        <div ng-if="parcelHub">
+                                            <div class="col-sm-3">
+                                                <h4 class="bottom2">{{'Date' | translate}}/{{'Time' | translate}}</h4>
+                                            </div>
+                                            <div class="col-sm-6"><h4 class="bottom2">{{'Activity' | translate}}</h4></div>
+                                            <div class="col-sm-2"><h4 style="margin-left: 33%;" class="bottom2">{{'Pieces' | translate}}</h4></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div ng-if="!trackingInfo.IsShowHideDetail" ng-repeat="item in trackingInfo.TrackingDetails | orderBy:['-Date'] track by $index" class="panel panel-default margin-bottom-none mobile-hide">
+                                    <div class="panel-heading" style="padding:20px;">
+                                        <div class="col-sm-12 col-xs-12" style="margin-top: -12px;">
+                                            <div style="width:30px; float:left;" ng-click="togglePanel(trackingInfo.TrackingDetails,item)">
+                                                <span class="no-print">
+                                                    <a><i ng-class="{'fa fa-plus-square-o' : item.IsCollapsed, 'fa fa-minus-square-o' : !item.IsCollapsed}" aria-hidden="true" style="font-size:20px;"></i></a>
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-10 paddingboth">
+                                                {{GetCorrectFormattedDatePanel(item.Date)}} - {{getDayName(item.Date)}}
+                                            </div>
+                                            <div class="col-sm-6 col-xs-1"></div>
+                                            <div class="col-sm-2 col-xs-1"></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="detail in item.Detail | orderBy:'-Time'" ng-if="!item.IsCollapsed" class="panel-body" id="tracking-email">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div ng-if="!parcelHub">
+                                                <div class="col-sm-2 col-xs-12 PL-45" style="font-size:small">
+                                                    <span class="text-show col-xs-4">{{'Date' | translate}}/{{'Time' | translate}}</span> <span class="col-xs-8">{{detail.Time}}</span>
+                                                </div>
+                                                <div class="col-sm-5 col-xs-12 PL-40" style="font-size:small">
+                                                    <div><span class="text-show col-xs-4">{{'Activity' | translate}}</span> <span class="col-xs-8">{{detail.Activity}} <span ng-if="detail.Activity==='Delivered - Signed for by'">{{trackingInfo.SignedBy}}</span></span></div>
+                                                </div>
+                                                <div class="col-sm-4 col-xs-12 PL-45" style="font-size:small">
+                                                    <div><span class="text-show col-xs-4">{{'Location' | translate}}</span> <span class="col-xs-8">{{detail.Location}} <span ng-if="detail.Location === null || detail.Location === ''">{{'N_A' | translate}}</span></span></div>
+                                                </div>
+                                            </div>
+                                            <div ng-if="parcelHub">
+                                                <div class="col-sm-3 col-xs-12 PL-45" style="font-size:small">
+                                                    <span class="text-show col-xs-4">{{'Date' | translate}}/{{'Time' | translate}}</span> <span class="col-xs-8">{{detail.Time}}</span>
+                                                </div>
+                                                <div class="col-sm-7 col-xs-12 PL-40" style="font-size:small">
+                                                    <div><span class="text-show col-xs-4">{{'Activity' | translate}}</span> <span class="col-xs-8">{{detail.Activity}} <span ng-if="detail.Activity==='Delivered - Signed for by'">{{trackingInfo.SignedBy}}</span></span></div>
+                                                </div>
+                                                <div class="col-sm-2 col-xs-12">
+                                                    <div ng-click="detail.IsCollapsed = !detail.IsCollapsed" style="font-size:14px;"><a href="" class="frayte-blue"><i class="no-print frayte-orange" ng-class="{'fa fa-plus-square-o' : !detail.IsCollapsed, 'fa fa-minus-square-o' : detail.IsCollapsed}" aria-hidden="true" style="font-size:18px;"></i><span class="bottom2"> {{detail.Pieces.length}} {{'Pieces' | translate}}</span></a></div>
+                                                    <ul ng-if="detail.IsCollapsed" class="list-unstyled">
+                                                        <li ng-repeat="Piece in detail.Pieces" style="padding:0px 20px 0px;" class="frayte-blue"><a><span style="font-size:10px;" class="frayte-blue">{{'Piece' | translate}}</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <!-- Shoew Hide and Print Functionality -->
+                                <div class="padding-tb-20 no-display">
+                                    <div class="col-sm-12 col-xs-12 form-group">
+                                        <div class="pull-left">
+                                            <p class="pointer"><a ng-click="ShowHideDetail(trackingInfo)"><i class="fa fa-angle-right" aria-hidden="true"></i> {{ShowHideText(trackingInfo)}} {{'Details' | translate}}</a></p>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a ng-click="printToCart(trackingInfo.TrackingNumber)" class="btn-simple btn-lg btn-success"><i class="fa fa-print" aria-hidden="true"></i> {{'Print' | translate}}</a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-sm-12 col-xs-12">
+                                        <p>{{'Dedicated_Service_Team' | translate}} {{'Please_Contat' | translate}} <a href="mailto:tracking@{{FrayteWebsite}}" class="pointer">{{'Tracking_Atrate' | translate}}{{FrayteWebsite}}</a></p>
+                                        <p>{{'Tracking_Date_Time_Check_Point_Location' | translate}}</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Shoew Hide and Print Functionality -->
+                <!--<div class="col-sm-12 col-xs-12 padding-10">
+                    <div class="pull-left">
+                        <p class="pointer"><a ng-click="TrySearch(trackingInfo.TrackingNumber)"><i class="fa fa-angle-right" aria-hidden="true"></i> {{'try' | translate}} {{'A' | translate}} {{'New' | translate}} {{'Search' | translate}}</a></p>
+                    </div>
+                    <div class="pull-right">
+                        <p class="pull-right pointer"><a ui-sref="public.trackingFAQ" target="_blank"> {{'Tracking' | translate}} {{'FAQ_s' | translate}}</a></p>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <!--end-->
+        
+        <div ng-if="TrackingListDetail.length === 0 && trackingInfosList.length === 0 && trackingBagInfosList.length === 0 && trackingDBInfosList.length === 0">
+            <div class="panel-body">
+                <div class="fontsize18 redColor paddingTB60 text-center">{{'You_Enter_Incorrect_Detail' | translate}}</div>
+            </div>
+        </div>
+
+        <!------>
+        <!--<div ng-if="IsTrackingId === true">
+            <div>
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+                    <h4 class="modal-title">{{'Consignment_Tracking' | translate}}</h4>
+                </div>
+                <div class="modal-body">
+                    <section>
+                        <div ng-show="!TNTError">
+                            <div class="col-sm-12">
+                                <p>{{'Receive_Acknowledment_From' | translate}}</p>
+                                <p>{{'Please_Try_Later' | translate}}</p>
+                            </div>
+                        </div>
+                        <div ng-show="TNTError">
+                            <div class="col-sm-12">
+                                <p>{{'Incorrect_Tracking_Number_Detail' | translate}}</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer">
+                    <div class="col-sm-12">
+                        <div class="pull-left">
+                            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!------>
+        <!--end-->
+
+        <!--search tracking no. code here-->
+        <section class="track-shipment col-sm-12 col-md-12 col-lg-12 col-xs-12 clearfix form-group">
+            <form name="TrackingForm" ng-submit="trackingDetailNew(TrackingForm.$valid,Detail)" novalidate>
+                <div ng-class="{'col-sm-12':BookingTypeName.Id, 'col-sm-offset-2 col-sm-8 col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2':!BookingTypeName.Id}">
+                    <div class="col-md-12 form-group mobile-handset-padding-left text-center"><h2> {{'Track' | translate}} {{'Your' | translate}} {{'Shipment' | translate}} </h2></div>
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{ 'has-error': TrackingForm.tracking.$invalid &&
+                                                 (TrackingForm.tracking.$dirty) }">
+                            <input type="text" id="tracking" name="tracking" class="form-control fontsize12" ng-model="Detail.TrackingNumber" placeholder="{{'TrackingNumber' | translate}}" required />
+                            <span class="help-block has-error track-shipment-padding" ng-show="TrackingForm.tracking.$invalid &&
+                                    (TrackingForm.tracking.$dirty)">
+                                {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 text-center form-group">
+                        <ul class="list-unstyled">
+                            <li><button type="submit" ng-click="submitted=true" class="btnTrack"><i class="fa fa-space-shuttle fa-1x" aria-hidden="true"></i> {{'Track' | translate}} {{'Now' | translate}}</button></li>
+                            <li><button type="submit" ng-click="goToBulkTracking()" class="btnTrack"><i class="fa fa-cubes fa-1x" aria-hidden="true"></i> {{'Bulk' | translate}} {{'Tracking' | translate}}</button></li>
+                            <li><a class="btn-lg btn-link" ng-click="setScroll('top')" ui-sref="public.trackingFAQ" target="_blank">{{'Need_Help' | translate}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </section>
+        <!--end-->
+    </div>
+</section>

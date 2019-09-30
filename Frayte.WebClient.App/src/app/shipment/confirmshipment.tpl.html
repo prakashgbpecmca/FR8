@@ -1,0 +1,151 @@
+﻿<div ng-class="{ 'container': !isLogin }">
+    <div class="" ng-class="{ 'content-Quickbooking': !isLogin }">
+        <div class="countbox">
+            <div class="pos-rel">
+                <div class="hrRule"></div>
+                <div class="stepContainer">
+                    <div class="col-xs-3">
+                        <div class="outerBlock">
+                            <div class="innerBlock-white">
+                                <span class="step-boxFill">
+                                    <img ng-src="{{ImagePath + 'visitedAddrDetail.png'}}" style="width: 59px; margin: -7px 0 0 -8px;" />
+                                </span>
+                            </div>
+                        </div>
+                        <div class="step-boxTitleFill">{{'ProcessBox_AddressDetails' | translate}}</div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="outerBlock">
+                            <div class="innerBlock-white">
+                                <span class="step-boxFill">
+                                    <img ng-src="{{ImagePath + 'visitedServiceOptn.png'}}" style="width: 59px; margin: -7px 0 0 -8px;" />
+                                </span>
+                            </div>
+                        </div>
+                        <div class="step-boxTitleFill">{{'ProcessBox_ServiceOptions' | translate}}</div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="outerBlock">
+                            <div class="innerBlock-white">
+                                <span class="step-boxFill">
+                                    <img ng-src="{{ImagePath + 'visitedShipDetail.png'}}" style="width: 50px; margin: -7px 0 0 -5px;" />
+                                </span>
+                            </div>
+                        </div>
+                        <div class="step-boxTitleFill">{{'ProcessBox_ShipmentDetails' | translate}}</div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="outerBlock">
+                            <div class="innerBlock-white">
+                                <span class="step-boxActive"><img ng-src="{{ImagePath + 'activeConfirm.png'}}" style="width: 40px; margin: -7px 0 0px 1px;" /></span>
+                            </div>
+                        </div>
+                        <div class="step-boxTitleActive">{{'ProcessBox_ConfirmShipment' | translate}}</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <section class="confirmShipment">
+            <div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_From' | translate}}</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{shipment.Shipper.ContactName}}</div>
+                                <div>{{shipment.Shipper.CompanyName}}</div>
+                                <div>{{shipment.ShipperAddress.Address}}</div>
+                                <div>{{shipment.ShipperAddress.Address2}}</div>
+                                <div>{{shipment.ShipperAddress.Address3}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{shipment.ShipperAddress.City}}, {{shipment.ShipperAddress.State}}</div>
+                                <div>{{shipment.ShipperAddress.Country.Name}} - {{shipment.ShipperAddress.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>T: <span> {{shipment.Shipper.TelephoneNo}}</span></div>
+                                <div>E: <span> {{shipment.Shipper.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_To' | translate}}</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{shipment.Receiver.ContactName}}</div>
+                                <div>{{shipment.Receiver.CompanyName}}</div>
+                                <div>{{shipment.ReceiverAddress.Address}}</div>
+                                <div>{{shipment.ReceiverAddress.Address2}}</div>
+                                <div>{{shipment.ReceiverAddress.Address3}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{shipment.ReceiverAddress.City}}, {{shipment.ReceiverAddress.State}}</div>
+                                <div>{{shipment.ReceiverAddress.Country.Name}} - {{shipment.ReceiverAddress.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>T: <span> {{shipment.Receiver.TelephoneNo}}</span></div>
+                                <div>E: <span> {{shipment.Receiver.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-sm-12">
+                <div class="panel panel-default text-left shipmentDetail">
+                    <div class="panel-heading">{{'confirmShp_ShipmentDetail' | translate}}</div>
+                    <div class="panel-body">
+                        <div class="row1 vdivide">
+                            <div class="col-sm-6">
+                                <div>
+                                    <div><div class="left-part width50">{{'ShippingMethod' | translate}}</div><div class="left-part width50">{{shipment.DeliveredBy.Name}}</div><div class="clearfix"></div></div>
+                                    <div><div class="left-part width50">{{'shipment_TotalEstimatedGrossWeight' | translate}}</div><div class="left-part width50">{{getTotalKgs()}} ({{Lb_Kgs}})</div><div class="clearfix"></div></div>
+                                    <div ng-if="shipment.DeliveredBy.CourierType !=='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedChargeableWeight' | translate}}</div><div class="left-part width50">{{getTotalVolWeight()}} ({{Lb_Kgs}})</div><div class="clearfix"></div></div>
+                                    <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedCBM' | translate}}</div><div class="left-part width50">{{getTotalCBM()}} {{'CBM' | translate}}</div><div class="clearfix"></div></div>
+                                    <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedChargeableCBM' | translate}}</div><div class="left-part width50">{{getEstimatedChargeableCBM(getTotalCBM())}} {{'CBM' | translate}}</div><div class="clearfix"></div></div>
+                                    <div><div class="left-part width50">{{'confirmShp_ShipmentDate' | translate}}</div><div class="left-part width50">{{shipment.ShippingDate | date:'dd/MM/yyyy'}}</div><div class="clearfix"></div></div>
+                                    <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'||shipment.DeliveredBy.CourierType ==='Air'"><div class="left-part width50">{{'confirmShp_PackingType' | translate}}</div><div class="left-part width50">{{shipment.PackagingType.Name}}</div><div class="clearfix"></div></div>
+                                    <div><div class="left-part width50">{{'confirmShp_NumberOfPieces' | translate}}</div><div class="left-part width50">{{getTotalPieces()}}</div><div class="clearfix"></div></div>
+                                    <div><div class="left-part width50">{{'shipment_DeclaredValue' | translate}}</div><div class="left-part width50">{{shipment.DeclaredValue}} ({{shipment.DeclaredCurrency.CurrencyCode}})</div><div class="clearfix"></div></div>
+                                    <div><div class="left-part width50">{{'confirmShp_ShipperReference' | translate}}</div><div class="left-part width50">{{shipment.PurchaseOrderNo}}</div><div class="clearfix"></div></div>
+                                    <div><div class="left-part width50">{{'confirmShp_DescriptionOfContent' | translate}}</div><div class="left-part width50">{{shipment.ContentDescription}}</div><div class="clearfix"></div></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="part50">
+                                </div>
+                                <div class="part50">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </section>
+    </div>
+    <div class="termAndCondCheckBox" ng-class="{ 'col-sm-12': isLogin }">
+        <span class="check-Box"><input type="checkbox" ng-model="shipment.TermAndConditions" ng-change="termAndCondition(shipment.TermAndConditions)" /></span>
+        <span class="check-BoxText">{{'confirmShp_terms1' | translate}} <a href="" ng-click="OpenTermAndCondition()"><span class="theme-color"><u>{{'confirmShp_terms2' | translate}}</u></span></a></span>
+        <div class="clearfix"></div>
+    </div>
+    <div ng-class="{ 'col-sm-12': isLogin }">
+        <div class="left-part">
+            <a href="" ng-click="StepBack(shipment)" class="btn secondary-btn" ng-class="{ 'disabled': (bookingPlaced.Status === true) }">{{'Previous' | translate}}</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="" ng-click="CancelForm()" class="btn secondary-btn" ng-class="{ 'disabled': (bookingPlaced.Status === true) }">{{'Cancel' | translate}}</a>
+        </div>
+        <div class="right-part">
+            <a href="" ng-click="PlaceBooking(shipment)" class="btn primary-btn" ng-class="{ 'disabled': (bookingPlaced.Status === true) }">{{'PlaceBooking' | translate}}</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<br /><br />

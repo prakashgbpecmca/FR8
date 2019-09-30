@@ -1,0 +1,601 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{{'Payment' | translate}} {{'Frayte' | translate}}</title>
+    <!--Css-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/bootstrap.min.css" />
+    <!--script-->
+    <!--<script type="text/javascript" src="vendor/angular-bootstrap/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="vendor/angular-bootstrap/bootstrap.min.js"></script>-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->    
+
+    <style>
+        .carousel-indicators {
+    visibility: hidden !important;
+}
+        a:hover, a:focus, a:active {
+    outline: 0;
+    text-decoration: none;
+}
+        .freeAlert {
+                display: inline-block;
+    padding: 7px 6px;
+    border: #FC9 solid 1px;
+    font-size: 11px;
+    font-weight: 400;
+    color: #999;
+    height: 34px;
+    width: 100%;
+        }
+        select.form-control{padding:3px 3px !important;}
+        input.form-control {padding:3px 6px !important;
+        }
+        .amount-fixed {    position: absolute;
+    padding: 8px 8px !important;
+    height: 34px;
+    color: #94a4bd;
+        }
+        input.padding-left38 {padding-left:38px !important;
+        }
+        .uppercase {
+        text-transform:uppercase;}
+        .paddingboth {padding-left:0px !important;
+                      padding-right:0px !important;
+        }
+        .navbar-default {border:transparent !important;
+                         margin-bottom:0px !important;
+        }
+        .navbar, .navbar-default {margin-bottom:0px !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+       
+        <div class="small-menu">
+            <div>
+                <div class="container">
+                    <div class="col-md-12 paddingboth">
+                        <div class="col-sm-9 paddingboth">
+                            <a data-ui-sref="home.welcome"><img ng-src="{{ImagePath + 'FrayteLogo1.png'}}" style="width: 10em; padding: 3px 0;" /></a>
+                        </div>
+                        <div class="col-sm-3 text-right paddingboth">
+                            <a href="" class="menu-button"><i class="fa fa-bars fa-2x" style="padding: 10px 0;"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 mobile-handset">
+                        <div class="width10"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" /></div>
+                        <div ng-if="FrayteWebSite==='COM'" class="width40 top-phone-number phone-color">(+852) 2148 4880</div>
+                        <div ng-if="FrayteWebSite==='CO.UK'" class="width40 top-phone-number phone-color">(+44) 01792 678017</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="large-menu">
+            <div class="top-header">
+                <div class="container">
+                    <div class="col-sm-6 mobile-handset">
+                        <div ng-if="FrayteWebSite==='COM'">
+                            <div class="width10"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" /></div>
+                            <div class="width40 top-phone-number phone-color">
+                                (+852) 2148 4880
+                                <p class="margin-bottom-none">09:00 - 18:00 (Monday - Friday)</p>
+                                <p class="margin-bottom-none">09:00 - 12:00 (Saturday)</p>
+                            </div>
+                        </div>
+                        <div ng-if="FrayteWebSite==='CO.UK'">
+                            <div class="width10"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive top-phone" style="top:4.3rem !important;" /></div>
+                            <div class="width40 top-phone-number phone-color" style="top:5.2rem !important;">
+                                (+44) 01792 678017
+                                <p class="margin-bottom-none">09:00 - 17:00 (Monday - Friday)</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>                                
+                    <div class="col-sm-6">
+                        <ul>
+                            <li ng-if="IsStatic !=='True'" ng-class="{active: isCurrentPath('home.login')}"><a href="" ng-click="open('sm')" class="style">{{'Login' | translate}}</a></li>
+                            <li ng-if="IsStatic !=='True'" ng-class="{active: isCurrentPath('payment')}"><a data-ui-sref="payment">{{'Payment' | translate}}</a></li>
+                            <li>
+                                <select ng-model="Data.selectOption" style="border: none; background: none !important; color: #EB8633;outline:0;" ng-change="changeLanguage(Data.selectOption)">
+                                    <option value="en" style="padding:2px 4px;">{{'BUTTON_LANG_EN' | translate}}</option>
+                                    <option value="chSim" style="padding:2px 4px;">{{'BUTTON_LANG_CH' | translate}}(Simplified) </option>
+                                    <option value="chTrad" style="padding:2px 4px;">{{'BUTTON_LANG_CH' | translate}}(Traditional) </option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#frayteMenu">
+                            <span class="sr-only">MENU</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a data-ui-sref="home.welcome" class="navbar-brand"><img ng-src="{{ImagePath + 'FrayteLogo1.png'}}" class="responsiveLogo bottom23" /></a>
+                    </div>
+                    <div class="collapse navbar-collapse fontsize12" id="frayteMenu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <!--<li ng-class="{active: isCurrentPath('home.welcome')}"><a data-ui-sref="home.welcome">{{'Our' | translate}} {{'Company' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.service')}"><a data-ui-sref="home.service">{{'Services' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.client')}"><a data-ui-sref="home.client">{{'Client' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.fuelSurcharge')}"><a data-ui-sref="home.fuelSurcharge">{{'Fuel_Surcharge' | translate}}</a></li>
+                        <li ng-class="{active: isCurrentPath('home.contact')}"><a data-ui-sref="home.contact">{{'ContactMenu' | translate}}</a></li>
+                        <li class="dropdown menu">
+                            <a class="pointer" data-toggle="dropdown" style="background:transparent !important;"> {{'More_' | translate}} &nbsp;<span class="caret"></span></a>
+                            <ul class="dropdown-menu top9-6">
+                                <li ng-class="{active: isCurrentPath('home.learnMore')}"><a data-ui-sref="home.learnMore">{{'HOW_IT_WORKS' | translate}}</a></li>
+                                <li ng-class="{active: isCurrentPath('home.download')}"><a data-ui-sref="home.download">{{'Download' | translate}}</a></li>
+                                <li ng-class="{active: isCurrentPath('home.impguide')}"><a data-ui-sref="home.impguide">{{'ImpGuide' | translate}}</a></li>
+                            </ul>
+                        </li>-->
+                            <li class="active"><a ng-click="setScroll('top')" data-ui-sref="home.e-commerce">{{'E_Commerce' | translate}}</a></li>
+                            <li><a ng-click="setScroll('top')" data-ui-sref="home.frayteForwording">{{'FRAYTE_Forwarding' | translate}}</a></li>
+                            <li><a ng-click="setScroll('top')" data-ui-sref="home.courier">{{'Courier' | translate}}</a></li>
+                            <li><a ng-click="setScroll('top')" data-ui-sref="home.contact">{{'ContactMenu' | translate}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="clearfix"></div>
+     
+        <!--<header>
+            <div class="container">
+                <div class="pull-left">
+                    <a href="" ng-click="goToHome()"><img ng-src="{{ImagePath + 'FrayteLogo1.png'}}" style="width:240px;padding:15px 0;" class="img-responsive" /></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </header>-->
+        <div class="clearfix"></div>
+        <!--cathey pacific collapse start here-->
+        <div  ng-if="reslength === false"  >
+            <div class="panel panel-default fontsize12" style="padding:0px !important;">
+                <div class="cathey-collapse" style="margin-top:116px;">
+                    <a class="panel-title pointer show-opacity link-none">
+                        <div ng-click="val = !val" style="border-bottom: 1px solid #ddd;height:37px;">
+                            <!--<span style="height:40px;position:relative;top:9px;">  <i ng-hide="val === true" class="fa fa-exclamation error-icon" aria-hidden="true"></i>{{Count}} System Alerts <span ng-hide="val === true" class="pull-right system-error-down">  {{PublicPageDate}} <i class="fa fa-chevron-down" aria-hidden="true"></i></span> <i class="fa fa-chevron-up pull-right" aria-hidden="true" style="position: relative;top: 3px;"></i></span>-->
+                            <div>
+                                <span ng-hide="!Count">
+                                    <span class="error-icon-yellow"><i ng-hide="val === true" class="fa fa-exclamation error-icon full-opacity" style="opacity:0.8;" aria-hidden="true"></i></span>
+                                    <span class="fontsize12 middle">{{Count}} {{'System_Alert' | translate}}</span>
+
+                                </span>
+                                <span ng-hide="val === true" class="system-error-down fontsize12 middle" id="date-collapse">
+                                    {{PublicPageDate}} <span>({{GMT}}) </span>
+
+                                </span>
+                                <!--<span ng-show="showval === true" ng-click="showval = !showval" ng-hide="showval === false" style="position:relative;top:9px;">
+                            {{Count}} System Alerts
+                        </span>-->
+                                <span>
+                                    <i ng-show="val === false" class="fa fa-chevron-down pull-right full-opacity top9" aria-hidden="true" style="opacity:0.8;"></i>
+                                    <i ng-show="val === true" class="fa fa-chevron-up pull-right full-opacity top9" aria-hidden="true" style="opacity:0.8;"></i>
+                                </span>
+
+                            </div>
+                        </div>
+                    </a>
+                    <div ng-show="val === true" ng-repeat="result in result" class="panel-heading padding3x0 cathey-collapse" style="background:transparent !important;border-bottom:1px solid #ddd;height:37px;">
+                        <div style="width:100%;">
+                            <div class="width70 show-opacity">
+                                <a ui-sref="public.systemAlertDetail({Heading:result.Heading})" target="_blank" class="panel-title link-none">
+                                    <span>
+                                        <span class="error-icon-yellow"><i class="fa fa-exclamation error-icon full-opacity fontsize12" aria-hidden="true" style="opacity:0.8; top: 0px !important;"></i></span> <span class="fontsize12 middle-sub">{{result.Heading}}</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="pull-right">
+                                <span class="middle fontsize12">
+                                    {{result.Date}}<span> ({{result.TimeZoneDetail.OffsetShort}})</span>&nbsp;&nbsp;
+                                    <!--<span><a href=""><i class="fa fa-chevron-down" aria-hidden="true"></i></a></span>-->
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--cathey pacific collapse end here-->
+        <div class="white-background" ng-class="{'margin-top': cssshow}">
+            <section class="container" ng-class="{ 'Vytal-container': vitalSupport ,'Whytecliff-container': whytecliff }">
+                <div style="margin:25px 0 50px;">
+                    <div class="col-sm-12 paddingboth">
+                        <form name="PaymentPayvisionForm" id="PaymentPayvisionForm" ng-submit="sendrequest(PaymentPayvisionForm.$valid, senddata,PaymentType)" novalidate>
+                            <div class="col-sm-5 grayBack marginBottom paddingboth">
+                                <div class="col-sm-12 paddingboth navbarwidth">
+                                    <div class="form-group">
+                                        <div class="visibility">Hidden</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="uppercase">{{'Customer_Information' | translate}}</h4>
+                                    </div>
+                                    <div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': PaymentPayvisionForm.CompanyName.$invalid &&
+                                        (PaymentPayvisionForm.CompanyName.$dirty || submitted)}">
+                                            <input capitalize:first type="text" ng-model="senddata.CompanyName" name="CompanyName" value="" class="form-control" placeholder="{{'CompanyName' | translate}} ({{'Required' | translate}})" required />
+                                            <span class="help-block has-error" ng-show="PaymentPayvisionForm.CompanyName.$invalid && (PaymentPayvisionForm.CompanyName.$dirty || submitted)">
+                                                {{'CompanyNameValidationError' | translate}}
+                                            </span>
+                                        </div>
+
+                                        <div class="form-group" ng-class="{ 'has-error': PaymentPayvisionForm.email.$invalid &&
+                                        (PaymentPayvisionForm.email.$dirty || submitted)}">
+
+
+                                            <input type="email" ng-model="senddata.Email" name="email" value="" class="form-control" placeholder="{{'Email' | translate}} {{'Address' | translate}} ({{'Required' | translate}})" required />
+
+                                            <span class="help-block has-error ng-binding" ng-show="PaymentPayvisionForm.email.$invalid &&
+                                          PaymentPayvisionForm.email.$error.required &&
+                                           (PaymentPayvisionForm.email.$dirty || submitted)">
+                                            {{'Email' | translate}} {{'Address' | translate}} {{'Is' | translate}}  {{'Required' | translate}}
+                                            </span>
+
+                                            <span class="help-block has-error ng-binding ng-hide" ng-show="PaymentPayvisionForm.email.$error.email &&
+                                            (PaymentPayvisionForm.email.$dirty || submitted)">
+                                                {{'EmailNotValid' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="form-group" ng-class="{ 'has-error': PaymentPayvisionForm.country.$invalid &&(PaymentPayvisionForm.country.$dirty || submitted) }">
+                                            <select name="country" ng-model="senddata.selectedcountry" class="form-control"
+                                                    ng-options="Country as Country.Name  +' '+ Country.CurrencyDescription disable when Country.Disabled ===true for Country in Countries | orderBy:'OrderNumber' track by Country.CountryId" required>
+                                                <option value="" disabled selected class="display-none">{{'Choose' | translate}} {{'Country' | translate}}</option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="PaymentPayvisionForm.country.$invalid && (PaymentPayvisionForm.country.$dirty || submitted)">
+                                                {{'Choose_Country_Validation' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="form-group"><input capitalize:first type="text" ng-model="senddata.Address1" name="address1" value="" class="form-control" placeholder="{{'Address_1' | translate}}" /></div>
+                                        <div class="form-group"><input capitalize:first type="text" ng-model="senddata.Address2" name="address2" value="" class="form-control" placeholder="{{'Address_2' | translate}}"></div>
+                                        <div class="form-group"><input capitalize:first type="text" ng-model="senddata.City" name="city" value="" class="form-control" placeholder="{{'City' | translate}}" /></div>
+                                        <div class="form-group"><input capitalize:first type="text" ng-model="senddata.State" name="state" value="" class="form-control" placeholder="{{'State' | translate}}" /></div>
+                                        <div ng-if="senddata.selectedcountry.Code !== 'HKG'" class="form-group"><input type="text" ng-model="senddata.ZipCode" name="zip" value="" class="form-control" style="width:200px;" placeholder="{{'Zip' | translate}}" /></div>
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <a href=""><img ng-src="{{ImagePath + 'paymentImage.jpg'}}" class="img-responsive" style="padding:15px 0px 0px; max-width:335px;" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-5 grayBack paddingboth mobile-margin-top5">
+                                <div class="col-sm-12 navbarwidth paddingboth">
+                                    <div>
+                                        <div class="form-group">
+                                            <h4 class="uppercase bold">{{'Secure_Payment_Gateway' | translate}}</h4>
+                                        </div>
+                                        <div class="form-group">
+                                            <h4 class="uppercase fontsize16">{{'Payment_Information' | translate}}</h4>
+                                        </div>
+                                        <div class="form-group" ng-class="{ 'has-error': PaymentPayvisionForm.invoiceNo.$invalid &&
+                                        (PaymentPayvisionForm.invoiceNo.$dirty || submitted) }">
+                                            <input type="text" ng-model="senddata.Invoice_no" name="invoiceNo" value="" class="form-control" placeholder="{{'FRAYTE_Invoice_Number' | translate}} ({{'Required' | translate}})" required />
+
+                                            <span class="help-block has-error"
+                                                  ng-show="PaymentPayvisionForm.invoiceNo.$invalid &&
+                                                        (PaymentPayvisionForm.invoiceNo.$dirty || submitted)">
+                                                {{'InvoiceValidError' | translate}}
+                                            </span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select name="country" class="form-control" ng-model="PaymentCurrency" ng-change="getvalue(Pv_Amount)"
+                                                    ng-options="Currency as Currency.CurrencyCode+ ' - ' +Currency.CurrencyName for Currency in currency track by Currency.CurrencyCode"></select>
+                                        </div>
+                                    
+                                        <div class="form-group" ng-class="{ 'has-error': PaymentPayvisionForm.amount.$invalid &&
+                                        (PaymentPayvisionForm.amount.$dirty || submitted) }">
+                                          
+                                                <div class="amount-fixed">{{PaymentCurrency.CurrencyCode}}</div>
+                                            <input type="text" name="amount" is-number value="" ng-model="Pv_Amount" ng-change="getvalue(Pv_Amount)" class="form-control padding-left38" placeholder="{{'Invoice' | translate}} {{'Amount' | translate}} ({{'Required' | translate}})" required />
+                                            <span class="help-block has-error"
+                                                  ng-show="PaymentPayvisionForm.amount.$invalid &&   PaymentPayvisionForm.amount.$error.required &&
+                                                     (PaymentPayvisionForm.amount.$dirty || submitted)">
+                                               {{'Invoice' | translate}}  {{'Amount' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                            </span>
+                                            <span class="help-block has-error" ng-show="PaymentPayvisionForm.amount.$error.pattern">{{'No_Validation' | translate}}!</span>                                    
+                                        </div>
+                                        <div>
+                                            <span class="freeAlert form-group">3.5% {{'Card_Payment_Message' | translate}}.</span>
+                                        </div>
+                                        <div class="form-group"><input type="text" value="" ng-model="usd" class="form-control" placeholder="{{'Total_Paid_Amount' | translate}}" ng-disabled="true" /></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <h4 class="uppercase">{{'Payment_Details' | translate}}</h4>
+                                    </div>
+                                    <div id="tabset">
+                                        <!--bootstrap tab start here-->
+                                        <ul class="nav nav-tabs">
+                                            <li ng-click="payPal=false" class="active"><button class="btn btn-lg btn-default" data-toggle="tab" href="#creditCard"><i class="fa fa-credit-card-alt" aria-hidden="true" style="font-size:1.4em;margin:0px 5px 0px;"></i> {{'Credit_Card' | translate}}</button></li>
+                                            <li ng-click="payPal=true"><button class="btn btn-lg btn-default" data-toggle="tab" href="#paypal"><img ng-src="{{ImagePath + 'paypal.png'}}"  style="width:70px;" /></button></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="creditCard" class="tab-pane fade in active">
+                                                <br />
+                                                <div>
+                                                    <div class="form-group" ng-class="{ 'has-error': PaymentPayvisionForm.cardNumber.$invalid && (PaymentPayvisionForm.cardNumber.$dirty || submitted) }">
+                                                        <label><b>{{'Card_Information' | translate}}</b></label>
+                                                        <input type="text" ng-model="senddata.CardNumber" name="cardNumber" data-stripe="number" value="" class="form-control" placeholder="{{'Card_No' | translate}} ({{'Required' | translate}})" ng-required="!payPal" />
+
+                                                        <span class="help-block has-error"
+                                                              ng-show="PaymentPayvisionForm.cardNumber.$invalid &&
+                                                        (PaymentPayvisionForm.cardNumber.$dirty || submitted)">
+                                                            {{'CardNo_Validation' | translate}}
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="col-sm-12 col-xs-12 paddingboth">
+                                                        <div class="col-sm-6 paddingboth col-xs-5">
+                                                            <label><b>{{'Card_Expiry' | translate}}</b></label>
+                                                        </div>
+                                                        <div class="col-sm-6 paddingboth col-xs-7">
+                                                            {{'CVV' | translate}} <a href="https://www.cvvnumber.com/cvv.html" target="_blank" class="pull-right getmore-details"><small>({{'3Digit_Card_Verification_Number' | translate}})</small></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="col-sm-12 col-xs-12 form-group paddingboth">
+
+                                                        <div class="col-sm-6 col-xs-5 paddingboth" ng-class="{ 'has-error': PaymentPayvisionForm.expDate.$invalid &&
+                                        (PaymentPayvisionForm.expDate.$dirty || submitted) }">
+
+                                                            <div class="col-sm-5 col-xs-5 paddingboth" ng-class="{ 'has-error': PaymentPayvisionForm.expDate.$invalid &&
+                                        (PaymentPayvisionForm.expDate.$dirty || submitted) }">
+                                                                <input type="text" ng-model="senddata.ExpDate" name="expDate" data-stripe="exp_month" value="" class="form-control" placeholder="MM " ng-required="!payPal" />
+                                                            </div>
+                                                            <div class="col-sm-5 col-xs-5 paddingboth" style="margin-left: 6px;" ng-class="{ 'has-error': PaymentPayvisionForm.expYear.$invalid &&
+                                        (PaymentPayvisionForm.expYear.$dirty || submitted) }">
+                                                                <input type="text" ng-model="senddata.ExpYear" name="expYear" data-stripe="exp_year" value="" class="form-control" placeholder="YY " ng-required="!payPal" />
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <span class="help-block has-error"
+                                                                  ng-show="(PaymentPayvisionForm.expDate.$invalid || PaymentPayvisionForm.expYear.$invalid) &&
+                                                                            (PaymentPayvisionForm.expDate.$dirty || PaymentPayvisionForm.expYear.$dirty || submitted)">
+                                                                {{'CardExpiryis_required' | translate}}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-6 col-xs-7 paddingboth" ng-class="{ 'has-error': PaymentPayvisionForm.cvc.$invalid &&
+                                        (PaymentPayvisionForm.cvc.$dirty || submitted) }">
+                                                            <!--<div class="col-sm-12 paddingboth">
+                                                                CVV <a href="https://www.cvvnumber.com/cvv.html" target="_blank" class="pull-right getmore-details"><small>(3-digit card verification number)</small></a>
+                                                            </div>-->
+                                                            <div class="col-sm-4 col-xs-4 paddingboth" ng-class="{ 'has-error': PaymentPayvisionForm.cvc.$invalid &&
+                                        (PaymentPayvisionForm.cvc.$dirty || submitted) }">
+
+                                                                <input type="text" ng-model="senddata.cvc" name="cvc" data-stripe="cvc" value="" class="form-control" placeholder="{{'CVC' | translate}}" ng-required="!payPal" />
+                                                                <!--<div class="popup-fixed"><a uib-popover='CVV is an anti-fraud security feature to help verify that you are in possession of your credit card. For Visa/Mastercard, the three-digit CVV number is printed on the signature panel on the back of the card immediately after the cards account number.' popover-trigger="'outsideClick'"> <i class="fa fa-credit-card-alt fa-2x navbar-right pointer" style="position: relative;bottom: 31px;right: 20px;" aria-hidden="true"></i></a></div>-->
+
+                                                            </div>
+                                                            <div class="col-sm-8 col-xs-8 paddingboth">
+                                                                <img ng-src="{{ImagePath + 'imgCVVIcon.png'}}" style="width: 100%;" />
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <span class="help-block has-error"
+                                                                  ng-show="PaymentPayvisionForm.cvc.$invalid &&
+                                                        (PaymentPayvisionForm.cvc.$dirty || submitted)">
+                                                                {{'CVC_Validation' | translate}}
+                                                            </span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-sm-12 col-xs-12 text-center">
+                                                    <button type="submit" ng-click="submitted=true;paypalValidate=false;" class="btn-simple btn-paynow col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">{{'Pay_Now' | translate}}</button>
+                                                </div>
+                                            </div>
+                                            <div id="paypal" class="tab-pane fade">
+                                                <br /><br />
+                                                <div class="col-sm-12 col-xs-12 text-center">
+                                                    <button ng-show="paypalbutton.hide" type="submit" ng-click="submitted=true; paypalValidate=true" class="btn-simple btn-paynow col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">{{'Pay_Now' | translate}}</button>
+                                                    <div ng-hide="paypalbutton.hide" id="paypal-button"></div>
+                                                </div>
+                                                <br />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <!--bootstrap tab end here-->
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </section>
+        </div>
+
+        <toaster-container></toaster-container>
+    </div>
+
+    <footer class="pre-footer-top-border">
+        <div class="container">
+            <div class="row prefer-footer" style="background:transparent; font-size:14px !important; font-weight: 600;">
+                <div class="call-footer width100">
+                    <div ng-if="FrayteWebSite==='COM'" class="col-sm-12">
+                        <div class="col-sm-4 col-sm-offset-2 mobile-width100 fontsize14 paddingboth">
+                            <span class="mobile-middle"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive" /> <span>{{'Call' | translate}}:</span> <span class="frayte-blue">(+852) 2148 4880</span></span>
+                        </div>
+                        <div class="col-sm-4 paddingboth mobile-width100 fontsize14 paddingboth">
+                            <span class="mobile-middle"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive " /> <span>{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Com' | translate}}</span></span>
+                        </div>
+                    </div>
+                    <div ng-if="FrayteWebSite==='CO.UK'" class="col-sm-12">
+                        <div class="col-sm-4 col-sm-offset-2 mobile-width100 fontsize14 paddingboth">
+                            <span class="mobile-middle"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive" /> <span>{{'Call' | translate}}:</span> <span class="frayte-blue">(+44) 01792 678017</span></span>
+                        </div>
+                        <div class="col-sm-4 paddingboth mobile-width100 fontsize14 paddingboth">
+                            <span class="mobile-middle"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive " />  <span>{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Uk' | translate}}</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 ">
+                    <div class="width150 BlockMarginBottom mobile-width100">
+                        <div class="about-foot">
+                            <h6>{{'About_FRAYTE' | translate}}</h6>
+                            <ul class="list-unstyled fontsize12">
+                                <!--<li><p>{{'General' | translate}}</p></li>-->
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.welcome">{{'Home' | translate}}</a></p></li>
+                                <li><p>{{'About_us' | translate}}</p></li>
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.fuelSurcharge">{{'FuelSurcharge' | translate}}</a></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="width150 BlockMarginBottom mobile-width100">
+                        <div class="about-foot">
+                            <h6>{{'Send_Consignment' | translate}}</h6>
+                            <ul class="list-unstyled">
+                                <li><p>{{'Packaging' | translate}}</p></li>
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.paperwork">{{'Paperwork' | translate}}</a></p></li>
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.download">{{'Download_Forms' | translate}}</a></p></li>
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.transitTime">{{'Transit_Times' | translate}}</a></p></li>
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.learnMore">{{'Restricted_ItemsAndProhibited_Items' | translate}}</a></p></li>
+                                <!--<li><p>{{'Prohibited_Items' | translate}}</p></li>-->
+                                <li><p>{{'Shipping_Lithium_Batteries' | translate}}</p></li>
+                                <!--<li><p>{{'Volumetric_Calculator' | translate}}</p></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="width20 BlockMarginBottom mobile-width100">
+                        <div class="about-foot">
+                            <h6>{{'Using_FRAYTE' | translate}}</h6>
+                            <ul class="list-unstyled">
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.bookingConsignment">{{'Booking_Consignment' | translate}}</a></p></li>
+                                <!--<li><p>{{'Online_Booking_Guide' | translate}} ({{'Download' | translate}})</p></li>-->
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.trackingYourConsignment">{{'Tracking_Your_Consignment' | translate}}</a></p></li>
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="home.proofofdelivery">{{'POD' | translate}}</a></p></li>
+                                <li><p><a ng-click="setScroll('top')" data-ui-sref="payment">{{'Payment' | translate}}</a></p></li>
+                                <!--<li><p>{{'TermsAndCondition' | translate}} ({{'Download' | translate}})</p></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="width150 BlockMarginBottom mobile-width100">
+                        <div class="about-foot">
+                            <h6>{{'Termsof_Use' | translate}}</h6>
+                            <ul class="list-unstyled">
+                                <li><p><a ng-click="setScroll('top')" ui-sref='public.term-and-condition'>{{'TermsAndCondition' | translate}}</a></p></li>
+                                <li><p><a href="">{{'Privacy_Policy' | translate}}</a></p></li>
+                                <!--<li><p>{{'Refund_Policy' | translate}}</p></li>
+                                <li><p>{{'Payment_Security' | translate}}</p></li>
+                                <li><p>{{'Payment_Methods' | translate}}</p></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="width20 BlockMarginBottom mobile-width100">
+                        <div class="about-foot">
+                            <h6 class="text-center">{{'Customers' | translate}}</h6>
+                            <div id="carousel-hide">
+                                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                                    <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                                        <img ng-src="{{slide.image}}" class="img-responsive customer-image">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="width150 BlockMarginBottom mobile-width100">
+                        <div class="about-foot">
+                            <h6 style="margin-left: 10px;">{{'ContactUs' | translate}}</h6>
+                            <ul class="list-unstyled">
+                                <li><p><a href="mailto:{{saleslink}}"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Email_Us' | translate}}</span></a></p><div class="clearfix"></div></li>
+                                <li class="enter pointer">
+                                    <p class="call pointer"><a href=""><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Call_Us' | translate}}</span></a></p>
+                                    <span class="phone-number frayte-blue">(+852) 2148 4880</span><div class="clearfix"></div>
+                                </li>
+                                <li><p><img ng-src="{{ImagePath + 'Chat.png'}}" alt="Live Chat" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Chat_Us' | translate}}</span></p><div class="clearfix"></div></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="clearfix"></div>
+                    <div class="col-sm-4 col-xs-12 xs-footerCenter paddingboth">
+                        <div ng-if="FrayteWebSite==='CO.UK'" class="copyText"><img ng-src="{{ImagePath + 'RHA_Logo.png'}}" class="rha-image" /></div>
+                    </div>
+                    <div class="col-sm-5 col-xs-12  xs-footerCenter">
+                        <div ng-if="FrayteWebSite==='CO.UK'">
+                            <ul class="list-unstyled top12">
+                                <li class="copyText" style="margin-right:5px;"><span class="frayte-orange bold">Company No.:</span> 081287817</li>
+                                <li class="copyText" style="margin-right:5px;"><span class="frayte-orange bold">VAT NO.:</span> 247 3559 82</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-12 paddingboth textAlignR xs-footercenter text-center">
+                        <div class="text-right">
+                            <!--<div class="col-sm-3 paddingboth top5 col-xs-3 text-left">
+                                <span class="top5 fontsize12 we-accept"> We Accept </span>
+                            </div>-->
+                            <div class="col-sm-12 paddingboth col-xs-12">
+                                <p>
+                                    <ul class="list-unstyled fix-image-card margin-bottom-none  mobile-left">
+                                        <li><span class="fontsize12 we-accept"> We Accept &nbsp;&nbsp;</span></li>
+                                        <li><a href=""><img ng-src="{{ImagePath + 'visa-card.png'}}" /></a></li>
+                                        <li><a href=""><img ng-src="{{ImagePath + 'amex-card.png'}}" /></a></li>
+                                        <li><a href=""><img ng-src="{{ImagePath + 'mastercard.png'}}" /></a> </li>
+                                        <li><a href=""><img ng-src="{{ImagePath + 'paypal-card.png'}}" /></a></li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-4 col-xs-12 xs-footerCenter top3 paddingright padding-tb-10">
+                    <div class="copyText col-xs-12 width100 flex paddingboth">
+                        <!--<div class="width6"><a href=""><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /></a></div>-->
+                        <p class="mobile-left"><a href=""><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /></a> <span class="word-break">&copy; 2017 {{'Frayte' | translate}} {{'LogisticLTD' | translate}}. {{'AllRightsReserved' | translate}}.</span></p>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-5 col-xs-12  xs-footerCenter padding-tb-10 mobile-left">
+                    <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+                    <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}}(Simplified) </button>
+                    <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}}(Traditional) </button>
+                </div>
+                <!--hide in mobile browser-->
+                <div class="col-sm-3 col-xs-12 textAlignR xs-footercenter text-center mobile-handset">
+                    <ul class="pull-right margin-bottom-none">
+                        <li><a class="social-icon facebookIcon pointer" href="" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /><!--<i class="fa fa-facebook" aria-hidden="true"></i>--></a></li>
+                        <li><a class="social-icon twitterIcon pointer" href="" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /><!--<i class="fa fa-twitter" aria-hidden="true"></i>--></a></li>
+                        <li><a class="social-icon instagramIcon pointer" href="" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /><!--<i class="fa fa-instagram" aria-hidden="true"></i>--></a></li>
+                    </ul>
+                </div>
+                <!--end code-->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

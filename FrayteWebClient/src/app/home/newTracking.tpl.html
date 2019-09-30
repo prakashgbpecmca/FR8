@@ -1,0 +1,45 @@
+﻿<div id="seach"></div>
+<br/><br /><br />
+<div class="container">
+    <section class="track-shipment" style="padding-left:15px; padding-right:15px;">
+        <form name="TrackingForm" ng-submit="trackingDetail(TrackingForm.$valid,easyPostDetail)" novalidate>
+            <div class="row">
+                <div class="col-md-3 paddingleft4"><h2> {{'Track' | translate}} {{'Your' | translate}} {{'Shipment' | translate}} </h2></div>
+                <div class="col-md-2 paddingleft4">
+                    <div class="form-group" ng-class="{ 'has-error': TrackingForm.shippingMethod.$invalid &&
+                                                         (TrackingForm.shippingMethod.$dirty || submitted) }">
+                        <select id="shippingMethod" name="shippingMethod"
+                                ng-model="easyPostDetail.CarrierName"
+                                ng-options="DeliveredBy.Name as DeliveredBy.Name for DeliveredBy in carriers track by DeliveredBy.CourierId" class="form-control" required>
+                            <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Carrier' | translate}}</option>
+                        </select>
+                        <span class="help-block has-error" ng-show="TrackingForm.shippingMethod.$invalid &&
+                                            (TrackingForm.shippingMethod.$dirty || submitted)">
+                            {{'Carrier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 paddingleft4">
+                    <div class="form-group" ng-class="{ 'has-error': TrackingForm.tracking.$invalid &&
+                                                         (TrackingForm.tracking.$dirty || submitted) }">
+                        <input type="text" id="tracking" name="tracking" class="form-control" ng-model="easyPostDetail.TrackingNumber" placeholder="{{'TrackingNumber' | translate}}" required />
+                        <span class="help-block has-error track-shipment-padding" ng-show="TrackingForm.tracking.$invalid &&
+                                            (TrackingForm.tracking.$dirty || submitted)">
+                            {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2 lineheight47">
+                    <button type="submit" ng-click="submitted=true" class="btnTrack width100 form-group">{{'Track' | translate}} {{'Now' | translate}}</button>
+
+                </div>
+                <div class="col-md-2 lineheight47 paddingleft4">
+                    <button type="submit" ng-click="goToBulkTracking()" class="btnTrack width100 form-group">{{'Bulk' | translate}} {{'Tracking' | translate}}</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+
+    </section>
+</div>
+<br /><br />

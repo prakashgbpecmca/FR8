@@ -1,0 +1,1157 @@
+﻿
+<!--real code here-->
+<section>
+    <div class="panel panel-body box-shadow-none">
+        <div class="paddingTB60">
+            <div id="largebutton" class="text-center">
+                <div class="form-group center-width45-inline">
+                    <div id="directbooking" class="directbooking">
+                        <a class="btn box-shadow-none" ng-click="MileStoneStateChange()">
+                            <div class="form-group"><img ng-src="{{ImagePath + 'milestone.png'}}" class="img-responsive margin-auto-fix" /></div>
+                            <h3 class="uppercase pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'Milestone_Not_Completed' | translate}}<br /><span>({{MilestonenotCompletedCount}})</span></h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group center-width45-inline">
+                    <div id="tradelane" class="directbooking">
+                        <a class="btn box-shadow-none" ng-click="PreAlertStateChange()">
+                            <div class="form-group"><img ng-src="{{ImagePath + 'prealert.png'}}" class="img-responsive margin-auto-fix" /></div>
+                            <h3 class="uppercase pointer marginTop-zero frayte-blue bold word-break white-space-normal">{{'Ready_Prealert_Mail' | translate}}<br /><span>({{PreAlertCount}})</span></h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
+<!--end-->
+
+
+<!--demo code here-->
+<!--<section style="min-height:400px;padding: 15px;">-->
+            <!--<div style="border:1px solid #ddd;padding: 15px 15px 0px;" class="form-group">
+                <div class="form-group"><i class="fa fa-14 top3" ng-class="{'fa-minus-square-o':value, 'fa-plus-square-o':!value}" ng-click="collapse_A()"></i> &nbsp; &nbsp; <img ng-src="{{ImagePath + 'Exception.png'}}" style="width: 35px;" /> &nbsp; &nbsp; {{'Milestone_Not_Completed' | translate}}</div>
+                <div class="form-group" ng-if="value">
+                    <div class="panel panel-default margin-bottom-none">
+                        <div class="width100 flex grid-background">
+                            <div class="width986 flex">
+                                <div class="width22 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Status</span></div>
+                                <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Customer</span></div>
+                                <div class="width8 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">MAWB#</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Total weight</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Total Carton</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Departure Airport</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Destination Airport</span></div>
+                                <div class="width9 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5 ng-binding">Created On</sapn></div>
+                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                            <div class="panel-body padding0">
+                                <ul class="list-unstyled change margin-bottom-none">
+                                    <li>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-arrived.png" src="../build/assets/D-arrived.png">Arrived (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">333</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">111</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">15-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Yogi</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">09876544</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">60</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">20</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Vadodara BDQ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">11-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12121212</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Jaipur JAI</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">North Ronaldsay NRL</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">24-Jul-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (AINT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">14141414</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Cambridge CBG</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">29-Jul-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12586958</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">333</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">111</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">19-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">10101010</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">15-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">120</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">40</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">11-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (AINT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12121212</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">60</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">20</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Cambridge CBG</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">18-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">24</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">8</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Yogi</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Vadodara BDQ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                               </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div style="border:1px solid #ddd;padding: 15px 15px 0px;" class="form-group">
+                <div class="form-group"><i class="fa fa-14 top3" ng-class="{'fa-minus-square-o':valued, 'fa-plus-square-o':!valued}" ng-click="collapse_B()"></i> &nbsp; &nbsp; <img ng-src="{{ImagePath + 'Expired.png'}}" style="width: 35px;" /> &nbsp; &nbsp; {{'Ready_Prealert_Mail' | translate}}</div>
+                <div class="form-group" ng-if="valued">
+                    <div class="panel panel-default margin-bottom-none">
+                        <div class="width100 flex grid-background">
+                            <div class="width986 flex">
+                                <div class="width22 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Status</span></div>
+                                <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Customer</span></div>
+                                <div class="width8 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">MAWB#</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Total weight</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Total Carton</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Departure Airport</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Destination Airport</span></div>
+                                <div class="width9 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5 ng-binding">Created On</sapn></div>
+                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                            <div class="panel-body padding0">
+                                <ul class="list-unstyled change margin-bottom-none">
+                                    <li>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-arrived.png" src="../build/assets/D-arrived.png">Arrived (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">333</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">111</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">15-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Yogi</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">09876544</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">60</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">20</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Vadodara BDQ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">11-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12121212</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Jaipur JAI</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">North Ronaldsay NRL</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">24-Jul-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (AINT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">14141414</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Cambridge CBG</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">29-Jul-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12586958</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">333</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">111</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">19-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">10101010</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">15-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">120</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">40</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">11-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (AINT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12121212</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">60</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">20</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Cambridge CBG</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">18-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">24</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">8</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Yogi</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Vadodara BDQ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="border:1px solid #ddd;padding: 15px 15px 0px;" class="form-group">
+                <div class="form-group"><i class="fa fa-14 top3" ng-class="{'fa-minus-square-o':valued1, 'fa-plus-square-o':!valued1}" ng-click="collapse_C()"></i> &nbsp; &nbsp; <img ng-src="{{ImagePath + 'Exception.png'}}" style="width: 35px;" /> &nbsp; &nbsp; Allocated Shipments</div>
+                <div class="form-group" ng-if="valued1">
+                    <div class="panel panel-default margin-bottom-none">
+                        <div class="width100 flex grid-background">
+                            <div class="width986 flex">
+                                <div class="width22 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Status</span></div>
+                                <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Customer</span></div>
+                                <div class="width8 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">MAWB#</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Total weight</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Total Carton</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Departure Airport</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Destination Airport</span></div>
+                                <div class="width9 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5 ng-binding">Created On</sapn></div>
+                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                            <div class="panel-body padding0">
+                                <ul class="list-unstyled change margin-bottom-none">
+                                    <li>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-arrived.png" src="../build/assets/D-arrived.png">Arrived (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">333</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">111</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">15-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Yogi</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">09876544</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">60</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">20</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Vadodara BDQ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">11-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12121212</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Jaipur JAI</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">North Ronaldsay NRL</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">24-Jul-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (AINT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">14141414</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Cambridge CBG</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">29-Jul-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12586958</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">333</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">111</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">19-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">10101010</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">15-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">120</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">40</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">11-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (AINT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12121212</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">60</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">20</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Cambridge CBG</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">18-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">24</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">8</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Yogi</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Vadodara BDQ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="border:1px solid #ddd;padding: 15px 15px 0px;" class="form-group">
+                <div class="form-group"><i class="fa fa-14 top3" ng-class="{'fa-minus-square-o':valued2, 'fa-plus-square-o':!valued2}" ng-click="collapse_D()"></i> &nbsp; &nbsp; <img ng-src="{{ImagePath + 'Expired.png'}}" style="width: 35px;" /> &nbsp; &nbsp; MAWB Pending Shipments</div>
+                <div class="form-group" ng-if="valued2">
+                    <div class="panel panel-default margin-bottom-none">
+                        <div class="width100 flex grid-background">
+                            <div class="width986 flex">
+                                <div class="width22 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Status</span></div>
+                                <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Customer</span></div>
+                                <div class="width8 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">MAWB#</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Total weight</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Total Carton</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Departure Airport</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 ng-binding">Destination Airport</span></div>
+                                <div class="width9 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5 ng-binding">Created On</sapn></div>
+                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                            <div class="panel-body padding0">
+                                <ul class="list-unstyled change margin-bottom-none">
+                                    <li>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-arrived.png" src="../build/assets/D-arrived.png">Arrived (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">333</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">111</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">15-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Yogi</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">09876544</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">60</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">20</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Vadodara BDQ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">11-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12121212</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Jaipur JAI</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">North Ronaldsay NRL</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">24-Jul-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (AINT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">14141414</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Cambridge CBG</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">29-Jul-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12586958</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">333</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">111</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">19-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">10101010</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">15-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/D-departed.png" src="../build/assets/D-departed.png">Departed (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">120</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">40</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">11-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (AINT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">SERIOUS STUFF LIMITED</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding">12121212</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">60</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">20</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Cambridge CBG</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">18-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">24</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">8</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ADRT)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Prakash</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">10</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">2</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="width100 pointer ng-scope">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                                <div class="width22 quotation-table-body padding-2 ng-binding"><img class="margin-right5" ng-src="../build/assets/currentImg.png" src="../build/assets/currentImg.png">Shipment Booked (ATRN)</div>
+                                                <div class="width13 quotation-table-body word-wrap padding-5"><span class="ng-binding">Yogi</span></div>
+                                                <div class="width8 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a class="ng-binding"></a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a class="ng-binding">90</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a class="ng-binding">18</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Aberdeen&nbsp; ABZ</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span class="ng-binding">Vadodara BDQ</span></div>
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span class="ng-binding">21-Jun-2018</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle="" ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none ng-binding dropdown-toggle" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+    <!--second demo code-->
+    <!--<div class="track-and-trace-dashboard">
+        <div class="col-sm-6">
+            <div ng-class="{'pointer' : dashBoardDetail.Delivered.TotalShipment}" class="pointer" ng-click="tradelanePopup()">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'Delivered.png'}}" class="img-responsive" />
+                </div>
+                <div class="col-sm-7">
+                    <div>Allocated Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>50 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="pointer" ng-click="tradelanePopup()"
+                 ng-class="{'pointer' : dashBoardDetail.Exception.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'Exception.png'}}" class="img-responsive" />
+                </div>
+                <div class="col-sm-7">
+                    <div>Claim Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>0 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="track-and-trace-dashboard">
+        <div class="col-sm-6">
+            <div class="pointer" ng-click="tradelanePopup()"
+                 ng-class="{'pointer' : dashBoardDetail.OutForDelivery.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'OutforDelivery.png'}}" class="img-responsive" />
+                </div>
+                <div class="col-sm-7">
+                    <div>MAWB Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>27 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="pointer" ng-click="tradelanePopup()" ng-class="{'pointer' : dashBoardDetail.Pending.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'Pending.png'}}" class="img-responsive" />
+                </div>
+                <div class="col-sm-7">
+                    <div>MAWB Pending Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>10 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="track-and-trace-dashboard">
+        <div class="col-sm-6">
+            <div class="pointer" ng-click="tradelanePopup()" ng-class="{'pointer' : dashBoardDetail.InTransit.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'InTransit.png'}}" class="img-responsive" />
+                </div>
+                <div class="col-sm-7">
+                    <div>Milestone Not Completed</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>8 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="pointer" ng-click="tradelanePopup()"
+                 ng-class="{'pointer' : dashBoardDetail.Expired.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'Expired.png'}}" class="img-responsive" />
+                </div>
+                <div class="col-sm-7">
+                    <div>Ready for Pre Alert</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>0 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="track-and-trace-dashboard">
+        <div class="col-sm-6">
+            <div class="pointer" ng-click="tradelanePopup()" ng-class="{'pointer' : dashBoardDetail.InfoReceived.TotalShipment}">
+                <div class="col-sm-2">
+                    <img ng-src="{{ImagePath + 'InfoReceived.png'}}" class="img-responsive" />
+                </div>
+                <div class="col-sm-7">
+                    <div>Unallocated Shipments</div>
+                    <p>Shipments</p>
+                </div>
+                <div class="col-sm-3">
+                    <p>5 %</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>-->
+    <!--end-->
+
+
+<!--</section>-->
+<!--end-->
+
+<!--<style>
+    a {
+        color:#4d5663;
+    }
+      a:hover {
+        color:#4d5663;
+    }
+        a#btn-append-to-to-body {
+            color:#337ab7;
+        }
+</style>-->
+
+

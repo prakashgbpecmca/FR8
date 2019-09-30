@@ -1,0 +1,264 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="cancelService()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Service_Available' | translate}}</h4>
+</div>
+<div class="modal-body">
+    <div ng-if="ukShipmentService.IsUkShipment && courierServices.length">
+        <div class="width100 flex quotation-header-overflow" style="background-color: #E6E8F1 !important;">
+            <div class="width10   bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Courier' | translate}}</span></div>
+            <div class="width25  bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Description' | translate}}</span></div>
+            <div class="width25  bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Service_Type' | translate}}</span></div>
+            <div class="width10   bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Rate' | translate}} <span class="redColor">#</span></span></div>
+            <div class="width10  bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Fuel_Surcharge' | translate}}</span></div>
+            <div class="width120   bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Total_EstCost' | translate}} <span class="redColor">#</span></span></div>
+            <div class="width8  bold  quotation-table-padding lineheight20" style="border-right:transparent !important;"><strong></strong></div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div ng-if="!ukShipmentService.IsUkShipment && courierServices.length">
+        <div class="width100 flex" style="background: #E6E8F1;">
+            <div class="flex width986">
+                <div class="width120  bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Courier' | translate}}</span></div>
+                <div class="width30   bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Description' | translate}}</span></div>
+                <div class="width150   bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Rate' | translate}} <span class="redColor">#</span></span></div>
+                <div class="width150   bold  quotation-table-padding"><span class="quotation-table-body padding-10">{{'Fuel_Surcharge' | translate}}</span></div>
+                <div class="width20   bold  quotation-table-padding "><span class="quotation-table-body padding-10">{{'Total_EstCost' | translate}} <span class="redColor">#</span></span></div>
+                <div class="width8  bold  quotation-table-padding lineheight20" style="border-right:transparent !important;"><strong></strong></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div ng-if="courierServices.length" class="get-service-scroll">
+        <div class="panel-body" style="padding:0px !important;">
+            <ul class="list-unstyled change  margin-bottom-none">
+                <li>
+                    <div ng-if="!ukShipmentService.IsUkShipment" ng-repeat="courierService in ukShipmentService.OtherServiceList">
+                        <div ng-dblclick="setCustomerRateCard(courierService)" ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100 quotation-table-body pointer">
+                            <div class="width120  quotation-table-body text-center"><span><img class="img100x30 top3" ng-src="{{courierService.ImageURL}}" /></span><!--<span class="margin080">{{courierService.DisplayName}}</span>--></div>
+                            <div class="width30  quotation-table-body  padding-10 margin6x0x6 "><span>{{courierService.CourierDescription}}</span></div>
+                            <div class="width150 quotation-table-body  padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.Rate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                            <div class="width150 quotation-table-body  padding-10 margin6x0x6"><span>{{courierService.FuelSurcharge}}% ({{courierService.FuelMonth}})</span></div>
+                            <div class="width20 quotation-table-body  padding-10 margin6x0x6 "><span>{{courierService.CustomerCurrency}} {{courierService.TotalEstimatedCharge}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'"></span></div>
+                            <!--<div class="width8  quotation-table-body padding-10 text-center">-->
+                            <div class="width8 panel-body-same-border-padding dropdown quotation-dropdown quotation-table-body" style="padding:0px !important;">
+                                <label id="single-button" uib-dropdown is-open="status.isopen" uib-dropdown-toggle ng-disabled="disabled" class="pointer width100 panel-body-same-border-padding action-font-family padding-10" style="margin-bottom:0px !important;" data-toggle="dropdown">{{'Actions' | translate}} <span class="caret"></span></label>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem"><a href="" ng-click="setCustomerRateCard(courierService)"><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                    <li role="menuitem"><a href="" ng-click="DownloadSupplementryChargesGetServices(courierService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Supplementary_Charges' | translate}} {{'PDF' | translate}}</span></a></li>
+                                </ul>
+                            </div>
+
+                            <!--<button ng-click="setCustomerRateCard(courierService)" type="button" class="btn btn-sm btn-default styled"><i class="fa fa-check" aria-hidden="true"></i> {{'Select' | translate}}</button>
+                            </div>-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+            <!-- UK Shipmemnt Rate-->
+            <ul class="list-unstyled change  margin-bottom-none">
+                <li>
+                    <div ng-show="ukShipmentService.IsUkShipment">
+                        <div ng-show="ukShipmentService.FirstUkmailService !== null" ng-dblclick="setCustomerRateCard(ukShipmentService.FirstUkmailService)" ng-click="selectCustomerRateCard(ukShipmentService.FirstUkmailService)" ng-class="{'demoClass':ukShipmentService.FirstUkmailService.RowSelect, 'greenClass':ukShipmentService.UkmailServiceList.length > 0}" class="width100 pointer quotation-table-body ">
+                            <div class="width10  quotation-table-body  text-center"><span><img class="img100x30" ng-src="{{ukShipmentService.FirstUkmailService.ImageURL}}" /></span><!--<span class="margin080">{{ukShipmentService.FirstUkmailService.DisplayName}}</span>--></div>
+                            <div class="width25 quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstUkmailService.CourierDescription}}</span></div>
+                            <div class="width25  quotation-table-body"><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstUkmailService.ShipmentType}}</span></div>
+                            <div class="width10  quotation-table-body  padding-10 margin6x0x6"><span>{{ukShipmentService.FirstUkmailService.CustomerCurrency}} {{ukShipmentService.FirstUkmailService.Rate}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                            <div class="width10  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstUkmailService.FuelSurcharge}}% ({{ukShipmentService.FirstUkmailService.FuelMonth}})</span></div>
+                            <div class="width120  quotation-table-body  padding-10 margin6x0x6"><span>{{ukShipmentService.FirstUkmailService.CustomerCurrency}} {{ukShipmentService.FirstUkmailService.TotalEstimatedCharge}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'"></span></div>
+                            <div class="width8 panel-body-same-border-padding dropdown quotation-dropdown quotation-table-body" style="padding:0px !important;">
+                                <label id="single-button" uib-dropdown is-open="status.isopen" uib-dropdown-toggle ng-disabled="disabled" class="pointer width100 panel-body-same-border-padding action-font-family padding-10" style="margin-bottom:0px !important;" data-toggle="dropdown">{{'Actions' | translate}} <span class="caret"></span></label>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem"><a href=""  ng-click="setCustomerRateCard(ukShipmentService.FirstUkmailService)"><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                    <li role="menuitem"><a href="" ng-click="DownloadSupplementryChargesGetServices(ukShipmentService.FirstUkmailService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Supplementary_Charges' | translate}} {{'PDF' | translate}}</span></a></li>
+                                </ul>
+                            </div>
+                             <!--<div class="width8  quotation-table-body lineheight41 text-center">
+                                <button ng-click="setCustomerRateCard(ukShipmentService.FirstUkmailService)" type="button" class="btn btn-sm btn-default styled"> <i class="fa fa-check" aria-hidden="true"></i> {{'Select' | translate}}</button>
+                            </div>-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+            <div ng-show="ukShipmentService.IsUkShipment && ukShipmentService.UkmailServiceList.length > 0">
+                <div class="border-color-ddd padding-10">
+                    <a style="cursor:pointer" ng-click="showHideUKmail = !showHideUKmail">
+                        <span>
+                            <i ng-class="{'fa fa-minus-square-o' : showHideUKmail, 'fa fa-plus-square-o' : !showHideUKmail}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;">
+                            </i>
+                        </span><span style="font-size:14px !important">{{'Uk_Mail' | translate}} ({{'Optional Services' | translate}})</span>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+                <ul class="list-unstyled change  margin-bottom-none">
+                    <li>
+                        <div ng-show="showHideUKmail" ng-repeat="courierService in ukShipmentService.UkmailServiceList">
+                            <div ng-dblclick="setCustomerRateCard(courierService)" ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100 quotation-table-body  pointer">
+                                <div class="width10  quotation-table-body  text-center"><span><img class="img100x30" ng-src="{{courierService.ImageURL}}" /></span><!--<span class="margin080">{{courierService.DisplayName}}</span>--></div>
+                                <div class="width25 quotation-table-body  "><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.CourierDescription}}</span></div>
+                                <div class="width25  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.ShipmentType}}</span></div>
+                                <div class="width10  quotation-table-body  padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.Rate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                <div class="width10  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.FuelSurcharge}}% ({{courierService.FuelMonth}})</span></div>
+                                <div class="width120  quotation-table-body  padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.TotalEstimatedCharge}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'"></span></div>
+                                <div class="width8 panel-body-same-border-padding dropdown quotation-dropdown quotation-table-body" style="padding:0px !important;">
+                                    <label id="single-button" uib-dropdown is-open="status.isopen" uib-dropdown-toggle ng-disabled="disabled" class="pointer width100 panel-body-same-border-padding action-font-family padding-10" style="margin-bottom:0px !important;" data-toggle="dropdown">{{'Actions' | translate}} <span class="caret"></span></label>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                        <li role="menuitem"><a href="" ng-click="setCustomerRateCard(courierService)"><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                        <li role="menuitem"><a href="" ng-click="DownloadSupplementryChargesGetServices(courierService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Supplementary_Charges' | translate}} {{'PDF' | translate}}</span></a></li>
+                                    </ul>
+                                </div>
+                                <!--<div class="width8  quotation-table-body padding-10 text-center">
+                                    <button ng-click="setCustomerRateCard(courierService)" type="button" class="btn btn-sm btn-default styled"> <i class="fa fa-check" aria-hidden="true"></i> {{'Select' | translate}}</button>
+                                </div>-->
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <ul class="list-unstyled change  margin-bottom-none">
+                <li>
+                    <div ng-show="ukShipmentService.IsUkShipment">
+                        <div ng-show="ukShipmentService.FirstYodelService !== null" ng-dblclick="setCustomerRateCard(ukShipmentService.FirstYodelService)" ng-click="selectCustomerRateCard(ukShipmentService.FirstYodelService)" ng-class="{'demoClass':ukShipmentService.FirstYodelService.RowSelect ,  'greenClass':ukShipmentService.YodelServiceList.length > 0}" class="width100  pointer quotation-table-body ">
+                            <div class="width10  quotation-table-body  text-center"><span><img class="img100x30" ng-src="{{ukShipmentService.FirstYodelService.ImageURL}}" /></span><!--<span class="margin080">{{ukShipmentService.FirstYodelService.DisplayName}}</span>--></div>
+                            <div class="width25 quotation-table-body  "><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstYodelService.CourierDescription}}</span></div>
+                            <div class="width25  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstYodelService.ShipmentType}}</span></div>
+                            <div class="width10  quotation-table-body  padding-10 margin6x0x6"><span>{{ukShipmentService.FirstYodelService.CustomerCurrency}} {{ukShipmentService.FirstYodelService.Rate}}</span> <span ng-show="ukShipmentService.FirstYodelService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="ukShipmentService.FirstYodelService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                            <div class="width10  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstYodelService.FuelSurcharge}}% ({{ukShipmentService.FirstYodelService.FuelMonth}})</span></div>
+                            <div class="width120 quotation-table-body  padding-10 margin6x0x6"><span>{{ukShipmentService.FirstYodelService.CustomerCurrency}} {{ukShipmentService.FirstYodelService.TotalEstimatedCharge}}</span> <span ng-show="ukShipmentService.FirstYodelService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="ukShipmentService.FirstYodelService.UnitOfMeasurement==='Per 10 Kg'"></span></div>
+                            <div class="width8 panel-body-same-border-padding dropdown quotation-dropdown quotation-table-body" style="padding:0px !important;">
+                                <label id="single-button" uib-dropdown is-open="status.isopen" uib-dropdown-toggle ng-disabled="disabled" class="pointer width100 panel-body-same-border-padding action-font-family padding-10" style="margin-bottom:0px !important;" data-toggle="dropdown">{{'Actions' | translate}} <span class="caret"></span></label>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem"><a href="" ng-click="setCustomerRateCard(ukShipmentService.FirstYodelService)"><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                    <li role="menuitem"><a href="" ng-click="DownloadSupplementryChargesGetServices(ukShipmentService.FirstYodelService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Supplementary_Charges' | translate}} {{'PDF' | translate}}</span></a></li>
+                                </ul>
+                            </div>
+                             <!--<div class="width8  quotation-table-body padding-10 text-center">
+                                <button ng-click="setCustomerRateCard(ukShipmentService.FirstYodelService)" type="button" class="btn btn-sm btn-default styled"> <i class="fa fa-check" aria-hidden="true"></i> {{'Select' | translate}}</button>
+                            </div>-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+            <div ng-if="ukShipmentService.IsUkShipment && ukShipmentService.YodelServiceList.length > 0">
+                <div class="border-color-ddd padding-10">
+                    <a style="cursor:pointer" ng-click="showHideYodel = !showHideYodel">
+                        <span>
+                            <i ng-class="{'fa fa-minus-square-o' : showHideYodel, 'fa fa-plus-square-o' : !showHideYodel}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;">
+                            </i>
+                        </span><span style="font-size:14px !important"> {{'Yodel' | translate}}  ({{'Optional Services' | translate}})</span>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+                <ul class="list-unstyled change  margin-bottom-none">
+                    <li>
+                        <div ng-show="showHideYodel" ng-repeat="courierService in ukShipmentService.YodelServiceList">
+                            <div ng-dblclick="setCustomerRateCard(courierService)" ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100 quotation-table-body  pointer">
+                                <div class="width10  quotation-table-body  text-center"><span><img class="img100x30" ng-src="{{courierService.ImageURL}}" /></span><!--<span class="margin080">{{courierService.DisplayName}}</span>--></div>
+                                <div class="width25 quotation-table-body"><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.CourierDescription}}</span></div>
+                                <div class="width25  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.ShipmentType}}</span></div>
+                                <div class="width10  quotation-table-body  padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.Rate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                <div class="width10  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.FuelSurcharge}}% ({{courierService.FuelMonth}})</span></div>
+                                <div class="width120  quotation-table-body  padding-10 margin6x0x6"><span>{{courierService.TotalEstimatedCharge}} {{courierService.CustomerCurrency}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'"></span></div>
+                                <div class="width8 panel-body-same-border-padding dropdown quotation-dropdown quotation-table-body" style="padding:0px !important;">
+                                    <label id="single-button" uib-dropdown is-open="status.isopen" uib-dropdown-toggle ng-disabled="disabled" class="pointer width100 panel-body-same-border-padding action-font-family padding-10" style="margin-bottom:0px !important;" data-toggle="dropdown">{{'Actions' | translate}} <span class="caret"></span></label>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                        <li role="menuitem"><a href="" ng-click="setCustomerRateCard(courierService)"><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                        <li role="menuitem"><a href="" ng-click="DownloadSupplementryChargesGetServices(courierService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Supplementary_Charges' | translate}} {{'PDF' | translate}}</span></a></li>
+                                    </ul>
+                                </div>
+                                 <!--<div class="width8  quotation-table-body padding-10 text-center">
+                                <button ng-click="setCustomerRateCard(courierService)" type="button" class="btn btn-sm btn-default styled"> <i class="fa fa-check" aria-hidden="true"></i> {{'Select' | translate}}</button>
+                                </div>-->
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <ul class="list-unstyled change  margin-bottom-none">
+                <li>
+                    <div ng-show="ukShipmentService.IsUkShipment">
+                        <div ng-show="ukShipmentService.FirstHermesService !== null" ng-dblclick="setCustomerRateCard(ukShipmentService.FirstHermesService)" ng-click="selectCustomerRateCard(ukShipmentService.FirstHermesService)" ng-class="{'demoClass':ukShipmentService.FirstHermesService.RowSelect ,  'greenClass':ukShipmentService.HermesServiceList.length > 0}" class="width100  pointer quotation-table-body ">
+                            <div class="width10  quotation-table-body  text-center"><span><img class="img100x30" ng-src="{{ukShipmentService.FirstHermesService.ImageURL}}" /></span><!--<span class="margin080">{{ukShipmentService.FirstHermesService.DisplayName}}</span>--></div>
+                            <div class="width25 quotation-table-body  "><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstHermesService.CourierDescription}}</span></div>
+                            <div class="width25  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstHermesService.ShipmentType}}</span></div>
+                            <div class="width10  quotation-table-body padding-10 margin6x0x6"><span>{{ukShipmentService.FirstHermesService.CustomerCurrency}} {{ukShipmentService.FirstHermesService.Rate}}</span> <span ng-show="ukShipmentService.FirstHermesService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="ukShipmentService.FirstHermesService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                            <div class="width10  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{ukShipmentService.FirstHermesService.FuelSurcharge}}% ({{ukShipmentService.FirstHermesService.FuelMonth}})</span></div>
+                            <div class="width120  quotation-table-body padding-10 margin6x0x6"><span>{{ukShipmentService.FirstHermesService.CustomerCurrency}} {{ukShipmentService.FirstHermesService.TotalEstimatedCharge}}</span> <span ng-show="ukShipmentService.FirstHermesService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="ukShipmentService.FirstHermesService.UnitOfMeasurement==='Per 10 Kg'"></span></div>
+                            <div class="width8 panel-body-same-border-padding dropdown quotation-dropdown quotation-table-body" style="padding:0px !important;">
+                                <label id="single-button" uib-dropdown is-open="status.isopen" uib-dropdown-toggle ng-disabled="disabled" class="pointer width100 panel-body-same-border-padding action-font-family padding-10" style="margin-bottom:0px !important;" data-toggle="dropdown">{{'Actions' | translate}} <span class="caret"></span></label>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem"><a href="" ng-click="setCustomerRateCard(ukShipmentService.FirstHermesService)"><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                    <li role="menuitem"><a href="" ng-click="DownloadSupplementryChargesGetServices(ukShipmentService.FirstHermesService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Supplementary_Charges' | translate}} {{'PDF' | translate}}</span></a></li>
+                                </ul>
+                            </div>
+                            <!--<div class="width8  quotation-table-body padding-10 text-center"><button ng-click="setCustomerRateCard(ukShipmentService.FirstHermesService)" type="button" class="btn btn-sm btn-default styled"> <i class="fa fa-check" aria-hidden="true"></i> {{'Select' | translate}}</button></div>-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+            <div ng-show="ukShipmentService.IsUkShipment && ukShipmentService.HermesServiceList.length > 0">
+                <div class="border-color-ddd padding-10">
+                    <a style="cursor:pointer" ng-click="showHideHermes = !showHideHermes">
+                        <span>
+                            <i ng-class="{'fa fa-minus-square-o' : showHideHermes, 'fa fa-plus-square-o' : !showHideHermes}" style="font-size: 20px; padding: 1px 10px 0px 0px; float: left;">
+                            </i>
+                        </span><span style="font-size:14px !important"> {{'Hermes' | translate}}  ({{'Optional Services' | translate}})</span>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+                <ul class="list-unstyled change  margin-bottom-none">
+                    <li>
+                        <div ng-show="showHideHermes" ng-repeat="courierService in ukShipmentService.HermesServiceList">
+                            <div ng-dblclick="setCustomerRateCard(courierService)" ng-click="selectCustomerRateCard(courierService)" ng-class="{'demoClass':courierService.RowSelect}" class="width100 quotation-table-body  pointer">
+                                <div class="width10  quotation-table-body  text-center"><span><img class="img100x30" ng-src="{{courierService.ImageURL}}" /></span><!--<span class="margin080">{{ukShipmentService.FirstHermesService.DisplayName}}</span>--></div>
+                                <div class="width25 quotation-table-body  "><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.CourierDescription}}</span></div>
+                                <div class="width25  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.ShipmentType}}</span></div>
+                                <div class="width10  quotation-table-body padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.Rate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                <div class="width10  quotation-table-body "><span class="quotation-table-body padding-10 margin6x0x6">{{courierService.FuelSurcharge}}% ({{courierService.FuelMonth}})</span></div>
+                                <div class="width120  quotation-table-body padding-10 margin6x0x6"><span>{{courierService.CustomerCurrency}} {{courierService.TotalEstimatedCharge}}</span> <span ng-show="courierService.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="courierService.UnitOfMeasurement==='Per 10 Kg'"></span></div>
+                                <div class="width8 panel-body-same-border-padding dropdown quotation-dropdown quotation-table-body" style="padding:0px !important;">
+                                    <label id="single-button" uib-dropdown is-open="status.isopen" uib-dropdown-toggle ng-disabled="disabled" class="pointer width100 panel-body-same-border-padding action-font-family padding-10" style="margin-bottom:0px !important;" data-toggle="dropdown">{{'Actions' | translate}} <span class="caret"></span></label>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                        <li role="menuitem"><a href="" ng-click="setCustomerRateCard(courierService)"><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center">{{'Select' | translate}} {{'Service' | translate}}</span></a></li>
+                                        <li role="menuitem"><a href="" ng-click="DownloadSupplementryChargesGetServices(courierService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center">{{'Download' | translate}} {{'Supplementary_Charges' | translate}} {{'PDF' | translate}}</span></a></li>
+                                    </ul>
+                                </div>
+                                <!--<div class="width8  quotation-table-body padding-10 text-center"><button ng-click="setCustomerRateCard(courierService)" type="button" class="btn btn-sm btn-default styled"> <i class="fa fa-check" aria-hidden="true"></i> {{'Select' | translate}}</button></div>-->
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div ng-if="courierServices.length === 0" style="overflow:auto; height:400px;position:relative; font-size:12px !important;">
+        <div class="panel-body">
+            <div style="position:relative;padding-top:170px;text-align:center;"><b> {{'NoService_Available' | translate}}. {{'Please_Contact' | translate}} <a herf="sales@frayte.com">{{'Sales_' | translate}}{{FrayteWebsite}}</a></b></div>
+        </div>
+    </div>
+</div>
+<div ng-if="courierServices.length" class="modal-footer" style="text-align:left !important;">
+    <span class="redColor"><strong>{{'Note' | translate}} #: </strong> {{'TotalEstimate_BillingWeight' | translate}}</span>
+</div>
+
+
+

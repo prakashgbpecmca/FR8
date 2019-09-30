@@ -1,0 +1,231 @@
+﻿<!--start package detail code here-->
+<section>
+    <div class="modal-content fontsize12">
+        <!--header code-->
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="closePopUp();$dismiss();"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 ng-show="!track.HAWB" class="modal-title">{{'Assign_HAWB' | translate}} <span class="redColor"> <span ng-show="!toggleGrid">({{'Step_1' | translate}})</span><span ng-show="toggleGrid">({{'Step_2' | translate}})</span></span></h4>
+            <h4 ng-show="track.HAWB" class="modal-title">{{'Preview_HAWB' | translate}}</h4>
+        </div>
+        <!--end-->
+        <!--body code-->
+        <div class="modal-body">
+            <div class="col-sm-12">
+                <section ng-show="packages.length && !toggleGrid" style="padding:30px 0px 0px">
+                    <section class="border form-group" ng-show="!toggleMessage">
+                        <div style="padding:38px 15px">
+                            <div class="text-center">
+                                <h3>{{'Total_Upload' | translate}}: {{TotalUploaded}}</h3>
+                                <h3>{{'Fail_Upload' | translate}} <span class="redColor">* </span>:{{TotalUploaded-SuccessUploaded}}</h3>
+                            </div>
+                            <p class="fontsize16">{{'HAWB_Message' | translate}}</p>
+                        </div>
+                        <!--<div style="padding:10px 15px">
+                            <hr />
+                            <p><span class="redColor">* {{'HAWB_Star_Message' | translate}}</span></p>
+                        </div>-->
+                    </section>
+                    <div class="form-group" style="padding:7px"></div>
+                    <!--choose hawb code-->
+                    <div class="clearfix">
+                        <div class="col-sm-3">
+                            <div class="radio">
+                                <label><input ng-disabled="SuccessUploaded == 1" type="radio" name="radio" value="With HAWB" ng-model="value" />With HAWB</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="radio">
+                                <label><input type="radio" name="radio" value="Without HAWB" ng-model="value" />Without HAWB</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <section class="border" style="padding:43px 15px">
+                        <form ng-show="IsHAWBShow" name="HAWBForm" novalidate ng-submit="createHAWB(HAWBForm.$valid)">
+                            <div class="form-group" ng-class="{ 'has-error': ((HAWBForm.hawb.$invalid || isMaxNumber || isNumberOne) &&
+                                                         (HAWBForm.hawb.$dirty || submitted)) }">
+                                <label class="control-label col-sm-3 col-sm-offset-2 lineheight34 paddingboth">{{'How_Many_HAWB_Create' | translate}}</label>
+                                <div class="col-sm-4">
+                                    <input name="hawb" required type="text" maxlength="3" only-numeric-zero class="form-control" ng-model="hawbNumber" />
+                                    <span class="help-block has-error"
+                                          ng-show="HAWBForm.hawb.$invalid &&
+                                            (HAWBForm.hawb.$dirty || submitted)">
+                                        {{'HAWB_No_Required' | translate}}
+                                    </span>
+                                    <span class="help-block has-error"
+                                          ng-show="isNumberOne && !HAWBForm.hawb.$invalid&&
+                                            (HAWBForm.hawb.$dirty || submitted)">
+                                        Please enter number greater than 1. 
+                                    </span>
+                                    <span class="help-block has-error"
+                                          ng-show="(isMaxNumber && !HAWBForm.hawb.$invalid) &&
+                                            (HAWBForm.hawb.$dirty || submitted)">
+                                        {{'Insert_Corresponds_No_With_Carton_Quality' | translate}}
+                                    </span>
+                                </div>
+                                <button ng-click="submitted = true" class="btn-simple btn-save" type="submit"><i class="fa fa-chevron-right" aria-hidden="true"></i><i class="fa fa-chevron-right" aria-hidden="true"></i> {{'Create_HAWB' | translate}}</button>
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                        <form ng-show="IsMAWBShow" name="MAWBForm" novalidate ng-submit="createMAWB(MAWBForm.$valid)">
+                            <div class="form-group" ng-class="{ 'has-error': ((MAWBForm.mawb.$invalid) &&
+                                                         (MAWBForm.mawb.$dirty || submitted)) }">
+                                <label class="control-label col-sm-3 col-sm-offset-2 lineheight34 paddingboth">Enter MAWB No.</label>
+                                <div class="col-sm-4">
+                                    <input name="mawb" id="mawb" required type="text" maxlength="8" only-numeric-zero class="form-control" ng-model="mawbNumber" />
+                                    <span class="help-block has-error"
+                                          ng-show="MAWBForm.mawb.$invalid &&
+                                            (MAWBForm.mawb.$dirty || submitted)">
+                                        {{'MAWB_No_Required' | translate}}
+                                    </span>
+                                </div>
+                                <button ng-click="submitted = true" class="btn-simple btn-save" type="submit"><i class="fa fa-chevron-right" aria-hidden="true"></i><i class="fa fa-chevron-right" aria-hidden="true"></i> Create MAWB</button>
+                            </div>
+                        </form>
+                    </section>
+                    <section>
+                        <div>
+                            <hr />
+                            <p><span class="redColor">* {{'HAWB_Star_Message' | translate}}</span></p>
+                        </div>
+                    </section>
+                </section>
+
+                <section ng-show="packages.length && toggleGrid">
+                    <div>
+                        <!-- shipment in progress -->
+                        <div ng-show="BookingShipment.TotalShipments !== BookingShipment.AllocatedShipments">
+                            <div class="frayte-orange border fontsize18 form-group padding10">{{'Out_of' | translate}} {{BookingShipment.TotalShipments}} {{'Shipments_HAWB_AllocatedFor' | translate}} {{BookingShipment.AllocatedShipments}} {{'Packages' | translate}}. {{'Please_Allocate_Remaining' | translate}} {{BookingShipment.UnAllocatedShipments}} {{'shipments' | translate}}.</div>
+                        </div>
+                        <div ng-show="BookingShipment.TotalShipments === BookingShipment.AllocatedShipments">
+                            <div class="frayte-orange border fontsize18 form-group padding10">{{'HAWB_Allocated_All_Shipment_Successfully' | translate}}</div>
+                        </div>
+                        <section class="border-LRB">
+                            <!--start header code-->
+                            <div class="width100">
+                                <div class="width986">
+                                    <div class="width69">
+                                        <div class="width986 jobinprogress-header" style="padding-right: 8px;">
+                                            <div class="width4 padding-5 text-center"><span ng-hide="IsMAWBShow"><input type="checkbox" ng-model="selectAll" name="selectAll" ng-change="selectAllPackage()" /></span></div>
+                                            <div class="width30 padding-5 padding10 quotation-table-body bold">{{'HAWB' | translate}}</div>
+                                            <div class="width20 padding-5 padding10 quotation-table-body bold">{{'Box_Number' | translate}}</div>
+                                            <div class="width9 padding-5 padding10 quotation-table-body bold">{{'Cartoon' | translate}} <span>({{'QTY' | translate}})</span></div>
+                                            <div class="width9 padding-5 padding10 quotation-table-body bold">{{'Weight' | translate}} <span>({{PackageCalculatonType === 'kgToCms' ? 'Kg' : 'Lb' }})</span></div>
+                                            <div class="width9 padding-5 padding10 quotation-table-body bold">{{'Length' | translate}} <span>({{PackageCalculatonType === 'kgToCms' ? 'Cm' : 'In' }})</span></div>
+                                            <div class="width9 padding-5 padding10 quotation-table-body bold">{{'Width' | translate}} <span>({{PackageCalculatonType === 'kgToCms' ? 'Cm' : 'In' }})</span></div>
+                                            <div class="width10 padding-5 padding10 quotation-table-body bold">{{'Height' | translate}} <span>({{PackageCalculatonType === 'kgToCms' ? 'Cm' : 'In' }})</span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="width1"><span class="visibility">Hidden</span></div>
+                                    <div class="width30 jobinprogress-header">
+                                        <div class="width986" style="padding-right: 8px;">
+                                            <div class="col-sm-8 padding-5 padding10 quotation-table-body bold">{{'HAWB' | translate}}</div>
+                                            <div class="col-sm-4 padding-5 padding10 quotation-table-body bold">{{'Assigned_No_Of_Cartons' | translate}}</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <!--end header-->
+                            <div class="clearfix"></div>
+                            <div class="modal-body padding0">
+                                <ul class="list-unstyled margin-bottom-none">
+                                    <li>
+                                        <div class="width69 quotation-overflow" ng-if="packages.length">
+                                            <div ng-repeat="item in packages | orderBy:'OrderNumber' track by item.TradelaneShipmentDetailId" class="change col-sm-12 paddingboth">
+                                                <!--start header body code-->
+                                                <div class="width100" ng-class="{'demoClass':item.IsSelected}"> 
+                                                    <div class="width4 padding-5 text-center lineheight34" ng-hide="IsMAWBShow">
+                                                        <input type="checkbox" ng-model="item.IsSelected" name="select" />
+                                                    </div>
+                                                    <div class="width30 padding-5 padding10 quotation-table-body" id="Xe">
+                                                        <span ng-if="IsMAWBShow">
+                                                            {{mawbNumber}}
+                                                        </span>
+                                                        <span ng-if="!IsMAWBShow">
+                                                            <select ng-change="changeHAWB(item)" class="form-control" ng-model="item.HAWB" ng-options="num as num for num in hawbNumbers" name="hawb">
+                                                                <option value="" disabled selected class="display-none">{{'Select_HAWB' | translate}}</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                    <div class="width20 padding-5 padding10 quotation-table-body lineheight34">{{item.CartonNumber}}</div>
+                                                    <div class="width9 padding-5 padding10 quotation-table-body lineheight34">{{item.CartonValue}}</div>
+                                                    <div class="width9 padding-5 padding10 quotation-table-body lineheight34">{{item.Weight}} </div>
+                                                    <div class="width9 padding-5 padding10 quotation-table-body lineheight34">{{item.Length}}</div>
+                                                    <div class="width9 padding-5 padding10 quotation-table-body lineheight34">{{item.Width}}</div>
+                                                    <div class="width10 padding-5 padding10 quotation-table-body lineheight34">{{item.Height}}</div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <!--end header body-->
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="width1"><span class="visibility">Hidden</span></div>
+                                        <div class="width30 quotation-overflow" ng-show="packages.length && toggleGrid">
+                                            <div ng-repeat="item in hawbShipments | orderBy:'OrderNumber'" class="change" ng-class="{'mawb-active':item.TotalPackages}">
+                                                <div class="col-sm-8 padding-5 padding10 quotation-table-body lineheight34">{{item.HAWB}}</div>
+                                                <div class="col-sm-4 padding-5 padding10 quotation-table-body lineheight34 text-center">{{item.TotalPackages}}</div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                        <div>
+                            <div class="form-group"></div>
+                            <div class="form-group border padding-10 width69 mawb-active">
+                                {{'TotalWeight' | translate}} : {{TradelaneWeight.TotalWeight.toFixed(2)}} ({{'Kgs' | translate}})
+                            </div>
+                            <div class="border padding-10 width69 mawb-active">
+                                {{'Total' | translate}} {{'CBM' | translate}} : {{TradelaneWeight.TotalCBM.toFixed(2)}} ({{'CBM' | translate}})
+                            </div>
+                        </div>
+                    </div>
+                    <!--pagination code start-->
+                    <section>
+                        <div class="width69">
+                            <div class="pull-left"><ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" style="padding:0px !important;"></ul></div>
+                            <div class="col-sm-4 pull-right top9 paddingboth">
+                                <label class="top9 text-right"><label class="text-right">{{'No_Of_Packages_Per_Page' | translate}}</label></label>
+                                <div class="pull-right">
+                                    <select ng-model="track.TakeRows" class="form-control" ng-options="num as num for num in numbers" ng-change="changePagination()" style="width:70px;float:left;"></select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </section>
+                    <!--pagination code end-->
+                </section>
+                <!--Error message-->
+                <div ng-if="!packages.length" class="col-sm-12 padding-tb-222">
+                    <h4 class="redColor text-center">
+                        {{'No_Packages_Uploaded_Please_Upload_Excel_Again' | translate}}
+                    </h4>
+                </div>
+                <!--End Eroor message code-->
+            </div>
+            <div class="clearfix"></div>
+            <!--end-->
+        </div>
+        <div class="clearfix"></div>
+        <!--footer code-->
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <button type="button" ng-click="closePopUp()" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                </div>
+                <div class="pull-right">
+                    <button type="button" ng-class="{'no-drop':!toggleGrid}" ng-disabled="!toggleGrid" ng-click="closePopUp()" class="btn-simple btn-save fontsize12"><i class="fa fa-save" aria-hidden="true"></i> {{'Save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+    </div>
+</section>
+<!--end-->

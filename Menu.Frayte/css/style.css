@@ -1,0 +1,127 @@
+﻿
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #4d5663;
+    font-family: 'Roboto', sans-serif;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#header {
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0px 0px 5px;
+}
+
+    #header > .container div.col-sm-4 > a div.FRAYTE_logo {
+        background-image: url('/img/frayte_logo/FrayteLogo.png');
+        height: 8rem !important;
+        width: 240px;
+        position: relative;
+    }
+
+.phone-data-fix {
+    padding: 5px;
+    position: relative;
+    top: 10px;
+}
+
+.phone-image {
+    width: 40px;
+    bottom: 5px;
+    position: relative;
+}
+
+.paddingboth {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#content {
+    padding-bottom: 100px;
+}
+
+.center {
+    position: relative;
+    margin: 0 auto;
+}
+
+.fix-height {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: contain;
+}
+
+.img-height {
+    min-height: 150px !important;
+}
+
+.image1 {
+    background-image: url('/img/content-image/backup.png');
+}
+
+.active:hover, .active:focus, .active::selection, .active:active {
+    box-shadow: 0px 3px 18px;
+    -webkit-box-shadow: 0px 3px 18px;
+    -moz-box-shadow: 0px 3px 18px;
+    transition: all .4s ease-in-out .1s;
+    -webkit-transition: all .4s ease-in-out .1s;
+    -moz-transition: all .4s ease-in-out .1s;
+    -o-transition: all .4s ease-in-out .1s;
+}
+
+.image2 {
+    background-image: url('/img/content-image/email.png');
+}
+
+.image4 {
+    background-image: url('/img/content-image/reports.png');
+}
+
+.image3 {
+    background-image: url('/img/content-image/system.png');
+}
+
+
+.container > h2 span {
+    color: #DCE5EC;
+}
+
+.display-inline {
+    display: inline-flex;
+    margin: 0px;
+}
+
+ul.display-inline li {
+    margin: 0px 3px;
+}
+
+img.footer-icon-right {
+    width: 38px;
+}
+
+.paddingTB-10 {
+    padding: 10px 0px;
+    position: relative;
+}
+
+#footer {
+    background: #DCE5EC;
+    width: 100%;
+    padding: 27px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #999;
+}

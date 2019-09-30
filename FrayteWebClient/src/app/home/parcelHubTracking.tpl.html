@@ -1,0 +1,44 @@
+﻿<section class="title-bar img-blog transparent-bg-secondary">
+    <div class="transparent-bg-secondary-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>{{'Tracking' | translate}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="transparent-bg-secondary-layer"></div>
+</section>
+<div class="clearfix"></div>
+<section class="fullwidthNoBackground">
+    <div class="container">
+        <div class="padding-tb-20">
+            <div>
+                <div class="col-md-12" style="margin-top:21px;">
+                    <div style="border:1px solid #e0e0e0;">
+                            <div style="padding:28px;font-size:16px;font-weight:bold;">{{'Tracking' | translate}} {{'Detail' | translate}}: {{parcelHubTrackingInfo.TrackingNumber}}</div>
+                            <!--Row wise Information Start-->
+                            <div class="col-md-12" style="border:1px solid #e0e0e0;">
+
+                                <div class="row" ng-repeat="item in parcelHubTrackingInfo.TrackingDetails | orderBy:'-datetime'" ng-class="($index==0)?'activeBlock' :'fadeBlock'">
+                                    <div>
+                                        <div style="margin-bottom:22px;">
+                                            <div class="col-lg-4">
+                                                <div>{{'Date' | translate}}: {{item.Date}} {{item.Time}} </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div>{{'Activity' | translate}}: {{item.Activity}}</div>
+                                            </div>
+                                        </div>                                       
+                                    </div>
+                                </div>                              
+                                <!--Row wise Information End-->
+                            </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

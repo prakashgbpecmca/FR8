@@ -1,0 +1,58 @@
+﻿
+<section>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'Service_Alert' | translate}}</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-10 paddingboth">
+                        <div class="col-sm-6 ">
+                            <div class="col-sm-12 paddingright">
+                                <label for="fromdate" class="col-sm-4 paddingboth lineheight30 right15">{{'From_Date' | translate}}</label>
+                                <div class="col-sm-7 paddingright" style="left: -10px;">
+                                    <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                           uib-datepicker-popup="dd/MM/yyyy" ng-model="trackSystemAlert.FromDate1" is-open="status.opened"
+                                           close-text="Close" ng-click="openCalender($event)" ng-change="ChangeFromdate(trackSystemAlert.FromDate1)"
+                                           placeholder="{{'From_Date' | translate}}" style="padding-left: 7px !important;" readonly />
+                                </div>
+                                <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <div class="col-sm-12  paddingright">
+                                <label for="todate" class="col-sm-4 paddingboth lineheight30 right15">{{'To_Date' | translate}}</label>
+                                <div class="col-sm-7 paddingright" style="left: -10px;">
+                                    <input type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12"
+                                           uib-datepicker-popup="dd/MM/yyyy" ng-model="trackSystemAlert.ToDate1" is-open="status1.opened"
+                                           close-text="Close" ng-click="openCalender1($event)" ng-change="ChangeTodate(trackSystemAlert.ToDate1)"
+                                           placeholder="{{'To_Date' | translate}}" readonly />
+                                </div>
+                                <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 form-group paddingboth">
+                        <div class="col-sm-12 paddingboth"><button class="btn-simple btn-primary fontsize12 pull-right padding-right24" ng-click="getAllSystemAlerts()"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button></div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="pull-right">
+                        <button type="button" ng-click="AddEditSystemAlert()" class="btn-simple btn-save fontsize12"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add_Alert' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-ui-grid="gridOptions" ui-grid-selection class="myGrid" style="max-height: 285px; margin-top:15px ;min-height:{{gridheight}}px;"></div>
+    <div style="margin-left:-15px;">
+        <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+    </div>
+</section>

@@ -1,0 +1,19 @@
+﻿<div class="addButtonTop fontsize12">
+    <div class="pull-left">
+        <span class="pointer"><a class="btn-simple btn-success height44 fontsize12" style="padding:8px 12px !important;" href="{{customerExcelDownload}}"> {{'Download' | translate}} {{'Excel' | translate}} {{'Template' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></a></span>&nbsp;&nbsp;
+        <span class="button"
+              ng-model="piecesExcel"
+              name="shipmentPiecesDetails"
+              ngf-pattern="'application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+              accept="application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+              ngf-select="WhileAddingReceiverExcel($files, $file, $event)">
+            <button type="button" class="btn-simple btn-success height44 fontsize12" style="padding:8px 12px !important;"> {{'shipment_PieceDetailsUploadBtn' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:24px;" /></button>
+        </span>
+    </div>
+    <div class="pull-right">
+        <button type="button" class="btn-simple btn-save fontsize12 height44 left-1" style="padding:8px 12px !important;" ng-click="AddEditCustomer()"><i class="fa fa-plus" aria-hidden="true"></i> {{'AddCustomer' | translate}}</button>
+    </div>
+</div>
+<div class="clearfix"></div>
+<br/>
+<div data-ui-grid="gridOptions" ui-grid-selection class="myGrid fontsize12" style="min-height: {{gridheight}}px;"></div>

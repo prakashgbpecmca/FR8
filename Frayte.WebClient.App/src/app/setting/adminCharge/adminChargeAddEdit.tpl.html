@@ -1,0 +1,212 @@
+﻿
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" title="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'AddNew_AdminCharges' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <!--Admin code start-->
+        <div ng-if="screenType === 'Admin'">
+            <form name="adminCustomChargeForm" novalidate ng-submit="addAdminCharge(adminCustomChargeForm.$valid)">
+                <div class="col-sm-12 paddingboth">
+                    <div class="modal-body">
+                    <div class="col-sm-12 paddingboth form-group" ng-class="{ 'has-error': adminCustomChargeForm.value.$invalid &&
+                                                         (adminCustomChargeForm.value.$dirty || submitted) }">
+                        <div class="col-sm-12 paddingboth">
+                            <label for="value" class="col-sm-5 control-label">{{'Charge_Title' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input id="value" placeholder="Enter the charge description" name="value" class="form-control" required type="text" ng-readonly="adminCharge.AdminChargeId" ng-model="adminCharge.Value" />
+                                <span class="help-block has-error" ng-show="adminCustomChargeForm.value.$invalid &&
+                                                    (adminCustomChargeForm.value.$dirty || submitted)">
+                                    {{'Name_Required' | translate}}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 paddingboth form-group" ng-class="{ 'has-error': adminCustomChargeForm.key.$invalid &&
+                                                         (adminCustomChargeForm.key.$dirty || submitted) }">
+                        <div class="col-sm-12 paddingboth">
+                            <label for="key" class="col-sm-5 control-label">{{'ChargeShortCode' | translate}}</label>
+                            <div class="col-sm-7">
+                                <input id="key" placeholder="Enter the charge short name" name="key" class="form-control" ng-readonly="adminCharge.AdminChargeId" required type="text" ng-model="adminCharge.Key" />
+                                <span class="help-block has-error" ng-show="adminCustomChargeForm.key.$invalid &&
+                                                    (adminCustomChargeForm.key.$dirty || submitted)">
+                                    {{'ShortCode_Required' | translate}}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 paddingboth form-group" ng-class="{ 'has-error': adminCustomChargeForm.amount.$invalid &&
+                                                         (adminCustomChargeForm.amount.$dirty || submitted) }">
+                        <div class="col-sm-12 paddingboth">
+                            <label for="amount" class="col-sm-5 control-label">{{'ChargeValue' | translate}} </label>
+                            <div class="col-sm-7">
+                                <div class="col-sm-8 paddingboth">
+                                <input id="amount" class="form-control" required fourdigittwodecimalplace name="amount" type="text" ng-model="adminCharge.Amount" />
+                                <span class="help-block has-error" ng-show="adminCustomChargeForm.amount.$invalid &&
+                                                    (adminCustomChargeForm.amount.$dirty || submitted)">
+                                  {{'Amount_Required' | translate}}
+                                </span>
+                                </div>
+                                <div class="col-sm-4 top5">{{adminCharge.CurrencyCode}}</div>
+                            <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div ng-if="mode==='Add'" class="col-sm-12">
+                        <p class="redColor"><b>{{'Note' | translate}}:</b> {{'NewCharges_AutomaticallyAdded' | translate}}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-footer">
+                    <div class="col-sm-12">
+                        <div class="pull-left">
+                            <button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12 ng-binding"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                        </div>
+                        <div class="pull-right">
+                            <button type="submit" ng-click="submitted = true" class="btn-simple btn-save"><i class="fa fa-save" aria-hidden="true"></i>  &nbsp;{{'Save' | translate}}&nbsp; </button>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+            <div class="clearfix"></div>
+        </div>
+        <!--end-->
+
+        <!--Customer code start-->
+        <div ng-if="directBookingCustomers.length && screenType === 'Customer'">
+            <form name="adminChargeFrom" ng-submit="addCustomerSpecificAdminCharge(adminChargeFrom.$valid)" novalidate>
+                <div class="modal-body">
+                <div>
+                    <div class="col-sm-12 paddingboth form-group" ng-class="{ 'has-error': (!customerAdminCharge.CustomerId  || adminChargeFrom.shipmentPaymentAccount.$invalid) &&
+                                                         (adminChargeFrom.shipmentPaymentAccount.$dirty || submitted) }">
+                        <label for="shipmentPaymentAccount" id="shipmentPayment" class="col-sm-2 control-label lineheight24 paddingboth">{{'Customer' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-10 paddingboth">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount" required
+                                    ng-model="customerDetail"
+                                    ng-change="setCustomer(customerDetail)" ng-disabled="mode === 'Edit'"
+                                    ng-options="Customer.CustomerId as Customer.CompanyName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy : 'CustomerName' track by Customer.CustomerId "
+                                    class="form-control fontsize12">
+                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="(!customerAdminCharge.CustomerId  || adminChargeFrom.shipmentPaymentAccount.$invalid)&&
+                                            (adminChargeFrom.shipmentPaymentAccount.$dirty || submitted)">
+                                {{'Customer_Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="width30"><div class="col-sm-12">{{'Charge_Title' | translate}}</div></div>
+                            <div class="width30"><div class="col-sm-12">{{'ChargeShortCode' | translate}}</div></div>
+                            <div class="width30"><div class="col-sm-12">{{'ChargeValue' | translate}}</div></div>
+                            <div class="width10"><div class="col-sm-12">{{'Currency' | translate}}</div></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div ng-repeat="charge in customerAdminCharge.Charges">
+                        <div class="panel-body">
+                            <ng-form name="newFormCode">
+                                <div class="row">
+                                    <div class="width30">
+                                        <div class="col-sm-12" ng-class="{ 'has-error': newFormCode.value.$invalid &&
+                                                         (newFormCode.value.$dirty || submitted) }">
+                                            <input ng-required="!charge.AdminChargeId" readonly type="text" name="value" ng-model="charge.Value" class="form-control" />
+                                            <span class="help-block has-error" ng-show="newFormCode.value.$invalid &&
+                                            (newFormCode.value.$dirty || submitted)">
+                                                {{'Name_Required' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width30">
+                                        <div class="col-sm-12" ng-class="{ 'has-error': newFormCode.key.$invalid &&
+                                                         (newFormCode.key.$dirty || submitted) }">
+                                            <input ng-required="!charge.AdminChargeId" readonly type="text" name="key" ng-model="charge.Key" class="form-control" />
+                                            <span class="help-block has-error" ng-show="newFormCode.key.$invalid &&
+                                            (newFormCode.key.$dirty || submitted)">
+                                              {{'ShortCode_Required' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width30">
+                                        <div class="col-sm-12" ng-class="{ 'has-error': newFormCode.amount.$invalid &&
+                                                         (newFormCode.amount.$dirty || submitted) }">
+                                            <input type="text" required fourdigittwodecimalplace ng-model="charge.Amount" name="amount" class="form-control" />
+                                            <span class="help-block has-error" ng-show="newFormCode.amount.$invalid &&
+                                            (newFormCode.amount.$dirty || submitted)">
+                                               {{'Amount_Required' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width10"><div class="col-sm-12 top7">GBP</div></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </ng-form>
+                        </div>
+                    </div>
+                </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                <div>
+                    <div class="pull-left">
+                        <button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12 ng-binding"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" ng-click="submitted=true" class="btn-simple btn-save"><i class="fa fa-save" aria-hidden="true"></i>  &nbsp;{{'Save' | translate}}&nbsp; </button>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                </div>
+            </form>
+        </div>
+        <!--end-->
+
+        <!--error message code-->
+        <section>
+            <div ng-if="!directBookingCustomers.length && screenType === 'Customer'">
+                <div class="modal-body bottom7">
+                <div class="row form-group ng-scope">
+                    <div class="col-sm-12">
+                        <div class="boxwithcenter">
+                            <h4 class="redColor">{{'No_Customer_Available_Now' | translate}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                </div>
+            <div class="modal-footer">
+                <div>
+                    <div class="pull-left">
+                        <button type="button" ng-click="$dismiss('cancel')" class="btn btn-cancel fontsize12 ng-binding"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+                </div>
+        </section>
+        <!--end-->
+    </div>
+</div>

@@ -1,0 +1,108 @@
+﻿
+<section>
+<div class="panel panel-default margin-bottom-none" style="border-color: #DBE2EC !important;">
+    <div class="panel-heading ">{{'Access_Level' | translate}} </div>
+    <div class="panel-body">
+    <!--select service code-->
+        <div class="form-group">
+           <div class="col-sm-2 top7 paddingboth">{{'SelectService' | translate}}</div> 
+            <div class="col-sm-3">
+            <select class="form-control" ng-model="moduleType" 
+                    ng-change="changeAccessLevel()"
+                    ng-options="module.value as module.key for module in moduleTypes"> 
+            </select> 
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--end-->
+        <!--Header section-->
+        <div class="width100 flex" style="background-color:#C0C0C0;">
+            <div class="width20 border-right padding-10 word-wrap "><span class="access-label-align-left21">{{'Roles' | translate}} <i class="fa fa-arrow-right pull-right" aria-hidden="true"></i></span><br /><span class="access-label-align-left21">{{'Modules' | translate}} <i class="fa fa-arrow-down pull-right" aria-hidden="true"></i></span></div>
+            <div class="width80" style="overflow:auto;overflow:hidden;">
+                <div ng-style="{ 'width': setWidth(roleModules.Roles.length) + '%' }">
+                    <div ng-repeat="role in roleModules.Roles | orderBy: role.RoleId">
+                        <div class="width5-7 border-left word-wrap padding-10 text-center" title="{{role.RoleNameDisplay}}">
+                            {{role.RoleNameDisplay}}<br /><span class="visibility">Hidden</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--end-->
+        <!--Header body section with scrolling-->
+        <div ng-class="{'width-height-overflow':roleModules.length<2 , 'width100': roleModules.length>=2 }">
+            <ul class="list-unstyled margin-bottom-none width100 border">
+                <li class="alternate" ng-repeat="moduleRole in roleModules.ModuleRoles">
+                    <div class="width20 padding7 word-wrap">
+                        <div class="word-wrap" ng-class="{'access-label-align-left21': !moduleRole.isIcon}">
+                            <span class="pointer" ng-show="moduleRole.ChildRoleModules.length">
+                                <i ng-click="moduleRole.ShowHideModule= !moduleRole.ShowHideModule; callScroll()" ng-class="{'fa fa-plus-square-o':!moduleRole.ShowHideModule , 'fa fa-minus-square-o':moduleRole.ShowHideModule}" aria-hidden="true">
+                                </i> &nbsp;
+                            </span>
+                            {{moduleRole.ModuleName}}
+                        </div>
+                    </div>
+                    <div class="width80" style="overflow:auto;overflow:hidden;">
+                        <div ng-style="{ 'width': setWidth(moduleRole.RoleModules.length) + '%' }">
+                            <div class="border-left" ng-repeat="accessRole in moduleRole.RoleModules | orderBy:accessRole.RoleId">
+                                <div class="width5-7 word-wrap padding6 text-center">
+                                    <input type="checkbox" class="text-center" ng-model="accessRole.IsActive"
+                                           ng-change="saveRoleModulePermission(accessRole,moduleRole.ChildRoleModules)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--dropdown code start-->
+                    <div uib-collapse="!moduleRole.ShowHideModule">
+                        <div class="width100">
+                            <div ng-show="moduleRole.ChildRoleModules.length">
+                                <ul class="list-unstyled margin-bottom-none">
+                                    <li class="alternated" ng-repeat="childAccessRole in moduleRole.ChildRoleModules">
+                                        <div class="padding7 width20 word-wrap"><span class="access-label-left-text access-label-fontsize13"> <i>{{childAccessRole.ModuleName}}</i></span><div class="clearfix"></div></div>
+                                        <div class="width80" style="overflow:auto;overflow:hidden;">
+                                            <div ng-style="{ 'width': setWidth(childAccessRole.RoleModules.length) + '%' }">
+                                                <div ng-repeat="childRoleModule in childAccessRole.RoleModules">
+                                                    <div class="width5-7 text-center padding6rem padding6">
+                                                        <input type="checkbox" class="text-center" ng-model="childRoleModule.IsActive" ng-change="saveRoleModulePermission(childRoleModule)" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--dropdown code end-->
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+        <!--end-->
+        <div class="clearfix"></div>
+        <!--overflow code here-->
+        <div class="width100">
+            <div class="width20"><span class="visibility">Hidden</span></div>
+            <div class="width80" id="scroll" access-label>
+                <div ng-style="{ 'width': setWidth(roleModules.Roles.length) + '%' }">
+                    <div ng-repeat="role in roleModules.Roles | orderBy: role.RoleId">
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <!--end-->
+    </div>
+</div>
+</section>

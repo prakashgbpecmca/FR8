@@ -1,0 +1,327 @@
+﻿<div>
+    <form name="trackingConfigurationForm" novalidate ng-submit="SaveTrackingConfiguration(trackingConfigurationForm.$valid)">
+        <p>{{'Tracking_Configuration_Message' | translate}}</p>
+        <h3>{{'Status' | translate}}</h3>
+        <div class="col-sm-12 paddingboth form-group" id="tracking-consignment">
+            <div class="border-ddd form-group">
+                <!--<div class="col-sm-1 paddingboth BORR-MAR text-center">
+                    <input type="checkbox" ng-click="selectTrackingConfiguration()" ng-model="customerTrackingConfiguration.IsInfoReceivedEmail" />
+
+                </div>-->
+                    <div class="col-sm-12 paddingboth clearfix border-bottom-ddd padding-tb-10 grid-background">
+                        <div class="col-sm-1"><i class="fa fa-14 top5 pointer" ng-click="infoReceivedClick()" ng-class="{'fa fa-plus-square-o':!infoReceived ,'fa fa-minus-square-o':infoReceived}"></i><span class="left15"><img ng-src="{{ImagePath + trackingConfiguration.InfoReceived.ImageName}}" style="width:30px" /></span></div>
+                        <div class="col-sm-11 top5">{{trackingConfiguration.InfoReceived.StatusDisplay}}</div>
+                    </div>
+                    <div class="col-sm-12 paddingboth form-group" ng-if="infoReceived">
+                        <div class="padding-top15 col-sm-6 col-sm-offset-3">
+                            <div ng-repeat="infoReceivedEmail in customerTrackingConfiguration.InfoReceivedEmails track by $index" ng-init="packageForm1='tags'+$index">
+                                <div class="col-sm-10 paddingboth">
+                                    <ng-form name="{{packageForm1}}">
+                                        <div class="form-group" ng-class="{ 'has-error':trackingConfigurationForm[packageForm1].mileemail1.$invalid &&
+                                                 (trackingConfigurationForm[packageForm1].mileemail1.$dirty || submitted)}">
+                                            <label for="milename1" name="milename1" class="control-label col-sm-2 paddingboth lineheight34">{{'Email' | translate}} <span class="redColor">*</span>:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" ng-pattern="emailFormat" ng-model="infoReceivedEmail.Email" name="mileemail1" id="mileemail1" required>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div class="col-sm-2 bottom5">
+                                    <div class="text-center">
+                                        <div class="shipmentContent" ng-class="{'lineheight40': $index+1 >1 && $index+1 < customerTrackingConfiguration.InfoReceivedEmails.length }">
+                                            <a href="" ng-click="removeInfoReceived($index)">
+                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="" ng-click="addMailInfoReceived()" ng-show="!$index || $index === customerTrackingConfiguration.InfoReceivedEmails.length-1">
+                                                <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+            </div>
+
+            <div class="border-ddd form-group">
+                <!--<div class="col-sm-1 paddingboth BORR-MAR text-center">
+            <input type="checkbox" ng-click="selectTrackingConfiguration()" ng-model="customerTrackingConfiguration.IsInTransitEmail" />
+
+        </div>-->
+                    <div class="col-sm-12 paddingboth clearfix border-bottom-ddd padding-tb-10 grid-background">
+                        <div class="col-sm-1">
+                            <i class="fa fa-14 top5 pointer" ng-click="inTransitClick()" ng-class="{'fa fa-plus-square-o':!inTransit ,'fa fa-minus-square-o':inTransit}"></i><span class="left15"><img ng-src="{{ImagePath + trackingConfiguration.InTransit.ImageName}}" style="width:30px" /></span>
+                        </div>
+                        <div class="col-sm-11 top5">
+                            <span>{{trackingConfiguration.InTransit.StatusDisplay}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingboth form-group" ng-if="inTransit">
+                        <div class="padding-top15 col-sm-6 col-sm-offset-3">
+                            <div ng-repeat="inTransitEmail in customerTrackingConfiguration.InTransitEmails track by $index" ng-init="packageForm='tags'+$index">
+                                <div class="col-sm-10 paddingboth">
+                                    <ng-form name="{{packageForm}}">
+                                        <div class="form-group" ng-class="{ 'has-error':trackingConfigurationForm[packageForm].mileemail.$invalid &&
+                                                 (trackingConfigurationForm[packageForm].mileemail.$dirty || submitted)}">
+                                            <label for="milename" name="milename" class="control-label col-sm-2 paddingboth lineheight34">{{'Email' | translate}} <span class="redColor">*</span>:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" ng-pattern="emailFormat" ng-model="inTransitEmail.Email" name="mileemail" id="mileemail" required>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div class="col-sm-2 bottom5">
+                                    <div class="text-center">
+                                        <div class="shipmentContent" ng-class="{'lineheight40': $index+1 >1 && $index+1 < customerTrackingConfiguration.InTransitEmails.length }">
+                                            <a href="" ng-click="removeMailInTransit($index)">
+                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="" ng-click="addMailInTransit()" ng-show="!$index || $index === customerTrackingConfiguration.InTransitEmails.length-1">
+                                                <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="border-ddd form-group">
+                <!--<div class="col-sm-1 paddingboth BORR-MAR text-center">
+            <input type="checkbox" ng-click="selectTrackingConfiguration()" ng-model="customerTrackingConfiguration.IsOutForDeliveryEmail" />
+
+        </div>-->
+
+                    <div class="col-sm-12 paddingboth clearfix border-bottom-ddd padding-tb-10 grid-background">
+                        <div class="col-sm-1">
+                            <i class="fa fa-14 top5 pointer" ng-click="outForDeliveryClick()" ng-class="{'fa fa-plus-square-o':!outForDelivery ,'fa fa-minus-square-o':outForDelivery}"></i><span class="left15"><img ng-src="{{ImagePath + trackingConfiguration.OutForDelivery.ImageName}}" style="width:30px" /></span>
+                        </div>
+                        <div class="col-sm-11 top5">
+                            <span>{{trackingConfiguration.OutForDelivery.StatusDisplay}}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingboth form-group" ng-if="outForDelivery">
+                        <div class="padding-top15 col-sm-6 col-sm-offset-3">
+                            <div ng-repeat="outForDeliveryEmail in customerTrackingConfiguration.OutForDeliveryEmails track by $index" ng-init="packageForm2='tags'+$index">
+                                <div class="col-sm-10 paddingboth">
+                                    <ng-form name="{{packageForm2}}">
+                                        <div class="form-group" ng-class="{ 'has-error':trackingConfigurationForm[packageForm2].mileemail2.$invalid &&
+                                                 (trackingConfigurationForm[packageForm2].mileemail2.$dirty || submitted)}">
+                                            <label for="milename2" name="milename2" class="control-label col-sm-2 paddingboth lineheight34">{{'Email' | translate}} <span class="redColor">*</span>:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" ng-pattern="emailFormat" ng-model="outForDeliveryEmail.Email" name="mileemail2" id="mileemail2" required>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div class="col-sm-2 bottom5">
+                                    <div class="text-center">
+                                        <div class="shipmentContent" ng-class="{'lineheight40': $index+1 >1 && $index+1 < customerTrackingConfiguration.OutForDeliveryEmails.length }">
+                                            <a href="" ng-click="removeoutForDeliveryEmail($index)">
+                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="" ng-click="addoutForDeliveryEmail()" ng-show="!$index || $index === customerTrackingConfiguration.OutForDeliveryEmails.length-1">
+                                                <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="border-ddd form-group">
+                <!--<div class="col-sm-1 paddingboth BORR-MAR text-center">
+            <input type="checkbox" ng-click="selectTrackingConfiguration()" ng-model="customerTrackingConfiguration.IsDeliveredEmail" />
+
+        </div>-->
+                <div class="col-sm-12 paddingboth grid-background">
+                    <div class="col-sm-12 paddingboth clearfix border-bottom-ddd padding-tb-10">
+                        <div class="col-sm-1">
+                            <i class="fa fa-14 top5 pointer" ng-click="deliverClick()" ng-class="{'fa fa-plus-square-o':!deliver ,'fa fa-minus-square-o':deliver}"></i><span class="left15"><img ng-src="{{ImagePath + trackingConfiguration.Delivered.ImageName}}" style="width:30px" /></span>
+                        </div>
+                        <div class="col-sm-11 top5">
+                            <span>{{trackingConfiguration.Delivered.StatusDisplay}}</span>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-sm-12 paddingboth form-group" ng-if="deliver">
+                        <div class="padding-top15 col-sm-6 col-sm-offset-3">
+                            <div ng-repeat="deliveredEmail in customerTrackingConfiguration.DeliveredEmails track by $index" ng-init="packageForm3='tags'+$index">
+                                <div class="col-sm-10 paddingboth">
+                                    <ng-form name="{{packageForm3}}">
+                                        <div class="form-group" ng-class="{ 'has-error':trackingConfigurationForm[packageForm3].mileemail3.$invalid &&
+                                                 (trackingConfigurationForm[packageForm3].mileemail3.$dirty || submitted)}">
+                                            <label for="milename3" name="milename3" class="control-label col-sm-2 paddingboth lineheight34">{{'Email' | translate}} <span class="redColor">*</span>:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" ng-pattern="emailFormat" ng-model="deliveredEmail.Email" name="mileemail3" id="mileemail3" required>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div class="col-sm-2 bottom5">
+                                    <div class="text-center">
+                                        <div class="shipmentContent" ng-class="{'lineheight40': $index+1 >1 && $index+1 < customerTrackingConfiguration.DeliveredEmails.length }">
+                                            <a href="" ng-click="removeDeliveredEmails($index)">
+                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="" ng-click="addDeliveredEmails()" ng-show="!$index || $index === customerTrackingConfiguration.DeliveredEmails.length-1">
+                                                <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+              
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="border-ddd form-group">
+                <!--<div class="col-sm-1 paddingboth BORR-MAR text-center">
+            <input type="checkbox" ng-click="selectTrackingConfiguration()" ng-model="customerTrackingConfiguration.IsAttemptFailEmail" />
+
+        </div>-->
+
+                <div class="col-sm-12 paddingboth grid-background">
+                    <div class="col-sm-12 paddingboth clearfix border-bottom-ddd padding-tb-10">
+                        <div class="col-sm-1">
+                            <i class="fa fa-14 top5 pointer" ng-click="failedAttemptClick()" ng-class="{'fa fa-plus-square-o':!failedAttempt ,'fa fa-minus-square-o':failedAttempt}"></i><span class="left15"><img ng-src="{{ImagePath + trackingConfiguration.AttemptFail.ImageName}}" style="width:30px" /></span>
+                        </div>
+                        <div class="col-sm-11 top5">
+                            <span>{{trackingConfiguration.AttemptFail.StatusDisplay}}</span>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-sm-12 paddingboth form-group" ng-if="failedAttempt">
+                        <div class="padding-top15 col-sm-6 col-sm-offset-3">
+                            <div ng-repeat="attemptFailEmail in customerTrackingConfiguration.AttemptFailEmails track by $index" ng-init="packageForm4='tags'+$index">
+                                <div class="col-sm-10 paddingboth">
+                                    <ng-form name="{{packageForm4}}">
+                                        <div class="form-group" ng-class="{ 'has-error':trackingConfigurationForm[packageForm4].mileemail4.$invalid &&
+                                                 (trackingConfigurationForm[packageForm4].mileemail4.$dirty || submitted)}">
+                                            <label for="milename4" name="milename4" class="control-label col-sm-2 paddingboth lineheight34">{{'Email' | translate}} <span class="redColor">*</span>:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" ng-pattern="emailFormat" ng-model="attemptFailEmail.Email" name="mileemail4" id="mileemail4" required>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div class="col-sm-2 bottom5">
+                                    <div class="text-center">
+                                        <div class="shipmentContent" ng-class="{'lineheight40': $index+1 >1 && $index+1 < customerTrackingConfiguration.AttemptFailEmails.length }">
+                                            <a href="" ng-click="removeAttemptFailEmail($index)">
+                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="" ng-click="addAttemptFailEmail()" ng-show="!$index || $index === customerTrackingConfiguration.AttemptFailEmails.length-1">
+                                                <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+             
+            </div>
+
+            <div class="border-ddd form-group">
+                <!--<div class="col-sm-1 paddingboth BORR-MAR text-center">
+            <input type="checkbox" ng-click="selectTrackingConfiguration()" ng-model="customerTrackingConfiguration.IsExceptionEmail" />
+
+        </div>-->
+
+                <div class="col-sm-12 paddingboth grid-background">
+                    <div class="col-sm-12 paddingboth clearfix border-bottom-ddd padding-tb-10">
+                        <div class="col-sm-1">
+                            <i class="fa fa-14 top5 pointer" ng-click="exceptionClick()" ng-class="{'fa fa-plus-square-o':!exception ,'fa fa-minus-square-o':exception}"></i><span class="left15"><img ng-src="{{ImagePath + trackingConfiguration.Exception.ImageName}}" style="width:30px" /></span>
+                        </div>
+                        <div class="col-sm-11 top5">
+                            <span>{{trackingConfiguration.Exception.StatusDisplay}}</span>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-sm-12 paddingboth form-group" ng-if="exception">
+                        <div class="padding-top15 col-sm-6 col-sm-offset-3">
+                            <div ng-repeat="exceptionEmail in customerTrackingConfiguration.ExceptionEmails track by $index" ng-init="packageForm5='tags'+$index">
+                                <div class="col-sm-10 paddingboth">
+                                    <ng-form name="{{packageForm5}}">
+                                        <div class="form-group" ng-class="{ 'has-error':trackingConfigurationForm[packageForm5].mileemail5.$invalid &&
+                                                 (trackingConfigurationForm[packageForm5].mileemail5.$dirty || submitted)}">
+                                            <label for="milename5" name="milename5" class="control-label col-sm-2 paddingboth lineheight34">{{'Email' | translate}} <span class="redColor">*</span>:</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" ng-pattern="emailFormat" ng-model="exceptionEmail.Email" name="mileemail5" id="mileemail5" required>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div class="col-sm-2 bottom5">
+                                    <div class="text-center">
+                                        <div class="shipmentContent" ng-class="{'lineheight40': $index+1 >1 && $index+1 < customerTrackingConfiguration.ExceptionEmails.length }">
+                                            <a href="" ng-click="removeExceptionEmail($index)">
+                                                <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="" ng-click="addExceptionEmail()" ng-show="!$index || $index === customerTrackingConfiguration.ExceptionEmails.length-1">
+                                                <i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'">
+                                                </i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+               
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <button class="btn-BigPrimary fontsize12 pull-right" ng-click="submitted= true"><i class="fa fa-save" aria-hidden="true"></i> {{'Save' | translate}}</button>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Quotation Detail</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/sheet.css" rel="stylesheet" />
+
+    <link href="@Model.PageStyleSheet" rel="stylesheet" />
+    <link href="@Model.BootStrapStyleSheet" rel="stylesheet" />
+
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="container">
+        <br />
+        <div class="width100">
+            <div class="width50 padding15">
+                <div class="panel panel-default">
+                    <div class="panel-heading bold">From Address</div>
+                    <div class="panel-body">
+                        <div class="width100 paddingboth">
+                            <div class="width50 paddingboth15 padding15">
+                                <div class="bold paddingboth15">Country</div>
+                                <div class="bold paddingboth15">Post Code</div>
+                            </div>
+                            <div class="width50 paddingboth15 padding15">
+                                <div class="paddingboth15">@Model.QuotationShipment.QuotationFromAddress.Country.Name</div>
+                                <div class="paddingboth15">@Model.QuotationShipment.QuotationFromAddress.PostCode</div>
+                            </div>
+							<div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="width50 padding15">
+                <div class="panel panel-default">
+                    <div class="panel-heading bold">To Address</div>
+                    <div class="panel-body">
+                        <div class="width100 paddingboth">
+                            <div class="width50 paddingboth15 padding15">
+                                <div class="bold paddingboth15">Country</div>
+                                <div class="bold paddingboth15">Post Code</div>
+                            </div>
+                            <div class="width50 paddingboth15 padding15">
+                                <div class="paddingboth15">@Model.QuotationShipment.QuotationToAddress.Country.Name</div>
+                                <div class="paddingboth15">@Model.QuotationShipment.QuotationToAddress.PostCode</div>
+                            </div>
+							<div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-sm-12">
+            <h3>Shipment and Package Detail</h3>
+            <div class="panel panel-default panel-info">
+                <div class="panel-heading padding-none">
+                    <div class="col-sm-12 paddingboth border-ddd">
+                        <div class="col-20 border bold">Carton<br /><small>QTY</small></div>
+                        <div class="col-20  border bold">Length<br /><small>cm</small></div>
+                        <div class="col-20  border bold">Width<br /><small>cm</small></div>
+                        <div class="col-20  border bold">Height<br /><small>cm</small></div>
+                        <div class="col-20  border bold">Weight<br /><small>kg</small></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    @foreach(var item in Model.QuotationShipment.QuotationPackages)
+                    {
+                    <div class="col-sm-12 paddingboth border-ddd">
+                        <div class="col-20 border">@item.CartoonValue</div>
+                        <div class="col-20 border">@item.Length</div>
+                        <div class="col-20 border">@item.Width</div>
+                        <div class="col-20 border">@item.Height</div>
+                        <div class="col-20 border">@item.Weight</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel-footer">
+                    <div class="col-sm-12 paddingboth border-ddd">
+                        <div class="col-80 border bold">Total</div>
+
+                        <div class="col-20 border">
+                            @if(@Model.QuotationShipment.TotalEstimatedWeight !=null){
+                            @Model.QuotationShipment.TotalWeight
+                            }
+                            @if(@Model.QuotationShipment.PakageCalculatonType == "kgToCms"){
+                            <span>
+                                (kg)
+                            </span>
+                            }
+                            else if (@Model.QuotationShipment.PakageCalculatonType =="lbToInchs"){
+                            <span>
+                                (lb)
+                            </span>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel-footer">
+                    <div class="col-sm-12 paddingboth border-ddd">
+                        <div class="col-80 border bold">Total Estimated Chargeable Weight:</div>
+
+                        <div class="col-20 border">
+                            @if(@Model.QuotationShipment.TotalEstimatedWeight !=null){
+                            @Model.QuotationShipment.TotalEstimatedWeight
+                            }
+
+                            @if(@Model.QuotationShipment.PakageCalculatonType == "kgToCms"){
+                            <span>
+                                (kg)
+                            </span>
+                            }
+                            else if(@Model.QuotationShipment.PakageCalculatonType == "lbToInchs"){
+                            <span>
+                                (lb)
+                            </span>
+                            }
+
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-12 border-ddd">
+            @if(@Model.QuotationShipment.LogisticType =="UKShipment"){
+            <div class="panel panel-default">
+
+                <div class="panel-heading padding-none border-ddd">
+                    <div class="col-sm-12 paddingboth">
+                        <div class="col-1428 border bold height50">Courier Name<br /><span></span></div>
+                        <div class="col-1428 border bold">Courier Description<br /><span ></span></div>
+                        <div class="col-1428 border bold height50">Service Type<br /><span></span></div>
+                        <div class="col-10 border bold height50">Rate#<br /><span></span></div>
+                        <div class="col-1428 border bold height50">Fuel Surcharge<br /><span></span></div>
+                        <div class="col-1643 border bold">Supplementary Charge</div>
+                        <div class="col-1643 border bold">Total Estimated Rate#</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-12 paddingboth border-ddd">
+                        <div class="col-1428 border">@Model.QuotationShipment.LogisticCompanyDisplay</div>
+                        <div class="col-1428 border">@Model.QuotationShipment.CourierDescription </div>
+                        <div class="col-1428 border">@Model.QuotationShipment.ShipmentType (@Model.QuotationShipment.ParcelServiceType) </div>
+                        <div class="col-10 border">@Model.QuotationShipment.EstimatedCost @Model.QuotationShipment.CurrenyCode</div>
+                        <div class="col-1428 border">@Model.QuotationShipment.FuelSurCharge @Model.QuotationShipment.CurrenyCode</div>
+                        <div class="col-1643 border">@Model.QuotationShipment.AdditionalSurcharge @Model.QuotationShipment.CurrenyCode</div>
+                        <div class="col-1643 border">@Model.QuotationShipment.EstimatedTotalCost @Model.QuotationShipment.CurrenyCode</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-12 border-ddd">
+            @if(@Model.QuotationShipment.LogisticType !="UKShipment"){
+            <div class="panel panel-default">
+
+                <div class="panel-heading padding-none">
+                    <div class="col-sm-12 paddingboth border-ddd">
+                        <div class="col-1666 border bold">Courier Name<br /><span> </span></div>
+                        <div class="col-1666 border bold">Courier Description<br /><span></span></div>
+                        <div class="col-1666 border bold">Rate#<br /><span></span></div>
+                        <div class="col-1666 border bold">Fuel Surcharge<br /><span></span></div>
+                        <div class="col-1666 border bold">Supplementary Charge</div>
+                        <div class="col-1666 border bold">Total Estimated Rate#</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel-body">
+                    <div class="col-sm-12 paddingboth border-ddd">
+                        <div class="col-1666 border">@Model.QuotationShipment.LogisticCompanyDisplay @Model.QuotationShipment.RateTypeDisplay</div>
+                        <div class="col-1666 border">@Model.QuotationShipment.CourierDescription</div>
+                        <div class="col-1666 border">@Model.QuotationShipment.EstimatedCost @Model.QuotationShipment.CurrenyCode</div>
+                        <div class="col-1666 border">@Model.QuotationShipment.FuelSurCharge @Model.QuotationShipment.CurrenyCode</div>
+                        <div class="col-1666 border">@Model.QuotationShipment.AdditionalSurcharge @Model.QuotationShipment.CurrenyCode</div>
+                        <div class="col-1666 border">@Model.QuotationShipment.EstimatedTotalCost @Model.QuotationShipment.CurrenyCode</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            }
+        </div>
+    </div>
+
+</body>
+</html>

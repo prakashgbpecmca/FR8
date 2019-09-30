@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; background: #fff; font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+         <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@Model.ImageHeader" />
+        </div>
+    </header>
+		<br/>
+		<table style="border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;">Dear <b>@Model.CustomerName</b>,</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+            <tr><td  style="font-family: calibri, sans-serif;">We are pleased to inform you these shipments have been dispatched. Please find the shipments information below:</td></tr>  
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		</table>
+		<br />
+		@foreach(var ShipmentList in @Model.ShipList)
+		{ 
+			<table style="border-spacing: 0px;">
+				<tr><td style="font-family: calibri, sans-serif;"><b>Total Shipments for @ShipmentList.HubCode:</b> <span>@ShipmentList.ShipmentCount</span></td></tr>
+			</table>
+			<br />
+		}
+		<table style="border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;"><b>Total MAWBs:</b> <span>@Model.TotalMawb</span></td></tr>					
+			<tr><td style="font-family: calibri, sans-serif;"><b>Total Consignments:</b> <span>@Model.TotalAwbs</span></td></tr>					
+			<tr><td style="font-family: calibri, sans-serif;"><b>Estimated Gross Weight:</b> <span>@Model.TotalWeight Kgs</span></td></tr>
+		</table>
+		<br />			
+		<table border="1" width="100%" style="border-spacing: 0px;">
+			<tr>
+			<td style="font-family: calibri, sans-serif;"><b>Created On</b></td>
+			<td style="font-family: calibri, sans-serif;"><b>Flight No.</b></td>
+			<td style="font-family: calibri, sans-serif;"><b>Ship To</b></td>
+			<td style="font-family: calibri, sans-serif;"><b>MAWB#</b></td>
+			<td style="font-family: calibri, sans-serif;"><b>Gross Weight</b></td>
+			<td style="font-family: calibri, sans-serif;"><b>CTN QTY</b></td>
+			</tr>
+			@foreach(var MAWBList in Model.DispatchedMawbs)
+			{ 
+				<tr>
+					<td style="font-family: calibri, sans-serif;">@MAWBList.CreatedOnTime</td>
+					<td style="font-family: calibri, sans-serif;">@MAWBList.FlightNo</td>
+					<td style="font-family: calibri, sans-serif;">@MAWBList.ShipTo</td>
+					<td style="font-family: calibri, sans-serif;">@MAWBList.Mawb</td>
+					<td style="font-family: calibri, sans-serif;">@MAWBList.GrossWeight</td>
+					<td style="font-family: calibri, sans-serif;">@MAWBList.TotalCarton</td>
+				</tr>
+			}	     
+		</table>			
+		<br/>
+		@foreach(var ShipmentList in Model.AWbShipmentList)
+		{ 
+			<table border="1" width="100%" style="border-spacing: 0px;">
+				<tr>
+					<td colspan="4" align="center" style="font-family: calibri, sans-serif;"><b>MAWB# @ShipmentList.Mawb @ShipmentList.HubCode</b></td>
+				</tr>
+				<tr>
+					<td style="font-family: calibri, sans-serif;"><b>Consignment No#:</b></td>
+					<td style="font-family: calibri, sans-serif;"><b>From Shipper</b></td>
+					<td style="font-family: calibri, sans-serif;"><b>To Consignee</b></td>
+					<td style="font-family: calibri, sans-serif;"><b>Created On</b></td>
+				</tr>
+				@foreach(var Shipment in ShipmentList.Shipments)
+				{ 
+					<tr>
+						<td style="font-family: calibri, sans-serif;">@Shipment.AWBNumber</td>
+						<td style="font-family: calibri, sans-serif;">@Shipment.Shipper</td>
+						<td style="font-family: calibri, sans-serif;">@Shipment.Receiver</td>
+						<td style="font-family: calibri, sans-serif;">@Shipment.CreatedOnTime</td>
+					</tr>
+				}
+			</table>
+		}
+		<br />
+		<table style="font-size:12px;border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;">Should you have any questions or concerns, please feel free to contact us.</td></tr>
+		</table>
+		<br/>
+		<table style="border-spacing: 0px;">
+			<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Customer Services Team</b></td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>FRAYTE GLOBAL</b></td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Email:</b>&nbsp;@Model.SystemEmail</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><b>Phone:</b>&nbsp;@Model.UserPhone</td></tr>
+			<tr><td style="font-family: calibri, sans-serif;"><a href="@Model.SiteAddress">@Model.Site</a></td></tr>
+			<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		</table>
+		<br/>
+    <footer>
+        <table style="font-size: 12px;border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;">FRAYTE GLOBAL All rights reserved.</td></tr>
+			</table>
+    </footer>
+	
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿
+<div class="modal-content fontsize12" style="margin-bottom: 0px; border-color: #DBE2EC !important;">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Jobs' | translate}} </h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="col-sm-12">
+            <!--start grid code here-->
+            <div class="col-sm-8 paddingboth">
+                <div data-ui-grid="gridOptions" ui-grid-selection class="myGridFull fontsize12" style="min-height: {{gridheight}}px;"></div>
+                <div class="col-sm-12 paddingboth">
+                    <div class="col-sm-7 paddingboth">
+                        <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm padding0" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                    </div>
+                    <div class="col-sm-5 paddingboth top9">
+                        <label for="show_job_per_page" class="col-sm-8 top5 text-right">{{'Show_Jobs_Per_Page' | translate}}</label>
+                        <div class="col-sm-4 paddingboth">
+                        <select class="form-control" ng-model="track.TakeRows" ng-options="num as num for num in numbers" ng-change="changePagination()"></select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--end grid code-->
+            <!--start right side table code here-->
+            <div class="col-sm-4 paddingboth">
+                <div class="modal-body padding0">
+                    <div class="col-sm-12 paddingright">
+                        <div class="fontsize24 padding-tb-17 text-center border-ddd">{{'Operators' | translate}} ({{OperatorsWithJobs.length}})</div>
+                        <div class="panel margin-bottom10 panel-default">
+                            <div>
+                                <div class="col-sm-12 paddingboth border-bottom-ddd backgroundf5f5f5">
+                                    <div class="width95">
+                                    <div class="col-sm-6 bold bordered-right" style="padding:5px;">{{'Operator' | translate}}</div>
+                                    <div class="col-sm-6 bold" style="padding:5px;">{{'Jobs_Assigned' | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body padding0">
+                                <div class="col-sm-12 paddingboth jobs-overflow">
+                                    <div ng-repeat="OpeartorJob in OperatorsWithJobs">
+                                        <div class="col-sm-6 bordered-right" style="padding:5px;"><div>{{OpeartorJob.Name}}</div></div>
+                                        <div class="col-sm-6" style="padding:5px;"><div>{{OpeartorJob.JobsAssigned}}</div></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 paddingboth">
+                    <div class="col-sm-8">
+                        <select class="form-control" ng-model="OpeartorJob.OperatorId"
+                                ng-options="operator.UserId as operator.Name for operator in Operators track by operator.UserId"></select>
+                    </div>
+                    <div>
+                        <button type="button" ng-click="AssignJobs()" class="btn-simple btn-primary col-sm-4 paddingright"><i class="fa fa-user-o" aria-hidden="true"></i> {{'Assign' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+            <!--end right side table code here-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-right">
+                <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Close_Window' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

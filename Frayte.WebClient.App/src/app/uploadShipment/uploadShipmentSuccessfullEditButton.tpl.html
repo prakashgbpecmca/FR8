@@ -1,0 +1,11 @@
+﻿<div class="fontsize12 uploadShipment">
+    <select id="shipmentPayment" name="shipmentPayment"
+            ng-model="row.entity.Service"
+            ng-change="grid.appScope.SetServcieDetail(row.entity.Service)"
+            ng-options="Serv as Serv.LogisicServiceDisplay for Serv in grid.appScope.ServcieDetail "
+            ng-disabled="row.entity.ServiceValue === undefined || row.entity.ServiceValue === null || row.entity.ServiceValue === false"
+            class="form-control fontsize12">
+        <option value="" disabled selected>{{'Select' | translate}} {{'Service' | translate}}</option>
+    </select>
+
+</div>

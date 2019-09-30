@@ -1,0 +1,54 @@
+﻿
+
+<section>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Session_Shipments' | translate}}</h4>
+    </div>
+<div class="modal-body">
+<section>
+        <!--Unsuccessful shipment with service custom grid-->
+        <div class="panel panel-default margin-bottom-none">
+            <div class="width100 flex grid-background">
+                <div class="width986 flex">
+                    <!--<div class="width4 bold quotation-table-padding"><span class="quotation-table-body padding-10-5"><input type="checkbox" class="checkbox-center" ng-model="IsSelected2" ng-click="allrowSelectionUnsuccessfullCustomGrid(IsSelected2, gridOptionsUnsuccessfuldata)" ng-disabled="gridOptionsUnsuccessfuldata.length === 0" ng-checked="RemoveShipmentCount2 >= gridOptionsUnsuccessfuldata.length && gridOptionsUnsuccessfuldata.length !== 0" value="false" name="unsuccessfulWithoutServiceallrow" /></span></div>-->
+                    <div class="col-sm-2 bold quotation-table-padding padding10x5"><span>{{'Status' | translate}}</span></div>
+                    <div class="col-sm-2 bold quotation-table-padding padding10x5"><span>{{'Shipper' | translate}}</span></div>
+                    <div class="col-sm-2 bold quotation-table-padding padding10x5"><span>{{'Courier' | translate}}</span></div>
+                    <div class="col-sm-2 bold quotation-table-padding padding10x5"><sapn>{{'TrackingNo' | translate}}{{'Hash' | translate}}</sapn></div>
+                    <div class="col-sm-2 bold quotation-table-padding padding10x5"><sapn>{{'Frayte_ShipmentNo#' | translate}}{{'Hash' | translate}}</sapn></div>
+                    <div class="col-sm-2 bold quotation-table-padding padding10x5 border-none"><sapn>{{'To_Consignee' | translate}}</sapn></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                <div class="panel-body padding0">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div ng-repeat="DirectShipment in DirectShipmentList" class="width100 pointer">
+                                <div class="flex height30" ng-dblclick="ErrorShowWithService(gridDirectBooking)" ng-class={'demoClass':gridDirectBooking.IsSelected}>
+                                    <div class="col-sm-2 quotation-table-body word-wrap padding-5"><span>{{DirectShipment.DisplayStatus}}</span></div>
+                                    <div class="col-sm-2 quotation-table-body word-wrap padding-5"><span>{{DirectShipment.ShippedFromCompany}}</span></div>
+                                    <div class="col-sm-2 quotation-table-body word-wrap padding-5"><span>{{DirectShipment.LogisticType}}</span></div>
+                                    <div class="col-sm-2 quotation-table-body padding-5 word-wrap"><span><a class="pointer" ng-click="TrackingPage(DirectShipment)">{{DirectShipment.TrackingNo}}</a></span></div>
+                                    <div class="col-sm-2 quotation-table-body word-wrap padding-5"><span><a class="pointer" ng-click="DirectShipmentDetail(DirectShipment)">{{DirectShipment.FrayteNumber}}</a></span></div>
+                                    <div class="col-sm-2 quotation-table-body padding-5 word-wrap"><span>{{DirectShipment.ShippedToCompany}} </span> </div>
+                                </div>
+                            </div>
+                            <div ng-show="gridOptionsUnsuccessfuldata.length === 0" class="eCommerce-ss"> {{'No_Shipment_To_Upload_Data' | translate}}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end code-->
+        <div class="clearfix"></div>
+</section>
+</div>
+    <div class="modal-footer">
+        <button type="button" class="btn-simple btn-cancel pull-left" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel'| translate}}</button>
+    </div>
+</div>
+</section>

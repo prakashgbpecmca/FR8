@@ -1,0 +1,39 @@
+
+<div class="modal-body">
+    <div class="form-group">
+        <button type="button" ng-click="closeModal()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></span></button>
+        <h4>{{'Login' | translate}}</h4>
+    </div>
+
+    <form name="LoginForm" ng-submit="submit(LoginForm.$valid, credentials)" novalidate>
+        <div class="form-group" ng-class="{ 'has-error': LoginForm.UserName.$invalid &&
+                                                         (LoginForm.UserName.$dirty || submitted) }">
+            <label class="control-label" for="UserName">{{ 'LoginUsername' | translate }}</label>
+            <input type="text" class="form-control fontsize12" id="UserName" name="UserName" autofocus ng-model="credentials.UserName" placeholder="{{'LoginUsernamePlaceholder' | translate}}" required />
+
+            <span class="help-block has-error"
+                  ng-show="LoginForm.UserName.$invalid &&
+                           (LoginForm.UserName.$dirty || submitted)">
+                {{'LoginUsernameValidError' | translate}}
+            </span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': LoginForm.Password.$invalid &&
+                                                         (LoginForm.Password.$dirty  || submitted) }">
+            <label class="control-label" for="Password">{{ 'LoginPassword' | translate }}</label>
+            <input type="password" class="form-control fontsize12" id="Password" name="Password" ng-model="credentials.Password" placeholder="{{'LoginPassword' | translate}}" required />
+            <span class="help-block has-error"
+                  ng-show="LoginForm.Password.$invalid &&
+                           (LoginForm.Password.$dirty  || submitted)">
+                {{'LoginPasswordValidError' | translate}}
+            </span>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" ng-click="submitted=true" class="bt fontsize12">{{'Login' | translate }}</button>
+        </div>
+        <div class="form-group text-center color-fade">
+            {{ 'LoginForgotPass' | translate }} &nbsp;&nbsp; <a href="" class="btn btn-theme-org fontsize12" ng-click="forgetPassword()"> {{ 'LoginRecoverNow' | translate }}</a>
+        </div>
+    </form>
+</div>
+
+

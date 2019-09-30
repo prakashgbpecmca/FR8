@@ -1,0 +1,197 @@
+﻿
+<section id="customer-address-book">
+    <section>
+        <div class="panel panel-default fontsize12 marginBottomZero" style="border-color: #DBE2EC !important;">
+            <div class="panel-heading">{{'Address' | translate}} {{'Book' | translate}} {{'Search' | translate}}</div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <select ng-change="ChangeAddressType(TrackSearchText.AddressType)" ng-options="drpdwn.Name as drpdwn.Display for drpdwn in Drpdwnfilter" ng-model="TrackSearchText.AddressType" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <select ng-options="Select.Name as Select.Name for Select in Selectfilter" ng-change="ChangeSearchBy(TrackSearchText.SearchBy)" ng-model="TrackSearchText.SearchBy" class="form-control">
+                                <option value="" selected disabled class="display-none"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <i class="fa fa-search" aria-hidden="true" style="position: absolute;padding: 10px 8px 0px;"></i>
+                            <input type="text" ng-model="TrackSearchText.SearchText" ng-disabled="Disable" class="form-control" id="search" placeholder="{{'Search_In_Selected_Option' | translate}}" style="padding: 0px 26px 0px;">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-right">
+                        <div>
+                            <button type="button" ng-click="SearchText()" class="btn-simple btn-primary" style="padding:6px 53px;"><span><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</span></button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12">
+                        <div class="pull-left">
+                            <button ng-hide="TrackSearchText.AddressType === 'All'" ng-click="Modalpopup()" type="button" class="btn border-radius2 btn-save fontsize12" style="padding: 7px 34px 7px;"><span><i class="fa fa-address-card-o" aria-hidden="true"></i> {{'Add' | translate}} {{'Address' | translate}}</span></button>&nbsp;&nbsp;
+                        </div>
+                        <div class="pull-right">
+                            <button ng-click="eraseAddressBook()" type="button" class="btn btn-simple btn-danger fontsize12"><i class="fa fa-eraser" aria-hidden="true"></i> {{'Earse_All_Address' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-12 paddingboth clearfix">
+            <div class="pull-left top9">
+                <!--Template Download Code-->
+                <span class="pointer"><a href="downloadForm/Address Book.xlsx" download="Address Book.xlsx" class="btn-link height44 fontsize12">Download Template</a></span>
+                <span class="button"
+                      ng-model="addressbookExcel"
+                      name="shipmentPiecesDetails"
+                      ngf-pattern="'application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                      accept="application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="50MB"
+                      ngf-select="WhileAddingAddressBookExcel($files, $file, $event)">
+                    <button type="button" class="btn-simple btn-save height44 fontsize12" style="padding:8px 12px !important;"><i class="fa fa-upload" aria-hidden="true"></i> {{'Upload' | translate}} </button>
+                </span>
+                <!--End-->
+            </div>
+            <div class="pull-right form-group">
+                <div class="top18">
+                    <small class="addressbook-grid">{{'Square' | translate}}</small> <i ng-class="{'active' : active2}" ng-click="ShowData = 'ShowGridData';setAddressLayOut(); active2 = true; active1 = false" ng-init="active2 = true" class="fa fa-th fa-2x frayte-orange pointer" aria-hidden="true" ng-model="ShowData" value="ShowGridData" title="{{'Grid_Format' | translate}}"></i> &nbsp;&nbsp;
+                    <small class="addressbook-grid">{{'Grid' | translate}}</small><i ng-class="{'active': active1}" ng-click="ShowData = 'ShowRepeatData'; setAddressLayOut(); active1 = true; active2 = false" ng-init="active1 = false" class="fa fa-th-large fa-2x frayte-orange pointer" aria-hidden="true" ng-model="ShowData" value="ShowRepeatData" title="{{'Square_Format' | translate}}"></i>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <div ng-show="ShowData === 'ShowRepeatData'" class="panel panel-default">
+            <div class="panel-body">
+                    <div class="col-sm-12 padding5all">
+                        <div ng-if="AddressDetail.length > 0">
+                            <div ng-repeat="res in AddressDetail" class="col-sm-4 padding5all" >
+                                <div class="col-sm-12 border-primary-icon navbar-right text-right">
+                                    <span class="ui-grid-cell-contents"> <i class="fa fa-star-o star-fixed star-float-left-9 pointer" ng-class="{'star-fixed-hover': res.IsFavorites}" ng-click="SetIsFavourite(res); res.IsFavorites = !res.IsFavorites" aria-hidden="true"></i></span>
+                                    <span class="blue-color"><i ng-click="Modalpopup(res)" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>&nbsp;&nbsp;<span class="red-color"><i ng-click="DeleteAddressFromAddressBook(res)" class="fa fa-bitbucket border-primary-i pointer" title="Delete Address" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="border-primary padding5all" ng-class="{'set-as-default':res.IsDefault}" style="padding: 20px 10px 20px 10px !important;">
+                                    <div><h5>{{res.CompanyName}}</h5><br /></div>
+                                    <div><h5>{{res.FirstName}} {{res.LastName}}</h5><br /></div>
+                                    <div><label>{{res.Address}}</label><br /></div>
+                                    <div><label>{{res.Country.Name}}</label><br /></div>
+                                    <div><label>{{res.State}} {{res.City}}</label><br /></div>
+                                    <div><label>{{res.PostCode}}</label><br /></div>
+                                    <br />
+                                    <div><b>{{res.Email}}</b><br /></div>
+                                    <div><b>{{res.Phone}}</b><br /></div>
+                                    <div class="clearfix"></div>
+                                    <!--set as default code-->
+                                    <div class="col-sm-12 paddingboth form-group">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" ng-change="setDefaultAddressCard(res)" name="setAsDefault" id="setAsDefault" ng-model="res.IsDefault"/> {{'Set_As_Default' | translate}}</label>
+                                            </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--grid error message  here-->
+                        <div ng-if="AddressDetail.length == 0">
+                            <div class="col-sm-12 paddingboth imp-white">
+                                <div class="no-address-exist"><h4 class="redColor ng-binding">{{'No_Record_Found' | translate}}</h4></div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+                    <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <div ng-if="ShowData === 'ShowGridData'">
+        <!--address book custom grid-->
+        <div class="panel panel-default">
+            <div class="width100 flex grid-background">
+                <div class="width986 flex">
+                    <div class="width8 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Favourite' | translate}}</span></div>
+                    <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Company' | translate}}</span></div>
+                    <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'ContactName' | translate}}</span></div>
+                    <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Address_1' | translate}}</span></div>
+                    <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'City' | translate}}</span></div>
+                    <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'State' | translate}}</span></div>
+                    <div class="width120 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Country' | translate}}</sapn></div>
+                    <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                <div class="panel-body padding0">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li ng-if="gridDirectBookingdata.length>0">
+                            <div ng-repeat="gridDirectBooking in gridDirectBookingdata" class="width100 pointer">
+                                <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                    <div class="width8 quotation-table-body text-center">
+                                        <div class="margin-auto">
+                                            <i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i>
+                                        </div>
+                                    </div>
+                                    <div class="width20 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.CompanyName}}</span></div>
+                                    <div class="width13 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.CustomerName}}</span></div>
+                                    <div class="width13 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.Address}}</span></div>
+                                    <div class="width120 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.City}}</span></div>
+                                    <div class="width120 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.State}}</span></div>
+                                    <div class="width120 quotation-table-body padding-5 word-wrap"><span>{{gridDirectBooking.Country.Name}}</span></div>
+                                    <div class="width10 quotation-table-body padding0 text-center">
+                                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                            <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                <li ng-click="Modalpopup(gridDirectBooking)">
+                                                    <a href="">
+                                                        <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                        <span>{{'Edit' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <!--set as default code-->
+                                                <li ng-click="setDefaultAddressGrid(gridDirectBooking)">
+                                                    <a href="">
+                                                        <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                        <span>{{'Set_As_Default' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <!--end-->
+                                                <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                    <a href="">
+                                                        <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                        <span>{{'Delete' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!--square grid error code here-->
+                        <li ng-if="gridDirectBookingdata.length == 0">
+                            <div class="col-sm-12 paddingboth imp-white">
+                                <div class="no-address-exist"><h4 class="redColor ng-binding">{{'No_Record_Found' | translate}}</h4></div>
+                            </div>
+                        </li>
+                        <!--end-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end code-->
+    </div>
+    <div class="row">
+        <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(TrackSearchText)" ng-model="TrackSearchText.CurrentPage" items-per-page="TrackSearchText.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+    </div>
+</section>    

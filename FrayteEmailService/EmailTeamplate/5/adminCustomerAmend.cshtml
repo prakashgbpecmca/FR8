@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+ p{
+	margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; font-family: calibri, sans-serif;padding:10px 20px;">
+    <header>
+        <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@ViewBag.ImageHeader" />
+        </div>
+    </header>
+    <br/>
+	<table style="border-spacing: 0px;">
+	<tr><td style="font-family: calibri, sans-serif;">Dear <b>@Model.ToName,</b></td></tr>
+	<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+	<tr><td style="font-family: calibri, sans-serif;">Some Customer Details have been amended by @Model.UserName. Please verify the amended fields below.</td></tr>
+	<tr><td style="font-family: calibri, sans-serif;">
+		@if (@Model.UpdateDetail != null)
+		{
+			foreach (var item in Model.UpdateDetail)
+			{
+				if(@item.Contains("|"))
+				{
+					var tt = @item.Split('|');
+					<b>@tt[0].ToString() : </b>@tt[1].ToString();<br />
+				}
+			}
+		}
+	</td></tr>
+	</table>
+	<br />
+	<table style="border-spacing: 0px;">
+		<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;">@Model.StaffName</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>MEX Logistics Ltd.</b></td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Phone:</b>&nbsp;@Model.UserPhone</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><b>Email:</b>&nbsp;@Model.StaffEmail</td></tr>
+		<tr><td style="font-family: calibri, sans-serif;"><a href="@Model.SiteAddress">@Model.SiteAddress</a></td></tr>
+	</table>
+    <br/>
+	<footer>
+        <table style="border-spacing: 0px;">
+            <tr><td style="font-family: calibri, sans-serif;font-size: 12px;">MEX Logistics Ltd. All rights reserved.</td></tr>
+        </table>
+	</footer>
+</body>
+</html>

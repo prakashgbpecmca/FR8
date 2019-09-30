@@ -1,0 +1,453 @@
+﻿<form name="DirectBookingForm" ng-submit="SaveQuotation(DirectBookingForm.$valid, quotationDetail)" novalidate>
+    <!--<div class="panel panel-default">-->
+    <!--<div class="panel-heading">{{'Quotation_Tool' | translate}}</div>-->
+    <!--<header style="background:#ddd;"></header>-->
+            <div class="quotation-top-header"><h4>{{'Quotation_Tool' | translate}}</h4></div>
+            <!--<div class="panel-body">-->
+    <div class="col-sm-12 paddingboth">
+            <div class="col-sm-6 form-group paddingboth">
+                <!--customer name-->
+                <div ng-if="RoleId === 1">
+                    <div class="form-group" style="margin-bottom:0px !important;" ng-class="{ 'has-error': DirectBookingForm.shipmentPaymentAccount.$invalid &&
+                                                         (DirectBookingForm.shipmentPaymentAccount.$dirty || submitted) }">
+                        <label for="shipmentPaymentAccount" id="shipmentPayment" class="col-sm-4 paddingboth control-label lineheight24">{{'Select' | translate}} {{'Customer' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-6 right05">
+                            
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    
+                                    ng-model="CustomerDetail" ng-readonly="directBooking.CustomerRateCard.LogisticServiceId >0"
+                                    ng-change="getCustomerCurrencyDetail(CustomerDetail)" ng-disabled="directBooking.CustomerRateCard.LogisticServiceId >0" 
+                                    ng-options="Customer as Customer.CustomerName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | filter : FilterCountry | orderBy : 'CustomerName' track by Customer.CustomerId " 
+                                    class="form-control fontsize12" ng-required="paymentAccount">
+                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="DirectBookingForm.shipmentPaymentAccount.$invalid &&
+                                            (DirectBookingForm.shipmentPaymentAccount.$dirty || submitted)">
+                                <!--{{'Payment_required' | translate}}-->
+                                {{'Customer' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+            </div>
+            <div class="col-sm-6 form-group paddingboth">
+                <!--add filter client code-->
+                <div ng-show="RoleId === 1" class="col-sm-5 paddingboth">
+                    <!--<label for="shipmentPaymentAccount1" id="shipmentPayment1" class="col-sm-4 paddingboth control-label lineheight24">{{'Filter' | translate}} {{'Client' | translate}} <span class="redColor">*</span></label>-->
+                    <div class="col-sm-12 paddingboth">
+                        <i class="fa fa-search search-icon-fix" aria-hidden="true"></i>
+                        <input class="form-control padding-left25" maxlength="11" only-Numeric-Sp id="shipmentPaymentAccount1" ng-change="CheckAccountNo(FilterCountry)" placeholder="Search by Account Number" name="shipmentPaymentAccount1" type="text" ng-model="FilterCountry ">&nbsp;&nbsp;
+                    <!--<button id="checkAccountNo" name="checkAccountNo" type="button" ng-click="CheckAccountNo(FilterCountry)">Search</button>-->
+                    </div>
+                </div>
+                <!--end filter postcode-->
+                <!--myquote button-->
+                <div class="col-sm-7 pull-right paddingboth">
+                    <button type="button" class="col-sm-4 col-sm-offset-1 btn-simple btn-save fontsize12 form-group" id="NewQuote" ng-click="newquote()" name="NewQuote"><i class="fa fa-plus" aria-hidden="true"></i> {{'New' | translate}} {{'Quote_' | translate}}</button>
+                   <button type="button" class="col-sm-6 col-sm-offset-1 btn-simple btn-primary fontsize12 form-group" ng-click="viewPastQuotes()"><i class="fa fa-quora" aria-hidden="true"></i> <span ng-show="RoleId !== 1 && RoleId !== 6">{{'My_Quotes' | translate}}</span><span ng-show="RoleId === 1 || RoleId === 6">{{'Customer' | translate}} {{'Quotation_' | translate}} &nbsp;</span></button>
+
+                </div>
+                <!--end-->
+            </div>
+    </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="directBookingBorder" style="width:100%;margin-top:0px !important;"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-6  paddingleft">
+                <!--ship from code-->
+                <div>
+                    <div><h4 style="margin-top:10px !important;" class="uppercase">{{'Ship_From' | translate}}</h4></div>
+                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromCountry.$invalid &&
+                                                         (DirectBookingForm.shipFromCountry.$dirty || submitted) }">
+                        <label for="shipFromCountry" class="col-sm-4 lineheight24 control-label paddingboth paddingboth">{{'Country' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-6 paddingboth" id="Xe">
+                            <select id="shipFromCountry" name="shipFromCountry" ng-change="SetShipFrominfo(quotationDetail.QuotationFromAddress.Country)"
+                                    ng-model="quotationDetail.QuotationFromAddress.Country" ng-disabled="quotationDetail.QuotationRateCard.LogisticServiceId >0"
+                                    ng-options="Country.Name disable when Country.Disabled ===true for Country in CountriesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="DirectBookingForm.shipFromCountry.$invalid &&
+                                            (DirectBookingForm.shipFromCountry.$dirty || submitted)">
+                                {{'CountryValidationError' | translate}}
+                            </span>
+                        </div>
+
+                    </div>
+                    <div ng-if="quotationDetail.QuotationFromAddress.Country.Code === 'GBR'" class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromPostcode.$invalid &&
+                                                         (DirectBookingForm.shipFromPostcode.$dirty || submitted) }">
+                        <label for="shipFromPostcode" id="shipFromPostcodeLabel" class="col-sm-4 lineheight24 control-label paddingboth paddingboth">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-6 paddingboth">
+                            <input type="text" id="shipFromPostcode" name="shipFromPostcode" ng-model="quotationDetail.QuotationFromAddress.PostCode" class="form-control fontsize12"
+                               placeholder="Enter Post/Zip Code"    ng-readonly="quotationDetail.QuotationRateCard.LogisticServiceId >0" required/>
+                            <span class="help-block has-error"
+                                  ng-show="DirectBookingForm.shipFromPostcode.$invalid &&
+                                            (DirectBookingForm.shipFromPostcode.$dirty || submitted)">
+                                {{'PostalCodeValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 directBookingBorder"></div>
+                </div>
+                <!--end-->
+                <!--ship to code-->
+                <div>
+                    <div><h4 class="uppercase">{{'Ship_To' | translate}}</h4></div>
+                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToCountry.$invalid &&
+                                                         (DirectBookingForm.shipToCountry.$dirty || submitted) }">
+                        <label for="shipToCountry" class="col-sm-4 lineheight24 control-label paddingboth">{{'Country' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-6 paddingboth" id="Xe">
+                            <select id="shipToCountry" name="shipToCountry" ng-change="SetShipFrominfo(quotationDetail.QuotationToAddress.Country)"
+                                    ng-model="quotationDetail.QuotationToAddress.Country" ng-disabled="quotationDetail.QuotationRateCard.LogisticServiceId >0"
+                                    ng-options="Country.Name disable when Country.Disabled ===true for Country in CountriesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="DirectBookingForm.shipToCountry.$invalid &&
+                                            (DirectBookingForm.shipToCountry.$dirty || submitted)">
+                                {{'CountryValidationError' | translate}}
+                            </span>
+                        </div>
+
+                    </div>
+                    <div ng-if="quotationDetail.QuotationToAddress.Country.Code === 'GBR'" class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToPostcode.$invalid &&
+                                                         (DirectBookingForm.shipToPostcode.$dirty || submitted) }">
+                        <label for="shipToPostcode" id="shipFromPostcodeLabel" class="col-sm-4 lineheight24 control-label paddingboth paddingboth">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-6 paddingboth">
+                            <input type="text" id="shipToPostcode" name="shipToPostcode" ng-model="quotationDetail.QuotationToAddress.PostCode" class="form-control fontsize12"
+                              placeholder="Enter Post/Zip Code"     ng-readonly="quotationDetail.QuotationRateCard.LogisticServiceId >0" required/>
+                            <span class="help-block has-error"
+                                  ng-show="DirectBookingForm.shipToPostcode.$invalid &&
+                                            (DirectBookingForm.shipToPostcode.$dirty || submitted)">
+                                {{'PostalCodeValidationError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 directBookingBorder"></div>
+                </div>
+                <!--end-->
+                <!--parcel type code-->
+                <div>
+                    <div class="col-sm-12 form-group paddingboth">
+                        <div class="col-sm-4 paddingboth">
+                            <label for="parcelType" id="parcelTypeLabel" class="control-label lineheight24">{{'Parcel_Type' | translate}}</label>
+                        </div>
+                        <div class="col-sm-6 paddingboth">
+                            <select id="parcelType" name="parcelType"
+                                    ng-model="quotationDetail.ParcelType" ng-change="setPackageParcelType(quotationDetail.ParcelType)" ng-disabled="setParcelTypeDisable()"
+                                    ng-options="ParcelType.ParcelDescription for ParcelType in ParcelTypes track by ParcelType.ParcelType"
+                                    class="form-control fontsize12"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 directBookingBorder"></div>
+                </div>
+                <!--end-->
+            </div>
+            <div class="col-sm-6  paddingboth">
+                <!--shipment and package detail-->
+                <div class="col-sm-12 paddingboth">
+                    <div class="col-sm-12 paddingboth">
+                        <h4 class="uppercase">{{'Shipment&Package_Info' | translate}}</h4>
+                        <div class="form-group top5">
+                            <span class="radio-inline">
+                                <label><input type="radio" ng-disabled="quotationDetail.QuotationRateCard.LogisticServiceId >0" name="optradio" value="kgToCms" ng-change="changeKgToLb(quotationDetail.PakageCalculatonType)" ng-model="quotationDetail.PakageCalculatonType"><b>{{'Matric' | translate}} - {{'kGS' | translate}}/{{'CMS' | translate}}</b> </label>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span class="radio-inline">
+                                <label><input type="radio" ng-disabled="quotationDetail.QuotationRateCard.LogisticServiceId >0" name="optradio" value="lbToInchs" ng-change="changeKgToLb(quotationDetail.PakageCalculatonType)" ng-model="quotationDetail.PakageCalculatonType"><b>{{'Imperial' | translate}} - {{'LB' | translate}}/{{'INCHS' | translate}}</b></label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="panel panel-default margin-bottom-none">
+                        <div class="panel-heading" style="padding:10px 0px 64px;">
+                            <div class="width1785 borderRight margin-10 height77 text-center" style="border-right:2px solid #ddd !important;">
+                                <p style="margin:9px 0px 0px;">
+                                    <!--<b ng-show="quotationDetail.ParcelType.ParcelType!=='Letter'">{{'Carton' | translate}} <br />({{'Qty' | translate}})</b>
+                                    <b ng-show="quotationDetail.ParcelType.ParcelType==='Letter'">({{'QTY' | translate}})</b>-->
+                                    <b >{{'Carton' | translate}} <br /><small class="font-weight-normal">({{'QTY' | translate}})</small></b>
+                                    
+                                    <br /><small></small>
+                                </p>
+                            </div>
+                            <div class="width1785 borderRight margin-10 height77 text-center"><p style="margin:9px 0px 0px;"><b>{{'Length' | translate}}</b><br /><small>({{Lb_Inch}})</small></p></div>
+                            <div class="width1785 borderRight margin-10 height77 text-center"><p style="margin:9px 0px 0px;"><b>{{'Width' | translate}}</b><br /><small>({{Lb_Inch}})</small></p></div>
+                            <div class="width1785 borderRight margin-10 height77 text-center"><p style="margin:9px 0px 0px;"><b>{{'Height' | translate}}</b><br /><small>({{Lb_Inch}})</small></p></div>
+                            <div class="width1785 borderRight margin-10 height77 text-center"><p style="margin:9px 0px 0px;"><b>{{'Weight' | translate}}</b><br /><small>({{Lb_Kgs}})</small></p></div>
+                            <div ng-if="quotationDetail.ParcelType.ParcelDescription !== 'Letter (Doc)'">
+                                <div class="width1067 text-center margin-10 paddingT5" style="border: dashed #ddd !important;"><a href="" a-disabled="quotationDetail.QuotationRateCard.LogisticServiceId >0" ng-click="AddPackage()"><p style="margin: 6px 0px 1px;"><b><span><span style="color:#4d5663 !important;">{{'Add' | translate}}<br />{{'More' | translate}}<br /></span><i class="fa fa-plus" aria-hidden="true"></i></span></b></p></a></div>
+                            </div>
+                        </div>
+                        <div ng-repeat="Package in quotationDetail.QuotationPackages" ng-init="packageForm='tags'+$index">
+                            <ng-form name="{{packageForm}}">
+                                <div class="panel-body" style="padding:10px 0px 0px !important;">
+                                    <div class="width1785 borderRight margin-10 border-bottom" ng-class="{ 'has-error':DirectBookingForm[packageForm].cartton.$invalid &&
+                                                         (DirectBookingForm[packageForm].cartton.$dirty || submitted) }" style="border-right:2px solid #ddd !important;">
+                                        <input type="text" name="cartton" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-readonly="quotationDetail.QuotationRateCard.LogisticServiceId >0"
+                                               ng-model="Package.CartoonValue" valid-number allow-decimal="false" allow-negative="false" required />
+                                    </div>
+                                    <div class="width1785 borderRight margin-10 border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].length.$invalid &&
+                                                         (DirectBookingForm[packageForm].length.$dirty || submitted) }">
+                                        <input type="text" only-decimal name="length" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-readonly="quotationDetail.QuotationRateCard.LogisticServiceId >0"
+                                               ng-model="Package.Length" required />
+                                    </div>
+                                    <div class="width1785 borderRight margin-10 border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].width.$invalid &&
+                                                           (DirectBookingForm[packageForm].width.$dirty || submitted) }">
+                                        <input type="text" only-decimal name="width" class="form-control" style="width: 100%;margin:10px 0px 10px;" ng-readonly="quotationDetail.QuotationRateCard.LogisticServiceId >0"
+                                               ng-model="Package.Width" required />
+                                    </div>
+                                    <div class="width1785 borderRight margin-10 border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].height.$invalid &&
+                                                           (DirectBookingForm[packageForm].height.$dirty || submitted) }">
+                                        <input type="text" only-decimal name="height" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-readonly="quotationDetail.QuotationRateCard.LogisticServiceId >0"
+                                               ng-model="Package.Height" required />
+                                    </div>
+                                    <div class="width1785 borderRight margin-10 border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].weight.$invalid &&
+                                                           (DirectBookingForm[packageForm].weight.$dirty || submitted) }">
+                                        <input type="text" ng-change="ChangeWeight(Package.Weight)" only-decimal-limit name="weight" class="form-control" style="width: 100%; margin:10px 0px 10px;" ng-readonly="quotationDetail.QuotationRateCard.LogisticServiceId >0"
+                                               ng-model="Package.Weight" maxlength="5" required />
+                                    </div>
+                                    <div>
+                                        <div ng-if="quotationDetail.ParcelType.ParcelDescription !== 'Letter (Doc)' && quotationDetail.QuotationPackages.length !==1" class="width1067 border-bottom text-center" style="padding:9px 0px 15px;">
+                                            <a ng-show="Package.pacVal === false" href="" a-disabled="quotationDetail.QuotationRateCard.LogisticServiceId >0" ng-click="RemovePackage(Package)"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                            <a ng-show="Package.pacVal === true" href="" a-disabled="quotationDetail.QuotationRateCard.LogisticServiceId >0" ng-click="AddPackage()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                            <!--<a href="" a-disabled="quotationDetail.QuotationRateCard.LogisticServiceId >0" ng-click="RemovePackage(Package)"><i class="fa fa-minus" aria-hidden="true"></i></a>-->
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </ng-form>
+                        </div>
+                        <div class="clearfix"></div>                    
+                    </div>
+                    <div class="col-sm-12 paddingboth border">
+                        <div class="width438 paddingboth padding-10 " style="margin-left:5px;">{{'Total_Shipment_Pieces' | translate}}: {{totalPieces(quotationDetail)}}</div>
+                        <div class="width17851 borderRight" style="border-left: 1px solid #e5e5e5;PADDING: 0PX !IMPORTANT;PADDING: 10PX !IMPORTANT;">
+                            {{getTotalKgs()}}
+                            ({{Lb_Kg}})
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12 paddingboth border total-estimate" style="font-size:19px !important;">
+                        <div class="width71 estimatedWeight fontsize12" style="position:relative;margin-left:5px;">
+                            {{'Estimated_Chargeable_Weight' | translate}} <span class="redColor">#</span>:
+                           
+                            <a href="" class="padding7px" uib-popover="Rounds up to the next billable weight" popover-trigger="'outsideClick'">
+                                <i class="fa fa-question-circle help-set fontsize12" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="width27 fontsize12">
+                            {{getChargeableWeight(quotationDetail.Packages, 'Weight')}}   ({{Lb_Kg}})
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div ng-show="getmaxval === true" class="redColor">
+                        <p>{{'LetterParcelCan_NotGreaterThanTwo' | translate}}</p>
+                    </div>
+                    <div class="col-sm-12 paddingboth">
+                        <p><span class="redColor">#</span>{{'TotalEstimate_BillingWeight' | translate}} </p>
+                    </div>
+                </div>
+                <!--end-->
+            </div>
+            <div class="clearfix"></div>
+            <br />
+    <div class="clearfix"></div>
+    <!--<br />-->
+    <div>
+        <!--Couirer grid start here-->
+        <div class="form-group">
+            <!--get service screen-->
+            <div class="col-sm-12 paddingboth">
+                <div ng-if="(quotationDetail.QuotationRateCard !== null && quotationDetail.QuotationRateCard.LogisticServiceId >= 1)">
+                    <div class="panel panel-default">
+                        <div ng-show="quotationDetail.QuotationRateCard.CourierName === 'UKMail' || quotationDetail.QuotationRateCard.CourierName === 'Yodel' || quotationDetail.QuotationRateCard.CourierName === 'Hermes'" class="panel-heading quotation-header border-bottom-ddd flex" style="padding:0px 0px !important;">
+                            <div class="width120 border-right  paddingimp"><div><b>{{'Courier' | translate}}</b></div></div>
+                            <div class="width150 border-right  paddingimp"><div><b>{{'Description' | translate}}</b></div></div>
+                            <div class="width150 border-right  paddingimp"><div><b>{{'Service_Type' | translate}}</b></div></div>
+                            <div class="width120 border-right  paddingimp"><div><b>{{'Rate' | translate}} <span class="redColor">#</span></b></div></div>
+                            <div class="width10 border-right  paddingimp"><div><b>{{'Fuel_Surcharge' | translate}}</b></div></div>
+                            <div class="width120 border-right  paddingimp" style="border-right:1px solid #ddd;"><b>{{'Supplementary_Charges' | translate}}</b></div>
+                            <div class="width120 border-right paddingimp"><div><b>{{'Total_EstRate' | translate}} <span class="redColor">#</span></b></div></div>
+                            <div class="width120 flex" style="border:dashed #ddd;">
+                                <div class="width50 bordered-right paddingimp"><div class="bottom3 left-20"><b>{{'Edit' | translate}}</b></div></div>
+                                <div class="width50 paddingT10"><div class="bottom3"><b>{{'Remove' | translate}}</b></div></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div ng-show="quotationDetail.QuotationRateCard.CourierName !== 'UKMail' && quotationDetail.QuotationRateCard.CourierName !== 'Yodel' && quotationDetail.QuotationRateCard.CourierName !== 'Hermes'" class="panel-heading quotation-header border-bottom-ddd flex" style="padding:0px 0px !important;">
+                            <div class="width120 border-right  paddingimp7"><div><b>{{'Courier' | translate}}</b></div></div>
+                            <div class="width18 border-right  paddingimp7"><div><b>{{'Description' | translate}}</b></div></div>
+                            <div class="width17 border-right  paddingimp7"><div><b>{{'Rate' | translate}} <span class="redColor">#</span></b></div></div>
+                            <div class="width150 border-right  paddingimp7"><div><b>{{'Fuel_Surcharge' | translate}}</b></div></div>
+                            <div class="width10 border-right   paddingimp7" style="border-right: 1px solid #ddd;width:11% !important;"><div><b>{{'Supplementary_Charges' | translate}}</b></div></div>
+                            <div class="width150 border-right  paddingimp7"><div><b>{{'Total_EstRate' | translate}} <span class="redColor">#</span></b></div></div>
+                            <div class="width120 flex" style="border:dashed #ddd;">
+                                <div class="width50  paddingimp7 bordered-right"><div class="bottom3 left-20"><b>{{'Edit' | translate}}</b></div></div>
+                                <div class="width50 paddingT10"><div class="bottom3"><b>{{'Remove' | translate}}</b></div></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body" style="padding:0px !important;">
+                            <div ng-show="quotationDetail.QuotationRateCard.CourierName === 'UKMail' || quotationDetail.QuotationRateCard.CourierName === 'Yodel' || quotationDetail.QuotationRateCard.CourierName === 'Hermes'" class="text-center">
+                                <div class="flex">
+                                    <div class="width120 border-right height90 word-break"><span><img class="img100x30 bottom10" ng-src="{{quotationDetail.QuotationRateCard.ImageURL}}" /></span></div>
+                                    <div class="width150 border-right height90 word-break">{{quotationDetail.QuotationRateCard.CourierDescription}}</div>
+                                    <div class="width150 border-right height90 word-break">{{quotationDetail.QuotationRateCard.ShipmentType}}</div>
+                                    <div class="width120 border-right height90 word-break">{{quotationDetail.QuotationRateCard.CustomerCurrency}} {{quotationDetail.QuotationRateCard.Rate}}<span ng-show="quotationDetail.QuotationRateCard.UnitOfMeasurement==='Per Kg'">/{{'KG' | translate}}</span> <span ng-show="quotationDetail.QuotationRateCard.UnitOfMeasurement==='Per 10 Kg'">/10 {{'KG' | translate}}</span></div>
+                                    <div class="width10 border-right height90 word-break">{{quotationDetail.QuotationRateCard.FuelSurcharge}}% ({{quotationDetail.QuotationRateCard.FuelMonth}})</div>
+                                    <div class="width120 border-right height90 word-break">{{quotationDetail.QuotationRateCard.CustomerCurrency}} {{quotationDetail.QuotationRateCard.AdditionalSurcharge}}</div>
+                                    <div class="width120 border-right height90 word-break">{{quotationDetail.QuotationRateCard.CustomerCurrency}} {{quotationDetail.QuotationRateCard.TotalEstimatedCharge}}<span ng-show="quotationDetail.QuotationRateCard.UnitOfMeasurement==='Per Kg'">/{{'KG' | translate}}</span> <span ng-show="quotationDetail.QuotationRateCard.UnitOfMeasurement==='Per 10 Kg'">/10 {{'KG' | translate}}</span></div>
+                                    <div class="width6 border-right height90 word-break" style="border-right:1px solid #ddd;">
+                                        <a href="" ng-click="editGetServices(DirectBookingForm)" class="left-20"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:30px;"></i> </a>
+                                    </div>
+                                    <div class="width6 height90 word-break">
+                                        <a style="padding-left:10px;" href="" ng-click="cancelServices()"><i class="fa fa-bitbucket red delete-icon" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--new code-->
+                            <div ng-show="quotationDetail.QuotationRateCard.CourierName !== 'UKMail' && quotationDetail.QuotationRateCard.CourierName !== 'Yodel' && quotationDetail.QuotationRateCard.CourierName !== 'Hermes'" class="text-center">
+                                <div class="flex">
+                                    <div class="width120 border-right height90 word-break"><span><img class="img100x30 bottom10" ng-src="{{quotationDetail.QuotationRateCard.ImageURL}}" /></span> <!--&nbsp;&nbsp;{{quotationDetail.QuotationRateCard.DisplayName}}--></div>
+                                    <div class="width18 border-right height90 word-break">{{quotationDetail.QuotationRateCard.CourierDescription}}</div>
+                                    <div class="width17 border-right height90 word-break">{{quotationDetail.QuotationRateCard.CustomerCurrency}} {{quotationDetail.QuotationRateCard.Rate}}<span ng-show="quotationDetail.QuotationRateCard.UnitOfMeasurement==='Per Kg'">/{{'KG' | translate}}</span> <span ng-show="quotationDetail.QuotationRateCard.UnitOfMeasurement==='Per 10 Kg'">/10 {{'KG' | translate}}</span></div>
+                                    <div class="width150 border-right height90 word-break">{{quotationDetail.QuotationRateCard.FuelSurcharge}}% ({{quotationDetail.QuotationRateCard.FuelMonth}})</div>
+                                    <div class="width10 border-right height90 word-break" style="width:11% !important;">{{quotationDetail.QuotationRateCard.CustomerCurrency}} {{quotationDetail.QuotationRateCard.AdditionalSurcharge}}</div>
+                                    <div class="width150 border-right height90 word-break">{{quotationDetail.QuotationRateCard.CustomerCurrency}} {{quotationDetail.QuotationRateCard.TotalEstimatedCharge}}<span ng-show="quotationDetail.QuotationRateCard.UnitOfMeasurement==='Per Kg'"></span> <span ng-show="quotationDetail.QuotationRateCard.UnitOfMeasurement==='Per 10 Kg'"></span></div>
+                                    <div class="width6 border-right height90 word-break" style="padding:10px !important;border-right:1px solid #ddd;">
+                                        <a href="" ng-click="editGetServices(DirectBookingForm)" class="left-20"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:30px;"></i> </a>
+                                    </div>
+                                    <div class="width6 word-break" style="padding:10px !important;">
+                                        <a href="" ng-click="cancelServices()"><i class="fa fa-bitbucket red delete-icon" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <!--end-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--end-->
+        </div>
+        <!--End here-->
+        <div class="clearfix"></div>
+    <div class="flex">
+        <div class="col-sm-5 paddingboth">
+            <!--other button code-->
+            <div ng-show="quotationDetail.QuotationRateCard.LogisticServiceId >0" >
+            <ul class="list-unstyled">
+                <li>
+                    <button class="btn-simple btn-save pull-left fontsize12" id="SaveQuote" ng-click="submitted=true; BookingType = 'Current'" name="SaveQuote"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save_Quote' | translate}}</button>
+                    <button class="btn btn-default email-button fontsize12" id="Email" type="button" style="border-radius:2px !important;" ng-click="sendQuotationMail(CustomerDetail, 'em');" name="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Email' | translate}} {{'Quote_' | translate}}</button>
+                    <button class="btn-simple btn-info pull-right fontsize12" id="Download" type="button" ng-click="GenerateQuotationShipmentPdf(DirectBookingForm.$valid)" name="Download"><i class="fa fa-download" aria-hidden="true"></i> {{'Download' | translate}} {{'PDF' | translate}}</button>
+                </li>
+            </ul>
+            </div>
+            <!--end-->
+        </div>
+        <div class="col-sm-6 col-sm-offset-1 paddingboth">
+            <!--get rate button-->
+            <!--<div  class="col-sm-6 paddingboth">
+            <div ng-hide="quotationDetail.QuotationRateCard.LogisticServiceId >0">
+                <button class="btn-simple btn-primary getrate-bigbutton" id="GetRate" type="button" name="GetRate" ng-click="GetServices(quotationDetail,DirectBookingForm)"><i class="fa fa-get-pocket" aria-hidden="true"></i> {{'Get_Rate' | translate}} {{'Quote_' | translate}}</button>
+            </div>
+            </div>-->
+            <div class="col-sm-6 quotation-place-booking pull-right">
+            <button ng-hide="quotationDetail.QuotationRateCard.LogisticServiceId >0" class="btn-simple btn-primary getrate-bigbutton fontsize12 getratequote-padding" id="GetRate" type="button" name="GetRate" ng-click="GetServices(quotationDetail,DirectBookingForm)"><i class="fa fa-get-pocket" aria-hidden="true"></i> {{'Get_Rate' | translate}} {{'Quote_' | translate}}</button>
+
+            <div>
+                <button ng-show="quotationDetail.QuotationRateCard.LogisticServiceId >0" type="submit"
+                        ng-class="{'grey': quotationDetail.QuotationRateCard.LogisticServiceId < 1 , 'btn-success' : quotationDetail.QuotationRateCard.LogisticServiceId >= 1}"
+                        ng-click="submitted=true; BookingType = 'Current'; Db = 'PlaceBooking'"
+                        class="btn btn-lg  fontsize12 col-sm-12 border-radius2 fontsize12" style="padding:20px 0px 25px !important;font-size: 30px;">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    {{'Place_Booking' | translate}}
+                </button>
+            </div>
+            </div>
+            <!--end-->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 padding-top15 paddingboth form-group">
+                <div class="redColor text-center">{{'AllQuote_Issue_FRAYTE' | translate}} </div>
+            </div>
+            <!--</div>-->
+            <!--</div>-->
+            <div class="clearfix"></div>
+         
+            <div class="clearfix"></div>
+            <!--my rate screen-->
+
+            <div ng-show="CustServLength > 0" class="panel panel-default">
+                <div class="panel-heading"><span ng-show="RoleId === 1">{{'Customer' | translate}}</span> {{'Rate' | translate}} {{'Cards' | translate}}</div>
+                <div class="body">
+                    <br />
+                    <div class="col-sm-12">
+                        <div class="panel panel-default action-font-family">
+                            <div class="panel-heading flex" style="padding:0px !important;">
+                                <div class="width986">
+                                <div class="width30 panel-heading-border">{{'Courier' | translate}}</div>
+                                <div class="width30 panel-heading-border">{{'Logistic_Type' | translate}}</div>
+                                <div class="width30 panel-heading-border">{{'Rate' | translate}} {{'Type' | translate}}</div>                  
+                                <div class="width10" style="padding:0px !important;"><span class="visibility">Hide</span></div>
+                           </div>
+                             </div>
+                            <div class="panel-body flex" style="padding:0px !important;">
+                                <div class="col-sm-12 paddingboth overflow-rate-card">
+                                    <ul class="list-unstyled margin-bottom-none">
+                                        <li ng-repeat="custService in CustomerServices" class="flex alternate">
+                                            <div class="width30 panel-body-same-border-padding">{{custService.LogisticCompanyDisplay}}</div>
+                                            <div class="width30 panel-body-same-border-padding">{{custService.LogisticTypeDisplay}}</div>
+                                            <div class="width30 panel-body-same-border-padding">{{custService.RateTypeDisplay}}</div>
+                                            <!--<div class="width25 panel-body-same-border-padding">
+                                                <button type="button" class="btn-sm btn-success" ng-click="DownloadSupplementryCharges(custService)" style="padding:6px 17px !important;">
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                    {{'Download' | translate}} {{'Supplementary_Charges' | translate}}
+                                                </button>
+
+                                            </div>-->
+                                            <div class="width10 panel-body-same-border-padding dropdown quotation-dropdown quotation-table-body" style="padding:0px !important;">
+                                                <!--<button type="button" class="btn-sm btn-success" ng-click="DownloadCustomerRate(custService)" style="padding:6px 17px !important;">
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                    {{'Download' | translate}}
+                                                    </button>-->
+                                                <label id="single-button" uib-dropdown is-open="status.isopen" uib-dropdown-toggle ng-disabled="disabled" class="pointer width100 panel-body-same-border-padding action-font-family" style="margin-bottom:0px !important;" data-toggle="dropdown">{{'Actions' | translate}} <span class="caret"></span></label>
+                                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                                    <li role="menuitem"><a href="" ng-click="DownloadCustomerRate(custService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center"> {{'Download' | translate}} {{'PDF' | translate}}</span></a></li>
+                                                    <li role="menuitem"><a href="" ng-click="sendQuotationMail(custService, 'EmailRateCard')"><span class="padEdit"><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class="text-center"> {{'Email' | translate}} {{'Customer_RateCard' | translate}}</span></a></li>
+                                                    <li role="menuitem"><a href="" ng-click="DownloadSummary(custService)"><span class="padDelete"><i class="fa fa-scribd" aria-hidden="true"></i></span> <span class="text-center"> {{'Download' | translate}} {{'Summary' | translate}}  </span></a></li>
+                                                    <li role="menuitem"><a href="" ng-click="DownloadSupplementryCharges(custService)"><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center"> {{'Download' | translate}} {{'Supplementary_Charges' | translate}} {{'PDF' | translate}}  </span></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+</form>

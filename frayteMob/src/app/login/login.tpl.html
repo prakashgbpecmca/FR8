@@ -1,0 +1,35 @@
+﻿
+<section class="login-screen-color" style="padding: 59px 0 0;">
+    <div class="container" id="center-login">
+        <div class="col-xs-12">
+            <section>
+                <!--start home login code here-->
+                <section class="form-center">
+                    <!-- frayte image-->
+                    <img ng-src="{{ImagePath + 'FrayteLogo.png'}}" class="frayte-login-logo" />
+                    <!--end-->
+                    <form name="LoginForm" novalidate>
+                        <div><h3></h3></div>
+                        <div class="form-group">
+                            <label class="control-label sr-only" for="UserName"> Username</label>
+                            <span class="icon-fix"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control input-padding" ng-model="username" id="UserName" name="UserName" placeholder="Username (Required)" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label sr-only" for="Password"> Password</label>
+                            <span class="icon-fix"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control input-padding" ng-model="password" id="Password" name="Password" placeholder="Password (Required)" required />
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" ng-click="onSubmit()" class="btn-simple btn-save form-control fontsize12 buttonColor-Outline login-padding"><b><i class="fa fa-user-circle-o fa-1x" aria-hidden="true"></i> Login</b></button>
+                        </div>
+                        <div class="text-right" style="padding:10px 0px;">
+                            <a ui-sref="forgetPasword" class="bold">Forgot Password</a>
+                        </div>
+                    </form>
+                </section>
+                <!--end home login code-->
+            </section>
+        </div>
+    </div>
+</section>

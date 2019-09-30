@@ -1,0 +1,248 @@
+﻿
+
+
+<div class="col-xs-12 paddingboth" style="min-height: 614px;max-height:614px;overflow-x: hidden;overflow-y: auto;">
+    <div>
+        <div class="form-group bb">
+            <div class="pull-left icon-set"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></div>
+            <div class="text-center">
+                <h3>
+                    <span ng-if="isActive">Scan AWB</span>
+                    <span ng-if="isTakePicture">Take Picture</span>
+                    <span ng-if="isSkipupload">Scan AWB</span>
+                    <span ng-if="isEditTakePicture">Scan AWB</span>
+                    <!--<span ng-if="isHandover">Handover</span>-->
+                </h3>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-xs-12">
+            <!-- !isactive-->
+            <div ng-if="isActive" class="text-center">
+
+            </div>
+            <!--end-->
+            <!--take picture-->
+            <div ng-if="isTakePicture">
+                <div class="text-left">
+                    <h3>AWB-224466889-123456</h3>
+                </div>
+                <div class="text-center form-group" style="width: 347px;border: 1px solid #ddd;padding: 20px 10px;">
+                    <img src="{{ImagePath + 'avtar.png'}}" class="text-center" style="width: 150px;margin: 0 auto;"/>
+                    <div class="center-click">
+                    <button type="button" class="btn btn-success" ng-click="isEditTakePictureClick()">Click</button>
+                    <button type="button" class="btn btn-warning pull-right" ng-click="isSkipuploadClick()">Skip</button>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+                <div class="clearfix lineheight28 fontsize18 bold form-group">
+                    <span class="pointer"></span> Scanned AWB
+                </div>
+                <div class="clearfix lineheight28 bold form-group">26-Nov-2018</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="clearfix row">
+                            <div class="col-sm-6">AWB-224466889-123456</div>
+                            <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px"/></div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isEditTakePictureClick()">Edit</button></div>
+                        </div>
+                        <div class="clearfix row">
+                            <div class="col-sm-6">AWB-224466889-123457</div>
+                            <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isEditTakePictureClick()">Edit</button></div>
+                        </div>
+                        <div class="clearfix row">
+                            <div class="col-sm-6">AWB-224466889-123458</div>
+                            <div class="col-sm-2 lineheight28">Null</div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isEditTakePictureClick()">Edit</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+            <!--skip or upload code here-->
+            <div ng-if="isSkipupload">
+                <div class="clearfix lineheight28 fontsize18 bold form-group">
+                    <span class="pointer"></span> Scanned AWB
+                </div>
+                <div class="form-group">
+                <div class="clearfix lineheight28 bold form-group">26-Nov-2018</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="clearfix row">
+                            <div class="col-sm-6">AWB-224466889-123456</div>
+                            <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()">Edit</button></div>
+                        </div>
+                        <div class="clearfix row">
+                            <div class="col-sm-6">AWB-224466889-123457</div>
+                            <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()">Edit</button></div>
+                        </div>
+                        <div class="clearfix row">
+                            <div class="col-sm-6">AWB-224466889-123458</div>
+                            <div class="col-sm-2 lineheight28">Null</div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()">Edit</button></div>
+                        </div>
+                        <div class="clearfix row">
+                            <div class="col-sm-6">AWB-224466889-123459</div>
+                            <div class="col-sm-2 lineheight28">Null</div>
+                            <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()">Edit</button></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="clearfix lineheight28 bold form-group">27-Nov-2018</div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="clearfix row">
+                                <div class="col-sm-6">AWB-224466889-123460</div>
+                                <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()">Edit</button></div>
+                            </div>
+                            <div class="clearfix row">
+                                <div class="col-sm-6">AWB-224466889-123461</div>
+                                <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()">Edit</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+            <!--edit take picture code here-->
+            <div ng-if="isEditTakePicture">
+            <div class="clearfix lineheight28 fontsize18 bold form-group">
+                <span class="pointer"></span> Scanned AWB
+            </div>
+            <div class="clearfix lineheight28 bold form-group">26-Nov-2018</div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="clearfix row">
+                        <div class="col-sm-6">AWB-224466889-123456</div>
+                        <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                        <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()">Edit</button></div>
+                    </div>
+                    <div class="clearfix row">
+                        <div class="col-sm-6">AWB-224466889-123457</div>
+                        <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                        <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()"><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i> Uploading</button></div>
+                    </div>
+                    <div class="clearfix row">
+                        <div class="col-sm-6">AWB-224466889-123458</div>
+                        <div class="col-sm-2 lineheight28">Null</div>
+                        <div class="col-sm-4"><button type="button" class="btn btn-link" ng-click="isTakePictureClick()">Edit</button></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!--end-->
+            <!--handover code here-->
+            <!--<div ng-if="isHandover">
+                <div class="clearfix lineheight28 fontsize18 bold form-group">
+                    <span class="pointer"></span> Scanned AWB
+                </div>
+                <div class="clearfix lineheight28 bold form-group">26-Nov-2018</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="clearfix row">
+                            <div class="col-sm-8">AWB-224466889-123456</div>
+                            <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                            <div class="col-sm-2"><button type="button" class="btn btn-link"><i class="fa fa-check"></i></button></div>
+                        </div>
+                        <div class="clearfix row">
+                            <div class="col-sm-8">AWB-224466889-123457</div>
+                            <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                            <div class="col-sm-2"><button type="button" class="btn btn-link"><i class="fa fa-check"></i></button></div>
+                        </div>
+                        <div class="clearfix row">
+                            <div class="col-sm-8">AWB-224466889-123458</div>
+                            <div class="col-sm-2 lineheight28"><img src="{{ImagePath + 'avtar.png'}}" style="width:30px" /></div>
+                            <div class="col-sm-2"><button type="button" class="btn btn-link"><i class="fa fa-check"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!--end-->
+        </div>
+    </div>
+</div>
+
+
+
+<!--<div class="col-xs-12 fix-done" ng-if="isTakePicture">
+            <button type="submit" class="form-control btn-simple btn-primary" ng-click="handover()">Handover</button>
+</div>-->
+
+<!--<div class="col-xs-12 fix-done" ng-if="isEditTakePicture">
+    <button type="submit" class="form-control btn-simple btn-primary" ng-click="handover()">Handover</button>
+</div>-->
+
+<div class="col-xs-12 fix-done" ng-if="isHandover">
+    <div class="b5rem">
+    <div class="form-group">
+    <button type="submit" class="form-control btn-simple btn-danger" ng-click="cancelHandover()">Cancel</button>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanningAWB()">Scanning 3/4 AWB</button>
+    </div>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done" ng-if="isCloseBag">
+    <div class="form-group">
+        <button type="submit" class="form-control btn-simple btn-warning" ng-click="createBag()">Back</button>
+    </div>
+</div>
+
+<div class="col-xs-12 fix-done-button">
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="noRecords()">Scan AWB</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Scan AWB is the first screen, if there is no record available. This screen hints to scan AWB." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="takePicture()">Take Picture (API)</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="After scan of AWB, this screen will open here mobile. user click the picture of scanned AWB." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="isSkipuploadClick()">Skip (API)</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Skip button will skip the take picture screen." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="isEditTakePictureClick()">Uploading (API)</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="After the click of the picture system will take some time to upload the picture meanwhile 'Edit text' will change into 'Uploading'" popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="isSkipuploadClick()">Scanned AWB</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Scanned AWB screen have the list of all scanned AWB. This is the main screen when records are available." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="takePicture()">Edit (API)</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="On click of edit, screen will redirected to 'Take Picutre' Screen." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <!--<div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="handover()">Handover</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Handover button will redirected to handover screen, here is the list of available AWB mobile user will do scanning one by one." popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="form-group country">
+        <button type="submit" class="form-control btn-simple btn-primary" ng-click="scanningAWB()">Scanning 3/4 AWB (API)</button>
+        <a href="" class="fix-help" popover-placement="auto" uib-popover="Ration of scanned AWB. If mobile user click the button before completion of scanning then system show the message '3/4 AWB are scanned. Are you sure want to cofirm?'" popover-trigger="'outsideClick'">
+            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+        </a>
+    </div>-->
+</div>

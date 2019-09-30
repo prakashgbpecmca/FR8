@@ -1,0 +1,88 @@
+﻿<form ng-submit="UpdateLogisticServiceDuration(LogisticServiceForm.$valid &&  fn_DateCompare(serviceDuration.ExpiryDate,serviceDuration.IssuedDate) > 0)" name="LogisticServiceForm" novalidate>
+    <section>
+        <!--header code-->
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Update_Issued_Date_and_Expiry_Date' | translate}}</h4>
+        </div>
+        <!--end-->
+        <!--body code-->
+        <div class="modal-body">
+            <div class="col-sm-12 form-group paddingboth"
+                 ng-class="{ 'has-error': LogisticServiceForm.issuesdate.$invalid &&
+                                                         (LogisticServiceForm.issuesdate.$dirty || submitted) }">
+                <div class="col-sm-4 paddingboth">
+                    <label for="issuesdate" id="issuesdate" class="control-label top7">{{'Issued_Date' | translate}} <span class="redColor">*</span><br /></label>
+                </div>
+                <div class="col-sm-8 paddingright">
+                            <div class="input-group">
+                                <input type="text" id="issuesdate" name="issuesdate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                       ng-model="serviceDuration.IssuedDate" is-open="status.opened"
+                                       uib-datepicker-options="dateOptions" readonly
+                                       close-text="Close" ng-click="OpenCalender($event)" required />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="OpenCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                    <span class="help-block has-error"
+                          ng-show="LogisticServiceForm.issuesdate.$error.required &&
+                                                (LogisticServiceForm.issuesdate.$dirty || submitted)">
+                        {{'Issued_Date_is_Required' | translate}}
+                    </span>
+                    <span class="help-block has-error"
+                          ng-show="LogisticServiceForm.issuesdate.$invalid && !LogisticServiceForm.issuesdate.$error.required &&
+                                                (LogisticServiceForm.issuesdate.$dirty || submitted)">
+                        {{'Issued_Date_is_Invalid' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-12 paddingboth"
+                 ng-class="{ 'has-error': (LogisticServiceForm.expirydate.$invalid || fn_DateCompare(serviceDuration.ExpiryDate,serviceDuration.IssuedDate) <= 0 ) &&
+                                                         (LogisticServiceForm.expirydate.$dirty || submitted) }">
+                <div class="col-sm-4 paddingboth">
+                    <label for="issuesdate" id="expirydate" class="control-label top7">{{'Expiry_Date' | translate}} <span class="redColor">*</span><br /></label>
+                </div>
+                <div class="col-sm-8 paddingright">
+                            <div class="input-group">
+                                <input type="text" id="expirydate" name="expirydate" class="form-control fontsize12"
+                                       uib-datepicker-popup="dd/MM/yyyy"
+                                       ng-model="serviceDuration.ExpiryDate" is-open="status1.opened"
+                                       datepicker-options="options" readonly
+                                       close-text="Close" ng-click="OpenCalender1($event)" required />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="OpenCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                    </div>
+                    <span class="help-block has-error"
+                          ng-show="LogisticServiceForm.expirydate.$error.required &&
+                                                (LogisticServiceForm.expirydate.$dirty || submitted)">
+                        {{'Expiry_Date_is_Required' | translate}}
+                    </span>
+                    <span class="help-block has-error"
+                          ng-show="LogisticServiceForm.expirydate.$invalid && !LogisticServiceForm.expirydate.$error.required &&
+                                                (LogisticServiceForm.expirydate.$dirty || submitted)">
+                        {{'Expiry_Date_is_Invalid' | translate}}
+                    </span>
+                    <span class="help-block has-error" ng-if="fn_DateCompare(serviceDuration.ExpiryDate,serviceDuration.IssuedDate) <= 0  ">
+
+                        {{'Expiry_Date_mustbe_Greater_Than_Issued_Date' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--end-->
+        <div class="clearfix"></div>
+        <!--footer code-->
+        <div class="modal-footer">
+            <div class="pull-left">
+                <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel btn-md"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+            <div class="pull-right">
+                <button type="submit" ng-click="submitted= true" class="btn-simple btn-save btn-md"><i class="fa fa-save" aria-hidden="true"></i> {{'Save' | translate}}</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!--end-->
+    </section>
+</form>

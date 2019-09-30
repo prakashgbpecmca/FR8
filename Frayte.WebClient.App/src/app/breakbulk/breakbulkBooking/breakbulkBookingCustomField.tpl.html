@@ -1,0 +1,35 @@
+﻿
+
+    <div class="modal-header">
+        <button type="button" class="close"  ng-click="$dismiss()">&times;</button>
+        <h4 class="modal-title">Custom Field</h4>
+    </div>
+    <div class="modal-body">
+        <div class="clearfix form-group">
+            <label for="type" class="control-label top5 col-sm-3">Type:</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="type" id="type" ng-model="customType">
+                    <option value="">Select</option>
+                    <option value="{{item.name}}" ng-repeat="item in customTypes">{{item.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix form-group">
+            <label for="type" class="control-label top5 col-sm-3">Name:</label>
+            <div class="col-sm-9">
+                <input type="text"  class="form-control" name="name" id="name" ng-model="item.customname" placeholder="Name" required />
+            </div>
+        </div>
+        <div class="clearfix form-group" ng-if="customType==='Dropdown'">
+            <label for="number" class="control-label top5 col-sm-3">Value:</label>
+            <div class="col-sm-9">
+                    <input type="text" class="form-control" name="value" ng-model="item.customNumber" id="value" placeholder="Value" required />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+        <button type="button" class="btn-simple btn-cancel pull-left"  ng-click="$dismiss()"><i class="fa fa-times"></i> Cancel</button>
+        <button type="button" class="btn-simple btn-save pull-right"  ng-click="customSubmit(item.customname,item.customNumber)"><i class="fa fa-save"></i> Submit</button>
+        </div>
+    </div>

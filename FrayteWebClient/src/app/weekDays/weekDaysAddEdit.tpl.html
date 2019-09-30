@@ -1,0 +1,91 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{mode}} {{'Weekdays' | translate}}</h4>
+</div>
+<form class="form-horizontal" role="form" name="WeekDaysForm" ng-submit="SaveWorkingWeekDays(WeekDaysForm.$valid, weekDetail,days)" novalidate>
+    <div class="modal-body">
+        <div class="form-group" ng-class="{ 'has-error': WeekDaysForm.Description.$invalid &&
+                                                         (WeekDaysForm.Description.$dirty || submitted) }">
+            <div class="col-sm-7">
+                <div class="col-sm-3">
+                    <label for="Description" class="control-label">{{'Description' | translate}}</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" name="Description" id="Description" ng-model="weekDetail.Description" class="form-control" placeholder="{{'Description' | translate}}" required>
+                    <span class="help-block has-error"
+                          ng-show="WeekDaysForm.Description.$invalid &&
+                           (WeekDaysForm.Description.$dirty || submitted)">
+                        {{'Weekdays' | translate}} {{'DescriptionValidationError' | translate}}
+                    </span>
+                </div>
+            </div>
+            <div><input type="checkbox" ng-model="weekDetail.IsDefault" value="" /> {{'Mark_Default_WorkingkDays' | translate}}</div>
+            <div class="clearfix"></div>
+        </div>        
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="col-sm-6">
+                    <label for="weekDays" class="control-label">{{'Weekdays' | translate}}</label>
+                </div>
+                <div class="col-sm-6">
+                    <div ng-repeat="day in days">                        
+                        <div class="checkbox">
+                            <label><input ng-model="day.isWeekFullDay" ng-change="SetFullDayOrHalfDay(day, 'FullDay')" type="checkbox" value="">{{day.Name | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+            </div>
+            <div class="col-sm-8">
+                <div class="col-sm-3">
+                    <label for="weekDays" class="control-label">{{'Half' | translate}} {{'Weekdays' | translate}}</label>
+                </div>
+                <div class="col-sm-9">
+                    <div ng-repeat="day in days">
+                        <div class="form-group">
+                            <div class="checkbox col-sm-4">                                
+                                <label><input type="checkbox" ng-change="SetFullDayOrHalfDay(day,'HalfDay')" ng-model="day.isWeekHalfDay" value="">{{day.Name | translate}}</label>
+                            </div>
+                            <div class="col-sm-8" ng-if="day.isWeekHalfDay">
+                                <div ng-class="{ 'has-error': (WeekDaysForm.MonTime.$invalid || WeekDaysForm.MonTime.$error.pattern) &&
+                                                     (WeekDaysForm.MonTime.$dirty || submitted) }">
+                                    <div class="col-xs-8"><label class="control-label" for="MonTime">{{'Time' | translate}} <b> {{'Hours24' | translate}}</b></label></div>
+                                    <div class="col-xs-4">
+                                        <input type="text"
+                                               class="form-control input-sm"
+                                               placeholder="{{'TimePlaceholder' | translate}}"
+                                               name="MonTime"
+                                               ng-model="day.halfTime"
+                                               ui-mask="99:99"
+                                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                    </div>
+                                    <span class="help-block has-error"
+                                          ng-show="WeekDaysForm.MonTime.$invalid && !WeekDaysForm.MonTime.$error.pattern && (WeekDaysForm.MonTime.$dirty || submitted)">
+                                        {{'TimeValidationError' | translate}}
+                                    </span>
+                                    <span class="help-block has-error"
+                                          ng-show="WeekDaysForm.MonTime.$error.pattern &&
+                                                (WeekDaysForm.MonTime.$dirty || submitted)">
+                                        {{'TimeNotValid' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-left">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel">{{'Cancel' | translate}} </button> &nbsp;&nbsp;
+            <button type="submit" ng-click="submitted=true" class="btn-simple btn-save"> &nbsp;{{'Save' | translate}} &nbsp;</button>
+        </div>
+    </div>
+</form>

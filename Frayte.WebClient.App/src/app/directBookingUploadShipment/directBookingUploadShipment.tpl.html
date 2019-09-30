@@ -1,0 +1,239 @@
+﻿<div class="fontsize12" id="upload-shipment">
+    <!-- header section code for break and bulk-->
+    <div class="row">
+        <section>
+            <div class="col-sm-12 top-1-6">
+                <div class="width50">
+                    <div>
+                        <div class="col-sm-4 paddingboth height34 form-group">
+                            <select id="sessionName" name="sessionName" ng-change="GetSessionShipments(SessionRecord)"
+                                    ng-model="SessionRecord" ng-options="Session as Session.SessionName for Session in SessionNameList track by Session.SessionId"
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'SelectSession' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-8 border-ddd height34" id="progress-bar">
+                            <!--<div class="progress-bar-center" ng-if="ShowInterval === true">-->
+                            <div class="progress-bar-center">
+                                <div class="progress margin-bottom-none top6">
+                                    <uib-progressbar animate="false" value="Batchpercentage" type="success"><b>{{Batchpercentage}}%</b></uib-progressbar>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="width40 TI-5 border-ddd height34 form-group">
+                    <a href="downloadForm/Bulk Upload Shipment.xlsx" download="Bulk Upload Shipment.xlsx">{{'Download_Template' | translate}}</a> and <a class="pointer" name="guideLine" id="guideLine" ng-click="GuideLinePopup()">{{'Check_Guideline' | translate}}</a> {{'For_Bulk_Upload' | translate}}
+                </div>
+                <div class="width10 form-group">
+                    <button type="button" class="btn-simple btn-warning col-sm-12" ng-model="piecesExcel"
+                            name="shipmentPiecesDetails"
+                            ngf-pattern="'application/vnd.ms-excel,.csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                            accept="application/vnd.ms-excel,.csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                            ngf-select="WhileAddingReceiverExcel($files, $file, $event)">
+                        <i class="fa fa-upload"></i> {{'Upload' | translate}}
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </section>
+        <div class="clearfix"></div>
+        <br />
+    </div>
+    <div class="clearfix"></div>
+    <!--end code-->
+    <!--Ecommerce with service code-->
+    <section>
+        <!--first breakbulk grid code-->
+        <div>
+            <div>
+                <div class="panel panel-default margin-bottom-none">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex" id="sorting">
+                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'From_Country' | translate}}</span></div>
+                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'From_Address' | translate}}</span></div>
+                            <div class="width150 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'To_Country' | translate}}</sapn></div>
+                            <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'To_Address' | translate}}</span></div>
+                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Service_Code' | translate}}</span></div>
+                            <div class="width120 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Total' | translate}} {{'Pieces' | translate}}</sapn></div>
+                            <div class="width14 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'TotalWeight' | translate}} ({{'kGS' | translate}})</sapn></div>
+                            <div class="width10 quotation-table-padding padding-tb-10 uploadShipment border-right-none" style="border-right:transparent !important;"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <ul class="list-unstyled margin-bottom-none">
+                                <li>
+                                    <div ng-if="gridOptionsdata.length > 0">
+                                        <div ng-repeat="gridDirectBooking in gridOptionsdata" class="width100 pointer change">
+                                            <div class="flex height30" ng-dblclick="ErrorShowWithServiceSuccessfulShipment(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected, 'color-danger': gridDirectBooking.IsEasyPostError || gridDirectBooking.IsSuccessFull}" popover-placement="auto" uib-popover='{{gridDirectBooking.ShowText}}' popover-trigger="GetMouseEnter(gridDirectBooking)">
+                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.FromCountry}}</span></div>
+                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.FromAddress}}</span></div>
+                                                <div class="width150 quotation-table-body padding-5 word-wrap"><span>{{gridDirectBooking.ToCountry}} </span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/{{'kGS' | translate}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                                <div class="width150 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.ToAddress}}</span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.ServiceCode}}</span></div>
+                                                <div class="width120 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.TotalPieces}}</span></div>
+                                                <div class="width14 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.TotalWeight}}</span></div>
+                                                <div class="width10 dropdown quotation-dropdown quotation-table-body padding0 uploadShipment text-center">
+                                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                        &nbsp;<a id="btn-append-to-to-body" href="" uib-dropdown-toggle>
+                                                            <label class="pointer top5" ng-class="{'demoClass':gridDirectBooking.IsSelected, 'color-danger': gridDirectBooking.IsEasyPostError || gridDirectBooking.IsSuccessFull, 'disabled': PlaceBookingflag === true}"><i class="fa fa-caret-down pointer" aria-hidden="true" style="position:relative; top:4px; float:right;"></i> <span class="action-font-family">{{'Actions' | translate}}</span>&nbsp;&nbsp;</label>
+                                                        </a>
+                                                        <ul disable class="fix-dropdown-overlay" uib-dropdown-menu role="menu" ng-class="{'disabled': PlaceBookingflag === true, 'padding-none': PlaceBookingflag === true, 'box-shadow-none':PlaceBookingflag === true, 'border-none':PlaceBookingflag === true}" aria-labelledby="btn-append-to-to-body">
+                                                            <li ng-class="{'disabled': PlaceBookingflag === true, 'display-block': PlaceBookingflag === false, 'display-none': PlaceBookingflag === true}">
+                                                                <a href="" ng-click="GetService(gridDirectBooking)">
+                                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                                    <span>{{'Select' | translate}} {{'Service' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-class="{'disabled': PlaceBookingflag === true, 'display-block': PlaceBookingflag === false, 'display-none': PlaceBookingflag === true}" ng-show="gridDirectBooking.IsSuccessFull">
+                                                                <a href="" ng-click="CorrectError(gridDirectBooking)">
+                                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                    <span>{{'Shipment Correction' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-class="{'disabled': PlaceBookingflag === true, 'display-block': PlaceBookingflag === false, 'display-none': PlaceBookingflag === true}">
+                                                                <a href="" ng-click="DeleteShipment(gridDirectBooking.ShipmentId)">
+                                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                                    <span>{{'Delete' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="flag1 || SessionRecord.SessionId ===0" class="eCommerce-ss">{{'Please' | translate}} <a class="btn-link" href="downloadForm/Bulk Upload Shipment.xlsx" download="Bulk Upload Shipment.xlsx">{{'Download_The_Template' | translate}}</a> {{'And_' | translate}} {{'Follow_The' | translate}} <a class="btn-link pointer" ng-click="GuideLinePopup()">{{'guidelines' | translate}}</a> {{'No_Shipment_To_Upload_Dataa' | translate}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 paddingboth" ng-show="gridOptionsdata.length >0">
+                        <!--last footer code-->
+                        <div class="col-sm-12 flex border-top-ddd flex grid-background">
+                            <div class="width150 padding-10-5"></div>
+                            <div class="width150 padding-10-5"></div>
+                            <div class="width150 padding-10-5"></div>
+                            <div class="width150 padding-10-5"></div>
+                            <div class="width10 bordered-right padding-10-5 text-right"><span><b>{{'Total' | translate}}:</b></span></div>
+                            <div class="width120 bordered-right padding-10-5"><span><b>{{ShipmentTotalPices}}</b></span></div>
+                            <div class="width14 bordered-right padding-10-5"><span><b>{{ShipmentTotalWeight}} ({{'kGS' | translate}})</b></span></div>
+                            <div class="width10 padding-10-5"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end-->
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <section>
+                <div class="col-sm-12 paddingboth">
+                    <div class="col-sm-4 col-sm-offset-8 paddingboth">
+                        <div class="bulk-upload-popup text-right col-sm-6 paddingboth">
+                            <button type="button" class="btn btn-link lineheight34" id="addShipment" name="addremoveShipment" ng-disabled="SessionRecord.SessionId === 0 || flag1 || PlaceBookingflag" ng-click="AddnewShipment()">{{'Add_New_Item' | translate}}</button> &nbsp; &nbsp;
+                            <span ng-show="SessionRecord.SessionId === 0 || flag1" class="click bulk-upload-popup-message">{{'Upload_Add_New_Item_In_Selected_Session' | translate}}</span>
+                            <span ng-show="SessionRecord.SessionId !== 0 && !flag1" class="click bulk-upload-popup-message H-8R" style="height:8rem !important;">{{'Add_New_Item_In_Selected_Session' | translate}}</span>
+                        </div>
+                        <div class="bulk-upload-popup text-right">
+                            <button type="button" class="btn btn-lg btn-success border-radius2" id="saveShipment" ng-disabled="SessionRecord.SessionId === 0 || flag1 || PlaceBookingflag" name="saveShipment" ng-click="SaveShipmentWithService()"><i class="fa fa-check" aria-hidden="true"></i> {{'PlaceBooking' | translate}}</button>
+                            <span ng-show="SessionRecord.SessionId === 0 || flag1" class="click bulk-upload-popup-message" style="right:20px !important;">{{'Upload_Create_Shipment_Selected_Session' | translate}}</span>
+                            <span ng-show="SessionRecord.SessionId !== 0 && !flag1" class="click bulk-upload-popup-message H-8R" style="right:20px !important;height:8rem !important;">{{'Create_Shipment_Selected_Session' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </section>
+            <hr />
+            <div class="clearfix"></div>
+        </div>
+        <!--end code-->
+        <!--break bulk second custom grid code-->
+        <div class="panel panel-default margin-bottom-none">
+            <div class="panel-heading">
+                <div>
+                    <div class="col-sm-12 paddingboth padding-tb-5">
+                        <div ng-click="collapseClick()">
+                            <i class="pull-left fa fontsize20 pointer" ng-class="{'fa-minus-square-o': isOpen, 'fa-plus-square-o': !isOpen}"></i>
+                            <div class="pointer"> {{'Sessions_History' | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" ng-show="isOpen">
+                <div class="clearfix"></div>
+                <div>
+                    <!--Unsuccessful shipment with service custom grid-->
+                    <div class="panel panel-default margin-bottom-none">
+                        <div class="width100 flex grid-background">
+                            <div class="width986 flex">
+                                <div class="width25 paddingboth bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'SessionName_' | translate}}</span></div>
+                                <div class="width150 paddingboth bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Created_On' | translate}}</span></div>
+                                <div class="width150 paddingboth bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Total_No_Shipment' | translate}}</span></div>
+                                <div class="width20 paddingboth bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Session_Status' | translate}}</span></div>
+                                <div class="width150 paddingboth bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'PrintedOn' | translate}}</sapn></div>
+                                <div class="width10 paddingboth bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                            <div class="panel-body padding0">
+                                <ul class="list-unstyled change margin-bottom-none">
+                                    <li>
+                                        <div ng-if="SessionData.length > 0">
+                                            <div ng-repeat="Session in SessionData" class="width100 change">
+                                                <div class="flex height30">
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span>{{Session.SessionName}}</span></div>
+                                                    <div class="width150 quotation-table-body word-wrap padding-5"><span>{{Session.CreatedOn}}</span></div>
+                                                    <div class="width150 quotation-table-body word-wrap padding-5"><span>{{Session.TotalShipments}}</span></div>
+                                                    <div class="width20 quotation-table-body word-wrap padding-5"><span>{{Session.SessionStatus}}</span></div>
+                                                    <div class="width150 quotation-table-body padding-5 word-wrap"><span ng-show="Session.PrintedOn !== undefined && Session.PrintedOn !== null && Session.PrintedOn !== ''">{{Session.PrintedOn}} </span><span ng-show="Session.PrintedOn === undefined || Session.PrintedOn === null || Session.PrintedOn === ''">{{'Not_Printed' | translate}} </span> </div>
+                                                    <div class="width10 quotation-table-body padding0 text-center">
+                                                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                            <a id="btn-append-to-to-body" href="" uib-dropdown-toggle class="dropbtn text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                <li ng-click="ViewShipment(Session)">
+                                                                    <a href="">
+                                                                        <span class="padEdit"><i class="fa fa fa-eye"></i></span>
+                                                                        <span>{{'View_Shipments' | translate}}</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li ng-click="PrintAllLabel(Session)">
+                                                                    <a href="">
+                                                                        <span class="padEdit"><i class="fa fa-print"></i></span>
+                                                                        <span>{{'Print_Labels' | translate}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if="flag1 || flag2" class="eCommerce-ss">{{'No_Session_Upload_Yet' | translate}} {{'Please' | translate}} <a class="btn-link" href="downloadForm/Bulk Upload Shipment.xlsx" download="Bulk Upload Shipment.xlsx">{{'Download_The_Template' | translate}}</a> {{'And_' | translate}} {{'Follow_The' | translate}} <a class="btn-link pointer" ng-click="GuideLinePopup()">{{'guidelines' | translate}}</a> {{'No_Shipment_To_Upload_Dataa' | translate}}</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end code-->
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--end-->
+        <div class="clearfix"></div>
+    </section>
+    <!--end-->
+</div>

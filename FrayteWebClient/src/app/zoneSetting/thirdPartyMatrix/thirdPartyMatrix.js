@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.thirdPartyMatrix',['ui.router','ngApp.common','ui.grid']);

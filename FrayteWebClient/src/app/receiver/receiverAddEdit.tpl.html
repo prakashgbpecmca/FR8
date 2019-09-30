@@ -1,0 +1,240 @@
+﻿<!--<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')">&times;</button>
+    <h4 class="modal-title">{{AddEditMode()}} Receiver</h4>
+</div>
+<form name="ReceiverForm" ng-submit="submit(ReceiverForm.$valid, receiverDetail)" novalidate>
+    <div class="modal-body">
+        <div class="col-xs-6 form-group">
+            <div ng-class="{ 'has-error': ReceiverForm.country.$invalid &&
+                                        (ReceiverForm.country.$dirty || submitted) }">
+                <label class="control-label" for="country" style="float:left;width:30%;margin-top: 6px;">Country:</label>
+                <div style="float:left;width:70%;">
+                    <select id="country" name="country"
+                            ng-model="receiverDetail.UserAddress.Country"
+                            ng-options="Country.Name for Country in countries | orderBy:'Name' track by Country.CountryId"
+                            class="form-control" required>
+                        <option value="" disabled selected>Select Country (required)</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.country.$invalid &&
+                        (ReceiverForm.country.$dirty || submitted)">
+                        Receiver country is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+            <div ng-class="{ 'has-error': ReceiverForm.nickName.$invalid &&
+                                        (ReceiverForm.nickName.$dirty || submitted) }">
+                <label class="control-label" for="nickName" style="float:left;width:30%;margin-top: 6px;">Nick Name:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="nickName" name="nickName" ng-model="receiverDetail.ShortName"
+                           placeholder="Nick Name (required)" class="form-control" required />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.nickName.$invalid &&
+                                            (ReceiverForm.nickName.$dirty || submitted)">
+                        Receiver nick name is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.contact.$invalid &&
+                                            (ReceiverForm.contact.$dirty || submitted) }">
+                <label class="control-label" for="contact" style="float:left;width:30%;margin-top: 6px;">Contact:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="contact" name="contact" ng-model="receiverDetail.ContactName" class="form-control"
+                           placeholder="Contact Name (required)" required />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.contact.$invalid &&
+                                            (ReceiverForm.contact.$dirty || submitted)">
+                        Receiver contact name is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.company.$invalid &&
+                                                         (ReceiverForm.company.$dirty || submitted) }">
+                <label class="control-label" for="company" style="float:left;width:30%;margin-top: 6px;">Company Name:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="company" name="company" ng-model="receiverDetail.CompanyName" class="form-control"
+                           placeholder="Company Name (required)" required />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.company.$invalid &&
+                                            (ReceiverForm.company.$dirty || submitted)">
+                        Receiver company name is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.address.$invalid &&
+                                                         (ReceiverForm.address.$dirty || submitted) }">
+                <label class="control-label" for="address" style="float:left;width:30%;margin-top: 6px;">Address:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="address" name="address" ng-model="receiverDetail.UserAddress.Address" class="form-control"
+                           placeholder="Address (required)" required />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.address.$invalid &&
+                                            (ReceiverForm.address.$dirty || submitted)">
+                        Receiver address is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+            <div class="form-group">
+                <label class="control-label" for="address2" style="float:left;width:30%;margin-top: 6px;">Address 2:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="address2" name="address2" ng-model="receiverDetail.UserAddress.Address2" class="form-control"
+                           placeholder="Address2" />
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-xs-6 form-group">
+            <div class="form-group">
+                <label class="control-label" for="address3" style="float:left;width:30%;margin-top: 6px;">Address 3:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="address3" name="address3" ng-model="receiverDetail.UserAddress.Address3" class="form-control"
+                           placeholder="Address3" />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.postalCode.$invalid &&
+                                                         (ReceiverForm.postalCode.$dirty || submitted) }">
+                <label class="control-label" for="postalCode" style="float:left;width:30%;margin-top: 6px;">Postal Code:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="postalCode" name="postalCode" ng-model="receiverDetail.UserAddress.Zip" class="form-control"
+                           placeholder="Postal Code" ng-required="receiverDetail.UserAddress.Country.Code !='HKG'" />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.postalCode.$invalid &&
+                                            (ReceiverForm.postalCode.$dirty || submitted)">
+                        Receiver postal code is required
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.city.$invalid &&
+                                                         (ReceiverForm.city.$dirty || submitted) }">
+                <label class="control-label" for="city" style="float:left;width:30%;margin-top: 6px;">City:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="city" name="city" ng-model="receiverDetail.UserAddress.City" class="form-control"
+                           only-Alphabets placeholder="City (required)" required />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.city.$invalid &&
+                                            (ReceiverForm.city.$dirty || submitted)">
+                        Receiver city is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+            <div class="form-group">
+                <label class="control-label" for="suburb" style="float:left;width:30%;margin-top: 6px;">Suburb:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="suburb" name="suburb" ng-model="receiverDetail.UserAddress.Suburb" class="form-control"
+                           placeholder="Suburb" />
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.state.$invalid &&
+                                                         (ReceiverForm.state.$dirty || submitted) }">
+                <label class="control-label" for="state" style="float:left;width:30%;margin-top: 6px;">State/Province:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="state" name="state" ng-model="receiverDetail.UserAddress.State" class="form-control"
+                           only-Alphabets placeholder="State/Province" ng-required="receiverDetail.UserAddress.Country.Code !='HKG'" />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.state.$invalid &&
+                                            (ReceiverForm.state.$dirty || submitted)">
+                        Receiver state is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.phone.$invalid &&
+                                                         (ReceiverForm.phone.$dirty || submitted) }">
+                <label class="control-label" for="phone" style="float:left;width:30%;margin-top: 6px;">Telephone:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="phone" name="phone" ng-model="receiverDetail.TelephoneNo" class="form-control"
+                           placeholder="Telephone (required)" required />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.phone.$invalid &&
+                                            (ReceiverForm.phone.$dirty || submitted)">
+                        Receiver telephone is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-xs-6 form-group">
+            <div class="form-group">
+                <label class="control-label" for="mobile" style="float:left;width:30%;margin-top: 6px;">Mobile:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="mobile" name="mobile" ng-model="receiverDetail.MobileNo" class="form-control" placeholder="Mobile No."/>                    
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.fax.$invalid &&
+                                                         (ReceiverForm.fax.$dirty || submitted) }">
+                <label class="control-label" for="fax" style="float:left;width:30%;margin-top: 6px;">Fax:</label>
+                <div style="float:left;width:70%;">
+                    <input type="text" id="fax" name="fax" ng-model="receiverDetail.FaxNumber" class="form-control"
+                           placeholder="Fax (required)" required />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.fax.$invalid &&
+                                            (ReceiverForm.fax.$dirty || submitted)">
+                        Receiver fax is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-xs-6 form-group">
+            <div class="form-group" ng-class="{ 'has-error': ReceiverForm.email.$invalid &&
+                                                         (ReceiverForm.email.$dirty || submitted) }">
+                <label class="control-label" for="email" style="float:left;width:30%;margin-top: 6px;">Email:</label>
+                <div style="float:left;width:70%;">
+                    <input type="email" id="email" name="email" ng-model="receiverDetail.Email"
+                           class="form-control" placeholder="Email (required)" required />
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.email.$error.required &&
+                                            (ReceiverForm.email.$dirty || submitted)">
+                        Receiver email is required
+                    </span>
+                    <span class="help-block has-error"
+                          ng-show="ReceiverForm.email.$error.email &&
+                                            (ReceiverForm.email.$dirty || submitted)">
+                        Not a valid email
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="text-left">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel">Cancel</button> &nbsp;&nbsp;
+            <button type="submit" ng-click="submitted=true" class="btn-simple btn-save">Save</button>
+        </div>
+    </div>
+</form>-->

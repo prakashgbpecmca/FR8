@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.directBooking', ['ui.router', 'ngApp.common', 'ui.grid']);

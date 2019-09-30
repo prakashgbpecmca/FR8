@@ -1,0 +1,187 @@
+<div id="wrapper" class="publicPagesBottom">
+    <header>
+        <div class="container">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <a data-ui-sref="home.welcome"><img ng-src="{{ImagePath + 'FrayteLogo1.png'}}" class="logo" /></a>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </header>
+    <section class="container">
+        <div class="col-sm-12">
+            <div data-ui-view></div>
+        </div>
+    </section>
+    <toaster-container></toaster-container>
+   
+</div>
+<footer class="pre-footer-top-border">
+    <div class="container">
+        <div class="row prefer-footer" style="background:transparent; font-size:14px !important; font-weight: 600;">
+            <div class="call-footer width100">
+                <div ng-if="FrayteWebSite==='COM'" class="col-sm-12">
+                    <div class="col-sm-4 col-sm-offset-2 mobile-width100 fontsize14 paddingboth">
+                        <span class="mobile-middle"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive" /> <span>{{'Call' | translate}}:</span> <span class="frayte-blue">(+852) 2148 4880</span></span>
+                    </div>
+                    <div class="col-sm-4 paddingboth mobile-width100 fontsize14 paddingboth">
+                        <span class="mobile-middle"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive " /> <span>{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Com' | translate}}</span></span>
+                    </div>
+                </div>
+                <div ng-if="FrayteWebSite==='CO.UK'" class="col-sm-12">
+                    <div class="col-sm-4 col-sm-offset-2 mobile-width100 fontsize14 paddingboth">
+                        <span class="mobile-middle"><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive" /> <span>{{'Call' | translate}}:</span> <span class="frayte-blue">(+44) 01792 678017</span></span>
+                    </div>
+                    <div class="col-sm-4 paddingboth mobile-width100 fontsize14 paddingboth">
+                        <span class="mobile-middle"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive " />  <span>{{'Email' | translate}}:</span> <span class="frayte-blue">{{'Sales_frayte_Dot_Uk' | translate}}</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 ">
+                <div class="width150 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'About_FRAYTE' | translate}}</h6>
+                        <ul class="list-unstyled fontsize12">
+                            <!--<li><p>{{'General' | translate}}</p></li>-->
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.welcome">{{'Home' | translate}}</a></p></li>
+                            <li><p>{{'About_us' | translate}}</p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.fuelSurcharge">{{'FuelSurcharge' | translate}}</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="width150 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Send_Consignment' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p>{{'Packaging' | translate}}</p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.paperwork">{{'Paperwork' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.download">{{'Download_Forms' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.transitTime">{{'Transit_Times' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.learnMore">{{'Restricted_ItemsAndProhibited_Items' | translate}}</a></p></li>
+                            <!--<li><p>{{'Prohibited_Items' | translate}}</p></li>-->
+                            <li><p>{{'Shipping_Lithium_Batteries' | translate}}</p></li>
+                            <!--<li><p>{{'Volumetric_Calculator' | translate}}</p></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Using_FRAYTE' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.bookingConsignment">{{'Booking_Consignment' | translate}}</a></p></li>
+                            <!--<li><p>{{'Online_Booking_Guide' | translate}} ({{'Download' | translate}})</p></li>-->
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.trackingYourConsignment">{{'Tracking_Your_Consignment' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="home.proofofdelivery">{{'POD' | translate}}</a></p></li>
+                            <li><p><a ng-click="setScroll('top')" data-ui-sref="payment">{{'Payment' | translate}}</a></p></li>
+                            <!--<li><p>{{'TermsAndCondition' | translate}} ({{'Download' | translate}})</p></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="width150 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6>{{'Termsof_Use' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a ng-click="setScroll('top')" ui-sref='public.term-and-condition'>{{'TermsAndCondition' | translate}}</a></p></li>
+                            <li><p><a href="">{{'Privacy_Policy' | translate}}</a></p></li>
+                            <!--<li><p>{{'Refund_Policy' | translate}}</p></li>
+                            <li><p>{{'Payment_Security' | translate}}</p></li>
+                            <li><p>{{'Payment_Methods' | translate}}</p></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="width20 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6 class="text-center">{{'Customers' | translate}}</h6>
+                        <div id="carousel-hide">
+                            <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                                <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                                    <img ng-src="{{slide.image}}" class="img-responsive customer-image">
+                                    <div class="carousel-caption">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="width150 BlockMarginBottom mobile-width100">
+                    <div class="about-foot">
+                        <h6 style="margin-left: 10px;">{{'ContactUs' | translate}}</h6>
+                        <ul class="list-unstyled">
+                            <li><p><a href="mailto:{{saleslink}}"><img ng-src="{{ImagePath + 'Email.png'}}" alt="Email us" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Email_Us' | translate}}</span></a></p><div class="clearfix"></div></li>
+                            <li class="enter pointer">
+                                <p class="call pointer"><a href=""><img ng-src="{{ImagePath + 'Phone.png'}}" alt="Call us" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Call_Us' | translate}}</span></a></p>
+                                <span class="phone-number frayte-blue">(+852) 2148 4880</span><div class="clearfix"></div>
+                            </li>
+                            <li><p><img ng-src="{{ImagePath + 'Chat.png'}}" alt="Live Chat" class="img-responsive mobile-icon-width13 width30 bottom8" /> <span class="mobile-bottom3">{{'Chat_Us' | translate}}</span></p><div class="clearfix"></div></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="clearfix"></div>
+                <div class="col-sm-4 col-xs-12 xs-footerCenter paddingboth">
+                    <div ng-if="FrayteWebSite==='CO.UK'" class="copyText"><img ng-src="{{ImagePath + 'RHA_Logo.png'}}" class="rha-image" /></div>
+                </div>
+                <div class="col-sm-5 col-xs-12  xs-footerCenter">
+                    <div ng-if="FrayteWebSite==='CO.UK'">
+                        <ul class="list-unstyled top12">
+                            <li class="copyText" style="margin-right:5px;"><span class="frayte-orange bold">Company No.:</span> 081287817</li>
+                            <li class="copyText" style="margin-right:5px;"><span class="frayte-orange bold">VAT NO.:</span> 247 3559 82</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-12 paddingboth textAlignR xs-footercenter text-center">
+                    <div class="text-right">
+                        <!--<div class="col-sm-3 paddingboth top5 col-xs-3 text-left">
+                            <span class="top5 fontsize12 we-accept"> We Accept </span>
+                        </div>-->
+                        <div class="col-sm-12 paddingboth col-xs-12">
+                            <p>
+                                <ul class="list-unstyled fix-image-card margin-bottom-none  mobile-left">
+                                    <li><span class="fontsize12 we-accept"> We Accept &nbsp;&nbsp;</span></li>
+                                    <li><a href=""><img ng-src="{{ImagePath + 'visa-card.png'}}" /></a></li>
+                                    <li><a href=""><img ng-src="{{ImagePath + 'amex-card.png'}}" /></a></li>
+                                    <li><a href=""><img ng-src="{{ImagePath + 'mastercard.png'}}" /></a> </li>
+                                    <li><a href=""><img ng-src="{{ImagePath + 'paypal-card.png'}}" /></a></li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-4 col-xs-12 xs-footerCenter top3 paddingright padding-tb-10">
+                <div class="copyText col-xs-12 width100 flex paddingboth">
+                    <!--<div class="width6"><a href=""><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /></a></div>-->
+                    <p class="mobile-left"><a href=""><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /></a> <span class="word-break">&copy; 2017 {{'Frayte' | translate}} {{'LogisticLTD' | translate}}. {{'AllRightsReserved' | translate}}.</span></p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-sm-5 col-xs-12  xs-footerCenter padding-tb-10 mobile-left">
+                <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+                <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}}(Simplified) </button>
+                <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}}(Traditional) </button>
+            </div>
+            <!--hide in mobile browser-->
+            <div class="col-sm-3 col-xs-12 textAlignR xs-footercenter text-center mobile-handset">
+                <ul class="pull-right margin-bottom-none">
+                    <li><a class="social-icon facebookIcon pointer" href="" title="facebook"><img ng-src="{{ImagePath + 'facebook.png'}}" alt="facebook" class="img-responsive" /><!--<i class="fa fa-facebook" aria-hidden="true"></i>--></a></li>
+                    <li><a class="social-icon twitterIcon pointer" href="" title="twitter"><img ng-src="{{ImagePath + 'twitter.png'}}" alt="twitter" class="img-responsive" /><!--<i class="fa fa-twitter" aria-hidden="true"></i>--></a></li>
+                    <li><a class="social-icon instagramIcon pointer" href="" title="instagram"><img ng-src="{{ImagePath + 'instagram.png'}}" alt="instagram" class="img-responsive" /><!--<i class="fa fa-instagram" aria-hidden="true"></i>--></a></li>
+                </ul>
+            </div>
+            <!--end code-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</footer>

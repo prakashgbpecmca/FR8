@@ -1,0 +1,158 @@
+﻿
+<section>
+    <div ng-if="!IsChanged && finalArrayList.length" class="col-sm-12 paddingboth">
+        <div class="panel-body paddingboth fontsize12 padding0">
+            <div class="headertable">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="width208 text-right">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                        <!--12 table column header start-->
+                        <div ng-class="{'baseratcard-overflow':Zones}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                            <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }">
+                                <div ng-repeat="Zone in Zones">
+                                    <!--12 table header start-->
+                                    <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center">{{Zone.ZoneDisplayName}}</div>
+                                    <!--Change Css For ThirdParty-->
+                                    <div ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center">{{Zone.ZoneDisplayName}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="panel-body fontsize12 padding0">
+            <div class="panel-body padding0 border-ddd">
+                <div>
+                    <!--Doc Type BaseRate Card-->
+                    <div ng-repeat="BaseRate in finalArrayListDoc | orderBy:BaseRate.Weight">
+                        <div ng-if="IsShowImportExportThirdParty">
+                            <div>
+                                <div class="width208 lineheight48 margin18x0x18">
+                                    <span style="padding-left:10px;">{{BaseRate.DocType}}</span>
+                                    <span style="float:right; left:-4%;position:relative;">
+                                        <span ng-if="BaseRate.WeightTo===999">Over</span> {{BaseRate.WeightFrom}}
+                                        <span ng-if="BaseRate.WeightTo !==999">- {{BaseRate.WeightTo}}</span>
+                                    </span>
+                                </div>
+                                <!--repeat overflow code start-->
+                                <div ng-class="{'baseratcard-overflow':BaseRate.MarginCostRate }" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                    <div ng-style="BaseRate.MarginCostRate.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.MarginCostRate.length + '%' }">
+                                        <div ng-repeat="Rate in BaseRate.MarginCostRate | orderBy : Rate.zone.ZoneId">
+                                            <!--12 table button code-->
+                                            <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-class="{'has-error': Rate.isValue}" ng-style="{ 'width' :  100/BaseRate.MarginCostRate.length + '%' }" style="float:left;">
+                                                <input id="margin" two-digit-numeric ng-change="AdvanceRatechangeSave(Rate)" class="form-control text-center height84" name="margin" type="text" ng-blur="CustomerMarginSaveTO(Rate)" ng-model="Rate.Rate" style="width:100%;" required />
+                                            </div>
+                                            <!--Change Css For ThirdParty-->
+                                            <div ng-if="LogisticType.Value === 'ThirdParty'" ng-class="{'has-error': Rate.isValue}" ng-style="{ 'width' :  100/BaseRate.MarginCostRate.length + '%' }" style="float:left;">
+                                                <input id="margin1" two-digit-numeric class="form-control text-center height84" name="margin1" type="text" ng-change="AdvanceRatechangeSave(Rate)" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <!--Nondoc Type BaseRate Card -->
+                    <div ng-repeat="BaseRate in finalArrayListNonDoc | orderBy:BaseRate.Weight">
+                        <div ng-if="IsShowImportExportThirdParty">
+                            <div>
+                                <div class="width208 lineheight48 margin18x0x18">
+                                    <span style="padding-left:10px;">{{BaseRate.DocType}}</span>
+                                    <span style="float:right; left:-4%;position:relative;"><span ng-if="BaseRate.WeightTo===999">Over</span> {{BaseRate.WeightFrom}} <span ng-if="BaseRate.WeightTo !==999">- {{BaseRate.WeightTo}}</span></span>
+                                </div>
+                                <div ng-class="{'baseratcard-overflow':BaseRate.MarginCostRate}" style="height:auto !important;overflow:hidden !important;" class="baseratcard-overflow">
+                                    <div ng-style="BaseRate.MarginCostRate.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.MarginCostRate.length + '%' }">
+                                        <div ng-repeat="Rate in BaseRate.MarginCostRate | orderBy : Rate.zone.ZoneId">
+                                            <!--12 table button code-->
+                                            <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-class="{'has-error': Rate.isValue}" ng-style="{ 'width' :  100/BaseRate.MarginCostRate.length + '%' }" style="float:left;">
+                                                <input id="margin2" two-digit-numeric ng-change="AdvanceRatechangeSave(Rate)" class="form-control text-center height84" name="margin2" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                            </div>
+
+                                            <div ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.MarginCostRate.length + '%' }" style="float:left;">
+                                                <input id="margin22" two-digit-numeric ng-change="AdvanceRatechangeSave(Rate)" class="form-control text-center height84" name="margin22" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Doc&NonDoc Type BaseRate Card-->
+                    <div ng-repeat="BaseRate in finalArrayListDocNonDoc | orderBy:BaseRate.Weight">
+                        <div ng-if="IsShowImportExportThirdParty">
+                            <div>
+                                <div class="width208 marginTop20"><span style="padding-left:10px;">{{BaseRate.DocType}}</span>  <span style="float:right; left:-4%;position:relative;"><span ng-if="BaseRate.WeightTo===999">Over</span> {{BaseRate.WeightFrom}} <span ng-if="BaseRate.WeightTo !==999">- {{BaseRate.WeightTo}}</span></span></div>
+                                <div ng-class="{'baseratcard-overflow':BaseRate.MarginCostRate}" style="height:auto !important;overflow:hidden !important;" class="baseratcard-overflow">
+                                    <div ng-style="BaseRate.MarginCostRate.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.MarginCostRate.length + '%' }">
+                                        <div ng-repeat="Rate in BaseRate.MarginCostRate | orderBy : Rate.zone.ZoneId">
+                                            <!--12 table button code-->
+                                            <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-class="{'has-error': Rate.isValue}" ng-style="{ 'width' :  100/BaseRate.MarginCostRate.length + '%' }" style="float:left;">
+                                                <input id="margin3" two-digit-numeric ng-change="AdvanceRatechangeSave(Rate)" class="form-control text-center height84" name="margin3" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                            </div>
+                                            <div ng-if="LogisticType.Value === 'ThirdParty'" ng-class="{'has-error': Rate.isValue}" ng-style="{ 'width' :  100/BaseRate.MarginCostRate.length + '%' }" style="float:left;">
+                                                <input id="margin4" two-digit-numeric class="form-control text-center height84" name="margin4" type="text" ng-change="AdvanceRatechangeSave(Rate)" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--HeavyWeight Type BaseRate Card-->
+                    <div ng-repeat="BaseRate in finalArrayListHeavyWeight | orderBy:BaseRate.Weight">
+                        <div ng-if="IsShowImportExportThirdParty">
+                            <div>
+                                <div class="width208 marginTop20">
+                                    <span style="padding-left:10px;">{{BaseRate.DocType}}</span>
+                                    <span style="float:right; left:-4%;position:relative;">
+                                        <span ng-if="BaseRate.WeightTo===999">{{'Over' | translate}}</span> {{BaseRate.WeightFrom}}
+                                        <span ng-if="BaseRate.WeightTo !==999">- {{BaseRate.WeightTo}}</span>
+                                    </span>
+                                </div>
+                                <div ng-class="{'baseratcard-overflow':BaseRate.MarginCostRate}" style="height:auto !important;overflow:hidden !important;" class="baseratcard-overflow">
+                                    <div ng-style="BaseRate.MarginCostRate.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.MarginCostRate.length + '%' }">
+                                        <div ng-repeat="Rate in BaseRate.MarginCostRate | orderBy : Rate.zone.ZoneId">
+                                            <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-class="{'has-error': Rate.isValue}" ng-style="{ 'width' :  100/BaseRate.MarginCostRate.length + '%' }" style="float:left;">
+                                                <input id="margin5" two-digit-numeric class="form-control text-center height84" ng-change="AdvanceRatechangeSave(Rate)" name="margin5" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                            </div>
+
+                                            <div ng-if="LogisticType.Value === 'ThirdParty'" ng-class="{'has-error': Rate.isValue}" ng-style="{ 'width' :  100/BaseRate.MarginCostRate.length + '%' }" style="float:left;">
+                                                <input id="margin6" two-digit-numeric class="form-control text-center height84" ng-change="AdvanceRatechangeSave(Rate)" name="margin6" type="text" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Rate.Rate" style="width:100%;" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--12 table hide scoller code-->
+                <div class="col-sm-12 paddingboth bottom20">
+                    <div class="width208">
+                        <span class="visibility">Hidden</span>
+                    </div>
+                    <div ng-class="{'baseratcard-overflow':Zones}" class="baseratcard-overflow" my-scroller>
+                        <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }" style="overflow:auto;">
+                            <div ng-repeat="Zone in Zones">
+                                <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center"><span class="visibility">{{Zone.ZoneDisplayName}}</span></div>
+                                <div ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center"><span class="visibility">{{Zone.ZoneDisplayName}}</span></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+            </div>
+        </div>
+        <br />
+        <div class="col-sm-12 paddingboth">
+            <button type="submit" ng-click="SaveAdvanceRateCard()" id="AdvanceRateCard" class="btn-BigPrimary pull-right fontsize12 ng-binding"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Update' | translate}}&nbsp;</button>
+        </div>
+    </div>
+</section>

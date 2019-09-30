@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html ng-app="ngApp" ng-controller="AppCtrl">
+<head>
+    <title ng-bind="pageTitle"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!--<base href="/Frayte/web/build/index.html" />-->
+    <link rel="shortcut icon" href="{{ImagePath + 'favicon.ico' }}">
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script>
+        window.paypalCheckoutReady = function () {
+            paypal.checkout.setup('supersandy@gmail.com', {
+                container: 'myContainer',
+                environment: 'sandbox'
+            });
+        }
+    </script>
+
+    <script>
+        window.intercomSettings = {
+            app_id: "oiqima2p"
+        };
+    </script>
+    <script>
+        (function () {
+            var w = window; var ic = w.Intercom; if (typeof ic === "function") { ic('reattach_activator'); ic('update', intercomSettings); } else {
+                var d = document; var i = function () { i.c(arguments) }; i.q = []; i.c = function (args) { i.q.push(args) }; w.Intercom = i; function l() { var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'https://widget.intercom.io/widget/oiqima2p'; var x = d.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); } if (w.attachEvent) { w.attachEvent('onload', l); } else {
+                    w.addEventListener('load', l, false);
+                }
+            }
+        })()
+    </script>
+
+    <script async src="//www.paypalobjects.com/api/checkout.js"></script>
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+</head>
+<body>
+    <div ng-if="showSpinner" class="page-splash dissolve-animation">
+        <!--<div ng-show="true" class="page-splash dissolve-animation">-->
+        <div class="container" id="splash-page">
+            <div ng-include="spinnerTemplate" class="spinner-icon"></div>
+            <div ng-hide="GetServiceValue===false || GetServiceValue === true || GetRateValue ===true" class="page-splash-message page-splash-message-subtle message-fixed"><span class="text-center" style="font-size:18px;font-weight:bold;">Please wait ...</span></div>
+            <div class="page-splash-message page-splash-message-subtle message-fixed"><span class="text-center" style="font-size:18px;font-weight:bold;" ng-bind-html="spinnerMessage"></span></div>
+            <!--<div class="page-splash-message page-splash-message-subtle message-fixed"><span class="text-center" style="font-size:18px;font-weight:bold;">{{spinnerMessage}}</span></div>-->
+        </div>
+    </div>
+    <div data-ui-view style="background: #eaf0f5 !important;">
+    </div>
+</body>
+</html>

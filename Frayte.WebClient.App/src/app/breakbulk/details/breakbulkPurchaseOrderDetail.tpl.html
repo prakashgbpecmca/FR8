@@ -1,0 +1,345 @@
+﻿
+
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <!--<h4 class="modal-title">Generate Shipment - DHL - PO012347 - (Open)</h4>-->
+            <h4 class="modal-title">Generate Label</h4>
+        </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-sm-12 paddingboth form-group">             
+                <div class="col-sm-12">
+                    <!--button code-->
+                    <div class="form-group row clearfix">
+                        <div class="col-sm-4">
+                            <div>
+                                <select class="form-control">
+                                    <option value="0">Select</option>
+                                    <option value="1">Value 1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="col-sm-12 paddingboth clearfix">
+                                <div class="pull-left">
+                                    <div class="btn-toolbar">
+                                        <button type="button" class="btn-simple btn-save" ng-click="createCartonSize()"><i class="fa fa-plus"></i> Create Carton Size</button>
+                                        <button type="button" class="btn-simple btn-save" ng-click="productCatalog()"><i class="fa fa-plus"></i> Add Product Catalog</button>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="button" class="btn-simple btn-save" ng-click="breakbulkAddEditPo()"><i class="fa fa-plus"></i> Add PO</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <!--start grid code here-->
+                    <div class="col-sm-12 paddingboth form-group clearfix">
+                        <div class="clearfix"></div>
+                        <div class="panel-default margin-bottom-none">
+                            <div class="panel-heading" style="padding:10px 0px 64px;">
+                                <div class="col-sm-3">
+                                    <div class="row">
+                                        <div class="col-sm-4 borderRight margin-10 height77 text-center word-break" style="border-right:2px solid #ddd !important;"><p style="margin:9px 0px 0px;"><b>PO No.</b><br><small></small></p></div>
+                                        <div class="col-sm-4 borderRight margin-10 height77 text-center word-break" style="border-right:2px solid #ddd !important;"><p style="margin:9px 0px 0px;"><b>Job No.</b><br><small></small></p></div>
+                                        <div class="col-sm-4 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Carton</b><br><small>(QTY)</small></p></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="row">
+                                        <div class="text-center"><b>Dimensions (cm)</b><br /><small>(Length, Width, Height)</small></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 borderRight border-left margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Weight</b><br><small>(Kg)</small></p></div>
+                                <div class="col-sm-1 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Gross/Net Weight</b><br><small></small></p></div>
+                                <div class="col-sm-2 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Description</b><br><small></small></p></div>
+                                <div class="col-sm-1 borderRight margin-10 height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>Map</b><br><small></small></p></div>
+                                <div class="col-sm-1 text-center margin-10 paddingT5"><a href="" a-disabled="directBooking.CustomerRateCard.LogisticServiceId >0" ng-click="AddPackage()"><p style="margin: 6px 0px 1px;"><b><span><span style="color:#4d5663 !important;">Add<br>More<br></span><i class="fa fa-plus" aria-hidden="true"></i></span></b></p></a></div>
+                            </div>
+                            <div class="panel-body padding0 margin-bottom-none">
+                                <ul class="list-unstyled">
+                                    <li class="alternate">
+                                        <ng-form>
+                                            <div class="directbooking-textarea" style="padding:10px 0px 0px !important;">
+                                                <div class="col-sm-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom text-center" style="border-right:2px solid #ddd !important;">
+                                                            <a class="pointer lineheight54" href="">012301</a>
+                                                            <!--<input type="text" name="cartton" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">-->
+                                                        </div>
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom text-center" style="border-right:2px solid #ddd !important;">
+                                                            <a class="pointer lineheight54" href="">012347</a>
+                                                            <!--<input type="text" name="cartton" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">-->
+                                                        </div>
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom" style="border-right:2px solid #ddd !important;">
+                                                            <input type="text" name="cartton" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom">
+                                                            <input type="text" name="length" class="form-control" value="2" style="width: 100%; margin:10px 0px 10px;" required="">
+                                                        </div>
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom">
+                                                            <input type="text" name="width" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">
+                                                        </div>
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom">
+                                                            <input type="text" name="height" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                    <input type="text" name="weight" class="form-control" value="2" style="width: 100%; margin:10px 0px 10px;" maxlength="5" required="">
+                                                </div>
+                                                <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                    <input type="text" name="currencyValue" class="form-control" value="2" style="width: 100%; margin:10px 0px 10px;">
+                                                </div>
+                                                <div class="col-sm-2 borderRight margin-10 border-bottom">
+                                                    <select class="form-control" style="width: 100%; margin:10px 0px 10px;">
+                                                        <option value="0">Select</option>
+                                                        <option value="1">Bag</option>
+                                                        <option value="2">Laptop</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                    <button type="button" class="btn-simple btn-success col-sm-12" ng-click="mapProductCatalog()" style="margin:10px 0px 10px;">Map</button>
+                                                </div>
+                                                <div class="col-sm-1 border-bottom text-center directbooking-plus-minus-icon">
+                                                    <div class="shipmentContent">
+                                                        <a href="">
+                                                            <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div style="border-top:1px solid #ddd;"><a href=""><i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </ng-form>
+                                    </li>
+                                    <li class="alternate">
+                                        <ng-form>
+                                            <div class="directbooking-textarea" style="padding:10px 0px 0px !important;">
+                                                <div class="col-sm-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom text-center" style="border-right:2px solid #ddd !important;">
+                                                            <a class="pointer lineheight54" href="">012302</a>
+                                                            <!--<input type="text" name="cartton" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">-->
+                                                        </div>
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom text-center" style="border-right:2px solid #ddd !important;">
+                                                            <a class="pointer lineheight54" href="">012348</a>
+                                                            <!--<input type="text" name="cartton" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">-->
+                                                        </div>
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom" style="border-right:2px solid #ddd !important;">
+                                                            <input type="text" name="cartton" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom">
+                                                            <input type="text" name="length" class="form-control" value="2" style="width: 100%; margin:10px 0px 10px;" required="">
+                                                        </div>
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom">
+                                                            <input type="text" name="width" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">
+                                                        </div>
+                                                        <div class="col-sm-4 borderRight margin-10 border-bottom">
+                                                            <input type="text" name="height" class="form-control" value="2" style="width: 100%;margin:10px 0px 10px;" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                    <input type="text" name="weight" class="form-control" value="2" style="width: 100%; margin:10px 0px 10px;" maxlength="5" required="">
+                                                </div>
+                                                <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                    <input type="text" name="currencyValue" class="form-control" value="2" style="width: 100%; margin:10px 0px 10px;">
+                                                </div>
+                                                <div class="col-sm-2 borderRight margin-10 border-bottom">
+                                                    <select class="form-control" style="width: 100%; margin:10px 0px 10px;">
+                                                        <option value="0">Select</option>
+                                                        <option value="1">Bag</option>
+                                                        <option value="2">Laptop</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-1 borderRight margin-10 border-bottom">
+                                                    <button type="button" class="btn-simple btn-success col-sm-12" ng-click="mapProductCatalog()" style="margin:10px 0px 10px;">Map</button>
+                                                </div>
+                                                <div class="col-sm-1 border-bottom text-center directbooking-plus-minus-icon">
+                                                    <div class="shipmentContent">
+                                                        <a href="">
+                                                            <i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div style="border-top:1px solid #ddd;"><a href=""><i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </ng-form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--end-->
+                    <!--end-->
+                    <!--total carton code-->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="clearfix row">
+                                <div class="col-sm-3">
+                                    <div class="clearfix">
+                                        <label for="totalCarton" class="control-label top5">Total Carton: <span>34 pcs</span></label>
+                                        <!--<div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Total Carton" required />
+            </div>-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="clearfix">
+                                        <label for="totalCarton" class="control-label top5">Total Gross Weight:  <span>189.84 kgs</span></label>
+                                        <!--<div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Gross Weight" required />
+            </div>-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="clearfix">
+                                        <label for="totalCarton" class="control-label top5">Total Net Weight:  <span>189.84 kgs</span></label>
+                                        <!--<div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Net Weight" required />
+            </div>-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="clearfix">
+                                        <label for="totalCarton" class="control-label top5">CBM:  <span>16</span></label>
+                                        <!--<div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Net Weight" required />
+            </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <!--shipment handling-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Shipment Handling</div>
+                        <div class="panel-body clearfix">
+                            <div class="clearfix row">
+                                <div class="col-sm-6">
+                                    <div class="panel panel-default margin-bottom-none">
+                                        <div class="panel-body padding-bottom-none">
+                                            <div class="form-group clearfix">
+                                                <label for="carrierType" class="control-label top5 col-sm-4">Carrier Type:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" placeholder="Carrier Type" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label for="shipmentType" class="control-label top5 col-sm-4">Shipment Type:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" placeholder="Shipment Type" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="panel panel-default margin-bottom-none">
+                                        <div class="panel-body padding-bottom-none">
+                                            <div class="form-group clearfix">
+                                                <label for="declarationType" class="control-label top5 col-sm-4">Declaration Type:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" placeholder="Declaration Type" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label for="incoterm" class="control-label top5 col-sm-4">Incoterm:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" placeholder="Incoterm" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <!--customs declaration-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Customs Declaration</div>
+                        <div class="panel-body">
+                            <div class="row clearfix">
+                                <div class="col-sm-6 form-group">
+                                    <label for="contentType" class="control-label col-sm-4 top5">Content Type <span class="redColor">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Content Type" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label for="contentExplanation" class="control-label col-sm-4 top5">Content Explanation <span class="redColor">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Content Explanation" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label for="restrictionType" class="control-label col-sm-4 top5">Restriction Type <span class="redColor">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Restriction Type" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label for="restrictionExplanation" class="control-label col-sm-4 top5">Restriction Explanation <span class="redColor">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Restriction Explanation" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label for="nonDeliveryType" class="control-label col-sm-4 top5">Non Delivery Option <span class="redColor">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Non Delivery Option" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label for="customerSignature" class="control-label col-sm-4 top5">Customer Signature <span class="redColor">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Customer Signature" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    <!--hazard code-->
+                    <section>
+                    <div class="form-group direct-booking-border clearfix">
+                        <div class="col-sm-1 paddingboth marginTB-20">
+                            <img ng-src="{{photoHazard}}" class="img-responsive img-circle hazard-image" />
+                        </div>
+                        <p class="col-sm-11 redColor uppercase bold marginTB-20"> {{'IDECLAREMYSHIPMENT_CONTAINSNON_HAZARDOUS_CONTENT' | translate}}</p>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" /> By filling in the Customs Signature you confirm the information is true and correct for Customs Clearance. FRAYTE GLOBAL shall not be held responsible for any issue or delay this may cause to the shipment.</label>
+                    </div>
+                    </section>
+                    <!--end-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+            <button type="button" ng-click="$dismiss()" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Create Carton</button>
+        </div>
+    </div>
+    </div>
+</section>

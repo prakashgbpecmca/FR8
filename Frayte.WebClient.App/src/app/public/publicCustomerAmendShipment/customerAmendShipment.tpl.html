@@ -1,0 +1,237 @@
+﻿<div class="content padding-15">
+    <div class="content-transparent" style="padding:15px;">
+        <div class="text-center padding-tb-15">
+            <h4>{{'customer' | translate}} Amendment</h4>
+        </div>
+       
+        <form name="CustomerAmendForm" ng-submit="SaveAmmendShipment(CustomerAmendForm.$valid,frayteAmendShipment)" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperInfo.ContactName}}</div>
+                                <div>{{ShipperInfo.CompanyName}}</div>
+                                <div>{{ShipperAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ShipperInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverInfo.ContactName}}</div>
+                                <div>{{ReceiverInfo.CompanyName}}</div>
+                                <div>{{ReceiverAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ReceiverInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class=" panel-heading">{{'shipment' | translate}} {{'detail' | translate}}</div>
+                <div class="col-sm-12 text-left">
+                    <div class="panel-body col-sm-4 text-left" style="padding-left:0px;">
+
+                        <div>
+                            <div><div class="left-part width50">{{'ShippingMethod' | translate}}</div><div class="left-part width50">{{shipment.DeliveredBy.Name}}</div><div class="clearfix"></div></div>
+                            <div><div class="left-part width50">{{'shipment_TotalEstimatedGrossWeight' | translate}}</div><div class="left-part width50">{{getTotalKgs()}} ({{Lb_Kgs}})</div><div class="clearfix"></div></div>
+                            <div ng-if="shipment.DeliveredBy.CourierType !=='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedChargeableWeight' | translate}}</div><div class="left-part width50">{{getTotalVolWeight()}} ({{Lb_Kgs}})</div><div class="clearfix"></div></div>
+                            <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedCBM' | translate}}</div><div class="left-part width50">{{getTotalCBM()}} {{'CBM' | translate}}</div><div class="clearfix"></div></div>
+                            <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'"><div class="left-part width50">{{'shipment_TotalEstimatedChargeableCBM' | translate}}</div><div class="left-part width50">{{getEstimatedChargeableCBM(getTotalCBM())}} {{'CBM' | translate}}</div><div class="clearfix"></div></div>
+                            <div><div class="left-part width50">{{'confirmShp_ShipmentDate' | translate}}</div><div class="left-part width50">{{shipment.ShippingDate | date:'dd/MM/yyyy'}}</div><div class="clearfix"></div></div>
+                            <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'||shipment.DeliveredBy.CourierType ==='Air'"><div class="left-part width50">{{'confirmShp_PackingType' | translate}}</div><div class="left-part width50">{{shipment.PackagingType.Name}}</div><div class="clearfix"></div></div>
+                            <div><div class="left-part width50">{{'confirmShp_NumberOfPieces' | translate}}</div><div class="left-part width50">{{getTotalPieces()}}</div><div class="clearfix"></div></div>
+                            <div><div class="left-part width50">{{'shipment_DeclaredValue' | translate}}</div><div class="left-part width50">{{shipment.DeclaredValue}} ({{shipment.DeclaredCurrency.CurrencyCode}})</div><div class="clearfix"></div></div>
+                            <div><div class="left-part width50">{{'confirmShp_ShipperReference' | translate}}</div><div class="left-part width50">{{shipment.PurchaseOrderNo}}</div><div class="clearfix"></div></div>
+                            <div><div class="left-part width50">{{'confirmShp_DescriptionOfContent' | translate}}</div><div class="left-part width50">{{shipment.ContentDescription}}</div><div class="clearfix"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+
+
+            <div class="wrapperContent" style="margin-top:-21px;">
+                <div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                            <div>
+                                <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-if="shipmentType ==='a'" class="col-xs-4 form-group">
+                            <label class="control-label" for="masterAirwayBill">{{'Prefix' | translate}} {{Number.Caption3}}:</label>
+                            <div>
+                                <input type="text" id="masterAirwayBill" name="masterAirwayBill" ng-model="PreFix" class="form-control" readonly />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-xs-12 form-group" ng-class="{ 'has-error': CustomerAmendForm.shippingMethod.$invalid &&
+                                            (CustomerAmendForm.shippingMethod.$dirty || submitted) }">
+                            <label class="control-label" for="shippingMethod">{{'serviceoptn_ShippingMethod' | translate}}</label>
+                            <div class="form-group">
+                                <select id="shippingMethod" name="shippingMethod"
+                                        ng-model="frayteAmendShipment.DeliveredBy" ng-change="selectpaymentParty(frayteAmendShipment.DeliveredBy)"
+                                        ng-options="DeliveredBy.Name for DeliveredBy in couriers| orderBy:'OrderNumber' track by DeliveredBy.CourierId" class="form-control" required>
+                                    <option value="" disabled selected class="display-none">{{'serviceoptn_ShippingMethodSelectedOption' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error"
+                                      ng-show="CustomerAmendForm.shippingMethod.$invalid &&
+                                            (CustomerAmendForm.shippingMethod.$dirty || submitted)">
+                                    {{'serviceoptn_ShippingMethodValidError' | translate}}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="col-sm-12"><h3>Receiver Address Detail</h3></div>
+                <div class="panel-body" style="padding:0px;">
+                    <div class="marginbottom10">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': CustomerAmendForm.receiverCountry.$invalid &&
+                                                         (CustomerAmendForm.receiverCountry.$dirty || submitted) }">
+                            <label class="control-label" for="receiverCountry">{{'Country' | translate}}</label>
+                            <select id="receiverCountry" name="receiverCountry"
+                                    ng-model="frayteAmendShipment.ReceiverAddress.Country" ng-change="SetCountryPhoneCode('Receiver',
+                                frayteAmendShipment.ReceiverAddress.Country)"
+                                    ng-options="Country.Name for Country in countries | orderBy:'OrderNumber' track by Country.CountryId"
+                                    class="form-control" required>
+                                <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="CustomerAmendForm.receiverCountry.$invalid &&
+                                            (CustomerAmendForm.receiverCountry.$dirty || submitted)">
+                                {{'Receiver' | translate}} {{'CountryValidationError' | translate}}
+                            </span>
+                        </div>
+
+                        <div ng-if="frayteAmendShipment.DeliveredBy.CourierType==='Air' || frayteAmendShipment.DeliveredBy.CourierType==='Sea'">
+                            <div class="col-sm-6 form-group" ng-class="{ 'has-error': CustomerAmendForm.portofarrival.$invalid &&
+                                                         (CustomerAmendForm.portofarrival.$dirty || submitted) }">
+                                <label class="control-label" for="shippingMethod">{{'Port' | translate}} {{'Of' | translate}} {{'Arrival' | translate}}</label>
+                                <select id="shippingMethod" name="portofarrival"
+                                        ng-model="frayteAmendShipment.FrayteShipmentPortOfArrival"
+                                        ng-options="PortOfArrival as (  PortOfArrival.PortName + ' '+'(' + PortOfArrival.PortCode + ')')  for PortOfArrival in ports | orderBy:'PortName'| filter :{PortType: frayteAmendShipment.DeliveredBy.CourierType , CountryId:frayteAmendShipment.ReceiverAddress.Country.CountryId } track by PortOfArrival.CountryShipmentPortId" class="form-control" required>
+                                    <option value="" disabled selected class="display-none">{{'PortOfArrivalSelect' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error"
+                                      ng-show="CustomerAmendForm.portofarrival.$invalid &&
+                                            (CustomerAmendForm.portofarrival.$dirty || submitted)">
+                                    {{'PortOfArrivalValidationError' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="marginbottom10">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': CustomerAmendForm.receiveraddress.$invalid &&
+                                                         (CustomerAmendForm.receiveraddress.$dirty || submitted) }">
+                            <label class="control-label" for="receiveraddress">{{'Address' | translate}}</label>
+                            <input type="text" id="receiveraddress" name="receiveraddress" ng-model="frayteAmendShipment.ReceiverAddress.Address" class="form-control" placeholder="{{'AddressPlaceholder' | translate}}" required />
+                            <span class="help-block has-error"
+                                  ng-show="CustomerAmendForm.receiveraddress.$invalid &&
+                                            (CustomerAmendForm.receiveraddress.$dirty || submitted)">
+                                {{'Receiver' | translate}} {{'AddressValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="col-sm-6 marginbottom10">
+                            <label for="address2">Address 2</label>
+                            <input type="text" id="receiveraddress2" name="receiveraddress2" ng-model="frayteAmendShipment.ReceiverAddress.Address2" class="form-control" placeholder="{{'Address2' | translate}}" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="marginbottom10">
+                        <div class="col-sm-6 marginbottom10">
+                            <label for="address3">Address 3</label>
+                            <input type="text" id="receiveraddress3" name="receiveraddress3" ng-model="frayteAmendShipment.ReceiverAddress.Address3" class="form-control" placeholder="{{'Address3' | translate}}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-class="{ 'has-error': CustomerAmendForm.receivercity.$invalid &&
+                                                         (CustomerAmendForm.receivercity.$dirty || submitted) }">
+                                <label class="control-label" for="receivercity">{{'City' | translate}}</label>
+                                <input type="text" id="receivercity" name="receivercity" ng-model="frayteAmendShipment.ReceiverAddress.City"
+                                       only-alphabets class="form-control" placeholder="{{'CityPlaceholder' | translate}}" required />
+                                <span class="help-block has-error"
+                                      ng-show="CustomerAmendForm.receivercity.$invalid &&
+                                            (CustomerAmendForm.receivercity.$dirty || submitted)">
+                                    {{'Receiver' | translate}} {{'CityValidationError' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="marginbottom10">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error': CustomerAmendForm.receiverstate.$invalid &&
+                                                         (CustomerAmendForm.receiverstate.$dirty || submitted) }">
+                            <label class="control-label" for="receiverstate">{{'State' | translate}}</label>
+                            <input type="text" id="receiverstate" name="receiverstate" ng-model="frayteAmendShipment.ReceiverAddress.State" ng-disabled="setReceiverStateDisable"
+                                   class="form-control" only-alphabets placeholder="{{'StatePlaceholder' | translate}}" ng-required="SetShipperReceiverState(frayteAmendShipment.ReceiverAddress.Country.Code,'state')" />
+                            <span class="help-block has-error"
+                                  ng-show="CustomerAmendForm.receiverstate.$invalid &&
+                                            (CustomerAmendForm.receiverstate.$dirty || submitted)">
+                                {{'Receiver' | translate}} {{'StateValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-class="{ 'has-error': CustomerAmendForm.receiverpostalCode.$invalid &&
+                                                         (CustomerAmendForm.receiverpostalCode.$dirty || submitted) }">
+                                <label class="control-label" for="receiverpostalCode">{{'PostalCode' | translate}}</label>
+                                <input type="text" id="receiverpostalCode" name="receiverpostalCode" ng-model="frayteAmendShipment.ReceiverAddress.Zip" class="form-control" placeholder="{{'PostalCodePlaceholder' | translate}}"
+                                       ng-disabled="setReceiverZipDisable" ng-required="SetShipperReceiverState(frayteAmendShipment.ReceiverAddress.Country.Code,'zip')" />
+                                <span class="help-block has-error"
+                                      ng-show="CustomerAmendForm.receiverpostalCode.$invalid &&
+                                            (CustomerAmendForm.receiverpostalCode.$dirty || submitted)">
+                                    {{'Receiver' | translate}} {{'PostalCodePlaceholder' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="marginbottom10">
+                        <div class="col-sm-6">
+                            <label for="suburb">Suburb</label>
+                            <input type="text" id="receiversuburb" name="receiversuburb" ng-model="frayteAmendShipment.ReceiverAddress.Suburb" class="form-control" placeholder="{{'Suburb' | translate}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="padding-right:0px;">
+                        <div class="col-sm-1 col-sm-offset-11 form-group">
+                            <div class="padding-tb-15" style="padding-right:0px;"><button type="submit" class="btn btn-save" ng-click="submitted=true">Save</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+

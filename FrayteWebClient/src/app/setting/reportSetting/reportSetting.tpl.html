@@ -1,0 +1,103 @@
+﻿
+<div class="panel panel-default">
+    <div class="panel-heading" style="padding: 10px 15px;"><h4>{{'Report' | translate}} {{'Setting' | translate}}</h4></div>
+    <div class="panel-body">
+        <form name="ReportSettingForm" ng-submit="saveReportSettingDetail(ReportSettingForm.$valid,frayteReportSetting)" novalidate>
+            <div class="col-md-12">
+                <div class="col-md-4"></div>
+                <div class="col-md-6 col-sm-6 col-xs-8">
+                    <label for="sendautomaticpodmail" id="podmail">{{'Set' | translate}} {{'Automatic' | translate}} {{'POD' | translate}} {{'Email' | translate}} </label>
+                </div>
+                <div class="col-md-2">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9 col-sm-9">
+                        <div class="onoffswitch">
+                            <input type="checkbox" ng-model="frayteReportSetting.IsActive" name="podmail" class="onoffswitch-checkbox" id="myonoffswitch" />
+                            <label class="onoffswitch-label" for="myonoffswitch">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div id="margin50"></div>
+                <div class="form-group" ng-class="{ 'has-error': ReportSettingForm.schduleTime.$invalid &&
+                                                         (ReportSettingForm.schduleTime.$dirty || submitted) }" style="margin-bottom:0px !important;">
+                    <div class="col-md-2">
+                        <h5>{{'Set' | translate}} {{'Time' | translate}}</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text"
+                               class="form-control input-sm"
+                               name="schduleTime"
+                               ng-model="frayteReportSetting.ReportTime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+
+                        <span class="help-block has-error" ng-show="ReportSettingForm.schduleTime.$invalid && (ReportSettingForm.schduleTime.$dirty || submitted) ">
+                            {{'Time' | translate}} {{'Required' | translate}}.
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+                <div class="form-group" ng-class="{ 'has-error': ReportSettingForm.schduletype.$invalid &&
+                                                         (ReportSettingForm.schduletype.$dirty || submitted) }" style="margin-bottom:0px !important;">
+                    <div class="col-md-3">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            <div><h5>{{'Schedule' | translate}} {{'Type' | translate}}</h5></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select name="schduletype"
+                                class="form-control" ng-model="frayteReportSetting.ReportSchedule" ng-options="scheduleType.value as scheduleType.value for scheduleType in scheduleTypes" required>
+                            <option value="" style="padding:2px 4px;" selected disabled class="display-none">{{'Select' | translate}} {{'Schedule' | translate}}</option>
+                        </select>
+                        <span class="help-block has-error" ng-show="ReportSettingForm.schduletype.$invalid && (ReportSettingForm.schduletype.$dirty || submitted) ">
+                            {{'Schedule' | translate}} {{'Type' | translate}} {{'Required' | translate}}.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12  form-group" ng-class="{ 'has-error': ReportSettingForm.emailto.$invalid &&
+                                                         (ReportSettingForm.emailto.$dirty || submitted) }">
+                <div class="marginbottom15"></div>
+                <div class="col-md-2">Email To :</div>
+                <div class="col-md-5">
+                    <input type="email" name="emailto" class="form-control" ng-model="frayteReportSetting.ToMail" placeholder="Please enter email" required />
+                    <span class="help-block has-error" ng-show="ReportSettingForm.emailto.$invalid && (ReportSettingForm.emailto.$dirty || submitted) ">
+                        Email to is required.
+                    </span>
+                </div>
+                <div class="col-md-1 col-md-offset-4" style="padding-left:0px !important;">
+                    <button class="btn btn-save" style="margin-left:-5px;" ng-click="submitted=true">{{'Save' | translate}}</button>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-2">Email CC :</div>
+                <div class="col-md-5">
+                    <div ng-repeat="emailCC in frayteReportSetting.fryateReportSettingEmailDetail">
+                        <div class="form-group">
+                            <ng-form name="newForm">
+                                <div class="form-group">
+                                    <input type="email" name="emailCC" ng-model="emailCC.CcMail" class="form-control" aria-label="addon" />
+                                </div>
+                            </ng-form>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-save" ng-click="addEmailCC()">+</a>
+            </div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+

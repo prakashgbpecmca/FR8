@@ -1,0 +1,106 @@
+﻿
+<div class="container grid-font" id="mobile">
+    <!--start filter code here-->
+
+    <div class="row">
+        <div class="col-sm-12 paddingboth">
+            <div>
+                <div class="col-sm-9"><h2><span class="border-bottom-black2">{{'Cargo_Freighter_Specifications' | translate}}</span></h2></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="text-center">
+                <img bn-lazy-src="{{ImagePath + 'cargoFreighterSpecification.png'}}" style="padding: 3px 0;max-width:100%;" />
+            </div>
+        </div>
+    </div>
+    <section class="affix" data-offset-top="60">
+        <div class="fixe">
+            <div style="margin-bottom:15px;">
+                <!--<div class="col-sm-9 paddingboth"><h2><span class="border-bottom-black2">{{'Cargo_Freighter_Specifications' | translate}}</span></h2></div>-->
+                <div class="col-sm-9 paddingboth"><h2><span class="border-bottom-black2"></span></h2></div>
+                <div class="col-sm-3 paddingboth form-group">
+                    <div class="col-sm-12 paddingboth top-2-4rem">
+                        <i class="fa fa-search search-icon-fix" aria-hidden="true"></i>
+                        <input class="form-control padding-left25" placeholder="{{'Search' | translate}} {{'AirCraft' | translate}}" type="text" ng-model="search" autofocus />
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <section>
+                <div class="airline-scrollbar baseratcard-overflow width100 top10" my-scroller style="top:0px;">
+                    <div class="max-width">
+                        <ul class="list-unstyled change margin-bottom-none">
+                            <li>
+                                <div class="col-sm-12 paddingboth">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="airline-scrollbar baseratcard-overflow width100" style="overflow:hidden;">
+                    <div class="max-width">
+                        <div class="col-sm-12 paddingboth flex panel-background boxshadow-all" style="border-right: 1px solid #cbcbcb;">
+                            <div class="width20 bold">{{'Diagram' | translate}}</div>
+                            <div class="width13 bold">{{'AirCraft' | translate}}</div>
+                            <div class="width6 bold">{{'Paylond' | translate}}</div>
+                            <div class="width6 bold">{{'Volume' | translate}}</div>
+                            <div class="width150 bold">{{'CargoCompartmentDimension' | translate}} (LxWxH, cm)</div>
+                            <div class="width7 bold">{{'MainDoorDimension' | translate}} (LxH, cm)</div>
+                            <div class="width7 bold">{{'NoseDoorDimension' | translate}} (LxH, cm)</div>
+                            <div class="width7 bold">{{'TailDoorDimension' | translate}} (LxH, cm)</div>
+                            <div class="width7 bold">{{'BulkDimension' | translate}} (LxH, cm)</div>
+                            <div class="width120 bold">{{'Notes' | translate}}</div>
+                            <span class="clearfix"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <!--end filter code-->
+    <section>
+        <div class="col-sm-12 paddingboth">
+            <div class="airline-scrollbar baseratcard-overflow width100" style="overflow:hidden;">
+                <div class="max-width">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div class="col-sm-12 paddingboth flex panel-background boxshadow-all" ng-repeat="cargofreighter in cargoFreighter | filter: {aircraft: search }" style="background:#fff;border-right:1px solid #cbcbcb;">
+                                <div class="width20"><a><img bn-lazy-src="{{ImagePath + cargofreighter.img}}" style="padding: 3px 0;max-width:100%;" /></a></div>
+                                <div class="width13">{{cargofreighter.aircraft}}</div>
+                                <div class="width6">{{cargofreighter.paylond}}</div>
+                                <div class="width6">{{cargofreighter.volume}}</div>
+                                <div class="width150">{{cargofreighter.cargoCompartment}}</div>
+                                <div class="width7">{{cargofreighter.mainDoor}}</div>
+                                <div class="width7">{{cargofreighter.noseDoor}}</div>
+                                <div class="width7">{{cargofreighter.tailDoor}}</div>
+                                <div class="width7">{{cargofreighter.bulkDimension}}</div>
+                                <div class="width120"><a><img bn-lazy-src="{{ImagePath + cargofreighter.note}}" style="padding: 3px 0;max-width:100%;" /></a></div>
+                                <span class="clearfix"></span>
+                            </div>
+                            <div ng-if="toggleCargoFreighter()">
+                                <div class="col-sm-12 paddingboth coming-soon-center form-group text-center redColor">
+                                    <h3>{{'No_Aircraft_code_found' | translate}}</h3>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="airline-scrollbar baseratcard-overflow width100" my-scroller>
+                <div class="max-width">
+                    <ul class="list-unstyled change margin-bottom-none">
+                        <li>
+                            <div class="col-sm-12 paddingboth">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </section>
+</div>
+<br />
+<div class="clearfix"></div>

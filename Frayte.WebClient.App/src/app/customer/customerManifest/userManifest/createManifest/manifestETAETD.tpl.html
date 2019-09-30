@@ -1,0 +1,126 @@
+﻿
+
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Update_ETA_and_ETD' | translate}}</h4>
+        </div>
+        <form name="DirectBookingForm" novalidate ng-submit="save(DirectBookingForm.$valid)">
+            <section>
+                <div class="modal-body">
+                    <div class="col-sm-12 paddingboth">
+                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.deliveryDate.$invalid &&
+                                                         (DirectBookingForm.deliveryDate.$dirty || submitted), 'has-error': (DirectBookingForm.DeliveryTime.$invalid || DirectBookingForm.DeliveryTimeMinutes.$invalid) &&
+                                                     (DirectBookingForm.DeliveryTime.$dirty || DirectBookingForm.DeliveryTimeMinutes.$dirty || submitted) }">
+                            <div class="col-sm-3 paddingboth">
+                                <label for="deliveryDate" id="deliveryDateLabel" class="control-label">{{'Estimated_Departure' | translate}} <span class="redColor">*</span><br /><small class="fix-small-directbooking">{{'Date_Time' | translate}}</small></label>
+                            </div>
+                            <div class="col-sm-8 paddingright">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-7 paddingboth">
+                                        <div class="input-group">
+                                            <input type="text" id="deliveryDate" name="deliveryDate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                   ng-model="shipmentETAETDDetail.EstimatedDateofDelivery" is-open="status1.opened"
+                                                   datepicker-options="dateOptions" readonly
+                                                   ng-blur="DateComparision()"
+                                                   close-text="Close" ng-click="openCalender1($event)" required placeholder="{{'Estimated_Departure_Date' | translate}} ({{'Required' | translate}})" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 paddingright pad-left5">
+                                        <div estimated-delivery-time datasource="shipmentETAETDDetail.EstimatedTimeofDelivery">
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="help-block has-error"
+                                      ng-show="DirectBookingForm.deliveryDate.$error.required &&
+                                                (DirectBookingForm.deliveryDate.$dirty || submitted)">
+                                    {{'Estimated_Departure_Date_Is_Required' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="DirectBookingForm.deliveryDate.$invalid && !DirectBookingForm.deliveryDate.$error.required &&
+                                                (DirectBookingForm.deliveryDate.$dirty || submitted)">
+                                    {{'serviceoptn_PickupDateInvalid' | translate}}
+                                </span>
+                                <span class="help-block has-error" ng-show="(DirectBookingForm.DeliveryTime.$invalid ||  DirectBookingForm.DeliveryTimeMinutes.$invalid )&&
+                                                         (DirectBookingForm.DeliveryTime.$dirty ||DirectBookingForm.DeliveryTimeMinutes.$dirty|| submitted)">
+                                    {{'Estimated_Departure_Time_Is_Required' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="">
+                                    {{'Time_Validation' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-sm-1 paddingboth estimatedPickupDate">
+                                <a href="" class="padding7px" popover-placement="auto" uib-popover='Please note, all collection dates and times requested and booked will be estimates only. FRAYTE Logistics has no control over the ability for individual couriers to achieve the desired collection slot arrangements. Should problems arise as a direct result of the selected courier not making the requested collection, it is advisable to take up a dispute directly with the nominated courier.' popover-trigger="'outsideClick'">
+                                    <i class="fa fa-question-circle help pull-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': CompareDate || DirectBookingForm.arrivalDate.$invalid &&
+                                                         (DirectBookingForm.arrivalDate.$dirty || submitted), 'has-error': CompareDate ||(DirectBookingForm.arrivalDate.$invalid || DirectBookingForm.ArrivalTimeMinutes.$invalid) &&
+                                                     (DirectBookingForm.arrivalDate.$dirty || DirectBookingForm.ArrivalTimeMinutes.$dirty || submitted) }">
+                            <div class="col-sm-3 paddingboth">
+                                <label for="arrivalDate" id="arrivalDateLabel" class="control-label">{{'Estimated_Arrival' | translate}} <span class="redColor">*</span><br /><small class="fix-small-directbooking">{{'Date_Time' | translate}}</small></label>
+                            </div>
+                            <div class="col-sm-8 paddingright">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-sm-7 paddingboth">
+                                        <div class="input-group">
+                                            <input type="text" id="arrivalDate" name="arrivalDate" class="form-control fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                                   ng-model="shipmentETAETDDetail.EstimatedDateofArrival" is-open="status.opened"
+                                                   ng-blur="DateComparision()"
+                                                   datepicker-options="dateOptions1" readonly
+                                                   close-text="Close" ng-click="openCalender($event)" required placeholder="{{'Estimated_Arrival_Date' | translate}} ({{'Required' | translate}})" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 paddingright pad-left5">
+                                        <div estimated-arrival-Time datasource="shipmentETAETDDetail.EstimatedTimeofArrival">
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="help-block has-error"
+                                      ng-show="DirectBookingForm.arrivalDate.$error.required &&
+                                                (DirectBookingForm.arrivalDate.$dirty || submitted)">
+                                    {{'Estimated_Arrival_Date_Is_Required' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="DirectBookingForm.arrivalDate.$invalid && !DirectBookingForm.arrivalDate.$error.required &&
+                                                (DirectBookingForm.arrivalDate.$dirty || submitted)">
+                                    {{'serviceoptn_PickupDateInvalid' | translate}}
+                                </span>
+                                <span class="help-block has-error" ng-show="(DirectBookingForm.Arrivaltime.$invalid ||  DirectBookingForm.arrivalDate.$invalid )&&
+                                                         (DirectBookingForm.Arrivaltime.$dirty ||DirectBookingForm.arrivalDate.$dirty|| submitted)">
+                                    {{'Estimated_Arrival_Time_Is_Required' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="CompareDate ===true">
+                                    {{'DateShould_Be_Greater' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-sm-1 paddingboth estimatedPickupDate">
+                                <a href="" class="padding7px" popover-placement="auto" uib-popover='Please note, all collection dates and times requested and booked will be estimates only. FRAYTE Logistics has no control over the ability for individual couriers to achieve the desired collection slot arrangements. Should problems arise as a direct result of the selected courier not making the requested collection, it is advisable to take up a dispute directly with the nominated courier.' popover-trigger="'outsideClick'">
+                                    <i class="fa fa-question-circle help pull-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer">
+                    <div class="col-sm-12 paddingboth">
+                        <button type="button" class="btn btn-simple btn-cancel pull-left" ng-click="$dismiss()"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                        <button type="submit" class="btn btn-simple btn-save pull-right" ng-click="submitted= true"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save' | translate}} </button>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,52 @@
+﻿<form name="QuotationMail" novalidate ng-submit="sendQuotationMail(QuotationMail.$valid)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{'Send' | translate}} {{'Quotation' | translate}} {{'Email' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group" ng-class="{ 'has-error': QuotationMail.emailname.$invalid &&
+                                                         (QuotationMail.emailname.$dirty || submitted) }">
+                <label class="control-label" for="emailname">{{'Customer' | translate}} {{'Name' | translate}}</label>
+                <div>
+                    <input type="text" placeholder="{{'Customer' | translate}} {{'Name' | translate}}" name="emailname" id="emailname" ng-model="CustomerName" required class="form-control" />
+                    <span class="help-block has-error"
+                          ng-show="QuotationMail.emailname.$invalid &&
+                                            (QuotationMail.emailname.$dirty || submitted)">
+                     {{'NameValidationError' | translate}}
+                    </span>
+                </div>
+
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': QuotationMail.emailaddress.$invalid &&
+                                                         (QuotationMail.emailaddress.$dirty || submitted) }">
+
+                <label class="control-label" for="emailaddress">{{'Customer' | translate}} {{'Email' | translate}}</label>
+                <div>
+                    <input type="email" placeholder="{{'Customer' | translate}} {{'Email' | translate}}" name="emailaddress" id="emailaddress" ng-model="Email" required class="form-control" />
+                    <span class="help-block has-error"
+                          ng-show="QuotationMail.emailaddress.$error.email &&
+                                            (QuotationMail.emailaddress.$dirty || submitted)">
+                        {{'EmailNotValid' | translate}}
+                    </span>
+                    <span class="help-block has-error"
+                          ng-show="QuotationMail.emailaddress.$error.required &&
+                                            (QuotationMail.emailaddress.$dirty || submitted)">
+                      {{'EmailValidationError' | translate}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+                <div class="col-sm-12 paddingboth">
+                    <div class="pull-left">
+                        <button class="btn btn-cancel fontsize12" type="button" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="submit" style="border-radius:2px !important;" ng-click="submitted=true;" name="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Email' | translate}}</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</form>

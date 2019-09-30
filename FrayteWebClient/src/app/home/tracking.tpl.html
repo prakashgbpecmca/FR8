@@ -1,0 +1,81 @@
+﻿<section class="title-bar img-blog transparent-bg-secondary">
+    <div class="transparent-bg-secondary-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>{{'Tracking' | translate}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="transparent-bg-secondary-layer"></div>
+</section>
+<div class="clearfix"></div>
+<section class="fullwidthNoBackground">
+    <div class="container">
+        <div class="padding-tb-20">
+            <div>
+                <div class="col-md-12">
+                    <div style="border:1px solid #e0e0e0;">
+                        <div style="border-bottom:1px solid #e0e0e0;padding:5px;">
+                            <div class="col-sm-6">
+                                <p>{{'Tracking_No' | translate}}: {{trackingInfo.tracking_code}}</p>
+                                <p>{{'CreatedAt' | translate}}: {{trackingInfo.created_at}}</p>
+                            </div>
+                            <div class="col-sm-6 font-16">
+                                <p>{{'Estimated_Delivery_Date' | translate}}: {{trackingInfo.est_delivery_date}}</p>
+                                <p>{{'Estimate_Weight' | translate}}: {{trackingInfo.weight}}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div style="padding:5px;">
+                            <div class="col-sm-6">
+                                <p>{{'Status' | translate}}: {{trackingInfo.status}}</p>
+                                <p>{{'Updated' | translate}}{{'At' | translate}}: {{trackingInfo.updated_at}}</p>
+                            </div>
+                            <div class="col-sm-6 font-16">
+                                <p>{{'Carrier' | translate}}: {{trackingInfo.carrier}}</p>
+                                <p>{{'POD' | translate}}: {{trackingInfo.signed_by}}</p>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <!--Row wise Information Start-->
+                            <div class="col-md-12">
+                                <div>{{'Tracking' | translate}} {{'Detail' | translate}}:</div>
+                                <div class="row"  ng-repeat="item in trackingInfo.tracking_details | orderBy:'-datetime'" ng-class="($index==0)?'activeBlock' :'fadeBlock'">
+                                    <div style="margin-bottom:22px;">
+                                        <div class="col-lg-4">
+                                            <div>{{'Message' | translate}}: {{item.message}} </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div>{{'Status' | translate}}: {{item.status}}</div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div>{{'Date' | translate}}/{{'Time' | translate}}: {{item.datetime}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div>{{'City' | translate}}: {{item.tracking_location.city}} </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div>{{'State' | translate}}: {{item.tracking_location.state}}</div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div>{{'Country' | translate}}: {{item.tracking_location.country}}</div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div>{{'Zip' | translate}}: {{item.tracking_location.zip}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--Row wise Information End-->
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>

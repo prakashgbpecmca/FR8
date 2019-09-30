@@ -1,0 +1,543 @@
+﻿
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'Address_Book' | translate}}</h4>
+</div>
+<div class="modal-body">
+    <div class="col-sm-12 form-group paddingboth">
+        <div class="form-group">
+            <label for="operationZone" class="fontsize12 col-sm-2 paddingboth top7">{{'Address_Type' | translate}}:</label>
+            <div class="col-sm-4">
+                <select ng-change="AddressBookByAddressType(AddressBookAddressType)"
+                        ng-options="type as type.AddressTypeDisplay for type in AddressTypes track by type.Id"
+                        class="form-control fontsize12" ng-model="AddressBookAddressType">
+                    <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'BusinessUnit_Zone' | translate}}</option>
+                </select>
+            </div>
+            <div class="col-sm-5 col-sm-offset-1 paddingboth">
+                <div class="col-sm-6">
+                    <button ng-hide="AddressBookAddressType.AddressType === 'All'" ng-disabled="AddressBookAddressType.AddressType === 'All'" class="btn-simple btn-save" ng-click="addEditAddressBook()" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{'New_Address' | translate}}</button>
+                </div>
+                <div class="col-sm-6 paddingboth text-right">
+                    <button class="btn btn-simple btn-danger" ng-click="eraseAddressBook()" type="button"><span><i class="fa fa-eraser"></i></span> {{'Earse_All_Address' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!--<div data-ui-grid="gridDirectBooking" ui-grid-selection class="grid grid-popup"></div>-->
+    <!--address book custom grid-->
+    <div class="panel panel-default marginBottomZero">
+        <div class="width100 flex  grid-background">
+            <div class="width986 flex">
+                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Favourite' | translate}}</span></div>
+                <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Company' | translate}}</span></div>
+                <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'ContactName' | translate}}</span></div>
+                <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Address_1' | translate}} <span class="redColor">#</span></span></div>
+                <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'City' | translate}}</span></div>
+                <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'State' | translate}}</span></div>
+                <div class="width120 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Country' | translate}} <span class="redColor">#</span></sapn></div>
+                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+            <div class="panel-body padding0">
+                <ul class="list-unstyled change margin-bottom-none">
+                    <li>
+                      <div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span>ABC  Pvt Ltd</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>Selcroft Avenue The Surgery</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Berkeley</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span>ABC PVT LTD</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>G 192</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Noida</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>UP</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> India</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>Selcroft Avenue The Surgery</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Berkeley</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group dropdown" uib-dropdown="" dropdown-append-to-body="">
+                                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                            <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                            <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                    <a href="">
+                                                        <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                        <span>{{'Select' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                    <a href="">
+                                                        <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                        <span>{{'Edit' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <!--set as default-->
+                                                <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                    <a href="">
+                                                        <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                        <span>{{'Set_As_Default' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                                <!--end-->
+                                                <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                    <a href="">
+                                                        <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                        <span>{{'Delete' | translate}}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>Crown Cottage</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>BERKELEY</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>Crown Cottage</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>BERKELEY</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>2 Arden Lodge</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>HALIFAX</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>15Cove Bay</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>ABERDEEN</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>6b</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>STOURBRIDGE</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>6b</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>STOURBRIDGE</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata --><div class="width100 pointer">
+                            <div ng-dblclick="selectAddressBook(gridDirectBooking)" ng-click="selectAdressRecord(gridDirectBooking)" class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default': gridDirectBooking.IsDefault }" popover-placement="auto" uib-popover="Double click to select the address." popover-trigger="'mouseenter'">
+                                <div class="width9 quotation-table-body text-center">
+                                    <div><i class="fa fa-star-o pointer star-fixed top4" ng-class="{'star-fixed-hover': gridDirectBooking.IsFavorites}" aria-hidden="true" ng-click="SetIsFavourite(gridDirectBooking); gridDirectBooking.IsFavorites =! gridDirectBooking.IsFavorites"></i></div>
+                                </div>
+                                <div class="width20 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>Customer Test 1</span></div>
+                                <div class="width13 quotation-table-body padding-5 word-wrap"><span>36</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span>ABERDEEN</span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span></span></div>
+                                <div class="width120 quotation-table-body word-wrap padding-5"><span> United Kingdom</span></div>
+                                <div class="width10 quotation-table-body padding0 text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="selectAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check"></i></span>
+                                                    <span>{{'Select' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-click="addEditAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                    <span>{{'Edit' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--set as default-->
+                                            <li ng-click="setAsDefaultAddress(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padEdit"><i class="fa fa-check-square-o"></i></span>
+                                                    <span>{{'Set_As_Default' | translate}}</span>
+                                                </a>
+                                            </li>
+                                            <!--end-->
+                                            <li ng-click="DeleteAddressFromAddressBook(gridDirectBooking)">
+                                                <a href="">
+                                                    <span class="padDelete"><i class="fa fa-trash-o"></i></span>
+                                                    <span>{{'Delete' | translate}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><!-- end ngRepeat: gridDirectBooking in gridDirectBookingdata -->
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--end code-->
+    <div class="address-book"> <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(TrackSearchText)" ng-model="TrackSearchText.CurrentPage" items-per-page="TrackSearchText.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul></div>
+</div>
+<div class="clearfix"></div>
+<div class="modal-footer">
+    <div class="col-sm-12 paddingboth">
+        <div class="pull-left">
+            <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+        </div>
+        <div class="pull-right">
+            <button type="button" ng-click="$dismiss()" class="btn-simple btn-save fontsize12"><i class="fa fa-check" aria-hidden="true"></i> {{'OK' | translate}}</button>
+        </div>
+    </div>
+</div>

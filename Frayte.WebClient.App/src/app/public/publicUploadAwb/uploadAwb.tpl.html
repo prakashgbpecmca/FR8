@@ -1,0 +1,109 @@
+﻿<div ng-if="isLogin" class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{'AWB' | translate}} {{'Documents' | translate}}</h4>
+</div>
+<div class="content">
+    <div class="modal-body">
+        <div class="col-sm-12">
+            <div class="text-center padding-tb-15"><h4>{{'PleaseUploadAWBDocuments' | translate}}</h4></div>
+            <form name="AWBDocForm" ng-submit="upload(AWBDocForm.$valid,AirWayBillDocumentActualFile,exPortType)" novalidate>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel panel-default text-left" style="height:280px;">
+                            <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                            <div class="panel-body">
+                                <div style="padding:5px 0;">
+                                    <div>{{ShipperInfo.ContactName}}</div>
+                                    <div>{{ShipperInfo.CompanyName}}</div>
+                                    <div>{{ShipperAddressInfo.Address}}</div>
+                                </div>
+                                <div style="padding:5px 0;">
+                                    <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                    <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div>T: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                    <div>E: <span> {{ShipperInfo.Email}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default text-left" style="height:280px;">
+                            <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                            <div class="panel-body">
+                                <div style="padding:5px 0;">
+                                    <div>{{ReceiverInfo.ContactName}}</div>
+                                    <div>{{ReceiverInfo.CompanyName}}</div>
+                                    <div>{{ReceiverAddressInfo.Address}}</div>
+                                </div>
+                                <div style="padding:5px 0;">
+                                    <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                    <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div>T: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                    <div>E: <span> {{ReceiverInfo.Email}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div>
+                    <div class="form-group col-sm-6" style="padding-left:0px;">
+                        <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                        <div>
+                            <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6" style="padding-right:0px;" ng-class="{ 'has-error': AWBDocForm.airwayBillNo.$invalid &&
+                                            (AWBDocForm.airwayBillNo.$dirty || submitted) }">
+                        <div>
+                            <label class="control-label" for="airwayBillNo">{{'AirWayBill' | translate}} {{'Hash' | translate}}:</label>
+                        </div>
+                        <div>
+                            <input type="text" id="airwayBillNo" name="airwayBillNo" ng-model="uploadDocument.AirWayBillHash" class="form-control" required />
+                            <span class="help-block has-error ng-hide" ng-show="AWBDocForm.airwayBillNo.$invalid &&
+                                            (AWBDocForm.airwayBillNo.$dirty || submitted)">
+                                {{'AirWayBill' | translate}} {{'HashValidError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div ng-if="exPortType">
+                      <div class="form-group" style="padding-left:0px;" ng-class="{ 'has-error': AWBDocForm.airwayBill.$invalid &&
+                                            (AWBDocForm.airwayBill.$dirty || submitted) }">
+                            <div>
+                                <label class="control-label" for="airwayBill">{{'AirWayBill' | translate}}:</label>
+                            </div>
+                            <div class="inputText">
+                                <input type="text" id="airwayBill" name="airwayBill" ng-model="uploadDocument.AirWayBillDocument" class="form-control" required />
+                                <span class="help-block has-error ng-hide" ng-show="AWBDocForm.airwayBill.$invalid &&
+                                            (AWBDocForm.airwayBill.$dirty || submitted)">
+                                    {{'AirWayBillValidError' | translate}}
+                                </span>
+                            </div>
+                          <div class="button attachBtn" ng-model="AirWayBillDocumentActualFile" name="customDocFile" ngf-pattern="'image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                 accept="image/*,application/pdf,application/msword,application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                 ngf-select="whileAddingDoc($files, $file, $event, 1)">
+                                <button type="button" class="btn btn-blue">{{'Attach' | translate}}</button>
+                            </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                     
+                    </div>
+                    <div class="clearfix"></div>
+           
+                <div>
+                    <div class="floatRight form-group" style="padding-right:15px;">
+                        <div class="padding-tb-15"><button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Confirm' | translate}}</button></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+

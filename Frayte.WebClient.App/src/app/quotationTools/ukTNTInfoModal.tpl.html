@@ -1,0 +1,26 @@
+﻿<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{LogisticCompany}} {{'Supplementary_Information' | translate}}</h4>
+        </div>
+      <!--modal body-->
+        <div class="modal-body" ng-show="LogisticCompany === 'TNT'">
+            <div class="text-center">
+                {{UKTNTInfo}}<a href="https://www.tnt.com/express/en_gb/site/home/how-to-ship-parcel/shipping-services/additional-services/domestic-additional-services.html" target="_blank">{{UKTNTInfo1}}</a>
+            </div>
+        </div>
+        <div class="modal-body" ng-show="LogisticCompany === 'UPS'">
+            <div class="text-center">
+                {{UKTNTInfo}}<a href="https://www.ups.com/assets/resources/media/service_guide_hk.pdf" target="_blank">{{UKTNTInfo1}}</a>
+            </div>
+        </div>
+        <!--end-->
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="pull-left">
+                <button class="btn btn-cancel fontsize12" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</section>

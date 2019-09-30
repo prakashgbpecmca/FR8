@@ -1,0 +1,19 @@
+﻿
+<section class="container">
+    <div class="col-sm-12">
+        <div class="content padding-15">
+            <div class="text-center padding-tb-15" ng-if="confirmSection"><h4>{{'New' | translate}} {{'Shipment' | translate}} {{'Confirmed' | translate}}</h4></div>
+            <div class="text-center padding-tb-15" ng-if="!confirmSection"><h4>{{'New' | translate}} {{'Shipment' | translate}} {{'Rejected' | translate}}</h4></div>
+            <div class="text-center padding-tb-15" ng-if="confirmSection">
+                <p>Customer Confirmed.</p>
+                <p>A confirmation mail will be send to opereation staff user.</p>
+            </div>
+            <div class="text-center padding-tb-15" ng-if="!confirmSection">
+                <p>Customer Rejected.</p>
+                <p>A rejection mail will be send to opereation staff user.</p>
+            </div>
+            <div class="clearfix"></div>
+            <br>
+        </div>
+    </div>
+</section>

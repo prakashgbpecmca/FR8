@@ -1,0 +1,104 @@
+﻿
+<form name="CustomerDetailForm" ng-submit="SaveCustomerDetail(CustomerDetailForm.$valid,customerDetail)" novalidate>
+    <!-- expres shipment grid-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="floatLeft" ng-click="ShowHidePickupPanel()" style="margin-top: 9px; cursor: pointer;"><span>{{'Frayte' | translate}} {{'Shipments' | translate}}</span></div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div data-ui-grid="gridOptionsAddressBook" data-ui-grid-resize-columns data-ui-grid-move-columns data-ui-grid-pinning data-ui-grid-selection data-ui-grid-exporter data-ui-grid-auto-resize class="myGrid" style="min-height:170px !important;"></div>
+        </div>
+    </div>
+
+    <!--Basic Detail-->
+    <div class="panel panel-default">
+        <div class="panel-heading">{{'Details' | translate}}</div>
+        <div class="panel-body">
+            <div class="clearfix"></div>
+            <div class="col-sm-3 col-xs-10">
+                <div class="form-group" ng-class="{ 'has-error': CustomerDetailForm.workingWeekDay.$invalid &&
+                                (CustomerDetailForm.workingWeekDay.$dirty || submitted) }">
+                    <label class="control-label" for="workingWeekDay">Frayte Bag</label>
+                    <div>
+                        <select id="workingWeekDay" name="workingWeekDay"
+                                ng-model="customerDetail.WorkingWeekDay"
+                                ng-options="WorkingWeekDay.Description for WorkingWeekDay in WorkingWeekDays | orderBy:'Description' track by WorkingWeekDay.WorkingWeekDayId"
+                                class="form-control" required>
+                            <option value="" disabled selected>Select Bag</option>
+                        </select>
+                        <span class="help-block has-error"
+                              ng-show="CustomerDetailForm.workingWeekDay.$invalid &&
+                           (CustomerDetailForm.workingWeekDay.$dirty || submitted)">
+                            {{'WeekdaysValidError' | translate}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="form-group" ng-class="{ 'has-error': (CustomerDetailForm.creditLimit.$invalid &&
+                                            (CustomerDetailForm.creditLimit.$dirty || submitted)) ||
+                                             (!CustomerDetailForm.creditLimit.$invalid && CustomerDetailForm.creditLimitCode.$invalid &&
+                                            (CustomerDetailForm.creditLimitCode.$dirty || submitted))}">
+                    <div class="col-sm-4">
+                        <div class="block01">
+                            <label class="control-label" for="creditLimitCode">Select Frayte AWB</label>
+                            <select id="creditLimitCode" name="creditLimitCode"
+                                    ng-model="customerDetail.DeclaredCurrency"
+                                    ng-options="CurrencyType.CurrencyDescription for CurrencyType in CurrencyTypes | orderBy:'CurrencyDescription' track by CurrencyType.CurrencyCode"
+                                    class="form-control" required>
+                                <option value="" disabled selected>Select Frayte AWB</option>
+                            </select>
+                            <span class="help-block has-error" ng-show="!CustomerDetailForm.creditLimit.$invalid && CustomerDetailForm.creditLimitCode.$invalid &&
+                                            (CustomerDetailForm.creditLimitCode.$dirty || submitted)">
+                                Select Frayte AWB
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-xs-10">
+                        <div class="block02">
+                            <label class="control-label" for="creditLimitCode">Cartoon Quantity</label>
+                            <input type="text" id="creditLimit" name="creditLimit" ng-model="customerDetail.CreditLimit" class="form-control" placeholder="Cartoon Quantity" required only-decimal />
+                            <span class="help-block has-error" ng-show="CustomerDetailForm.creditLimit.$invalid &&
+                                            (CustomerDetailForm.creditLimit.$dirty || submitted)">
+                                {{'CreditLimitValidError' | translate}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-3">
+                        <button class="btn btn-default" id="addBag" name="Add To Bag" style="margin-top:25px;">Add To Bag</button>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!--second panel body start-->
+        <!--Tradelane-->
+        <div class="panel-default" style="padding:15px;">
+            <div class="panel-heading" style="margin-left: 14px; margin-right:12px;">
+                <div class="floatLeft" ng-click="ShowHidePickupPanel()" style="margin-top: 9px; cursor: pointer; margin-left:10px;"><span>Basic</span></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <div data-ui-grid="gridOptionsAddressBook" data-ui-grid-resize-columns data-ui-grid-move-columns data-ui-grid-pinning data-ui-grid-selection data-ui-grid-exporter data-ui-grid-auto-resize class="myGrid" style="min-height:170px !important;margin-top:-16px; "></div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div>
+        <span class="floatLeft">
+            <a href="" ng-click="GoBack()" class="btn-BigSecondary">{{'Cancel' | translate}}</a>
+        </span>
+        <div class="floatRight">
+            <button type="submit" ng-click="submitted=true" class="btn-BigPrimary">{{'Create_Manifest' | translate}}</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</form>

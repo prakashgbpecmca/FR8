@@ -1,0 +1,91 @@
+﻿body {
+}
+
+.height50 {
+    background: #808080;
+    color: #fff;
+}
+
+.width08 {
+    width: 8.33%;
+    float: left;
+    border: 1px solid #e5e5e5;
+}
+
+.width13 {
+    width: 10%;
+    float: left;
+    border: 1px solid #e5e5e5;
+}
+
+.width3 {
+    width: 6.66%;
+    float: left;
+    border: 1px solid #e5e5e5;
+}
+
+.width100 {
+    width: 100%;
+    float: left;
+    background: rgb(0, 185, 129);
+}
+
+.blueBack {
+    background: rgb(52, 152, 219);
+}
+
+.background {
+    background: rgb(209, 51, 255);
+    padding: 1px 0px 1px;
+}
+
+.padding {
+    padding: 10px 0px 10px;
+}
+
+
+
+
+@media print {
+    .height50 {
+        background: #808080 !important;
+        color: #fff;
+    }
+
+    .width08 {
+        width: 8.33%;
+        float: left;
+        border: 1px solid #e5e5e5;
+    }
+
+    .width13 {
+        width: 10%;
+        float: left;
+        border: 1px solid #e5e5e5;
+    }
+
+    .width3 {
+        width: 6.66%;
+        float: left;
+        border: 1px solid #e5e5e5;
+    }
+
+    .width100 {
+        width: 100%;
+        float: left;
+        background: rgb(0, 185, 129) !important;
+    }
+
+    .blueBack {
+        background: rgb(52, 152, 219) !important;
+    }
+
+    .background {
+        background: rgb(209, 51, 255) !important;
+        padding: 1px 0px 1px;
+    }
+
+    .padding {
+        padding: 10px 0px 10px;
+    }
+}

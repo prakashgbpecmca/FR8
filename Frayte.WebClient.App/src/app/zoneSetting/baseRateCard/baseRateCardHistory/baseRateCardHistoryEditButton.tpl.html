@@ -1,0 +1,16 @@
+﻿
+<div class="ui-grid-cell-contents fontsize12" id="dropdown-scrollable-container padding-5">
+    <div class="btn-group action-fixed-grid-center" uib-dropdown dropdown-append-to-body>
+        &nbsp;<a id="btn-append-to-to-body" href="" uib-dropdown-toggle>
+            <div class="fix-center-action pointer"><span class="action-font-family">{{'Actions' | translate}}</span> <i class="fa fa-caret-down pointer" aria-hidden="true"></i>&nbsp;</div>
+        </a>
+        <ul class="fix-dropdown-overlay action-button-open" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+            <li>
+                <a href="" ng-click="grid.appScope.ExportRateCardreport(row)">
+                    <span class="padEdit"><i class="fa fa-file-excel-o"></i></span>
+                    <span>{{'Download' | translate}} {{'Rate' | translate}} {{'Card' | translate}} {{'Excel' | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

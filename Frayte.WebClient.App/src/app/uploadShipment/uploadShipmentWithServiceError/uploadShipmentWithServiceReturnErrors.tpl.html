@@ -1,0 +1,187 @@
+﻿
+<section>
+    <div id="UploadShipment">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+                <h4 class="modal-title">{{'Upload_Shipment_Status' | translate}}</h4>
+            </div>
+            <div class="modal-body padding0 padding-bottom-none">
+                <section ng-if="ServiceType === 'ECOMMERCE_SS'">
+                    <div class="col-sm-12">
+                        <!--top success message-->
+                        <div class="panel panel-default">
+                            <div ng-if="UnsuccessFullShipments.length === 0">
+                            <div class="col-sm-12 panel-body padding-bottom-none ">
+                                <div class="alert alert-success form-group">
+                                    <!--Out of {{ShipmentData.length}} Shipments {{ShipmentData.length}} shipments are Created Successfully.-->
+                                   {{'Thanqu_For_Submitting_Your_Request' | translate}}
+                                </div>
+                                <center>
+                                    <img ng-src="{{ImagePath + 'uploadProcess.png'}}" class="img-responsive" />
+                                </center>
+                            </div>
+                            </div>
+                            <div ng-if="UnsuccessFullShipments.length > 0">
+                                <!--top success message-->
+                                <div class="col-sm-12 panel-body padding-bottom-none">
+                                    <div class="alert alert-danger">
+                                        {{'Out_Of' | translate}} {{ShipmentData.length}} {{'Shipments' | translate}} {{ShipmentData.length - UnsuccessFullShipments.length}} {{shipment}} {{'Created_Successfully' | translate}}.
+                                        {{'There_Are_Errorson' | translate}} {{UnsuccessFullShipments.length}} {{'Shipments_Please_Find_The_Detail' | translate}}.
+                                    </div>
+                                </div>
+                                <!--end-->
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!--end-->                  
+                        <div class="panel panel-default" ng-if="UnsuccessFullShipments.length > 0">                            
+                            <!--header code-->
+                            <div class="col-sm-12 flex paddingboth manifest grid-background">
+                                <div class="width986 flex">
+                                    <div class="width25 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'Shipment_Method' | translate}}</span></div>
+                                    <div class="width25 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'Frayte_ShipmentNo#' | translate}} <span class="redColor">#</span></span></div>
+                                    <div class="width25 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'From_Shipper' | translate}} <span class="redColor">#</span></span></div>
+                                    <div class="width25 bold quotation-table-padding border-right-none"><span class="quotation-table-body padding-10-5">{{'To_Consignee' | translate}}</span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!--end-->
+                            <div class="clearfix"></div>
+                            <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                <!--header body code here-->
+                                <div class="panel-body border-ddd padding0">
+                                    <ul class="list-unstyled change margin-bottom-none">
+                                        <li>
+                                            <div ng-repeat="Shipment in UnsuccessFullShipments" class="width100 pointer">
+                                                <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class={'demoClass':gridDirectBooking.IsSelected}>
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span>{{Shipment.CourierCompany}}</span></div>
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span>{{Shipment.FrayteNumber}}</span></div>
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span>{{Shipment.ShipFrom.CompanyName}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/Kg</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span>{{Shipment.ShipTo.CompanyName}}</span></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <ul class="list-unstyled change margin-bottom-none">
+                                                    <li>
+                                                        <div class="col-sm-12 pointer">
+                                                            <p ng-if="UnsuccessFullShipmentErrors.Address.length >0" ng-repeat="Address in UnsuccessFullShipmentErrors.Address">
+                                                                {{$index + 1}}. {{Address}}.
+                                                            </p>
+                                                            <p ng-if="UnsuccessFullShipmentErrors.Package.length >0" ng-repeat="Package in UnsuccessFullShipmentErrors.Package">
+                                                                {{$index + 1}}. {{Package}}.
+                                                            </p>
+                                                            <p ng-if="UnsuccessFullShipmentErrors.Service.length >0" ng-repeat="Service in UnsuccessFullShipmentErrors.Service">
+                                                                {{$index + 1}}. {{Service}}.
+                                                            </p>
+                                                            <p ng-if="UnsuccessFullShipmentErrors.Custom.length >0" ng-repeat="Custom in UnsuccessFullShipmentErrors.Custom">
+                                                                {{$index + 1}}. {{Custom}}.
+                                                            </p>
+                                                            <p ng-if="UnsuccessFullShipmentErrors.ServiceError.length >0" ng-repeat="ServiceError in UnsuccessFullShipmentErrors.ServiceError">
+                                                                {{$index + 1}}. {{ServiceError}}.
+                                                            </p>
+                                                            <p ng-if="UnsuccessFullShipmentErrors.MiscErrors.length >0" ng-repeat="MiscErrors in UnsuccessFullShipmentErrors.MiscErrors">
+                                                                {{$index + 1}}. {{MiscErrors}}.
+                                                            </p>
+                                                            <p ng-if="UnsuccessFullShipmentErrors.Miscellaneous.length >0" ng-repeat="Miscellaneous in UnsuccessFullShipmentErrors.Miscellaneous">
+                                                                <!--{{$index + 1}}. {{Miscellaneous}}.-->
+                                                                {{$index + 1}} {{'System_Couldnot_Verify_Your_Shipping_Account' | translate}}
+                                                            </p>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end-->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section ng-if="ServiceType === 'ECOMMERCE_WS'">
+                    <div class="col-sm-12">
+                        <div class="form-group"></div>
+                        <!--top success message-->
+                        <div class="panel panel-default">                        
+                            <div ng-if="SuccessFullShipments.length === ShipmentData.length">
+                                <div class="col-sm-12 panel-body padding-bottom-none">
+                                    <div class="alert alert-success">
+                                        {{'Successfully_Created' | translate}} {{ShipmentData.length}} / {{ShipmentData.length}} {{ship}}.
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div ng-if="SuccessFullShipments.length === 0">
+                                <div class="col-sm-12 panel-body padding-bottom-none">
+                                    <div class="alert alert-success">
+                                        Could not create shipment. Please check the unsuccessful shipment section.
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div ng-if="SuccessFullShipments.length > 0 && SuccessFullShipments.length !== ShipmentData.length">
+                                <!--top success message-->
+                                <div class="col-sm-12 panel-body padding-bottom-none">
+                                    <div class="alert alert-danger">
+                                       {{'Successfully_Created' | translate}} {{SuccessFullShipments.length}} / {{ShipmentData.length}} {{ship}}.
+                                    </div>
+                                    <!--<div class="alert alert-danger">
+                                        <strong>{{$index + 1}}.</strong> There are errors on {{UnsuccessFullShipments.length}} shipments please find the detail.
+                                    </div>-->
+                                </div>
+                                <!--end-->
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--end-->
+                        <div class="panel panel-default" ng-if="SuccessFullShipments.length > 0">
+                            <!--header code-->
+                            <div class="col-sm-12 flex paddingboth manifest grid-background">
+                                <div class="width986 flex">
+                                    <div class="width25 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'Status' | translate}}</span></div>
+                                    <div class="width25 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'Shipment_Method' | translate}}</span></div>
+                                    <!--<div class="width20 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'Frayte_ShipmentNo#' | translate}} <span class="redColor">#</span></span></div>-->
+                                    <div class="width25 bold quotation-table-padding "><span class="quotation-table-body padding-10-5">{{'From_Shipper' | translate}} <span class="redColor">#</span></span></div>
+                                    <div class="width25 bold quotation-table-padding border-right-none"><span class="quotation-table-body padding-10-5">{{'To_Consignee' | translate}}</span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!--end-->
+                            <div class="clearfix"></div>
+                            <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                <!--header body code here-->
+                                <div class="panel-body border-ddd padding0">
+                                    <ul class="list-unstyled change margin-bottom-none">
+                                        <li>
+                                            <div ng-repeat="Shipment in SuccessFullShipments" class="width100 pointer">
+                                                <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class={'demoClass':gridDirectBooking.IsSelected}>
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span class="color-success">{{Shipment.BookingStatusType}}</span></div>
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span>{{Shipment.CourierCompany}}</span></div>
+                                                    <!--<div class="width20 quotation-table-body word-wrap padding-5"><span>{{Shipment.FrayteNumber}}</span></div>-->
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span>{{Shipment.ShipFrom.CompanyName}}</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per Kg'">/Kg</span> <span ng-show="ukShipmentService.FirstUkmailService.UnitOfMeasurement==='Per 10 Kg'">/10 {{'kGS' | translate}}</span></div>
+                                                    <div class="width25 quotation-table-body word-wrap padding-5"><span>{{Shipment.ShipTo.CompanyName}}</span></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end-->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div class="col-sm-12">
+                    <div class="red pull-left">{{'Upload_Shipment_Note' | translate}}</div>
+                    <button type="button" class="btn-simple btn-save pull-right" ng-click="$dismiss('cancel')"><i class="fa fa-check" aria-hidden="true"></i> {{'OK' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

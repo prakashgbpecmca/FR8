@@ -1,0 +1,221 @@
+﻿<div>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$close('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{Mode}} {{'Service_Alert' | translate}} </h4>
+    </div>
+    <form name="SystemAlertForm" ng-submit="SaveSystemAlert(SystemAlertForm.$valid, systemAlertDetail)" novalidate>
+        <div class="modal-body">
+            <div class="col-sm-12">
+                <div class="form-group col-sm-12" ng-class="{ 'has-error': HeadingAvailable || SystemAlertForm.heading.$invalid &&
+                                                         (SystemAlertForm.heading.$dirty || submitted) }">
+                    <div class="width20">
+                        <h5 style="margin-top:0px !important;" class="top5">
+                            <label name="systemAlertLabel" for="heading" class="control-label">{{'SystemAlert_Heading' | translate}} <span class="redColor">*</span></label>
+                        </h5>
+                    </div>
+                    <div class="width80">
+                        <div>
+                            <input type="text" ng-blur="CheckHeading(systemAlertDetail.Heading)" type="text" name="heading" id="heading" ng-model="systemAlertDetail.Heading" class="form-control" placeholder="{{'SystemAlert_Heading' | translate}} ({{'Required' | translate}})" required/>
+                            <!--<textarea ng-blur="CheckHeading(systemAlertDetail.Heading)" type="text" name="heading" id="heading" ng-model="systemAlertDetail.Heading" rows="5" cols="10" class="form-control" placeholder="{{'SystemAlert_Heading' | translate}} ({{'Required' | translate}})" required>{{'SystemAlert_Heading' | translate}} ({{'Required' | translate}})</textarea>-->
+
+                            <!--<input ng-blur="CheckHeading(systemAlertDetail.Heading)" type="text" name="heading" id="heading" ng-model="systemAlertDetail.Heading" class="form-control" placeholder="{{'SystemAlert_Heading' | translate}} ({{'Required' | translate}})" required/>-->
+                            <span ng-if="HeadingAvailable !== true || HeadingAvailable !== false" class="help-block has-error"
+                                  ng-show="SystemAlertForm.heading.$invalid &&
+                                            (SystemAlertForm.heading.$dirty || submitted)">
+                                {{'Alert_Required' | translate}}
+                            </span>
+                        </div>
+                        <span class="help-block has-error" ng-show="HeadingAvailable === true">
+                            {{'Alert_Already_Exist' | translate}}
+                        </span>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <div text-angular="text-angular" name="editSystemAlert" ng-model="systemAlertDetail.Description" ta-disabled='disabled' class="col-sm-12"></div>
+                <div class="clearfix"></div>
+                <br />
+                <div>
+                    <!--<div class="col-sm-12 paddingboth">-->
+                    <!--<div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': SystemAlertForm.TimeZoneDetail.$invalid &&
+                                                             (SystemAlertForm.TimeZoneDetail.$dirty || submitted) }">
+                        <label for="TimeZoneDetail" class="col-sm-4 paddingboth lineheight30 control-label">{{'TimeZone_Detail' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth paddingLR67">
+                            <pre>{{systemAlertDetail.TimeZoneDetail}}</pre>
+                            <select name="TimeZoneDetail" ng-options="TimeZone.OffsetShort + ' - ' + TimeZone.Name  for TimeZone in TimeZoneList  track by TimeZone.TimezoneId"
+                                    ng-model="systemAlertDetail.TimeZoneDetail" class="form-control" required>
+                                <option value="" disabled>{{'TimeZone_Detail' | translate}} ({{'Required' | translate}})</option>
+
+                            </select>
+
+                        </div>
+
+                        <span class="help-block has-error left7"
+                              ng-show="SystemAlertForm.TimeZoneDetail.$error.required &&
+                                                    (SystemAlertForm.TimeZoneDetail.$dirty || submitted)">
+                           {{'TimeZone_Required' | translate}}
+                        </span>
+                        <span class="help-block has-error left7"
+                              ng-show="SystemAlertForm.TimeZoneDetail.$invalid && !SystemAlertForm.TimeZoneDetail.$error.required &&
+                                                    (SystemAlertForm.TimeZoneDetail.$dirty || submitted)">
+                          {{'TimeZone_Invalid' | translate}}
+                        </span>
+                    </div>-->
+
+
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': SystemAlertForm.FromDate.$invalid &&
+                                                         (SystemAlertForm.FromDate.$dirty || submitted) }">
+                        <label for="fromdate" class="col-sm-4 paddingboth lineheight30 control-label">{{'From_Date' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-7 paddingboth">
+                            <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                   uib-datepicker-popup="dd/MM/yyyy" ng-model="systemAlertDetail.FromDate1" is-open="status.opened"
+                                   uib-datepicker-options="dateOptions"
+                                   close-text="Close" ng-click="openCalender($event)" ng-change ="ChangeFromDate(systemAlertDetail.FromDate1)" required
+                                   placeholder="{{'From_Date' | translate}} ({{'Required' | translate}})" style="padding-left: 7px !important;" readonly />
+                            <span class="help-block has-error"
+                                  ng-show="SystemAlertForm.FromDate.$error.required &&
+                                                (SystemAlertForm.FromDate.$dirty || submitted)">
+                                {{'From_'| translate}} {{'Date_Required' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="SystemAlertForm.FromDate.$invalid && !SystemAlertForm.FromDate.$error.required &&
+                                                (SystemAlertForm.FromDate.$dirty || submitted)">
+                                {{'From_'| translate}} {{'Date_Invalid' | translate}}
+                            </span>
+                        </div>
+                        <div class="col-sm-1 paddingboth" style="position:absolute;right:18px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': CompareDate || SystemAlertForm.ToDate.$invalid &&
+                                                         (SystemAlertForm.ToDate.$dirty || submitted) }">
+                        <label for="todate" class="col-sm-4 paddingboth lineheight30 control-label">{{'To_Date' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-7 paddingboth">
+                            <input ng-blur="DateComparision()" type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                                   ng-model="systemAlertDetail.ToDate1" is-open="status1.opened"
+                                   uib-datepicker-options="dateOptions"
+                                   close-text="Close" ng-click="openCalender1($event)" ng-change="ChangeToDate(systemAlertDetail.ToDate1)" required
+                                   placeholder="{{'To_Date' | translate}} ({{'Required' | translate}})" readonly />
+                            <span class="help-block has-error"
+                                  ng-show="SystemAlertForm.ToDate.$error.required && (CompareDate===true || CompareDate===false) &&
+                                                (SystemAlertForm.ToDate.$dirty || submitted)">
+                                {{'To_'| translate}} {{'Date_Required' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-if="CompareDate===true || CompareDate===false"
+                                  ng-show="SystemAlertForm.ToDate.$invalid && !SystemAlertForm.ToDate.$error.required &&
+                                                (SystemAlertForm.ToDate.$dirty || submitted)">
+                                {{'From_'| translate}} {{'Date_Invalid' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="CompareDate ===true">
+                                {{'DateShould_Be_Greater' | translate}}
+                            </span>
+                        </div>
+                        <div class="col-sm-1 paddingboth" style="position:absolute;right:18px;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <div class="col-sm-4 paddingboth">
+                            <label for="collectiontime" id="collectiontime1" class="control-label lineheight24">{{'From_' | translate}} {{'Time' | translate}} <span class="redColor">*</span></label>
+                        </div>
+                        <div class="col-sm-7 paddingboth">
+                            <div system-alert-time datasource="systemAlertDetail.FromTime">
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-1 paddingboth text-right quotation-tool">
+                            <a href="" class="padding7px" uib-popover='Estimated Collection Time' popover-trigger="'outsideClick'">
+                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                            </a>
+                        </div>-->
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <div class="col-sm-4 paddingboth">
+                            <label for="collectiontime2" id="collectiontime2" class="control-label lineheight24">{{'To' | translate}} {{'Time' | translate}} <span class="redColor">*</span></label>
+                        </div>
+                        <div class="col-sm-7 paddingboth">
+                            <div system-alert-to datasource="systemAlertDetail.ToTime">
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-1 paddingboth text-right quotation-tool">
+                            <a href="" class="padding7px" uib-popover='Estimated Collection Time' popover-trigger="'outsideClick'">
+                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                            </a>
+                        </div>-->
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': SystemAlertForm.timeZone.$invalid &&
+                                                         (SystemAlertForm.timeZone.$dirty || submitted) }">
+                        <label for="timeZone" class="col-sm-4 lineheight24 control-label paddingleft paddingboth">{{'TimeZone_Detail' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth" id="Xe">
+                            <select id="timeZone" name="timeZone"
+                                    ng-model="systemAlertDetail.TimeZoneDetail"
+                                    ng-options="TimeZone.OffsetShort + ' - ' + TimeZone.Name disable when TimeZone.Disabled ===true for TimeZone in TimeZoneList  track by TimeZone.TimezoneId"
+                                    class="form-control fontsize12" required>
+                                <option value="" selected disabled class="display-none">{{'TimeZone_Detail' | translate}} ({{'Required' | translate}})</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="SystemAlertForm.timeZone.$invalid &&
+                                            (SystemAlertForm.timeZone.$dirty || submitted)">
+                                {{'TimeZone_Detail' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+
+                <!--<div class="col-sm-6 form-group paddingboth" ng-class="{ 'has-error': SystemAlertForm.Date.$invalid &&
+                                                         (SystemAlertForm.Date.$dirty || submitted) }">
+                    <label for="date" class="col-sm-4 paddingright lineheight30 control-label">{{'SystemAlert_Date' | translate}} <span class="redColor">*</span></label>
+                    <div class="col-sm-7 paddingright" style="left: -7px;">
+                        <input type="text" id="Date" name="Date" style="padding-left:7px !important;" class="form-control paddingleft fontsize12" uib-datepicker-popup="dd/MM/yyyy"
+                               ng-model="systemAlertDetail.Date" is-open="status2.opened"
+                                  uib-datepicker-options="dateOptions"
+                               close-text="Close" ng-click="openCalender2($event)" required
+                               placeholder="{{'SystemAlert_Date' | translate}} ({{'Required' | translate}})" readonly/>
+                        <span class="help-block has-error"
+                              ng-show="SystemAlertForm.Date.$error.required &&
+                                                (SystemAlertForm.Date.$dirty || submitted)">
+                         {{'SystemAlert_Date' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="SystemAlertForm.Date.$invalid && !SystemAlertForm.Date.$error.required &&
+                                                (SystemAlertForm.Date.$dirty || submitted)">
+                            {{'AlertDate_Required' | translate}}
+                        </span>
+                    </div>
+                    <div class="col-sm-1 paddingboth" style="position:absolute;right:7px;">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>-->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="col-sm-12">
+                    <div class="pull-left">
+                        <button type="button" ng-click="$close('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}} </button> &nbsp;&nbsp;
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

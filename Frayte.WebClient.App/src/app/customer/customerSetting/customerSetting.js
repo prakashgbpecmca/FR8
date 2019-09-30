@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.customerSetting', ['ui.router', 'ngApp.common', 'ui.grid']);

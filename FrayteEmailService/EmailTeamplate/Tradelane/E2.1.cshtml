@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<style>
+ p{
+margin:0px !important;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0; font-family: calibri, sans-serif;padding:10px 20px;"> 
+  <header>
+         <div style="height: 70px; background: #fff !important; text-align: left;">
+            <img src="cid:@Model.ImageHeader" />
+        </div>
+    </header>
+	<br/>
+<table style="border-spacing: 0px;">
+	<tr><td style="font-family: calibri, sans-serif;">Dear <span><b>@Model.CustomerName,</b></span></td></tr>
+	<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+    <tr><td style="font-family: calibri, sans-serif;">We are pleased to inform you that the FRAYTE GLOBAL (@Model.CompanyName) has CONFIRMED the booking. Please see the shipment information below.</td></tr>
+	<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+<tr>
+<td style="font-family: calibri, sans-serif;"><b>Shipment Handler Method:</b> <span>@Model.ShipmentDetail.ShipmentHandlerMethod.ShipmentHandlerMethodDisplay</span></td>
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;"><b>MAWB#:</b> <span>@Model.ShipmentDetail.MAWB</span></td>
+</tr>
+</table>
+<br/>
+
+<table style="border-spacing: 0px;">
+<tr>
+<td style="font-family: calibri, sans-serif;"><b>Collection Address (Shipper) Details</b></td>
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.FirstName @Model.ShipmentDetail.ShipFrom.LastName</td>
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.CompanyName</td>
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.Address</td>
+</tr>
+@if(@Model.ShipmentDetail.ShipFrom.Address2 != null && @Model.ShipmentDetail.ShipFrom.Address2 != ""){
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.Address2</td>
+</tr>
+}
+<tr>
+<td style="font-family: calibri, sans-serif;"><span>@Model.ShipmentDetail.ShipFrom.City</span> @if(@Model.ShipmentDetail.ShipFrom.Area != null && @Model.ShipmentDetail.ShipFrom.Area != ""){<span>@Model.ShipmentDetail.ShipFrom.Area -</span>} <span>@Model.ShipmentDetail.ShipFrom.PostCode</span></td> 
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipFrom.Country.Name - @Model.ShipmentDetail.DepartureAirport.AirportCode</td>
+</tr>
+</table>
+<br/>
+
+<table style="border-spacing: 0px;">
+<tr>
+<td style="font-family: calibri, sans-serif;"><b>Delivery Address (Consignee) Details</b></td>
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.FirstName @Model.ShipmentDetail.ShipTo.LastName</td>
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.CompanyName</td>
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.Address</td>
+</tr>
+@if(@Model.ShipmentDetail.ShipTo.Address2 != null && @Model.ShipmentDetail.ShipTo.Address2 != ""){
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.Address2</td>
+</tr>
+}
+<tr>
+<td style="font-family: calibri, sans-serif;"><span>@Model.ShipmentDetail.ShipTo.City</span> @if(@Model.ShipmentDetail.ShipTo.Area != null && @Model.ShipmentDetail.ShipTo.Area != ""){<span>@Model.ShipmentDetail.ShipTo.Area -</span>} <span>@Model.ShipmentDetail.ShipTo.PostCode</span></td> 
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;">@Model.ShipmentDetail.ShipTo.Country.Name - @Model.ShipmentDetail.DestinationAirport.AirportCode</td>
+</tr>
+</table>
+<br/>
+<table style="border-spacing: 0px;">
+<tr>
+<td style="font-family: calibri, sans-serif;"><b>Total CTNs:</b> <span>@Model.TotalCarton <span>(QTY)</span></span></td>
+</tr>
+<tr>
+<td style="font-family: calibri, sans-serif;"><b>Estimated Gross Weight:</b> @Model.TotalWeight <span>@Model.WeightUnit</span></td>
+</tr>
+<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">Should you have any questions or concerns, please feel free to contact us.</td></tr>
+</table>
+<br/>
+
+<table style="border-spacing: 0px;">
+<tr><td style="font-family: calibri, sans-serif;">Kind Regards,</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">&nbsp;</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">@Model.UserName</td></tr>
+<tr><td style="font-family: calibri, sans-serif;">@Model.UserPosition</td></tr>
+<tr><td style="font-family: calibri, sans-serif;"><b>FRAYTE GLOBAL</b></td></tr>
+<tr><td style="font-family: calibri, sans-serif;"><b>Email: </b><span>@Model.UserEmail</span></td></tr>
+<tr><td style="font-family: calibri, sans-serif;"><b>Phone: </b><span>@Model.UserPhone</span></td></tr>
+<tr><td style="font-family: calibri, sans-serif;"><a href="@Model.SiteAddress" title="@Model.SiteAddress">@Model.Site</a></td></tr>
+</table>
+
+<br/>
+
+	<table style="border-spacing: 0px;">
+	<tr><td style="font-size: 12px;font-family: calibri, sans-serif;">FRAYTE GLOBAL All rights reserved.</td></tr>
+	</table>
+</body>
+</html>
+
+

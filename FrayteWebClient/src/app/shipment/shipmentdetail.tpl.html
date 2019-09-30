@@ -1,0 +1,407 @@
+﻿<form name="ShipmentForm" ng-submit="submit(ShipmentForm.$valid, shipment)" novalidate>
+    <div ng-class="{ 'container': !isLogin }">
+        <section ng-class="{ 'content-Quickbooking': !isLogin }">
+            <div ng-class="{ 'padding-15': !isLogin }">
+                <div class="countbox">
+                    <div class="pos-rel">
+                        <div class="hrRule"></div>
+                        <div class="stepContainer">
+                            <div class="col-xs-3">
+                                <div class="outerBlock">
+                                    <div class="innerBlock-white">
+                                        <span class="step-boxFill">
+                                            <img ng-src="{{ImagePath + 'visitedAddrDetail.png'}}" style=" width: 59px; margin: -7px 0 0 -8px;" />
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="step-boxTitleFill">{{'ProcessBox_AddressDetails' | translate}}</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="outerBlock">
+                                    <div class="innerBlock-white">
+                                        <span class="step-boxFill">
+                                            <img ng-src="{{ImagePath + 'visitedServiceOptn.png'}}" style=" width: 59px; margin: -7px 0 0 -8px;" />
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="step-boxTitleFill">{{'ProcessBox_ServiceOptions' | translate}}</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="outerBlock">
+                                    <div class="innerBlock-white">
+                                        <span class="step-boxActive"><img ng-src="{{ImagePath + 'activeShipDetail.png'}}" style=" width: 50px; margin: -6px 0 0px -4px;" /></span>
+                                    </div>
+                                </div>
+                                <div class="step-boxTitleActive">{{'ProcessBox_ShipmentDetails' | translate}}</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="outerBlock">
+                                    <div class="innerBlock-white">
+                                        <span class="step-box"><img ng-src="{{ImagePath + 'inActiveConfirm.png'}}" style=" width: 59px; margin: -7px 0 0px -8px;" /></span>
+                                    </div>
+                                </div>
+                                <div class="step-boxTitle">{{'ProcessBox_ConfirmShipment' | translate}}</div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="col-lg-12">
+                            <h3>{{'shipment_ShipmentDetailsHeading' | translate}}</h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-class="{ 'has-error': ShipmentForm.descContent.$invalid &&
+                                                         (ShipmentForm.descContent.$dirty || submitted) }">
+                                <label class="control-label" for="descContent">{{'shipment_ShipmentDetailsDescription' | translate}}</label>
+                                <textarea id="descContent" name="descContent" ng-model="shipment.ContentDescription" class="form-control" required></textarea>
+                                <span class="help-block has-error"
+                                      ng-show="ShipmentForm.descContent.$invalid &&
+                                            (ShipmentForm.descContent.$dirty || submitted)">
+                                    {{'shipment_ShipmentDetailsDescriptionValidError' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" ng-class="{ 'has-error': ShipmentForm.shipmentyype.$invalid &&
+                                                         (ShipmentForm.shipmentyype.$dirty || submitted) }">
+                                <label class="control-label" for="shipmentyype">{{'shipment_ShipmentDetailsShipmentType' | translate}}</label>
+                                <select id="shipmentyype" name="shipmentyype"
+                                        ng-model="shipment.ShipmentDuitable"
+                                        ng-options="shipmentType.Description for shipmentType in shipmentTypes track by shipmentType.ShipmentTypeId"
+                                        class="form-control" required>
+                                    <option value="" disabled selected>{{'shipmentTypePlaceHolder' | translate}}</option>
+                                </select>
+                                <span class="help-block has-error"
+                                      ng-show="ShipmentForm.shipmentyype.$invalid &&
+                                            (ShipmentForm.shipmentyype.$dirty || submitted)">
+                                    {{'shipmentTypeValidError' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-8 form-group" ng-class="{ 'has-error': ShipmentForm.shippingDate.$invalid &&
+                                                         (ShipmentForm.shippingDate.$dirty || submitted) }">
+                                    <label class="control-label" for="shippingDate">{{'shipment_ShipmentDetailsShippingDate' | translate}} <b>{{'Hours24' | translate}}</b></label>
+                                    <p class="input-group">
+                                        <input type="text" id="shippingDate" name="shippingDate" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy" ng-model="shipment.ShippingDate" is-open="status.opened"
+                                               ng-required="true" close-text="Close" ng-click="openCalender($event)" placeholder="{{'shipment_ShipmentDetailsShippingDatePlaceholder' | translate}}" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </p>
+                                    <span class="help-block has-error"
+                                          ng-show="ShipmentForm.shippingDate.$error.required &&
+                                                (ShipmentForm.shippingDate.$dirty || submitted)">
+                                        {{'shipment_ShipmentDetailsShippingDateValidError' | translate}}
+                                    </span>
+                                    <span class="help-block has-error"
+                                          ng-show="ShipmentForm.shippingDate.$invalid && !ShipmentForm.shippingDate.$error.required &&
+                                                (ShipmentForm.shippingDate.$dirty || submitted)">
+                                        {{'shipment_ShipmentDetailsShippingDateInValid' | translate}}
+                                    </span>
+                                </div>
+                                <div class="col-sm-4 form-group" ng-class="{ 'has-error': (ShipmentForm.ShippingTime.$invalid || ShipmentForm.ShippingTime.$error.pattern) &&
+                                                     (ShipmentForm.ShippingTime.$dirty || submitted) }">
+                                    <label style="visibility:hidden;" class="control-label" for="ShippingTime">{{'Time' | translate}}</label>
+                                    <input type="text"
+                                           class="form-control input-sm"
+                                           placeholder="{{'TimePlaceholder' | translate}}"
+                                           name="ShippingTime"
+                                           ng-model="shipment.ShippingTime"
+                                           ui-mask="99:99"
+                                           ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                    <span class="help-block has-error"
+                                          ng-show="ShipmentForm.ShippingTime.$invalid && !ShipmentForm.ShippingTime.$error.pattern && (ShipmentForm.ShippingTime.$dirty || submitted)">
+                                        {{'TimeValidationError' | translate}}
+                                    </span>
+                                    <span class="help-block has-error"
+                                          ng-show="ShipmentForm.ShippingTime.$error.pattern &&
+                                                (ShipmentForm.ShippingTime.$dirty || submitted)">
+                                        {{'TimeNotValid' | translate}}
+                                    </span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3>{{'shipment_CustomsInformation' | translate}}</h3>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.declaredCurr.$invalid &&
+                                                         (ShipmentForm.declaredCurr.$dirty || submitted) }">
+                                        <label class="control-label" for="declaredCurr">{{'shipment_Currency' | translate}}</label>
+                                        <select id="declaredCurr" name="declaredCurr"
+                                                ng-model="shipment.DeclaredCurrency"
+                                                ng-options="DeclaredCurrency.CurrencyCode +' - '+ DeclaredCurrency.CurrencyDescription disable when DeclaredCurrency.Disabled ===true for DeclaredCurrency in CurrencyTypes  | orderBy:'OrderNumber' track by DeclaredCurrency.CurrencyCode"
+                                                class="form-control" required>
+                                            <option value="" disabled selected>{{'shipment_CurrencyPlaceHolder' | translate}}</option>
+                                        </select>
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.declaredCurr.$invalid &&
+                                            (ShipmentForm.declaredCurr.$dirty || submitted)">
+                                            Currency is required.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" ng-class="{ 'has-error': ShipmentForm.declareValue.$invalid &&
+                                                         (ShipmentForm.declareValue.$dirty || submitted) }">
+                                        <label class="control-label" for="declareValue">{{'shipment_DeclaredValue' | translate}}</label>
+                                        <input type="number" id="declareValue" name="declareValue" ng-model="shipment.DeclaredValue" class="form-control" required />
+                                        <span class="help-block has-error"
+                                              ng-show="ShipmentForm.declareValue.$invalid &&
+                                            (ShipmentForm.declareValue.$dirty || submitted)">
+                                            Decrlared Value is required.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div>
+                        <div class="col-lg-6">
+                            <h3>{{'shipment_ShipmentDetailsPaymentParty' | translate}} {{'Freight'| translate}}</h3>
+                            <div>{{'shipment_ShipmentDetailsPaymentPartySubHead' | translate}}</div>
+                            <div class="padding-tb-10">
+                                <span class="check-Box"><input type="radio" id="shipper" name="shipperReceiver" value="Shipper" ng-change="selectType(shipment.PaymentParty)" ng-model="shipment.PaymentParty" /></span><span class="check-BoxText">{{'Shipper' | translate}}</span> &nbsp;&nbsp;&nbsp;
+                                <span class="check-Box"><input type="radio" id="receiver" name="shipperReceiver" value="Receiver" ng-change="selectType(shipment.PaymentParty)" ng-model="shipment.PaymentParty" /></span><span class="check-BoxText">{{'Receiver' | translate}}</span> &nbsp;&nbsp;&nbsp;
+                                <span class="check-Box"><input type="radio" id="ThirdParty" name="shipperThirdParty" value="ThirdParty" ng-change="selectType(shipment.PaymentParty)" ng-model="shipment.PaymentParty" /></span><span class="check-BoxText">{{'ThirdParty' | translate}}</span> &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <br />
+                            <div ng-if="onlyShow" class="form-group" ng-class="{ 'has-error': ShipmentForm.accountNo.$invalid &&
+                                                         (ShipmentForm.accountNo.$dirty || submitted) }">
+                                <label class="control-label" for="accountNo">{{accountHolder}} {{'AccountNumber' | translate}}</label>
+                                <input type="text" id="accountNo" name="accountNo"
+                                       ui-mask="999-999-999" ng-model="shipment.PaymentPartyAccountNo" class="form-control" required />
+                                <span class="help-block has-error"
+                                      ng-show="ShipmentForm.accountNo.$invalid &&
+                                            (ShipmentForm.accountNo.$dirty || submitted)">
+                                    {{'AccountNumberValidError' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3>{{'shipment_ShipmentDetailsPaymentParty' | translate}} {{'TaxAndDuties' | translate}}</h3>
+                            <div>{{'shipment_ShipmentDetailsPaymentPartySubHead' | translate}}</div>
+                            <div class="padding-tb-10">
+                                <span class="check-Box"><input type="radio" id="shipperTax" name="shipperReceiverTax" value="Shipper" ng-change="selectTypeTaxDuties(shipment.PaymentPartyTaxDuties)" ng-model="shipment.PaymentPartyTaxDuties" /></span><span class="check-BoxText">{{'Shipper' | translate}}</span> &nbsp;&nbsp;&nbsp;
+                                <span class="check-Box"><input type="radio" id="receiverTax" name="shipperReceiverTax" value="Receiver" ng-change="selectTypeTaxDuties(shipment.PaymentPartyTaxDuties)" ng-model="shipment.PaymentPartyTaxDuties" /></span><span class="check-BoxText">{{'Receiver' | translate}}</span> &nbsp;&nbsp;&nbsp;
+                                <span class="check-Box"><input type="radio" id="ThirdPartyTax" name="shipperReceiverTax" value="ThirdParty" ng-change="selectTypeTaxDuties(shipment.PaymentPartyTaxDuties)" ng-model="shipment.PaymentPartyTaxDuties" /></span><span class="check-BoxText">{{'ThirdParty' | translate}}</span> &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <br />
+                            <div ng-if="onlyShow" class="form-group" ng-class="{ 'has-error': ShipmentForm.accountNoTax.$invalid &&
+                                                         (ShipmentForm.accountNoTax.$dirty || submitted) }">
+                                <label class="control-label" for="accountNoTax">{{accountHoldertaxDuties}} {{'AccountNumber' | translate}}</label>
+                                <input type="text" id="accountNoTax" name="accountNoTax"
+                                       ui-mask="999-999-999" ng-model="shipment.PaymentPartyTaxDutiesAccountNo" class="form-control" required />
+                                <span class="help-block has-error"
+                                      ng-show="ShipmentForm.accountNoTax.$invalid &&
+                                            (ShipmentForm.accountNoTax.$dirty || submitted)">
+                                    {{'AccountNumberValidError' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-xs-12">
+                        <div class="shipmentDetail">
+                            <div class="col-sm-6 col-md-6" ng-if="shipment.DeliveredBy.CourierType ==='Air' || shipment.DeliveredBy.CourierType ==='Sea'">
+                                <div class="form-group" ng-class="{ 'has-error': ShipmentForm.shipmentTerm.$invalid &&
+                                                         (ShipmentForm.shipmentTerm.$dirty || submitted) }">
+                                    <label class="control-label" for="shipmentTerm">{{'shipment_ShipmentTerm' | translate}}</label>
+                                    <select id="shipmentTerm" name="shipmentTerm"
+                                            ng-model="shipment.ShipmentTerm"
+                                            ng-options="ShipmentTerm.Code + ' - ' + ShipmentTerm.Detail for ShipmentTerm in ShipmentTerms track by ShipmentTerm.Code"
+                                            class="form-control" required>
+                                        <option value="" disabled selected>{{'shipment_ShipmentTermSelectedOption' | translate}}</option>
+                                    </select>
+                                    <span class="help-block has-error"
+                                          ng-show="ShipmentForm.shipmentTerm.$invalid &&
+                                            (ShipmentForm.shipmentTerm.$dirty || submitted)">
+                                        {{'shipment_ShipmentTermValidationError' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6" ng-if="shipment.DeliveredBy.CourierType ==='Air' || shipment.DeliveredBy.CourierType ==='Sea'">
+                                <div class="form-group" ng-class="{ 'has-error': ShipmentForm.packagingType.$invalid &&
+                                                         (ShipmentForm.packagingType.$dirty || submitted) }">
+                                    <label class="control-label" for="packagingType">{{'shipment_PackagingType' | translate}}</label>
+                                    <select id="packagingType" name="packagingType"
+                                            ng-model="shipment.PackagingType"
+                                            ng-options="PackagingType.Name for PackagingType in PackagingTypes track by PackagingType.PackagingTypeId"
+                                            class="form-control" required>
+                                        <option value="" disabled selected> {{'shipment_PackagingTypeSelectedOption' | translate}}</option>
+                                    </select>
+                                    <span class="help-block has-error"
+                                          ng-show="ShipmentForm.packagingType.$invalid &&
+                                            (ShipmentForm.packagingType.$dirty || submitted)">
+                                        {{'shipment_PackagingTypeValidationError' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div ng-if="shipment.DeliveredBy.CourierType ==='Expryes'" class="form-group">
+                                    <label class="control-label" for="spclDelivery"> {{'shipment_SpecialDeliveryNeeded' | translate}}</label>
+                                    <select id="spclDelivery" name="spclDelivery"
+                                            ng-model="shipment.SpecialDelivery"
+                                            ng-options="SpecialDelivery.Detail for SpecialDelivery in SpecialDeliveries track by SpecialDelivery.SpecialDeliveryId"
+                                            class="form-control">
+                                        <option value="" selected>N/A</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 piecesDetailTable">
+                        <div class="row padding-tb-5">
+                            <div class="col-md-8">
+                                <h3 style="display:inline-block">{{'shipment_PieceDetailsHeading' | translate}}</h3>
+                                <span style="margin-left:45px; padding-top: 25px;">
+                                    <span class="radio-inline">
+                                        <label><input type="radio" name="optradio" value="kgToCms" ng-change="changeKgToLb(shipment.PiecesCaculatonType,shipment.ShipmentDetails)" ng-model="shipment.PiecesCaculatonType"><b>KG/CMs</b> </label>
+                                    </span>
+                                    &nbsp;&nbsp;
+                                    <span class="radio-inline">
+                                        <label><input type="radio" name="optradio" value="lbToInchs" ng-change="changeKgToLb(shipment.PiecesCaculatonType,shipment.ShipmentDetails)" ng-model="shipment.PiecesCaculatonType"><b>LB/Inchs</b></label>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-md-4" style="margin-top: 12px;text-align:right;" ng-if="!CourierCase">
+                                <span><a href="{{PiecesExcelDownloadPath}}" class="btn btn-blue">{{'Download' | translate}} {{'Excel' | translate}}  <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:26px; border-radius: 2px;" />  </a></span>&nbsp;&nbsp;
+                                <span class="button"
+                                      ng-model="piecesExcel"
+                                      name="shipmentPiecesDetails"
+                                      ngf-pattern="'application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                      accept="application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                      ngf-select="WhileAddingExcel($files, $file, $event)">
+                                    <button type="button" class="btn btn-blue"> {{'shipment_PieceDetailsUploadBtn' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:26px; border-radius: 2px;" /></button>
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div ng-if="CourierCase" class="panel-heading">
+                                <div class="colCellOne colHeader">{{'shipment_PieceDetailsJobNumber' | translate}}</div>
+                                <div class="colCellTwo colHeader">{{'shipment_PieceDetailsStyleNumber' | translate}}</div>
+                                <div class="colCellThree colHeader">{{'shipment_PieceDetailsHSCode' | translate}}</div>
+                                <div class="colCellFour colHeader">{{'shipment_PieceDetailsCartonQty' | translate}}</div>
+                                <div class="colCellFive colHeader">{{'shipment_PieceDetailsPieces' | translate}}</div>
+                                <div class="colCellSix colHeader">{{'Weights' | translate}} ({{Lb_Kgs}})</div>
+                                <div class="colCellSeven colHeader">{{'L' | translate}} ({{Lb_Inch}})</div>
+                                <div class="colCellEight colHeader">{{'W' | translate}} ({{Lb_Inch}})</div>
+                                <div class="colCellNine colHeader">{{'H' | translate}} ({{Lb_Inch}})</div>
+                                <div class="colCellTen colHeader" style="border-right:none;">{{'shipment_PieceDetailsProductDesc' | translate}}</div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div ng-if="!CourierCase" class="panel-heading">
+                                <div class="colCellOne colHeader">{{'shipment_PieceDetailsJobNumber' | translate}}</div>
+                                <div class="colCellTwo colHeader">{{'shipment_PieceDetailsStyleNumber' | translate}}</div>
+                                <div class="colCellThree colHeader">{{'shipment_PieceDetailsHSCode' | translate}}</div>
+                                <div class="colCellFour colHeader">{{'shipment_PieceDetailsCartonQty' | translate}}</div>
+                                <div class="colCellFive colHeader">{{'shipment_PieceDetailsPieces' | translate}}</div>
+                                <div class="colCellSix colHeader">{{'Weights' | translate}} ({{Lb_Kgs}})</div>
+                                <div class="colCellSeven colHeader">{{'L' | translate}} ({{Lb_Inch}})</div>
+                                <div class="colCellEight colHeader">{{'W' | translate}} ({{Lb_Inch}})</div>
+                                <div class="colCellNine colHeader">{{'H' | translate}} ({{Lb_Inch}})</div>
+                                <div class="colCellTen colHeader">{{'shipment_PieceDetailsProductDesc' | translate}}</div>
+                                <div class="colHeaderEdit">{{'piecesMore' | translate}} {{'piecesLine' | translate}}</div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body" ng-if="CourierCase">
+                                <div ng-repeat="shippingDetail in shipment.ShipmentDetails">
+                                    <div class="colCellOne"><input type="text" placeholder="{{'shipment_PieceDetailsJobNumber' | translate}}" ng-model="shippingDetail.JobNumber" /></div>
+                                    <div class="colCellTwo"><input type="text" placeholder="{{'shipment_PieceDetailsStyleNumber' | translate}}" ng-model="shippingDetail.JobStyle" /></div>
+                                    <div class="colCellThree"><input type="number" placeholder="{{'shipment_PieceDetailsHSCode' | translate}}" ng-model="shippingDetail.HSCode" /></div>
+                                    <div class="colCellFour"><input type="number" placeholder="{{'shipment_PieceDetailsCartonQty' | translate}}" ng-model="shippingDetail.CartonQty" /></div>
+                                    <div class="colCellFive"><input type="number" placeholder="{{'shipment_PieceDetailsPieces' | translate}}" ng-model="shippingDetail.Pieces" /></div>
+                                    <div class="colCellSix"><input type="number" placeholder="{{'Weights' | translate}} {{Lb_Kgs}}" ng-model="shippingDetail.WeightKg" /></div>
+                                    <div class="colCellSeven"><input type="number" placeholder="{{'L' | translate}} {{Lb_Inch}}" ng-model="shippingDetail.Lcms" /></div>
+                                    <div class="colCellEight"><input type="number" placeholder="{{'W' | translate}} {{Lb_Inch}}" ng-model="shippingDetail.Wcms" /></div>
+                                    <div class="colCellNine"><input type="number" placeholder="{{'H' | translate}} {{Lb_Inch}}" ng-model="shippingDetail.Hcms" /></div>
+                                    <div class="colCellTen ten"><input type="text" placeholder="{{'shipment_PieceDetailsProductDescPlaceHolder' | translate}}" ng-model="shippingDetail.PiecesContent" /></div>
+                                    <div class="colCellEdit">
+                                        <div style="padding-top:8px;">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="panel-body" ng-if="!CourierCase">
+                                <div ng-repeat="shippingDetail in shipment.ShipmentDetails">
+                                    <div class="colCellOne"><input type="text" placeholder="{{'shipment_PieceDetailsJobNumber' | translate}}" ng-model="shippingDetail.JobNumber" /></div>
+                                    <div class="colCellTwo"><input type="text" placeholder="{{'shipment_PieceDetailsStyleNumber' | translate}}" ng-model="shippingDetail.JobStyle" /></div>
+                                    <div class="colCellThree"><input type="text" placeholder="{{'shipment_PieceDetailsHSCode' | translate}}" ng-model="shippingDetail.HSCode" /></div>
+                                    <div class="colCellFour"><input type="number" placeholder="{{'shipment_PieceDetailsCartonQty' | translate}}" ng-model="shippingDetail.CartonQty" /></div>
+                                    <div class="colCellFive"><input type="number" placeholder="{{'shipment_PieceDetailsPieces' | translate}}" ng-model="shippingDetail.Pieces" /></div>
+                                    <div class="colCellSix"><input type="number" placeholder="{{'Weights' | translate}} {{Lb_Kgs}}" ng-model="shippingDetail.WeightKg" /></div>
+                                    <div class="colCellSeven"><input type="number" placeholder="{{'L' | translate}} {{Lb_Inch}}" ng-model="shippingDetail.Lcms" /></div>
+                                    <div class="colCellEight"><input type="number" placeholder="{{'W' | translate}} {{Lb_Inch}}" ng-model="shippingDetail.Wcms" /></div>
+                                    <div class="colCellNine"><input type="number" placeholder="{{'H' | translate}} {{Lb_Inch}}" ng-model="shippingDetail.Hcms" /></div>
+                                    <div class="colCellTen"><input type="text" placeholder="{{'shipment_PieceDetailsProductDescPlaceHolder' | translate}}" ng-model="shippingDetail.PiecesContent" /></div>
+                                    <div class="colCellEdit">
+                                        <div style="padding-top:8px;">
+                                            <a href="" ng-click="AddPieces()"><span class="glyphicon glyphicon-plus"></span>&nbsp;</a>
+                                            <a href="" ng-click="RemovePieces(shippingDetail)" ng-show="showAddPieces()"><span class="glyphicon glyphicon-trash"></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="colFooter">
+                                    <div>{{'shipment_TotalNoPieces' | translate}}: <span>{{getTotalPieces()}}</span></div>
+                                </div>
+                                <div class="colFooter1">
+                                    <div>{{'shipment_TotalEstimatedGrossWeight' | translate}}: <span>{{getTotalKgs()}}</span> ({{Lb_Kgs}})</div>
+                                </div>
+                                <div class="colFooter1">
+                                    <div ng-if="shipment.DeliveredBy.CourierType !=='Sea'">{{'shipment_TotalEstimatedChargeableWeight' | translate}}: <span>{{getTotalVolWeight()}}</span>  ({{Lb_Kgs}})</div>
+                                    <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'">{{'shipment_TotalEstimatedCBM' | translate}} : <span>{{getTotalCBM()}}</span> {{'CBM' | translate}}</div>
+                                </div>
+                                <div class="colFooter1">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div ng-if="shipment.DeliveredBy.CourierType ==='Sea'" class="panel-footer" style="border:none;">
+                                <div class="colFooter1">
+                                    <div>{{'shipment_TotalEstimatedChargeableCBM' | translate}} : <span>{{getEstimatedChargeableCBM(getTotalCBM())}}</span>  {{'CBM' | translate}}</div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        Note: Please provide the correct weight. If the weight differs to the actual Cargo.Frayte Logistic Ltd.
+                        has right to change which ever amount is greater.
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div ng-class="{ 'container': !isLogin }">
+        <div ng-class="{ 'col-xs-12': isLogin }">
+            <div class="left-part">
+                <a href="" ng-click="StepBack(shipment)" class="secondary-btn">{{'Previous' | translate}}</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="CancelForm()" class="secondary-btn">{{'Cancel' | translate}}</a>
+            </div>
+            <div class="right-part">
+                <button type="submit" ng-click="submitted=true" class="btn primary-btn">{{'Next' | translate}}</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</form>
+<br /><br />

@@ -1,0 +1,108 @@
+﻿
+
+<section>
+    <div class="md-container">
+        <div>
+            <!--Custom Margin-->
+            <div class="panel panel-default" style="font-size: 12px !important; margin-bottom:10px;">
+                <div class="panel-heading">
+                    <div><span style="font-size:15px;">{{'Customer_Margin' | translate}}</span></div>
+                    <div class="floatRight"></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <form name="customerMargin" ng-submit="SaveCustomerMargin(customerMargin.$valid)" novalidate>
+                        <div class="col-sm-12 paddingboth">
+                            <div class="col-sm-6 form-group">
+                                <div class="col-sm-6  paddingboth"><label style="font-size:14px;" class="lineheight24 fontsize12">{{'Logistics_Company' | translate}}</label></div>
+                                <div class="col-sm-6 paddingboth">
+                                    <select ng-change="customerMarginChange()"
+                                            ng-options="LogCompany as LogCompany.LogisticCompanyDisplay for LogCompany in LogisticCompanies track by LogCompany.LogisticCompany"
+                                            class="form-control fontsize12" ng-model="LogisticCompany">
+                                        <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'Logistic_Company' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <div class="col-sm-6  paddingboth"><label style="font-size:14px;" class="lineheight24 fontsize12">{{'Margin_Option' | translate}}</label></div>
+                                <div class="col-sm-6 paddingboth">
+                                    <select ng-change="SetMarginCost()"
+                                            ng-options="MarOption as MarOption.OptionNameDisplay for MarOption in MarginOptions"
+                                            class="form-control fontsize12" ng-model="MarginOption">
+                                        <option value="">{{'Set' | translate}} {{'Margin_Percentage' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>                      
+                            <div class="col-sm-6 form-group">
+                                <div class="col-sm-6  paddingboth"><label style="font-size:14px;" class="lineheight24 fontsize12">{{'Set_Margin_Percentage' | translate}}</label></div>
+                                <div class="col-sm-6 paddingboth">
+                                    <div class="input-group form-group">
+                                        <input name="Margin" class="form-control" type="number" ng-model="MarginPercent" ng-blur="SetCustomerMargin()" aria-label="Set Margin percentage">
+                                        <span class="input-group-addon">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--<div class="form-group col-sm-12">
+                            <button type="button" class="btn-simple btn-primary" ng-click="getRateCardPopup()"><i class="fa fa-money" aria-hidden="true"></i> {{'Get_Rate_Card' | translate}}</button>
+                        </div>-->
+                        <div ng-hide="flag===true" ng-repeat="finalArray in FinalArray">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 paddingboth">
+                                    <div class="col-2" ng-if="LogisticCompany.LogisticCompany !== 'UKMail' && LogisticCompany.LogisticCompany !== 'Yodel' && LogisticCompany.LogisticCompany !== 'Hermes'">
+                                        <div class="padding11x0x11 backgroundf5f5f5 border-right-none" style="margin-top: 21px;border: 1px solid #ddd;">
+                                            <div style="left:5px;position:relative;">{{finalArray.LogisticTypeDisplay}} {{finalArray.RateType}}</div>
+                                        </div>
+                                        <div ng-repeat="MarginCost in finalArray.Grid" class="border-right-none" style="border:1px solid #ddd;padding: 6px 0px 5px;height:40px;">
+                                            <div class="paddingleft5 padding5both"><span>{{MarginCost.DocDisplayType}}</span></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div ng-class="{'width-height-overflow':LogisticCompany.LogisticCompany !== 'UKMail' && LogisticCompany.LogisticCompany !== 'Yodel' && LogisticCompany.LogisticCompany !== 'Hermes' , 'width100': LogisticCompany.LogisticCompany === 'UKMail' && LogisticCompany.LogisticCompany === 'Yodel' && LogisticCompany.LogisticCompany === 'Hermes' }" style="height:auto !important;">
+                                        <div ng-style="finalArray.Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*finalArray.Zones.length + '%' }">
+                                            <div class="form-group" style="background:#f5f5f5;">
+                                                <div ng-repeat="Zone in finalArray.Zones" class="text-center padding11x0x11 backgroundf5f5f5 border-left-none" ng-style="{ 'width' :  100/finalArray.Zones.length + '%' }" style="float:left;margin-top: 6px;border:1px solid #ddd;">{{Zone.ZoneDisplayName}} </div>
+                                            </div>
+                                            <div ng-repeat="MarginCost in finalArray.Grid" class="grey form-group">
+                                                <div ng-repeat="Margin in MarginCost.Row  | orderBy: Margin.Zone.ZoneId">
+
+                                                    <div class="" ng-style="{ 'width' :  100/MarginCost.Row.length + '%' }" style="float:left;">
+                                                        <ng-form name="marginForm1">
+                                                            <div ng-class="{ 'has-error': marginForm1.margin.$invalid &&
+                                                                                (marginForm1.margin.$dirty || submitted) }" class="border-left-none" style="border:1px solid #ddd;position:relative;padding: 2px 0px 2px;">
+                                                                <input id="margin" class="form-control text-center" name="margin" type="number" ng-blur="CustomerMarginSaveTO(Margin)" ng-model="Margin.PercentOfMargin" style="width:100%;" required />
+                                                            </div>
+                                                        </ng-form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div ng-show="(OperationZone.OperationZoneId === 2 && finalArray.LogisticTypeDisplay === '3rd Party' && finalArray.RateType === 'Express') || (OperationZone.OperationZoneId === 2 && finalArray.LogisticType === 'Import' && finalArray.RateType === 'Economy')" class="margin-top23 border-gray"></div>
+                            </div>
+                        </div>
+                        <div ng-show="flag===true" class="col-sm-12">
+                            <div class="text-center border col-sm-12 paddingTB60">
+                                <h4 class="redColor text-center">{{'MarginCostare_not_available' | translate}}</h4>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br />
+                        <div class="col-sm-12">
+                            <div class="pull-right">
+                                <button type="submit" ng-click="submitted='true'" class="btn-BigPrimary fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Update' | translate}}&nbsp;</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

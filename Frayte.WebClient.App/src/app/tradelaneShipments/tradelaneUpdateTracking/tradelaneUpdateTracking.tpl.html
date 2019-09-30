@@ -1,0 +1,200 @@
+﻿
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title"><span ng-show="!ShowMultiButton">{{'Update_Tracking' | translate}}</span><span ng-show="ShowMultiButton">{{'View_Tracking' | translate}}</span> - {{TRadelaneShipmentDetail.DepartureAirport}} to {{TRadelaneShipmentDetail.ArrivalAirport}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-sm-12">
+            <div>
+                <div class="form-group border padding-10">
+                    <span class="frayte-orange">{{'Shipment_Info' | translate}}: </span><span ng-show="TRadelaneShipmentDetail.Mawb !== undefined && TRadelaneShipmentDetail.Mawb !== null && TRadelaneShipmentDetail.Mawb !== ''">{{'MAWB_' | translate}}# <b>{{MawbShow}}</b> </span><span ng-show="TRadelaneShipmentDetail.FrayteRefNo !== undefined && TRadelaneShipmentDetail.FrayteRefNo !== null && TRadelaneShipmentDetail.FrayteRefNo !== ''">{{'Frayte_ShipmentNo' | translate}} <b>{{TRadelaneShipmentDetail.FrayteRefNo}}</b></span>
+                    <span ng-show="(TRadelaneShipmentDetail.DepartureAirport !== undefined && TRadelaneShipmentDetail.DepartureAirport !== null && TRadelaneShipmentDetail.DepartureAirport !== '') && (TRadelaneShipmentDetail.DepartureAirport !== undefined && TRadelaneShipmentDetail.ArrivalAirport !== null && TRadelaneShipmentDetail.ArrivalAirport !== '')">{{TRadelaneShipmentDetail.DepartureAirport}} - {{TRadelaneShipmentDetail.ArrivalAirport}} </span>
+                    <span ng-show="TRadelaneShipmentDetail.TotalPieces !== undefined && TRadelaneShipmentDetail.TotalPieces !== null && TRadelaneShipmentDetail.TotalPieces !== ''"><b>{{TRadelaneShipmentDetail.TotalPieces}}</b> {{'PKGS' | translate}}</span>
+                    <span ng-show="TRadelaneShipmentDetail.TotalWeight !== undefined && TRadelaneShipmentDetail.TotalWeight !== null && TRadelaneShipmentDetail.TotalWeight !== ''"><b>{{TRadelaneShipmentDetail.TotalWeight}}</b> {{'Kgs' | translate}} </span>
+                    <span ng-show="TRadelaneShipmentDetail.Volume !== undefined && TRadelaneShipmentDetail.Volume !== null && TRadelaneShipmentDetail.Volume !== ''"><b>{{TRadelaneShipmentDetail.Volume}}</b> {{'CBM' | translate}}</span>
+                </div>
+                <div class="form-group border padding-10">
+                    <span class="frayte-orange">{{'Current_Status' | translate}}: </span>
+                    <span ng-show="TRadelaneTrackingOperationalList[0].TrackingDescription !== undefined && TRadelaneTrackingOperationalList[0].TrackingDescription !== null && TRadelaneTrackingOperationalList[0].TrackingDescription !== ''">{{TRadelaneTrackingOperationalList[0].TrackingDescription}}</span>
+                    <span ng-show="TRadelaneTrackingOperationalList[0].Pieces !== undefined && TRadelaneTrackingOperationalList[0].Pieces !== null && TRadelaneTrackingOperationalList[0].Pieces !== ''"><b>{{TRadelaneTrackingOperationalList[0].Pieces}}</b> {{'PKGS' | translate}}</span>
+                    <span ng-show="TRadelaneTrackingOperationalList[0].Pieces !== undefined && TRadelaneTrackingOperationalList[0].Weight !== null && TRadelaneTrackingOperationalList[0].Weight !== ''"><b>{{TRadelaneTrackingOperationalList[0].Weight}}</b> {{'Kgs' | translate}}</span>
+                    <span ng-show="TRadelaneTrackingOperationalList[0].CreatedOnUtc !== undefined && TRadelaneTrackingOperationalList[0].CreatedOnUtc !== null && TRadelaneTrackingOperationalList[0].CreatedOnUtc !== ''">{{TRadelaneTrackingOperationalList[0].CreatedOnUtc}}</span>
+                    <span ng-show="TRadelaneTrackingOperationalList[0].AirportCode !== undefined && TRadelaneTrackingOperationalList[0].AirportCode !== null && TRadelaneTrackingOperationalList[0].AirportCode !== ''">at {{TRadelaneTrackingOperationalList[0].AirportCode}}</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4" ng-class="{'display-none':TSS.AirportCode===null || TSS.AirportCode===''}" ng-repeat="TSS in TRadelaneShipmentStatus">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">{{TSS.AirportCode}}</div>
+                        <div class="panel-body">
+                            <div class="col-sm-12 paddingboth text-center">
+                                <div ng-show="TSS.TrackingStatus !== null && TSS.TrackingStatus.length ==1" class="col-sm-12 text-center">
+                                    <div class="border-bottom-ddd" style="padding:20px 10px;"><span class="trackingColor"><i class="fa fa-plane"></i> {{TSS.TrackingStatus[0].ShipmentCode}}</span></div>
+                                    <div class="form-group top9"><b>{{TSS.TrackingStatus[0].Pieces}}</b> {{'Pcs' | translate}}, <b>{{TSS.TrackingStatus[0].TotalWeight}}</b> {{'KGS' | translate}}</div>
+                                    <div class="form-group">{{TSS.TrackingStatus[0].Date}}</div>
+                                </div>
+                                <div ng-show="TSS.TrackingStatus !== null && TSS.TrackingStatus.length > 1">
+                                    <div class="col-sm-6 trackingBorder">
+                                    <div class="border-bottom-ddd" style="padding:20px 10px;"><span class="trackingColor"><i class="fa fa-plane"></i> {{TSS.TrackingStatus[0].ShipmentCode}}</span></div>
+                                    <div class="form-group top9"><b>{{TSS.TrackingStatus[0].Pieces}}</b> {{'Pcs' | translate}}, <b>{{TSS.TrackingStatus[0].TotalWeight}}</b> {{'KGS' | translate}}</div>
+                                    <div class="form-group">{{TSS.TrackingStatus[0].Date}}</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <div class="border-bottom-ddd" style="padding:20px 10px;"><span class="trackingColor"><i class="fa fa-plane"></i> {{TSS.TrackingStatus[TSS.TrackingStatus.length - 1].ShipmentCode}}</span></div>
+                                    <div class="form-group top9"><b>{{TSS.TrackingStatus[TSS.TrackingStatus.length - 1].Pieces}}</b> {{'Pcs' | translate}}, <b>{{TSS.TrackingStatus[TSS.TrackingStatus.length - 1].TotalWeight}}</b> {{'KGS' | translate}}</div>
+                                    <div class="form-group">{{TSS.TrackingStatus[TSS.TrackingStatus.length - 1].Date}}</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <!--first three (3) panel code here-->
+            <!--end-->
+            <!--collapsable to view the detail code here-->
+            <div class="col-sm-12 paddingboth">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span>{{'Tracking_Detail' | translate}}</span></div>
+                    <div class="panel-body">
+                        <!--add tracking & add custom tracking button code here-->
+                        <div ng-hide="ShowMultiButton" class="pull-right form-group">
+                            <button type="button" class="btn-simple btn-save" ng-click="AddFlightDetail()" id="addFlightDetail" name="addFlightDetail"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add_Flight_Detail' | translate}}</button> &nbsp; &nbsp;
+                            <button type="button" class="btn-simple btn-save" ng-click="AddTracking()" id="addCustomTracking" name="addTracking"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add_Tracking' | translate}}</button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--end-->
+                        <!--flight no. code here-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading padding0">
+                                <div class="col-sm-12 paddingboth panel-header clearfix">
+                                    <div class="width10 bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'FlightNumber' | translate}}</span></div>
+                                    <div class="width13 bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'Departure' | translate}}</span></div>
+                                    <div class="width13 bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'Arrival' | translate}}</span></div>
+                                    <div class="width10 bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'Segment' | translate}}</span></div>
+                                    <div class="width8 bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'Pieces' | translate}}</span></div>
+                                    <div class="width10 bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'Weight' | translate}} (KG)</span></div>
+                                    <div class="width10 bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'Volume' | translate}} (HC)</span></div>
+                                    <div ng-class="{'width26':ShowMultiButton, 'width16':!ShowMultiButton}" class="bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'Booking_Status' | translate}}</span></div>
+                                    <div ng-hide="ShowMultiButton" ng-class="{'width10':!ShowMultiButton}" class="width10 padding-tb-10 word-wrap"><span class="visibility">Hidden</span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body padding0">
+                                <div ng-if="TRadelaneTrackingList.length >0">
+                                    <div class="col-sm-12 paddingboth change" ng-repeat="TRList in TRadelaneTrackingList">
+                                        <div class="width10 bordered-right padding-tb-10"><span class="padding-5">{{TRList.FlightNo}}</span></div>
+                                        <div class="width13 bordered-right padding-tb-10"><span class="padding-5">{{TRList.DepartureDate}}</span><span>{{TRList.Departure}}</span></div>
+                                        <div class="width13 bordered-right padding-tb-10"><span class="padding-5">{{TRList.ArrivalDate}}</span><span>{{TRList.Arrival}}</span></div>
+                                        <div class="width10 bordered-right padding-tb-10"><span class="padding-5">{{TRList.DepartureAirportCode}} - {{TRList.DestinationAirportCode}}</span></div>
+                                        <div class="width8 bordered-right padding-tb-10"><span class="padding-5">{{TRList.TotalPeices}}</span></div>
+                                        <div class="width10 bordered-right padding-tb-10"><span class="padding-5">{{TRList.TotalWeight}}</span></div>
+                                        <div class="width10 bordered-right padding-tb-10"><span class="padding-5">{{TRList.Volume}}</span></div>
+                                        <div ng-class="{'width26':ShowMultiButton, 'width16':!ShowMultiButton}" class="bordered-right padding-tb-10"><span class="padding-5">{{TRList.BookingStatus}}</span></div>
+                                        <div ng-hide="ShowMultiButton" ng-class="{'width10':!ShowMultiButton}" class="paddingboth quotation-table-body padding-5 text-center">
+                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                    <li ng-click="AddFlightDetail(TRList)" class="pointer">
+                                                        <a>
+                                                            <span class="padDelete"><i class="fa fa-edit"></i></span>
+                                                            <span>{{'Edit_Detail' | translate}}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li ng-click="DeleteTradelaneFlightTracking(TRList)" class="pointer">
+                                                        <a>
+                                                            <span class="padEdit"><i class="fa fa-trash-o"></i></span>
+                                                            <span>{{'Delete' | translate}}</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="TRadelaneTrackingList.length === 0">
+                                <div class="fontsize18 redColor paddingTB60 text-center">{{'No_Record_Found' | translate}}</div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--end-->
+                        <!--operation stauts code here-->
+                        <div class="col-sm-12 paddingboth">
+                            <div class="panel panel-default margin-bottom-none">
+                                <div class="panel-heading padding0">
+                                    <div class="col-sm-12 paddingboth flex">
+                                        <div class="width10 bordered-right padding-tb-10"><span class="left5">{{'Operational_Status' | translate}}</span></div>
+                                        <div class="width120 bordered-right padding-tb-10"><span class="padding-5">{{'Airport' | translate}}</span></div>
+                                        <div class="width11 bordered-right padding-tb-10 word-wrap"><span class="padding-5">{{'FlightNumber' | translate}}</span></div>
+                                        <div class="width120 bordered-right padding-tb-10"><span class="padding-5">{{'DateAndTime' | translate}}</span></div>
+                                        <div ng-class="{'width55':ShowMultiButton, 'width45':!ShowMultiButton}" class="bordered-right padding-tb-10"><span class="padding-5">{{'Details' | translate}}</span></div>
+                                        <div ng-hide="ShowMultiButton" ng-class="{'width10':!ShowMultiButton}" class="padding-tb-10"><span class="visibility">Hidden</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body padding0">
+                                    <div ng-if="TRadelaneTrackingOperationalList.length >0">
+                                        <div class="col-sm-12 paddingboth change" ng-repeat="OpList in TRadelaneTrackingOperationalList">
+                                            <div>
+                                                <div class="width10 bordered-right padding-tb-10"><span class="padding-5">{{OpList.TrackingCode}}</span></div>
+                                                <div class="width120 bordered-right padding-tb-10"><span class="padding-5">{{OpList.AirportCode}}</span></div>
+                                                <div class="width11 bordered-right padding-tb-10"><span class="padding-5">{{OpList.FlightNo}}</span></div>
+                                                <div class="width120 bordered-right padding-tb-10"><span class="padding-5">{{OpList.CreatedOnUtc}}</span></div>
+                                                <div ng-class="{'width55':ShowMultiButton, 'width45':!ShowMultiButton}" class="bordered-right padding-tb-10"><span class="padding-5">{{OpList.TrackingDescription}}</span></div>
+                                                <div ng-hide="ShowMultiButton" ng-class="{'width10':!ShowMultiButton}" class="quotation-table-body padding-5 text-center">
+                                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                            <li ng-hide="OpList.TrackingCode === 'WHD' || OpList.TrackingCode === 'ADP' || OpList.TrackingCode === 'ADT'" ng-click="AddTracking(OpList)" class="pointer">
+                                                                <a>
+                                                                    <span class="padDelete"><i class="fa fa-edit"></i></span>
+                                                                    <span>{{'Edit_Detail' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-click="DeleteTradelaneTracking(OpList)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-trash-o"></i></span>
+                                                                    <span>{{'Delete' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="TRadelaneTrackingOperationalList.length === 0">
+                                        <div class="fontsize18 redColor paddingTB60 text-center">{{'No_Record_Found' | translate}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+    </div>
+    <div class="clearfix"></div>
+    <!--save and cancel button code here-->
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss()" class="btn-simple btn-cancel pull-left"><i class="fa fa-times"></i> {{'Cancel'| translate}}</button>
+            <button ng-show="!ShowMultiButton" type="button" ng-click="$dismiss()" class="btn-simple btn-save pull-right"><i class="fa fa-save"></i> {{'Save'| translate}}</button>
+        </div>
+    </div>
+    <!--end-->
+</div>

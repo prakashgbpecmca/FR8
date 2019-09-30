@@ -1,0 +1,302 @@
+﻿<div class="content padding-15">
+<div class="content-transparent" style="padding:15px;">
+    <div class="text-center padding-tb-15">
+        <h4>Upadate Shipment ETD/ETA and Cargo Drop Off Details</h4>
+    </div>
+    <form name="AgentConfirmForm" ng-submit="AgentConfirmed(AgentConfirmForm.$valid,originatingAgent)" novalidate>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default text-left" style="height:280px;">
+                    <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                    <div class="panel-body">
+                        <div style="padding:5px 0;">
+                            <div>{{ShipperInfo.ContactName}}</div>
+                            <div>{{ShipperInfo.CompanyName}}</div>
+                            <div>{{ShipperAddressInfo.Address}}</div>
+                        </div>
+                        <div style="padding:5px 0;">
+                            <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                            <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                        </div>
+                        <div style="padding:5px 0;color:#94a4bd;">
+                            <div>{{'T' | translate}}: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                            <div>{{'E' | translate}}: <span> {{ShipperInfo.Email}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default text-left" style="height:280px;">
+                    <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                    <div class="panel-body">
+                        <div style="padding:5px 0;">
+                            <div>{{ReceiverInfo.ContactName}}</div>
+                            <div>{{ReceiverInfo.CompanyName}}</div>
+                            <div>{{ReceiverAddressInfo.Address}}</div>
+                        </div>
+                        <div style="padding:5px 0;">
+                            <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                            <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                        </div>
+                        <div style="padding:5px 0;color:#94a4bd;">
+                            <div>{{'T' | translate}}: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                            <div>{{'E' | translate}}: <span> {{ReceiverInfo.Email}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default text-left" style="height:310px;">
+                    <div class="panel-heading">{{'Destination' | translate}} {{'Agent' | translate}} {{'Detail' | translate}}</div>
+                    <div class="panel-body">
+                        <div style="padding:5px 0;">
+                            <div>{{destinatingAgent.ContactName}}</div>
+                            <div>{{destinatingAgent.CompanyName}}</div>
+                            <div>{{destinatingAgent.DeliveryAddress.Address}}</div>
+                        </div>
+                        <div style="padding:5px 0;">
+                            <div>{{destinatingAgent.UserAddress.City}}, {{destinatingAgent.DeliveryAddress.State}}</div>
+                            <div>{{destinatingAgent.UserAddress.Country.Name}} -  {{destinatingAgent.UserAddress.Zip}}</div>
+                        </div>
+                        <div style="padding:5px 0;color:#94a4bd;">
+                            <div>{{'T' | translate}}: <span> {{destinatingAgent.TelephoneNo}}</span></div>
+                            <div>{{'E' | translate}}: <span> {{destinatingAgent.Email}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="wrapperContent" style="margin-top:0px;height:310px;">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}} {{'Hash' | translate}}:</label>
+                            <div>
+                                <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="form-group col-sm-8" ng-class="{ 'has-error': AgentConfirmForm.plannedDatePTD.$invalid &&
+                                                         (AgentConfirmForm.plannedDatePTD.$dirty || submitted) }">
+                                <label class="control-label" for="plannedDatePTD">{{'Estimated' | translate}} {{'Time' | translate}} {{'For' | translate}} {{'Departure' | translate}} {{'ETD' | translate}}</label>
+                                <div>
+                                    <p class="input-group">
+                                        <input type="text" id="plannedDatePTD" name="plannedDatePTD" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy"
+                                               ng-model="originatingAgent.OriginatingPlannedDepartureDate" is-open="status.opened1"
+                                               ng-required="true" close-text="Close" ng-click="openCalender1($event)" placeholder="{{'DatePlaceholder' | translate}}" required />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </p>
+                                </div>
+                                <span class="help-block has-error"
+                                      ng-show="AgentConfirmForm.plannedDatePTD.$error.required &&
+                                                (AgentConfirmForm.plannedDatePTD.$dirty || submitted)">
+                                    {{'Estimated' | translate}} {{'Departure' | translate}} {{'DateValidError' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="AgentConfirmForm.plannedDatePTD.$invalid && AgentConfirmForm.plannedDatePTD.$error.required &&
+                                                (AgentConfirmForm.plannedDatePTD.$dirty || submitted)">
+                                    {{'Invalid' | translate}} {{'Estimated' | translate}} {{'Date' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" ng-class="{ 'has-error': (AgentConfirmForm.selectTimePTD.$invalid || AgentConfirmForm.selectTimePTD.$error.pattern) &&
+                                                     (AgentConfirmForm.selectTimePTD.$dirty || submitted) }">
+                                    <label class="control-label" for="selectTimePTD">{{'Time' | translate}} <b>{{'Hours24' | translate}}</b>:</label>
+                                    <input type="text"
+                                           class="form-control input-sm"
+                                           placeholder="{{'TimePlaceholder' | translate}}"
+                                           name="selectTimePTD"
+                                           ng-model="originatingAgent.OriginatingPlannedDepartureTime"
+                                           ui-mask="99:99"
+                                           ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                    <span class="help-block has-error"
+                                          ng-show="AgentConfirmForm.selectTimePTD.$invalid && !AgentConfirmForm.selectTimePTD.$error.pattern && (AgentConfirmForm.selectTimePTD.$dirty || submitted)">
+                                        {{'TimeValidationError' | translate}}
+                                    </span>
+                                    <span class="help-block has-error"
+                                          ng-show="AgentConfirmForm.selectTimePTD.$error.pattern &&
+                                                (AgentConfirmForm.selectTimePTD.$dirty || submitted)">
+                                        {{'TimeNotValid' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="form-group col-sm-8" ng-class="{ 'has-error': AgentConfirmForm.plannedDatePTA.$invalid &&
+                                                         (AgentConfirmForm.plannedDatePTA.$dirty || submitted) }">
+                                <label class="control-label" for="plannedDatePTA"> {{'Estimated' | translate}} {{'Time' | translate}} {{'Of' | translate}} {{'Arrival' | translate}} {{'ETA' | translate}}</label>
+                                <div>
+                                    <p class="input-group">
+                                        <input type="text" id="plannedDatePTA" name="plannedDatePTA" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy"
+                                               ng-model="originatingAgent.OriginatingPlannedArrivalDate" is-open="status.opened"
+                                               ng-required="true" close-text="Close" ng-click="openCalender($event)" placeholder="{{'DatePlaceholder' | translate}}" required />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </p>
+                                </div>
+                                <span class="help-block has-error"
+                                      ng-show="AgentConfirmForm.plannedDatePTA.$error.required &&
+                                                (AgentConfirmForm.plannedDatePTA.$dirty || submitted)">
+                                   {{'Estimated' | translate}} {{'Arrival' | translate}} {{'DateValidError' | translate}}
+                                </span>
+                                <span class="help-block has-error"
+                                      ng-show="AgentConfirmForm.plannedDatePTA.$invalid && !AgentConfirmForm.plannedDatePTA.$error.required &&
+                                                (AgentConfirmForm.plannedDatePTA.$dirty || submitted)">
+                                    {{'Invalid' | translate}} {{'Estimated' | translate}} {{'Arrival' | translate}} {{'Date' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" ng-class="{ 'has-error': (AgentConfirmForm.selectTimePTA.$invalid || AgentConfirmForm.selectTimePTA.$error.pattern) &&
+                                                     (AgentConfirmForm.selectTimePTA.$dirty || submitted) }">
+                                    <label class="control-label" for="selectTimePTA">{{'Time' | translate}} <b>{{'Hours24' | translate}}</b>:</label>
+                                    <input type="text"
+                                           class="form-control input-sm"
+                                           placeholder="{{'TimePlaceholder' | translate}}"
+                                           name="selectTimePTA"
+                                           ng-model="originatingAgent.OriginatingPlannedArrivalTime"
+                                           ui-mask="99:99"
+                                           ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                                    <span class="help-block has-error"
+                                          ng-show="AgentConfirmForm.selectTimePTA.$invalid && !AgentConfirmForm.selectTimePTA.$error.pattern && (AgentConfirmForm.selectTimePTA.$dirty || submitted)">
+                                        {{'TimeValidationError' | translate}}
+                                    </span>
+                                    <span class="help-block has-error"
+                                          ng-show="AgentConfirmForm.selectTimePTA.$error.pattern &&
+                                                (AgentConfirmForm.selectTimePTA.$dirty || submitted)">
+                                        {{'TimeNotValid' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapperContent">
+            <div class="col-sm-12">
+                <h3>{{'Cargo' | translate}}  {{'DropOff' | translate}} {{'Address' | translate}}</h3>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': AgentConfirmForm.country.$invalid &&
+                                        (AgentConfirmForm.country.$dirty || submitted) }">
+                    <label class="control-label" for="country">{{'Country' | translate}}:</label>
+                    <div>
+                        <select id="country" name="country"
+                                ng-model="originatingAgent.DeliveryAddress.Country" ng-change="SetZipStateValue(originatingAgent.DeliveryAddress.Country.Code)"
+                                ng-options="Country.Name for Country in countries | orderBy:'Name' track by Country.CountryId"
+                                class="form-control" required>
+                            <option value="" selected disabled class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                        </select>
+                        <span class="help-block has-error"
+                              ng-show="AgentConfirmForm.country.$invalid &&
+                        (AgentConfirmForm.country.$dirty || submitted)">
+                            {{'CountryValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="address2">{{'Address2' | translate}}:</label>
+                    <div>
+                        <input type="text" id="address2" name="address2" ng-model="originatingAgent.DeliveryAddress.Address2" class="form-control"
+                               placeholder="{{'Address2' | translate}}" />
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': AgentConfirmForm.city.$invalid &&
+                                                         (AgentConfirmForm.city.$dirty || submitted) }">
+                    <label class="control-label" for="city">{{'City' | translate}}:</label>
+                    <div>
+                        <input type="text" id="city" name="city" ng-model="originatingAgent.DeliveryAddress.City" class="form-control"
+                               only-alphabets placeholder="{{'CityPlaceholder' | translate}}" required />
+                        <span class="help-block has-error"
+                              ng-show="AgentConfirmForm.city.$invalid &&
+                                            (AgentConfirmForm.city.$dirty || submitted)">
+                            {{'CityValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': AgentConfirmForm.state.$invalid &&
+                                                         (AgentConfirmForm.state.$dirty || submitted) }">
+                    <label class="control-label" for="state">{{'State' | translate}}:</label>
+                    <div>
+                        <input type="text" id="state" name="state" ng-model="originatingAgent.DeliveryAddress.State" class="form-control"
+                               only-alphabets placeholder="{{'StatePlaceholder' | translate}}" ng-disabled="setStateDisable" ng-required="setStateAndZip(originatingAgent.DeliveryAddress.Country.Code,'state')" />
+                        <span class="help-block has-error"
+                              ng-show="AgentConfirmForm.state.$invalid &&
+                                            (AgentConfirmForm.state.$dirty || submitted)">
+                            {{'StateValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{ 'has-error': AgentConfirmForm.address.$invalid &&
+                                                         (AgentConfirmForm.address.$dirty || submitted) }">
+                    <label class="control-label" for="address">{{'Address' | translate}}:</label>
+                    <div>
+                        <input type="text" id="address" name="address" ng-model="originatingAgent.DeliveryAddress.Address" class="form-control"
+                               placeholder="{{'AddressPlaceholder' | translate}}" required />
+                        <span class="help-block has-error"
+                              ng-show="AgentConfirmForm.address.$invalid &&
+                                            (AgentConfirmForm.address.$dirty || submitted)">
+                            {{'AddressValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="address3">{{'Address3' | translate}}:</label>
+                    <div>
+                        <input type="text" id="address3" name="address3" ng-model="originatingAgent.DeliveryAddress.Address3" class="form-control"
+                               placeholder="{{'Address3' | translate}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="suburb">{{'Suburb' | translate}}:</label>
+                    <div>
+                        <input type="text" id="suburb" name="suburb" ng-model="originatingAgent.DeliveryAddress.Suburb" class="form-control"
+                               placeholder="{{'Suburb' | translate}}" />
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': AgentConfirmForm.postalCode.$invalid &&
+                                                         (AgentConfirmForm.postalCode.$dirty || submitted) }">
+                    <label class="control-label" for="postalCode">{{'PostalCode' | translate}}:</label>
+                    <div>
+                        <input type="text" id="postalCode" name="postalCode" ng-model="originatingAgent.DeliveryAddress.Zip" class="form-control"
+                               placeholder="{{'PostalCodePlaceholder' | translate}}" ng-disabled="setZipDisable" ng-required="setStateAndZip(originatingAgent.DeliveryAddress.Country.Code, 'zip')" />
+                        <span class="help-block has-error"
+                              ng-show="AgentConfirmForm.postalCode.$invalid &&
+                                            (AgentConfirmForm.postalCode.$dirty || submitted)">
+                            {{'PostalCodeValidationError' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-12">
+                <div class="text-left form-group">
+                    <label><input type="checkbox" ng-model="value" ng-change="setValues(value)" value="" /> {{'UseDifferentAddress' | translate}}</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="floatRight form-group">
+                    <div class="padding-tb-15"><button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Confirm' | translate}}</button></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+</div>
+</div>

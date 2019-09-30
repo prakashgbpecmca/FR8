@@ -1,0 +1,16 @@
+﻿<section>
+    <div ng-class="{ 'has-error': (DirectBookingForm.Arrivaltime.$invalid || DirectBookingForm.ArrivalTimeMinutes.$invalid) &&
+                                                     (DirectBookingForm.Arrivaltime.$dirty || DirectBookingForm.ArrivalTimeMinutes.$dirty || submitted) }">
+        <select class="form-control fontsize12 direct-booking-collection-time-width60" name="Arrivaltime"
+                ng-model="timeHrs1" ng-change="setCollectionHours1()"
+                ng-options="hr as hr.hour  for hr in hours1 track by hr.Id" required>
+            <option value="" selected disabled class="display-none">{{'HH' | translate}}</option>
+        </select>
+
+        <select class="form-control fontsize12 direct-booking-collection-time-width60 margin-left7" name="ArrivalTimeMinutes"
+                ng-model="timeMins1" ng-change="setCollectionMinutes1()"
+                ng-options="mn as mn.minute  for mn in minutes1 track by mn.Id" required>
+            <option value="" selected disabled class="display-none">{{'MM' | translate}}</option>
+        </select>
+    </div>
+</section>

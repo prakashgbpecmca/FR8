@@ -1,0 +1,450 @@
+﻿
+<section>
+    <section>
+        <div class="panel panel-default fontsize12 margin-bottom-none" style="border-color: #DBE2EC !important;">
+            <div class="panel-body">
+                <div class="col-sm-12 paddingboth">
+                    <div class="col-sm-12 paddingboth clearfix">
+                        <div class="col-sm-6 col-sm-offset-6">
+                            <div class="col-sm-12 paddingboth">
+                                <label for="shipmentstatus" class="col-sm-4 paddingboth top5">{{'Special_Search' | translate}}</label>
+                                <div class="col-sm-8 paddingboth">
+                                    <div class="col-sm-10 paddingright">
+                                    <select ng-change="ChangeSpecialSearch(Speacialsearch)" ng-options="SearchList as SearchList.SpecialSearchDisplay for SearchList in SpecialSearchList" ng-model="Speacialsearch" class="form-control"></select>
+                                    </div>
+                                    <div class="col-sm-2 paddingboth country text-right">
+                                        <a href="" class="padding7px" style="position: relative;left: -15px;" ng-click="specialSearchDescription()" popover-placement="auto" uib-popover="Please click to get the special search details." popover-trigger="'mouseenter'">
+                                            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                 </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-12"><hr style="margin:10px 0px;" /></div>
+                    <div class="col-sm-12" ng-show="$UserRoleId === 1 || $UserRoleId === 6">
+                        <div>
+                            <label for="customers" class="col-sm-2 paddingboth top5">{{'Customer' | translate}}</label>
+                            <div class="col-sm-10 paddingleft10">
+                                <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                        ng-model="Customer"
+                                        ng-options="Customer as Customer.CompanyName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy: 'CustomerName' track by Customer.CustomerId"
+                                        ng-change="GetCustomerName(Customer)"
+                                        class="form-control fontsize12">
+                                    <option value="" selected>{{'All' | translate}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 paddingboth"><hr style="margin:10px 0px;" /></div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="col-sm-12 paddingboth">
+                            <label for="shipmentstatus" class="col-sm-4 paddingboth top5">{{'Shipment_Status' | translate}}</label>
+                            <div class="col-sm-8">
+                                <div class="track-dropdown">
+                                    <label class="form-control pointer dropdown-toggle" style="padding: 3px 3px !important; margin-bottom: 0px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img ng-src="{{buildURL}}{{CurrentStatus.ImgURL}}"> &nbsp;{{CurrentStatus.DisplayStatusName}}</label>
+                                    <i class="fa fa-caret-down pointer dropdown-toggle track-trace-fa-icon" aria-hidden="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <ul class="dropdown-menu dropdown-menu-right fontsize12 directshipmentwidth directbooking-shipment min-width89" style="">
+                                        <li ng-repeat="Status in DirectShipmentStatus" class="pointer fontsize12"><a ng-click="bookingStatus(Status)" style="padding:2px 3px 0px !important;" class="fontsize12"><img ng-src="{{buildURL}}{{Status.ImgURL}}"> &nbsp;{{Status.DisplayStatusName}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-12 form-group paddingboth">
+                            <label for="mawb" class="col-sm-4 paddingboth top5">{{'MAWB_' | translate}}</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="mawb" name="mawb" max="13" style="padding-left:7px !important;border-radius:50px;border-color: #EC8C3D !important;" class="form-control paddingleft fontsize12 text-center" maxlength="13"
+                                       ng-change="CheckMawb(track.MAWB)" ng-model="track.MAWB" placeholder="{{'MAWB_' | translate}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6 ">
+                        <div class="col-sm-12 form-group paddingboth">
+                            <label for="shipmentno" class="col-sm-4 paddingboth top5">{{'Frayte_ShipmentNo' | translate}}</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="frayteno" name="frayteno" alpha-numeric class="form-control paddingleft fontsize12" ng-model="track.FrayteNumber" maxlength="10"
+                                       placeholder="{{'Frayte_ShipmentNo' | translate}}" style="padding-left: 7px !important;" />
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-6">
+                        <div class="form-group col-sm-12 paddingboth">
+                            <div ng-show="$UserRoleId === 1 || $UserRoleId === 6">
+                                <label for="customers" class="col-sm-4 paddingboth top5">{{'Customer' | translate}}</label>
+                                <div class="col-sm-8">
+                                    <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                            ng-model="Customer"
+                                            ng-options="Customer as Customer.CompanyName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy: 'CustomerName' track by Customer.CustomerId"
+                                            ng-change="GetCustomerName(Customer)"
+                                            class="form-control fontsize12">
+                                        <option value="" selected>{{'All' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-12 form-group paddingright">
+                            <label for="fromdate" class="col-sm-4 paddingboth top5 right15">{{'From_Date' | translate}}</label>
+                            <div class="col-sm-7 paddingright" style="left: -10px;">
+                                <input type="text" id="FromDate" name="FromDate" class="form-control paddingleft fontsize12"
+                                       uib-datepicker-popup="dd/MM/yyyy" ng-model="track.FromDate" is-open="status.opened"
+                                       datepicker-options="dateOptions"
+                                       close-text="Close" ng-click="openCalender($event)" ng-change="ChangeFromdate(track.FromDate)"
+                                       placeholder="{{'From_Date' | translate}}" style="padding-left: 7px !important;" readonly />
+                            </div>
+                            <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-12 form-group paddingright">
+                            <label for="todate" class="col-sm-4 paddingboth top5 right15">{{'To_Date' | translate}}</label>
+                            <div class="col-sm-7 paddingright" style="left: -10px;">
+                                <input type="text" id="ToDate" name="ToDate" style="padding-left:7px !important;" class="form-control paddingleft fontsize12"
+                                       uib-datepicker-popup="dd/MM/yyyy" ng-model="track.ToDate" is-open="status1.opened"
+                                       close-text="Close" ng-click="openCalender1($event)" ng-change="ChangeTodate(track.ToDate)"
+                                       datepicker-options="dateOptions1" placeholder="{{'To_Date' | translate}}" readonly />
+                            </div>
+                            <div class="col-sm-1 paddingboth" style="position:absolute;right:15px;">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" style="padding:6px 14px !important;" ng-click="openCalender1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <!--<div class="col-sm-12">
+                            <button type="button" class="btn btn-primary" name="prealertMawb" id="prealertMawb" ng-click="prealertPopup()"><i class="fa fa-check"></i> PreAlert Modal Popup</button>
+                        </div>-->
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-12">
+                            <button class="btn-simple btn-primary fontsize12 pull-right" ng-click="SeachDirectShipments()"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="panel-body">
+            <section class="row">
+                <!--<div class="col-sm-12 border paddingTB182" ng-if="gridOptions.length === 0">
+                    <h4 class="redColor text-center">{{"No Record for Tradlane Shipments" | translate}}</h4>
+                </div>-->
+                <!--<div ng-if="gridOptions.data.length > 0" data-ui-grid="gridOptions" ui-grid-edit ui-grid-selection ui-grid-cellnav class="myGridFull fontsize12" style="min-height: {{gridheight}}px;"></div>-->
+                <div ng-show="$UserRoleId === 1 || $UserRoleId === 6 || $UserRoleId === 16">
+                    <!--tradelane custom grid-->
+                    <div class="panel panel-default">
+                        <div class="width100 flex grid-background">
+                            <div class="width986 flex">
+                                <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Status' | translate}}</span></div>
+                                <div class="width22 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Customer' | translate}}</span></div>
+                                <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'MAWB_' | translate}}{{'Hash' | translate}}</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'TotalWeight' | translate}}</span> </div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Total' | translate}} {{'Cartoon' | translate}}</span></div>
+                                <div class="width9 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'From_' | translate}}/{{'To_' | translate}}</span></div>
+                                <!--<div class="width11 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Departure_Airport' | translate}}</span></div>
+                                <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Destination_Airport' | translate}}</span></div>-->
+                                <div class="width9 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Created_On' | translate}}</sapn> </div>
+                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                            <div class="panel-body padding0">
+                                <ul class="list-unstyled change margin-bottom-none">
+                                    <li ng-if="DirectShipmentList.length > 0">
+                                        <!--<div ng-repeat="gridDirectBooking in DirectShipmentList | orderBy:predicate:reverse" class="width100 pointer">-->
+                                        <div ng-repeat="gridDirectBooking in DirectShipmentList" class="width100 pointer">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class={'demoClass':gridDirectBooking.IsSelected}>
+                                                <div class="width20 quotation-table-body padding-2"><img class="margin-right5" ng-src="{{buildURL}}{{currentImgURL(gridDirectBooking)}}">{{gridDirectBooking.StatusDisplay}}</div>
+                                                <div class="width22 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.Customer}}</span></div>
+                                                <div class="width120 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a>{{gridDirectBooking.MAWB}}</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a>{{gridDirectBooking.TotalWeight}}</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span class="pointer"><a>{{gridDirectBooking.TotalCarton}}</a></span></div>
+                                                <div class="width9 quotation-table-body word-wrap padding-5"><span title="{{gridDirectBooking.DestinationAirport}}">{{gridDirectBooking.DepartureAirport}}</span></div>
+                                                <!--<div class="width11 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.DepartureAirport}}</span></div>
+                                                <div class="width120 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.DestinationAirport}}</span></div>-->
+                                                <div class="width9 quotation-table-body padding-5 word-wrap"><span>{{gridDirectBooking.CreatedOn}}</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none pointer">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                            <li ng-click="shipmentDetail(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padDelete"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                                                    <span>{{'View_Detail' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.Status === 'Draft'" ng-click="CreateShipment(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                                    <span>{{'Create_Shipment' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-hide="gridDirectBooking.Status === 'Draft'" ng-click="cloneShipment(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-clone" aria-hidden="true"></i></span>
+                                                                    <span>{{'Clone' | translate}}</span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li ng-show="gridDirectBooking.Status === 'ShipmentBooked' && gridDirectBooking.IsAgentMAWBAllocated === true" ng-click="MAWBCorrectionPopup(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-medium" aria-hidden="true"></i></span>
+                                                                    <span>{{'Mawb_Correction' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-hide="gridDirectBooking.Status === 'Draft'|| gridDirectBooking.Status === 'Pending' || gridDirectBooking.Status === 'Delivered' || gridDirectBooking.IsAgentMAWBAllocated === true" ng-click="MAWBAllocationPopup(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-adn" aria-hidden="true"></i></span>
+                                                                    <span>{{'Agent_Allocation' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.IsAgentMAWBAllocated" ng-click="previewMAWB(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-maxcdn"></i></span>
+                                                                    <span>{{'Preview_MAWB' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.Status != 'Draft' && gridDirectBooking.Status != 'Pending'" ng-click="previewHAWB(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-houzz"></i></span>
+                                                                    <span>{{'Preview_HAWB' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.IsAgentMAWBAllocated && gridDirectBooking.Status !== 'Delivered'" ng-click="preAlertEmail(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-envelope-o"></i></span>
+                                                                    <span>{{'PreAlert_Email' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.Status === 'Delivered'" ng-click="tradelaneClaimResolved(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padDelete"><i class="fa fa-truck" aria-hidden="true"></i></span>
+                                                                    <span>{{'Claim_Resolved' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <!--ng-show="gridDirectBooking.Status === 'ShipmentBooked'"-->
+                                                            <li ng-hide="gridDirectBooking.Status === 'Draft' || gridDirectBooking.Status === 'Pending' || gridDirectBooking.Status === 'Rejected' || gridDirectBooking.Status === 'Delivered'|| gridDirectBooking.IsAgentMAWBAllocated === false" ng-click="updateTrackingPopup(gridDirectBooking, 'Update')" class="pointer">
+                                                                <a>
+                                                                    <span class="padDelete"><i class="fa fa-truck" aria-hidden="true"></i></span>
+                                                                    <span>{{'Update_Tracking' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-hide="gridDirectBooking.Status === 'Draft' || gridDirectBooking.Status === 'Pending' || gridDirectBooking.Status === 'Rejected' || gridDirectBooking.Status === 'Delivered' || gridDirectBooking.IsAgentMAWBAllocated === false" ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer">
+                                                                <a>
+                                                                    <span class="padDelete"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                                                    <span>{{'View_Tracking' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.Status === 'Draft'" ng-click="DeleteDraft(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit redColor"><i class="fa fa-trash-o"></i></span>
+                                                                    <span>{{'Delete_Draft' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-if="gridDirectBooking.Status !== 'Draft' || gridDirectBooking.Status !== 'Pending' || gridDirectBooking.Status !== 'Rejected'" ng-click="updateCustomizedMawb(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                    <span>{{'Update_Customized_MAWB' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-click="hawbLabel(gridDirectBooking.TradelaneShipmentId)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                    <span>{{'HAWB_Label' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-click="destinationManifest( gridDirectBooking.TradelaneShipmentId)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-download"></i></span>
+                                                                    <span>{{'Destination_Manifest' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!--square grid error code here-->
+                                    <li ng-if="DirectShipmentList.length == 0">
+                                        <div class="col-sm-12 paddingboth imp-white">
+                                            <div class="no-address-exist"><h4 class="redColor ng-binding">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                        </div>
+                                    </li>
+                                    <!--end-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end code-->
+                </div>
+                <div ng-show="$UserRoleId === 3">
+                    <!--tradelane custom grid-->
+                    <div class="panel panel-default">
+                        <div class="width100 flex grid-background">
+                            <div class="width986 flex">
+                                <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Status' | translate}}</span></div>
+                                <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'MAWB_' | translate}}{{'Hash' | translate}}</span></div>
+                                <div class="width19 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'TotalWeight' | translate}}</span></div>
+                                <div class="width19 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Total' | translate}} {{'Cartoon' | translate}}</span></div>
+                                <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'From_' | translate}}/{{'To_' |translate}}</span></div>
+                                <!--<div class="width16 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Departure_Airport' | translate}}</span></div>
+                                <div class="width16 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Destination_Airport' | translate}}</span></div>-->
+                                <div class="width10 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Created_On' | translate}}</sapn></div>
+                                <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                            <div class="panel-body padding0">
+                                <ul class="list-unstyled change margin-bottom-none">
+                                    <li ng-if="DirectShipmentList.length > 0">
+                                        <!--<div ng-repeat="gridDirectBooking in DirectShipmentList | orderBy:predicate:reverse" class="width100 pointer">-->
+                                        <div ng-repeat="gridDirectBooking in DirectShipmentList" class="width100 pointer">
+                                            <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class={'demoClass':gridDirectBooking.IsSelected}>
+                                                <div class="width20 quotation-table-body padding-2"><img class="margin-right5" ng-src="{{buildURL}}{{currentImgURL(gridDirectBooking)}}">{{gridDirectBooking.StatusDisplay}}</div>
+                                                <div class="width120 quotation-table-body word-wrap padding-5"><span ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer"><a>{{gridDirectBooking.MAWB}}</a></span></div>
+                                                <div class="width19 quotation-table-body word-wrap padding-5"><span ng-click="shipmentDetail(gridDirectBooking)" class="pointer"><a>{{gridDirectBooking.TotalWeight}}</a></span></div>
+                                                <div class="width19 quotation-table-body word-wrap padding-5"><span class="pointer"><a>{{gridDirectBooking.TotalCarton}}</a></span></div>
+                                                <div class="width10 quotation-table-body word-wrap padding-5"><span title="{{gridDirectBooking.DestinationAirport}}">{{gridDirectBooking.DepartureAirport}}</span></div>
+                                                <!--<div class="width16 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.DepartureAirport}}</span></div>
+                                                <div class="width16 quotation-table-body word-wrap padding-5"><span>{{gridDirectBooking.DestinationAirport}}</span></div>-->
+                                                <div class="width10 quotation-table-body padding-5 word-wrap"><span>{{gridDirectBooking.CreatedOn}}</span></div>
+                                                <div class="width10 quotation-table-body padding0 text-center">
+                                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none pointer">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                            <li ng-click="shipmentDetail(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padDelete"><i class="fa fa-eye"></i></span>
+                                                                    <span>{{'View_Detail' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.Status === 'Draft'" ng-click="CreateShipment(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                                    <span>{{'Create_Shipment' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-hide="gridDirectBooking.Status === 'Draft'" ng-click="cloneShipment(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-clone"></i></span>
+                                                                    <span>{{'Clone' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.IsAgentMAWBAllocated" ng-click="previewMAWB(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-maxcdn"></i></span>
+                                                                    <span>{{'Preview_MAWB' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.Status != 'Draft' && gridDirectBooking.Status != 'Pending'" ng-click="previewHAWB(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-houzz"></i></span>
+                                                                    <span>{{'Preview_HAWB' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-hide="gridDirectBooking.Status === 'Draft' || gridDirectBooking.Status === 'Pending' || gridDirectBooking.Status === 'Rejected' || gridDirectBooking.Status === 'Delivered' || gridDirectBooking.IsAgentMAWBAllocated === false" ng-click="updateTrackingPopup(gridDirectBooking, 'View')" class="pointer">
+                                                                <a>
+                                                                    <span class="padDelete"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                                                    <span>{{'View_Tracking' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <!--<li ng-click="updateTrackingPopup()" class="pointer">
+                                                            <a>
+                                                                <span class="padDelete"><i class="fa fa-truck" aria-hidden="true"></i></span>
+                                                                <span>{{'Update_Tracking' | translate}}</span>
+                                                            </a>
+                                                            </li>-->
+                                                            <!--ng-show="gridDirectBooking.Status === 'Delivered'"-->
+                                                            <li ng-show="gridDirectBooking.Status === 'Delivered' && gridDirectBooking.IsClaim" ng-click="tradelaneClaim(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padDelete"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                                                    <span>{{'Claim' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-show="gridDirectBooking.Status === 'Draft'" ng-click="DeleteDraft(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit redColor"><i class="fa fa-trash-o"></i></span>
+                                                                    <span>{{'Delete_Draft' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-if="gridDirectBooking.Status !== 'Draft' || gridDirectBooking.Status !== 'Pending' || gridDirectBooking.Status !== 'Rejected'" ng-click="updateCustomizedMawb(gridDirectBooking)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                    <span>{{'Update_Customized_MAWB' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-click="hawbLabel(gridDirectBooking.TradelaneShipmentId)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                    <span>{{'HAWB_Label' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                            <li ng-click="destinationManifest( gridDirectBooking.TradelaneShipmentId)" class="pointer">
+                                                                <a>
+                                                                    <span class="padEdit"><i class="fa fa-download"></i></span>
+                                                                    <span>{{'Destination_Manifest' | translate}}</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!--square grid error code here-->
+                                    <li ng-if="DirectShipmentList.length == 0">
+                                        <div class="col-sm-12 paddingboth imp-white">
+                                            <div class="no-address-exist"><h4 class="redColor ng-binding">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                        </div>
+                                    </li>
+                                    <!--end-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end code-->
+                </div>
+                <div class="col-sm-12 paddingboth">
+                    <div style="margin-left:-15px;top:-8px;position:relative;" class="pull-left">
+                        <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                    </div>
+                    <div class="pull-right">
+                        <label for="customers" class="col-sm-6 top5">{{'Paging_' | translate}}</label>
+                        <div class="col-sm-4">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="track.TakeRows"
+                                    ng-options="pageChanged.pageChangedValue as pageChanged.pageChangedValueDisplay for pageChanged in pageChangedObj"
+                                    ng-change="pageChanged(track)"
+                                    class="form-control fontsize12" style="width:77px">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </section>
+        </div>
+    </section>
+</section>

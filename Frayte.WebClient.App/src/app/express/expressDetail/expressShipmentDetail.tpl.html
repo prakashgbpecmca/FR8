@@ -1,0 +1,456 @@
+﻿
+<section>
+    <div ng-if="expressBookingDetail.ShipmentStatusId !== 39" class="modal-header">
+        <button type="button" class="close" ng-click="closePage()">
+            <i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;">
+            </i>
+        </button>
+        <h4 class="modal-title underline">
+            {{expressBookingDetail.AWBNumber}} - ({{expressBookingDetail.ShipmentStatusDisplay}}) - {{expressBookingDetail.Carrier}} {{expressBookingDetail.CarrierService}}
+        </h4>
+    </div>
+    <div ng-if="expressBookingDetail.ShipmentStatusId === 39" class="modal-header">
+        <button type="button" class="close" ng-click="closePage()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title underline">{{expressBookingDetail.AWBNumber}} - ({{'Draft' | translate}})</h4>
+    </div>
+    <div class="form-group"></div>
+    <!--show customer number-->
+    <div class="col-sm-12" ng-if="RoleId !== 3">
+        <div class="col-sm-12 fontsize16 padding-10 border">
+            {{customerDetail.CompanyName}} ({{'A_C' | translate}}: {{customerDetail.AccountNumber}})
+        </div>
+    </div>
+    <!--end-->
+    <div class="clearfix"></div>
+    <div class="modal-body">
+        <section>
+            <div class="row">
+                <div class="col-sm-12 flex paddingboth">
+                    <div class="col-sm-6">
+                        <!--collection address details-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>{{'COLLECTION_ADDRESS' | translate}}:</strong></div>
+                            <div class="panel-body">
+                                <div style="padding:5px 0;">
+                                    <div sytle="height:20px;vertical-align:middle;">{{expressBookingDetail.ShipFrom.FirstName}} {{expressBookingDetail.ShipFrom.LastName}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{expressBookingDetail.ShipFrom.CompanyName}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{expressBookingDetail.ShipFrom.Address}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{expressBookingDetail.ShipFrom.Address2}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{expressBookingDetail.ShipFrom.City}}<span ng-if="expressBookingDetail.ShipFrom.Area">, {{expressBookingDetail.ShipFrom.Area}}</span> <span ng-if="expressBookingDetail.ShipFrom.Country.Code !== 'HKG'">-</span> {{expressBookingDetail.ShipFrom.PostCode }}<br /></div>
+                                    <div ng-if="expressBookingDetail.ShipFrom.State">{{expressBookingDetail.ShipFrom.State}}<br /></div>
+                                    <div sytle="height:20px;vertical-align:middle;">{{expressBookingDetail.ShipFrom.Country.Name}} <br /></div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div><span ng-show="expressBookingDetail.DepartureAirport.AirportName">{{'Departure_Airport' | translate}}: <span>{{expressBookingDetail.DepartureAirport.AirportName}} - {{expressBookingDetail.DepartureAirport.AirportCode}}</span></span><br /></div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div><span ng-show="expressBookingDetail.ShipFrom.Email !=='' && expressBookingDetail.ShipFrom.Email !==null">{{'Email'| translate}}: <span id="link">{{expressBookingDetail.ShipFrom.Email}}</span></span><br /></div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div><span ng-show="expressBookingDetail.ShipFrom.Phone">{{'Phone_No'| translate}}: <span id="link">(+{{expressBookingDetail.ShipFrom.Country.CountryPhoneCode}}) {{expressBookingDetail.ShipFrom.Phone}}</span></span><br /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+                    <div class="col-sm-6">
+                        <!--delivery address detail-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>{{'DELIVERY_ADDRESS' | translate}}:</strong></div>
+                            <div class="panel-body">
+                                <div style="padding:5px 0;">
+                                    <div>{{expressBookingDetail.ShipTo.FirstName}} {{expressBookingDetail.ShipTo.LastName}}<br /></div>
+                                    <div>{{expressBookingDetail.ShipTo.CompanyName}}<br /></div>
+                                    <div>{{expressBookingDetail.ShipTo.Address}}<br /></div>
+                                    <div>{{expressBookingDetail.ShipTo.Address2}}<br /></div>
+                                    <div>{{expressBookingDetail.ShipTo.City}}<span ng-if="expressBookingDetail.ShipTo.Area">, {{expressBookingDetail.ShipTo.Area}}</span> <span ng-if="expressBookingDetail.ShipTo.Country.Code !== 'HKG'">-</span> {{expressBookingDetail.ShipTo.PostCode}}<br /></div>
+                                    <div ng-if="expressBookingDetail.ShipTo.State">{{expressBookingDetail.ShipTo.State}}<br /></div>
+                                    <div>{{expressBookingDetail.ShipTo.Country.Name}}<br /></div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div><span ng-show="expressBookingDetail.DestinationAirport.AirportName">{{'Destination_Airport' | translate}}: <span>{{expressBookingDetail.DestinationAirport.AirportName}} - {{expressBookingDetail.DestinationAirport.AirportCode}}</span></span><br /></div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div><span ng-show="expressBookingDetail.ShipTo.Email !=='' && expressBookingDetail.ShipTo.Email !==null">{{'Email'| translate}}: <span id="link">{{expressBookingDetail.ShipTo.Email}}</span></span><br /></div>
+                                </div>
+                                <div style="padding:5px 0;color:#94a4bd;">
+                                    <div><span ng-show="expressBookingDetail.ShipTo.Phone">{{'Phone_No'| translate}}: <span id="link">(+{{expressBookingDetail.ShipTo.Country.CountryPhoneCode}}) {{expressBookingDetail.ShipTo.Phone}}</span></span><br /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 paddingboth">
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <!--Shipment_RefDetail detail-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><strong>{{'shipment_detail' | translate}}</strong></div>
+                                <div class="panel-body padding0">
+                                    <div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'AWB_Number' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth">{{expressBookingDetail.AWBNumber}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'CourierTracking_No#' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth">{{expressBookingDetail.TrackingNumber}}</div>
+                                        </div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'Parcel_Type' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth" ng-if="expressBookingDetail.ParcelType.ParcelType === 'Parcel'">Parcel (Non Doc)</div>
+                                            <div class="col-sm-6 paddingboth" ng-if="expressBookingDetail.ParcelType.ParcelType === 'Letter'">Letter (Document)</div>
+                                        </div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'PaymentParty_TaxandDuties' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth">{{expressBookingDetail.PayTaxAndDuties}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'Actual_Weight' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth">{{expressBookingDetail.ActualWeight.toFixed(2)}} {{Lb_Kgs}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'Shipment_Reference' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth">{{expressBookingDetail.ShipmentReference}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end-->
+                        </div>
+
+                        <div class="col-sm-6">
+                            <!--Shipment_RefDetail detail-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><strong>{{'Other_Shipment_Detail' | translate}}</strong></div>
+                                <div class="panel-body padding0">
+                                    <div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'Carrier_Service' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth">{{expressBookingDetail.Carrier}} {{expressBookingDetail.CarrierService}}</div>
+                                        </div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'Created_By' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth">{{expressBookingDetail.CreatedByName}}</div>
+                                        </div>
+                                        <div class="col-sm-12 paddingboth paddingAll10">
+                                            <div class="col-sm-6"><b>{{'CreatedAt' | translate}}:</b></div>
+                                            <div class="col-sm-6 paddingboth">{{GetCorrectFormattedDate(expressBookingDetail.CreatedOnUtc)}} {{expressBookingDetail.CreatedOnTime}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end-->
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-sm-12 paddingboth">
+                <div class="piecesDetailTable">
+                    <div class="panel panel-default margin-bottom-none">
+                        <div class="panel-heading">
+                            <div class="flex">
+                                <div class="colHeader width6"><span class="ng-binding">{{'Carton' | translate}} <small class="ng-binding">({{'QTY' | translate}})</small></span></div>
+                                <div class="colHeader width6"><span class="ng-binding">{{'Length' | translate}}<br><small class="ng-binding">({{'CM' | translate}})</small></span></div>
+                                <div class="colHeader width6"><span class="ng-binding">{{'Width' | translate}}<br><small class="ng-binding">({{'CM' | translate}})</small></span></div>
+                                <div class="colHeader width6" style="border-right: 2px solid #ddd;"><span class="ng-binding">{{'Height' | translate}}<br><small class="ng-binding">({{'CM' | translate}})</small></span></div>
+                                <div class="colHeader width6" style="border-right: 2px solid #ddd;"><span class="ng-binding">{{'Weight' | translate}}<br><small class="ng-binding">({{'kGS' | translate}})</small></span></div>
+                                <div class="colHeader width32" ng-class="{'width70': expressBookingDetail.ShipmentStatusId === 14}" style="border-right:none;"><span class="ng-binding">{{'Shipment_Content' | translate}}<br><small></small></span></div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 39" class="colHeader width10" style="border-left:1px solid #ddd !important;"><div><span class="ng-binding">{{'Print_Labels' | translate}}<br><span style="font-size:10px;" class="ng-binding">({{'Click_Link_Below' | translate}})</span></span></div></div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 39" class="colHeader width20"><span class="ng-binding">{{'Tracking_No' | translate}} <br><span style="font-size:10px;" class="ng-binding">({{'Click_Link_Below' | translate}})</span></span></div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 39" class="colHeader width8 border-right-none"><span> <br><span style="font-size:10px;"></span></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <ul class="panel-body list-unstyled margin-bottom-none grid-hover">
+                            <li class="alternate" ng-repeat="Pakage in expressBookingDetail.DetailPackages">
+                                <div ng-click="alerMethod(Pakage)">
+                                    <div class="flex">
+                                        <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">{{Pakage.CartonValue}}</label></div>
+                                        <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">{{Pakage.Length.toFixed(2)}}</label></div>
+                                        <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">{{Pakage.Width.toFixed(2)}}</label></div>
+                                        <div class="colHeader width6 height43" style="border-right: 2px solid #ddd;" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">{{Pakage.Height.toFixed(2)}}</label></div>
+                                        <div class="colHeader width6 height43" style="border-right: 2px solid #ddd;" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">{{Pakage.Weight.toFixed(2)}}</label></div>
+                                        <div class="colHeader width32 height43" ng-class="{'width70': expressBookingDetail.ShipmentStatusId === 14, 'demoClass':Pakage.IsSelected}"><label class="ng-binding">{{Pakage.Content}}</label></div>
+                                        <div ng-show="expressBookingDetail.ShipmentStatusId !== 39" class="width10 text-center padding4255px height43" ng-class="{'demoClass':Pakage.IsSelected}">
+                                            <a ng-class="{'disabledanchor': !Pakage.LabelName}" a-disabled="!Pakage.LabelName " href="{{Pakage.LabelPath}}" target="_blank" download="{{Pakage.LabelName}}">
+                                                <img ng-show="Pakage.LabelName" src="{{ImagePathRoot +  'Red%20Label.png'}}" ng-click="setPrintLabel(Pakage ,'Label')" class="img-responsive" style="width:31px; height:32px;margin-left:10px;">
+                                                <span ng-show="Pakage.LabelName" ng-class="{'overlayRed':IsPrinted(Pakage),'overlayGrey':!IsPrinted(Pakage) }" class="overlayRed"></span>
+                                            </a>
+                                        </div>
+                                        <div ng-show="expressBookingDetail.ShipmentStatusId !== 39" class="colHeader width20 height43 underline" ng-class="{'demoClass':Pakage.IsSelected}">
+                                            <a target="_blank" class="pointer ng-binding" ng-click="TrackingPage(expressBookingDetail)">{{Pakage.TrackingNumber}}</a>
+                                        </div>
+                                        <div ng-show="expressBookingDetail.ShipmentStatusId !== 39" ng-class="{'demoClass':Pakage.IsSelected}" class="width8 height43">
+                                            <div>
+                                                <a target="_blank" id="drop1" href="{{Pakage.LabelPath}}" download="{{Pakage.LabelName}}" role="button" class="pull-right print-label btn-simple btn-success ng-binding" ng-click="setPrintLabel(Pakage ,'Label')">
+                                                    <i class="fa fa-print pointer" aria-hidden="true"></i> {{'Print' | translate}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="panel-footer">
+                            <div class="colFoot" style="padding: 18px 10px !important;">
+                                <div class="bottom10 ng-binding">{{'Total' | translate}}:  </div>
+                            </div>
+                            <div class="colHeader colFoot5-86" style="border:none;"><span class="ng-binding">{{totalPieces(expressBookingDetail)}} <br><small class="ng-binding">({{'Cartons' | translate}})</small></span></div>
+                            <div class="colHeader colFoot6 padding8x0x12" style="width:6.2% !important;border-left: 2px solid #ddd;"><span class="ng-binding">{{getTotalWeightKgs()}} <br><small class="ng-binding">({{'Kgs' | translate}})</small></span></div>
+                            <div ng-show="expressBookingDetail.ShipmentStatusId !== 39" class="">
+                                <div class="pull-right" style="position: relative;margin: 10px 10px 0px;">
+                                    <a target="_blank" href="{{expressBookingDetail.LabelPath}}" a-disabled="!expressBookingDetail.LabelPath" download="{{expressBookingDetail.LabelName}}" class="btn btn-success fontsize12 ng-binding disabled" style="border-radius:2px !important;"><i class="fa fa-print" aria-hidden="true"></i> {{'Print_All_Label' | translate}}</a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-footer" style="border-top: 2px solid #333 !important;">
+                            <div class="col-sm-5 direct-booking-detail-background bold padding11x10">
+                                <div class="col-sm-8 paddingboth ng-binding">{{'Estimated_Chargeable_Weight' | translate}} <span class="red">{{'Hash' | translate}}</span>: </div>
+                                <div class="col-sm-4 paddingboth pull-right padding0 text-right" style="border-right:none !important;"><span class="ng-binding">{{getTotalKgs()}} <small class="ng-binding">({{'Kgs' | translate}})</small></span></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <p class="ng-binding"> <span class="red ng-binding">#: </span>{{'EstimatedWeightNote' | translate}}</p>
+                </div>
+            </div>
+            <div class="col-sm-12 paddingboth" ng-show="expressBookingDetail.ShipmentStatusId !== 39">
+                <div class="piecesDetailTable">
+                    <div>
+                        <form name="SendMail" ng-submit="sendLabelMail(SendMail.$valid, ToMail)" novalidate>
+                            <div class="col-sm-4 paddingboth" ng-class="{'textRed': SendMail.toMail.$invalid && (SendMail.toMail.$dirty || sendMail)}">
+                                <input name="toMail" type="email" ng-model="ToMail" class="form-control fontsize12"
+                                        placeholder="{{'Placeholder_EmailAddress' | translate}}" ng-required="sendMail" 
+                                       style="outline:none !important;border-color:#CCC !important;" />
+                            </div>
+                            <div class="col-sm-2">
+                                <button ng-click="sendMail=true" type="submit" class="btn-simple btn-success fontsize12"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{'Send_Label' | translate}}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--shipment reference details-->
+            <section>
+                <div ng-show="expressBookingDetail.ShipmentStatusId !== 39" class="col-sm-12">
+                    <p class="text-center underline top5 uppercase" style="color:green;">
+                        <b ng-show="expressBookingDetail.OpearionZoneId === 2">{{'Please_GOTO' | translate}} <a target="_blank" class="pointer" href="{{trackingURL}}"> {{'Frayte_co_uk' | translate}}</a> {{'TrackingPageToTtrackthe_Detail' | translate}}</b>
+                        <b ng-show="expressBookingDetail.OpearionZoneId === 1">{{'Please_GOTO' | translate}} <a target="_blank" class="pointer" href="{{trackingURL}}"> {{'Frayte_com' | translate}}</a> {{'TrackingPageToTtrackthe_Detail' | translate}}</b>
+                    </p>
+                </div>
+            </section>
+        </section>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div>
+            <button type="button" ng-click="submit()" class="btn-simple btn-cancel fontsize12 pull-left" style="padding:6px 12px 6px !important;"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!--<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">SHREF0123456 - (Delivered)</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="col-sm-12 paddingboth form-group">
+                    <div class="flex">
+                        <!--collection address code here-->
+<!--<div class="col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">Collection Address (Shipper)</div>
+        <div class="panel-body">
+            <div><label><span>Beijing Fujitsu System Engineering Co. Ltd.</span></label></div>
+            <div><label><span>Alex Richard</span></label></div>
+            <div><label><span>208 Uint 2F, Gate 6, Space 8, Pacific Century Place</span></label></div>
+            <div><label>Beijing - <span>G84 9PG</span></label></div>
+            <div><label><span>Beijing</span></label></div>
+            <div><label><span>China </span></label></div>
+            <br />
+            <div><label class="text-muted"><span>Email: </span><span id="link">alexrichard001@gmail.com</span></label></div>
+            <div><label class="text-muted"><span>Telephone No.: </span><span id="link">(+86) 752 4561 5468</span></label></div>
+        </div>
+    </div>
+</div>-->
+<!--end-->
+<!--delivery address code here-->
+<!--<div class="col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">Delivery Address (Consignee)</div>
+        <div class="panel-body">
+            <div><label><span>Nordex TestEnergy Pvt Ltd.</span></label></div>
+            <div><label><span>Test Ben</span></label></div>
+            <div><label><span>Langehoner Chaussee 600</span></label></div>
+            <div><label>Hamburg - <span>22419</span></label></div>
+            <div><label><span>Hamburg</span></label></div>
+            <div><label><span>Germany</span></label></div>
+            <br />
+            <div><label class="text-muted"><span>Email: </span><span id="link">alexrichard001@gmail.com</span></label></div>
+            <div><label class="text-muted"><span>Telephone No.: </span><span id="link">(+49) 752 4561 5468</span></label></div>
+        </div>
+    </div>-->
+<!--</div>-->
+<!--end-->
+<!--</div>-->
+<!--<div class="flex">-->
+<!--shipment detail code here-->
+<!--<div class="col-sm-6 flex">
+        <div class="panel panel-default col-sm-12 paddingboth">
+            <div class="panel-heading">Shipment Detail</div>
+            <div class="panel-body">
+                <div><div class="col-sm-5 paddingboth bold"><label class="direct-booking-detail-color">Courier Tracking No#: </label></div><div class="col-sm-7 paddingboth"><label>TRF0123456</label></div><div class="clearfix"></div></div>
+                <div><div class="col-sm-5 paddingboth bold"><label class="direct-booking-detail-color">AWN Number: </label></div><div class="col-sm-7 paddingboth"><label>SHREF0123456</label></div><div class="clearfix"></div></div>
+                <div><div class="col-sm-5 paddingboth bold"><label class="direct-booking-detail-color">Actual Weight: </label></div><div class="col-sm-7 paddingboth"><label>10 kgs</label></div><div class="clearfix"></div></div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!--<div class="clearfix"></div>-->
+<!--shipment & package detail code here-->
+<!--<div class="col-sm-12">
+    <section>
+        <div class="col-sm-12 paddingboth">
+            <div class="col-sm-6 paddingboth">
+                <h4 class="padding-tb-5 ng-binding">Shipment and Package Details</h4>
+            </div>
+            <div class="col-sm-6 paddingboth">
+                <p class="text-right red ng-binding" style="margin:15px 0px 0px !important;">If the Print Labels column is in RED then it is already downloaded/printed. </p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="piecesDetailTable">
+            <div class="panel panel-default margin-bottom-none">
+                <div class="panel-heading">
+                    <div class="flex">
+                        <div class="colHeader width6"><span class="ng-binding">Carton <small class="ng-binding">(QTY)</small></span></div>
+                        <div class="colHeader width6"><span class="ng-binding">Length<br><small class="ng-binding">(cm)</small></span></div>
+                        <div class="colHeader width6"><span class="ng-binding">Width<br><small class="ng-binding">(cm)</small></span></div>
+                        <div class="colHeader width6" style="border-right: 2px solid #ddd;"><span class="ng-binding">Height<br><small class="ng-binding">(cm)</small></span></div>
+                        <div class="colHeader width6" style="border-right: 2px solid #ddd;"><span class="ng-binding">Weight<br><small class="ng-binding">(kg)</small></span></div>
+                        <div class="colHeader width32" ng-class="{'width70': expressBookingDetail.ShipmentStatusId === 14}" style="border-right:none;"><span class="ng-binding">Shipment Contents<br><small></small></span></div>
+                        <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" class="colHeader width10" style="border-left:1px solid #ddd !important;"><div><span class="ng-binding">Print Labels<br><span style="font-size:10px;" class="ng-binding">(Click Link Below)</span></span></div></div>
+                        <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" class="colHeader width20"><span class="ng-binding">Tracking No.# <br><span style="font-size:10px;" class="ng-binding">(Click Link Below)</span></span></div>
+                        <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" class="colHeader width8 border-right-none"><span> <br><span style="font-size:10px;"></span></span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <ul class="panel-body list-unstyled margin-bottom-none grid-hover">
+                    <li class="alternate">
+                        <div ng-click="alerMethod(Pakage)">
+                            <div class="flex">
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2</label></div>
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2</label></div>
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2</label></div>
+                                <div class="colHeader width6 height43" style="border-right: 2px solid #ddd;" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2</label></div>
+                                <div class="colHeader width6 height43" style="border-right: 2px solid #ddd;" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2.0</label></div>
+                                <div class="colHeader width32 height43" ng-class="{'width70': expressBookingDetail.ShipmentStatusId === 14, 'demoClass':Pakage.IsSelected}"><label class="ng-binding">Polo Tshirt</label></div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" class="width10 text-center padding4255px height43" ng-class="{'demoClass':Pakage.IsSelected}">
+                                    <a ng-class="{'disabledanchor':Pakage.LabelName ===null || Pakage.LabelName ===''}" a-disabled="Pakage.LabelName ===null || Pakage.LabelName ===''" href="http://localhost:24047/PackageLabel/1/31299670000180001_12_05_2017_35_834.pdf" target="_blank" download="31299670000180001_12_05_2017_35_834.pdf">
+                                        <img ng-show="Pakage.LabelName !==null &amp;&amp; Pakage.LabelName !==''" src="{{ImagePathRoot +  'Red%20Label.png'}}" ng-click="setPrintLabel(Pakage)" class="img-responsive" style="width:31px; height:32px;margin-left:10px;">
+                                        <span ng-show="Pakage.LabelName !==null &amp;&amp; Pakage.LabelName !==''" ng-class="{'overlayRed':IsPrinted(Pakage),'overlayGrey':!IsPrinted(Pakage) }" class="overlayRed"></span>
+                                    </a>
+                                </div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" class="colHeader width20 height43 underline" ng-class="{'demoClass':Pakage.IsSelected}">
+                                    <a target="_blank" class="pointer ng-binding" ng-click="TrackingPage(expressBookingDetail)">TRN0123456</a>
+                                </div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" ng-class="{'demoClass':Pakage.IsSelected}" class="width8 height43">
+                                    <div>
+                                        <a target="_blank" id="drop1" href="http://localhost:24047/PackageLabel/1/31299670000180001_12_05_2017_35_834.pdf" download="31299670000180001_12_05_2017_35_834.pdf" role="button" class="pull-right print-label btn-simple btn-success ng-binding" ng-click="setPrintLabel(Pakage)">
+                                            <i class="fa fa-print pointer" aria-hidden="true"></i> Print
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="alternate">
+                        <div ng-click="alerMethod(Pakage)">
+                            <div class="flex">
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2</label></div>
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2</label></div>
+                                <div class="colHeader width6 height43" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2</label></div>
+                                <div class="colHeader width6 height43" style="border-right: 2px solid #ddd;" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2</label></div>
+                                <div class="colHeader width6 height43" style="border-right: 2px solid #ddd;" ng-class="{'demoClass':Pakage.IsSelected}"><label class="ng-binding">2.0</label></div>
+                                <div class="colHeader width32 height43" ng-class="{'width70': expressBookingDetail.ShipmentStatusId === 14, 'demoClass':Pakage.IsSelected}"><label class="ng-binding">Polo Tshirt</label></div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" class="width10 text-center padding4255px height43" ng-class="{'demoClass':Pakage.IsSelected}">
+                                    <a ng-class="{'disabledanchor':Pakage.LabelName ===null || Pakage.LabelName ===''}" a-disabled="Pakage.LabelName ===null || Pakage.LabelName ===''" href="http://localhost:24047/PackageLabel/1/31299670000180002_12_05_2017_35_991.pdf" target="_blank" download="31299670000180002_12_05_2017_35_991.pdf">
+                                        <img ng-show="Pakage.LabelName !==null &amp;&amp; Pakage.LabelName !==''" src="{{ImagePathRoot +  'Red%20Label.png'}}" ng-click="setPrintLabel(Pakage)" class="img-responsive" style="width:31px; height:32px;margin-left:10px;">
+                                        <span ng-show="Pakage.LabelName !==null &amp;&amp; Pakage.LabelName !==''" ng-class="{'overlayRed':IsPrinted(Pakage),'overlayGrey':!IsPrinted(Pakage) }" class="overlayRed"></span>
+                                    </a>
+                                </div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" class="colHeader width20 height43 underline" ng-class="{'demoClass':Pakage.IsSelected}">
+                                    <a target="_blank" class="pointer ng-binding" ng-click="TrackingPage(expressBookingDetail)">TRN0123457</a>
+                                </div>
+                                <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" ng-class="{'demoClass':Pakage.IsSelected}" class="width8 height43">
+                                    <div>
+                                        <a target="_blank" id="drop1" href="http://localhost:24047/PackageLabel/1/31299670000180002_12_05_2017_35_991.pdf" download="31299670000180002_12_05_2017_35_991.pdf" role="button" class="pull-right print-label btn-simple btn-success ng-binding" ng-click="setPrintLabel(Pakage)">
+                                            <i class="fa fa-print pointer" aria-hidden="true"></i> Print
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="panel-footer">
+                    <div class="colFoot" style="padding: 18px 10px !important;">
+                        <div class="bottom10 ng-binding">Total:  </div>
+                    </div>
+                    <div class="colHeader colFoot5-86" style="border:none;"><span class="ng-binding">2 <br><small class="ng-binding">(Cartons)</small></span></div>
+                    <div class="colHeader colFoot6 padding8x0x12" style="width:6.2% !important;border-left: 2px solid #ddd;"><span class="ng-binding">4.00 <br><small class="ng-binding">(kgs)</small></span></div>
+                    <div ng-show="expressBookingDetail.ShipmentStatusId !== 14" class="">
+                        <div class="pull-right" style="position: relative;margin: 10px 10px 0px;">
+                            <a target="_blank" href="" a-disabled="!IsDownloaded" download="" class="btn btn-success fontsize12 ng-binding disabled" style="border-radius:2px !important;"><i class="fa fa-print" aria-hidden="true"></i> Print all Label</a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-footer" style="border-top: 2px solid #333 !important;">
+                    <div class="col-sm-5 direct-booking-detail-background bold padding11x10">
+                        <div class="col-sm-8 paddingboth ng-binding">Total Estimated Volumetric Weight <span class="red">#</span>: </div>
+                        <div class="col-sm-4 paddingboth pull-right padding0 text-right" style="border-right:none !important;"><span class="ng-binding">4.00  <small class="ng-binding">(kgs)</small></span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <p class="ng-binding"> <span class="red ng-binding">#: </span>This is an estimated weight and may not reflect the final billing weight.</p>
+        </div>
+    </section>
+</div>-->
+<!--end-->
+<!--</div>
+    </div>
+</div>
+<div class="clearfix"></div>-->
+<!--<div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-save fontsize12 pull-right"><i class="fa fa-check" aria-hidden="true"></i> Save</button>
+        </div>
+    </div>
+</div>-->
+<!-- </section>-->

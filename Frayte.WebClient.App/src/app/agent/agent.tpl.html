@@ -1,0 +1,13 @@
+﻿<div class="addButtonTop">
+    <span><a class="btn btn-addPopup" href="{{agentExcelDownload}}" style="color:#94a4bd;"> {{'Download' | translate}} {{'Excel' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width: 30px; margin-top:-3px;" /></a></span>&nbsp;&nbsp;
+    <span class="button"
+          ng-model="piecesExcel"
+          name="shipmentPiecesDetails"
+          ngf-pattern="'application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+          accept="application/vnd.ms-excel,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+          ngf-select="WhileAddingReceiverExcel($files, $file, $event)">
+        <button type="button" class="btn-addPopup"> {{'shipment_PieceDetailsUploadBtn' | translate}} <img ng-src="{{ImagePath + 'Excel.png'}}" style="width:30px;" /></button>
+    </span>&nbsp;&nbsp;
+    <button type="button" class="btn-addPopup" ng-click="AddEditAgent()">{{'AddAgent' | translate}}</button>    
+</div>
+<div data-ui-grid="gridOptions" class="myGrid" style="min-height: {{gridheight}}px;"></div>

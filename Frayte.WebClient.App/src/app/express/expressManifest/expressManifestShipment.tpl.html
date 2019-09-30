@@ -1,0 +1,102 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Shipments' | translate}}</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="col-sm-12 paddingboth">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <span><span class="redColor">*</span> {{'Timezone_Depend_On_Customer_Timezone' | translate}}</span>
+                </div>
+                <!--express shipment custom grid for admin or staff-->
+                <div class="panel panel-default margin-bottom-none" ng-show="$UserRoleId === 1 || $UserRoleId === 6 || $UserRoleId === 20">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex">
+                            <div class="width40 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Client_Name' | translate}}</span></div>
+                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'TrackingNumber' | translate}}</span></div>
+                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'AWB_Number' | translate}}</span></div>
+                            <div class="width10 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Carrier' | translate}}</span></div>
+                            <div class="width11 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'confirmShp_TotalWeight' | translate}}</span></div>
+                            <div class="width11 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Carton' | translate}}</span></div>
+                            <div class="width18 bold quotation-table-padding border-right-none"><sapn class="quotation-table-body padding-10-5">{{'Created_On' | translate}} <span class="redColor">*</span></sapn> </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <ul class="list-unstyled change margin-bottom-none">
+                                <li>
+                                    <div class="width100 pointer" ng-repeat="Shipment in ExpressShipmentList">
+                                        <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                            <div class="width40 quotation-table-body word-wrap padding-5"><span>{{Shipment.Customer}}</span></div>
+                                            <div class="width20 quotation-table-body word-wrap padding-5"><span ng-click="ExpressTrackingDetail(Shipment.ExpressShipmentId)"><a class="pointer">{{Shipment.TrackingNumber}}</a></span></div>
+                                            <div class="width20 quotation-table-body word-wrap padding-5"><span ng-click="ExpressTrackingDetail(Shipment.ExpressShipmentId)"><a class="pointer">{{Shipment.AWBNumber}}</a></span></div>
+                                            <div class="width10 quotation-table-body word-wrap padding-5"><span>{{Shipment.Carrier}}</span></div>
+                                            <div class="width11 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalWeight}}</span></div>
+                                            <div class="width11 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalCarton}}</span></div>
+                                            <div class="width18 quotation-table-body padding-5 word-wrap"><span>{{Shipment.CreatedOn}}</span></div>  
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--square grid error code here-->
+                                <li ng-if="ExpressShipmentList.length === 0">
+                                    <div class="col-sm-12 paddingboth imp-white">
+                                        <div class="no-address-exist"><h4 class="redColor">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                    </div>
+                                </li>
+                                <!--end-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+
+                <!--express shipment custom grid for customer-->
+                <div class="panel panel-default margin-bottom-none" ng-show="$UserRoleId === 3">
+                    <div class="width100 flex grid-background">
+                        <div class="width986 flex">
+                            <div class="width40 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'AWB_Number' | translate}}</span></div>
+                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'confirmShp_TotalWeight' | translate}}</span></div>
+                            <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Carton' | translate}}</span></div>
+                            <div class="width20 bold quotation-table-padding border-right-none"><sapn class="quotation-table-body padding-10-5">{{'Created_On' | translate}} <span class="redColor">*</span></sapn></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                        <div class="panel-body padding0">
+                            <ul class="list-unstyled change margin-bottom-none">
+                                <li>
+                                    <div class="width100" ng-repeat="Shipment in ExpressShipmentList">
+                                        <div class="flex height30" ng-click="selectAdressRecord(gridDirectBooking)" ng-class="{'demoClass':gridDirectBooking.IsSelected}">
+                                            <div class="width40 quotation-table-body word-wrap padding-5"><span>{{Shipment.AWBNumber}}</span></div>
+                                            <div class="width20 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalWeight}}</span></div>
+                                            <div class="width20 quotation-table-body word-wrap padding-5"><span>{{Shipment.TotalCarton}}</span></div>
+                                            <div class="width20 quotation-table-body padding-5 word-wrap"><span>{{Shipment.CreatedOn}}</span></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--square grid error code here-->
+                                <li ng-if="ExpressShipmentList.length === 0">
+                                    <div class="col-sm-12 paddingboth imp-white">
+                                        <div class="no-address-exist"><h4 class="redColor">{{'Shipment_Notvalid' | translate}}</h4></div>
+                                    </div>
+                                </li>
+                                <!--end-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end code-->
+            </div>
+            <!--end-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12 pull-left"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,898 @@
+﻿
+
+<section>
+    <div class="panel box-shadow-none">
+        <div class="panel-body padding0">
+            <form autocomplete="off" name="DirectBookingForm" ng-submit="PlaceBooking(DirectBookingForm,DirectBookingForm.$valid, eCommerceBooking)" novalidate>
+                <div id="top" class="paddingleft paddingright fontsize12">
+                    <!--start progress-bar code here-->
+                    <section class="affix" data-offset-top="60">
+                        <div class="fixe">
+                            <!--Progress bar coding start here in four section-->
+                            <div>
+                                <div class="col-sm-12 progress-bar-header h-90">
+                                    <div class="width33-33">
+                                        <span class="booking1">
+                                            <span ng-class="{'orange': shipFromTab(DirectBookingForm)}"></span>
+                                            <span ng-class="{'orange-border': !shipFromTab(DirectBookingForm)}"></span>
+                                            <span class="progress-fix"><img class="pointer border-black" ng-src="{{ImagePath + 'collection_address.png'}}" /></span>
+                                            <div class="booking-top">{{'Collection_Address' | translate}}</div>
+                                        </span>
+                                    </div>
+                                    <div class="width33-33">
+                                        <span class="booking2">
+                                            <span ng-class="{'orange': shipToTab(DirectBookingForm) && shipFromTab(DirectBookingForm) }"></span>
+                                            <span ng-hide="shipToTab(DirectBookingForm) && shipFromTab(DirectBookingForm)" class="orange-border"></span>
+                                            <span class="progress-fix"><img class="pointer" ng-class="{'border-black': shipFromTab(DirectBookingForm)}" ng-src="{{ImagePath + 'delivery_address.png'}}" /></span>
+                                            <div class="booking-top">{{'Delivery_Address' | translate}}</div>
+                                        </span>
+                                    </div>
+                                    <div class="width33-33">
+                                        <span class="booking3">
+                                            <span ng-hide="shipmentDetailTab(DirectBookingForm) && shipToTab(DirectBookingForm)" class="orange-border">
+
+                                            </span>
+                                            <span ng-show="shipToTab(DirectBookingForm) && shipmentDetailTab(DirectBookingForm)" class="orange"></span>
+
+                                            <span class="progress-fix">
+                                                <img class="pointer" ng-class="{'border-black': shipToTab(DirectBookingForm)}" ng-src="{{ImagePath + 'shipment_detail.png'}}" style="right:2rem !important;" />
+                                            </span>
+                                            <div class="booking-top">{{'ShipmentDetail' | translate}}</div>
+                                        </span>
+                                        <span class="booking4">
+                                            <span class="progress-fix">
+                                                <img class="pointer" ng-class="{'border-black': shipmentDetailTab(DirectBookingForm)}" ng-src="{{ImagePath + 'service_selection.png'}}" style="float:right;left: 1.6rem;" />
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <!--End Progress bar coding-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </section>
+                    <div class="clearfix"></div>
+                    <!--end progress-bar code-->
+                    <div class="col-sm-12 paddingleft paddingright fontsize12">
+                        <div class="col-sm-6 paddingleft">
+                            <uib-tabset>
+                                <uib-tab class="borderleft2f5f5f5 fontsize12">
+                                    <uib-tab-heading class="fontsize10">
+                                        {{'COLLECTION_ADDRESS' | translate}} &nbsp;<span ng-if="shipFromTab(DirectBookingForm)"><!--<i class="fa fa-check tick" aria-hidden="true"></i>--><img ng-src="{{ImagePath + 'tick-icon.png'}}" class="direct-booking-icon-fix" /></span>
+                                    </uib-tab-heading>
+                                    <div class="col-sm-12 paddingboth padding5both">
+                                        <div class="col-sm-4 paddingboth padding15both">
+                                            <h4 class="lineheight024">{{'Ship_From' | translate}}</h4>
+                                        </div>
+                                        <div class="col-sm-6 paddingboth padding15both" style="margin-top:3px;">
+                                            <div class="padding5x4px">
+                                                <a ng-click="directBookingAddEdit()" class="pointer">
+                                                    <img src="{{photoUrl}}" class="directbookingimg" />
+                                                    <small>{{'Address_Book' | translate}}</small>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth country">
+                                            <a href="" class="padding7px directbooking-ship-from" popover-placement="auto" uib-popover="The Address Book is dependent on the Payment Party (Customer) being filled in." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromCountry.$invalid &&
+                                                         (DirectBookingForm.shipFromCountry.$dirty || submitted) }">
+                                        <label for="shipFromCountry" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Country' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-6 paddingboth" id="Xe">
+                                            <select id="shipFromCountry" name="shipFromCountry" ng-change="SetShipFrominfo(eCommerceBooking.ShipFrom.Country)"
+                                                    ng-model="eCommerceBooking.ShipFrom.Country"
+                                                    ng-options="Country.Name disable when Country.Disabled ===true for Country in CountriesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                                                    class="form-control fontsize12" required>
+                                                <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.shipFromCountry.$invalid &&
+                                            (DirectBookingForm.shipFromCountry.$dirty || submitted)">
+                                                {{'CountryValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth country">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover="China covers Guangdong Province only." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div ng-hide="eCommerceBooking.ShipFrom.Country.Code === 'HKG'" class="col-sm-12 form-group paddingboth  postcode" ng-class="{ 'has-error': DirectBookingForm.shipFromPostcode.$invalid &&
+                                                         (DirectBookingForm.shipFromPostcode.$dirty || submitted) }">
+                                        <label for="shipFromPostcode" id="shipFromPostcodeLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'PostalCode' | translate}} <span class="redColor">*</span></label>
+                                        <div id="scrollable-dropdown-menu" class="col-sm-6 paddingboth typeahead-demo">
+                                            <i ng-if="eCommerceBooking.ShipFrom.Country.Code === 'GBR'" class="fa fa-search search-right-fixed" aria-hidden="true"></i>
+                                            <input type="text" id="shipFromPostcode" name="shipFromPostcode"
+                                                   ng-model="eCommerceBooking.ShipFrom.PostCode"
+                                                   ng-class="{'padding-left25': eCommerceBooking.ShipFrom.Country.Code === 'GBR'}"
+                                                   class="form-control fontsize12"
+                                                   ng-disabled="eCommerceBooking.ShipFrom.Country !== null && eCommerceBooking.ShipFrom.Country.Code === 'HKG'"
+                                                   ng-blur="SetPostCodeAddressValue('ShipFrom')"
+                                                   ng-required="eCommerceBooking.ShipFrom.Country.Code !== 'HKG'"
+                                                   placeholder="{{'PostalCode' | translate}} ({{'Required' | translate}})"
+                                                   maxlength="{{MaximamLengthShipFrom}}"
+                                                   uib-typeahead="PostCode.PostCode as PostCode.FillPostCodeInput for PostCode in GetPostCodeAddress($viewValue, eCommerceBooking.ShipFrom.Country.Code2,'ShipFrom') | limitTo:2"
+                                                   typeahead-on-select="onSelectPostCode($item, $model, $label, $event,eCommerceBooking.ShipFrom.Country.Code , 'ShipFrom')" uib-typeahead-min-length="6" />
+
+                                            <div ng-show="PostCodeAddressValue && !DirectBookingForm.shipFromPostcode.$invalid">
+                                                <span class="error-color">{{'NoResult_Postcode' | translate}}</span>
+                                            </div>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.shipFromPostcode.$invalid &&
+                                            (DirectBookingForm.shipFromPostcode.$dirty || submitted)">
+                                                {{'PostalCodeValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 directBookingBorder"></div>
+                                    <div class="col-sm-12 form-group paddingboth">
+                                        <label for="shipFromCompanyName" id="shipFromCompanyNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Company_Name' | translate}}</label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <input type="text" name="shipFromCompanyName" id="shipFromCompanyName"
+                                                   capitalize-first ng-model="eCommerceBooking.ShipFrom.CompanyName" class="form-control fontsize12" placeholder="{{'Company_Name' | translate}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromFirstName.$invalid &&
+                                                         (DirectBookingForm.shipFromFirstName.$dirty || submitted) }">
+                                        <label for="shipFromFirstName" id="shipFromFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_First_Name' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <input type="text" only-alphabets name="shipFromFirstName" id="shipFromFirstName"
+                                                   capitalize-first ng-model="eCommerceBooking.ShipFrom.FirstName" class="form-control fontsize12" required placeholder="{{'Contact_First_Name' | translate}} ({{'Required' | translate}})" />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.shipFromFirstName.$invalid &&
+                                            (DirectBookingForm.shipFromFirstName.$dirty || submitted)">
+                                                {{'FirstName_Required' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromLastName.$invalid &&
+                                                         (DirectBookingForm.shipFromLastName.$dirty || submitted) }">
+                                        <label for="shipFromLastName" id="shipFromFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_Last_Name' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <input type="text" name="shipFromLastName" id="shipFromLastName" only-alphabets
+                                                   capitalize-first ng-model="eCommerceBooking.ShipFrom.LastName" class="form-control fontsize12" required placeholder="{{'Contact_Last_Name' | translate}} ({{'Required' | translate}})" />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.shipFromLastName.$invalid &&
+                                            (DirectBookingForm.shipFromLastName.$dirty || submitted)">
+                                                {{'LastName_Required' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 directBookingBorder"></div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromAddress1.$invalid &&
+                                                         (DirectBookingForm.shipFromAddress1.$dirty || submitted) }">
+                                        <label for="shipFromAddress1" id="shipFromAddress1Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_1' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <textarea name="shipFromAddress1" id="shipFromAddress1"
+                                                      capitalize-first ng-model="eCommerceBooking.ShipFrom.Address" class="form-control fontsize12" required rows="3" cols="4" placeholder="{{'Address_1' | translate}} ({{'Required' | translate}})"></textarea>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.shipFromAddress1.$invalid &&
+                                            (DirectBookingForm.shipFromAddress1.$dirty || submitted)">
+                                                {{'AddressValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth">
+                                        <label for="shipFromAddress2" id="shipFromAddress2Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_2' | translate}}</label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <textarea name="shipFromAddress2" id="shipFromAddress2"
+                                                      capitalize-first ng-model="eCommerceBooking.ShipFrom.Address2" class="form-control fontsize12" rows="3" cols="4" placeholder="{{'Address_2' | translate}}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromCityName.$invalid &&
+                                                         (DirectBookingForm.shipFromCityName.$dirty || submitted) }">
+                                        <label for="shipFromCityName" id="shipFromCityNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'City' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <input type="text" name="shipFromCityName" id="shipFromCityName"
+                                                   capitalize-first ng-model="eCommerceBooking.ShipFrom.City" class="form-control fontsize12" required placeholder="{{'City' | translate}} ({{'Required' | translate}})" />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.shipFromCityName.$invalid &&
+                                            (DirectBookingForm.shipFromCityName.$dirty || submitted)">
+                                                {{'CityValidationError' | translate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div ng-show="shipFromOptionalField('State')" class="col-sm-12 form-group paddingboth">
+                                        <label for="shipFromState" id="shipToStateLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'State' | translate}}</label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <input type="text" name="shipFromState" id="shipFromState"
+                                                   ng-disabled="eCommerceBooking.ShipFrom.Country !== null && (eCommerceBooking.ShipFrom.Country.Code === 'GBR' ||eCommerceBooking.ShipFrom.Country.Code === 'HKG') "
+                                                   capitalize-first ng-model="eCommerceBooking.ShipFrom.State" class="form-control fontsize12" placeholder="{{'State' | translate}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth">
+                                        <label for="shipFromAreaName" id="shipFromAreaNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Area' | translate}}</label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <input type="text" name="shipFromAreaName" id="shipFromAreaName"
+                                                   only-alphabets capitalize-first ng-model="eCommerceBooking.ShipFrom.Area" class="form-control fontsize12" placeholder="{{'Area' | translate}}" />
+                                        </div>
+                                        <div class="col-sm-1 paddingboth area">
+                                            <a href="" class="padding7px" uib-popover="Area is like a Suburb" popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 directBookingBorder"></div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipFromPhone.$invalid &&
+                                                         (DirectBookingForm.shipFromPhone.$dirty || submitted) }">
+                                        <label for="shipFromPhone" id="shipFromPhoneLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'TelephoneNo' | translate}} <span class="redColor">*</span></label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <div class="col-sm-4 paddingleft">
+                                                <input type="text" class="form-control fontsize12"
+                                                       readonly ng-model="ShipFromPhoneCode" />
+                                            </div>
+                                            <div class="col-sm-8 paddingboth">
+                                                <input type="text" name="shipFromPhone" id="shipFromPhone" ng-readonly="eCommerceBooking.CustomerRateCard.LogisticServiceId >0"
+                                                       only-decimal ng-model="eCommerceBooking.ShipFrom.Phone" class="form-control fontsize12" maxlength="10" required placeholder="{{'TelephoneNo' | translate}} ({{'Required' | translate}})" />
+                                            </div>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.shipFromPhone.$invalid &&
+                                            (DirectBookingForm.shipFromPhone.$dirty || submitted)">
+                                                {{'TelephoneValidationError' | translate}}
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': (DirectBookingForm.shipFromMail.$invalid &&
+                                                         (DirectBookingForm.shipFromMail.$dirty || submitted)) }">
+                                        <label for="shipFromMail" id="shipFromMailLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Send_Alert_Email' | translate}}</label>
+                                        <div class="col-sm-6 paddingboth">
+                                            <input type="text" name="shipFromMail" id="shipFromMail" ng-pattern="emailFormat"
+                                                   ng-model="eCommerceBooking.ShipFrom.Email" class="form-control fontsize12" placeholder="{{'Send_Alert_Email' | translate}}" />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.shipFromMail.$error.pattern &&
+                                            (DirectBookingForm.shipFromMail.$dirty || submitted)">
+                                                {{'EmailNotValid' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth sendEmail">
+                                            <a href="" class="padding7px" uib-popover="If required, please enter the email address of the person you wish to receive this shipments details once booked." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!--<div ng-if="eCommerceBooking.ShipFrom.Email !== null && eCommerceBooking.ShipFrom.Email !== ''">
+                                        <div ng-show="!DirectBookingForm.shipFromMail.$invalid" class="col-sm-12 paddingboth">
+                                            <label for="shipFromMail" id="shipFromMailLabel" class="col-sm-6 col-sm-offset-4 control-label paddingleft paddingright">
+                                                <label><input type="checkbox" ng-model="eCommerceBooking.ShipFrom.IsMailSend" /> <send class="bottom2">{{'Email_NotificationShipper' | translate}}</send></label>
+                                            </label>
+
+                                        </div>
+                                    </div>-->
+                                    <div class="col-sm-12 paddingboth">
+                                        <label class="col-sm-4"></label>
+                                        <div for="shipFromMail" id="shipFromMailLabel" class="col-sm-6 control-label paddingleft paddingright">
+                                            <label class="checkbox-inline"><input type="checkbox" ng-model="eCommerceBooking.ShipFrom.IsMailSend" /> <span>{{'Email_NotificationShipper' | translate}}</span></label>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth sendEmail">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover="Ticking this will send the newly created shipment detail to the provided shipper email." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help icon-margin" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab class="tabBorder fontsize12">
+                                    <uib-tab-heading class="fontsize10">
+                                        {{'DELIVERY_ADDRESS' | translate}} &nbsp;<span ng-if="shipToTab(DirectBookingForm)"><!--<i class="fa fa-check tick" aria-hidden="true"></i>--><img ng-src="{{ImagePath + 'tick-icon.png'}}" class="direct-booking-icon-fix" /></span>
+                                    </uib-tab-heading>
+                                    <div class="col-sm-12 paddingboth padding5both">
+                                        <div class="col-sm-4 paddingboth padding15both">
+                                            <h4 class="lineheight024">{{'Ship_To' | translate}}</h4>
+                                        </div>
+                                        <div class="col-sm-6 paddingboth padding15both" style="margin-top:3px;">
+                                            <div class="padding5x4px">
+                                                <a ng-click="directBookingAddEditShipToAddress()" class="pointer">
+                                                    <img src="{{photoUrl}}" class="directbookingimg" />
+                                                    <small>{{'AddressBook' | translate}}</small>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth country">
+                                            <a href="" class="padding7px directbooking-ship-from" popover-placement="auto" uib-popover="The Address Book is dependent on the Payment Party (Customer) being filled in." popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToCountry.$invalid &&
+                                                         (DirectBookingForm.shipToCountry.$dirty || submitted) }">
+                                            <label for="shipToCountry" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Country' | translate}} <span class="redColor">*</span></label>
+                                            <div class="col-sm-6 paddingboth" id="Xe">
+                                                <select id="shipToCountry" name="shipToCountry"
+                                                        ng-model="eCommerceBooking.ShipTo.Country" ng-change="SetShipToInfo(eCommerceBooking.ShipTo.Country)"
+                                                        ng-options="Country.Name disable when Country.Disabled ===true for Country in ToCountiesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                                                        class="form-control fontsize12" required>
+                                                    <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                                                </select>
+
+                                                <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToCountry.$invalid &&
+                                            (DirectBookingForm.shipToCountry.$dirty || submitted)">
+                                                    {{'CountryValidationError' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-1 paddingboth country">
+                                                <a href="" class="padding7px" popover-placement="auto" uib-popover="China covers Guangdong Province only." popover-trigger="'outsideClick'">
+                                                    <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div ng-show="shipToOptionalField('PostCode')" class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToPostcode.$invalid &&
+                                                         (DirectBookingForm.shipToPostcode.$dirty || submitted) }">
+                                            <label for="shipToPostcode" id="shipToPostcodeLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'PostalCode' | translate}}</label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <i ng-if="eCommerceBooking.ShipTo.Country.Code === 'GBR'" class="fa fa-search search-right-fixed" aria-hidden="true"></i>
+                                                <input type="text" id="shipToPostcode" name="shipToPostcode" ng-model="eCommerceBooking.ShipTo.PostCode" class="form-control fontsize12"
+                                                        ng-class="{'padding-left25': eCommerceBooking.ShipTo.Country.Code === 'GBR'}"
+                                                       ng-disabled="eCommerceBooking.ShipTo.Country !== null && eCommerceBooking.ShipTo.Country.Code === 'HKG'"
+                                                       ng-required="eCommerceBooking.ShipTo.Country !== null && eCommerceBooking.ShipTo.Country.Code !== 'HKG'" placeholder="{{'PostalCode' | translate}} ({{'Required' | translate}})"
+                                                      ng-blur="SetPostCodeAddressValue('ShipTo')"
+                                                         maxlength="{{MaximamLengthShipFrom}}"
+                                                       uib-typeahead="PostCode.PostCode as PostCode.FillPostCodeInput for PostCode in GetPostCodeAddress($viewValue, eCommerceBooking.ShipTo.Country.Code2,'ShipTo') | limitTo:2"
+                                                       typeahead-on-select="onSelectPostCode($item, $model, $label, $event,eCommerceBooking.ShipTo.Country.Code , 'ShipTo')" uib-typeahead-min-length="6" />
+                                                <div ng-show="ToPostCodeAddressValue && !DirectBookingForm.shipToPostcode.$invalid">
+                                                    <span class="error-color">{{'NoResult_Postcode' | translate}}</span>
+                                                </div>
+                                                  <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToPostcode.$invalid &&
+                                            (DirectBookingForm.shipToPostcode.$dirty || submitted)">
+                                                    {{'PostalCodeValidationError' | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 directBookingBorder"></div>
+                                        <div class="col-sm-12 form-group paddingboth">
+                                            <label for="shipToCompanyName" id="shipToCompanyNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Company_Name' | translate}} </label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <input type="text" name="shipToCompanyName" id="shipToCompanyName"
+                                                       capitalize-first ng-model="eCommerceBooking.ShipTo.CompanyName" class="form-control fontsize12" placeholder="{{'Company_Name' | translate}}" />
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToFirstName.$invalid &&
+                                                         (DirectBookingForm.shipToFirstName.$dirty || submitted) }">
+                                            <label for="shipToFirstName" id="shipToFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_First_Name' | translate}} <span class="redColor">*</span></label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <input type="text" name="shipToFirstName" id="shipToFirstName" only-alphabets
+                                                       capitalize-first ng-model="eCommerceBooking.ShipTo.FirstName" class="form-control fontsize12" required placeholder="{{'Contact_First_Name' | translate}} ({{'Required' | translate}})" />
+                                                <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToFirstName.$invalid &&
+                                            (DirectBookingForm.shipToFirstName.$dirty || submitted)">
+                                                    {{'FirstName_Required' | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToLastName.$invalid &&
+                                                         (DirectBookingForm.shipToLastName.$dirty || submitted) }">
+                                            <label for="shipToLastName" id="shipToFirstNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Contact_Last_Name' | translate}} <span class="redColor">*</span></label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <input type="text" name="shipToLastName" id="shipToLastName" only-alphabets
+                                                       capitalize-first ng-model="eCommerceBooking.ShipTo.LastName" class="form-control fontsize12" required placeholder="{{'Contact_Last_Name' | translate}} ({{'Required' | translate}})" />
+                                                <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToLastName.$invalid &&
+                                            (DirectBookingForm.shipToLastName.$dirty || submitted)">
+                                                    {{'LastName_Required' | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 directBookingBorder"></div>
+                                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToAddress1.$invalid &&
+                                                         (DirectBookingForm.shipToAddress1.$dirty || submitted) }">
+                                            <label for="shipToAddress1" id="shipToAddress1Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_1' | translate}} <span class="redColor">*</span></label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <textarea name="shipToAddress1" id="shipToAddress1"
+                                                          capitalize-first ng-model="eCommerceBooking.ShipTo.Address" class="form-control fontsize12" rows="3" cols="4" required placeholder="{{'Address_1' | translate}} ({{'Required' | translate}})"></textarea>
+                                                <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToAddress1.$invalid &&
+                                            (DirectBookingForm.shipToAddress1.$dirty || submitted)">
+                                                    {{'AddressValidationError' | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 form-group paddingboth">
+                                            <label for="shipToAddress2" id="shipToAddress2Label" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Address_2' | translate}}</label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <textarea name="shipToAddress2" id="shipToAddress2"
+                                                          capitalize-first ng-model="eCommerceBooking.ShipTo.Address2" class="form-control fontsize12" rows="3" cols="4" placeholder="{{'Address_2' | translate}}">
+                                                    >
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToCityName.$invalid &&
+                                                         (DirectBookingForm.shipToCityName.$dirty || submitted) }">
+                                            <label for="shipToCityName" id="shipToCityNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'City' | translate}} <span class="redColor">*</span></label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <input type="text" name="shipToCityName" id="shipToCityName"
+                                                       capitalize-first ng-model="eCommerceBooking.ShipTo.City" class="form-control fontsize12" required placeholder="{{'City' | translate}} ({{'Required' | translate}})" />
+                                                <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToCityName.$invalid &&
+                                            (DirectBookingForm.shipToCityName.$dirty || submitted)">
+                                                    {{'CityValidationError' | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div ng-show="shipToOptionalField('State')" class="col-sm-12 form-group paddingboth">
+                                            <label for="shipToState" id="shipToStateLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'State' | translate}}</label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <input type="text" name="shipToState" id="shipToState"
+                                                       ng-disabled="eCommerceBooking.ShipTo.Country !== null && (eCommerceBooking.ShipTo.Country.Code === 'GBR' ||eCommerceBooking.ShipTo.Country.Code === 'HKG')"
+                                                       capitalize-first ng-model="eCommerceBooking.ShipTo.State" class="form-control fontsize12" placeholder="{{'State' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 form-group paddingboth">
+                                            <label for="shipToAreaName" id="shipToAreaNameLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Area' | translate}}</label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <input type="text" name="shipToAreaName" id="shipToAreaName"
+                                                       only-alphabets capitalize-first ng-model="eCommerceBooking.ShipTo.Area" class="form-control fontsize12" placeholder="{{'Area' | translate}}" />
+                                            </div>
+                                            <div class="col-sm-1 paddingboth area">
+                                                <a href="" class="padding7px" uib-popover="Area is like a Suburb" popover-trigger="'outsideClick'">
+                                                    <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 directBookingBorder"></div>
+                                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.shipToPhone.$invalid &&
+                                                         (DirectBookingForm.shipToPhone.$dirty || submitted) }">
+                                            <label for="shipToPhone" id="shipToPhoneLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'TelephoneNo' | translate}} <span class="redColor">*</span></label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <div class="col-sm-4 paddingleft">
+                                                    <input type="text" class="form-control fontsize12" readonly ng-model="ShipToPhoneCode" />
+                                                </div>
+
+                                                <div class="col-sm-8 paddingboth">
+                                                    <input type="text" name="shipToPhone" id="shipToPhone" ng-readonly="eCommerceBooking.CustomerRateCard.LogisticServiceId >0"
+                                                           only-decimal ng-model="eCommerceBooking.ShipTo.Phone" class="form-control fontsize12" maxlength="10" required placeholder="{{'TelephoneNo' | translate}} ({{'Required' | translate}})" />
+                                                </div>
+                                                <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToPhone.$invalid &&
+                                            (DirectBookingForm.shipToPhone.$dirty || submitted)">
+                                                    {{'TelephoneValidationError' | translate}}
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': (DirectBookingForm.shipToMail.$invalid &&
+                                                         (DirectBookingForm.shipToMail.$dirty || submitted)) }">
+                                            <label for="shipToMail" id="shipToMailLabel" class="col-sm-4 lineheight24 control-label paddingleft paddingright">{{'Send_Alert_Email' | translate}}</label>
+                                            <div class="col-sm-6 paddingboth">
+                                                <input type="text" name="shipToMail" id="shipToMail" ng-pattern="emailFormat"
+                                                       ng-model="eCommerceBooking.ShipTo.Email" class="form-control fontsize12" placeholder="{{'Send_Alert_Email' | translate}}" required />
+                                                <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToMail.$error.required &&
+                                            (DirectBookingForm.shipToMail.$dirty || submitted)">
+                                                   Email is required
+                                                </span>
+                                                  <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipToMail.$error.pattern && !DirectBookingForm.shipToMail.$error.required 
+                                            (DirectBookingForm.shipToMail.$dirty || submitted)">
+                                                    {{'EmailNotValid' | translate}}
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-1 paddingboth sendEmail">
+                                                <a href="" class="padding7px" uib-popover="If required, please enter the email address of the person you wish to receive this shipments details once booked." popover-trigger="'outsideClick'">
+                                                    <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <!--<div ng-if="eCommerceBooking.ShipTo.Email !== null && eCommerceBooking.ShipTo.Email !== ''">
+                                            <div ng-show="!DirectBookingForm.shipToMail.$invalid" class="col-sm-12 paddingboth">
+                                                <label for="shipToSendMail" id="shipToSendMail" class="col-sm-6 col-sm-offset-4 control-label paddingleft paddingright">
+                                                    <label><input type="checkbox" ng-model="eCommerceBooking.ShipTo.IsMailSend" /> <send class="bottom2">{{'Email_NotificationConsignee' | translate}}</span></label>
+                                                </label>
+                                            </div>
+                                        </div>-->
+                                        <div class="col-sm-12 paddingboth">
+                                            <label class="col-sm-4"></label>
+                                            <div for="shipToSendMail" id="shipToSendMail" class="col-sm-6 control-label paddingleft paddingright">
+                                                <label class="checkbox-inline"><input type="checkbox" ng-model="eCommerceBooking.ShipTo.IsMailSend" /> <span>{{'Email_NotificationShipper' | translate}}</span></label>
+                                            </div>
+                                            <div class="col-sm-1 paddingboth sendEmail">
+                                                <a href="" class="padding7px" popover-placement="auto" uib-popover="Ticking this will send the newly created shipment detail to the provided shipper email." popover-trigger="'outsideClick'">
+                                                    <i class="fa fa-question-circle help icon-margin" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                            </uib-tabset>
+                        </div>
+                        <div class="col-sm-6 paddingboth">
+                            <uib-tabset>
+                                <!--<uib-tabset active="active">-->
+                                <uib-tab index="1" class="borderleft2f5f5f5 fontsize12">
+                                    <uib-tab-heading class="fontsize10">
+                                        {{'SHIPMENT_DETAIL' | translate}} &nbsp;<span ng-if="shipmentDetailTab(DirectBookingForm)"><!--<i class="fa fa-check tick" aria-hidden="true"></i>--><img ng-src="{{ImagePath + 'tick-icon.png'}}" class="direct-booking-icon-fix" /></span>
+                                    </uib-tab-heading>
+                                    <div ng-show="paymentAccount" class="col-sm-12 paddingboth" style="padding-top:24px;">
+                                        <div class="col-sm-12 form-group paddingboth margin-bottom-none" ng-class="{ 'has-error': DirectBookingForm.shipmentPaymentAccount.$invalid &&
+                                                         (DirectBookingForm.shipmentPaymentAccount.$dirty || submitted) }">
+                                            <!--<div class="col-sm-4 paddingboth">-->
+                                                <label for="shipmentPaymentAccount" id="shipmentPayment" class="control-label lineheight24">{{'Payment_Party' | translate}} <span class="redColor">*</span></label>
+                                            <!--</div>-->
+                                            <div class="col-sm-col-sm-12 paddingboth">
+                                                <div class="col-sm-11 paddingboth">
+                                                <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                                        ng-model="CustomerDetail"
+                                                        ng-change="getCustomerCurrencyDetail(CustomerDetail)" ng-disabled="eCommerceBooking.CustomerRateCard.LogisticServiceId >0"
+                                                        ng-options="Customer as Customer.CustomerName +' - '+ Customer.AccountNumber for Customer in directBookingCustomers | orderBy : 'CustomerName' track by Customer.CustomerId "
+                                                        class="form-control fontsize12" ng-required="paymentAccount">
+                                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                                                </select>
+                                                <span class="help-block has-error"
+                                                      ng-show="DirectBookingForm.shipmentPaymentAccount.$invalid &&
+                                            (DirectBookingForm.shipmentPaymentAccount.$dirty || submitted)">
+                                                    {{'Payment_required' | translate}}
+                                                </span>
+                                                </div>
+                                                <div class="col-sm-1 estimatedPickupDate">
+                                                    <a href="" popover-placement="auto" uib-popover='Fill in the Client who will be responsible for the Payment of this Shipment.' popover-trigger="'outsideClick'">
+                                                        <i class="fa fa-question-circle help right8" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-12 paddingboth" style="padding-top: 24px;">
+                                        <h4 class="uppercase col-sm-8 paddingboth" ng-class="{'margin-bottom6':bulkUpload === true}"><label>{{'Shipment&Package_Info' | translate}}</label></h4>
+                                            <label class="col-sm-4 paddingboth bulk-upload-popup">
+                                                <button type="button" ng-init="bulkUpload=false" ng-click="bulkUpload= !bulkUpload" class="btn-simple btn-save pull-right"><i class="fa fa-upload" aria-hidden="true"></i> {{'Bulk_Upload' | translate}}</button>
+                                                <span class="click">{{'Bulk_Upload' | translate}}<br />({{'Shipment_Information' | translate}})</span>
+                                            </label>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="col-sm-12 paddingboth border-ddd paddingAll10 margin-bottom6" ng-show="bulkUpload">
+                                            <div class="col-sm-9 paddingboth">
+                                                <div class="col-sm-4 paddingboth top9 padding-left5"><span class="padding-left5">{{'Download_Template' | translate}}</span></div>
+                                                <div class="col-sm-2 paddingboth">
+                                                    <a href="downloadForm/Shipment Package Bulk Upload.csv" download="Shipment Package Bulk Upload.csv"class="btn btn-blue fontsize12 width90">
+                                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>  {{'csv' | translate}}
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-2 paddingboth">
+                                                    <a href="downloadForm/Shipment Package Bulk Upload.xlsx" download="Shipment Package Bulk Upload.xlsx" class="btn btn-blue fontsize12  width90">
+                                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>  {{'xlsx' | translate}}
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-2 paddingboth">
+                                                    <a href="downloadForm/Shipment Package Bulk Upload.xls" download="Shipment Package Bulk Upload.xls" class="btn btn-blue fontsize12 width90">
+                                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>  {{'xls' | translate}}
+                                                    </a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="col-sm-3 paddingboth">
+                                                <div class="button col-sm-8 paddingboth"
+                                                     ng-model="piecesExcel"
+                                                     name="shipmentPiecesDetails"
+                                                     ngf-pattern="'application/vnd.ms-excel,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+                                                     accept="application/vnd.ms-excel,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ngf-max-size="20MB"
+                                                     ngf-select="WhileAddingExcel($files, $file, $event)">
+                                                    <button type="button" class="btn btn-blue fontsize12">
+                                                        {{'Upload_File' | translate}}
+                                                    </button>
+                                                </div>
+                                                <div class="col-sm-4 uploadfile">
+                                                    <a href="" class="padding7px" uib-popover="Please upload the Excel and Csv file according to the provided template files."
+                                                       popover-trigger="'outsideClick'" popover-placement="top">
+                                                        <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!--end download template code-->
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-12 paddingboth margin-bottom6">
+                                        <span style="padding-top:25px;">
+                                            <span class="radio-inline">
+                                                <label><input type="radio" name="optradio" value="kgToCms" ng-change="changeKgToLb(eCommerceBooking.PakageCalculatonType)" ng-model="eCommerceBooking.PakageCalculatonType"><b>{{'Matric' | translate}} - {{'kGS' | translate}}/{{'CMS' | translate}}</b> </label>
+                                            </span>
+                                            &nbsp;&nbsp;
+                                            <span class="radio-inline">
+                                                <label><input type="radio" name="optradio" value="lbToInchs" ng-change="changeKgToLb(eCommerceBooking.PakageCalculatonType)" ng-model="eCommerceBooking.PakageCalculatonType"><b>{{'Imperial' | translate}} - {{'LB' | translate}}/{{'INCHS' | translate}}</b></label>
+                                            </span>
+                                            <!--<span class="pull-right bulk-upload-popup">
+                                            <button type="button" ng-init="bulkUpload=false" ng-click="bulkUpload= !bulkUpload" class="btn-simple btn-save"><i class="fa fa-upload" aria-hidden="true"></i> {{'Bulk_Upload' | translate}}</button>
+                                                <span class="click">{{'Bulk_Upload' | translate}}<br />({{'Shipment_Information' | translate}})</span>
+                                            </span>-->
+                                        </span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="panel-default">
+                                        <!--grid code start-->
+                                        <div class="panel-heading padding0">
+                                            <div class="row">
+                                                <ul class="list-unstyled margin-bottom-none">
+                                                    <li>
+                                                        <div class="col-sm-12">
+                                                            <div style="width:89.255% !important;float:left;">
+                                                                <div class="width13 borderRight height77 text-center word-break" style="border-right:2px solid #ddd !important;">
+                                                                    <p style="margin:9px 0px 0px;">
+                                                                        <b ng-show="eCommerceBooking.ParcelType.ParcelType!=='Letter'">{{'Carton_QTY' | translate}}</b>
+                                                                        <b ng-show="eCommerceBooking.ParcelType.ParcelType==='Letter'">{{'QTY' | translate}}</b>
+                                                                        <br /><small></small>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="width13 borderRight height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>{{'Length' | translate}}</b><br /><small>({{Lb_Inch}})</small></p></div>
+                                                                <div class="width13 borderRight height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>{{'Width' | translate}}</b><br /><small>({{Lb_Inch}})</small></p></div>
+                                                                <div class="width13 borderRight height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>{{'Height' | translate}}</b><br /><small>({{Lb_Inch}})</small></p></div>
+                                                                <div class="width13 borderRight height77 text-center word-break"><p style="margin:9px 0px 0px;"><b>{{'Weight' | translate}}</b><br /><small>({{Lb_Kgs}})</small></p></div>
+                                                                <div class="width13 borderRight height77 text-center word-break"><p style="margin:9px -3px 0px;"><b>{{'Declared_Value' | translate}}</b><br /><small ng-show="eCommerceBooking.Currency.CurrencyCode !==undefined && eCommerceBooking.Currency.CurrencyCode !=='' && eCommerceBooking.Currency.CurrencyCode !==null">({{eCommerceBooking.Currency.CurrencyCode}})</small></p></div>
+                                                                <div class="width22 borderRight height77 text-center word-break">
+                                                                    <p style="margin:9px 0px 0px;" class="estimatedWeight">
+                                                                        <b>{{'Shipment_Content' | translate}}</b><br /><a href="" class="padding7px" popover-placement="auto" uib-popover="Please fill a short description of the Contents of the Package." popover-trigger="'outsideClick'" style="bottom:4PX;position:relative;">
+                                                                            <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="width1067">
+                                                                <div ng-if="eCommerceBooking.ParcelType.ParcelDescription !== 'Letter (Doc)'">
+                                                                    <div class="text-center paddingT5"><a href="" a-disabled="eCommerceBooking.CustomerRateCard.LogisticServiceId >0" ng-click="AddPackage()"><p style="margin: 10px 0px 1px;"><b><span><span style="color:#4d5663 !important;">{{'Add' | translate}}<br />{{'More' | translate}}<br /></span><i class="fa fa-plus" aria-hidden="true"></i></span></b></p></a></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--start color code-->
+                                        <div class="panel-body directbooking-textarea padding0">
+                                            <ul class="list-unstyled margin-bottom-none">
+                                                <li ng-repeat="Package in eCommerceBooking.Packages" ng-init="packageForm='tags'+$index" class="alternate">
+                                                    <ng-form name="{{packageForm}}">
+                                                        <div>
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    <div class="col-sm-12 padding0">
+                                                                        <div style="width:89.255% !important;float:left;">
+                                                                            <div class="width13 borderRight border-bottom" ng-class="{ 'has-error':DirectBookingForm[packageForm].cartton.$invalid &&
+                                                         (DirectBookingForm[packageForm].cartton.$dirty || submitted) }" style="border-right:2px solid #ddd !important;">
+                                                                                <input type="text" name="cartton" class="form-control" style="width: 100%; margin: 12px 0px;" ng-readonly="eCommerceBooking.ParcelType.ParcelDescription === 'Letter (Doc)'"
+                                                                                       ng-model="Package.CartoonValue" valid-number allow-decimal="false" allow-negative="false" required />
+                                                                            </div>
+                                                                            <div class="width13 borderRight border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].length.$invalid &&
+                                                         (DirectBookingForm[packageForm].length.$dirty || submitted) }">
+                                                                                <input type="text" only-decimal name="length" class="form-control" style="width: 100%; margin: 12px 0px;"
+                                                                                       ng-model="Package.Length" required />
+                                                                            </div>
+                                                                            <div class="width13 borderRight border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].width.$invalid &&
+                                                           (DirectBookingForm[packageForm].width.$dirty || submitted) }">
+                                                                                <input type="text" only-decimal name="width" class="form-control" style="width: 100%;margin: 12px 0px;"
+                                                                                       ng-model="Package.Width" required />
+                                                                            </div>
+                                                                            <div class="width13 borderRight border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].height.$invalid &&
+                                                           (DirectBookingForm[packageForm].height.$dirty || submitted) }">
+                                                                                <input type="text" only-decimal name="height" class="form-control" style="width: 100%; margin: 12px 0px;"
+                                                                                       ng-model="Package.Height" required />
+                                                                            </div>
+                                                                            <div class="width13 borderRight border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].weight.$invalid &&
+                                                           (DirectBookingForm[packageForm].weight.$dirty || submitted) }">
+                                                                                <input type="text" only-decimal-limit name="weight" class="form-control" style="width: 100%; margin: 12px 0px;"
+                                                                                       ng-model="Package.Weight" maxlength="5" required />
+                                                                            </div>
+                                                                            <div class="width13 borderRight border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].currencyValue.$invalid &&
+                                                           (DirectBookingForm[packageForm].currencyValue.$dirty || submitted) }">
+                                                                                <input type="text" only-decimal name="currencyValue"
+                                                                                       class="form-control" style="width: 100%; margin: 12px 0px;" ng-model="Package.Value" required />
+                                                                            </div>
+                                                                            <div class="width22 borderRight border-bottom" ng-class="{ 'has-error': DirectBookingForm[packageForm].content.$invalid &&
+                                                           (DirectBookingForm[packageForm].content.$dirty || submitted) }">
+                                                                                <textarea name="content" class="form-control fix-textarea-panel" style="width:100%;margin: 5px 0px;" ng-model="Package.Content" ng-change="Package.Content = Removecomma(Package.Content)" required></textarea>
+                                                                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                        </div>
+                                                                        <div ng-hide="HideContent" class="width1067 border-bottom text-center shipmentContent" style="padding:19px;">
+                                                                            <span class="visibility">Hide</span>
+                                                                        </div>
+                                                                        <div ng-if="eCommerceBooking.ParcelType.ParcelDescription !== 'Letter (Doc)' && eCommerceBooking.Packages.length !==1">
+                                                                            <div ng-show="Package.pacVal === false" class="width1067 border-bottom text-center shipmentContent" style="padding:19px;">
+                                                                                <a href="" a-disabled="eCommerceBooking.CustomerRateCard.LogisticServiceId >0" ng-click="RemovePackage(Package)"><i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i></a>
+                                                                            </div>
+                                                                            <div ng-show="Package.pacVal === true" class="width1067 border-bottom text-center ecommerce-plus-minus-icon">
+                                                                                <div class="shipmentContent"><a href="" a-disabled="eCommerceBooking.CustomerRateCard.LogisticServiceId >0" ng-click="RemovePackage(Package)"><i class="fa fa-minus color-red" aria-hidden="true" popover-placement="auto" uib-popover="Remove Package" popover-trigger="'mouseenter'"></i></a></div>
+                                                                                <div style="border-top:1px solid #ddd;"><a href="" a-disabled="directBooking.CustomerRateCard.LogisticServiceId >0" ng-click="AddPackage()"><i class="fa fa-plus color-green" aria-hidden="true" popover-placement="auto" uib-popover="Add More" popover-trigger="'mouseenter'"></i></a></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </ng-form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!--end-->
+                                        <!--grid code end-->
+                                        <div class="col-sm-12 paddingboth  flex ecommerce-col grid-background">
+                                            <div class="width45-2 paddingleft padding-10" style="margin-left: 5px;">{{'Total_Shipment_Pieces' | translate}}: {{totalPieces(eCommerceBooking)}}</div>
+                                            <div class="width11-82 text-center word-break padding-10 border-left-e5e5e5 border-right-e5e5e5">
+                                                {{getTotalKgs()}}<br />({{Lb_Kg}})
+                                            </div>
+                                            <div class="text-center padding-10 word-break">
+                                                {{PackagesTotal(eCommerceBooking.Packages, 'Value')}}<!--<br />--> <small ng-show="eCommerceBooking.Currency.CurrencyCode !==undefined && eCommerceBooking.Currency.CurrencyCode !=='' && eCommerceBooking.Currency.CurrencyCode !== null"> ({{eCommerceBooking.Currency.CurrencyCode}})</small>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-12 paddingboth border total-estimate flex">
+                                            <div class="col-sm-9 paddingboth estimatedWeight fontsize12">
+                                                {{'Estimated_Chargeable_Weight' | translate}} <span class="redColor">{{'Hash' | translate}}</span>:
+                                                <a href="" class="padding7px" uib-popover="This is the estimated volumetric weight based on the dimensions you have provided. For further information on volumetric weight and how it is calculated, please refer to your agreed Frayte Logistics Terms and Conditions." popover-trigger="'outsideClick'">
+                                                    <i class="fa fa-question-circle help margin-0-2 fontsize12" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-3 paddingboth fontsize12 word-wrap">{{getChargeableWeight(eCommerceBooking.Packages, 'Weight')}}  ({{Lb_Kgs}})</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-12 paddingboth">
+                                            <p><span class="redColor">{{'Hash' | translate}}: </span>{{'TotalEstimate_BillingWeight' | translate}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <br />
+                                    <div ng-show="eCommerceBooking.CustomerRateCard.CourierName !== 'UKMail' && eCommerceBooking.CustomerRateCard.CourierName !== 'UKMail' && eCommerceBooking.CustomerRateCard.CourierName !== 'Yodel' && eCommerceBooking.CustomerRateCard.CourierName !== 'Hermes'" class="col-sm-12 form-group paddingboth">
+                                        <div class="col-sm-4 paddingboth">
+                                            <label for="parcelType" id="parcelTypeLabel" class="control-label lineheight24">{{'Parcel_Type' | translate}} <span class="redColor">*</span></label>
+                                        </div>
+                                        <div class="col-sm-7 paddingright">
+                                            <select id="parcelType" name="parcelType"
+                                                    ng-model="eCommerceBooking.ParcelType" ng-change="setPackageParcelType(eCommerceBooking.ParcelType)" ng-disabled="setParcelTypeDisable()"
+                                                    ng-options="ParcelType.ParcelDescription for ParcelType in ParcelTypes track by ParcelType.ParcelType"
+                                                    class="form-control fontsize12">
+                                                <option value="" selected disabled class="display-none">{{'Select_Parcel_Type' | translate}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth estimatedPickupDate ">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover='Please specify whether the shipment(s) will be classed as documents or non-documents.' popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div ng-show="currencyVisibility(eCommerceBooking)" class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.paymentPartyCurrencyType.$invalid &&
+                                                         (DirectBookingForm.paymentPartyCurrencyType.$dirty || submitted) }">
+                                        <div class="col-sm-4 paddingboth">
+                                            <label for="paymentPartyCurrencyType" id="paymentPartyCurrencyTypeLabel" class="control-label lineheight24">{{'Declared_Value' | translate}} {{'Currency' | translate}} <span class="redColor">*</span> </label>
+                                        </div>
+                                        <div id="Xe" class="col-sm-7 paddingright">
+                                            <select id="paymentPartyCurrencyType" name="paymentPartyCurrencyType"
+                                                    ng-model="eCommerceBooking.Currency"
+                                                    ng-options="DeclaredCurrency.CurrencyCode +' - '+ DeclaredCurrency.CurrencyDescription disable when DeclaredCurrency.Disabled ===true for DeclaredCurrency in CurrencyTypes  | orderBy:'OrderNumber' track by DeclaredCurrency.CurrencyCode"
+                                                    class="form-control fontsize12" ng-required="currencyVisibility(eCommerceBooking)" ng-disabled="SetCurrencyDisable(eCommerceBooking)">
+                                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Currency' | translate}}</option>
+                                            </select>
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.paymentPartyCurrencyType.$invalid &&
+                                            (DirectBookingForm.paymentPartyCurrencyType.$dirty || submitted)">
+                                                {{'Currency_required' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth estimatedPickupDate">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover='Use the dropdown box to specify the Declared Value Currency.' popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': DirectBookingForm.reference1.$invalid &&
+                                                         (DirectBookingForm.reference1.$dirty || submitted) }">
+                                        <div class="col-sm-4 paddingboth">
+                                            <label for="reference1" id="shipmentReference1Label" class="control-label lineheight24">{{'Shipment_Reference' | translate}} <span class="redColor">*</span></label>
+                                        </div>
+                                        <div class="col-sm-7 paddingright">
+                                            <input type="text" class="col-sm-6 form-control fontsize12" name="reference1" id="reference1"
+                                                   capitalize-first ng-model="eCommerceBooking.ReferenceDetail.Reference1" required placeholder="{{'Shipment_Reference' | translate}} ({{'Required' | translate}})" />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.reference1.$invalid &&
+                                            (DirectBookingForm.reference1.$dirty || submitted)">
+                                                {{'Reference_required' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth estimatedPickupDate">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover='Please provide a reference for this shipment.' popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-sm-12 form-group paddingboth" ng-class="{'has-error':DirectBookingForm.ContentDescription.$invalid &&
+                                            (DirectBookingForm.ContentDescription.$dirty || submitted)}">
+                                        <div class="col-sm-4 paddingboth">
+                                            <label for="ContentDescription" id="collectiontime1" class="control-label lineheight24">{{'Shipment_Description' | translate}} <span class="redColor">*</span></label>
+                                        </div>
+                                        <div class="col-sm-7 paddingright">
+                                            <input type="text" class="col-sm-6 form-control fontsize12" name="ContentDescription" id="ContentDescription"
+                                                   capitalize-first ng-model="eCommerceBooking.ReferenceDetail.ContentDescription" required placeholder="{{'Shipment_Description' | translate}} ({{'Required' | translate}})" />
+                                            <span class="help-block has-error"
+                                                  ng-show="DirectBookingForm.ContentDescription.$invalid &&
+                                            (DirectBookingForm.ContentDescription.$dirty || submitted)">
+                                                {{'Shipment_Description' | translate}} {{'Is' | translate}} {{'Required' | translate}}
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-1 paddingboth estimatedPickupDate">
+                                            <a href="" class="padding7px" popover-placement="auto" uib-popover='Please provide a description for this shipment.' popover-trigger="'outsideClick'">
+                                                <i class="fa fa-question-circle help" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </uib-tab>
+                            </uib-tabset>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 padding20all paddingboth">
+                    <hr style="margin:10px 0px 10px;" />
+                </div>
+                <div class="col-sm-12 fontsize12 paddingboth">
+                    <!--<div class="col-sm-12 center paddingboth" style="padding-top:15px;">
+                        <div class="col-sm-12 paddingboth">
+                            <div class="text-left"><span class="redColor">{{'Please_Note_Hash' | translate}} </span>{{'TotalEstimate_BillingWeight' | translate}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 paddingboth">
+                        <div id="text13" class="col-sm-12 paddingboth">
+                            <div class="col-sm-12 paddingboth form-group">
+                                <div class="col-sm-6 paddingboth ">
+                                    <div class="col-sm-6 paddingboth">
+                                        <button type="button" ng-click="ClearForm(DirectBookingForm)" class="btn border-radius2 btn-lg btn-danger fontsize12" style="padding:10px 20px 13px !important;"><i class="fa fa-eraser" aria-hidden="true"></i> {{' Clear_Form' | translate}} &nbsp; &nbsp;  </button>
+                                    </div>
+                                    <div class="col-sm-6 paddingboth" id="saveLater">
+                                        <button type="submit" ng-click="submitted=true; BookingType = 'Draft'" class="btn border-radius2 btn-lg btn-cancel fontsize12" style="color: #fff; background: #94a4bd; padding:10px 20px 13px !important;"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> {{'Save_Later' | translate}}</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="col-sm-6 paddingboth">
+                                    <div ng-show="showGetServicePlaceBooking(DirectBookingForm)" class="col-sm-6 paddingboth pull-right">
+                                        <button ng-disabled="!DirectBookingForm.$valid " type="submit"
+                                                ng-class="{'grey': !DirectBookingForm.$valid , 'btn-success' : DirectBookingForm.$valid}"
+                                                ng-click="submitted=true; BookingType = 'Current'"
+                                                class="btn btn-lg  col-sm-12 fontsize25 border-radius2 directbooking-padding">
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                            {{'Place_Booking' | translate}}
+                                        </button>
+                                        <div class="fontsize10 fontsize12 place-booking-term-condition" style="right:8% !important;"><a class="text-right pointer frayte-blue ng-binding" ng-click="setScroll('top')" ui-sref="public.term-and-condition" target="_blank"><i class="fa fa-plus" aria-hidden="true"></i> {{'Agree_Term_And_Condition' | translate}}</a></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br />
+    </div>
+</section>

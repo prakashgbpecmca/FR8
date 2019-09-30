@@ -1,0 +1,237 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i>
+</button>
+    <h4 class="modal-title">{{mode}} {{'Tradelane' | translate}}</h4>
+</div>
+<form name="TradelaneForm" ng-submit="SaveTradelane(TradelaneForm.$valid, tradelaneDetail)" novalidate>
+    <div class="modal-body">
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': TradelaneForm.originatingCountry.$invalid &&
+                                                         (TradelaneForm.originatingCountry.$dirty || submitted) }">
+                <div class="textLeft35">
+                    <label class="control-label" for="originatingCountry">{{'Originating' | translate}} {{'Country' | translate}} <span class="redColor">*</span></label>
+                </div>
+                <div class="inputRight65" id="Xe">
+                    <select id="originatingCountry" name="originatingCountry"
+                            ng-model="tradelaneDetail.OriginatingCountry"
+                            ng-change="GetCountryAgents(tradelaneDetail.OriginatingCountry, 'Originating')"
+                            ng-options="Country.Name for Country in countries | orderBy:'Name' track by Country.CountryId"
+                            class="form-control fontsize12" required>
+                        <option value="" disabled selected class="display-none">{{'OriginatingCountrySelectedOption' | translate}}</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="TradelaneForm.originatingCountry.$invalid &&
+                        (TradelaneForm.originatingCountry.$dirty || submitted)">
+                        {{'Originating' | translate}} {{'CountryValidationError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>                
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': TradelaneForm.destinationCountry.$invalid &&
+                                                         (TradelaneForm.destinationCountry.$dirty || submitted) }">
+                <div class="textLeft35">
+                    <label class="control-label" for="destinationCountry">{{'Destination' | translate}} {{'Country' | translate}} <span class="redColor">*</span></label>
+                </div>
+                <div class="inputRight65" id="Xe">
+                    <select id="destinationCountry" name="destinationCountry"
+                            ng-model="tradelaneDetail.DestinationCountry"
+                            ng-change="GetCountryAgents(tradelaneDetail.DestinationCountry, 'Destination')"
+                            ng-options="Country.Name for Country in countries | orderBy:'Name' track by Country.CountryId"
+                            class="form-control fontsize12" required>
+                        <option value="" disabled selected class="display-none">{{'DestinationCountrySelectedOption' | translate}}</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="TradelaneForm.destinationCountry.$invalid &&
+                        (TradelaneForm.destinationCountry.$dirty || submitted)">
+                        {{'Destination' | translate}} {{'CountryValidationError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>                
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': TradelaneForm.originatingAgent.$invalid &&
+                                                         (TradelaneForm.originatingAgent.$dirty || submitted) }">
+                <div class="textLeft35">
+                    <label class="control-label" for="originatingAgent">{{'Originating' | translate}} {{'Agent' | translate}} <span class="redColor">*</span></label>
+                </div>
+                <div class="inputRight65">
+                    <select id="originatingAgent" name="originatingAgent"
+                            ng-model="tradelaneDetail.OriginatingAgent"
+                            ng-options="agent.Name for agent in originatingAgents | orderBy:'Name' track by agent.UserId"
+                            class="form-control fontsize12" required>
+                        <option value="" disabled selected class="display-none">{{'OriginatingAgentSelectedOption' | translate}}</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="TradelaneForm.originatingAgent.$invalid &&
+                        (TradelaneForm.originatingAgent.$dirty || submitted)">
+                        {{'Originating' | translate}} {{'AgentValidError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>                
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': TradelaneForm.destinationAgent.$invalid &&
+                                                         (TradelaneForm.destinationAgent.$dirty || submitted) }">
+                <div class="textLeft35">
+                    <label class="control-label" for="destinationAgent">{{'Destination' | translate}} {{'Agent' | translate}} <span class="redColor">*</span></label>
+                </div>
+                <div class="inputRight65">
+                    <select id="destinationAgent" name="destinationAgent"
+                            ng-model="tradelaneDetail.DestinationAgent"
+                            ng-options="agent.Name for agent in destinationAgents | orderBy:'Name' track by agent.UserId"
+                            class="form-control fontsize12" required>
+                        <option value="" disabled selected class="display-none">{{'DestinationAgentSelectedOption' | translate}}</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="TradelaneForm.destinationAgent.$invalid &&
+                        (TradelaneForm.destinationAgent.$dirty || submitted)">
+                        {{'Destination' | translate}} {{'AgentValidError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>               
+            </div>
+        </div>
+        <div class="clearfix"></div>          
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': TradelaneForm.carrierType.$invalid &&
+                                                        (TradelaneForm.carrierType.$dirty  || submitted) }">
+                <div class="textLeft35">
+                    <label class="control-label" for="carrierType">{{'ShipmentVia' | translate}} <span class="redColor">*</span></label>
+                </div>
+                <div class="inputRight65">
+                    <div class="row">
+                        <label class="col-xs-6">
+                            <span class="check-Box">
+                                <input name="carrierType" type="radio"
+                                       ng-model="tradelaneDetail.CarrierType" value="Air" ng-click="GetCarrierTypes(tradelaneDetail.CarrierType)" required />
+                            </span>
+                            <span class="check-BoxText">{{'Air' | translate}}</span>
+                        </label>
+                        <label class="col-xs-6">
+                            <span class="check-Box">
+                                <input name="carrierType" type="radio"
+                                       ng-model="tradelaneDetail.CarrierType" value="Sea" ng-click="GetCarrierTypes(tradelaneDetail.CarrierType)" required />
+                            </span>
+                            <span class="check-BoxText">{{'Sea' | translate}}</span>
+                        </label>
+                        <div class="clearfix"></div>
+                        <label class="col-xs-6">
+                            <span class="check-Box">
+                                <input name="carrierType" type="radio"
+                                       ng-model="tradelaneDetail.CarrierType" value="Courier" ng-click="GetCarrierTypes(tradelaneDetail.CarrierType)" required />
+                            </span>
+                            <span class="check-BoxText">{{'Courier' | translate}}</span>
+                        </label>
+                        <label class="col-xs-6">
+                            <span class="check-Box">
+                                <input name="carrierType" type="radio"
+                                       ng-model="tradelaneDetail.CarrierType" value="Expryes" ng-click="GetCarrierTypes(tradelaneDetail.CarrierType)" required />
+                            </span>
+                            <span class="check-BoxText">{{'Expryes' | translate}}</span>
+                        </label>
+                        <div class="clearfix"></div>
+                    </div>
+                    <span class="help-block has-error"
+                          ng-show="TradelaneForm.carrierType.$invalid &&
+                        (TradelaneForm.carrierType.$dirty || submitted)">
+                        {{'ShipmentViaValidError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>                
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{ 'has-error': TradelaneForm.Carrier.$invalid &&
+                                                         (TradelaneForm.Carrier.$dirty || submitted) }">
+                <div class="textLeft35">
+                    <label class="control-label" for="Carrier">{{'Carrier' | translate}} <span class="redColor">*</span></label>
+                </div>
+                <div class="inputRight65">
+                    <select id="Carrier" name="Carrier"
+                            ng-model="tradelaneDetail.Carrier"
+                            ng-options="Carrier.CarrierName for Carrier in carriers | orderBy:'CarrierName' track by Carrier.CarrierId"
+                            class="form-control fontsize12" required>
+                        <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'CarrierPlaceHolder' | translate}}</option>
+                    </select>
+                    <span class="help-block has-error"
+                          ng-show="TradelaneForm.Carrier.$invalid &&
+                        (TradelaneForm.Carrier.$dirty || submitted)">
+                        {{'CarrierValidError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>               
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-if="tradelaneDetail.CarrierType === 'Air'">
+                <div class="textLeft35 textName top5">
+                    <label class="control-label" for="TransitTime">{{'RequestedTransitTime' | translate}}</label>
+                </div>
+                <div class="inputRight65" style="margin-top:10px;">
+                    <select name="singleSelect" id="singleSelect" ng-model="tradelaneDetail.TransitTime" class="form-control fontsize12">
+                        <option value="" selected class="display-none">--- {{'PleaseSelect' | translate}} ---</option>
+                        <option value="Next Flight">{{'Next' | translate}} {{'Flight' | translate}}</option>
+                        <option value="Express Cargo">{{'ExpressCargo' | translate}}</option>
+                        <option value="1-2 days">{{'1' | translate}}-{{'2' | translate}} {{'Days' | translate}}</option>
+                        <option value="3-5 days">{{'3' | translate}}-{{'5' | translate}} {{'Days' | translate}}</option>
+                        <option value="5-7 days">{{'5' | translate}}-{{'7' | translate}} {{'Days' | translate}}</option>
+                        <option value="7 days">{{'7' | translate}} {{'Days' | translate}}</option>
+
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div ng-if="tradelaneDetail.CarrierType === 'Air'" class="form-group top7" ng-class="{ 'has-error': TradelaneForm.directDefferedType.$invalid &&
+                                                        (TradelaneForm.directDefferedType.$dirty  || submitted) }">
+                <div class="textLeft35">
+                    <label class="control-label" for="directDefferedType">{{'Direct' | translate}}/{{'Deferred' | translate}}</label>
+                </div>
+                <div class="inputRight65" style="margin-top:5px;">
+                    <label>
+                        <span class="check-Box">
+                            <input name="directDefferedType" type="radio"
+                                   ng-model="tradelaneDetail.DirectDefferedType" value="Direct" ng-required="!tradelaneDetail.DirectDefferedType" />
+                        </span>
+                        <span class="check-BoxText">{{'Direct' | translate}}</span>
+                    </label>
+                    <label>
+                        <span class="check-Box">
+                            <input name="directDefferedType" type="radio"
+                                   ng-model="tradelaneDetail.DirectDefferedType" value="Deffered" ng-required="!tradelaneDetail.DirectDefferedType" />
+                        </span>
+                        <span class="check-BoxText">{{'Deferred' | translate}}</span>
+                    </label>
+                    <span class="help-block has-error"
+                          ng-show="TradelaneForm.directDefferedType.$invalid &&
+                        (TradelaneForm.directDefferedType.$dirty || submitted)">
+                        {{'DirectDeferredValidError' | translate}}
+                    </span>
+                </div>
+                <div class="clearfix"></div>               
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <button type="button" ng-click="TradlaneGoBack()" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button> &nbsp;&nbsp;
+            </div>
+            <div class="pull-right">
+                <button type="submit" ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+            <div class="clearfix"></div>
+           </div>
+    </div>
+</form>
+

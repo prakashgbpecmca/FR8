@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html ng-app="ngApp" ng-controller="AppCtrl">
+<head>
+    <title ng-bind="pageTitle"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <base href="/build/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="initial-scale=1,user-scalable=yes">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!--<base href="/Frayte/web/build/index.html" />-->
+    <link rel="favicon" href="{{ImagePath + 'favicon.ico' }}" />
+    <link rel="apple-touch-icon" href="{{ImagePath + 'favicon.ico' }}">
+    <link rel="shortcut icon" href="{{ImagePath + 'favicon.ico' }}">
+    <link rel="license" href="{{ImagePath + 'favicon.png' }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ImagePath + 'favicon.ico' }}">
+    <link rel="icon" href="{{ImagePath + 'favicon.ico' }}">
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+</head>
+<body class="fix-mobile-image left-sidebar width-70per" style="background-image:url('{{ImagePath + 'phoneLayout.png'}}');">
+    <toaster-container></toaster-container>
+    <div data-ui-view class="body-view width-408">
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+        $(document).on('click', function () {
+            $('#mySidenav').collapse('hide');
+        })
+
+    </script>
+</body>
+</html>

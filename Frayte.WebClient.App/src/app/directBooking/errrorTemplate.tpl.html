@@ -1,0 +1,104 @@
+﻿
+
+<section>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Shipment' | translate}} {{'Errors' | translate}}</h4>
+    </div>
+    <br />
+    <div class="overflow" style="margin-top:-20px; height:470px !important;">
+        <div ng-if="FrayteError.Address.length > 0">
+            <div class="alert alert-danger marginBottomZero borderRadiusZero">
+                <strong>{{'Address' | translate}} {{'Issue' | translate}}/{{'Section' | translate}} :</strong> {{'AddressRelated_Issue' | translate}}
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li ng-repeat="error in FrayteError.Address  track by $index">{{error}}.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div ng-if="FrayteError.Package.length > 0">
+            <div class="alert alert-danger marginBottomZero borderRadiusZero">
+                <strong>{{'Package' | translate}} {{'Issue' | translate}}/{{'Section' | translate}} :</strong> {{'PackageRelated_Issue' | translate}}
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li ng-repeat="error in FrayteError.Package track by $index">{{error}}.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div ng-if="FrayteError.Custom.length > 0">
+            <div class="alert alert-danger marginBottomZero borderRadiusZero">
+                <strong>{{'Custom' | translate}} {{'Issue' | translate}}/{{'Section' | translate}} :</strong> {{'CustomRelated_Issue' | translate}}
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li ng-repeat="error in FrayteError.Custom  track by $index">{{error}}.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div ng-if="FrayteError.Service.length > 0">
+            <div class="alert alert-danger marginBottomZero borderRadiusZero">
+                <strong>{{'Service' | translate}} {{'Issue' | translate}}/{{'Section' | translate}} :</strong> {{'CourierRelated_Issue' | translate}}
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li ng-repeat="error in FrayteError.Service  track by $index">{{error}}.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div ng-if="FrayteError.Miscellaneous.length > 0">
+            <div class="alert alert-danger marginBottomZero borderRadiusZero">
+                <strong>{{'Miscelleneous' | translate}} {{'Issue' | translate}}/{{'Section' | translate}} :</strong> {{'MiscelleneousRelated_Issue' | translate}}
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li ng-repeat="error in FrayteError.Miscellaneous  track by $index">{{error}}.</li>
+                </ul>
+            </div>
+        </div>
+        <div ng-if="FrayteError.MiscErrors.length">
+            <div ng-repeat="eror in FrayteError.MiscErrors  track by $index">
+                <div ng-if="eror.Key==='Address'">
+                    <div class="alert alert-danger marginBottomZero borderRadiusZero">
+                        <strong>{{'Address' | translate}} {{'Issue' | translate}}/{{'Section' | translate}} :</strong> {{'AddressRelated_Issue' | translate}}
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li ng-repeat="error in eror.Value  track by $index">{{error}}.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div ng-if="eror.Key==='Package'">
+                    <div class="alert alert-danger marginBottomZero borderRadiusZero">
+                        <strong>{{'Package' | translate}} {{'Issue' | translate}}/{{'Section' | translate}} :</strong> {{'PackageRelated_Issue' | translate}}
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li ng-repeat="error in eror.Value  track by $index">{{error}}.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div ng-if="eror.Key==='Miscellaneous'">
+                    <div class="alert alert-danger marginBottomZero borderRadiusZero">
+                        <strong>{{'Miscelleneous' | translate}} {{'Issue' | translate}}/{{'Section' | translate}} :</strong> {{'MiscelleneousRelated_Issue' | translate}}
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li ng-repeat="error in eror.Value  track by $index">{{error}}.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn-simple btn-save fontsize12" ng-click="$dismiss('cancel')"><i class="fa fa-check" aria-hidden="true"></i> {{'OK' | translate}}</button>
+    </div>
+</section>

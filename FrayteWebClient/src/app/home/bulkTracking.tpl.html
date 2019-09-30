@@ -1,0 +1,84 @@
+﻿<form name="BulkTrackingForm" ng-submit="bulkTrackingDetail(BulkTrackingForm.$valid,submitted,BulkTracking)" novalidate>
+    <div id="bulkTracking" class="container" style="padding-bottom:20px;">
+        <div class="col-sm-12 col-md-12">
+            <h2>{{'Track' | translate}} {{'Your' | translate}} {{'Shipment' | translate}} </h2>
+        </div>
+        <br /><br />
+        <div class="col-sm-8 paddingboth">
+            <div class="col-sm-6"><div><label for="selectCarrier">{{'Select' | translate}} {{'Carrier' | translate}}</label></div>
+                <div ng-repeat="bulk in BulkTracking">
+                    <div class="form-group">
+                        <ng-form name="newForm">
+                            <div class="form-group marginbottom10" ng-class="{ 'has-error': newForm.shippingMethod.$invalid &&
+                                                         (newForm.shippingMethod.$dirty || submitted) }">
+                                <select id="shippingMethod" name="shippingMethod"
+                                        ng-model="bulk.Carrier"
+                                        ng-options="DeliveredBy.Name for DeliveredBy in couriers track by DeliveredBy.CourierId" class="form-control fontsize12" ng-required="checkTrackingCode(bulk.TrackingCode)">
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Carrier' | translate}}</option>
+                                </select>
+
+                                <span class="help-block has-error" ng-show="newForm.shippingMethod.$invalid &&
+                                            (newForm.shippingMethod.$dirty || submitted)">
+                                    {{'Carrier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </ng-form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"><div><label for="enterTrackingCode">{{'Enter' | translate}} {{'TrackingNumber' | translate}}</label></div>
+                <div ng-repeat="bulk in BulkTracking">
+                    <div class="form-group">
+                        <ng-form name="newFormCode">
+                            <div class="form-group marginbottom10" ng-class="{ 'has-error': newFormCode.trackingNumber.$invalid &&
+                                                         (newFormCode.trackingNumber.$dirty || submitted) }">
+                                <input type="text" class="form-control fontsize12" ng-model="bulk.TrackingCode" id="trackingNumber" name="trackingNumber" ng-required="checkCaarier(bulk.Carrier)" placeholder="{{'TrackingNumber' | translate}}" />
+                                <span class="help-block has-error" ng-show="newFormCode.trackingNumber.$invalid &&
+                                            (newFormCode.trackingNumber.$dirty || submitted)">
+                                    {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </ng-form>
+                    </div>
+                    </div>
+                </div>
+            <div class="clearfix"></div>
+            <!--<div ng-repeat="bulk in BulkTracking">
+                <div class="form-group col-sm-6">
+                   <ng-form name="newForm">
+                            <div class="form-group marginbottom10" ng-class="{ 'has-error': newForm.shippingMethod.$invalid &&
+                                                         (newForm.shippingMethod.$dirty || submitted) }">
+                                <select id="shippingMethod" name="shippingMethod"
+                                        ng-model="bulk.Carrier"
+                                        ng-options="DeliveredBy.Name for DeliveredBy in couriers track by DeliveredBy.CourierId" class="form-control fontsize12" ng-required="checkTrackingCode(bulk.TrackingCode)">
+                                    <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Carrier' | translate}}</option>
+                                </select>
+
+                                <span class="help-block has-error" ng-show="newForm.shippingMethod.$invalid &&
+                                            (newForm.shippingMethod.$dirty || submitted)">
+                                    {{'Carrier' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </ng-form>
+                   </div>
+                <div class="form-group col-sm-6">
+                   <ng-form name="newFormCode">
+                            <div class="form-group marginbottom10" ng-class="{ 'has-error': newFormCode.trackingNumber.$invalid &&
+                                                         (newFormCode.trackingNumber.$dirty || submitted) }">
+                                <input type="text" class="form-control fontsize12" ng-model="bulk.TrackingCode" id="trackingNumber" name="trackingNumber" ng-required="checkCaarier(bulk.Carrier)" placeholder="{{'TrackingNumber' | translate}}" />
+                                <span class="help-block has-error" ng-show="newFormCode.trackingNumber.$invalid &&
+                                            (newFormCode.trackingNumber.$dirty || submitted)">
+                                    {{'TrackingNumber' | translate}} {{'is' | translate}} {{'Required' | translate}}
+                                </span>
+                            </div>
+                        </ng-form>
+                     </div>
+            </div>-->
+        </div>       
+        <div class="clearfix"></div>
+        <div class="pull-right">
+            <button class="btn btn-cancel addmore fontsize12" ng-click="addBulkTracking()"><i class="fa fa-plus" aria-hidden="true"></i> {{'Add' | translate}} {{'More' | translate}}</button>
+            <button class="btn-simple btn-save submitmore fontsize12" ng-click="submitted=true"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+        </div>
+    </div>
+</form>

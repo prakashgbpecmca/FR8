@@ -1,0 +1,174 @@
+﻿<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          {{'BaseRate_Card' | translate}}
+            <!--<span class="pull-right viewBaserateCard-fix"><button ng-click="ViewBaseRateCard()" class="btn btn-primary" id="ViewBaseRateCard" name="ViewBaseRateCard">{{'View_BaseRate_Card' | translate}}</button></span>-->
+        </div>
+        <div class="clearfix"></div>
+        <div class="panel-body fontsize12">
+            <div class="col-sm-4">
+                <form name="baseRateCard">
+                    <div class="form-group">
+                        <label for="operationZone" class="fontsize12">{{'BusinessUnit_Zone' | translate}}</label>
+                        <select ng-change="IsChanged=true; BaseRateCardByZone(OperationZone);"
+                                ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId"
+                                class="form-control fontsize12" ng-model="OperationZone">
+                            <option value="" disabled class="display-none">{{'Select' | translate}} {{'BusinessUnit_Zone' | translate}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="operationZone" class="fontsize12">{{'Logistic_Type' | translate}}</label>
+                        <select ng-change="IsChanged=true;BaseRateCardByLogisticType(LogisticType);" ng-options="LogisticType as LogisticType.Display for LogisticType  in LogisticTypes" class="form-control fontsize12" ng-model="LogisticType">
+                            <option value="" disabled class="display-none">{{'Select' | translate}} {{'Logistic_Type' | translate}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div ng-if="LogisticType.Value==='Import' || LogisticType.Value==='Export' ||LogisticType.Value==='ThirdParty'" class="form-group">
+                            <label for="packageType" class="fontsize12">{{'Shipment_Type' | translate}}</label>
+                            <select class="form-control fontsize12" ng-change="IsChanged=true;BaseRateCardByShipmentType(DocType);" ng-options="ShipmentType as ShipmentType.Display for ShipmentType in ShipmentDocTypes " ng-model="DocType">
+                                <option value="" disabled class="display-none">{{'Select' | translate}} {{'Shipment_Type' | translate}}</option>
+                            </select>
+                        </div>
+                        <div >
+                            <div class="form-group" style="margin-bottom:0px !important;">
+                                <div class="form-group">
+                                <div class="fontsize12" style="line-height:30px;"><label for="operationZone">{{'CourierCompany' | translate}}</label></div>
+                                <div>
+                                    <select ng-change="IsChanged=true;ZoneCountryByCourierCompany();"
+                                            ng-options="CourierCompany as CourierCompany.Display for CourierCompany in CourierCompanies"
+                                            class="form-control fontsize12" ng-model="CourierCompany">
+                                        <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'CourierCompany' | translate}}</option>
+                                    </select>
+                                </div>
+                                </div>
+                            </div>
+                            <div ng-if="CourierCompany.Value !=='UKMail' && CourierCompany.Value !=='Yodel' && CourierCompany.Value !=='Hermes'" class="form-group" style="margin-bottom:0px !important;">
+                                <div class="form-group">
+                                <div class="fontsize12" style="line-height:30px;"><label for="operationZone">{{'Rate' | translate}} {{'Type' | translate}}</label></div>
+                                <div>
+                                    <select ng-change="IsChanged=true;ZoneRateByRateType(RateType);"
+                                            ng-options="RateType as RateType.Display for RateType in RateTypes"
+                                            class="form-control fontsize12" ng-model="RateType">
+                                        <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'Rate' | translate}} {{'Type' | translate}}</option>
+                                    </select>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div ng-show="showLogisticServiceType && CourierCompany.Value === 'Hermes'" class="form-group">
+                            <label for="packageType" class="fontsize12">{{'POD_Type' | translate}}</label>
+                            <select class="form-control fontsize12" ng-change="IsChanged=true;BaseRateCardByPodType();" ng-options="Pod as Pod.PodTypeNameDisplay for Pod in PodTypes track by Pod.PodTypeId" ng-model="PodType">
+                                <option value="" disabled class="display-none">{{'Select' | translate}} {{'Type' | translate}}</option>
+                            </select>
+                        </div>
+                        <div ng-if="showPakageType" class="form-group">
+                            <label for="packageType" class="fontsize12">{{'Package_Type' | translate}}</label>
+                            <select class="form-control fontsize12" ng-change="IsChanged=true;BaseRateCardByPakageType(PakageType);" ng-options="Pakage as Pakage.PakageType for Pakage in PakageTypes track by Pakage.PakageTypeId" ng-model="PakageType">
+                                <option value="" disabled class="display-none">{{'Select' | translate}} {{'Package_Type' | translate}}</option>
+                            </select>
+                        </div>
+                        <div ng-if="showParcelServiceType" class="form-group">
+                            <label for="parcelServiceType" class="fontsize12">{{'Parcel_Service_Type' | translate}}</label>
+                            <select class="form-control fontsize12" ng-change="IsChanged=true;BaseRateCardByParcelServiceType(ParcelServiceType);" ng-options="ParcelType as ParcelType.ParcelServiceType for ParcelType in ParcelServiceTypes track by ParcelType.ParcelServiceTypeId" ng-model="ParcelServiceType">
+                                <option value="" disabled class="display-none">{{'Select' | translate}} {{'Parcel_Service_Type' | translate}}</option>
+                            </select>
+                        </div>
+                        <div ng-if="CourierCompany.Value ==='Yodel'" class="form-group">
+                            <label for="operationZone" class="fontsize12">{{'Service_Type' | translate}}</label>
+                            <select ng-options="Service as Service.Display for Service  in ServiceTypes" class="form-control fontsize12" ng-model="ServiceType">
+                                <!--<option value="" disabled class="display-none">{{'Select' | translate}} {{'Service_Type' | translate}}</option>-->
+                            </select>
+                        </div>
+                        <!--<div class="col-sm-12 paddingboth">
+                            <div class="col-sm-4">
+                            <div class="form-group pull-right" style="margin-bottom:0px !important;">                            
+                                    <button class="btn-simple btn-primary fontsize12" ng-click="IsChanged=false;SearchBaseRateCard();"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                            </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div>
+                                    <span class="pull-right viewBaserateCard-fix top117"><button ng-click="ViewBaseRateCard()" class="btn-simple btn-primary fontsize12" id="ViewBaseRateCard" name="ViewBaseRateCard">{{'View_BaseRate_Card' | translate}}</button></span>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="col-sm-12 paddingboth">
+                    <div class="col-sm-8 paddingleft right-inner-addon" style="padding-bottom:10px;margin:-7px 0px 0px;position:relative;">
+                        <label class="col-sm-4 paddingboth lineheight30 fontsize12">{{'Courier_Account' | translate}}</label>
+                        <div class="col-sm-8">
+                            <i class="fa fa-search" aria-hidden="true" style="padding:10px 25px;"></i>
+                            <input capatalize:first type="text" class="form-control fontsize12" placeholder="{{'Search' | translate}} {{'Courier_Account' | translate}}" ng-model="searchCourierAccount" ng-change="refreshData()" />
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-save fontsize12" ng-click="ClearFilter()" style="margin:-7px 0px 0px; position:relative;"><i class="fa fa-filter" aria-hidden="true"></i> {{'Clear_Filter' | translate}}</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="clearfix"></div>
+                <div class="col-sm-12 paddingall10 border overflow" style="height:234px !important;">
+                    <form class="form-horizontal" role="form">
+                        <div ng-repeat="CourierAccount in CourierAccounts" class="form-group col-sm-6 paddingleft paddingright pointer" style="margin-bottom:0px;">
+                            <div ng-click="filterBaseRatecard(CourierAccount)" ng-class="{'courierAccountSelected':CourierAccount.IsCaSelected}" style="border: 1px solid #e5e5e5; padding: 7px 0px 41px;">
+                                <label class="control-label col-sm-9 paddingleft paddingright pointer" for="">{{CourierAccount.LogisticService.LogisticCompany}} {{CourierAccount.LogisticService.RateType}} - {{CourierAccount.AccountNo }} &nbsp;</label>
+                                <div class="col-sm-2 paddingleft paddingright">
+                                    <span><label class="pointer"><i class="fa fa-check" style="opacity:0; margin: 2px 10px 0px; position: absolute; font-size: 30px; color: #fff; " aria-hidden="true"></i><span style="width:50px;" class="form-control" ng-style="{'background-color':CourierAccount.ColorCode}" ng-model="OperationZone12" readonly></span></label></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <!--<div>
+                   <span class="pull-right viewBaserateCard-fix top117"><button ng-click="ViewBaseRateCard()" class="btn-simple btn-primary fontsize12" id="ViewBaseRateCard" name="ViewBaseRateCard">{{'View_BaseRate_Card' | translate}}</button></span>
+                </div>-->
+            </div>
+            <div class="clearfix"></div>
+            <div class="panel-body">
+                <div class="top5">
+                    <div class="col-sm-4">
+                        <div class="form-group pull-right" style="margin-bottom:0px !important;">
+                            <button class="btn-simple btn-primary fontsize12 right5" ng-click="IsChanged=false;SearchBaseRateCard();"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 paddingboth">
+                        <div>
+                            <span class="pull-right"><button ng-click="ViewBaseRateCard()" class="btn-simple btn-primary fontsize12" id="ViewBaseRateCard" name="ViewBaseRateCard"><i class="fa fa-eye" aria-hidden="true"></i> {{'View_BaseRate_Card' | translate}}</button></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="clearfix"></div>
+    <div class="col-sm-12 border paddingTB60"  ng-show="IsChanged">
+        <div>
+            <div class="text-center">
+                <h4 class="redColor">{{'Ratecard_Getoption' | translate}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div ng-if="!IsChanged && finalArrayList.length" class="redColor bold form-group" >{{'RateCard_Note' | translate}}</div>
+    <div class="clearfix"></div>
+    <div class="col-sm-12 border paddingTB60" ng-if="!IsChanged && finalArrayList.length === 0"><h4 class="redColor text-center">{{'Ratecard_Notvalid' | translate}}</h4></div>
+    <div class="clearfix"></div>
+    <!--Import/Export/ThirdParty-->
+    <div ng-include="'zoneSetting/baseRateCard/importExportThirdPartyRateCard.tpl.html'" ng-if="!IsChanged && (LogisticType.Value==='Import' || LogisticType.Value==='Export' ||LogisticType.Value==='ThirdParty')"></div>
+
+    <!--UK Shipment-->
+    <div ng-include="'zoneSetting/baseRateCard/ukShipmentRateCard.tpl.html'" ng-if="!IsChanged&&(LogisticType.Value==='UKShipment' && CourierCompany.Value === 'UKMail')"></div>
+    <div ng-include="'zoneSetting/baseRateCard/ukShipmentYodel.tpl.html'" ng-if="!IsChanged &&(LogisticType.Value==='UKShipment' && CourierCompany.Value === 'Yodel')"></div>
+    <div ng-include="'zoneSetting/baseRateCard/ukShipmentHermes.tpl.html'" ng-if="!Ischanged &&(LogisticType.Value==='UKShipment' && CourierCompany.Value === 'Hermes')"></div>
+    <div ng-include="'zoneSetting/baseRateCard/ukShipmentDHL.tpl.html'" ng-if="!Ischanged &&(LogisticType.Value==='UKShipment' && CourierCompany.Value === 'DHL')"></div>
+    <!-- EU-Import / EU-Export -->
+    <div ng-include="'zoneSetting/baseRateCard/euExportImport.tpl.html'" ng-if="!Ischanged &&(LogisticType.Value==='EUImport' || LogisticType.Value==='EUExport')"></div>
+
+</div>

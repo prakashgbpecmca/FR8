@@ -1,0 +1,33 @@
+﻿<form novalidate ng-submit="submit(TaxDutyForm.$valid,TaxDutyName)" name="TaxDutyForm">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'TaxAndDuty_Condition' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        {{'ShipperDDPP_Message' | translate}}
+
+        <br />
+        <div class="col-sm-12 form-group paddingboth" ng-class="{ 'has-error': TaxDutyForm.taxanddutyname.$invalid &&
+                                                         (TaxDutyForm.taxanddutyname.$dirty || submitted) }">
+            <label for="taxanddutyname" class="col-sm-6 lineheight24 control-label paddingboth paddingright"> {{'TaxDuty_Accepted' | translate}} <span class="redColor">*</span></label>
+            <div class="col-sm-6 paddingboth" id="Xe">
+                <input type="text" id="taxanddutyname" class="form-control" name="taxanddutyname" ng-model="TaxDutyName" required placeholder="{{'Name' | translate}} ({{'Required' | translate}})"/>
+                <span class="help-block has-error"
+                      ng-show="TaxDutyForm.taxanddutyname.$invalid &&
+                                            (TaxDutyForm.taxanddutyname.$dirty || submitted)">
+                    {{'NameValidationError' | translate}}
+                </span>
+            </div>
+        </div>      
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="pull-left">
+            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel"><i class="fa fa-times" aria-hidden="true"></i> {{'Close' | translate}}</button>  &nbsp;&nbsp;
+        </div>
+        <div class="pull-right">
+            <button type="submit" ng-click="submitted = true" class="btn-simple btn-save fontsize12"><i class="fa fa-check" aria-hidden="true"></i> {{'DDP_Changes' | translate}}</button>
+        </div>
+    </div>
+</form>

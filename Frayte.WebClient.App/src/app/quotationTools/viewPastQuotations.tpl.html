@@ -1,0 +1,607 @@
+﻿<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">{{Header_Text | translate}}</h4>
+        </div>
+        <!--overflow code here-->
+        <!--end-->
+        <!--demo in view past quotation customer code here screen ng-if="RoleId !== 3"-->
+        <section>
+            <div ng-if="RoleId !== 3">
+                <div class="col-sm-12">
+                    <!--header code start-->
+                    <div class="width100 quotation-header-overflow flex action-font-family grid-background">
+                        <div class="width100 flex">
+                            <div class="width4 quotation-table-padding">
+                                <div class="padding-5 bold"><span class="visibility">Hide</span></div>
+                            </div>
+                            <div class="width96" style="overflow:hidden;">
+                                <div style="width:1600px;float:left;" class="flex">
+                                    <div class="width10 bold quotation-table-padding padding-5">{{'Customer' | translate}}</div>
+                                    <div class="width18 bordered-right2">
+                                        <div class="width100 border-color-ddd bold bordered-left text-center padding010 myquote-background">
+                                            <span class="bottom5">{{'From_' | translate}}</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="flex">
+                                            <div class="width68 bold paddingleft5  bordered-right2 padding0x0x10 bordered-left">{{'Country' | translate}}</div>
+                                            <div class="width32 bold paddingleft5 ">{{'Postcode' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width18 bordered-right2">
+                                        <div class="width100 border-color-ddd bold  text-center padding010 myquote-background">
+                                            <span class="bottom5">{{'To_' | translate}}</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="flex">
+                                            <div class="width68 bold paddingleft5 bordered-right2 padding0x0x10">{{'Country' | translate}}</div>
+                                            <div class="width32 bold paddingleft5 ">{{'Postcode' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width9 bold quotation-table-padding padding-5">{{'Courier' | translate}}</div>
+                                    <div class="width9 bold quotation-table-padding padding-5">{{'Service' | translate}}<br />{{'Type' | translate}}</div>
+                                    <div class="width7 bold quotation-table-padding padding-5">{{'Estimated_Rate' | translate}}</div>
+                                    <div class="width7 bold quotation-table-padding padding-5">{{'FuelSurcharge' | translate}}</div>
+                                    <div class="width7 bold quotation-table-padding padding-5">{{'Supplementary_Charges' | translate}}</div>
+                                    <div class="width8 bold quotation-table-padding padding-5">{{'Estimated_Total_Rate' | translate}}</div>
+                                    <div class="width7 bold quotation-table-padding padding-5" style="border-right:transparent !important;"><span class="visibility">Hide</span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--end-->
+                    <!--body code start-->
+                    <div class="modal-body quotation-overflow padding0">
+                        <div>
+                            <div ng-show="gridData.length">
+                                <ul class="list-unstyled margin-bottom-none">
+                                    <li ng-repeat="item in gridData" class="alternate">
+                                        <div class="width100 flex" ng-click="toggleRowSelect(item);"
+                                             ng-class="{'demoClass':item.RowSelect}">
+                                            <div class="width100 flex">
+                                                <div class="width4 bordered-right">
+                                                    <div class="padding-5 text-center">
+                                                        <i class="fa pointer top2" ng-class="{'fa fa-plus-square-o' : !item.collapseToggle, 'fa fa-minus-square-o' : item.collapseToggle}" aria-hidden="true" ng-click="item.collapseToggle=!item.collapseToggle; item.collapse =! item.collapse" style="font-size:18px;vertical-align: text-top;"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="width96" style="overflow:hidden;">
+                                                    <div style="width:1600px;float:left;" class="flex">
+                                                        <div class="width10 padding-5 quotation-table-body">{{item.CustomerName}}</div>
+                                                        <div class="width120 padding-5 quotation-table-body">{{item.QuotationFromAddress.Country.Name}}</div>
+                                                        <div class="width6 padding-5 quotation-table-body">{{item.QuotationFromAddress.PostCode}}</div>
+                                                        <div class="width120 padding-5 quotation-table-body">{{item.QuotationToAddress.Country.Name}}</div>
+                                                        <div class="width6 padding-5 quotation-table-body">{{item.QuotationToAddress.PostCode}}</div>
+                                                        <div class="width9 padding-5 quotation-table-body">{{item.LogisticCompanyDisplay}} {{item.RateTypeDisplay}}</div>
+                                                        <div class="width9 padding-5 quotation-table-body">{{item.ShipmentTypeDisplay}}</div>
+                                                        <div class="width7 padding-5 quotation-table-body">{{item.CurrenyCode}} {{item.EstimatedCost}}</div>
+                                                        <div class="width7 padding-5 quotation-table-body">{{item.CurrenyCode}} {{item.FuelSurCharge}}</div>
+                                                        <div class="width7 padding-5 quotation-table-body  my-quote-border-right">{{item.CurrenyCode}} {{item.AdditionalSurcharge}} <span ng-show="item.AdditionalSurcharge === null || item.AdditionalSurcharge === ''">0 {{item.CurrenyCode}} </span></div>
+                                                        <div class="width8 padding-5 quotation-table-body my-quote-border-right" style="left:0rem !important;">{{item.CurrenyCode}} {{item.EstimatedTotalCost}}</div>
+                                                        <div class="width7 dropdown quotation-table-body text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="ConfirmQuotation(item)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center"> {{'PlaceBooking' | translate}}</span></a></li>
+                                                                    <li ng-click="DownlaodQuoteReport(item)"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center"> {{'DownLoad_Quote' | translate}} {{'PDF' | translate}}</span></a></li>
+                                                                    <li ng-click="SendEmailCustomer(item)"><a href=""><span class="padEdit"><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class="text-center"> {{'Email_Quote' | translate}}</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="panel-body collapse panel-collapse padding0" uib-collapse="item.collapse" id="reminderHeader{{item.QuotationShipmentId}}">
+                                            <div class="width100 flex same-grid-font">
+                                                <div class="width4" style="background: #fff;"><span class="visibility">Hide</span></div>
+                                                <div class="width96" style="background:#EAF0F5;margin:0 auto;padding:5px 5px 5px;">
+                                                    <div class="width20 bold">{{'Carton' | translate}} <small>({{'qty_' | translate}})</small></div>
+                                                    <div class="width20 bold">{{'Length' | translate}} <small>({{'CM' | translate}})</small></div>
+                                                    <div class="width20 bold">{{'Width' | translate}} <small>({{'CM' | translate}})</small></div>
+                                                    <div class="width20 bold">{{'Height' | translate}} <small>({{'CM' | translate}})</small></div>
+                                                    <div class="width20 bold">{{'Weight' | translate}} <small>({{'kGS' | translate}})</small></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="width100" style="border-bottom:1px solid #ddd;">
+                                                <div class="width100">
+                                                    <ul class="list-unstyled">
+                                                        <li class="width100 alternate" ng-repeat="Package in item.QuotationPackages" style="border-bottom: transparent;margin-bottom: -1px;">
+                                                            <div class="width4" style="background: #fff !important;border-bottom: transparent;margin-bottom: -1px;"><p class="visibility" style="background: #fff;"><span class="visibility">Hide</span></p></div>
+                                                            <div class="width96" style="padding:5px 5px 5px;">
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.CartoonValue}}</span>
+                                                                </div>
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.Length}}</span>
+                                                                </div>
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.Width}}</span>
+                                                                </div>
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.Height}}</span>
+                                                                </div>
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.Weight}}</span>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div ng-show="!gridData.length">
+                                <div class="redColor paddingTB182 fontsize18 text-center">
+                                    No Quotations Availables.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--end-->
+                </div>
+                <div class="clearfix"></div>
+                <!--only show overflow code here-->
+                <div class="col-sm-12">
+                    <div class="width4"><span class="visibility">Hidden</span></div>
+                    <div class="width96" id="scroll" quotation-tool>
+                        <div style="width:1600px;float:left;">
+                            <div ng-repeat="item in gridData">
+                                <div class="width100 flex"
+                                     ng-style="{ 'width' :  100/gridData.length + '%' }" style="float:left;">
+                                    <span class="visibility">Hide</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <!--end-->
+            </div>
+        </section>
+        <!--end-->
+        <!--demo in view past quotation not customer code screen ng-if="RoleId === 3"-->
+        <section>
+            <div ng-if="RoleId === 3">
+                <div class="col-sm-12">
+                    <!--header code start-->
+                    <div class="width100 quotation-header-overflow flex action-font-family grid-background">
+                        <div class="width100 flex">
+                            <div class="width4 quotation-table-padding">
+                                <div class="padding-5 bold"><span class="visibility">Hide</span></div>
+                            </div>
+                            <div class="width96" style="overflow:hidden;">
+                                <div style="width:1600px;float:left;" class="flex">
+                                    <!--<div class="width10 bold quotation-table-padding padding-5">{{'Customer' | translate}}</div>-->
+                                    <div class="width230 bordered-right2">
+                                        <div class="width100 border-color-ddd bold text-center padding010 myquote-background">
+                                            <span class="bottom5">{{'From_' | translate}}</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="flex">
+                                            <div class="width75 bold paddingleft5  bordered-right2 padding0x0x10">{{'Country' | translate}}</div>
+                                            <div class="width25 bold paddingleft5">{{'Postcode' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width230 bordered-right2">
+                                        <div class="width100 border-color-ddd bold  text-center padding010 myquote-background">
+                                            <span class="bottom5">{{'To_' | translate}}</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="flex">
+                                            <div class="width75 bold paddingleft5 bordered-right2 padding0x0x10">{{'Country' | translate}}</div>
+                                            <div class="width25 bold paddingleft5">{{'Postcode' | translate}}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="width9 bold quotation-table-padding padding-5">{{'Courier' | translate}}</div>
+                                    <div class="width9 bold quotation-table-padding padding-5">{{'Service' | translate}}<br />{{'Type' | translate}}</div>
+                                    <div class="width7 bold quotation-table-padding padding-5">{{'Estimated_Rate' | translate}}</div>
+                                    <div class="width7 bold quotation-table-padding padding-5">{{'FuelSurcharge' | translate}}</div>
+                                    <div class="width7 bold quotation-table-padding padding-5">{{'Supplementary_Charges' | translate}}</div>
+                                    <div class="width8 bold quotation-table-padding padding-5">{{'Estimated_Total_Rate' | translate}}</div>
+                                    <div class="width7 bold quotation-table-padding padding-5" style="border-right:transparent !important;"><span class="visibility">Hide</span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--end-->
+                    <!--body code start-->
+                    <div class="modal-body quotation-overflow padding0">
+                        <div>
+                            <div ng-show="gridData.length">
+                                <ul class="list-unstyled margin-bottom-none">
+                                    <li ng-repeat="item in gridData" class="alternate">
+                                        <div class="width100 flex" ng-click="toggleRowSelect(item);"
+                                             ng-class="{'demoClass':item.RowSelect}">
+                                            <div class="width100 flex">
+                                                <div class="width4 bordered-right">
+                                                    <div class="padding-5 text-center">
+                                                        <i class="fa pointer top2" ng-class="{'fa fa-plus-square-o' : !item.collapseToggle, 'fa fa-minus-square-o' : item.collapseToggle}" aria-hidden="true" ng-click="item.collapseToggle=!item.collapseToggle; item.collapse =! item.collapse" style="font-size:18px;vertical-align: text-top;"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="width96" style="overflow:hidden;">
+                                                    <div style="width:1600px;float:left;" class="flex">
+                                                        <!--<div class="width10 padding-5 quotation-table-body">{{item.CustomerName}}</div>-->
+                                                        <div class="width17 padding-5 quotation-table-body">{{item.QuotationFromAddress.Country.Name}}</div>
+                                                        <div class="width6 padding-5 quotation-table-body">{{item.QuotationFromAddress.PostCode}}</div>
+                                                        <div class="width17 padding-5 quotation-table-body">{{item.QuotationToAddress.Country.Name}}</div>
+                                                        <div class="width6 padding-5 quotation-table-body">{{item.QuotationToAddress.PostCode}}</div>
+                                                        <div class="width9 padding-5 quotation-table-body">{{item.LogisticCompanyDisplay}} {{item.RateTypeDisplay}}</div>
+                                                        <div class="width9 padding-5 quotation-table-body">{{item.ShipmentTypeDisplay}}</div>
+                                                        <div class="width7 padding-5 quotation-table-body">{{item.CurrenyCode}} {{item.EstimatedCost}}</div>
+                                                        <div class="width7 padding-5 quotation-table-body">{{item.CurrenyCode}} {{item.FuelSurCharge}}</div>
+                                                        <div class="width7 padding-5 quotation-table-body  my-quote-border-right">{{item.CurrenyCode}} {{item.AdditionalSurcharge}} <span ng-show="item.AdditionalSurcharge === null || item.AdditionalSurcharge === ''">0 {{item.CurrenyCode}} </span></div>
+                                                        <div class="width8 padding-5 quotation-table-body my-quote-border-right" style="left:0rem !important;">{{item.CurrenyCode}} {{item.EstimatedTotalCost}}</div>
+                                                        <div class="width7 dropdown quotation-table-body text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="ConfirmQuotation(item)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center"> {{'PlaceBooking' | translate}}</span></a></li>
+                                                                    <li ng-click="DownlaodQuoteReport(item)"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center"> {{'DownLoad_Quote' | translate}} {{'PDF' | translate}}</span></a></li>
+                                                                    <li ng-click="SendEmailCustomer(item)"><a href=""><span class="padEdit"><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class="text-center"> {{'Email_Quote' | translate}}</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="panel-body collapse panel-collapse padding0" uib-collapse="item.collapse" id="reminderHeader{{item.QuotationShipmentId}}">
+                                            <div class="width100 flex same-grid-font">
+                                                <div class="width4" style="background: #fff;"><span class="visibility">Hide</span></div>
+                                                <div class="width96" style="background:#EAF0F5;margin:0 auto;padding:5px 5px 5px;">
+                                                    <div class="width20 bold">{{'Carton' | translate}} <small>({{'qty_' | translate}})</small></div>
+                                                    <div class="width20 bold">{{'Length' | translate}} <small>({{'CM' | translate}})</small></div>
+                                                    <div class="width20 bold">{{'Width' | translate}} <small>({{'CM' | translate}})</small></div>
+                                                    <div class="width20 bold">{{'Height' | translate}} <small>({{'CM' | translate}})</small></div>
+                                                    <div class="width20 bold">{{'Weight' | translate}} <small>({{'kGS' | translate}})</small></div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="width100" style="border-bottom:1px solid #ddd;">
+                                                <div class="width100">
+                                                    <ul class="list-unstyled">
+                                                        <li class="width100 alternate" ng-repeat="Package in item.QuotationPackages" style="border-bottom: transparent;margin-bottom: -1px;">
+                                                            <div class="width4" style="background: #fff !important;border-bottom: transparent;margin-bottom: -1px;"><p class="visibility" style="background: #fff;"><span class="visibility">Hide</span></p></div>
+                                                            <div class="width96" style="padding:5px 5px 5px;">
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.CartoonValue}}</span>
+                                                                </div>
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.Length}}</span>
+                                                                </div>
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.Width}}</span>
+                                                                </div>
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.Height}}</span>
+                                                                </div>
+                                                                <div class="width20 flex">
+                                                                    <span>{{Package.Weight}}</span>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div ng-show="!gridData.length">
+                                <div class="redColor paddingTB182 fontsize18 text-center">
+                                    No Quotations Availables.
+                                </div>
+                            </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--end-->
+                </div>
+                <div class="clearfix"></div>
+                <!--only show overflow code here-->
+                <div class="col-sm-12">
+                    <div class="width4"><span class="visibility">Hidden</span></div>
+                    <div class="width96" id="scroll" quotation-tool>
+                        <div style="width:1600px;float:left;">
+                            <div ng-repeat="item in gridData">
+                                <div class="width100 flex"
+                                     ng-style="{ 'width' :  100/gridData.length + '%' }" style="float:left;">
+                                    <span class="visibility">Hide</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <!--end-->
+            </div>
+             </div>
+        </section>
+        <!--end-->
+        <!-- customer code here-->
+        <!--<div class="col-sm-12">
+            <div ng-if="RoleId !== 3 " class="width100 quotation-header-overflow flex action-font-family grid-background">
+                <div class="width100 flex">
+                    <div class="width4 padding-5 bold quotation-table-padding"><span class="visibility">Hide</span></div>
+                    <div class="width772 bold quotation-table-padding padding-5">{{'Customer' | translate}}</div>
+                    <div class="width1544 bordered-right2">
+                        <div class="width100 border-color-ddd bold bordered-left text-center padding010 myquote-background">
+                            <span class="bottom5">{{'From_' | translate}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="flex">
+                            <div class="width50 bold paddingleft5  bordered-right2 padding0x0x30 bordered-left">{{'Country' | translate}}</div>
+                            <div class="width50 bold paddingleft5 ">{{'Postcode' | translate}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="width1544 bordered-right2">
+                        <div class="width100 border-color-ddd bold  text-center padding010 myquote-background">
+                            <span class="bottom5">{{'To_' | translate}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="flex">
+                            <div class="width50 bold paddingleft5 bordered-right2 padding0x0x30">{{'Country' | translate}}</div>
+                            <div class="width50 bold paddingleft5 ">{{'Postcode' | translate}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="width772 bold quotation-table-padding padding-5">{{'Courier' | translate}}</div>
+                    <div class="width772 bold quotation-table-padding padding-5">{{'Service' | translate}}<br />{{'Type' | translate}}</div>
+                    <div class="width772 bold quotation-table-padding padding-5">{{'Estimated_Rate' | translate}}</div>
+                    <div class="width772 bold quotation-table-padding padding-5">{{'FuelSurcharge' | translate}}</div>
+                    <div class="width1072 bold quotation-table-padding padding-5">{{'Supplementary_Charges' | translate}}</div>
+                    <div class="width772 bold quotation-table-padding padding-5">{{'Estimated_Total_Rate' | translate}}</div>
+                    <div class="width772 bold quotation-table-padding padding-5" style="border-right:transparent !important;"><span class="visibility">Hide</span></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-if="RoleId !==3" class="modal-body quotation-overflow padding0">
+                <ul class="list-unstyled margin-bottom-none">
+                    <li ng-repeat="item in gridData" class="alternate">
+                        <div class="width100 flex" ng-click="toggleRowSelect(item);"
+                             ng-class="{'demoClass':item.RowSelect}">
+                            <div class="width100 flex">
+                                <div class="width4 padding-5 text-center">
+                                    <i class="fa pointer top2" ng-class="{'fa fa-plus-square-o' : !item.collapseToggle, 'fa fa-minus-square-o' : item.collapseToggle}" aria-hidden="true" ng-click="item.collapseToggle=!item.collapseToggle; item.collapse =! item.collapse" style="font-size:18px;vertical-align: text-top;"></i>
+                                </div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.CustomerName}}</div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.QuotationFromAddress.Country.Name}}</div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.QuotationFromAddress.PostCode}}</div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.QuotationToAddress.Country.Name}}</div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.QuotationToAddress.PostCode}}</div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.LogisticCompanyDisplay}} {{item.RateTypeDisplay}}</div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.ShipmentTypeDisplay}}</div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.CurrenyCode}} {{item.EstimatedCost}}</div>
+                                <div class="width772 padding-5 quotation-table-body">{{item.CurrenyCode}} {{item.FuelSurCharge}}</div>
+                                <div class="width1072 padding-5 quotation-table-body  my-quote-border-right">{{item.CurrenyCode}} {{item.AdditionalSurcharge}} <span ng-show="item.AdditionalSurcharge === null || item.AdditionalSurcharge === ''">0 {{item.CurrenyCode}} </span></div>
+                                <div class="width772 padding-5 quotation-table-body my-quote-border-right" style="left:0rem !important;">{{item.CurrenyCode}} {{item.EstimatedTotalCost}}</div>
+                                <div class="width772 dropdown quotation-table-body text-center">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                        <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                            <li ng-click="ConfirmQuotation(item)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center"> {{'PlaceBooking' | translate}}</span></a></li>
+                                            <li ng-click="DownlaodQuoteReport(item)"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center"> {{'DownLoad_Quote' | translate}} {{'PDF' | translate}}</span></a></li>
+                                            <li ng-click="SendEmailCustomer(item)"><a href=""><span class="padEdit"><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class="text-center"> {{'Email_Quote' | translate}}</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="panel-body collapse panel-collapse padding0" uib-collapse="item.collapse" id="reminderHeader{{item.QuotationShipmentId}}">
+                                <div class="width100 flex same-grid-font">
+                                    <div class="width4" style="background: #fff;"><span class="visibility">Hide</span></div>
+                                    <div class="width96" style="background:#EAF0F5;margin:0 auto;padding:5px 5px 5px;">
+                                        <div class="width20 bold">{{'Carton' | translate}} <small>({{'qty_' | translate}})</small></div>
+                                        <div class="width20 bold">{{'Length' | translate}} <small>({{'CM' | translate}})</small></div>
+                                        <div class="width20 bold">{{'Width' | translate}} <small>({{'CM' | translate}})</small></div>
+                                        <div class="width20 bold">{{'Height' | translate}} <small>({{'CM' | translate}})</small></div>
+                                        <div class="width20 bold">{{'Weight' | translate}} <small>({{'kGS' | translate}})</small></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="width100" style="border-bottom:1px solid #ddd;">
+                                    <div class="width100">
+                                        <ul class="list-unstyled">
+                                            <li class="width100 alternate" ng-repeat="Package in item.QuotationPackages" style="border-bottom: transparent;margin-bottom: -1px;">
+                                                <div class="width4" style="background: #fff !important;border-bottom: transparent;margin-bottom: -1px;"><p class="visibility" style="background: #fff;"><span class="visibility">Hide</span></p></div>
+                                                <div class="width96" style="padding:5px 5px 5px;">
+                                                    <div class="width20 flex">
+                                                        <span>{{Package.CartoonValue}}</span>
+                                                    </div>
+                                                    <div class="width20 flex">
+                                                        <span>{{Package.Length}}</span>
+                                                    </div>
+                                                    <div class="width20 flex">
+                                                        <span>{{Package.Width}}</span>
+                                                    </div>
+                                                    <div class="width20 flex">
+                                                        <span>{{Package.Height}}</span>
+                                                    </div>
+                                                    <div class="width20 flex">
+                                                        <span>{{Package.Weight}}</span>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>-->
+        <!--end-->
+        <div class="clearfix"></div>
+        <!--not customer code -->
+        <!--<div class="col-sm-12">
+            <div ng-if="RoleId === 3" class="quotation-header-overflow flex action-font-family grid-background">
+                <div class="width100 flex">
+                    <div class="width4 padding-5 bold quotation-table-padding"><span class="visibility">Hide</span></div>
+                    <div class="width1544 bordered-right2">
+                        <div class="width100 border-color-ddd bold bordered-left text-center padding010 myquote-background">
+                            <span class="bottom5">{{'From_' | translate}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="width50 bold paddingleft5  bordered-right2 padding0x0x10 bordered-left">{{'Country' | translate}}</div>
+                        <div class="width50 bold paddingleft5 ">{{'Postcode' | translate}}</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="width1544 bordered-right2">
+                        <div class="width100 border-color-ddd bold  text-center padding010 myquote-background">
+                            <span class="bottom5">{{'To_' | translate}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="width50 bold paddingleft5 bordered-right2 padding0x0x10">{{'Country' | translate}}</div>
+                        <div class="width50 bold paddingleft5 ">{{'Postcode' | translate}}</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="width772 bold quotation-table-padding padding-5">{{'Courier' | translate}}</div>
+                    <div class="width9-44 bold quotation-table-padding padding-5">{{'Service' | translate}}<br />{{'Type' | translate}}</div>
+                    <div class="width9-72 bold quotation-table-padding padding-5">{{'Estimated_Rate' | translate}}</div>
+                    <div class="width9-72 bold quotation-table-padding padding-5">{{'FuelSurcharge' | translate}}</div>
+                    <div class="width1072 bold quotation-table-padding padding-5">{{'Supplementary_Charges' | translate}}</div>
+                    <div class="width9-72 bold quotation-table-padding padding-5">{{'Estimated_Total_Rate' | translate}}</div>
+                    <div class="width772 bold quotation-table-padding padding-5" style="border-right:transparent !important;"><span class="visibility">Hide</span></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div ng-if="RoleId ===3 " class="modal-body quotation-overflow padding0">
+                <ul class="list-unstyled margin-bottom-none">
+                    <li ng-repeat="item in gridData" class="alternate">
+                        <div class="width100 flex" ng-click="toggleRowSelect(item);"
+                             ng-class="{'demoClass':item.RowSelect}">
+                            <div class="width4 padding-5 text-center">
+                                <i class="fa pointer top2" ng-class="{'fa fa-plus-square-o' : !item.collapseToggle, 'fa fa-minus-square-o' : item.collapseToggle}" aria-hidden="true" ng-click="item.collapseToggle=!item.collapseToggle; item.collapse =! item.collapse" style="font-size:18px;vertical-align: text-top;"></i>
+                            </div>
+                            <div class="width772 padding-5 quotation-table-body">{{item.QuotationFromAddress.Country.Name}}</div>
+                            <div class="width772 padding-5 quotation-table-body">{{item.QuotationFromAddress.PostCode}}</div>
+                            <div class="width772 padding-5 quotation-table-body">{{item.QuotationToAddress.Country.Name}}</div>
+                            <div class="width772 padding-5 quotation-table-body">{{item.QuotationToAddress.PostCode}}</div>
+                            <div class="width772 padding-5 quotation-table-body">{{item.LogisticCompanyDisplay}} {{item.RateTypeDisplay}}</div>
+                            <div class="width9-44 padding-5 quotation-table-body">{{item.ShipmentTypeDisplay}}</div>
+                            <div class="width9-72 padding-5 quotation-table-body">{{item.CurrenyCode}} {{item.EstimatedCost}}</div>
+                            <div class="width9-72 padding-5 quotation-table-body">{{item.CurrenyCode}} {{item.FuelSurCharge}}</div>
+                            <div class="width1072 padding-5 quotation-table-body  my-quote-border-right">{{item.CurrenyCode}} {{item.AdditionalSurcharge}}  <span ng-show="item.AdditionalSurcharge === null || item.AdditionalSurcharge === ''">0 {{item.CurrenyCode}} </span></div>
+                            <div class="width9-72 padding-5 quotation-table-body my-quote-border-right">{{item.CurrenyCode}} {{item.EstimatedTotalCost}}</div>
+                            <div class="width772 quotation-table-body padding0 text-center">
+                                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                        <li ng-click="ConfirmQuotation(item)"><a href=""><span class="padEdit"><i class="fa fa-check" aria-hidden="true"></i></span> <span class="text-center"> {{'PlaceBooking' | translate}}</span></a></li>
+                                        <li ng-click="DownlaodQuoteReport(item)"><a href=""><span class="padDelete"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span> <span class="text-center"> {{'DownLoad_Quote' | translate}} {{'PDF' | translate}}</span></a></li>
+                                        <li ng-click="SendEmailCustomer(item)"><a href=""><span class="padEdit"><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <span class="text-center"> {{'Email_Quote' | translate}}</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="panel-body collapse panel-collapse padding0" uib-collapse="item.collapse" id="reminderHeader{{item.QuotationShipmentId}}">
+                            <div class="width100 flex same-grid-font">
+                                <div class="width4" style="background: #fff;"><span class="visibility">Hide</span></div>
+                                <div class="width96" style="background:#EAF0F5;margin:0 auto;padding:5px 5px 5px;">
+                                    <div class="width20 bold">{{'Carton' | translate}} <small>({{'qty_' | translate}})</small></div>
+                                    <div class="width20 bold">{{'Length' | translate}} <small>({{'CM' | translate}})</small></div>
+                                    <div class="width20 bold">{{'Width' | translate}} <small>({{'CM' | translate}})</small></div>
+                                    <div class="width20 bold">{{'Height' | translate}} <small>({{'CM' | translate}})</small></div>
+                                    <div class="width20 bold">{{'Weight' | translate}} <small>({{'kGS' | translate}})</small></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="width100" style="border-bottom:1px solid #ddd;">
+                                <div class="width100">
+                                    <ul class="list-unstyled">
+                                        <li class="width100 alternate" ng-repeat="Package in item.QuotationPackages" style="border-bottom: transparent;margin-bottom: -1px;">
+                                            <div class="width4" style="background: #fff !important;border-bottom: transparent;margin-bottom: -1px;"><p class="visibility" style="background: #fff;"><span class="visibility">Hide</span></p></div>
+
+                                            <div class="width96" style="padding:5px 5px 5px;">
+                                                <div class="width20 flex">
+                                                    <span>{{Package.CartoonValue}}</span>
+                                                </div>
+                                                <div class="width20 flex">
+                                                    <span>{{Package.Length}}</span>
+                                                </div>
+                                                <div class="width20 flex">
+                                                    <span>{{Package.Width}}</span>
+                                                </div>
+                                                <div class="width20 flex">
+                                                    <span>{{Package.Height}}</span>
+                                                </div>
+                                                <div class="width20 flex">
+                                                    <span>{{Package.Weight}}</span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>-->
+        <div class="clearfix"></div>
+        <!--</div>-->
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <div class="pull-left">
+                <button class="btn btn-cancel fontsize12" ng-click="$dismiss('cancel')"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</section>

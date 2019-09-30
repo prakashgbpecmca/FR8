@@ -1,0 +1,229 @@
+﻿<section>
+    <form name="SMTPForm" novalidate ng-submit="save(SMTPForm.$valid)">
+        <!--smtp code here-->
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'SMTP_Details' | translate}}</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.hostName.$invalid )&& (SMTPForm.hostName.$dirty || submitted) }">
+                        <label for="hostName" class="control-label lineheight30 col-sm-5">{{'Host_Name' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="hostName" placeholder="{{'Host_Name' | translate}}  ({{'Required' | translate}})" ng-model="customerConfiguration.SMTPHostName" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.hostName.$invalid && (SMTPForm.hostName.$dirty || submitted)">
+                                {{'Host_Name_Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.port.$invalid )&& (SMTPForm.port.$dirty || submitted) }">
+                        <label for="hostName" class="control-label lineheight30 col-sm-5">{{'Port' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="{{'Port' | translate}} ({{'Required' | translate}})" name="port" ng-model="customerConfiguration.SMTPport" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.port.$invalid && (SMTPForm.port.$dirty || submitted)">
+                                {{'Host_Name_Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.userName.$invalid )&& (SMTPForm.userName.$dirty || submitted) }">
+                        <label for="userName" class="lineheight30 control-label col-sm-5">{{'LoginUsername' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="{{'LoginUsername' | translate}} ({{'Required' | translate}})" name="userName" ng-model="customerConfiguration.SMTPUserName" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.userName.$invalid && (SMTPForm.userName.$dirty || submitted)">
+                                {{'LoginUsernameValidError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.password.$invalid )&& (SMTPForm.password.$dirty || submitted) }">
+                        <label for="hostName" class="lineheight30 control-label col-sm-5">{{'LoginPassword' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="{{'LoginPassword' | translate}} ({{'Required' | translate}})" name="password"
+                                   ng-model="customerConfiguration.SMTPPassword" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.password.$invalid && (SMTPForm.password.$dirty || submitted)">
+                               {{'LoginPasswordValidError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.displayName.$invalid )&& (SMTPForm.displayName.$dirty || submitted) }">
+                        <label for="hostName" class="control-label lineheight30 col-sm-5">{{'Display_Name' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="{{'Display_Name' | translate}} ({{'Required' | translate}})" name="displayName" ng-model="customerConfiguration.SMTPDisplayName" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.displayName.$error.required &&  (SMTPForm.displayName.$dirty || submitted)">
+                                {{'Display_Name_Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.fromEmail.$invalid )&& (SMTPForm.fromEmail.$dirty || submitted) }">
+                        <label for="hostName" class="control-label lineheight30 col-sm-5">{{'From_Email' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="fromEmail" ng-model="customerConfiguration.SMTPFromMail" placeholder="{{'From_Email' | translate}} ({{'Required' | translate}})" ng-pattern="emailFormat" maxlength="100" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.fromEmail.$error.required &&
+                                            (SMTPForm.fromEmail.$dirty || submitted)">
+                               {{'From_Email_Required' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.fromEmail.$error.pattern &&
+                                            (SMTPForm.fromEmail.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.CompanyName.$invalid )&& (SMTPForm.CompanyName.$dirty || submitted) }">
+                        <label for="CompanyName" class="control-label lineheight30 col-sm-5">{{'Company_Name' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="CompanyName" ng-model="customerConfiguration.CompanyName" placeholder="{{'Company_Name' | translate}} ({{'Required' | translate}})" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.CompanyName.$error.required &&
+                                            (SMTPForm.CompanyName.$dirty || submitted)">
+                                {{'Company_Name' | translate}} {{'Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-7 col-sm-offset-5">
+                            <label><input type="checkbox" name="ssl" ng-model="customerConfiguration.SMTPEnableSsl" class="top2"> {{'Enable_SSL' | translate}}</label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        <!--logo code here-->
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'Upload_Logo' | translate}}</div>
+            <div class="panel-body">
+                <div>
+                    <div class="col-sm-7 paddingboth">
+                        <div>
+                        <div ng-class="{ 'has-error': (SMTPForm.logo.$invalid )&&
+                                                         (SMTPForm.logo.$dirty || submitted) }">
+                            <label class="col-sm-3 form-group control-label lineheight30">{{'Logo' | translate}}:</label>
+                            <div class="col-sm-6 form-group paddingboth">
+                                <input type="text" name="logo" placeholder="{{'Logo' | translate}} ({{'Required' | translate}})" ng-model="customerConfiguration.LogoFileName" class="form-control" readonly required />
+                                <span class="help-block has-error"
+                                      ng-show="SMTPForm.logo.$error.required &&
+                                            (SMTPForm.logo.$dirty || submitted)">
+                                    {{'Logo_Required' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 form-group paddingboth">
+                            <div>
+                                <div class="button col-sm-12 paddingboth"
+                                     ng-model="msBatteryForm"
+                                     name="customerLogo"
+                                     ngf-pattern="'image/*'"
+                                     accept="image/*" ngf-max-size="20MB"
+                                     ngf-select="WhileAddingLogo($files, $file, $event)">
+                                    <button type="button" class="btn btn-blue fontsize12 col-sm-12">
+                                        {{'Upload_Logo' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group"></div>
+                        <div class="col-sm-12" style="padding-top: 3rem;position: relative;"><span class="redColor">{{'Note' | translate}}: </span>{{'Logo_Required_Msg' | translate}}</div>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <div class="col-sm-12 border" ng-show="customerConfiguration.LogoFilePath">
+                            <!--please put the image code here-->
+                            <img ng-src="{{customerConfiguration.LogoFilePath}}" class="img-responsive" style="margin: 15px 5px;" />
+                            <!--end-->
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        <!--additional detail code here-->
+        <div class="panel panel-default">
+            <div class="panel-heading">{{'Additional_Details' | translate}}</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.staffName.$invalid )&& (SMTPForm.staffName.$dirty || submitted) }">
+                        <label for="hostName" class="control-label lineheight30 col-sm-5">{{'Staff_Name' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="{{'Staff_Name' | translate}} ({{'Required' | translate}})" name="staffName" ng-model="customerConfiguration.OperationStaff" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.staffName.$error.required && (SMTPForm.staffName.$dirty || submitted)">
+                                {{'Staff_Name_Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.staffemail.$invalid) && (SMTPForm.staffemail.$dirty || submitted) }">
+                        <label for="staffemail" class="control-label lineheight30 col-sm-5">{{'Staff_Email' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="{{'Staff_Email' | translate}} ({{'Required' | translate}})" name="staffemail" ng-model="customerConfiguration.OperationStaffEmail" ng-pattern="emailFormat" maxlength="100" required />
+
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.staffemail.$error.required &&  (SMTPForm.staffemail.$dirty || submitted)">
+                                {{'Staff_Email_Required' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.staffemail.$error.pattern &&  (SMTPForm.staffemail.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.siteUrl.$invalid )&& (SMTPForm.siteUrl.$dirty || submitted) }">
+                        <label for="hostName" class="control-label lineheight30 col-sm-5">{{'Site_URL' | translate}}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="{{'Site_URL' | translate}} ({{'Required' | translate}})" name="siteUrl" ng-model="customerConfiguration.SiteAddress" required />
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.siteUrl.$error.required &&
+                                            (SMTPForm.siteUrl.$dirty || submitted)">
+                                {{'Site_URL_Required' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': (SMTPForm.companyPhoneNumber.$invalid )&& (SMTPForm.companyPhoneNumber.$dirty || submitted) }">
+                        <label for="hostName" class="control-label lineheight30 col-sm-5">{{'Company_Phone_Number' | translate}}</label>
+                        <div class="col-sm-7">
+                        <div class="col-sm-4 paddingleft">
+                            <input type="text" class="form-control fontsize12" readonly ng-model="customerConfiguration.OperationStaffPhoneCode" />
+                        </div>
+                         <div class="col-sm-8 paddingboth"> 
+                            <input type="text" class="form-control" placeholder="{{'Company_Phone_Number' | translate}} ({{'Required' | translate}})" name="companyPhoneNumber" ng-model="customerConfiguration.OperationStaffPhone" required />
+                        </div>
+                            <span class="help-block has-error"
+                                  ng-show="SMTPForm.companyPhoneNumber.$error.required && (SMTPForm.companyPhoneNumber.$dirty || submitted)">
+                                {{'Company_Phone_Number_Required' | translate}}
+                            </span>
+                        <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        <div class="pull-right">
+            <button type="submit" ng-click="submitted=true" class="btn-BigPrimary fontsize12 ng-binding"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+
+</section>

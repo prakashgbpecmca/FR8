@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CO LOAD BOOKING FORM</title>
+
+    <link href="@Model.PageStyleSheet" rel="stylesheet" />
+    <link href="@Model.BootStrapStyleSheet" rel="stylesheet" />
+    @*<script src="D:/IRA/frayte/Frayte/Frayte.WebApi/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="D:/IRA/frayte/Frayte/Frayte.WebApi/Scripts/bootstrap.min.js"></script>*@
+</head>
+<body>
+    <div class="container-fluid">
+        <header>
+            <img src="@Model.PDFLogo" class="img-responsive" style="width:100%;" />
+        </header>
+        <div class="marginTop30">
+            <div class="col-sm-7">
+                <h2>CO LOAD BOOKING FORM (2016)</h2>
+            </div>
+            <div class="col-sm-5 text-right">
+                <b>FRAYTE LOGISTICS LTD</b><br />
+                UNIT 502, 5/F, KWONG LOONG TAI BUILDING<br />
+                1016 - 1018 TAI NAN WEST STREET<br />
+                CHEUNG SHA WAN, HONG KONG
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="tableHeading">
+            <div>SHIPPER'S INSTRUCTION TO ARRANGE FOR SHIPMENT OF GOODS</div>
+        </div>
+        <div class="borderLR">
+            <div class="borderT">
+                <div class="floatLeft width100">
+                    <span class="floatLeft padding10 borderR width15"><label>SHIPPER</label></span>
+                    <span class="floatLeft padding10 width35">@Model.ShipperName</span>
+                    <span class="floatLeft padding10 borderLR width15"><label>CONSIGNEE</label></span>
+                    <span class="floatLeft padding10 width35">@Model.ReceiverName</span>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="borderT">
+                <div class="floatLeft width100">
+                    <span class="floatLeft padding10 borderR width15"><label>CTC PERSON</label></span>
+                    <span class="floatLeft padding10 width35">N/A</span>
+                    <span class="floatLeft padding10 borderLR  width15"><label>TEL NO.</label></span>
+                    <span class="floatLeft padding10 width35">@Model.ReceiverTelephoneNo</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="borderT">
+                <div class="floatLeft width50 ">
+                    <div>
+                        <span class="floatLeft padding10 borderR width30"><label>TEL NO.</label></span>
+                        <span class="floatLeft padding10 width70">@Model.ShiiperTelephoneNo</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding10 borderR width30"><label>FAX NO.</label></span>
+                        <span class="floatLeft padding10 width70">@Model.ShipperFaxNo</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding10 borderR width30"><label>DEPARTURE AIRPORT</label></span>
+                        <span class="floatLeft padding10 width70">@Model.OriginatingAirPort</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding10 borderR width30"><label>MAWB NO.</label></span>
+                        <span class="floatLeft padding10 width70">N/A</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding10 borderR width30" style="height: 104px;"><label>DESTINATION AIRPORT</label></span>
+                        <span class="floatLeft padding10 width70">@Model.DestinatingAirPort</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="floatLeft width50 borderL">
+                    <div>
+                        <span class="floatLeft padding10 borderR width30"><label>NOTIFY PARTY</label></span>
+                        <span class="floatLeft padding10 width70">@Model.Notifyparty</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding10 borderR width30"><label>TEL NO.</label></span>
+                        <span class="floatLeft padding10 width70">+3216541685</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding10 borderR width40"><label>CARGO READY DATE</label></span>
+                        <span class="floatLeft padding10 width60">21/03/2016</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding5 borderR width50 textCenter"><label>AIRFREIGHT CHARGES</label></span>
+                        <span class="floatLeft padding5 width50 textCenter"><label>ORIGIN LOCAL CHARGES</label></span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding5 borderR width25"><label>PREPAID <input type="checkbox" /></label></span>
+                        <span class="floatLeft padding5 borderR width25"><label>COLLECT <input type="checkbox" /></label></span>
+                        <span class="floatLeft padding5 borderR width25"><label>PREPAID <input type="checkbox" /></label></span>
+                        <span class="floatLeft padding5 width25"><label>COLLECT <input type="checkbox" /></label></span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding10 width100"><label>SPECIAL INSTRUCTION:</label></span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="borderT">
+                        <span class="floatLeft padding10 width100" style="height:50px;">@Model.SpecialInstruction</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="borderTB">
+                    <div class="floatLeft width50 ">
+                        <div>
+                            <span class="floatLeft padding10  width30"><label>AIRLINE</label></span>
+                            <span class="floatLeft padding10 borderL width20" style="min-height:111px;">N/A</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="floatLeft borderL width50">
+                        <div>
+                            <span class="floatLeft padding10 borderR width33"><label>EXPORT LICENCE NO.</label></span>
+                            <span class="floatLeft padding10 borderR width33">N/A</span>
+                            <span class="floatLeft padding10 width33">N/A</span>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="borderT">
+                            <span class="floatLeft padding10 borderR width33"><label>AIRLINE COUNTER SIGNATURE</label></span>
+                            <span class="floatLeft padding10 borderR width33">YES</span>
+                            <span class="floatLeft padding10 width33">NO</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div>
+                    <div class="floatLeft width100 borderB">
+                        <span class="floatLeft padding10 width12"><label>MARKS & NOS:</label></span>
+                        <span class="floatLeft padding10 borderLR width15"><label>NO. AND KIND OF PACKAGES</label></span>
+                        <span class="floatLeft padding10 width35"><label>DESCRIPTION OF GOODS</label></span>
+                        <span class="floatLeft padding10 borderLR width15" style=" min-height: 65px;"><label>GROSS WEIGHT (KG)</label></span>
+                        <span class="floatLeft padding10 width20"><label>MEASUREMENT CBM</label></span>
+                        <div class="clearfix"></div>
+                    </div>
+                    @*<div class="floatLeft width100 borderBDot">*@
+                    <div class="floatLeft width100">
+                        <span class="floatLeft padding10 borderRd width12"><br />N/A</span>
+                        <span class="floatLeft padding10 borderRd width15"><br />@Model.NoOfPacktes</span>
+                        <span class="floatLeft padding10 borderRd width35"><br />@Model.DescriptionOfGoods</span>
+                        <span class="floatLeft padding10 borderRd width15"><br />@Model.GrossWeight</span>
+                        <span class="floatLeft padding10 width20"><br />@Model.TotalCBM</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    @*<div class="floatLeft width100">
+                        <span class="floatLeft padding10 borderRd width12"><br /></span>
+                        <span class="floatLeft padding10 borderRd width15"><br /></span>
+                        <span class="floatLeft padding10 borderRd width35"><br /></span>
+                        <span class="floatLeft padding10 borderRd width15"><br /></span>
+                        <span class="floatLeft padding10 width20"><br /></span>
+                        <div class="clearfix"></div>
+                    </div>*@
+                    <div class="floatLeft width100 borderTB">
+                        <span class="floatLeft padding10 borderR width12"><label>SPECIFY CURRENCY</label></span>
+                        <span class="floatLeft padding10 borderR width20"><label>DECLARED VALUE FOR CUSTOMS</label></span>
+                        <span class="floatLeft padding10 borderR width25"><label>DECLARED VALUE FOR CARRIAGE</label></span>
+                        <span class="floatLeft padding10 borderR width15"><label>INSURANCE AMOUNT</label></span>
+                        <span class="floatLeft padding10  width20"><label>COUNTRY OF ORIGIN</label></span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="floatLeft width100 borderB">
+                        <span class="floatLeft padding10 borderR width12">@Model.SpecifyCurrency</span>
+                        <span class="floatLeft padding10 borderR width20">@Model.DeclaredValue</span>
+                        <span class="floatLeft padding10 borderR width25">N/A</span>
+                        <span class="floatLeft padding10 borderR width15">N/A</span>
+                        <span class="floatLeft padding10  width20">@Model.CountryOfOrigin</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="borderLR ColorBlue" style=" margin-top: -10px; padding-top: 15px;">
+            <div style="margin-left:4%;">
+                <h4>Documents to accompany airwaybill or house airwaybill:</h4>
+            </div>
+            <div class="floatLeft width50 textCenter">
+                <div>
+                    <div class="floatLeft width40"><label>Packing List <input type="checkbox" /></label></div>
+                    <div class="floatLeft width50"><label>Commercial Invoice <input type="checkbox" /></label></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="floatLeft width50 textCenter">
+                <div>
+                    <div class="floatLeft width40"><label>Consular Invoice <input type="checkbox" /></label></div>
+                    <div class="floatLeft width50"><label>Certificate of Origin <input type="checkbox" /></label></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="borderLR">
+            <div class="borderT">
+                <div class="floatLeft width50 padding10 ColorBlue">
+                    <h4 class="textCenter"><b>FOR OFFICE USE ONLY</b></h4>
+                    <p>The Company acknowledges receipt of the above instruction from the Customer. This acknowledgement does not constitute an acceptance of the instructions by the Company Acceptance of the instructions will be made by way of the issue of the Company's Home Air Waybill, House Airbill, Air Consignment Note or the Air Carrier's Air Waybill or other such similar documents.</p>
+                    <p>Where goods or documents are delivered to and accepted by the Company before the Company accepts the Customer's instructions, no liability whatsoever for such goods or documents will be accepted by the Company If, however, the Company is held to be liable, all the provisions of limitation of liabilities specified in the Conditions of Contract overlead will apply. The Customer shall reimburse the Company with all expenses and costs incurred and will indemnify the Company for all losses and liabilities however caused.</p>
+                </div>
+                <div class="floatLeft width50 padding10 ColorRed ">
+                    <h4 class="textCenter"><b>SHIPPER'S DECLARATION</b></h4>
+                    <p>1. The Customer declares that all descriptions, values and other particulars furnished herein are accurate and complete. The Customer undertakes to indemnity the Company against all losses, damages, expenses, fines and any other liabilities whatsoever arising from any inaccuracy or omission, even if such inaccuracy or omission is not due to any negligence.</p>
+                    <p>2. The Customer hereby acknowledges and declares that is the event of these instructions are accepted by the Company. The Customer shall be responsible for all charges and expenses relating to the goods whether or not the charges and expenses are herein expenses to be prepaid or collected</p>
+                    <p>3. The undersigned authorised officer of the Customer hereby declares that he has read the Conditions of Contract overleaf and the Terms and Conditions appearing on this page and that he fully understands them and agrees on behalf of the Customer that they should form part of the contract which, upon acceptance of the above instructions by the Company will be concluded between the Customer and the Company.</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="borderT borderLR">
+            <div class="floatLeft width50 borderR">
+                <div style="background: #e5e5e5;">
+                    <span class="floatLeft padding10 width100 borderB"><label>SIGNATURE AND COMPANY STAMP</label></span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="floatLeft width50">
+                <div style="background: #e5e5e5;">
+                    <span class="floatLeft padding10 width100"><label>SIGNATURE (NAME IN BLOCK LETTERS)</label></span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="borderL borderT">
+                    <span class="floatLeft padding10 width100" style="height: 40px; background: #fff; height: 70px;"></span>
+                    <span class="floatLeft padding10 width100 borderTB fadeBgColor"><label>SIGNATURE AND SHIPPER'S/AGENT's STAMP</label></span>
+                    <span class="floatLeft padding10 width100" style="height: 40px; background: #fff; height: 100px;"></span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="borderTB">
+                <div class="floatLeft width50 border">
+                    <span class="floatLeft padding10 width20 fadeBgColor"><label>DATE</label></span>
+                    <span class="floatLeft padding10 width20" style="">21/03/2016</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="floatLeft borderL width50 border">
+                    <span class="floatLeft padding10 width20 fadeBgColor"><label>DATE</label></span>
+                    <span class="floatLeft padding10 width20" style="">21/03/2016</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <br /><br />
+        <footer>
+            <span class="footerText">P</span><span> +852 2148 4480</span>
+            <span class="footerLogo">WWW.FRAYTE.COM</span>
+            <span class="footerText">F</span><span> +852 2148 4381</span>
+        </footer>
+    </div>   
+</body>
+</html>

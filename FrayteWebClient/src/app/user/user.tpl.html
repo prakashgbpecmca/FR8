@@ -1,0 +1,35 @@
+﻿
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <section>
+            <!--frayte system role code here-->
+            <div class="panel panel-default">
+                <div class="panel-heading">{{'AdvanceFilter' | translate}}</div>
+                <div class="panel-body">
+                    <div class="col-sm-6 paddingleft">
+                        <div class="col-sm-4 top5 control-label paddingboth fontsize12">{{'FRAYTE_System_Role' | translate}}</div>
+                        <div class="col-sm-8">
+                            <select class="form-control fontsize12" ng-model="track.RoleId"
+                                    ng-options="role.RoleId as role.DisplayName for role in SystemRoles"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="pull-left"><button type="button" ng-click="pageChanged()" class="btn-simple btn-primary fontsize12">{{'Search_Users' | translate}}</button></div>
+                        <div class="pull-right"><button type="button" class="btn-simple btn-save fontsize12 left-1" ng-click="AddEditUser()"><i class="fa fa-plus" aria-hidden="true"></i> {{'AddUser' | translate}}</button></div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+        </section>
+        <!--Start grid with pagination code here-->
+        <section>
+        <div data-ui-grid="gridOptions" ui-grid-selection class="myGrid fontsize12" style="min-height: {{gridheight}}px;"></div>
+        <div style="margin-left:-15px;" class="width80">
+            <ul uib-pagination boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(track)" ng-model="track.CurrentPage" items-per-page="track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+        </div>
+        </section>
+        <!--end-->
+        <div class="clearfix"></div>
+    </div>
+</div>

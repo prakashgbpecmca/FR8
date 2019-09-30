@@ -1,0 +1,124 @@
+﻿
+
+<section>
+    <div>
+        <div class="form-group col-sm-12">
+            <div class="col-sm-12 form-group paddingboth margin-bottom-none">
+                <div class="col-sm-12 paddingboth">
+                    <div ng-show="RoleId != 3" class="clearfix">
+                        <label for="shipmentPaymentAccount" id="shipmentPayment" class="control-label top7 width14">{{'Customer' | translate}} <span class="redColor">*</span></label>
+                        <div class="width86 paddingboth">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="Track.CustomerId"
+                                    ng-change="CustomerChange()"
+                                    ng-options="Customer.CustomerId as Customer.Display for Customer in ExpressSolutioCustomers track by Customer.CustomerId"
+                                    class="form-control fontsize12">
+                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'Customer' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr style="margin:10px 0px !important;" />
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6 paddingboth">
+                            <label class="col-sm-3 paddingboth top7">{{'AWB_Number' | translate}}</label>
+                            <div class="col-sm-6">
+                                <input type="text" ng-model="Track.AWBNumber" class="form-control" placeholder="{{'AWB_Number' | translate}}" />
+                            </div>
+                            <button type="button" ng-click="SearchAWB()" class="btn-simple btn-primary"><i class="fa fa-search"></i> {{'Search' | translate}}</button>
+                        </div>
+                        <div class="col-sm-6 paddingboth">
+                            <div class="pull-right">
+                            <div>
+                            <button type="button" ng-click="RefreshData()" class="btn-simple btn-save"><i class="fa fa-refresh"></i> {{'Refresh_Data' | translate}}</button> &nbsp;
+                            <button type="button" ng-click="MultipleDelete()" class="btn-simple btn-danger"><i class="fa fa-trash"></i> {{'Delete_Selected_AWB' | translate}}</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <span><span class="redColor">*</span> {{'Timezone_Depend_On_Customer_Timezone' | translate}}</span>
+            </div>
+            <div class="panel panel-default">
+                <div class="width100 flex grid-background">
+                    <div class="width986 flex">
+                        <div class="width4 bold quotation-table-padding"><span class="quotation-table-body padding-10-5 width100 text-center"><input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"/></span></div>
+                        <div class="width23 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'AWB_Number' | translate}}</span></div>
+                        <div class="width22 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'View_AWB' | translate}}</span></div>
+                        <div class="width25 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Customer' | translate}}</span></div>
+                        <div class="width150 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Scanned_On' | translate}} <span class="redColor">*</span></span></div>
+                        <div class="width11 bold quotation-table-padding" style="border-right:0px !important;"><span class="quotation-table-body padding-10-5"></span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                    <div class="panel-body padding0">
+                        <div ng-if="AWBList.length===0">
+                            <div class="padding-tb-138">
+                                <div class="redColor fontsize18 text-center">{{'Scanned_AWB_Detail_Not_Available' | translate}}</div>
+                            </div>
+                        </div>
+                        <div ng-if="AWBList.length">
+                            <ul class="list-unstyled change margin-bottom-none">
+                                <li>
+                                    <div class="width100 pointer alternate" ng-repeat="AWB in AWBList">
+                                        <div class="flex height30">
+                                            <div class="width4 quotation-table-body word-wrap padding-5"><span class="width100 text-center"><input type="checkbox" ng-model="AWB.IsSelected" ng-change="AwbSelect(AWB)"></span></div>
+                                            <div class="width23 quotation-table-body word-wrap padding-5"><span>{{AWB.AWBNumber}}</span></div>
+                                            <div class="width22 quotation-table-body word-wrap padding-5"><a class="pointer" ng-click="DownloadAWBImage(AWB)">{{AWB.DocumentName}}</a></div>
+                                            <div class="width25 quotation-table-body word-wrap padding-5">{{AWB.CustomerName}}</div>
+                                            <div class="width150 quotation-table-body word-wrap padding-5">{{AWB.ScannedOn}}</div>
+                                            <div class="width11 text-center">
+                                                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                        <li ng-click="createShipment(AWB)"><a href=""><span class="padEdit i-o-d"><i class="fa fa-plus i-o-d" aria-hidden="true"></i></span> <span class="text-center">{{'Create_Shipment' | translate}}</span></a></li>
+                                                        <li ng-click="DeleteDraft(AWB.AWBId)"><a href=""><span class="padEdit redColor i-o-d"><i class="fa fa-trash i-o-d" aria-hidden="true"></i></span> <span class="text-center">{{'Delete' | translate}}</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--pagination code here-->
+            <div class="row">
+                <div class="col-sm-8 paddingboth m-t-2">
+                    <div class="col-sm-4 paddingboth">
+                        <ul uib-pagination="" boundary-links="true" total-items="totalItemCount" ng-change="pageChanged(Track)" ng-model="Track.CurrentPage" items-per-page="Track.TakeRows" max-size="maxSize" num-pages="numPages" class="pagination-sm ng-pristine ng-untouched ng-valid m-t-2 ng-isolate-scope pagination ng-not-empty" previous-text="‹" next-text="›" first-text="«" last-text="»"></ul> &nbsp;
+                    </div>
+                    <div class="col-sm-8 paddingboth">
+                        <div class="lineheight24">({{AwbPageCount}} {{'Records_Out_Of' | translate}} {{totalItemCount}})</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <div class="col-sm-4">
+                    <div class="pull-right">
+                        <label for="customers" class="col-sm-6 top5">{{'Paging_' | translate}}</label>
+                        <div class="col-sm-4">
+                            <select id="shipmentPaymentAccount" name="shipmentPaymentAccount"
+                                    ng-model="Track.TakeRows"
+                                    ng-options="pageChanged.pageChangedValue as pageChanged.pageChangedValueDisplay for pageChanged in pageChangedObj"
+                                    ng-change="pageChanged(track)"
+                                    class="form-control fontsize12" style="width:77px"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</section>

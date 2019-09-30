@@ -1,0 +1,101 @@
+﻿
+<section>
+    <div class="panel-body padding0">
+        <div class="row fontsize12 form-group">
+            <!--start input code with search button-->
+            <section>
+                <div class="col-sm-12 paddingboth">
+                    <!--<div class="col-sm-4">-->
+                    <!--  <div class="col-sm-6 paddingboth lineheight30"><label class="fontsize12">{{'BusinessUnit_Zone' | translate}}</label></div>
+                      <div class="col-sm-6 paddingboth">
+                          <select
+                                  ng-options="OperationZone as OperationZone.OperationZoneName for OperationZone in OperationZones track by OperationZone.OperationZoneId"
+                                  class="form-control fontsize12 form-group" ng-model="OperationZone">
+                              <option value="" selected disabled class="display-none">{{'Select' | translate}} {{'BusinessUnit_Zone' | translate}}</option>
+                          </select>
+                      </div>-->
+                    <!--<div class="clearfix"></div>
+                    </div>-->
+                    <!--<div ng-show="OperationZone.OperationZoneId === 2" class="col-sm-4 form-group">
+                        <div class="col-sm-6 paddingboth"><label class="lineheight30 fontsize12">{{'Logistic_Type' | translate}}</label></div>
+                        <div class="col-sm-6 paddingboth text-left"><div class="lineheight30 input-background fontsize12 form-control border-radius2 bottom2">{{'UK_Shipment' | translate}}</div></div>
+                    </div>-->
+                    <div ng-show="OperationZone.OperationZoneId === 2" class="col-sm-6 form-group">
+                        <div class="col-sm-4 paddingboth lineheight30"><label for="packageType">{{'CourierCompany' | translate}}</label></div>
+                        <div class="col-sm-8 paddingboth">
+                            <select class="form-control fontsize12" ng-change="zonePostCodeByCourierCompany()" ng-options="CourierCompany as CourierCompany.Display for CourierCompany in CourierCompanies" ng-model="CourierCompany">
+                                <option value="" disabled selected class="display-none">{{'Select' | translate}} {{'CourierCompany' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div ng-show="RateTypes.length && OperationZone.OperationZoneId === 2" class="col-sm-6 form-group" style="margin-bottom:0px !important;">
+                        <div class="col-sm-4 paddingboth lineheight30"><label for="operationZone">{{"Rate" | translate}} {{"Type" | translate}}</label></div>
+                        <div class="col-sm-8 paddingboth form-group">
+                            <select ng-change="ZoneCountryByRateType()"
+                                    ng-options="RateType as RateType.Display for RateType in RateTypes"
+                                    class="form-control fontsize12" ng-model="RateType">
+                                <option value="" selected disabled class="display-none">{{"Select" | translate}} {{"Rate" | translate}} {{"Type" | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-show="OperationZone.OperationZoneId === 2" class="pull-right form-group">
+                            <button class="btn-simple btn-primary fontsize12" ng-click="SearchZonePostCode()"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                        </div>
+                        <!--<div ng-show="OperationZone.OperationZoneId === 1" class="pull-right form-group">
+                            <button class="btn-simple btn-primary fontsize12" ng-click="SearchZonePostCode()"><i class="fa fa-search" aria-hidden="true"></i> {{'Search' | translate}}</button>
+                        </div>-->
+                    </div>
+                </div>
+             
+            </section>
+            <!--end input code with search button-->
+            <!--start zone code here-->
+            <section>
+                <div class="col-sm-12 text-center zone-post-code" ng-if="ZonePostCodeAvailable">
+                    <div ng-repeat="ZonePostCode in ZonePostCodeJson" class="center-width33-inline paddingboth" ng-class="{'center-width25-inline':ZonePostCodeJson.length===4}" style="margin-bottom:5px;position:relative;">
+                        <button type="button" class="btn btn-md form-control buttonGreen col-sm-12 paddingboth" style="background-color:{{ZonePostCode.ZoneColor}};" ng-click="AddEditPostCodeModal(ZonePostCode)">
+                            <span class="col-sm-9 word-wrap" title="{{'Manager' | translate}} {{ZonePostCode.ZoneDisplayName}}">{{'Manager' | translate}} {{ZonePostCode.ZoneDisplayName}}</span>
+                            <span class="col-sm-3 paddingboth"><span id="notification" class="top1"><span class="notification">{{ShowTransitTime(ZonePostCode.TransitTime)}}</span><span class="notification-popup"><span class="text-center">{{'Shipment_Transit_Time' | translate}} </span><br />{{'Will_Be' | translate}} {{ShowTransitTime(ZonePostCode.TransitTime)}}</span></span></span>
+                            <span class="clearfix"></span>
+                        </button>
+                        <div class="col-sm-12" style="padding-top:8px;padding-bottom:8px;">
+                            <i class="fa fa-search" aria-hidden="true" style="position: absolute; padding:10px 13px;left:15px;"></i>
+                            <input type="text" ng-model="ZonePostCode.searchPostCode" ng-change="refreshPostCode(ZonePostCode)" class="form-control" placeholder="{{'Search' | translate}} {{'PostalCode' | translate}}" style="padding-left:31px;border-radius:30px;" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12 paddingboth">
+                            <div class="overflow" style="height:200px !important;">
+                                <div ng-repeat="PostCode in ZonePostCode.Row" class="col-sm-6 paddingboth center">
+                                    <div>
+                                        <label for="userLabel">{{PostCode.PostCode}}</label>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <ul uib-pagination boundary-links="true" total-items="ZonePostCode.totalItemCount" ng-change="pageChanged(ZonePostCode)" ng-model="ZonePostCode.currentPage" items-per-page="ZonePostCode.itemsPerPage" max-size="ZonePostCode.maxSize" num-pages="numPages" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </section>
+            <!--end zone code here-->
+            <div class="clearfix"></div>
+            <!--start error code here-->
+            <section>
+                <div class="col-sm-12 form-group" ng-if="!ZonePostCodeAvailable">
+                    <div class="col-sm-12">
+                        <div class="row boxwithcenter">
+                            <h4 class="redColor">{{'Zone_NotSupported' | translate}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--end error code-->
+        </div>
+    </div>
+</section>

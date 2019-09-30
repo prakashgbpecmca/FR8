@@ -1,0 +1,6 @@
+﻿<section class="container">
+    <div class="col-sm-12">
+        <div ng-if="confirmationDetail.ActionType === 'c'" ng-include src="'public/publicAgentActionShipment/agentConfirmShipment.tpl.html'"></div>
+        <div ng-if="confirmationDetail.ActionType === 'r'" ng-include src="'public/publicAgentActionShipment/agentRejectShipment.tpl.html'"></div>
+    </div>
+</section>

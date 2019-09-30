@@ -1,0 +1,43 @@
+﻿<div ng-if="!IsChanged && finalArrayList.length">
+    <div class="panel-body paddingboth fontsize12 padding0 padding-bottom-none" id="auto-scrolling">
+        <div class="headertable">
+            <ul class="list-unstyled">
+                <li>
+                    <div class="width208 text-right">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                    <div ng-repeat="Zone in UKShipmentZones">
+                        <div class="width263 text-center">{{Zone.ZoneDisplayName}}</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="panel-body fontsize12 padding0">
+        <div class="panel-body padding0" style="border: 1px solid #ddd;">
+            <div class="grey">
+                <!--Hermese BaseRate Card-->
+                <div ng-repeat="BaseRate in finalArrayList">
+                    <div>
+                        <div ng-if="BaseRate.IsRowShow">
+                            <div class="width208 marginTop20"><span style="padding-left:10px;">{{BaseRate.DocType}}</span>  <span style="float:right; left:-4%;position:relative;"><span ng-if="BaseRate.WeightTo===999">Over</span> {{BaseRate.WeightFrom}} <span ng-if="BaseRate.WeightTo !==999">- {{BaseRate.WeightTo}}</span></span></div>
+                            <div ng-repeat="Rate in BaseRate.Rows | orderBy : Rate.zone.ZoneId">
+                                <div ng-class="{'cellHide': !Rate.IsCellShow}" class="width263">
+                                    <button class="pointer text-center btn btn-sm btn-default height84 " ng-click="SetCourierAccountAndCurrency(Rate)" style="width: 100%;" ng-style="{'background-color':Rate.courierAccount.ColorCode}">
+                                        <div ng-hide="Rate.Rate===0"> <span>{{Rate.Rate}}  {{Rate.CurrencyCode}}</span></div>
+                                        <div ng-show="Rate.Rate===0">N/A</div>
+                                        <div ng-show="Rate.BusinessCurrency !== Rate.CurrencyCode && Rate.BusinessRate !== 0">
+                                            <div class="baseratecard-border"></div>
+                                            <span>{{Rate.BusinessRate}}  {{Rate.BusinessCurrency}}</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <br /><br />
+</div>

@@ -1,0 +1,1193 @@
+﻿
+<section>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+            <h4 class="modal-title">Select Customers</h4>
+        </div>
+        <div class="modal-body padding-bottom-none" id="selectCustomers">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-12 text-right form-group">
+                    <button type="button" class="btn-simple btn-save" ng-click="gridCheck()"><i class="fa" ng-class="{'fa-th':!grid, 'fa-th-large':grid}"></i> <span ng-if="!grid">List View</span><span ng-if="grid">Card View</span></button>
+                </div>
+                <div class="clearfix"></div>
+                <!--start progress-bar code here-->
+                <section>
+                    <div class="fixe">
+                        <!--Progress bar coding start here in four section-->
+                        <div>
+                            <div class="col-sm-12 progress-bar-header form-group">
+                                <div class="col-sm-6 paddingright">
+                                    <div class="booking1">
+                                        <span ng-class="{'orange': shipFromTab(DirectBookingForm) && shipToTab(DirectBookingForm)}"></span><span ng-hide="shipToTab(DirectBookingForm) && shipFromTab(DirectBookingForm)" class="orange-border"></span>
+                                        <span class="progress-fix one"></span>
+                                        <div class="booking-top">Select Customer for your purchase order.</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 paddingleft">
+                                    <span ng-class="{'orange': directBooking.CustomerRateCard.LogisticServiceId >0 && shipmentDetailTab(DirectBookingForm)}"></span> <span ng-hide="directBooking.CustomerRateCard.LogisticServiceId >0 && shipmentDetailTab(DirectBookingForm)" class="orange-border"></span>
+                                    <div class="booking2">
+                                        <span class="progress-fix two"></span>
+                                        <div class="booking-top">Please fill all purchase order details.</div>
+                                        <div class="text-muted text-left fix-pending-success-text pos-abs">Pending <div class="badge">10</div></div>
+                                    </div>
+                                    
+                                    <div class="booking3">
+                                        <span class="progress-fix three" style="right:0px"></span>
+                                        <div class="text-muted text-right fix-pending-success-text pos-rel" style="right: -15px;">Success <div class="badge">4</div></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--End Progress bar coding-->
+                    </div>
+                    <div class="clearfix"></div>
+                </section>
+                <div class="clearfix"></div>
+                <div class="form-group"></div>
+                <div class="clearfix"></div>
+                <!--end progress-bar code-->
+                <!--customer address detail code-->
+                <br /><br />
+                <!--grid view code here-->
+                <div ng-if="grid">
+                    <div ng-if="customerInfo">
+                        <!--cardwise code here-->
+                        <div class="col-sm-12 paddingboth fix-min-height">
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="check">Check</span><span ng-if="!check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="!check">Check</span><span ng-if="check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="check">Check</span><span ng-if="!check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="!check">Check</span><span ng-if="check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="check">Check</span><span ng-if="!check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="!check">Check</span><span ng-if="check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="check">Check</span><span ng-if="!check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="!check">Check</span><span ng-if="check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="check">Check</span><span ng-if="!check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="!check">Check</span><span ng-if="check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="check">Check</span><span ng-if="!check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="col-sm-12 edit-icon navbar-right">
+                                            <div class="pull-left left-less-30">
+                                                <div class="checkbox fontsize14">
+                                                    <label><input type="checkbox" name="checked" id="checked" ng-click="checkClick()" /> <span ng-if="!check">Check</span><span ng-if="check">Uncheck</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="blue-color"><i ng-click="addEditPurchaseOrder()" class="fa fa-pencil-square-o border-primary-i pointer" title="Edit Address" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div><label><span>Irays SoftTech Pvt Ltd.</span></label></div>
+                                        <div><label><span>Alex Richard</span></label></div>
+                                        <div><label><span>78 Scarcroft Roadwq</span></label></div>
+                                        <div><label><span>United Kingdom</span></label></div>
+                                        <div><label><span>PORTINCAPLE</span></label></div>
+                                        <div><label>G84 9PG<span>Noida</span></label></div>
+                                        <br />
+                                        <div><label><span>alexrichard001@gmail.com</span></label></div>
+                                        <div><label><span>(+41) 752 4561 5468</span></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end-->
+                    </div>
+
+                    <div ng-if="purchaseOrderInfo">
+                        <div class="col-sm-12">
+                            <div class="row fix-company-card form-group">
+                                <div class="form-group col-sm-6 word-wrap" ng-repeat="item in companyName">
+                                    <div class="card" ng-class="{'frayte-border-orange':item.id===5}">
+                                        <div class="card-body">
+                                            <div><label><span>{{item.companyName}}- {{item.customerName}}</span></label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--purchase order code-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Purchase Order Detail:</div>
+                                <div class="panel-body padding-bottom-none">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label textLeft40" for="country">PO Number <span class="red">*</span></label>
+                                                    <div class="inputRight60">
+                                                        <input type="text" class="form-control" id="poNumber" name="poNumber" placeholder="PO Number (Required)" required />
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label textLeft40">Parcel Type</label>
+                                                    <div class="inputRight60">
+                                                        <select class="form-control">
+                                                            <option>Parcel</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label textLeft40">Courier</label>
+                                                <div class="inputRight60" id="Xe">
+                                                    <select class="form-control">
+                                                        <option>DHL Domestic</option>
+                                                        <option>DHL Express</option>
+                                                        <option>DHL Economy</option>
+                                                        <option>DPD Domestic</option>
+                                                        <option>DPD Express</option>
+                                                        <option>TNT Express</option>
+                                                        <option>TNT Economy</option>
+                                                        <option>Yodel</option>
+                                                        <option>UK Mail</option>
+                                                        <option>Hermes</option>
+                                                    </select>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label textLeft40">Declare Value Currency</label>
+                                                <div class="inputRight60" id="Xe">
+                                                    <select class="form-control">
+                                                        <option>AUD - Australian Dollar</option>
+                                                        <option>EUR - Euro</option>
+                                                        <option>GBP - British Pound</option>
+                                                        <option>HKD - Hong Kong Dollar</option>
+                                                        <option>NZD - New Zealand Dollar</option>
+                                                        <option>USD - US Dollar</option>
+                                                        <option>AED - Emirati Dirham</option>
+                                                    </select>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label textLeft40">Shipment Reference</label>
+                                                <div class="inputRight60">
+                                                    <input type="text" id="shipmentReference" name="shipmentReference" placeholder="Shipment Reference" maxlength="20" class="form-control fontsize12" required />
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="control-label textLeft40">Send Alert Email</label>
+                                                    <div class="inputRight60">
+                                                        <div>
+                                                            <input type="email" id="alertEmail" name="alertEmail" class="form-control fontsize12" placeholder="Send Alert Email" />
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="alertEmailCheck" id="alertEmailCheck" /> Send Email Delivery Notification.</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label textLeft40">Shipment Description</label>
+                                                <div class="inputRight60">
+                                                    <textarea cols="4" rows="4" id="shipmentDescription" name="shipmentDescription" maxlength="100" class="form-control fontsize12" placeholder="Shipment Description"></textarea>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!--end-->
+                        </div>
+                    </div>
+
+                    <div ng-if="saveInfo">
+                        <div class="col-sm-12">
+                            <div class="form-group text-center" style="padding:20px 0px;">
+                                <div class="fontsize18 red">Successfully edit all selected customers purchase order detail. Please click save to continue on  booking process.</div>
+                            </div>
+                            <div class="row fix-company-card form-group">
+                                <div class="form-group col-sm-6 word-wrap pointer" ng-click="purchaseOrderInfoClick()" ng-repeat="item in companyName">
+                                    <div class="card" ng-class="{'frayte-border-orange':item.id===5}">
+                                        <div class="card-body">
+                                            <div><label><span>{{item.companyName}}- {{item.customerName}}</span></label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end-->
+                <!--list view code here-->
+                <div ng-if="!grid">
+                    <div ng-if="customerInfo">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="width100 flex grid-background">
+                                    <div class="width986 flex">
+                                        <div class="width8 bold quotation-table-padding"><div class="text-center top9"><input type="checkbox" id="activeAll" name="activeAll"></div></div>
+                                        <div class="width20 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Company' | translate}}</span></div>
+                                        <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'ContactName' | translate}}</span></div>
+                                        <div class="width13 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Address_1' | translate}}</span></div>
+                                        <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'City' | translate}}</span></div>
+                                        <div class="width120 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'State' | translate}}</span></div>
+                                        <div class="width120 bold quotation-table-padding"><sapn class="quotation-table-body padding-10-5">{{'Country' | translate}}</sapn></div>
+                                        <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                    <div class="panel-body padding0">
+                                        <ul class="list-unstyled margin-bottom-none">
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                            <li class="change">
+                                                <div class="width100 pointer">
+                                                    <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                        <div class="width8 quotation-table-body text-center">
+                                                            <div class="margin-auto top4">
+                                                                <input type="checkbox" name="checkboxActive" id="checkboxActive" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="width20 quotation-table-body word-wrap padding-5"><span>Irays SoftTech Pvt Ltd.</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>Alex Richard</span></div>
+                                                        <div class="width13 quotation-table-body word-wrap padding-5"><span>78 Scarcroft Roadwq</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>PORTINCAPLE</span></div>
+                                                        <div class="width120 quotation-table-body padding-5 word-wrap"><span>G84 9PG Noida</span></div>
+                                                        <div class="width120 quotation-table-body word-wrap padding-5"><span>United Kingdom</span></div>
+                                                        <div class="width10 quotation-table-body padding0 text-center">
+                                                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                    <li ng-click="addEditPurchaseOrder()">
+                                                                        <a href="">
+                                                                            <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                            <span>{{'Edit' | translate}}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="purchaseOrderInfo">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="panel panel-default">
+                                    <div class="width100 flex grid-background">
+                                        <div class="width986 flex">
+                                            <div class="width50 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Company' | translate}}</span></div>
+                                            <div class="width40 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'ContactName' | translate}}</span></div>
+                                            <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                        <div class="panel-body padding0">
+                                            <ul class="list-unstyled margin-bottom-none">
+                                                <li class="change" ng-repeat="item in companyName">
+                                                    <div class="width100 pointer">
+                                                        <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">                    
+                                                            <div class="width50 quotation-table-body word-wrap padding-5"><span>{{item.companyName}}</span></div>
+                                                            <div class="width40 quotation-table-body word-wrap padding-5"><span>{{item.customerName}}</span></div>
+                                                            <div class="width10 quotation-table-body padding0 text-center">
+                                                                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                        <li ng-click="addEditPurchaseOrder()">
+                                                                            <a href="">
+                                                                                <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                                <span>{{'Selected' | translate}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <!--purchase order code-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Purchase Order Detail:</div>
+                                <div class="panel-body padding-bottom-none">
+                                    <div class="col-sm-12 paddingboth">
+                                        <div class="col-sm-12 paddingboth">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label textLeft40" for="country">PO Number <span class="red">*</span></label>
+                                                    <div class="inputRight60">
+                                                        <input type="text" class="form-control" id="poNumber" name="poNumber" placeholder="PO Number (Required)" required />
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label textLeft40">Parcel Type</label>
+                                                    <div class="inputRight60">
+                                                        <select class="form-control">
+                                                            <option>Parcel</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label textLeft40">Courier</label>
+                                                <div class="inputRight60" id="Xe">
+                                                    <select class="form-control">
+                                                        <option>DHL Domestic</option>
+                                                        <option>DHL Express</option>
+                                                        <option>DHL Economy</option>
+                                                        <option>DPD Domestic</option>
+                                                        <option>DPD Express</option>
+                                                        <option>TNT Express</option>
+                                                        <option>TNT Economy</option>
+                                                        <option>Yodel</option>
+                                                        <option>UK Mail</option>
+                                                        <option>Hermes</option>
+                                                    </select>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label textLeft40">Declare Value Currency</label>
+                                                <div class="inputRight60" id="Xe">
+                                                    <select class="form-control">
+                                                        <option>AUD - Australian Dollar</option>
+                                                        <option>EUR - Euro</option>
+                                                        <option>GBP - British Pound</option>
+                                                        <option>HKD - Hong Kong Dollar</option>
+                                                        <option>NZD - New Zealand Dollar</option>
+                                                        <option>USD - US Dollar</option>
+                                                        <option>AED - Emirati Dirham</option>
+                                                    </select>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label textLeft40">Shipment Reference</label>
+                                                <div class="inputRight60">
+                                                    <input type="text" id="shipmentReference" name="shipmentReference" placeholder="Shipment Reference" maxlength="20" class="form-control fontsize12" required />
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="control-label textLeft40">Send Alert Email</label>
+                                                    <div class="inputRight60">
+                                                        <div>
+                                                            <input type="email" id="alertEmail" name="alertEmail" class="form-control fontsize12" placeholder="Send Alert Email" />
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="alertEmailCheck" id="alertEmailCheck" /> Send Email Delivery Notification.</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label textLeft40">Shipment Description</label>
+                                                <div class="inputRight60">
+                                                    <textarea cols="4" rows="4" id="shipmentDescription" name="shipmentDescription" maxlength="100" class="form-control fontsize12" placeholder="Shipment Description"></textarea>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!--end-->
+                        </div>
+                        </div>
+
+                    <div ng-if="saveInfo">
+                        <div class="col-sm-12">
+                            <div class="form-group text-center" style="padding:20px 0px;">
+                                <div class="fontsize18 red">Successfully edit all selected customers purchase order detail. Please click save to continue on  booking process.</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="panel panel-default">
+                                    <div class="width100 flex grid-background">
+                                        <div class="width986 flex">
+                                            <div class="width50 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'Company' | translate}}</span></div>
+                                            <div class="width40 bold quotation-table-padding"><span class="quotation-table-body padding-10-5">{{'ContactName' | translate}}</span></div>
+                                            <div class="width10 bold quotation-table-padding padding-10-5" style="border-right:transparent !important;"><span class="quotation-table-body"></span></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="get-service-scroll" id="fix-get-service-alternate-color">
+                                        <div class="panel-body padding0">
+                                            <ul class="list-unstyled margin-bottom-none">
+                                                <li class="change pointer" ng-repeat="item in companyName" ng-click="purchaseOrderInfoClick()">
+                                                    <div class="width100 pointer">
+                                                        <div class="flex height30" ng-class="{'demoClass':gridDirectBooking.IsSelected , 'set-as-default' : gridDirectBooking.IsDefault }">
+                                                            <div class="width50 quotation-table-body word-wrap padding-5"><span>{{item.companyName}}</span></div>
+                                                            <div class="width40 quotation-table-body word-wrap padding-5"><span>{{item.customerName}}</span></div>
+                                                            <div class="width10 quotation-table-body padding0 text-center">
+                                                                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                                                    <a id="btn-append-to-to-body" href="" uib-dropdown-toggle ng-disabled="disabled" class="text-center pointer width100 action-font-family padding-5 margin-bottom-none">{{'Actions' | translate}} <span class="caret"></span></a>
+                                                                    <ul class="fix-dropdown-overlay" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                                                                        <li ng-click="addEditPurchaseOrder()">
+                                                                            <a href="">
+                                                                                <span class="padEdit"><i class="fa fa-edit"></i></span>
+                                                                                <span>{{'Selected' | translate}}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        </div>
+                    </div>
+                <!--end-->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-sm-12">
+                <div class="pull-left"><button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button></div>
+                <div class="pull-right">
+                    <div class="pull-right">
+                        <button ng-show="purchaseOrderInfo"  type="button" ng-click="customerInfoClick()" class="btn-simple btn-primary fontsize12"><i class="fa fa-chevron-left" aria-hidden="true"></i> {{'Prev' | translate}}</button> &nbsp; &nbsp;
+                        <button ng-show="customerInfo" type="button" ng-click="purchaseOrderInfoClick()"  class="btn-simple btn-primary fontsize12">{{'Next' | translate}} <i class="fa fa-chevron-right" aria-hidden="true"></i></button> &nbsp; &nbsp;
+                        <button ng-show="purchaseOrderInfo" type="button" ng-click="saveOrderInfoClick()" class="btn-simple btn-primary fontsize12">{{'Next' | translate}} <i class="fa fa-chevron-right" aria-hidden="true"></i></button> &nbsp; &nbsp;
+                        <button type="button" ng-show="saveInfo" ng-click="confirmClick()"  class="btn-simple btn-save fontsize12"><i class="fa fa-save" aria-hidden="true"></i> {{'Save' | translate}}</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>

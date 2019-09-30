@@ -1,0 +1,142 @@
+﻿<br/><br /><br />
+<section id="login">
+<section ng-if="Site_Company === 'FRAYTE'">
+    <toaster-container></toaster-container>
+    <!--start home login code here-->
+    <section class="form-center">
+        <!-- frayte image-->
+        <span ng-if="IsSiteCountry==='COM'"><img ng-src="{{ImagePath + 'FrayteHK.png'}}" class="frayte-login-logo" /></span>
+        <span ng-if="IsSiteCountry==='CO.UK'"><img ng-src="{{ImagePath + 'FrayteUK.png'}}" class="frayte-login-logo" /></span>
+        <!--end-->
+        <form name="LoginForm" ng-submit="submit(LoginForm.$valid, credentials)" novalidate>
+            <h3><span class="bold">{{'Welcome' | translate}}.</span> {{'Please' | translate}} {{'login' | translate}}.</h3>
+            <div class="form-group" ng-class="{ 'has-error': LoginForm.UserName.$invalid &&
+                                                         (LoginForm.UserName.$dirty || submitted) }">
+                <label class="control-label sr-only" for="UserName"> {{'Home_Login_Username' | translate}}</label>
+                <!--<span class="icon-fix"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>-->
+                <span class="icon-fix"><img class="fa fa-username" ng-src="{{ImagePath + 'username.png'}}"></span>
+                <input type="text" class="form-control input-padding" id="UserName" name="UserName" ng-model="credentials.UserName" placeholder="{{'UsernameOrAccountID' | translate}}" required />
+                <span class="help-block has-error"
+                      ng-show="LoginForm.UserName.$invalid &&
+                           (LoginForm.UserName.$dirty || submitted)">
+                    {{'User_Email_Required' | translate}}.
+                </span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': LoginForm.Password.$invalid &&
+                                                         (LoginForm.Password.$dirty  || submitted) }">
+                <label class="control-label sr-only" for="Password"> {{'Home_Login_Password' | translate}}</label>
+                <!--<span class="icon-fix"><i class="fa fa-lock" aria-hidden="true"></i></span>-->
+                <span class="icon-fix"><img class="fa fa-password" ng-src="{{ImagePath + 'password.png'}}"></span>
+                <input type="password" class="form-control input-padding" id="Password" name="Password" ng-model="credentials.Password" placeholder="{{'LoginPassword' | translate}}" required />
+                <span class="help-block has-error"
+                      ng-show="LoginForm.Password.$invalid &&
+                           (LoginForm.Password.$dirty  || submitted)">
+                    {{'LoginPasswordValidError' | translate}}
+                </span>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" ng-click="submitted=true" class="btn-simple btn-save form-control fontsize12 buttonColor-Outline login-padding"><b><i class="fa fa-user-circle-o fa-1x" aria-hidden="true"></i> {{'Login' | translate}}</b></button>
+            </div>
+            <div class="text-right" style="padding:10px 0px;">
+                <a ui-sref="forgotPassword" class="bold">{{'ForgotPassword' | translate}}</a>
+            </div>
+
+            <!--<div class="text-right" style="padding:10px 0px;">
+            <a ui-sref="temp" class="bold">Tradelane</a>
+        </div>-->
+        </form>
+    </section>
+    <!--end home login code-->
+    <br /><br/><br/>
+    <!--start translation code here-->
+    <section class="form-center-language">
+        <div class="col-sm-12 col-xs-12 paddingboth form-group xs-footerCenter fontsize13 text-center">
+            <button ng-click="changeLanguage('en')" class="btn btn-link fontsize12" ng-disabled="isDisabled1" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'en.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_EN' | translate}} </button>
+            <button ng-click="changeLanguage('chSim')" class="btn btn-link fontsize12" ng-disabled="isDisabled2" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'ch.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_CH' | translate}} </button>
+            <button ng-click="changeLanguage('chTrad')" class="btn btn-link fontsize12" ng-disabled="isDisabled3" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'hkong.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TD' | translate}} </button>
+            <button ng-click="changeLanguage('th')" class="btn btn-link fontsize12" ng-disabled="isDisabled4" style="padding:2px 4px;"><img ng-src="{{ImagePath + 'th.png'}}" style="margin-right:5px;" />{{'BUTTON_LANG_TH' | translate}}</button>
+          </div>
+    </section>
+    <!--end translation code-->
+</section>
+
+<!--start footer code here-->
+<section ng-if="Site_Company === 'FRAYTE'"> 
+<div class="container center">
+    <div class="col-sm-12 col-xs-12 xs-footerCenter top3">
+        <div>
+            <div><img ng-src="{{ImagePath + 'favicon.ico'}}" class="frayte-footer-icon" /> <span class="word-break">&copy; {{'2018' | translate}} <span ng-if="IsSiteCountry==='COM'">{{'FRAYTE_HK' | translate}}</span><span ng-if="IsSiteCountry==='CO.UK'">{{'FRAYTE_UK' | translate}}</span>. {{'AllRightsReserved' | translate}}. &nbsp;&nbsp;&nbsp;&nbsp; <a ng-click="setScroll('top')" ui-sref='public.term-and-condition' class="fontsize13">{{'TermsAndCondition' | translate}}</a>  | <a ng-click="setScroll('top')" ui-sref='public.privacyPolicy' class="fontsize13">{{'Privacy_Policy' | translate}}</a> </span></div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+</section>
+<!--end footer code--> 
+<br /><br /><br />
+<section ng-if="Site_Company === 'MAXLOGISTIC'">
+    <toaster-container></toaster-container>
+    <!--start home login code here-->
+    <section class="form-center">
+        <!-- frayte image-->
+        <img ng-src="{{ImagePath + 'MexLogo.png'}}" class="frayte-login-logo" />
+        <!--end-->
+        <form name="LoginForm" ng-submit="submit(LoginForm.$valid, credentials)" novalidate>
+            <h3><span class="bold">{{'Welcome' | translate}}.</span> {{'Please' | translate}} {{'login' | translate}}.</h3>
+            <div class="form-group" ng-class="{ 'has-error': LoginForm.UserName.$invalid &&
+                                                         (LoginForm.UserName.$dirty || submitted) }">
+                <label class="control-label sr-only" for="UserName"> {{'Home_Login_Username' | translate}}</label>
+                <!--<span class="icon-fix"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>-->
+                <span class="icon-fix"><img class="fa fa-username" ng-src="{{ImagePath + 'username.png'}}"></span>
+                <input type="text" class="form-control input-padding" id="UserName" name="UserName" ng-model="credentials.UserName" placeholder="{{'UsernameOrAccountID' | translate}}" required />
+                <span class="help-block has-error"
+                      ng-show="LoginForm.UserName.$invalid &&
+                           (LoginForm.UserName.$dirty || submitted)">
+                    {{'User_Email_Required' | translate}}
+                </span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': LoginForm.Password.$invalid &&
+                                                         (LoginForm.Password.$dirty  || submitted) }">
+                <label class="control-label sr-only" for="Password"> {{'Home_Login_Password' | translate}}</label>
+                <!--<span class="icon-fix"><i class="fa fa-lock" aria-hidden="true"></i></span>-->
+               <span class="icon-fix"><img class="fa fa-password" ng-src="{{ImagePath + 'password.png'}}"></span>
+                <input type="password" class="form-control input-padding" id="Password" name="Password" ng-model="credentials.Password" placeholder="{{'LoginPassword' | translate}}" required />
+                <span class="help-block has-error"
+                      ng-show="LoginForm.Password.$invalid &&
+                           (LoginForm.Password.$dirty  || submitted)">
+                    {{'LoginPasswordValidError' | translate}}
+                </span>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" ng-click="submitted=true" class="btn-simple btn-save form-control fontsize12 buttonColor-Outline login-padding"><b><i class="fa fa-user-circle-o fa-1x" aria-hidden="true"></i> {{'Login' | translate}}</b></button>
+            </div>
+            <div class="text-right" style="padding:10px 0px;">
+                <a ui-sref="forgotPassword" class="bold">{{'ForgotPassword' | translate}}</a>
+            </div>  
+        </form>
+    </section>
+    <!--end home login code-->
+    <br /><br /><br />
+    <!--start translation code here-->
+     
+    <!--end translation code-->
+</section>
+<br /><br />
+<!--start footer code here-->
+<section ng-if="Site_Company === 'MAXLOGISTIC'">
+    <div class="container center">
+        <div class="col-sm-12 col-xs-12 xs-footerCenter top3">
+            <div>
+                <div><img ng-src="{{ImagePath + 'favicon-maxlogistic.png'}}" class="frayte-footer-icon" />
+                 <span class="word-break">&copy; {{'2018' | translate}} {{'Max' | translate}} {{'LogisticLTD' | translate}}. {{'AllRightsReserved' | translate}}. &nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<br /><br />
+<!--end footer code-->
+</section>
+
+

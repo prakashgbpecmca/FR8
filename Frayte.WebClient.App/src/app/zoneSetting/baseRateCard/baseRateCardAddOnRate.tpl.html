@@ -1,0 +1,277 @@
+﻿
+<section>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss('cancel')"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+        <h4 class="modal-title">{{'Addon_Rate' | translate}}</h4>
+    </div>
+    <section>
+        <div ng-if="finalrateList !== null && finalrateList.length > 0" id="addonrate">
+            <form name="AddOnRate" ng-submit="UpdateAddOnRate(finalrateList)">
+                <!--header code-->
+                <div class="panel-body paddingboth fontsize12 padding0">
+                    <div class="col-sm-12">
+                        <div class="headertable">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="col-sm-4 paddingboth text-right">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                                    <!--12 table column header start-->
+                                    <div ng-class="{'baseratcard-overflow':Zones}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                        <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }">
+                                            <div ng-repeat="Zone in Zones">
+                                                <!--12 table header start-->
+                                                <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center">{{Zone.ZoneDisplayName}}</div>
+                                                <!--Change Css For ThirdParty-->
+                                                <div ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center">{{Zone.ZoneDisplayName}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--body code-->
+                <div class="panel-body fontsize12 padding0">
+                    <div class="col-sm-12 form-group">
+                        <div ng-repeat="BaseRate in finalrateList" class="bordered-left bordered-bottom">
+                            <div class="col-sm-4 paddingboth">
+                                <div class="padding-5">{{BaseRate.Shipment}} <span>{{BaseRate.WeightFrom}} - {{BaseRate.WeightTo}}</span></div>
+                            </div>
+                            <!--repeat overflow code start-->
+                            <div ng-class="{'baseratcard-overflow':BaseRate.Rate }" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="BaseRate.Rate.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.Rate.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRate.Rate">
+                                        <!--12 table button code-->
+                                        <div ng-if="LogisticType.Value !== 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rate.length + '%' }" style="float:left;">
+                                            <div class="pointer text-center show-color">
+                                                <input type="text" class="text-center form-control input-hide" value="{{Rate.Rate}}"
+                                                       ng-change="Rate.IsChanged=true" ng-model="Rate.Rate">
+                                                <input class="text-center form-control input-hide input-color" readonly placeholder="{{Rate.CurrencyCode}}">
+                                            </div>
+                                        </div>
+                                        <div ng-if="LogisticType.Value === 'ThirdParty'" ng-style="{ 'width' :  100/BaseRate.Rate.length + '%' }" style="float:left;">
+                                            <div class="pointer text-center show-color">
+                                                <input type="text" class="text-center form-control input-hide" value="{{Rate.Rate}}"
+                                                       ng-change="Rate.IsChanged=true" ng-model="Rate.Rate">
+                                                <input class="text-center form-control input-hide input-color" readonly placeholder="{{Rate.CurrencyCode}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <div class="clearfix"></div>
+                <!--scrollbar-x is showing code-->
+                <div class="col-sm-12">
+                    <div class="col-sm-4 paddingboth text-right"></div>
+                    <!--12 table column header start-->
+                    <div ng-class="{'baseratcard-overflow':Zones}" class="baseratcard-overflow">
+                        <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }">
+                            <div ng-repeat="Zone in Zones"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <div class="clearfix"></div>
+                <!--footer code-->
+                <div class="modal-footer">
+                    <div class="col-sm-12 paddingboth">
+                        <div class="pull-left">
+                            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                        </div>
+                        <div class="pull-right">
+                            <button type="submit" ng-submit="submitted='true'" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save' | translate}}</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end-->
+            </form>
+        </div>
+        <div ng-if="finalrateList.length === 0" class="panel-body">
+            <div class="paddingTB60 fontsize18 red text-center">
+                <span>{{'Add_On_Rate_Not_Available_Message' | translate}}</span>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div ng-if="ukfinaladdonrate !== null && ukfinaladdonrate.length > 0" id="addonrate">
+            <form name="UKAddOnRate" ng-submit="UpdateUKAddonRate(ukfinaladdonrate)">
+                <!--header code-->
+                <div class="panel-body paddingboth fontsize12 padding0">
+                    <div class="col-sm-12">
+                        <div class="headertable">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="col-sm-4 paddingboth text-right">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                                    <!--12 table column header start-->
+                                    <div ng-class="{'baseratcard-overflow':Zones}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                        <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }">
+                                            <div ng-repeat="Zone in Zones">
+                                                <!--12 table header start-->
+                                                <div ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center">{{Zone.ZoneDisplayName}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--body code-->
+                <div class="panel-body fontsize12 padding0">
+                    <div class="col-sm-12 form-group">
+                        <div ng-repeat="BaseRate in ukfinaladdonrate" class="bordered-left bordered-bottom">
+                            <div class="col-sm-4 paddingboth">
+                                <div class="padding-5">{{BaseRate.DocType}} <span>{{BaseRate.WeightFrom}} - {{BaseRate.WeightTo}}</span></div>
+                            </div>
+                            <!--repeat overflow code start-->
+                            <div ng-class="{'baseratcard-overflow':BaseRate.Rate }" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="BaseRate.Rate.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.Rate.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRate.Rate">
+                                        <!--12 table button code-->
+                                        <div ng-style="{ 'width' :  100/BaseRate.Rate.length + '%' }" style="float:left;">
+                                            <div class="pointer text-center show-color">
+                                                <input type="text" class="text-center form-control input-hide" value="{{Rate.Rate}}"
+                                                       ng-change="Rate.IsChanged = true" ng-model="Rate.Rate">
+                                                <input class="text-center form-control input-hide input-color" readonly placeholder="{{Rate.BusinessCurrency}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <!--scrollbar is showing code-->
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                    <div class="col-sm-4 paddingboth text-right"></div>
+                    <!--12 table column header start-->
+                    <div ng-class="{'baseratcard-overflow':Zones}" class="baseratcard-overflow">
+                        <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }">
+                            <div ng-repeat="Zone in Zones"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <div class="clearfix"></div>
+                <!--footer code-->
+                <div class="modal-footer">
+                    <div class="col-sm-12 paddingboth">
+                        <div class="pull-left">
+                            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                        </div>
+                        <div class="pull-right">
+                            <button type="submit" ng-submit="submitted='true'" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save' | translate}}</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end-->
+            </form>
+        </div>
+        <div ng-if="ukfinaladdonrate.length === 0" class="panel-body">
+            <div class="paddingTB60 fontsize18 red text-center">
+                <span>{{'Add_On_Rate_Not_Available_Message' | translate}}</span>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div ng-if="ukdhlfinaladdonrate !== null && ukdhlfinaladdonrate.length > 0" id="addonrate">
+            <form name="UKDHLAddOnRate" ng-submit="UpdateUKDHLAddonrate(ukdhlfinaladdonrate)">
+                <!--header code-->
+                <div class="panel-body paddingboth fontsize12 padding0">
+                    <div class="col-sm-12">
+                        <div class="headertable">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="col-sm-4 paddingboth text-right">{{'Weight' | translate}} ({{'kgs' | translate}})</div>
+                                    <!--12 table column header start-->
+                                    <div ng-class="{'baseratcard-overflow':Zones}" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                        <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }">
+                                            <div ng-repeat="Zone in Zones">
+                                                <!--12 table header start-->
+                                                <div ng-style="{ 'width' :  100/Zones.length + '%' }" style="float:left;" class="text-center">{{Zone.ZoneDisplayName}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <!--body code-->
+                <div class="panel-body fontsize12 padding0">
+                    <div class="col-sm-12 form-group">
+                        <div ng-repeat="BaseRate in ukdhlfinaladdonrate" class="bordered-left bordered-bottom">
+                            <div class="col-sm-4 paddingboth">
+                                <div class="padding-5">{{BaseRate.DocType}} <span>{{BaseRate.WeightFrom}} - {{BaseRate.WeightTo}}</span></div>
+                            </div>
+                            <!--repeat overflow code start-->
+                            <div ng-class="{'baseratcard-overflow':BaseRate.Rate }" style="height:auto !important;overflow:hidden;" class="baseratcard-overflow">
+                                <div ng-style="BaseRate.Rate.length < 10 ? { 'width':'100%' } : { 'width': 10*BaseRate.Rate.length + '%' }">
+                                    <div ng-repeat="Rate in BaseRate.Rate">
+                                        <!--12 table button code-->
+                                        <div ng-style="{ 'width' :  100/BaseRate.Rate.length + '%' }" style="float:left;">
+                                            <div class="pointer text-center show-color">
+                                                <input type="text" class="text-center form-control input-hide" value="{{Rate.Rate}}"
+                                                       ng-change="Rate.IsChanged=true" ng-model="Rate.Rate">
+                                                <input class="text-center form-control input-hide input-color" readonly placeholder="{{Rate.BusinessCurrency}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--end-->
+                <!--scrollbar is showing code-->
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                    <div class="col-sm-4 paddingboth text-right"></div>
+                    <!--12 table column header start-->
+                    <div ng-class="{'baseratcard-overflow':Zones}" class="baseratcard-overflow">
+                        <div ng-style="Zones.length < 10 ? { 'width':'100%' } : { 'width': 10*Zones.length + '%' }">
+                            <div ng-repeat="Zone in Zones"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+                <div class="clearfix"></div>
+                <!--footer code-->
+                <div class="modal-footer">
+                    <div class="col-sm-12 paddingboth">
+                        <div class="pull-left">
+                            <button type="button" ng-click="$dismiss('cancel')" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+                        </div>
+                        <div class="pull-right">
+                            <button type="submit" ng-submit="submitted='true'" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{'Save' | translate}}</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end-->
+            </form>
+        </div>
+        <div ng-if="ukdhlfinaladdonrate.length === 0" class="panel-body">
+            <div class="paddingTB60 fontsize18 red text-center">
+                <span>{{'Add_On_Rate_Not_Available_Message' | translate}}</span>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,1 @@
+﻿angular.module('ngApp.CountryZonePostCode', ['ui.router', 'ngApp.common', 'ui.grid']);

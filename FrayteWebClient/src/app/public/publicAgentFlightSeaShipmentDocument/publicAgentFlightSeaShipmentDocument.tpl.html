@@ -1,0 +1,223 @@
+﻿<div class="content padding-15">
+    <div class="content-transparent" style="padding:15px;">
+        <div class="text-center padding-tb-15">
+            <h4>{{'Update' | translate}} {{formCaption.Caption1}} {{'Detail' | translate}}</h4>
+        </div>
+        <form name="AgentFlightForm" ng-submit="AgentFlightSeaDetail(AgentFlightForm.$valid)" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_From' | translate}} ({{'Shipper' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperInfo.ContactName}}</div>
+                                <div>{{ShipperInfo.CompanyName}}</div>
+                                <div>{{ShipperAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ShipperAddressInfo.City}}, {{ShipperAddressInfo.State}}</div>
+                                <div>{{ShipperAddressInfo.Country.Name}} <span ng-if="ShipperAddressInfo.Country.Name !== 'Hong Kong'">-</span> {{ShipperAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ShipperInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ShipperInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default text-left" style="height:280px;">
+                        <div class="panel-heading">{{'Ship_To' | translate}} ({{'Consignee' | translate}})</div>
+                        <div class="panel-body">
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverInfo.ContactName}}</div>
+                                <div>{{ReceiverInfo.CompanyName}}</div>
+                                <div>{{ReceiverAddressInfo.Address}}</div>
+                            </div>
+                            <div style="padding:5px 0;">
+                                <div>{{ReceiverAddressInfo.City}}, {{ReceiverAddressInfo.State}}</div>
+                                <div>{{ReceiverAddressInfo.Country.Name}} <span ng-show="ReceiverAddressInfo.Country.Name !== 'Hong Kong'">-</span>   {{ReceiverAddressInfo.Zip}}</div>
+                            </div>
+                            <div style="padding:5px 0;color:#94a4bd;">
+                                <div>{{'T' | translate}}: <span> {{ReceiverInfo.TelephoneNo}}</span></div>
+                                <div>{{'E' | translate}}: <span> {{ReceiverInfo.Email}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="text-center page-header" style="margin-bottom:0px;">
+                <b>{{'PutDetailInformation' | translate}}</b>
+            </div>
+            <div class="clearfix"></div>
+            <div class="wrapperContent">
+                <div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label" for="shippingOrder">{{'Frayte' | translate}} {{'Shipping' | translate}} {{'Order' | translate}}{{'Hash' | translate}}:</label>
+                            <div>
+                                <input type="text" id="shippingOrder" name="shippingOrder" ng-model="FrayteCargoWiseSo" class="form-control" readonly />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-if="shipmentType ==='a'" class="col-xs-4 form-group">
+                            <label class="control-label" for="masterAirwayBill1">{{'Prefix' | translate}} {{Number.Caption3}}:</label>
+                            <div>
+                                <input type="text" id="masterAirwayBill" name="masterAirwayBill1" ng-model="PreFix" class="form-control" readonly />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-xs-8 form-group" ng-class="{ 'has-error': AgentFlightForm.masterAirwayBill.$invalid &&
+                                            (AgentFlightForm.masterAirwayBill.$dirty || submitted) }">
+                            <label class="control-label" for="masterAirwayBill">{{formCaption.Caption3}} {{'Hash' | translate}}:</label>
+                            <div>
+                                <input type="text" id="masterAirwayBill" name="masterAirwayBill" ng-model="agentFlightSea.MABBL" class="form-control" required />
+                                <span class="help-block has-error" ng-show="AgentFlightForm.masterAirwayBill.$invalid &&
+                                            (AgentFlightForm.masterAirwayBill.$dirty || submitted)">
+                                    {{formCaption.Caption3}} {{'HashValidError' | translate}}
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="wrapperContent">
+                <div class="col-sm-12">
+                    <h3>{{formCaption.Caption1}} {{'Detail' | translate}}</h3>
+                </div>
+                <div class="col-sm-6 form-group" style="margin-top: 28px;">
+                    <div class="form-group" ng-class="{ 'has-error': AgentFlightForm.flightVesselName.$invalid &&
+                                                         (AgentFlightForm.flightVesselName.$dirty || submitted) }">
+                        <label class="textLeft control-label" for="flightVesselName">{{formCaption.Caption1}} {{'Number' | translate}}:</label>
+                        <div class="inputRight">
+                            <input type="text" id="flightVesselName" name="flightVesselName" class="form-control"
+                                   ng-model="agentFlightSea.FlightVessel"
+                                   ng-required="true" placeholder="{{'Enter' | translate}} {{formCaption.Caption1}} {{'Number' | translate}}" required />
+
+                            <span class="help-block has-error"
+                                  ng-show="AgentFlightForm.flightVesselName.$error.required &&
+                                                (AgentFlightForm.flightVesselName.$dirty || submitted)">
+                                {{formCaption.Caption1}} {{'NumberValidError' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AgentFlightForm.flightDateETD.$invalid &&
+                                                         (AgentFlightForm.flightDateETD.$dirty || submitted) }">
+                        <label class="textLeft control-label" for="flightDateETD">{{formCaption.Caption2}} {{'Date' | translate}} {{'ETD' | translate}}:</label>
+                        <div class="inputRight">
+                            <p class="input-group">
+                                <input type="text" id="flightDateETD" name="flightDateETD" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy"
+                                       ng-model="agentFlightSea.ETDDate" is-open="status.openedEtd"
+                                       ng-required="true" close-text="Close" ng-click="openCalender('Etd', $event)" placeholder="{{'DatePlaceholder' | translate}}" required />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openCalender('Etd',$event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                            <span class="help-block has-error"
+                                  ng-show="AgentFlightForm.flightDateETD.$error.required &&
+                                                (AgentFlightForm.flightDateETD.$dirty || submitted)">
+                                {{formCaption.Caption2}} {{'Date' | translate}} {{'ETDValidError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="AgentFlightForm.flightDateETD.$invalid && !AgentFlightForm.flightDateETD.$error.required &&
+                                                (AgentFlightForm.flightDateETD.$dirty || submitted)">
+                                {{'Invalid' | translate}} {{'Date' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-group" ng-class="{ 'has-error': (AgentFlightForm.flightTimeETD.$invalid || AgentFlightForm.flightTimeETD.$error.pattern) &&
+                                                     (AgentFlightForm.flightTimeETD.$dirty || submitted) }">
+                    <label class="textLeft control-label" for="flightTimeETD">{{'Time' | translate}} {{'ETD' | translate}} <b>{{'Hours24' | translate}}</b>:</label>
+                    <div class="inputRight">
+                        <input type="text"
+                               class="form-control input-sm"
+                               placeholder="{{'TimePlaceholder' | translate}}"
+                               name="flightTimeETD"
+                               ng-model="agentFlightSea.ETDTime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                        <span class="help-block has-error"
+                              ng-show="AgentFlightForm.flightTimeETD.$invalid && !AgentFlightForm.flightTimeETD.$error.pattern && (AgentFlightForm.flightTimeETD.$dirty || submitted)">
+                            {{'TimeValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="AgentFlightForm.workingStartTime.$error.pattern &&
+                                                (AgentFlightForm.workingStartTime.$dirty || submitted)">
+                            {{'TimeNotValid' | translate}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AgentFlightForm.flightDateETA.$invalid &&
+                                                         (AgentFlightForm.flightDateETA.$dirty || submitted) }">
+                        <label class="textLeft control-label" for="flightDateETA">{{formCaption.Caption2}} {{'Date' | translate}} {{'ETA' | translate}}:</label>
+                        <div class="inputRight">
+                            <p class="input-group">
+                                <input type="text" id="flightDateETA" name="flightDateETA" class="form-control" uib-uib-datepicker-popup="dd/MM/yyyy"
+                                       ng-model="agentFlightSea.ETADate" is-open="status.openedEta"
+                                       ng-required="true" close-text="Close" ng-click="openCalender('Eta',$event)" placeholder="{{'DatePlaceholder' | translate}}" required />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openCalender('Eta',$event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                            <span class="help-block has-error"
+                                  ng-show="AgentFlightForm.flightDateETA.$error.required &&
+                                                (AgentFlightForm.flightDateETA.$dirty || submitted)">
+                                {{formCaption.Caption2}} {{'Date' | translate}} {{'ETAValidError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="AgentFlightForm.flightDateETA.$invalid && !AgentFlightForm.flightDateETA.$error.required &&
+                                                (AgentFlightForm.flightDateETA.$dirty || submitted)">
+                                {{'Invalid' | translate}} {{'Date' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-group" ng-class="{ 'has-error': (AgentFlightForm.flightTimeETA.$invalid || AgentFlightForm.flightTimeETA.$error.pattern) &&
+                                                     (AgentFlightForm.flightTimeETA.$dirty || submitted) }">
+                    <label class="textLeft control-label" for="flightTimeETA">{{'Time' | translate}} {{'ETA' | translate}} <b>{{'Hours24' | translate}}</b>:</label>
+                    <div class="inputRight">
+                        <input type="text"
+                               class="form-control input-sm"
+                               placeholder="{{'TimePlaceholder' | translate}}"
+                               name="flightTimeETA"
+                               ng-model="agentFlightSea.ETATime"
+                               ui-mask="99:99"
+                               ng-pattern="/([0-2]|0[0-9]|1[0-9]|2[0-3]):?[0-5][0-9]$/" required style="width: 60px;" />
+                        <span class="help-block has-error"
+                              ng-show="AgentFlightForm.flightTimeETA.$invalid && !AgentFlightForm.flightTimeETA.$error.pattern && (AgentFlightForm.flightTimeETA.$dirty || submitted)">
+                            {{'TimeValidationError' | translate}}
+                        </span>
+                        <span class="help-block has-error"
+                              ng-show="AgentFlightForm.workingStartTime.$error.pattern &&
+                                                (AgentFlightForm.workingStartTime.$dirty || submitted)">
+                            {{'TimeNotValid' | translate}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12">
+                    <div class="floatRight form-group">
+                        <div class="padding-tb-15"><button type="submit" class="btn btn-save" ng-click="submitted=true">{{'Confirm' | translate}}</button></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+</div>

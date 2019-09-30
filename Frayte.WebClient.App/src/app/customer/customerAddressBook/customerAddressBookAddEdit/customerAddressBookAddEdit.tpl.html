@@ -1,0 +1,235 @@
+﻿
+<div class="modal-header">
+    <button type="button" class="close" ng-click="Cancel()"><i class="fa fa-times-circle-o" aria-hidden="true" style="font-size:30px;"></i></button>
+    <h4 class="modal-title">{{mode | translate}} {{'Address' | translate}} {{'Book' | translate}}</h4>
+</div>
+<form name="AddressBookForm" ng-submit="SaveAddressBook(AddressBookForm.$valid, AddressBook)" novalidate>
+    <div class="modal-body">
+        <div class="col-sm-12 paddingboth paddingboth">
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.country.$invalid &&
+                                        (AddressBookForm.country.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="country">{{'Country' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth" id="Xe">
+                            <select id="country" name="country" ng-change="setAddressBookinfo(AddressBook.Country)"
+                                    ng-model="AddressBook.Country"
+                                    ng-options="Country.Name disable when Country.Disabled === true for Country in CountriesRepo | orderBy:'OrderNumber' track by Country.CountryId"
+                                    class="form-control fontsize12" required>
+                                <option value="" disabled selected class="display-none">{{'CountrySelectedOption' | translate}}</option>
+                            </select>
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.country.$invalid &&
+                                  (AddressBookForm.country.$dirty || submitted)">
+                                {{'CountryValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.postalCode.$invalid &&
+                                                         (AddressBookForm.postalCode.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="postalCode">{{'Zip' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input type="text" id="postalCode" name="postalCode" ng-model="AddressBook.PostCode" class="form-control fontsize12" maxlength="10"
+                                   ng-disabled="AddressBook.Country.Code === 'HKG'"
+                                   ng-required="AddressBook.Country.Code !=='HKG'"
+                                   placeholder="{{'PostalCodePlaceholder' | translate}}" />
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.postalCode.$invalid &&
+                                            (AddressBookForm.postalCode.$dirty || submitted)">
+                                {{'PostalCodeValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.firstName.$invalid &&
+                                                         (AddressBookForm.firstName.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="firstName">{{'Contact_First_Name' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input capitalize:first type="text" id="firstName" name="firstName" ng-model="AddressBook.FirstName" class="form-control fontsize12" maxlength="50"
+                                   placeholder="{{'ContactPlaceholder' | translate}}" only-letters-input required />
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.firstName.$invalid &&
+                                            (AddressBookForm.firstName.$dirty || submitted)">
+                                {{'ContactValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.lastName.$invalid &&
+                                                         (AddressBookForm.lastName.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="lastName">{{'Contact_Last_Name' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input capitalize:first type="text" id="lastName" name="lastName" ng-model="AddressBook.LastName" class="form-control fontsize12" maxlength="50"
+                                   placeholder="{{'ContactPlaceholder' | translate}}" only-letters-input required />
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.lastName.$invalid &&
+                                            (AddressBookForm.lastName.$dirty || submitted)">
+                                {{'ContactValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.companyName.$invalid &&
+                                                         (AddressBookForm.companyName.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="companyName">{{'CompanyName' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input capitalize:first type="text" id="companyName" name="companyName" ng-model="AddressBook.CompanyName" class="form-control fontsize12" maxlength="100"
+                                   placeholder="{{'CompanyNamePlaceholder' | translate}}" required />
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.companyName.$invalid &&
+                                            (AddressBookForm.companyName.$dirty || submitted)">
+                                {{'CompanyNameValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.email.$invalid &&
+                                                         (AddressBookForm.email.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="email">{{'Email' | translate}}  <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input type="text" name="email" id="email" ng-pattern="emailFormat" 
+                                   ng-model="AddressBook.Email" class="form-control fontsize12" placeholder="{{'EmailPlaceholder' | translate}}" required maxlength="100"/>
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.email.$error.required &&
+                                            (AddressBookForm.email.$dirty || submitted)">
+                                {{'EmailValidationError' | translate}}
+                            </span>
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.email.$error.pattern &&
+                                            (AddressBookForm.email.$dirty || submitted)">
+                                {{'EmailNotValid' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.address1.$invalid &&
+                                                         (AddressBookForm.address1.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="address1">{{'Address' | translate}}{{'1' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <textarea cols="1" rows="2" capitalize:first id="address1" name="address1" ng-model="AddressBook.Address" class="form-control fontsize12" maxlength="100"
+                                      required>
+                                {{'AddressPlaceholder' | translate}}
+                            </textarea>
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.address1.$invalid &&
+                                            (AddressBookForm.address1.$dirty || submitted)">
+                                {{'AddressValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="address2">{{'Address' | translate}}{{'2' | translate}}</label>
+                        <div class="col-sm-8 paddingboth">
+                            <textarea rows="1" cols="2" capitalize:first id="address2" name="address2" ng-model="AddressBook.Address2" maxlength="100" class="form-control fontsize12">{{'Address2' | translate}}</textarea>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.city.$invalid &&
+                                                         (AddressBookForm.city.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="city">{{'City' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input capitalize:first type="text" id="city" name="city" ng-model="AddressBook.City" maxlength="20" class="form-control fontsize12"
+                                   only-alphabets
+                                   placeholder="{{'CityPlaceholder' | translate}}" required />
+                            <span class="help-block has-error"
+                                  ng-show="AddressBookForm.city.$invalid &&
+                                            (AddressBookForm.city.$dirty || submitted)">
+                                {{'CityValidationError' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="suburb">{{'Area' | translate}}</label>
+                        <div class="col-sm-8 paddingboth">
+                            <input capitalize:first type="text" id="suburb" name="suburb" ng-model="AddressBook.Area" maxlength="100" class="form-control fontsize12" placeholder="{{'Area' | translate}}" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 paddingboth">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 margintop7 paddingboth" for="state">{{'State' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth">
+                            <input capitalize:first type="text" id="state" name="state" ng-model="AddressBook.State" class="form-control fontsize12" maxlength="20"
+                                   ng-disabled="AddressBook.Country.Code === 'GBR' ||AddressBook.Country.Code === 'HKG'"
+                                   placeholder="{{'StatePlaceholder' | translate}}" />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{ 'has-error': AddressBookForm.phone.$invalid &&
+                                                         (AddressBookForm.phone.$dirty || submitted) }">
+                        <label class="control-label col-sm-4 paddingboth margintop7" for="phone">{{'Phone' | translate}} <span class="redColor">*</span></label>
+                        <div class="col-sm-8 paddingboth paddingboth">
+                            <div class="col-sm-4 paddingleft">
+                                <input type="text" class="form-control fontsize12" readonly ng-model="ShipFromPhoneCode" />
+                            </div>
+                            <div class="col-sm-8 paddingboth">
+                                <input type="text" id="phone" name="phone" only-Numeric
+                                       ng-model="AddressBook.Phone" class="form-control fontsize12" maxlength="20" required />
+
+                            </div>
+                            <span class="help-block has-error col-sm-12 paddingboth"
+                                  ng-show="AddressBookForm.phone.$invalid &&
+                                            (AddressBookForm.phone.$dirty || submitted)">
+                                {{'Telephone_No' | translate}}
+                            </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <div class="pull-right">
+                <button type="submit" ng-click="submitted=true" class="btn-simple btn-save fontsize12"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;{{'Save' | translate}} &nbsp;</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--Out From Form -->
+<div class="outer-cancel-button">
+    <button type="button" ng-click="Dismiss1()" class="btn-simple btn-cancel fontsize12"><i class="fa fa-times" aria-hidden="true"></i> {{'Cancel' | translate}}</button>
+</div>
